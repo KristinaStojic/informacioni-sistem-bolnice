@@ -20,10 +20,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Broj sale:</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Namjena sale:</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Status sale: </TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Tip sale: </TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text1" Text="{Binding  Id}"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text2" Text="{Binding Namjena}"></TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Status sale:</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Tip sale:</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text1"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text2"></TextBox>
         <ComboBox Grid.Row="2" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="combo">
             <ComboBoxItem Content="Slobodna"/>
             <ComboBoxItem Content="Zauzeta"/>

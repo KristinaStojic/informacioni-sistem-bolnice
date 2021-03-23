@@ -24,15 +24,20 @@ namespace Model
             PrikaziSalu.Sale.Remove(sala);
       }
       
-      public void IzmjeniSalu(int id, Sala sala)
+      public static void IzmjeniSalu(Sala sala1, Sala sala)
       {
             foreach (Sala s in sale)
             {
-                if (s.Id == id)
+                if (s.Id == sala1.Id)
                 {
+                    s.Namjena = sala.Namjena;
+                    s.TipSale = sala.TipSale;
                     s.Status = sala.Status;
                 }
             }
+            int idx = PrikaziSalu.Sale.IndexOf(sala1);
+            PrikaziSalu.Sale.RemoveAt(idx);
+            PrikaziSalu.Sale.Insert(idx, sala);
         }
       
       public static List<Sala> NadjiSveSale()
