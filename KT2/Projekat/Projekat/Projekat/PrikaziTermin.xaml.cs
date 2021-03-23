@@ -10,39 +10,45 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PrikaziTermin.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PrikaziTermin : Window
     {
-        public MainWindow()
+        public PrikaziTermin()
         {
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PrikaziSalu w1 = new PrikaziSalu();
-            w1.Show();
+            ZakaziTermin zt = new ZakaziTermin();
+            zt.Show();
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            PrikaziTermin w1 = new PrikaziTermin();
-            w1.Show();
+            IzmeniTermin it = new IzmeniTermin();
+            it.Show();
             this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PrikaziTermin w1 = new PrikaziTermin();
-            w1.Show();
+            OtkaziTermin ot = new OtkaziTermin();
+            ot.Show();
+            
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
             this.Close();
         }
     }

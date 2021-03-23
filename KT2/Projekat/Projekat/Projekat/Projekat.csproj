@@ -55,7 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IzmeniTermin.xaml.cs">
+      <DependentUpon>IzmeniTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtkaziTermin.xaml.cs">
+      <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZakaziTermin.xaml.cs">
+      <DependentUpon>ZakaziTermin.xaml</DependentUpon>
+    </Compile>
     <Page Include="DodajSalu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmeniTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,7 +94,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OtkaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrikaziSalu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZakaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +123,9 @@
     <Compile Include="Model\SaleMenadzer.cs" />
     <Compile Include="PrikaziSalu.xaml.cs">
       <DependentUpon>PrikaziSalu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikaziTermin.xaml.cs">
+      <DependentUpon>PrikaziTermin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
