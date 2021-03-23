@@ -63,9 +63,11 @@ namespace Projekat
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
-            
-            IzmjeniSalu iss = new IzmjeniSalu(izabranaSala);
-            iss.Show();
+            if (izabranaSala != null)
+            {
+                IzmjeniSalu iss = new IzmjeniSalu(izabranaSala);
+                iss.Show();
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)

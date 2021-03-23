@@ -55,11 +55,24 @@ C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Pro
 C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CoreCompileInputs.cache
 C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.exe
 C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.pdb
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.g.cs
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.baml
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.g.cs
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.baml
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.g.cs
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.baml
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.g.cs
-C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.baml
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csprojAssemblyReference.cache
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajSalu.g.cs
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmjeniSalu.g.cs
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\MainWindow.g.cs
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziSalu.g.cs
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\App.g.cs
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat_MarkupCompile.cache
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat_MarkupCompile.lref
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.exe
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.pdb
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.exe.config
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.exe
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.pdb
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajSalu.baml
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmjeniSalu.baml
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\MainWindow.baml
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziSalu.baml
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.g.resources
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.Properties.Resources.resources
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.GenerateResource.cache
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CoreCompileInputs.cache
