@@ -76,3 +76,36 @@ C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Proje
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.Properties.Resources.resources
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.GenerateResource.cache
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CoreCompileInputs.cache
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.exe.config
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.exe
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.pdb
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csprojAssemblyReference.cache
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajSalu.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmjeniSalu.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\MainWindow.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziSalu.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\App.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat_MarkupCompile.cache
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat_MarkupCompile.lref
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajSalu.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmjeniSalu.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\MainWindow.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziSalu.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.g.resources
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.Properties.Resources.resources
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.GenerateResource.cache
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CoreCompileInputs.cache
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.exe
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.pdb
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziPacijenta.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziPacijenta.baml
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajPacijenta.g.cs
+D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajPacijenta.baml

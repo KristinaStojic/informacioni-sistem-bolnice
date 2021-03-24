@@ -58,8 +58,14 @@
     <Compile Include="IzmeniTermin.xaml.cs">
       <DependentUpon>IzmeniTermin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajPacijenta.xaml.cs">
+      <DependentUpon>DodajPacijenta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikaziPacijenta.xaml.cs">
+      <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
@@ -94,7 +100,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="DodajPacijenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OtkaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikaziPacijenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
