@@ -113,12 +113,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Lekar.cs" />
-    <Compile Include="Model\Operacije.cs" />
-    <Compile Include="Model\OperacijeMenadzer.cs" />
+    <Compile Include="Model\TerminMenadzer.cs" />
     <Compile Include="Model\Pacijent.cs" />
     <Compile Include="Model\PacijentiFileManager.cs" />
-    <Compile Include="Model\Pregledi.cs" />
-    <Compile Include="Model\PreglediMenadzer.cs" />
+    <Compile Include="Model\Termin.cs" />
     <Compile Include="Model\Sala.cs" />
     <Compile Include="Model\SaleMenadzer.cs" />
     <Compile Include="PrikaziSalu.xaml.cs">

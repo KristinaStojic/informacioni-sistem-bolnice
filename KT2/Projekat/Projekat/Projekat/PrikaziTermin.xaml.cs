@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using Model;
+
 
 namespace Projekat
 {
@@ -19,9 +22,28 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziTermin : Window
     {
+        private int colNum = 0;
+        public static ObservableCollection<Termin> Termini
+        {
+            get;
+            set;
+        }
         public PrikaziTermin()
         {
             InitializeComponent();
+            this.DataContext = this;
+            Termini = new ObservableCollection<Termin>();
+            foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            {
+                Termini.Add(t);
+            }
+        }
+
+        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            colNum++;
+            if (colNum == 8)
+                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

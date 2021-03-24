@@ -14,18 +14,18 @@
             <ColumnDefinition Width="41*"/>
             <ColumnDefinition Width="12*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" x:Name="dataGridTermini" IsReadOnly="True" 
+        <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
                   Height="223" Margin="35,43,0,0" VerticalAlignment="Top" Width="569" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Redni broj"  />
-                <DataGridTextColumn Header="Datum" />
-                <DataGridTextColumn Header="Vreme pocetka" />
-                <DataGridTextColumn Header="Vreme kraja"  />
-                <DataGridTextColumn Header="ID pacijenta"/>
-                <DataGridTextColumn Header="ID lekara"  />
-                <DataGridTextColumn Header="Prostorija"  />
-                <DataGridTextColumn Header="Tip usluge "  />
+                <DataGridTextColumn Header="Redni broj" Binding="{Binding IdTermin}"  />
+                <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
+                <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
+                <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
+                <DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent}"/>
+                <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  />
+                <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija}" />
+                <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}" />
             </DataGrid.Columns>
 
         </DataGrid>

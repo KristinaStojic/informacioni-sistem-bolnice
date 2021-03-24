@@ -11,24 +11,27 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152" Margin="36,53,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152" Margin="36,138,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152" Margin="36,230,0,0"/>
-        <Label Content="Redni broj&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,6,0,0" Height="42" Width="74"/>
-        <Label Content="Vreme pocetka&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="90"/>
-        <Label Content="Vreme kraja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,185,0,0" Height="26" Width="72"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Name="text1" Width="152" Margin="36,53,0,0"/>
+        <TextBox HorizontalAlignment="Left" Name = "text2" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,138,0,0"/>
+        <TextBox HorizontalAlignment="Left" Name = "text3" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,230,0,0"/>
+        <Label Content="Redni broj termina&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,6,0,0" Height="42" Width="112"/>
+        <Label Content="Vreme pocetka (HH:mm)&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="152"/>
+        <Label Content="Vreme kraja  (HH:mm)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,185,0,0" Height="26" Width="152"/>
         <Label Content="Tip pregeda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,286,0,0" Height="26" Width="90"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Margin="36,329,0,0" Height="22"/>
-        <Label Content="Lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,10,0,0" Height="26" Width="38"/>
-        <Label Content="Pacijent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,93,0,0" Height="26" Width="51"/>
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Margin="36,329,0,0" Height="22" Name="combo" SelectedIndex="0">
+            <ComboBoxItem Content="Pregled"/>
+            <ComboBoxItem Content="Operacija"/>
+        </ComboBox>
+        <Label Content="ID Lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,10,0,0" Height="26" Width="62"/>
+        <Label Content="ID Pacijenta" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,93,0,0" Height="26" Width="91"/>
         <Label Content="Datum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,185,0,0" Height="26" Width="46"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="278,138,0,0" Height="22"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="264,392,0,0"  Height="30"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="264,392,0,0"  Height="30" Click="Button_Click_1"/>
         <Button Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="113,392,0,0" Height="30" Click="Button_Click"/>
-        <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,230,0,0" Width="153" Height="23"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="278,54,0,0" Height="22"/>
+        <DatePicker HorizontalAlignment="Left" Name="dp" VerticalAlignment="Top" Margin="278,230,0,0" Width="153" Height="23"/>
         <Label Content="Prostorija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="279,286,0,0" Height="26" Width="90"/>
         <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Margin="279,329,0,0" Height="22"/>
+        <TextBox HorizontalAlignment="Left" x:Name = "text5" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="279,138,0,0"/>
+        <TextBox HorizontalAlignment="Left" x:Name = "text4" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="279,54,0,0"/>
 
     </Grid>
 </Window>

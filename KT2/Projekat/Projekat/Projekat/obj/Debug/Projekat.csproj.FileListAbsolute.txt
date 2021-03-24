@@ -76,3 +76,11 @@ C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Proje
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.Properties.Resources.resources
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.GenerateResource.cache
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CoreCompileInputs.cache
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.g.cs
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.g.cs
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.g.cs
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.g.cs
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.baml
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.baml
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.baml
+C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.baml

@@ -14,5 +14,17 @@ namespace Model
       public string Ime { get; set; }
       public string Prezime { get; set; }
 
+    public Lekar(int id, string ime, string prz)
+        {
+            this.IdLekara = id;
+            this.Ime = ime;
+            this.Prezime = prz;
+        }
+
+    public Lekar(int id)
+        {
+            this.IdLekara = id;
+        }
+
     }
 }
