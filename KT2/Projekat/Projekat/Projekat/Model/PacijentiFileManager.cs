@@ -22,9 +22,25 @@ namespace Model
             PrikaziPacijenta.PacijentiTabela.Add(noviNalog);
         }
 
-        public static void IzmeniNalog(Pacijent nalog)
+        public static void IzmeniNalog(Pacijent nalog1, Pacijent nalog)
         {
-            //
+            foreach (Pacijent p in pacijenti)
+            {
+                if (p.IdPacijenta == nalog1.IdPacijenta)
+                {
+                    p.IdPacijenta = nalog.IdPacijenta;
+                    p.ImePacijenta = nalog.ImePacijenta;
+                    p.PrezimePacijenta = nalog.PrezimePacijenta;
+                    p.Jmbg = nalog.Jmbg;
+                    p.StatusNaloga = nalog.StatusNaloga;
+                    p.BrojTelefona = nalog.BrojTelefona;
+                    p.Email = nalog.Email;
+                    p.AdresaStanovanja = nalog.AdresaStanovanja;
+                }
+            }
+            int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
+            PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
+            PrikaziPacijenta.PacijentiTabela.Insert(idx, nalog);
         }
 
         public static void ObrisiNalog(Pacijent nalog)
@@ -54,7 +70,13 @@ namespace Model
 
         public static Pacijent PronadjiPoId(int id)
         {
-            // TODO: implement
+            foreach (Pacijent p in pacijenti)
+            {
+                if (p.IdPacijenta == id)
+                {
+                    return p;
+                }
+            }
             return null;
         }
 
