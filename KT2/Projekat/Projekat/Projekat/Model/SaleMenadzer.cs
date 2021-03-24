@@ -45,7 +45,7 @@ namespace Model
          return sale;
       }
       
-      public Sala NadjiSaluPoId(int id)
+      public static Sala NadjiSaluPoId(int id)
       {
          foreach(Sala s in sale)
             {

@@ -61,8 +61,11 @@ namespace Projekat
 
             //int idPac = int.Parse(text5.Text);
             //Pacijent p = new Pacijent(idPac);
+            int idSale = int.Parse(prostorije.Text);
+            Sala sala = new Sala(idSale);
+            //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   kada uradimo serijalizaciju
 
-            Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
+            Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala);
             TerminMenadzer.ZakaziTermin(s);
             this.Close();
         }

@@ -158,3 +158,5 @@ C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Pro
 C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziPacijenta.baml
 C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.baml
 C:\SIMS Projekat - bolnica\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniPacijenta.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniPacijenta.baml

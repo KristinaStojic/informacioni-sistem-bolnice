@@ -30,7 +30,39 @@
         <Button Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="113,392,0,0" Height="30" Click="Button_Click"/>
         <DatePicker HorizontalAlignment="Left" Name="datum" Text="dd/MM/yyyy" VerticalAlignment="Top" Margin="278,230,0,0" Width="153" Height="23"/>
         <Label Content="Prostorija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,286,0,0" Height="26" Width="90"/>
-        <ComboBox HorizontalAlignment="Left"  VerticalAlignment="Top" Width="152" Margin="278,329,0,0" Height="22"/>
+        <ComboBox HorizontalAlignment="Left" Name="prostorije" VerticalAlignment="Top" Width="152" Margin="279,329,0,0" Height="22">
+            <ComboBoxItem IsEnabled="False" HorizontalAlignment="Center" FontSize="13" IsSelected="True">Izaberite broj prostorije</ComboBoxItem>
+            <ComboBoxItem>1</ComboBoxItem>
+            <ComboBoxItem>2</ComboBoxItem>
+            <ComboBoxItem>3</ComboBoxItem>
+            <ComboBoxItem>4</ComboBoxItem>
+            <ComboBoxItem>5</ComboBoxItem>
+            <ComboBoxItem>6</ComboBoxItem>
+            <ComboBoxItem>7</ComboBoxItem>
+            <ComboBoxItem>8</ComboBoxItem>
+            <ComboBoxItem>9</ComboBoxItem>
+            <ComboBoxItem>10</ComboBoxItem>
+            <ComboBoxItem>11</ComboBoxItem>
+            <ComboBoxItem>12</ComboBoxItem>
+            <ComboBoxItem>13</ComboBoxItem>
+            <ComboBoxItem>14</ComboBoxItem>
+            <ComboBoxItem>15</ComboBoxItem>
+            <ComboBoxItem>16</ComboBoxItem>
+            <ComboBoxItem>17</ComboBoxItem>
+            <ComboBoxItem>18</ComboBoxItem>
+            <ComboBoxItem>19</ComboBoxItem>
+            <ComboBoxItem>20</ComboBoxItem>
+            <ComboBoxItem>21</ComboBoxItem>
+            <ComboBoxItem>22</ComboBoxItem>
+            <ComboBoxItem>23</ComboBoxItem>
+            <ComboBoxItem>24</ComboBoxItem>
+            <ComboBoxItem>25</ComboBoxItem>
+            <ComboBoxItem>26</ComboBoxItem>
+            <ComboBoxItem>27</ComboBoxItem>
+            <ComboBoxItem>28</ComboBoxItem>
+            <ComboBoxItem>29</ComboBoxItem>
+            <ComboBoxItem>30</ComboBoxItem>
+        </ComboBox>
         <TextBox HorizontalAlignment="Left" x:Name="text2" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,128,0,0"/>
 
     </Grid>

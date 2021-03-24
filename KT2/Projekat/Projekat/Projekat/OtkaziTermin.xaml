@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Otkazi termin" Height="258" Width="444" Background="AntiqueWhite">
+        Title="Otkazi termin" Height="258" Width="444" WindowStartupLocation="CenterScreen" Background="AliceBlue">
     <StackPanel Margin="0,0,3.6,13">
         <Label Content="Da li ste sigurni da zelite da otkazete odabrani termin?" FontSize="13" HorizontalAlignment="Center" Margin="35,48,35,0" VerticalAlignment="Top" Height="42" Width="325"/>
-        <Separator Height="30" Background="AntiqueWhite" />
+        <Separator Height="30" Background="AliceBlue" />
         <StackPanel Orientation="Horizontal" Height="31" HorizontalAlignment="Center">
-            <Button Width="90" Content="Da" Background="AliceBlue"/>
-            <Separator Width="60" Background="AntiqueWhite" />
-            <Button Width="90" Content="Ne" Background="AliceBlue" Click="Button_Click"/>
+            <Button Width="90" Content="Da" Background="White"/>
+            <Separator Width="60" Background="AliceBlue" />
+            <Button Width="90" Content="Ne" Background="White" Click="Button_Click"/>
         </StackPanel>
 
     </StackPanel>

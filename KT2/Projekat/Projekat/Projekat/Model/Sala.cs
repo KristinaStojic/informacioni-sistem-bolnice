@@ -42,5 +42,9 @@ namespace Model
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+        public Sala(int id)
+        {
+            this.Id = id;
+        }
     }
 }

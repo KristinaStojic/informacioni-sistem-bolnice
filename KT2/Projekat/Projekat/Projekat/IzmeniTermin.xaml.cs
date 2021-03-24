@@ -43,21 +43,11 @@ namespace Projekat
                     tp = TipTermina.Pregled;
                 }
                 tp = izabraniTermin.tipTermina;
-                // 1. nacin
-                // var date = Convert.ToDateTime(this.datum.Text).ToString("yyyy/MM/dd");
-                // date = izabraniTermin.Datum;
-                //this.datum.Text = izabraniTermin.Datum;
                 String dat = null;
-                
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
-                // 2. nacin
-               /* DateTime? selectedDate = this.datum.SelectedDate;
-                Console.WriteLine(selectedDate);
-                if (selectedDate.HasValue)
-                {
-                    izabraniTermin.Datum = selectedDate.Value.ToString("dd/MM/yyyy");
-
-                }*/
+                //this.prostorije.SelectedIndex + 2 = izabraniTermin.Prostorija.Id;
+                this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;
+               
             }
             
         }
@@ -97,8 +87,11 @@ namespace Projekat
 
             //int idPac = int.Parse(text5.Text);
             //Pacijent p = new Pacijent(idPac);
+            int idSale = int.Parse(prostorije.Text);
+            //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
+            Sala sale = new Sala(idSale);
 
-            Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l);
+            Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sale);
             TerminMenadzer.IzmeniTermin(termin, t); 
             this.Close();
 
