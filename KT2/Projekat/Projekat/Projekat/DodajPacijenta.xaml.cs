@@ -40,7 +40,7 @@ namespace Projekat.Model
             }
 
             Pacijent p = new Pacijent(++id, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status);
-            PacijentiFileManager.DodajNalog(p);
+            PacijentiMenadzer.DodajNalog(p);
 
             this.Close();
         }
