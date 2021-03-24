@@ -50,14 +50,12 @@ namespace Projekat
         {
             ZakaziTermin zt = new ZakaziTermin();
             zt.Show();
-            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             IzmeniTermin it = new IzmeniTermin();
             it.Show();
-            this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

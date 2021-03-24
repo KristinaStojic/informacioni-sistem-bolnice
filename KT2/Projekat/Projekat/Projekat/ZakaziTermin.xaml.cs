@@ -64,8 +64,6 @@ namespace Projekat
 
             Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
             TerminMenadzer.ZakaziTermin(s);
-            PrikaziTermin pt = new PrikaziTermin();
-            pt.Show();
             this.Close();
         }
     }

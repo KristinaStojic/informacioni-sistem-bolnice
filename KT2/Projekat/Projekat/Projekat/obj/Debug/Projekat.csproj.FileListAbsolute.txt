@@ -109,3 +109,36 @@ D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\
 D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziPacijenta.baml
 D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajPacijenta.g.cs
 D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajPacijenta.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.exe.config
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.exe
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\bin\Debug\Projekat.pdb
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csprojAssemblyReference.cache
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajSalu.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmjeniSalu.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\MainWindow.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajPacijenta.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziPacijenta.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziSalu.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\App.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat_MarkupCompile.cache
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat_MarkupCompile.lref
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajSalu.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTermin.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmjeniSalu.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\MainWindow.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\DodajPacijenta.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTermin.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziPacijenta.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziSalu.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.g.resources
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.Properties.Resources.resources
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.GenerateResource.cache
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.exe
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.pdb
