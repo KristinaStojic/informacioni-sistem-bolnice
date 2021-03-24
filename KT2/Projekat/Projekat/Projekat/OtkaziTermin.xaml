@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="OtkaziTermin" Height="258" Width="444">
+        Title="Otkazi termin" Height="258" Width="444" Background="AntiqueWhite">
     <StackPanel Margin="0,0,3.6,13">
         <Label Content="Da li ste sigurni da zelite da otkazete odabrani termin?" FontSize="13" HorizontalAlignment="Center" Margin="35,48,35,0" VerticalAlignment="Top" Height="42" Width="325"/>
         <Separator Height="30" Background="AntiqueWhite" />

@@ -23,9 +23,25 @@ namespace Model
             
       }
       
-      public static void IzmeniTermin(Termin termin)
+      public static void IzmeniTermin(Termin termin, Termin termin1)
       {
-         // TODO: implement
+            foreach(Termin t in termini)
+            {
+                if (t.IdTermin == termin.IdTermin)
+                {
+                    t.VremePocetka = termin.VremePocetka;
+                    t.VremeKraja = termin.VremeKraja;
+                    t.Lekar = termin.Lekar;  // ili preko id-ja?
+                    t.Pacijent = termin.Pacijent;
+                    t.tipTermina = termin.tipTermina;
+                    t.Datum = termin.Datum;
+                    t.Prostorija = termin.Prostorija;
+                }
+                int idx = PrikaziTermin.Termini.IndexOf(termin);
+                PrikaziTermin.Termini.RemoveAt(idx);
+                PrikaziTermin.Termini.Insert(idx, termin1);
+
+            }
       }
       
       public static void OtkaziTermin(Termin termin)

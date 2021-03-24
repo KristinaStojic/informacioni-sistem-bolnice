@@ -5,30 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="IzmeniTermin" Height="486.8" Width="479.2">
-    <Grid Margin="0,0,19.6,-3">
+        Title="IzmeniTermin" Height="486.8" Width="479.2" WindowStartupLocation="CenterScreen" Background="AliceBlue">
+    <Grid Margin="0,0,-5,-2.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152" Margin="36,53,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152" Margin="36,138,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152" Margin="36,230,0,0"/>
-        <Label Content="Redni broj&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,6,0,0" Height="42" Width="74"/>
-        <Label Content="Vreme pocetka&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="90"/>
-        <Label Content="Vreme kraja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,185,0,0" Height="26" Width="72"/>
+        <Label Content="Redni broj" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,6,0,0" Height="42" Width="74"/>
+        <TextBox HorizontalAlignment="Left" Name="text1" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,53,0,0"/>
+        <Label Content="Vreme pocetka(HH:mm)" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="152"/>
+        <Label Content="Vreme kraja(HH:mm)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,185,0,0" Height="26" Width="152"/>
+        <TextBox HorizontalAlignment="Left" Name="text3" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,230,0,0"/>
         <Label Content="Tip termina" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,286,0,0" Height="26" Width="90"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Margin="36,329,0,0" Height="22"/>
-        <Label Content="Lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,10,0,0" Height="26" Width="38"/>
-        <Label Content="Pacijent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,93,0,0" Height="26" Width="51"/>
+        <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Top" Width="152" Margin="36,329,0,0" Height="22" SelectedIndex="0">
+            <ComboBoxItem>Operacija</ComboBoxItem>
+            <ComboBoxItem>Pregled</ComboBoxItem>
+        </ComboBox>
+        <Label Content="ID lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,10,0,0" Height="38" Width="79"/>
+        <TextBox HorizontalAlignment="Left" Name="text4" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="278,53,0,0"/>
+        <Label Content="ID pacijenta" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,93,0,0" Height="30" Width="79"/>
+        <TextBox HorizontalAlignment="Left"  Name="text5" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="278,128,0,0"/>
         <Label Content="Datum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,185,0,0" Height="26" Width="46"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="278,138,0,0" Height="22"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="264,392,0,0"  Height="30"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="264,392,0,0"  Height="30" Click="Button_Click_1"/>
         <Button Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="113,392,0,0" Height="30" Click="Button_Click"/>
-        <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,230,0,0" Width="153" Height="23"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="278,54,0,0" Height="22"/>
+        <DatePicker HorizontalAlignment="Left" Name="datum" Text="dd/MM/yyyy" VerticalAlignment="Top" Margin="278,230,0,0" Width="153" Height="23"/>
         <Label Content="Prostorija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="278,286,0,0" Height="26" Width="90"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Margin="278,329,0,0" Height="22"/>
+        <ComboBox HorizontalAlignment="Left"  VerticalAlignment="Top" Width="152" Margin="278,329,0,0" Height="22"/>
+        <TextBox HorizontalAlignment="Left" x:Name="text2" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,128,0,0"/>
 
     </Grid>
 </Window>

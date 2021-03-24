@@ -54,8 +54,12 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            IzmeniTermin it = new IzmeniTermin();
-            it.Show();
+            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
+            if (izabraniTermin != null)
+            {
+                IzmeniTermin it = new IzmeniTermin(izabraniTermin);
+                it.Show();
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

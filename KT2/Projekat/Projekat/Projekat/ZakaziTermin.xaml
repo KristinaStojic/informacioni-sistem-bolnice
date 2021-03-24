@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="ZakaziTermin" Height="500.8" Width="529.2">
+        Title="Zakazi termin" Height="500.8" Width="529.2">
     <Grid Margin="0,0,19.6,-3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,7 +15,7 @@
         <TextBox HorizontalAlignment="Left" Name = "text2" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,138,0,0"/>
         <TextBox HorizontalAlignment="Left" Name = "text3" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,230,0,0"/>
         <Label Content="Redni broj termina&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,6,0,0" Height="42" Width="112"/>
-        <Label Content="Vreme pocetka (HH:mm)&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="152"/>
+        <Label Content="Vreme pocetka (HH:mm)" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="152"/>
         <Label Content="Vreme kraja  (HH:mm)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,185,0,0" Height="26" Width="152"/>
         <Label Content="Tip pregeda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,286,0,0" Height="26" Width="90"/>
         <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="152" Margin="36,329,0,0" Height="22" Name="combo" SelectedIndex="0">
