@@ -6,39 +6,43 @@
 
 using System;
 using System.Collections.Generic;
+using System.Windows;
+using Projekat;
+using Projekat.Model;
 
 namespace Model
 {
-   public class PacijentiFileManager
-   {
-      public void DodajNalog(Pacijent noviNalog)
-      {
-         // TODO: implement
-      }
-      
-      public void IzmeniNalog(Pacijent nalog)
-      {
-         // TODO: implement
-      }
-      
-      public void ObrisiNalog()
-      {
-         // TODO: implement
-      }
-      
-      public List<Pacijent> PronadjiSve()
-      {
-         // TODO: implement
-         return null;
-      }
-      
-      public Pacijent PronadjiPoId(int id)
-      {
-         // TODO: implement
-         return null;
-      }
-   
-      private string AdresaFajla;
-   
-   }
+    public static class PacijentiFileManager
+    {
+        static List<Pacijent> pacijenti = new List<Pacijent>();
+
+        public static void DodajNalog(Pacijent noviNalog)
+        {
+            pacijenti.Add(noviNalog);
+            PrikaziPacijenta.PacijentiTabela.Add(noviNalog);
+        }
+
+        public static void IzmeniNalog(Pacijent nalog)
+        {
+            // TODO: implement
+        }
+
+        public static void ObrisiNalog()
+        {
+            // TODO: implement
+        }
+
+        public static List<Pacijent> PronadjiSve()
+        {
+            return pacijenti;
+        }
+
+        public static Pacijent PronadjiPoId(int id)
+        {
+            // TODO: implement
+            return null;
+        }
+
+        private static string AdresaFajla;
+    }
 }
