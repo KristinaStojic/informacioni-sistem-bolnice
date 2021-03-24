@@ -46,8 +46,12 @@ namespace Model
       
       public static void OtkaziTermin(Termin termin)
       {
-         // TODO: implement
-      }
+            termini.Remove(termin);
+            //PrikaziTermin.Termini.Remove(termin);
+            int idx = PrikaziTermin.Termini.IndexOf(termin);
+            PrikaziTermin.Termini.RemoveAt(idx);
+            
+        }
       
       public static List<Termin> NadjiSveTermine()
       {
