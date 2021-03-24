@@ -53,12 +53,15 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            Pacijent zaIzmenu = (Pacijent)TabelaPacijenata.SelectedItem;
+          //  IzmeniPacijenta izmena = new IzmeniPacijenta(zaIzmenu);
+          //  izmena.Show();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
+            Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
+            PacijentiFileManager.ObrisiNalog(zaBrisanje);
         }
     }
 }

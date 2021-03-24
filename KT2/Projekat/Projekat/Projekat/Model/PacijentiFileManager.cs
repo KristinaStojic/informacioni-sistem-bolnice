@@ -24,12 +24,27 @@ namespace Model
 
         public static void IzmeniNalog(Pacijent nalog)
         {
-            // TODO: implement
+            //
         }
 
-        public static void ObrisiNalog()
+        public static void ObrisiNalog(Pacijent nalog)
         {
-            // TODO: implement
+            if (nalog != null)
+            {
+                for (int i = 0; i < pacijenti.Count; i++)
+                {
+                    Pacijent p = pacijenti[i];
+                    if (p.IdPacijenta == nalog.IdPacijenta)
+                    {
+                        pacijenti.Remove(nalog);
+                        PrikaziPacijenta.PacijentiTabela.Remove(nalog);
+                    }
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Niste selektovali pacijenta za brisanje!");
+            }
         }
 
         public static List<Pacijent> PronadjiSve()

@@ -142,3 +142,5 @@ D:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\
 \\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.csproj.CoreCompileInputs.cache
 \\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.exe
 \\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\Projekat.pdb
+d:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniPacijenta.g.cs
+d:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniPacijenta.baml
