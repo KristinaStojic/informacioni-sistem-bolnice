@@ -47,16 +47,17 @@ namespace Projekat
                 // var date = Convert.ToDateTime(this.datum.Text).ToString("yyyy/MM/dd");
                 // date = izabraniTermin.Datum;
                 //this.datum.Text = izabraniTermin.Datum;
-
-
+                String dat = null;
+                
+                datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
                 // 2. nacin
-                DateTime? selectedDate = this.datum.SelectedDate;
+               /* DateTime? selectedDate = this.datum.SelectedDate;
                 Console.WriteLine(selectedDate);
                 if (selectedDate.HasValue)
                 {
                     izabraniTermin.Datum = selectedDate.Value.ToString("dd/MM/yyyy");
 
-                }
+                }*/
             }
             
         }
