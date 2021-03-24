@@ -77,7 +77,7 @@ namespace Projekat
             Console.WriteLine(selectedDate);
             if (selectedDate.HasValue)
             {
-                formatted = selectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             }
 
