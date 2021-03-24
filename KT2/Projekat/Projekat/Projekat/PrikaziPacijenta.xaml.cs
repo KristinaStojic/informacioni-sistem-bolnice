@@ -32,7 +32,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             PacijentiTabela = new ObservableCollection<Pacijent>();
-            foreach (Pacijent p in PacijentiFileManager.PronadjiSve())
+            foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
             {
                 PacijentiTabela.Add(p);
             }
@@ -69,7 +69,7 @@ namespace Projekat
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
-            PacijentiFileManager.ObrisiNalog(zaBrisanje);
+            PacijentiMenadzer.ObrisiNalog(zaBrisanje);
         }
     }
 }

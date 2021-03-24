@@ -136,7 +136,7 @@
     <Compile Include="Model\Lekar.cs" />
     <Compile Include="Model\TerminMenadzer.cs" />
     <Compile Include="Model\Pacijent.cs" />
-    <Compile Include="Model\PacijentiFileManager.cs" />
+    <Compile Include="Model\PacijentiMenadzer.cs" />
     <Compile Include="Model\Termin.cs" />
     <Compile Include="Model\Sala.cs" />
     <Compile Include="Model\SaleMenadzer.cs" />

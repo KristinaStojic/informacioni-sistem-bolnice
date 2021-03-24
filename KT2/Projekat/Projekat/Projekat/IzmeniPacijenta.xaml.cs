@@ -59,7 +59,7 @@ namespace Projekat
             }
 
             Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, this.ime.Text, this.prezime.Text, int.Parse(this.jmbg.Text), long.Parse(this.brojTelefona.Text), this.email.Text, this.adresa.Text, status);
-            PacijentiFileManager.IzmeniNalog(pacijent, noviPacijent);
+            PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
             this.Close();
        
         }

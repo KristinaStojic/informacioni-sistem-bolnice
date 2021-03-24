@@ -12,7 +12,7 @@ using Projekat.Model;
 
 namespace Model
 {
-    public static class PacijentiFileManager
+    public static class PacijentiMenadzer
     {
         static List<Pacijent> pacijenti = new List<Pacijent>();
 
