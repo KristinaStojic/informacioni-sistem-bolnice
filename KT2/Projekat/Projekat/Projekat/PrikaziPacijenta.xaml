@@ -34,7 +34,7 @@
                 <DataGridTextColumn Header="JMBG" Width="100" Binding="{Binding Jmbg}"/>
                 <DataGridTextColumn Header="Status" Width="80" Binding="{Binding StatusNaloga}"/>
                 <DataGridTextColumn Header="Broj telefona" Width="80" Binding="{Binding BrojTelefona}"/>
-                <DataGridTextColumn Header="Email" Width="95" Binding="{Binding BrojTelefona}"/>
+                <DataGridTextColumn Header="Email" Width="95" Binding="{Binding Email}"/>
                 <DataGridTextColumn Header="Adresa stanovanja" Width="106" Binding="{Binding AdresaStanovanja}"/>
             </DataGrid.Columns>
         </DataGrid>
