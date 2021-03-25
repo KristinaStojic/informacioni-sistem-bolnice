@@ -13,9 +13,37 @@
         </Grid.ColumnDefinitions>
         <Label Content="Redni broj" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,6,0,0" Height="42" Width="74"/>
         <TextBox HorizontalAlignment="Left" Name="text1" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,53,0,0"/>
-        <Label Content="Vreme pocetka(HH:mm)" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="152"/>
-        <Label Content="Vreme kraja(HH:mm)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,185,0,0" Height="26" Width="152"/>
-        <TextBox HorizontalAlignment="Left" Name="text3" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,230,0,0"/>
+        <Label Content="Vreme pocetka" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,93,0,0" Height="58" Width="152"/>
+        <Label Content="Vreme kraja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,185,0,0" Height="26" Width="152"/>
+        <ComboBox HorizontalAlignment="Left" Name="text3" Height="23" VerticalAlignment="Top" Width="152" Margin="36,230,0,0">
+            <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
+        </ComboBox>
         <Label Content="Tip termina" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,286,0,0" Height="26" Width="90"/>
         <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Top" Width="152" Margin="36,329,0,0" Height="22" SelectedIndex="0">
             <ComboBoxItem>Operacija</ComboBoxItem>
@@ -63,7 +91,34 @@
             <ComboBoxItem>29</ComboBoxItem>
             <ComboBoxItem>30</ComboBoxItem>
         </ComboBox>
-        <TextBox HorizontalAlignment="Left" x:Name="text2" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="36,128,0,0"/>
-
+        <ComboBox HorizontalAlignment="Left" x:Name="text2" Height="23" VerticalAlignment="Top" Width="152" Margin="36,128,0,0">
+            <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>
