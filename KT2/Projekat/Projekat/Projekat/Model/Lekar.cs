@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using System;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -14,6 +15,7 @@ namespace Model
       public string Ime { get; set; }
       public string Prezime { get; set; }
 
+    
     public Lekar(int id, string ime, string prz)
         {
             this.IdLekara = id;
@@ -25,6 +27,7 @@ namespace Model
         {
             this.IdLekara = id;
         }
+    public Lekar() { }
 
     }
 }

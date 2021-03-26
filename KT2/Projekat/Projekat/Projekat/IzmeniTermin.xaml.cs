@@ -32,7 +32,7 @@ namespace Projekat
                 this.text2.Text = izabraniTermin.VremePocetka;
                 this.text3.Text = izabraniTermin.VremeKraja;
                 this.text4.Text = izabraniTermin.Lekar.IdLekara.ToString();
-                //this.text5.Text = izabraniTermin.Pacijent.IdPacijenta.ToString();
+                this.text5.Text = izabraniTermin.Pacijent.Jmbg.ToString();
                 TipTermina tp;
                 if (this.combo.Equals("Operacija"))
                 {
@@ -43,9 +43,7 @@ namespace Projekat
                     tp = TipTermina.Pregled;
                 }
                 tp = izabraniTermin.tipTermina;
-                String dat = null;
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
-                //this.prostorije.SelectedIndex + 2 = izabraniTermin.Prostorija.Id;
                 this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;
                
             }
@@ -85,13 +83,16 @@ namespace Projekat
             int idLek = int.Parse(text4.Text);
             Lekar l = new Lekar(idLek);
 
-            //int idPac = int.Parse(text5.Text);
+            List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+            List<Sala> sale = SaleMenadzer.NadjiSveSale();
+            int idPac = int.Parse(text5.Text);
             //Pacijent p = new Pacijent(idPac);
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
             int idSale = int.Parse(prostorije.Text);
-            //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
-            Sala sale = new Sala(idSale);
+            Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
+            //Sala sale = new Sala(idSale);
 
-            Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sale);
+            Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
             TerminMenadzer.IzmeniTermin(termin, t); 
             this.Close();
 

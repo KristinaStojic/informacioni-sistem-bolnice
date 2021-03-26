@@ -59,13 +59,15 @@ namespace Projekat
             int idLek = int.Parse(text4.Text);
             Lekar l = new Lekar(idLek);
 
-            //int idPac = int.Parse(text5.Text);
-            //Pacijent p = new Pacijent(idPac);
+            int idPac = int.Parse(text5.Text);
+            List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+            List<Sala> sale = SaleMenadzer.NadjiSveSale();
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
             int idSale = int.Parse(prostorije.Text);
-            Sala sala = new Sala(idSale);
-            //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   kada uradimo serijalizaciju
+            Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
+            //Sala sala = new Sala(idSale);
 
-            Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala);
+            Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
             TerminMenadzer.ZakaziTermin(s);
             this.Close();
         }

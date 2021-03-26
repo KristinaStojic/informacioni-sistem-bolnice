@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTermin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Termin>
+    <IdTermin>10009</IdTermin>
+    <VremePocetka>10:00</VremePocetka>
+    <VremeKraja>16:00</VremeKraja>
+    <Lekar>
+      <IdLekara>98899</IdLekara>
+    </Lekar>
+    <Pacijent>
+      <ImePacijenta>ana</ImePacijenta>
+      <PrezimePacijenta>anic</PrezimePacijenta>
+      <Jmbg>111</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>555</BrojTelefona>
+      <Email>yy</Email>
+      <AdresaStanovanja>uu</AdresaStanovanja>
+    </Pacijent>
+    <Datum>03/24/2021</Datum>
+    <Prostorija>
+      <Status>Renoviranje</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>2</Id>
+      <Namjena>dgfdhA</Namjena>
+    </Prostorija>
+    <tipTermina>Operacija</tipTermina>
+  </Termin>
+</ArrayOfTermin>

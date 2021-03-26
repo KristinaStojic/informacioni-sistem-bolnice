@@ -38,7 +38,7 @@ namespace Model
             }
         }
 
-        public Termin(int broj, String dt, String vp, String vk, TipTermina tp, Lekar l, Sala s)
+        public Termin(int broj, String dt, String vp, String vk, TipTermina tp, Lekar l, Sala s, Pacijent p)
         {
             this.IdTermin = broj;
             this.Datum = dt;
@@ -47,6 +47,9 @@ namespace Model
             this.tipTermina = tp;
             this.Lekar = l;
             this.Prostorija = s;
+            this.Pacijent = p;
         }
+
+        public Termin() { }
     }
 }

@@ -42,28 +42,32 @@ namespace Projekat
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
-            if (colNum == 8)
+            if (colNum == 12) // **
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // zakazi
             ZakaziTermin zt = new ZakaziTermin();
             zt.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            // izmeni
             Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
             if (izabraniTermin != null)
             {
                 IzmeniTermin it = new IzmeniTermin(izabraniTermin);
+                //TerminMenadzer.sacuvajIzmene();
                 it.Show();
             }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            // brisanje
             /*var izabraniTermin = dataGridTermini.SelectedItem;
             if (izabranaSala != null)
             {
@@ -77,16 +81,23 @@ namespace Projekat
             {
 
                 TerminMenadzer.OtkaziTermin(zaBrisanje);
-
+                //TerminMenadzer.sacuvajIzmene();
             }
 
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
-            this.Close();
+            // nazad
+            TerminMenadzer.sacuvajIzmene();
+            //MainWindow mw = new MainWindow();
+            //mw.Show();
+            this.Hide();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TerminMenadzer.sacuvajIzmene();
         }
     }
 }
