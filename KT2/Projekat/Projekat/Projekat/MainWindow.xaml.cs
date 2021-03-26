@@ -36,21 +36,21 @@ namespace Projekat
         {
             PrikaziTermin w1 = new PrikaziTermin();
             w1.Show();
-            this.Close();
+            //this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             PrikaziTermin w1 = new PrikaziTermin();
             w1.Show();
-            this.Close();
+            //this.Close();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             PrikaziPacijenta p1 = new PrikaziPacijenta();
             p1.Show();
-            this.Close();
+           // this.Close();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
