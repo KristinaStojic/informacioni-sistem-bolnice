@@ -26,9 +26,9 @@ namespace Model
         {
             foreach (Pacijent p in pacijenti)
             {
-                if (p.IdPacijenta == nalog1.IdPacijenta)
+                if (p.Jmbg == nalog1.Jmbg)
                 {
-                    p.IdPacijenta = nalog.IdPacijenta;
+                    //p.IdPacijenta = nalog.IdPacijenta;
                     p.ImePacijenta = nalog.ImePacijenta;
                     p.PrezimePacijenta = nalog.PrezimePacijenta;
                     p.Jmbg = nalog.Jmbg;
@@ -50,7 +50,7 @@ namespace Model
                 for (int i = 0; i < pacijenti.Count; i++)
                 {
                     Pacijent p = pacijenti[i];
-                    if (p.IdPacijenta == nalog.IdPacijenta)
+                    if (p.Jmbg == nalog.Jmbg)
                     {
                         pacijenti.Remove(nalog);
                         PrikaziPacijenta.PacijentiTabela.Remove(nalog);
@@ -68,11 +68,11 @@ namespace Model
             return pacijenti;
         }
 
-        public static Pacijent PronadjiPoId(int id)
+        public static Pacijent PronadjiPoId(int jmbg)
         {
             foreach (Pacijent p in pacijenti)
             {
-                if (p.IdPacijenta == id)
+                if (p.Jmbg == jmbg)
                 {
                     return p;
                 }

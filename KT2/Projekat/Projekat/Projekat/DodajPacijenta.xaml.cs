@@ -20,7 +20,7 @@ namespace Projekat.Model
     /// </summary>
     public partial class DodajPacijenta : Window
     {
-        int id = 0; // idPacijenta 
+        //int id = 0; // idPacijenta 
 
         public DodajPacijenta()
         {
@@ -39,7 +39,7 @@ namespace Projekat.Model
                 status = statusNaloga.Guest;
             }
 
-            Pacijent p = new Pacijent(++id, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status);
+            Pacijent p = new Pacijent(/*++id,*/ ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status);
             PacijentiMenadzer.DodajNalog(p);
 
             this.Close();
