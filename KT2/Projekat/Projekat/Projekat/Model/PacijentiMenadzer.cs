@@ -6,7 +6,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
+using System.Xml.Serialization;
 using Projekat;
 using Projekat.Model;
 
@@ -65,7 +67,18 @@ namespace Model
 
         public static List<Pacijent> PronadjiSve()
         {
-            return pacijenti;
+            if (File.ReadAllText("pacijenti.xml").Trim().Equals(""))
+            {
+                return pacijenti;
+            }
+            else
+            {
+                FileStream filestream = File.OpenRead("pacijenti.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Pacijent>));
+                pacijenti = (List<Pacijent>)serializer.Deserialize(filestream);
+                filestream.Close();
+                return pacijenti;
+            }
         }
 
         public static Pacijent PronadjiPoId(int jmbg)
@@ -80,6 +93,14 @@ namespace Model
             return null;
         }
 
-        private static string AdresaFajla;
+        public static void sacuvajIzmenePacijenta()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Pacijent>));
+            TextWriter filestream = new StreamWriter("pacijenti.xml");
+            serializer.Serialize(filestream, pacijenti);
+            filestream.Close();
+        }
+
+        //private static string AdresaFajla;
     }
 }

@@ -15,8 +15,7 @@ namespace Model
     }
     public class Pacijent : INotifyPropertyChanged
     {
-        public Pacijent(/*int IdPacijenta,*/ string ImePacijenta, string PrezimePacijenta, int Jmbg, long BrojTelefona,
-            string Email, string AdresaStanovanja, statusNaloga Status)
+        public Pacijent(/*int IdPacijenta,*/ string ImePacijenta, string PrezimePacijenta, int Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status)
         {
             //this.IdPacijenta = IdPacijenta;
             this.ImePacijenta = ImePacijenta;
@@ -28,7 +27,9 @@ namespace Model
             this.StatusNaloga = Status;
         }
 
-        public int IdPacijenta { get; set; }
+        public Pacijent() { }
+
+       // public int IdPacijenta { get; set; }
         public string ImePacijenta { get; set; }
         public string PrezimePacijenta { get; set; }
         public int Jmbg { get; set; }
@@ -36,7 +37,8 @@ namespace Model
         public long BrojTelefona { get; set; }
         public string Email { get; set; }
         public string AdresaStanovanja { get; set; }
-        public Lekar izabraniLekar { get; set; }
+       
+        //public Lekar izabraniLekar { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)

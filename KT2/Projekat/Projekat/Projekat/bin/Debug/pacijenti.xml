@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPacijent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pacijent>
+    <ImePacijenta>ana</ImePacijenta>
+    <PrezimePacijenta>anic</PrezimePacijenta>
+    <Jmbg>111</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>555</BrojTelefona>
+    <Email>yy</Email>
+    <AdresaStanovanja>uu</AdresaStanovanja>
+  </Pacijent>
+</ArrayOfPacijent>

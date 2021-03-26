@@ -40,9 +40,8 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
-            this.Close();
+            PacijentiMenadzer.sacuvajIzmenePacijenta();
+            this.Hide();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -70,6 +69,11 @@ namespace Projekat
         {
             Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
             PacijentiMenadzer.ObrisiNalog(zaBrisanje);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            PacijentiMenadzer.sacuvajIzmenePacijenta();
         }
     }
 }
