@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Model"
         mc:Ignorable="d"
-        Title="DodajPacijenta" Height="450" Width="600">
+        Title="DodajPacijenta" Height="480" Width="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -40,7 +40,7 @@
         <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="4" Margin="12"/>
         <TextBox x:Name="email" Grid.Column="2" Grid.Row="5" Margin="12"/>
         <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="6" Margin="12"/>
-        <Button Grid.Column="1" Grid.Row="9" Margin="13" Click="Potvrdi_Click" Content="Potvrdi"/>
-        <Button Grid.Column="2" Grid.Row="9" Margin="13" Click="Odustani_Click" Content="Odustani"/>
+        <Button Grid.Column="1" Grid.Row="9" Margin="25" Click="Potvrdi_Click" Content="Potvrdi"/>
+        <Button Grid.Column="2" Grid.Row="9" Margin="25" Click="Odustani_Click" Content="Odustani"/>
     </Grid>
 </Window>
