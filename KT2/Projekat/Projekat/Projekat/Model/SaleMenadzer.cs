@@ -77,7 +77,6 @@ namespace Model
             filestream.Close();
         }
 
-      private string AdresaFajla;
       public static List<Sala> sale = new List<Sala>();
    }
 }
