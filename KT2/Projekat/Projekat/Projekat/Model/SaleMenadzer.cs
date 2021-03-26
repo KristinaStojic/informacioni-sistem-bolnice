@@ -7,6 +7,8 @@
 using Projekat;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Model
 {
@@ -42,7 +44,17 @@ namespace Model
       
       public static List<Sala> NadjiSveSale()
       {
-         return sale;
+            if (File.ReadAllText("sale.xml").Trim().Equals(""))
+            {
+                return sale;
+            }
+            else {
+                FileStream filestream = File.OpenRead("sale.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Sala>));
+                sale = (List<Sala>)serializer.Deserialize(filestream);
+                filestream.Close();
+                return sale;
+            }
       }
       
       public static Sala NadjiSaluPoId(int id)
@@ -57,6 +69,14 @@ namespace Model
             return null;
       }
    
+        public static void sacuvajIzmjene()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Sala>));
+            TextWriter filestream = new StreamWriter("sale.xml");
+            serializer.Serialize(filestream, sale);
+            filestream.Close();
+        }
+
       private string AdresaFajla;
       public static List<Sala> sale = new List<Sala>();
    }

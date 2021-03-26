@@ -46,5 +46,6 @@ namespace Model
         {
             this.Id = id;
         }
+        public Sala() { }
     }
 }

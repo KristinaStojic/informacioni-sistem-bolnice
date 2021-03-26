@@ -72,9 +72,15 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            SaleMenadzer.sacuvajIzmjene();
             this.Hide();
-            MainWindow mw = new MainWindow();
-            mw.Show();
+            //MainWindow mw = new MainWindow();
+            //mw.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaleMenadzer.sacuvajIzmjene();
         }
     }
 }

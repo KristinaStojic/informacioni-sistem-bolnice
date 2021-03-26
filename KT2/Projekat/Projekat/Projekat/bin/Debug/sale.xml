@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSala xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>1</Id>
+    <Namjena>sdasd</Namjena>
+  </Sala>
+  <Sala>
+    <Status>Renoviranje</Status>
+    <TipSale>OperacionaSala</TipSale>
+    <Id>2</Id>
+    <Namjena>dgfdh</Namjena>
+  </Sala>
+  <Sala>
+    <Status>Zauzeta</Status>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>3</Id>
+    <Namjena>kdlas</Namjena>
+  </Sala>
+</ArrayOfSala>

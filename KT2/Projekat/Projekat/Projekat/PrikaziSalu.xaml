@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz sala" Height="350" Width="550" WindowStartupLocation="CenterScreen">
+        Title="Prikaz sala" Height="350" Width="550" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <DataGrid x:Name="dataGridSale" ItemsSource="{Binding Sale}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 

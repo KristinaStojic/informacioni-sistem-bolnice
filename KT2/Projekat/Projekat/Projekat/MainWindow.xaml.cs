@@ -29,7 +29,7 @@ namespace Projekat
         {
             PrikaziSalu w1 = new PrikaziSalu();
             w1.Show();
-            this.Close();
+            //this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -51,6 +51,11 @@ namespace Projekat
             PrikaziPacijenta p1 = new PrikaziPacijenta();
             p1.Show();
             this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
