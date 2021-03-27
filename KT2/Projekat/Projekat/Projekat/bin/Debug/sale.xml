@@ -12,10 +12,4 @@
     <Id>2</Id>
     <Namjena>dgfdhA</Namjena>
   </Sala>
-  <Sala>
-    <Status>Zauzeta</Status>
-    <TipSale>SalaZaPregled</TipSale>
-    <Id>3</Id>
-    <Namjena>sdfs</Namjena>
-  </Sala>
 </ArrayOfSala>

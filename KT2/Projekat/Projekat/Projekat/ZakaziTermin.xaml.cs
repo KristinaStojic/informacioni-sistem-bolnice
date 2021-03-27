@@ -57,7 +57,7 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
             int idLek = int.Parse(text4.Text);
-            Lekar l = new Lekar(idLek, "Milan", "Milanovic");
+            Lekar l = new Lekar(idLek, "Filip", "Filipovic");
             /*if (idLek > 0 && idLek < 50)
             {
                 l.Ime = "Pera";

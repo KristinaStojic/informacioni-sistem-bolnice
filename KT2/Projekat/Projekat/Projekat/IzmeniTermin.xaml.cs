@@ -77,7 +77,7 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
             int idLek = int.Parse(text4.Text);
-            Lekar l = new Lekar(idLek, "Milan", "Milanovic");
+            Lekar l = new Lekar(idLek, "Filip", "Filipovic");
 
             List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
             int idPac = int.Parse(text5.Text);
