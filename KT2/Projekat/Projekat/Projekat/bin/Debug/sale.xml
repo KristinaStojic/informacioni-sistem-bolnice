@@ -4,12 +4,18 @@
     <Status>Zauzeta</Status>
     <TipSale>SalaZaPregled</TipSale>
     <Id>1</Id>
-    <Namjena>sdasd</Namjena>
+    <Namjena>opsta praksa</Namjena>
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>OperacionaSala</TipSale>
+    <Id>2</Id>
+    <Namjena>vaskularna hirurgija</Namjena>
   </Sala>
   <Sala>
     <Status>Renoviranje</Status>
-    <TipSale>OperacionaSala</TipSale>
-    <Id>2</Id>
-    <Namjena>dgfdhA</Namjena>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>3</Id>
+    <Namjena>snimanje rendgena</Namjena>
   </Sala>
 </ArrayOfSala>
