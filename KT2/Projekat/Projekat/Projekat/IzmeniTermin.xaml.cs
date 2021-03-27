@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Model;
-using static Model.Termin;
 
 namespace Projekat
 {
@@ -44,10 +43,8 @@ namespace Projekat
                 }
                 tp = izabraniTermin.tipTermina;
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
-                this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;
-               
+                this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;  
             }
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -68,7 +65,6 @@ namespace Projekat
                 formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             }
-
             String vp = text2.Text;
             String vk = text3.Text;
             TipTermina tp;
@@ -81,21 +77,19 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
             int idLek = int.Parse(text4.Text);
-            Lekar l = new Lekar(idLek);
+            Lekar l = new Lekar(idLek, "Milan", "Milanovic");
 
             List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-            List<Sala> sale = SaleMenadzer.NadjiSveSale();
             int idPac = int.Parse(text5.Text);
-            //Pacijent p = new Pacijent(idPac);
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
+
+            List<Sala> sale = SaleMenadzer.NadjiSveSale();
             int idSale = int.Parse(prostorije.Text);
             Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
-            //Sala sale = new Sala(idSale);
 
             Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
             TerminMenadzer.IzmeniTermin(termin, t); 
             this.Close();
-
         }
     }
 }

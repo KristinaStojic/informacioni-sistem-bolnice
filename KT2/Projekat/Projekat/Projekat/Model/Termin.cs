@@ -9,12 +9,13 @@ using System.ComponentModel;
 
 namespace Model
 {
+    public enum TipTermina
+    {
+        Operacija, Pregled
+    }
+
     public class Termin: INotifyPropertyChanged
     {
-        public enum TipTermina
-        {
-            Operacija, Pregled
-        }
 
         public int IdTermin { get; set; }
         public String VremePocetka { get; set; }

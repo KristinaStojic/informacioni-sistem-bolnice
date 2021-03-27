@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTermin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Termin>
-    <IdTermin>10009</IdTermin>
-    <VremePocetka>10:00</VremePocetka>
-    <VremeKraja>16:00</VremeKraja>
+    <IdTermin>12</IdTermin>
+    <VremePocetka>08:30</VremePocetka>
+    <VremeKraja>09:00</VremeKraja>
     <Lekar>
-      <IdLekara>98899</IdLekara>
+      <IdLekara>122</IdLekara>
+      <Ime>Milan</Ime>
+      <Prezime>Milanovic</Prezime>
     </Lekar>
     <Pacijent>
       <ImePacijenta>ana</ImePacijenta>
@@ -16,7 +18,61 @@
       <Email>yy</Email>
       <AdresaStanovanja>uu</AdresaStanovanja>
     </Pacijent>
-    <Datum>03/24/2021</Datum>
+    <Datum>03/31/2021</Datum>
+    <Prostorija>
+      <Status>Zauzeta</Status>
+      <TipSale>SalaZaPregled</TipSale>
+      <Id>1</Id>
+      <Namjena>sdasd</Namjena>
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
+  <Termin>
+    <IdTermin>13</IdTermin>
+    <VremePocetka>12:00</VremePocetka>
+    <VremeKraja>12:30</VremeKraja>
+    <Lekar>
+      <IdLekara>8888</IdLekara>
+      <Ime>Milan</Ime>
+      <Prezime>Milanovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <ImePacijenta>ana</ImePacijenta>
+      <PrezimePacijenta>anic</PrezimePacijenta>
+      <Jmbg>111</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>555</BrojTelefona>
+      <Email>yy</Email>
+      <AdresaStanovanja>uu</AdresaStanovanja>
+    </Pacijent>
+    <Datum>03/30/2021</Datum>
+    <Prostorija>
+      <Status>Renoviranje</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>2</Id>
+      <Namjena>dgfdhA</Namjena>
+    </Prostorija>
+    <tipTermina>Operacija</tipTermina>
+  </Termin>
+  <Termin>
+    <IdTermin>999999</IdTermin>
+    <VremePocetka>10:00</VremePocetka>
+    <VremeKraja>09:00</VremeKraja>
+    <Lekar>
+      <IdLekara>342</IdLekara>
+      <Ime>Milan</Ime>
+      <Prezime>Milanovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <ImePacijenta>ana</ImePacijenta>
+      <PrezimePacijenta>anic</PrezimePacijenta>
+      <Jmbg>111</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>555</BrojTelefona>
+      <Email>yy</Email>
+      <AdresaStanovanja>uu</AdresaStanovanja>
+    </Pacijent>
+    <Datum>04/05/2021</Datum>
     <Prostorija>
       <Status>Renoviranje</Status>
       <TipSale>OperacionaSala</TipSale>

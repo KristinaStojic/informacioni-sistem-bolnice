@@ -57,7 +57,23 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
             int idLek = int.Parse(text4.Text);
-            Lekar l = new Lekar(idLek);
+            Lekar l = new Lekar(idLek, "Milan", "Milanovic");
+            /*if (idLek > 0 && idLek < 50)
+            {
+                l.Ime = "Pera";
+                l.Prezime = "Peric";
+            } 
+            else if (idLek >= 50 && idLek < 100)
+            {
+                l.Ime = "Marko";
+                l.Prezime = "Markovic";
+            }
+            else if (idLek >= 100 && idLek <= 200)
+            {
+                l.Ime = "Milan";
+                l.Prezime = "Milanovic";
+            }*/
+
 
             int idPac = int.Parse(text5.Text);
             List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();

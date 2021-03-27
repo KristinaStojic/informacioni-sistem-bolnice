@@ -38,11 +38,11 @@ namespace Model
                     t.Prostorija = termin1.Prostorija;
                 }
                 //Console.WriteLine(termin.IdTermin + " " + termin1.IdTermin);
-                int idx = PrikaziTermin.Termini.IndexOf(termin);
-                PrikaziTermin.Termini.RemoveAt(idx);
-                PrikaziTermin.Termini.Insert(idx, termin1);
             }
-      }
+            int idx = PrikaziTermin.Termini.IndexOf(termin);
+            PrikaziTermin.Termini.RemoveAt(idx);
+            PrikaziTermin.Termini.Insert(idx, termin1);
+        }
       
       public static void OtkaziTermin(Termin termin)
       {
@@ -51,8 +51,7 @@ namespace Model
             //int idx = PrikaziTermin.Termini.IndexOf(termin);
             //PrikaziTermin.Termini.RemoveAt(idx);
             PrikaziTermin.Termini.Remove(termin);
-            
-        }
+       }
       
       public static List<Termin> NadjiSveTermine()
       {
