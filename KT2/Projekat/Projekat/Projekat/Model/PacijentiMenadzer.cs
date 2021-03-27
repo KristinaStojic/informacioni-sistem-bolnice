@@ -93,7 +93,7 @@ namespace Model
             return null;
         }
 
-        public static void sacuvajIzmenePacijenta()
+        public static void SacuvajIzmenePacijenta()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Pacijent>));
             TextWriter filestream = new StreamWriter("pacijenti.xml");

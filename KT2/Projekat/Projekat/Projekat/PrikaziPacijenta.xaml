@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikaziPacijenta" Height="500" Width="850" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="PrikaziPacijenta" Height="500" Width="890" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -27,15 +27,15 @@
         <Button Grid.Column="1" Grid.Row="1" Margin="60,6,111.6,33.6" Click="Button_Click_1" RenderTransformOrigin="1.366,0.614" Grid.ColumnSpan="2">Dodaj</Button>
         <Button Grid.Column="2" Grid.Row="1" Margin="80.2,6,91.4,33.6" Click="Button_Click_2" RenderTransformOrigin="1.378,0.509" Grid.ColumnSpan="2">Izmeni</Button>
         <Button Grid.Column="3" Grid.Row="1" Margin="101.4,6,70.2,33.6" Click="Button_Click_3" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2">Obrisi</Button>
-        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="65,94,65.2,44.4" AutoGenerateColumns="False">
+        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="45,94,43.2,44.4" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Ime" Width="90" Binding="{Binding ImePacijenta}"/>
-                <DataGridTextColumn Header="Prezime" Width="100" Binding="{Binding PrezimePacijenta}"/>
+                <DataGridTextColumn Header="Ime" Width="100" Binding="{Binding ImePacijenta}"/>
+                <DataGridTextColumn Header="Prezime" Width="110" Binding="{Binding PrezimePacijenta}"/>
                 <DataGridTextColumn Header="JMBG" Width="110" Binding="{Binding Jmbg}"/>
                 <DataGridTextColumn Header="Status" Width="60" Binding="{Binding StatusNaloga}"/>
-                <DataGridTextColumn Header="Broj telefona" Width="100" Binding="{Binding BrojTelefona}"/>
-                <DataGridTextColumn Header="Email" Width="115" Binding="{Binding Email}"/>
-                <DataGridTextColumn Header="Adresa stanovanja" Width="120" Binding="{Binding AdresaStanovanja}"/>
+                <DataGridTextColumn Header="Broj telefona" Width="110" Binding="{Binding BrojTelefona}"/>
+                <DataGridTextColumn Header="Email" Width="130" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Adresa stanovanja" Width="155" Binding="{Binding AdresaStanovanja}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
