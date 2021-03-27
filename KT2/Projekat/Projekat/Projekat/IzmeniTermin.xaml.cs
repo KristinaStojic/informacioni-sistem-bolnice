@@ -33,14 +33,16 @@ namespace Projekat
                 this.text4.Text = izabraniTermin.Lekar.IdLekara.ToString();
                 this.text5.Text = izabraniTermin.Pacijent.Jmbg.ToString();
                 TipTermina tp;
-                if (this.combo.Equals("Operacija"))
+                if (izabraniTermin.tipTermina.Equals(TipTermina.Operacija))
                 {
-                    tp = TipTermina.Operacija;
+                    this.combo.SelectedIndex = 0;
                 }
-                else
+                else if (izabraniTermin.tipTermina.Equals(TipTermina.Pregled))
                 {
-                    tp = TipTermina.Pregled;
+                    this.combo.SelectedIndex = 1;
                 }
+
+
                 tp = izabraniTermin.tipTermina;
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
                 this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;  

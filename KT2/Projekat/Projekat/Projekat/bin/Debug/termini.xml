@@ -54,4 +54,31 @@
     </Prostorija>
     <tipTermina>Operacija</tipTermina>
   </Termin>
+  <Termin>
+    <IdTermin>3</IdTermin>
+    <VremePocetka>08:00</VremePocetka>
+    <VremeKraja>10:00</VremeKraja>
+    <Lekar>
+      <IdLekara>12</IdLekara>
+      <Ime>Filip</Ime>
+      <Prezime>Filipovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <ImePacijenta>Petar</ImePacijenta>
+      <PrezimePacijenta>Petrovic</PrezimePacijenta>
+      <Jmbg>5678</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>9999</BrojTelefona>
+      <Email>petar.petrovic@gmail.com</Email>
+      <AdresaStanovanja>Mise Dimitrijevica 30</AdresaStanovanja>
+    </Pacijent>
+    <Datum>04/09/2021</Datum>
+    <Prostorija>
+      <Status>Renoviranje</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>2</Id>
+      <Namjena>dgfdhA</Namjena>
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
 </ArrayOfTermin>
