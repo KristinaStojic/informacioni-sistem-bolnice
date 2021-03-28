@@ -32,6 +32,7 @@ namespace Model
             {
                 if (s.Id == sala1.Id)
                 {
+                    s.Id = sala.Id;
                     s.Namjena = sala.Namjena;
                     s.TipSale = sala.TipSale;
                     s.Status = sala.Status;
