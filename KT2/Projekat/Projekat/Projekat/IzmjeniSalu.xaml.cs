@@ -53,7 +53,7 @@ namespace Projekat
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(this.text1.Text);
+            int id = Convert.ToInt32(this.text1.Text);
             string namjena = this.text2.Text;
             tipSale Tip;
             status Status;

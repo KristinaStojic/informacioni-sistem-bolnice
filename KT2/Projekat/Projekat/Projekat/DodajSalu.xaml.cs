@@ -28,7 +28,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int brojSale = int.Parse(text1.Text);
+            int brojSale = Convert.ToInt32(text1.Text);
             string namjenaSale = text2.Text;
             tipSale TipSale;
             if (combo.Text.Equals("Sala za preglede"))
