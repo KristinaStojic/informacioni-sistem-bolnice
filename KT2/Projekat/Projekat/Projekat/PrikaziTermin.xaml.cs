@@ -99,5 +99,10 @@ namespace Projekat
         {
             TerminMenadzer.sacuvajIzmene();
         }
+
+        private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

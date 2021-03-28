@@ -9,7 +9,7 @@
   <Sala>
     <Status>Slobodna</Status>
     <TipSale>OperacionaSala</TipSale>
-    <Id>2</Id>
+    <Id>27</Id>
     <Namjena>vaskularna hirurgija</Namjena>
   </Sala>
   <Sala>
@@ -17,5 +17,17 @@
     <TipSale>SalaZaPregled</TipSale>
     <Id>3</Id>
     <Namjena>snimanje rendgena</Namjena>
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>OperacionaSala</TipSale>
+    <Id>22</Id>
+    <Namjena>Oralna hirurgija</Namjena>
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>5</Id>
+    <Namjena>Opsta praksa</Namjena>
   </Sala>
 </ArrayOfSala>

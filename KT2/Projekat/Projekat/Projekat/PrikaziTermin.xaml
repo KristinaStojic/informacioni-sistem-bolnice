@@ -16,13 +16,13 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                  Height="345" Margin="34,24,0,0" VerticalAlignment="Top" Width="928" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
+                  Height="345" Margin="34,24,0,0" VerticalAlignment="Top" Width="938" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
                 <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
                 <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                <DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.Jmbg}"/>
+                <DataGridTextColumn Header="JMBG pacijenta" Binding="{Binding Pacijent.Jmbg}"/>
                 <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
                 <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
                 <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  />

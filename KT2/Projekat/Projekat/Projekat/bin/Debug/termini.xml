@@ -20,10 +20,10 @@
     </Pacijent>
     <Datum>03/31/2021</Datum>
     <Prostorija>
-      <Status>Zauzeta</Status>
-      <TipSale>SalaZaPregled</TipSale>
-      <Id>1</Id>
-      <Namjena>sdasd</Namjena>
+      <Status>Slobodna</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>22</Id>
+      <Namjena>Oralna hirurgija</Namjena>
     </Prostorija>
     <tipTermina>Operacija</tipTermina>
   </Termin>
@@ -47,10 +47,10 @@
     </Pacijent>
     <Datum>04/07/2021</Datum>
     <Prostorija>
-      <Status>Renoviranje</Status>
+      <Status>Slobodna</Status>
       <TipSale>OperacionaSala</TipSale>
-      <Id>2</Id>
-      <Namjena>dgfdhA</Namjena>
+      <Id>27</Id>
+      <Namjena>vaskularna hirurgija</Namjena>
     </Prostorija>
     <tipTermina>Operacija</tipTermina>
   </Termin>
