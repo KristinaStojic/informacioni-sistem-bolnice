@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz termina" Height="475" Width="1207.5" WindowStartupLocation="CenterScreen">
+        Title="Prikaz termina" Height="475" Width="1207.5" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid Background="AntiqueWhite" Margin="0,0,-5.5,-2.5">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,7 +15,7 @@
             <ColumnDefinition Width="57*"/>
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
-                  SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
+                  SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
                   Height="345" Margin="34,24,0,0" VerticalAlignment="Top" Width="928" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
