@@ -58,40 +58,46 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //dugme sacuvaj
-            int brojTermina = int.Parse(text1.Text);
-            String formatted = null;
-            DateTime? selectedDate = datum.SelectedDate;
-            Console.WriteLine(selectedDate);
-            if (selectedDate.HasValue)
+            try
             {
-                formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                int brojTermina = int.Parse(text1.Text);
+                String formatted = null;
+                DateTime? selectedDate = datum.SelectedDate;
+                Console.WriteLine(selectedDate);
+                if (selectedDate.HasValue)
+                {
+                    formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            }
-            String vp = text2.Text;
-            String vk = text3.Text;
-            TipTermina tp;
-            if (combo.Text.Equals("Pregled"))
+                }
+                String vp = text2.Text;
+                String vk = text3.Text;
+                TipTermina tp;
+                if (combo.Text.Equals("Pregled"))
+                {
+                    tp = TipTermina.Pregled;
+                }
+                else
+                {
+                    tp = TipTermina.Operacija;
+                }
+                int idLek = int.Parse(text4.Text);
+                Lekar l = new Lekar(idLek, "Filip", "Filipovic");
+
+                List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+                int idPac = int.Parse(text5.Text);
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
+
+                List<Sala> sale = SaleMenadzer.NadjiSveSale();
+                int idSale = int.Parse(prostorije.Text);
+                Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
+
+                Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
+                TerminMenadzer.IzmeniTermin(termin, t);
+                this.Close();
+            } catch (System.Exception)
             {
-                tp = TipTermina.Pregled;
+                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else
-            {
-                tp = TipTermina.Operacija;
-            }
-            int idLek = int.Parse(text4.Text);
-            Lekar l = new Lekar(idLek, "Filip", "Filipovic");
-
-            List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-            int idPac = int.Parse(text5.Text);
-            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
-
-            List<Sala> sale = SaleMenadzer.NadjiSveSale();
-            int idSale = int.Parse(prostorije.Text);
-            Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
-
-            Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
-            TerminMenadzer.IzmeniTermin(termin, t); 
-            this.Close();
         }
     }
 }

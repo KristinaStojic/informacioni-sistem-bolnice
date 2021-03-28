@@ -81,4 +81,31 @@
     </Prostorija>
     <tipTermina>Pregled</tipTermina>
   </Termin>
+  <Termin>
+    <IdTermin>5</IdTermin>
+    <VremePocetka>09:00</VremePocetka>
+    <VremeKraja>09:00</VremeKraja>
+    <Lekar>
+      <IdLekara>555</IdLekara>
+      <Ime>Filip</Ime>
+      <Prezime>Filipovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <ImePacijenta>Masa</ImePacijenta>
+      <PrezimePacijenta>Masic</PrezimePacijenta>
+      <Jmbg>1111</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>5555</BrojTelefona>
+      <Email>masa123@gmail.com</Email>
+      <AdresaStanovanja>Gogoljeva 13</AdresaStanovanja>
+    </Pacijent>
+    <Datum>03/31/2021</Datum>
+    <Prostorija>
+      <Status>Zauzeta</Status>
+      <TipSale>SalaZaPregled</TipSale>
+      <Id>1</Id>
+      <Namjena>opsta praksa</Namjena>
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
 </ArrayOfTermin>
