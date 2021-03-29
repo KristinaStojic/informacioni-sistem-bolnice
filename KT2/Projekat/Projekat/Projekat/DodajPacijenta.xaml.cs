@@ -18,13 +18,15 @@ namespace Projekat.Model
     /// <summary>
     /// Interaction logic for DodajPacijenta.xaml
     /// </summary>
+  
     public partial class DodajPacijenta : Window
     {
-        //int id = 0; // idPacijenta 
+        //int id = 0; // idPacijenta  globalna promenljiva
 
         public DodajPacijenta()
         {
             InitializeComponent();
+          //  id++;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -39,8 +41,16 @@ namespace Projekat.Model
                 status = statusNaloga.Guest;
             }
 
-            Pacijent p = new Pacijent(/*++id,*/ ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status);
-            PacijentiMenadzer.DodajNalog(p);
+            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals(""))
+            {
+                Pacijent p1 = new Pacijent(/*id,*/ ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), status);
+                PacijentiMenadzer.DodajNalog(p1);
+            }
+            else
+            {
+                Pacijent p = new Pacijent(/*id, */ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status);
+                PacijentiMenadzer.DodajNalog(p);
+            }
 
             this.Close();
         }
@@ -50,6 +60,21 @@ namespace Projekat.Model
             this.Close();
         }
 
+        private void combo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (combo.Text.Equals("GUEST")) 
+            {
+                brojTelefona.IsEnabled = false;
+                email.IsEnabled = false;
+                adresa.IsEnabled = false;
+            }
+            else if (combo.Text.Equals("STALAN"))
+            {
+                brojTelefona.IsEnabled = true;
+                email.IsEnabled = true;
+                adresa.IsEnabled = true;
+            }
+        }
     }
 }
 

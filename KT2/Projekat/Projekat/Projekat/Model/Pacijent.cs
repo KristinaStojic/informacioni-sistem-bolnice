@@ -29,7 +29,16 @@ namespace Model
 
         public Pacijent() { }
 
-       // public int IdPacijenta { get; set; }
+        public Pacijent(/*int IdPacijenta,*/ string ImePacijenta, string PrezimePacijenta, int Jmbg, statusNaloga Status)
+        {
+            this.IdPacijenta = IdPacijenta;
+            this.ImePacijenta = ImePacijenta;
+            this.PrezimePacijenta = PrezimePacijenta;
+            this.Jmbg = Jmbg;
+            this.StatusNaloga = Status;
+        }
+
+        public int IdPacijenta { get; set; }
         public string ImePacijenta { get; set; }
         public string PrezimePacijenta { get; set; }
         public int Jmbg { get; set; }

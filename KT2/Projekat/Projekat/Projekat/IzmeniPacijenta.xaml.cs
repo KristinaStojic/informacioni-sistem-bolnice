@@ -27,46 +27,72 @@ namespace Projekat
             this.pacijent = izabraniNalog;
             if (izabraniNalog != null) 
             {
-                this.ime.Text = izabraniNalog.ImePacijenta;
-                this.prezime.Text = izabraniNalog.PrezimePacijenta;
-                this.jmbg.Text = izabraniNalog.Jmbg.ToString();
+                ime.Text = izabraniNalog.ImePacijenta;
+                prezime.Text = izabraniNalog.PrezimePacijenta;
+                jmbg.Text = izabraniNalog.Jmbg.ToString();
                
                 if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
                 {
-                    this.combo.SelectedIndex = 0;
+                    combo.SelectedIndex = 0;
+                    combo.IsEnabled = false;
+
+                    brojTelefona.IsEnabled = true;
+                    email.IsEnabled = true;
+                    adresa.IsEnabled = true;
                 }
                 else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest)) 
                 {
-                    this.combo.SelectedIndex = 1;
+                    combo.SelectedIndex = 1;
+
+                    brojTelefona.IsEnabled = false;
+                    email.IsEnabled = false;
+                    adresa.IsEnabled = false;
                 }
 
-                this.brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
-                this.email.Text = izabraniNalog.Email;
-                this.adresa.Text = izabraniNalog.AdresaStanovanja;
+                brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
+                email.Text = izabraniNalog.Email;
+                adresa.Text = izabraniNalog.AdresaStanovanja;
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             statusNaloga status;
-            if (this.combo.SelectedIndex == 0)
+            if (combo.SelectedIndex == 0)
             {
                 status = statusNaloga.Stalni;
+                Pacijent noviPacijent = new Pacijent(/*pacijent.IdPacijenta,*/ ime.Text, prezime.Text, int.Parse(jmbg.Text), long.Parse(brojTelefona.Text), email.Text, adresa.Text, status);
+                PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
             }
             else 
             {
                 status = statusNaloga.Guest;
+                Pacijent noviPacijent1 = new Pacijent(/*pacijent.IdPacijenta,*/ ime.Text, prezime.Text, int.Parse(jmbg.Text), status);
+                PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent1);
             }
 
-            Pacijent noviPacijent = new Pacijent(/*pacijent.IdPacijenta,*/ this.ime.Text, this.prezime.Text, int.Parse(this.jmbg.Text), long.Parse(this.brojTelefona.Text), this.email.Text, this.adresa.Text, status);
-            PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
             this.Close();
-       
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void combo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (combo.Text.Equals("GUEST"))
+            {
+                brojTelefona.IsEnabled = false;
+                email.IsEnabled = false;
+                adresa.IsEnabled = false;
+            }
+            else if (combo.Text.Equals("STALAN"))
+            {
+                brojTelefona.IsEnabled = true;
+                email.IsEnabled = true;
+                adresa.IsEnabled = true;
+            }
         }
     }
 }

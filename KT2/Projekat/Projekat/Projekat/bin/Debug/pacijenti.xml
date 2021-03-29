@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfPacijent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Pacijent>
+    <IdPacijenta>0</IdPacijenta>
     <ImePacijenta>Masa</ImePacijenta>
     <PrezimePacijenta>Masic</PrezimePacijenta>
     <Jmbg>1111</Jmbg>
@@ -10,6 +11,7 @@
     <AdresaStanovanja>Gogoljeva 13</AdresaStanovanja>
   </Pacijent>
   <Pacijent>
+    <IdPacijenta>0</IdPacijenta>
     <ImePacijenta>Nikola</ImePacijenta>
     <PrezimePacijenta>Nikolic</PrezimePacijenta>
     <Jmbg>1234</Jmbg>
@@ -19,6 +21,7 @@
     <AdresaStanovanja>Bulevar Oslobodjenja 55</AdresaStanovanja>
   </Pacijent>
   <Pacijent>
+    <IdPacijenta>0</IdPacijenta>
     <ImePacijenta>Petar</ImePacijenta>
     <PrezimePacijenta>Petrovic</PrezimePacijenta>
     <Jmbg>5678</Jmbg>
