@@ -79,7 +79,6 @@ namespace Projekat
             Termin zaBrisanje = (Termin)dataGridTermini.SelectedItem;
             if (zaBrisanje != null)
             {
-
                 TerminMenadzer.OtkaziTermin(zaBrisanje);
                 //TerminMenadzer.sacuvajIzmene();
             }

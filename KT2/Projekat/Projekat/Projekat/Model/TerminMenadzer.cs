@@ -18,8 +18,7 @@ namespace Model
       public static void ZakaziTermin(Termin termin)
       {
             termini.Add(termin);
-            PrikaziTermin.Termini.Add(termin);
-            
+            PrikaziTerminPacijent.Termini.Add(termin);     
       }
       
       public static void IzmeniTermin(Termin termin, Termin termin1)
@@ -39,9 +38,9 @@ namespace Model
                 }
                 //Console.WriteLine(termin.IdTermin + " " + termin1.IdTermin);
             }
-            int idx = PrikaziTermin.Termini.IndexOf(termin);
-            PrikaziTermin.Termini.RemoveAt(idx);
-            PrikaziTermin.Termini.Insert(idx, termin1);
+            int idx = PrikaziTerminPacijent.Termini.IndexOf(termin);
+            PrikaziTerminPacijent.Termini.RemoveAt(idx);
+            PrikaziTerminPacijent.Termini.Insert(idx, termin1);
         }
       
       public static void OtkaziTermin(Termin termin)
@@ -50,7 +49,7 @@ namespace Model
             //PrikaziTermin.Termini.Remove(termin);
             //int idx = PrikaziTermin.Termini.IndexOf(termin);
             //PrikaziTermin.Termini.RemoveAt(idx);
-            PrikaziTermin.Termini.Remove(termin);
+            PrikaziTerminPacijent.Termini.Remove(termin);
        }
       
       public static List<Termin> NadjiSveTermine()
@@ -90,7 +89,6 @@ namespace Model
             fileStream.Close();
         }
    
-      //public int AdresaFajla;  // ?
       public static List<Termin> termini = new List<Termin>();
     }
 }

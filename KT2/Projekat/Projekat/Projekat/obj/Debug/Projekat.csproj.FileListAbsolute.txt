@@ -174,3 +174,11 @@ C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Proje
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziPacijenta.baml
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTermin.baml
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTerminPacijent.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTerminPacijent.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTerminPacijent.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTerminPacijent.g.cs
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\PrikaziTerminPacijent.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\IzmeniTerminPacijent.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\OtkaziTerminPacijent.baml
+\\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTerminPacijent.baml

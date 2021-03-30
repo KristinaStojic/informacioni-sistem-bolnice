@@ -64,14 +64,26 @@
     <Compile Include="DodajPacijenta.xaml.cs">
       <DependentUpon>DodajPacijenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IzmeniTerminPacijent.xaml.cs">
+      <DependentUpon>IzmeniTerminPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtkaziTerminPacijent.xaml.cs">
+      <DependentUpon>OtkaziTerminPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikaziTerminPacijent.xaml.cs">
+      <DependentUpon>PrikaziTerminPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZakaziTerminPacijent.xaml.cs">
+      <DependentUpon>ZakaziTerminPacijent.xaml</DependentUpon>
     </Compile>
     <Page Include="DodajSalu.xaml">
       <SubType>Designer</SubType>
@@ -82,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IzmeniTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmeniTerminPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +131,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OtkaziTerminPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrikaziPacijenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,7 +147,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrikaziTerminPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ZakaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZakaziTerminPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

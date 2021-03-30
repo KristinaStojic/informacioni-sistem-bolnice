@@ -1,4 +1,4 @@
-﻿<Window x:Class="Projekat.PrikaziTermin"
+﻿<Window x:Class="Projekat.PrikaziTerminPacijent"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="235*"/>
             <ColumnDefinition Width="57*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
+        <DataGrid Grid.Column="0" x:Name="dataGridTerminiPacijenta" ItemsSource="{Binding Termini}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
                   Height="345" Margin="34,24,0,0" VerticalAlignment="Top" Width="928" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13" >
             <DataGrid.Columns >

@@ -41,9 +41,9 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PrikaziTermin w1 = new PrikaziTermin();
+            // pacijent
+            PrikaziTerminPacijent w1 = new PrikaziTerminPacijent();
             w1.Show();
-            //this.Close();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
