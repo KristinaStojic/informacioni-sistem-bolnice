@@ -37,8 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -48,11 +46,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -80,22 +76,8 @@
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
     </Compile>
-<<<<<<< Updated upstream
     <Compile Include="PrikaziTerminPacijent.xaml.cs">
       <DependentUpon>PrikaziTerminPacijent.xaml</DependentUpon>
-=======
-    <Compile Include="Sekretar.xaml.cs">
-      <DependentUpon>Sekretar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SekretarIzmeniTermin.xaml.cs">
-      <DependentUpon>SekretarIzmeniTermin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SekretarTermini.xaml.cs">
-      <DependentUpon>SekretarTermini.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SekretarZakaziTermin.xaml.cs">
-      <DependentUpon>SekretarZakaziTermin.xaml</DependentUpon>
->>>>>>> Stashed changes
     </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
@@ -165,23 +147,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-<<<<<<< Updated upstream
     <Page Include="PrikaziTerminPacijent.xaml">
-=======
-    <Page Include="Sekretar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SekretarIzmeniTermin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SekretarTermini.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SekretarZakaziTermin.xaml">
->>>>>>> Stashed changes
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

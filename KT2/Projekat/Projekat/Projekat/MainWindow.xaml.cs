@@ -48,8 +48,8 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Sekretar s = new Sekretar();
-            s.Show();
+            PrikaziPacijenta p1 = new PrikaziPacijenta();
+            p1.Show();
            // this.Close();
         }
 

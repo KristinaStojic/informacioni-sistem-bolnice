@@ -71,11 +71,6 @@ namespace Projekat
             PacijentiMenadzer.ObrisiNalog(zaBrisanje);
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();

@@ -21,9 +21,12 @@ namespace Projekat.Model
   
     public partial class DodajPacijenta : Window
     {
+        //int id = 0; // idPacijenta  globalna promenljiva
+
         public DodajPacijenta()
         {
             InitializeComponent();
+          //  id++;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -40,17 +43,13 @@ namespace Projekat.Model
 
             if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals(""))
             {
-                int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
-                Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), status);
+                Pacijent p1 = new Pacijent(/*id,*/ ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), status);
                 PacijentiMenadzer.DodajNalog(p1);
             }
             else
             {
-                int idP = PacijentiMenadzer.GenerisanjeIdPacijenta();
-                Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status);
+                Pacijent p = new Pacijent(/*id, */ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status);
                 PacijentiMenadzer.DodajNalog(p);
-                // kreiraj zdravstveni karton za datog pacijenta
-                // napraviti klasu zdravstveni karton
             }
 
             this.Close();

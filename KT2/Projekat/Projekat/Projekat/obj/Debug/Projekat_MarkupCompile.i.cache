@@ -9,21 +9,12 @@ Projekat
 none
 false
 DEBUG;TRACE
-<<<<<<< Updated upstream
 \\Mac\Home\Desktop\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\App.xaml
 15-1324465821
 
 27577334022
 13-1505183044
 DodajSalu.xaml;IzmeniPacijenta.xaml;IzmeniTermin.xaml;IzmeniTerminPacijent.xaml;IzmjeniSalu.xaml;MainWindow.xaml;DodajPacijenta.xaml;OtkaziTermin.xaml;OtkaziTerminPacijent.xaml;PrikaziPacijenta.xaml;PrikaziSalu.xaml;PrikaziTermin.xaml;PrikaziTerminPacijent.xaml;ZakaziTermin.xaml;ZakaziTerminPacijent.xaml;
-=======
-d:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\App.xaml
-151470199592
-
-27-877914477
-17956782100
-DodajSalu.xaml;IzmeniPacijenta.xaml;IzmeniTermin.xaml;IzmjeniSalu.xaml;MainWindow.xaml;DodajPacijenta.xaml;OtkaziTermin.xaml;PrikaziPacijenta.xaml;PrikaziSalu.xaml;PrikaziTermin.xaml;Sekretar.xaml;SekretarIzmeniTermin.xaml;SekretarTermini.xaml;SekretarZakaziTermin.xaml;ZakaziTermin.xaml;
->>>>>>> Stashed changes
 
 True
 

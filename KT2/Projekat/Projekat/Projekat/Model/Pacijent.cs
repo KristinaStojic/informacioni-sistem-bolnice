@@ -15,9 +15,9 @@ namespace Model
     }
     public class Pacijent : INotifyPropertyChanged
     {
-        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, int Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status)
+        public Pacijent(/*int IdPacijenta,*/ string ImePacijenta, string PrezimePacijenta, int Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status)
         {
-            this.IdPacijenta = IdPacijenta;
+            //this.IdPacijenta = IdPacijenta;
             this.ImePacijenta = ImePacijenta;
             this.PrezimePacijenta = PrezimePacijenta;
             this.Jmbg = Jmbg;
@@ -29,7 +29,7 @@ namespace Model
 
         public Pacijent() { }
 
-        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, int Jmbg, statusNaloga Status)
+        public Pacijent(/*int IdPacijenta,*/ string ImePacijenta, string PrezimePacijenta, int Jmbg, statusNaloga Status)
         {
             this.IdPacijenta = IdPacijenta;
             this.ImePacijenta = ImePacijenta;

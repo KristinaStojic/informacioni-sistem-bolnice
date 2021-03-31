@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfPacijent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Pacijent>
-    <IdPacijenta>1</IdPacijenta>
-    <ImePacijenta>Ana</ImePacijenta>
-    <PrezimePacijenta>Anic</PrezimePacijenta>
-    <Jmbg>123</Jmbg>
+    <IdPacijenta>0</IdPacijenta>
+    <ImePacijenta>Masa</ImePacijenta>
+    <PrezimePacijenta>Masic</PrezimePacijenta>
+    <Jmbg>1111</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>333</BrojTelefona>
-    <Email>ana.anic</Email>
-    <AdresaStanovanja>Gogoljeva 10</AdresaStanovanja>
+    <BrojTelefona>5555</BrojTelefona>
+    <Email>masa123@gmail.com</Email>
+    <AdresaStanovanja>Gogoljeva 13</AdresaStanovanja>
   </Pacijent>
   <Pacijent>
-    <IdPacijenta>2</IdPacijenta>
-    <ImePacijenta>Milena</ImePacijenta>
-    <PrezimePacijenta>Milenic</PrezimePacijenta>
-    <Jmbg>333</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>88</BrojTelefona>
-    <Email>milena.milenic</Email>
-    <AdresaStanovanja>Mise Dimitrijevica</AdresaStanovanja>
-  </Pacijent>
-  <Pacijent>
-    <IdPacijenta>3</IdPacijenta>
+    <IdPacijenta>0</IdPacijenta>
     <ImePacijenta>Nikola</ImePacijenta>
     <PrezimePacijenta>Nikolic</PrezimePacijenta>
-    <Jmbg>888</Jmbg>
-    <StatusNaloga>Guest</StatusNaloga>
-    <BrojTelefona>0</BrojTelefona>
+    <Jmbg>1234</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>888</BrojTelefona>
+    <Email>nikola.nikolic@gmail.com</Email>
+    <AdresaStanovanja>Bulevar Oslobodjenja 55</AdresaStanovanja>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>0</IdPacijenta>
+    <ImePacijenta>Petar</ImePacijenta>
+    <PrezimePacijenta>Petrovic</PrezimePacijenta>
+    <Jmbg>5678</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>9999</BrojTelefona>
+    <Email>petar.petrovic@gmail.com</Email>
+    <AdresaStanovanja>Mise Dimitrijevica 30</AdresaStanovanja>
   </Pacijent>
 </ArrayOfPacijent>
