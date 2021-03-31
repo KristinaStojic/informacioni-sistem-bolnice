@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-d:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\
 Projekat
 none
 false
 DEBUG;TRACE
-d:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\App.xaml
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\App.xaml
 121793825898
 
 25-1398071117
 13-1505183044
 DodajSalu.xaml;IzmeniPacijenta.xaml;IzmeniTermin.xaml;IzmjeniSalu.xaml;MainWindow.xaml;DodajPacijenta.xaml;OtkaziTermin.xaml;PrikaziPacijenta.xaml;PrikaziSalu.xaml;PrikaziTermin.xaml;UvidZdravstveniKarton.xaml;ZakaziTermin.xaml;
 
-True
+False
 

@@ -176,3 +176,4 @@ C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Proje
 C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\ZakaziTermin.baml
 d:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\UvidZdravstveniKarton.g.cs
 d:\Documents\Teodora\FAKS\6. semestar\SIMS\Projekat\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\UvidZdravstveniKarton.baml
+C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT2\Projekat\Projekat\Projekat\obj\Debug\UvidZdravstveniKarton.g.cs

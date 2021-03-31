@@ -27,7 +27,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PrikaziSalu w1 = new PrikaziSalu();
+            Upravnik w1 = new Upravnik();
             w1.Show();
             //this.Close();
         }

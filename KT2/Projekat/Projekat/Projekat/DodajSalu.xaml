@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Dodavanje sale" Height="340" Width="380" WindowStartupLocation="CenterScreen">
+        Title="Dodavaj prostoriju" Height="340" Width="380" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,16 +17,16 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Broj sale: </TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Namjena sale:</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17">Tip sale:</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text1"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text2"></TextBox>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Broj prostorije: </TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Namjena:</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Tip prostorije:</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text1" Background="AliceBlue"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text2" Background="AliceBlue"></TextBox>
         <ComboBox Grid.Row="2" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="combo" SelectedIndex="0">
             <ComboBoxItem Content="Sala za preglede"/>
             <ComboBoxItem Content="Sala za operacije"/>
         </ComboBox>
-        <Button Grid.Column="0" Grid.Row="3" Width="90" Height="30" Background="AliceBlue" HorizontalAlignment="Right" Margin="10" Click="Button_Click">Potvrdi</Button>
-        <Button Grid.Column="1" Grid.Row="3" Width="90" Height="30" Background="AliceBlue" HorizontalAlignment="Left" Margin="10" Click="Button_Click_1">Odustani</Button>
+        <Button Grid.Column="0" Grid.Row="3" Width="90" Height="30" Background="LightBlue" HorizontalAlignment="Right" Margin="10" Click="Button_Click">Dodaj</Button>
+        <Button Grid.Column="1" Grid.Row="3" Width="90" Height="30" Background="LightBlue" HorizontalAlignment="Left" Margin="10" Click="Button_Click_1">Odustani</Button>
     </Grid>
 </Window>
