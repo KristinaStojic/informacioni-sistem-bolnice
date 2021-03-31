@@ -61,13 +61,13 @@ namespace Projekat
             if (combo.SelectedIndex == 0)
             {
                 status = statusNaloga.Stalni;
-                Pacijent noviPacijent = new Pacijent(/*pacijent.IdPacijenta,*/ ime.Text, prezime.Text, int.Parse(jmbg.Text), long.Parse(brojTelefona.Text), email.Text, adresa.Text, status);
+                Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), long.Parse(brojTelefona.Text), email.Text, adresa.Text, status);
                 PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
             }
             else 
             {
                 status = statusNaloga.Guest;
-                Pacijent noviPacijent1 = new Pacijent(/*pacijent.IdPacijenta,*/ ime.Text, prezime.Text, int.Parse(jmbg.Text), status);
+                Pacijent noviPacijent1 = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), status);
                 PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent1);
             }
 

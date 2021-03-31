@@ -23,10 +23,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Grid.Column="0" Grid.Row="0" Margin="24,20,15.8,19.6" Click="Button_Click" Background="Azure">NAZAD</Button>
-        <Label Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">Nalozi pacijenata</Label>
-        <Button Grid.Column="1" Grid.Row="1" Margin="60,6,111.6,33.6" Click="Button_Click_1" RenderTransformOrigin="1.366,0.614" Grid.ColumnSpan="2">Dodaj</Button>
-        <Button Grid.Column="2" Grid.Row="1" Margin="80.2,6,91.4,33.6" Click="Button_Click_2" RenderTransformOrigin="1.378,0.509" Grid.ColumnSpan="2">Izmeni</Button>
-        <Button Grid.Column="3" Grid.Row="1" Margin="101.4,6,70.2,33.6" Click="Button_Click_3" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2">Obrisi</Button>
+        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="136.8,5,9.8,92.6" Grid.RowSpan="2">Nalozi pacijenata</Label>
+        <Button Grid.Row="1" Margin="123,10,48.4,29.6" Click="Button_Click_1" RenderTransformOrigin="1.366,0.614" Grid.ColumnSpan="2">Dodaj</Button>
+        <Button Grid.Column="1" Grid.Row="1" Margin="143.8,10,28.6,29.6" Click="Button_Click_2" RenderTransformOrigin="1.378,0.509" Grid.ColumnSpan="2">Izmeni</Button>
+        <Button Grid.Column="3" Grid.Row="1" Margin="17.4,10,6.8,29.6" Click="Button_Click_3" RenderTransformOrigin="1.63,0.404">Obrisi</Button>
+        <Button Grid.Column="4" Grid.Row="1" Margin="40.2,10,131.2,29.6" Click="Button_Click_4" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2" Content="Zdravstveni karton"/>
         <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="45,94,43.2,44.4" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ime" Width="100" Binding="{Binding ImePacijenta}"/>

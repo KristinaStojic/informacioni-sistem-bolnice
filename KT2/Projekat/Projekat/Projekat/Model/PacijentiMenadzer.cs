@@ -28,9 +28,8 @@ namespace Model
         {
             foreach (Pacijent p in pacijenti)
             {
-                if (p.Jmbg == nalog1.Jmbg)
+                if (p.IdPacijenta == nalog1.IdPacijenta)
                 {
-                    //p.IdPacijenta = nalog.IdPacijenta;
                     p.ImePacijenta = nalog.ImePacijenta;
                     p.PrezimePacijenta = nalog.PrezimePacijenta;
                     p.Jmbg = nalog.Jmbg;
@@ -52,14 +51,14 @@ namespace Model
                 for (int i = 0; i < pacijenti.Count; i++)
                 {
                     Pacijent p = pacijenti[i];
-                    if (p.Jmbg == nalog.Jmbg)
+                    if (p.IdPacijenta == nalog.IdPacijenta)
                     {
                         pacijenti.Remove(nalog);
                         PrikaziPacijenta.PacijentiTabela.Remove(nalog);
                     }
                 }
             }
-            else 
+            else
             {
                 MessageBox.Show("Niste selektovali pacijenta za brisanje!");
             }
@@ -81,6 +80,7 @@ namespace Model
             }
         }
 
+        // promeniti da bude pronadji po idPacijenta
         public static Pacijent PronadjiPoId(int jmbg)
         {
             foreach (Pacijent p in pacijenti)
@@ -101,6 +101,30 @@ namespace Model
             filestream.Close();
         }
 
-        //private static string AdresaFajla;
+        public static int GenerisanjeIdPacijenta()
+        {
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= pacijenti.Count; id++)
+            {
+                foreach (Pacijent p in pacijenti)
+                {
+                    if (p.IdPacijenta.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }       
+                }
+
+                if(!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
+        }
     }
 }
