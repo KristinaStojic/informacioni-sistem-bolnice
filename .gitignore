@@ -387,6 +387,13 @@ FodyWeavers.xsd
 # Benchmark Results
 
 # .NET Core
+[Oo]bj/
+[Bb]in/
+*.suo
+*.user
+/TestResults
+*.vspscc
+*.vssscc
 
 # ASP.NET Scaffolding
 
