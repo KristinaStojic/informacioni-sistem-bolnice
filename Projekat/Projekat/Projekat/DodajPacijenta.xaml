@@ -1,0 +1,46 @@
+﻿<Window x:Class="Projekat.Model.DodajPacijenta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat.Model"
+        mc:Ignorable="d"
+        Title="DodajPacijenta" Height="480" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalContentAlignment="Center" Content="Ime pacijenta:"/>
+        <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalContentAlignment="Center" Content="Prezime pacijenta:"/>
+        <Label Grid.Column="1" Grid.Row="2" FontSize="17" VerticalContentAlignment="Center" Content="JMBG:"/>
+        <Label Grid.Column="1" Grid.Row="3" FontSize="17" VerticalContentAlignment="Center" Content="Status naloga:"/>
+        <Label Grid.Column="1" Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Broj telefona:"/>
+        <Label Grid.Column="1" Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Email:"/>
+        <Label Grid.Column="1" Grid.Row="6" FontSize="17" VerticalContentAlignment="Center" Content="Adresa stanovanja:"/>
+        <TextBox x:Name="ime" Grid.Column="2" Grid.Row="0" Margin="12"/>
+        <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="1" Margin="12"/>
+        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="2" Margin="12"/>
+        <ComboBox x:Name="combo" Grid.Column="2" Grid.Row="3"  Margin="14"  Width="160" SelectedIndex="0" LostFocus="combo_LostFocus">
+            <ComboBoxItem Content="STALAN"/>
+            <ComboBoxItem Content="GUEST"/>
+        </ComboBox>
+        <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="4" Margin="12"/>
+        <TextBox x:Name="email" Grid.Column="2" Grid.Row="5" Margin="12"/>
+        <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="6" Margin="12"/>
+        <Button Grid.Column="1" Grid.Row="9" Margin="25" Click="Potvrdi_Click" Content="Potvrdi"/>
+        <Button Grid.Column="2" Grid.Row="9" Margin="25" Click="Odustani_Click" Content="Odustani"/>
+    </Grid>
+</Window>
