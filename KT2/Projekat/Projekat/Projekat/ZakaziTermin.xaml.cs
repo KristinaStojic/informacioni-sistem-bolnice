@@ -76,31 +76,17 @@ namespace Projekat
                     l.Prezime = "Milanovic";
                 }*/
 
-                Termin s = new Termin(brojTermina, formatted, vp, vk, tp/*, l, sala, p*/);
+
                 int idPac = int.Parse(text5.Text);
-                //List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-                //Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
-                foreach (Pacijent pac in PacijentiMenadzer.PronadjiSve())
-                {
-                    if (pac.Jmbg == idPac)
-                    {
-                        s.Pacijent = pac;
-                    }
-                }
-                
+                List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+                List<Sala> sale = SaleMenadzer.NadjiSveSale();
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
                 int idSale = int.Parse(prostorije.Text);
-               // Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
-                foreach(Sala sala in SaleMenadzer.NadjiSveSale())
-                {
-                    if (sala.Id == idSale)
-                    {
-                        s.Prostorija = sala; // seter
-                    }
-                }                                                 
-                
-                s.Lekar = l; // za sad ostaje kopija Lekara
+                Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
+                                                                  //Sala sala = new Sala(idSale);
+
+                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
                 TerminMenadzer.ZakaziTermin(s);
-                //PrikaziTermin.Termini.Add(s);
                 this.Close();
 
             } catch(System.Exception)

@@ -2,8 +2,8 @@
 <ArrayOfTermin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Termin>
     <IdTermin>1</IdTermin>
-    <VremePocetka>13:00</VremePocetka>
-    <VremeKraja>13:30</VremeKraja>
+    <VremePocetka>09:00</VremePocetka>
+    <VremeKraja>09:30</VremeKraja>
     <Lekar>
       <IdLekara>3488</IdLekara>
       <Ime>Filip</Ime>
@@ -24,7 +24,7 @@
       <Status>Zauzeta</Status>
       <TipSale>SalaZaPregled</TipSale>
       <Id>1</Id>
-      <Namjena>opsta praksa</Namjena>
+      <Namjena>sdasd</Namjena>
     </Prostorija>
     <tipTermina>Operacija</tipTermina>
   </Termin>
@@ -86,8 +86,8 @@
   </Termin>
   <Termin>
     <IdTermin>5</IdTermin>
-    <VremePocetka>11:30</VremePocetka>
-    <VremeKraja>12:00</VremeKraja>
+    <VremePocetka>09:00</VremePocetka>
+    <VremeKraja>09:00</VremeKraja>
     <Lekar>
       <IdLekara>555</IdLekara>
       <Ime>Filip</Ime>
@@ -103,40 +103,12 @@
       <Email>masa123@gmail.com</Email>
       <AdresaStanovanja>Gogoljeva 13</AdresaStanovanja>
     </Pacijent>
-    <Datum>04/01/2021</Datum>
+    <Datum>03/31/2021</Datum>
     <Prostorija>
-      <Status>Slobodna</Status>
-      <TipSale>OperacionaSala</TipSale>
-      <Id>2</Id>
-      <Namjena>vaskularna hirurgija</Namjena>
-    </Prostorija>
-    <tipTermina>Pregled</tipTermina>
-  </Termin>
-  <Termin>
-    <IdTermin>4</IdTermin>
-    <VremePocetka>10:30</VremePocetka>
-    <VremeKraja>11:00</VremeKraja>
-    <Lekar>
-      <IdLekara>1122</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
-    </Lekar>
-    <Pacijent>
-      <IdPacijenta>0</IdPacijenta>
-      <ImePacijenta>Nikola</ImePacijenta>
-      <PrezimePacijenta>Nikolic</PrezimePacijenta>
-      <Jmbg>1234</Jmbg>
-      <StatusNaloga>Stalni</StatusNaloga>
-      <BrojTelefona>888</BrojTelefona>
-      <Email>nikola.nikolic@gmail.com</Email>
-      <AdresaStanovanja>Bulevar Oslobodjenja 55</AdresaStanovanja>
-    </Pacijent>
-    <Datum>04/14/2021</Datum>
-    <Prostorija>
-      <Status>Slobodna</Status>
-      <TipSale>OperacionaSala</TipSale>
-      <Id>2</Id>
-      <Namjena>vaskularna hirurgija</Namjena>
+      <Status>Zauzeta</Status>
+      <TipSale>SalaZaPregled</TipSale>
+      <Id>1</Id>
+      <Namjena>opsta praksa</Namjena>
     </Prostorija>
     <tipTermina>Pregled</tipTermina>
   </Termin>

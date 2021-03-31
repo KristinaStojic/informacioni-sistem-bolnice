@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="345" Margin="34,24,0,0" VerticalAlignment="Top" Width="928" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13" >
+                  Height="345" Margin="34,24,0,0" VerticalAlignment="Top" Width="928" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />

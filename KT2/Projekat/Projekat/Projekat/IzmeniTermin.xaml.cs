@@ -80,33 +80,18 @@ namespace Projekat
                 {
                     tp = TipTermina.Operacija;
                 }
-
-                Termin t = new Termin(brojTermina, formatted, vp, vk, tp/*, l, sala, p*/);
                 int idLek = int.Parse(text4.Text);
                 Lekar l = new Lekar(idLek, "Filip", "Filipovic");
-                t.Lekar = l;
 
                 List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
                 int idPac = int.Parse(text5.Text);
-                //Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
-                foreach (Pacijent pac in pacijenti)
-                {
-                    if (pac.Jmbg == idPac)
-                    {
-                        t.Pacijent = pac;
-                    }
-                }
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
 
                 List<Sala> sale = SaleMenadzer.NadjiSveSale();
                 int idSale = int.Parse(prostorije.Text);
-                //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
-                foreach (Sala sala in sale) 
-                {
-                    if (sala.Id == idSale)
-                    {
-                        t.Prostorija = sala;
-                    }
-                }
+                Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
+
+                Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
                 TerminMenadzer.IzmeniTermin(termin, t);
                 this.Close();
             } catch (System.Exception)
