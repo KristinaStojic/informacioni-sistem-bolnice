@@ -75,5 +75,28 @@ namespace Projekat
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
         }
+
+        // otvaranje zdravstvenog kartona pacijenta (uvid u zdravstveni karton)
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
+
+            if (p != null)
+            {
+                if (p.StatusNaloga.Equals(statusNaloga.Guest))
+                {
+                    MessageBox.Show("Guest nalozi nemaju zdravstveni karton.");
+                }
+                else
+                {
+                    UvidZdravstveniKarton karton = new UvidZdravstveniKarton(p);
+                    karton.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
+            }
+        }
     }
 }

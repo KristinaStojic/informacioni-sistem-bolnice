@@ -64,11 +64,15 @@
     <Compile Include="DodajPacijenta.xaml.cs">
       <DependentUpon>DodajPacijenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UvidZdravstveniKarton.xaml.cs">
+      <DependentUpon>UvidZdravstveniKarton.xaml</DependentUpon>
     </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
@@ -124,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UvidZdravstveniKarton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
