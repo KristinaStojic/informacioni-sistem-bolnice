@@ -23,17 +23,5 @@ namespace Projekat
         {
             InitializeComponent();
         }
-
-        private void Prostorije_Click(object sender, RoutedEventArgs e)
-        {
-            PrikaziSalu w1 = new PrikaziSalu();
-            w1.Show();
-        }
-
-        private void Zahtjevi_Click(object sender, RoutedEventArgs e)
-        {
-            Zahtjevi w2 = new Zahtjevi();
-            w2.Show();
-        }
     }
 }
