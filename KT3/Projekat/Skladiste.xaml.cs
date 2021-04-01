@@ -15,25 +15,18 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for Upravnik.xaml
+    /// Interaction logic for Skladiste.xaml
     /// </summary>
-    public partial class Upravnik : Window
+    public partial class Skladiste : Window
     {
-        public Upravnik()
+        public Skladiste()
         {
             InitializeComponent();
         }
 
-        private void Prostorije_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PrikaziSalu w1 = new PrikaziSalu();
-            w1.Show();
-        }
-
-        private void Zahtjevi_Click(object sender, RoutedEventArgs e)
-        {
-            Zahtjevi w2 = new Zahtjevi();
-            w2.Show();
+            this.Close();
         }
     }
 }
