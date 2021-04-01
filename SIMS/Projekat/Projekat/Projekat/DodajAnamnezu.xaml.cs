@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for Upravnik.xaml
+    /// Interaction logic for DodajAnamnezu.xaml
     /// </summary>
-    public partial class Upravnik : Window
+    public partial class DodajAnamnezu : Window
     {
-        public Upravnik()
+        public DodajAnamnezu()
         {
             InitializeComponent();
         }
