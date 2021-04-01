@@ -1,0 +1,22 @@
+﻿<Window x:Class="Projekat.Upravnik"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Dobro dosli" Height="490" Width="800" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Background="DarkBlue" Width="200">
+            <Image Source="menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10"/>
+            <Button Name="Osoblje" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10" Background="DarkBlue" BorderBrush="Black" BorderThickness="3">Osoblje</Button>
+            <Button Name="Prostorije" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3" Click="Prostorije_Click">Prostorije</Button>
+            <Button Name="Zahtjevi" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3" Click="Zahtjevi_Click">Zahtjevi</Button>
+            <Button Name="Komunikacija" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3">Komunikacija</Button>
+            <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3">Izvjestaj</Button>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Background="DarkBlue" Height="70"></StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Background="White"></StackPanel>
+    </DockPanel>
+</Window>
