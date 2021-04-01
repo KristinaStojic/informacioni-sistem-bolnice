@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3144925E-16D3-4ADA-9521-ABCFFE971D11}</ProjectGuid>
+    <ProjectGuid>{A71C6D64-37BB-4857-B09B-122D490FC31E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Projekat</RootNamespace>
-    <AssemblyName>Projekat</AssemblyName>
+    <RootNamespace>SIMS</RootNamespace>
+    <AssemblyName>SIMS</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,22 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="IzmeniPacijenta.xaml.cs">
-      <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IzmeniTermin.xaml.cs">
-      <DependentUpon>IzmeniTermin.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DodajPacijenta.xaml.cs">
       <DependentUpon>DodajPacijenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajSalu.xaml.cs">
+      <DependentUpon>DodajSalu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Lekar.cs" />
+    <Compile Include="Model\Pacijent.cs" />
+    <Compile Include="Model\PacijentiMenadzer.cs" />
+    <Compile Include="Model\Sala.cs" />
+    <Compile Include="Model\SaleMenadzer.cs" />
+    <Compile Include="Model\Termin.cs" />
+    <Compile Include="Model\TerminMenadzer.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
-    <Compile Include="OtkaziTermin.xaml.cs">
-      <DependentUpon>OtkaziTermin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PrikaziPacijenta.xaml.cs">
-      <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
     </Compile>
@@ -80,21 +78,25 @@
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
     </Compile>
-    <Page Include="DodajSalu.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="DodajPacijenta.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DodajSalu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="IzmeniPacijenta.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="IzmeniTermin.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="IzmjeniSalu.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,8 +106,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DodajSalu.xaml.cs">
-      <DependentUpon>DodajSalu.xaml</DependentUpon>
+    <Compile Include="IzmeniPacijenta.xaml.cs">
+      <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzmeniTermin.xaml.cs">
+      <DependentUpon>IzmeniTermin.xaml</DependentUpon>
     </Compile>
     <Compile Include="IzmjeniSalu.xaml.cs">
       <DependentUpon>IzmjeniSalu.xaml</DependentUpon>
@@ -114,47 +119,42 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="DodajPacijenta.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="OtkaziTermin.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrikaziPacijenta.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrikaziSalu.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrikaziTermin.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Upravnik.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UvidZdravstveniKarton.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ZakaziTermin.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Lekar.cs" />
-    <Compile Include="Model\TerminMenadzer.cs" />
-    <Compile Include="Model\Pacijent.cs" />
-    <Compile Include="Model\PacijentiMenadzer.cs" />
-    <Compile Include="Model\Termin.cs" />
-    <Compile Include="Model\Sala.cs" />
-    <Compile Include="Model\SaleMenadzer.cs" />
+    <Compile Include="OtkaziTermin.xaml.cs">
+      <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikaziPacijenta.xaml.cs">
+      <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikaziSalu.xaml.cs">
       <DependentUpon>PrikaziSalu.xaml</DependentUpon>
     </Compile>
