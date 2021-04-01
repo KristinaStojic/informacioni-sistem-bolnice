@@ -15,7 +15,7 @@
                 </MenuItem>
                 <MenuItem Header="Uredi">
                     <MenuItem Header="Izmjeni" Click="Button_Click_2"></MenuItem>
-                    <MenuItem Header="Renoviraj" Click="Button_Click_4"></MenuItem>
+                    <MenuItem Header="Renoviraj"></MenuItem>
                     <MenuItem Header="Izbrisi" Click="Button_Click_1"></MenuItem>
                 </MenuItem>
             </Menu>
@@ -32,7 +32,7 @@
                 <Button Click="Button_Click_1" ToolTip="Obrisi">
                     <Image Source="trash.png" Width="25" Height="25"></Image>
                 </Button>
-                <Button Click="Button_Click_4" ToolTip="Renoviraj">
+                <Button ToolTip="Renoviraj" VerticalAlignment="Top">
                     <Image Source="renew.png" Width="25" Height="25"></Image>
                 </Button>
                 <TextBox HorizontalAlignment="Right" Width="100" Height="25" Margin="232, 0, 0, 0"></TextBox>
