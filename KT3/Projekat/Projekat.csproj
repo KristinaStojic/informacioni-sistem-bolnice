@@ -71,6 +71,9 @@
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Skladiste.xaml.cs">
+      <DependentUpon>Skladiste.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
     <Page Include="PrikaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Skladiste.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Upravnik.xaml">
       <Generator>MSBuild:Compile</Generator>
