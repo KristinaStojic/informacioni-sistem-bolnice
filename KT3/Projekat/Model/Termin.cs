@@ -52,5 +52,17 @@ namespace Model
         }
 
         public Termin() { }
+
+        public Termin(int broj, String dt, String vp, String vk, TipTermina tp, Lekar l)
+        {
+            this.IdTermin = broj;
+            this.Datum = dt;
+            this.VremePocetka = vp;
+            this.VremeKraja = vk;
+            this.tipTermina = tp;
+            this.Lekar = l;
+            //this.Prostorija = s;
+            //this.Pacijent = p;
+        }
     }
 }
