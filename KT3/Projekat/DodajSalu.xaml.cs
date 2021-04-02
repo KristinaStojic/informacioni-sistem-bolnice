@@ -39,7 +39,7 @@ namespace Projekat
             {
                 TipSale = tipSale.OperacionaSala;
             }
-            Sala s = new Sala(brojSale, namjenaSale, TipSale);
+            Sala s = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
             SaleMenadzer.DodajSalu(s);
             this.Close();
         }

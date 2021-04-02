@@ -1,0 +1,23 @@
+﻿<Window x:Class="Projekat.Zahtjevi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Zahtjevi" Height="400" Width="700" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Background="LightBlue" Width="210" Height="60" Margin="110, 50, 50, 10">Evidencija utrosenog materijala</Button>
+            <Button Background="LightBlue" Width="210" Height="60" Margin="10, 50, 50, 10">Godisnji odmori</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Background="LightBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Click="Button_Click">Skladiste</Button>
+            <Button Background="LightBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Radno vrijeme</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Background="LightBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Obracun plate</Button>
+            <Button Background="LightBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Nabavka lijekova</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
