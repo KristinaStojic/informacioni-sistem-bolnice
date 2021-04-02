@@ -35,6 +35,10 @@ namespace Projekat
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.NadjiSveTermine())
             {
+               /* if(t.Lekar.IdLekara == 5)
+                {
+                    Termini.Add(t);
+                }*/
                 Termini.Add(t);
             }
         }

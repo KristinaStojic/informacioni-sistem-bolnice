@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Recept" Height="757.667" Width="457"  WindowStartupLocation="CenterScreen">
-    <Grid Margin="-14,0,-6,0">
+        Title="Recept" Height="650" Width="484.333"  WindowStartupLocation="CenterScreen">
+    <Grid Margin="-14,0,4,1">
         <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" Margin="245,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged" IsEnabled="False"/>
         <Label Content="Ime pacijenta" FontSize="15" HorizontalAlignment="Left" Margin="70,42,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" Margin="245,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged" IsEnabled="False"/>
@@ -17,16 +17,16 @@
         <Label  FontSize="15" Content="ID lekara koji izdaje lek" HorizontalAlignment="Left" Margin="70,196,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="naziv" HorizontalAlignment="Left" Height="24" Margin="245,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
         <Label FontSize="15" Content="Naziv leka" HorizontalAlignment="Left" Margin="70,242,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="datum" HorizontalAlignment="Left" Height="24" Margin="245,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name ="datum" HorizontalAlignment="Left" Height="24" Margin="245,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
         <Label FontSize="15" Content="Datum propisivanja leka" HorizontalAlignment="Left" Margin="70,297,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="dani" HorizontalAlignment="Left" Height="24" Margin="245,342,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
         <Label FontSize="15" Content="Koliko dana se koristi" HorizontalAlignment="Left" Margin="70,342,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="sati" HorizontalAlignment="Left" Height="24" Margin="245,402,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
         <Label FontSize="15" Content="Koliko puta na dan" HorizontalAlignment="Left" Margin="70,402,0,0" VerticalAlignment="Top"/>
-        <Label FontSize="15" Content="Napomena" HorizontalAlignment="Left" Margin="70,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.562,5.404"/>
-        <TextBox Name ="napomena" HorizontalAlignment="Left" Height="160" Margin="245,458,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
-        <Button Content="Odustani" Margin="278,657,117,36" Click="Button_Click" RenderTransformOrigin="-1.389,-0.639"/>
-        <Button Content="Potvrdi" Margin="128,657,267,36"/>
+        <TextBox x:Name ="sati_Copy" HorizontalAlignment="Left" Height="24" Margin="245,462,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
+        <Label FontSize="15" Content="Pocetak terapije(hh:mm)" HorizontalAlignment="Left" Margin="70,462,0,0" VerticalAlignment="Top"/>
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="105,537,0,0" VerticalAlignment="Top" Width="91" Height="29"  Click="Button_Click"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="258,537,0,0" VerticalAlignment="Top" Width="91" Height="29"/>
 
     </Grid>
 </Window>
