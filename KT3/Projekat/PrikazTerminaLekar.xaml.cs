@@ -74,7 +74,7 @@ namespace Projekat
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             // nazad
-            //TerminMenadzer.sacuvajIzmene();
+            TerminMenadzer.sacuvajIzmene();
             this.Close();
         }
 
@@ -114,6 +114,11 @@ namespace Projekat
             {
                 MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TerminMenadzer.sacuvajIzmene();
         }
     }
 }
