@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSala xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>OperacionaSala</TipSale>
+    <Id>1</Id>
+    <brojSale>1</brojSale>
+    <Namjena>kardiovaskularna hirurgija</Namjena>
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>2</Id>
+    <brojSale>2</brojSale>
+    <Namjena>opsta praksa</Namjena>
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>3</Id>
+    <brojSale>3</brojSale>
+    <Namjena>opsta praksa</Namjena>
+  </Sala>
+</ArrayOfSala>

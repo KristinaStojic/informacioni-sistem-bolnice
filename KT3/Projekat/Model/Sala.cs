@@ -4,7 +4,9 @@
  * Purpose: Definition of the Class Sala
  ***********************************************************************/
 
+using Projekat.Model;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Model
@@ -21,18 +23,30 @@ namespace Model
 
     public class Sala: INotifyPropertyChanged
     {
-        public Sala(int id, string namjena, tipSale tip)
+        public Sala(int id, int brojSale, string namjena, tipSale tip)
         {
             this.Id = id;
+            this.brojSale = brojSale;
             this.Status = status.Slobodna;
             this.TipSale = tip;
             this.Namjena = namjena;
         }
-    
+
+        public Sala(int brojSale, string namjena, tipSale tip)
+        { 
+            this.brojSale = brojSale;
+            this.Status = status.Slobodna;
+            this.TipSale = tip;
+            this.Namjena = namjena;
+        }
+
         public status Status { get; set; }
         public tipSale TipSale { get; set; }
         public int Id { get; set; }
+        public int brojSale { get; set; }
         public string Namjena { get; set; }
+
+        //public List<Oprema> Oprema { get; set; };
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
