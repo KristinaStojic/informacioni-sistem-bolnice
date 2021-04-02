@@ -46,7 +46,6 @@ namespace Projekat
                     formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
                 }
-
                 String vp = text2.Text;
                 //String vk = text3.Text;
                 //TODO
@@ -83,20 +82,13 @@ namespace Projekat
                 Lekar l = new Lekar(idLek, "Filip", "Filipovic");
 
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
-                
-                s.Lekar = l;
-                foreach (Pacijent pac in PacijentiMenadzer.PronadjiSve())
+                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
                 {
-                    /* if (sala.Id == idSale)
-                     {
-                         s.Prostorija = sala; // seter
-                     }*/
-                    if (pac.IdPacijenta == 1)
+                    if (p.IdPacijenta == 1)
                     {
-                        s.Pacijent = pac;
+                        s.Pacijent = p;
                     }
                 }
-
                 //int idPac = int.Parse(text5.Text);
                 // List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
                 //List<Sala> sale = SaleMenadzer.NadjiSveSale();
@@ -107,19 +99,10 @@ namespace Projekat
                 //Sala sala = new Sala(idSale);
                 foreach (Sala sala in SaleMenadzer.NadjiSveSale())
                 {
-
-                    // ovo ostaviti
-                    /* if (sala.Id == idSale)
-                     {
-                        if (sala.Status == status.Slobodna)
-                        {
-                            s.Prostorija = sala;
-                        }
-                     }*/
-                    // ovo zakomentarisati
                     if (sala.Status == status.Slobodna)
                     {
                         s.Prostorija = sala;
+                        break;
                     }
                 }
 

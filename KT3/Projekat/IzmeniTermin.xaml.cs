@@ -110,11 +110,15 @@ namespace Projekat
                 Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l);
                 List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
                 // promeniti ovo na id, kasnije
-                int idPac = 1111;//int.Parse(idPacijenta.Text);
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);  // promeniti u ovoj klasi da bude id !
+                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                {
+                    if (p.IdPacijenta == 1)
+                    {
+                        t.Pacijent = p;
+                    }
+                }
 
                 List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                //int idSale = int.Parse(prostorije.Text);
                 foreach (Sala sala in SaleMenadzer.NadjiSveSale())
                 {
                     /* if (sala.Id == idSale)
@@ -123,12 +127,11 @@ namespace Projekat
                      }*/
                     if (sala.Status == status.Slobodna)
                     {
-                        t.Prostorija = sala;
+                        t.Prostorija = sala;  // kad naidje na prvu slobodnu
+                        break;
                     }
                 }
-                //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
 
-                
                 TerminMenadzer.IzmeniTermin(termin, t);
                 this.Close();
             } catch (System.Exception)
