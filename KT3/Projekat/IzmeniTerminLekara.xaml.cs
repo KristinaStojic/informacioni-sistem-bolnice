@@ -40,11 +40,11 @@ namespace Projekat
                 TipTermina tp;
                 if (izabraniTermin.tipTermina.Equals(TipTermina.Operacija))
                 {
-                    this.tipPregleda.SelectedIndex = 0;
+                    this.tipPregleda.SelectedIndex = 1;
                 }
                 else if (izabraniTermin.tipTermina.Equals(TipTermina.Pregled))
                 {
-                    this.tipPregleda.SelectedIndex = 1;
+                    this.tipPregleda.SelectedIndex = 0;
                 }
 
 
