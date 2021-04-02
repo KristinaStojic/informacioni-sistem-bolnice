@@ -36,7 +36,7 @@ namespace Projekat
                 this.vkk.Text = izabraniTermin.VremeKraja;
 
 
-                this.IDpacijenta.Text = izabraniTermin.Pacijent.Jmbg.ToString();
+                this.IDpacijenta.Text = izabraniTermin.Pacijent.IdPacijenta.ToString();
                 TipTermina tp;
                 if (izabraniTermin.tipTermina.Equals(TipTermina.Operacija))
                 {
@@ -84,25 +84,47 @@ namespace Projekat
 
                 List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
                 int idPac = int.Parse(IDpacijenta.Text);
-               
+                Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp, termin.Lekar);
+                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                {
+                    if (p.IdPacijenta == idPac)
+                    {
+                        t.Pacijent = p;
+                    }
+                }
 
-                if (PacijentiMenadzer.PronadjiPoId(idPac) == null)
+                int idSale = int.Parse(prostorije.Text);
+
+                foreach (Sala sala in SaleMenadzer.NadjiSveSale())
+                {
+                    if (sala.Id == idSale)
+                    {
+                        t.Prostorija = sala;
+
+                    }
+                }
+
+
+               /* if (PacijentiMenadzer.PronadjiPoId(idPac) == null)
                 {
                     MessageBox.Show("Uneli ste nepostojećeg pacijenta!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
-                List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                int idSale = int.Parse(prostorije.Text);
+               
+               
                 
                 if (SaleMenadzer.NadjiSaluPoId(idSale) == null)
                 {
                     MessageBox.Show("Uneli ste nepostojeću prostoriju!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
-                Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp, termin.Lekar, sala, p);
-                TerminMenadzer.IzmeniTermin(termin, t);
+               
+                if(sala.Status == status.Zauzeta)
+                {
+                    MessageBox.Show("Izabrana sala je zauzeta u tom terminu", "Promenite salu", MessageBoxButton.OK, MessageBoxImage.Error);
+                }*/
+              
+                TerminMenadzer.IzmeniTerminLekar(termin, t);
                 this.Close();
             }
             catch (System.Exception)

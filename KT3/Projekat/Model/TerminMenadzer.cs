@@ -83,7 +83,7 @@ namespace Model
             PrikazTerminaLekar.Termini.Insert(idx, termin1);*/
         }
 
-        public static void IzmeniTermin(Termin termin, Termin termin1)
+        public static void IzmeniTerminLekar(Termin termin, Termin termin1)
         {
             foreach (Termin t in termini)
             {
@@ -125,12 +125,14 @@ namespace Model
         // samo izmeni u svojoj klasi iz OtkaziTermin ---> OtkaziTerminLekar
         public static void OtkaziTerminLekar(Termin termin)
         {
-            termini.Remove(termin);
+            //termini.Remove(termin);
             for (int i = 0; i < termini.Count; i++)
             {
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
+
                     termini.RemoveAt(i);
+                    termin.Prostorija.Status = status.Slobodna;
                 }
             }
             PrikazTerminaLekar.Termini.Remove(termin);

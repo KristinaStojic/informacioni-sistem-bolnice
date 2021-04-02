@@ -53,7 +53,6 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //zakazi
-            // ZakaziTermin zt = new ZakaziTermin();
             ZakaziTerminLekar zt = new ZakaziTerminLekar();
             zt.Show();
         }
@@ -64,9 +63,7 @@ namespace Projekat
             Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
             if (izabraniTermin != null)
             {
-                //IzmeniTermin it = new IzmeniTermin(izabraniTermin);
                 IzmeniTerminLekara it = new IzmeniTerminLekara(izabraniTermin);
-                //TerminMenadzer.sacuvajIzmene();
                 it.Show();
             }
             else
@@ -89,8 +86,7 @@ namespace Projekat
             if (zaBrisanje != null)
             {
 
-                TerminMenadzer.OtkaziTermin(zaBrisanje);
-                //TerminMenadzer.sacuvajIzmene();
+                TerminMenadzer.OtkaziTerminLekar(zaBrisanje);
             }
             else
             {
