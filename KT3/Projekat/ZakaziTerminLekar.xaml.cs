@@ -60,14 +60,32 @@ namespace Projekat
                 Lekar l = new Lekar(5, "Filip", "Filipovic");
 
                 int idPac = int.Parse(IDpacijenta.Text);
+                Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPac);
                 List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+
                 List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
+
+               
                 int idSale = int.Parse(prostorije.Text);
                 Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
                                                                   //Sala sala = new Sala(idSale);
 
-                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
+                if (pacijent == null)
+                {
+
+                    MessageBox.Show("Uneli ste nepostojećeg pacijenta!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (sala == null)
+                {
+
+                    MessageBox.Show("Uneli ste nepostojeću prostoriju!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+
+                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, pacijent);
                 TerminMenadzer.ZakaziTermin(s);
                 this.Close();
 
