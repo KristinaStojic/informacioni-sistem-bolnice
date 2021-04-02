@@ -29,10 +29,10 @@ namespace Projekat
             {
                 this.rbr.Text = izabraniTermin.IdTermin.ToString();
                 this.vpp.Text = izabraniTermin.VremePocetka;
-                this.vkk.Text = izabraniTermin.VremeKraja;
+               // this.vkk.Text = izabraniTermin.VremeKraja;
                 this.idlekara.Text = izabraniTermin.Lekar.IdLekara.ToString();
                
-                this.idPacijenta.Text = izabraniTermin.Pacijent.Jmbg.ToString();
+                //this.idPacijenta.Text = izabraniTermin.Pacijent.Jmbg.ToString();
                 TipTermina tp;
                 if (izabraniTermin.tipTermina.Equals(TipTermina.Operacija))
                 {
@@ -46,7 +46,7 @@ namespace Projekat
 
                 tp = izabraniTermin.tipTermina;
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
-                this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;  
+                //this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;  
             }
         }
 
@@ -71,7 +71,30 @@ namespace Projekat
 
                 }
                 String vp = vpp.Text;
-                String vk = vkk.Text;
+                //String vk = vkk.Text;
+
+                //TODO
+                String vk;
+                String hh = vp.Substring(0, 2);
+                String min = vp.Substring(3);
+                if (min == "30")
+                {
+                    int vkInt = int.Parse(hh);
+                    vkInt++;
+                    if (vkInt <= 9)
+                    {
+                        vk = "0" + vkInt.ToString() + ":00";
+                    }
+                    else
+                    {
+                        vk = vkInt.ToString() + ":00";
+                    }
+                }
+                else
+                {
+                    vk = hh + ":30";
+                }
+
                 TipTermina tp;
                 if (combo.Text.Equals("Pregled"))
                 {
@@ -84,15 +107,28 @@ namespace Projekat
                 int idLek = int.Parse(idlekara.Text);
                 Lekar l = new Lekar(idLek, "Filip", "Filipovic");
 
+                Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l);
                 List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-                int idPac = int.Parse(idPacijenta.Text);
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
+                // promeniti ovo na id, kasnije
+                int idPac = 1111;//int.Parse(idPacijenta.Text);
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);  // promeniti u ovoj klasi da bude id !
 
                 List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                int idSale = int.Parse(prostorije.Text);
-                Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
+                //int idSale = int.Parse(prostorije.Text);
+                foreach (Sala sala in SaleMenadzer.NadjiSveSale())
+                {
+                    /* if (sala.Id == idSale)
+                     {
+                         s.Prostorija = sala; // seter
+                     }*/
+                    if (sala.Status == status.Slobodna)
+                    {
+                        t.Prostorija = sala;
+                    }
+                }
+                //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
 
-                Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
+                
                 TerminMenadzer.IzmeniTermin(termin, t);
                 this.Close();
             } catch (System.Exception)

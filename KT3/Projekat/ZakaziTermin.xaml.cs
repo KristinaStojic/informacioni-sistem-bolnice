@@ -48,7 +48,28 @@ namespace Projekat
                 }
 
                 String vp = text2.Text;
-                String vk = text3.Text;
+                //String vk = text3.Text;
+                //TODO
+                String vk;
+                String hh = vp.Substring(0, 2);
+                String min = vp.Substring(3);
+                if (min == "30")
+                {
+                    int vkInt = int.Parse(hh);
+                    vkInt++;
+                    if (vkInt <= 9)
+                    {
+                        vk = "0" + vkInt.ToString() + ":00";
+                    }
+                    else
+                    {
+                        vk = vkInt.ToString() + ":00";
+                    }
+                }
+                else
+                {
+                    vk = hh + ":30";
+                }
                 TipTermina tp;
                 if (combo.Text.Equals("Pregled"))
                 {
@@ -61,15 +82,47 @@ namespace Projekat
                 int idLek = int.Parse(text4.Text);
                 Lekar l = new Lekar(idLek, "Filip", "Filipovic");
 
-                int idPac = int.Parse(text5.Text);
-                List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-                List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
-                int idSale = int.Parse(prostorije.Text);
-                Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
-                                                                  //Sala sala = new Sala(idSale);
+                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
+                
+                s.Lekar = l;
+                foreach (Pacijent pac in PacijentiMenadzer.PronadjiSve())
+                {
+                    /* if (sala.Id == idSale)
+                     {
+                         s.Prostorija = sala; // seter
+                     }*/
+                    if (pac.IdPacijenta == 1)
+                    {
+                        s.Pacijent = pac;
+                    }
+                }
 
-                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
+                //int idPac = int.Parse(text5.Text);
+                // List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+                //List<Sala> sale = SaleMenadzer.NadjiSveSale();
+                //Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
+                //int idSale = int.Parse(prostorije.Text);
+                //int idSale = 1;
+                //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
+                //Sala sala = new Sala(idSale);
+                foreach (Sala sala in SaleMenadzer.NadjiSveSale())
+                {
+
+                    // ovo ostaviti
+                    /* if (sala.Id == idSale)
+                     {
+                        if (sala.Status == status.Slobodna)
+                        {
+                            s.Prostorija = sala;
+                        }
+                     }*/
+                    // ovo zakomentarisati
+                    if (sala.Status == status.Slobodna)
+                    {
+                        s.Prostorija = sala;
+                    }
+                }
+
                 TerminMenadzer.ZakaziTermin(s);
                 this.Close();
 
