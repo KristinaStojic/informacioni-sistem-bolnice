@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Skladiste" Height="370" Width="450" WindowStartupLocation="CenterScreen">
+        Title="Skladiste" Height="370" Width="450" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <StackPanel>
         <Button Click="Button_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
             <Image Source="slike/back.png" Width="25" Height="25"></Image>
@@ -38,7 +38,7 @@
         <StackPanel Orientation="Horizontal">
             <Button Width="94" Height="32" Margin="20, 1, 1, 1" Background="AliceBlue" Click="Button_Click_1">Dodaj</Button>
             <Button Width="94" Height="32" Margin="10, 1, 1, 1" Background="AliceBlue" Click="Button_Click_3">Izmjeni</Button>
-            <Button Width="94" Height="32" Margin="9, 1, 1, 1" Background="AliceBlue">Prebaci</Button>
+            <Button Width="94" Height="32" Margin="9, 1, 1, 1" Background="AliceBlue" Click="Button_Click_4">Prebaci</Button>
             <Button Width="94" Height="32" Margin="9, 1, 1, 1" Background="AliceBlue" Click="Button_Click_2">Obrisi</Button>
         </StackPanel>
     </StackPanel>

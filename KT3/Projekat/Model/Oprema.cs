@@ -30,5 +30,7 @@ namespace Projekat.Model
             this.Staticka = staticka;
         }
 
+        public Oprema() { }
+
     }
 }

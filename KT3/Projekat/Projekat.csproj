@@ -80,6 +80,9 @@
     <Compile Include="IzmeniTerminSekretar.xaml.cs">
       <DependentUpon>IzmeniTerminSekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IzmjeniOpremu.xaml.cs">
+      <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\LekarskiRecept.cs" />
     <Compile Include="Model\Oprema.cs" />
     <Compile Include="Model\OpremaMenadzer.cs" />
@@ -89,6 +92,12 @@
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrebaciDinamicku.xaml.cs">
+      <DependentUpon>PrebaciDinamicku.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrebaciStaticku.xaml.cs">
+      <DependentUpon>PrebaciStaticku.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
@@ -155,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IzmjeniOpremu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="IzmjeniSalu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +199,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtkaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrebaciDinamicku.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrebaciStaticku.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

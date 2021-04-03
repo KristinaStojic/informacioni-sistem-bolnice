@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model;
+using Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,8 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
+            SaleMenadzer.NadjiSveSale();
+            OpremaMenadzer.NadjiSvuOpremu();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
