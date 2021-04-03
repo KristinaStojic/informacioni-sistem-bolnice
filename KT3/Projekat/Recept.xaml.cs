@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -22,14 +23,14 @@ namespace Projekat
     {
         public Pacijent pacijent;
 
-        public Recept(/*Pacijent izabraniNalog*/)
+        public Recept(Pacijent izabraniPacijent)
         {
             InitializeComponent();
-            /*this.pacijent = izabraniNalog;
+            this.pacijent = izabraniPacijent;
 
-            ime.Text = izabraniNalog.ImePacijenta;
-            prezime.Text = izabraniNalog.PrezimePacijenta;
-            id.Text = izabraniNalog.IdPacijenta.ToString();*/
+            ime.Text = izabraniPacijent.ImePacijenta;
+            prezime.Text = izabraniPacijent.PrezimePacijenta;
+            id.Text = izabraniPacijent.IdPacijenta.ToString();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -44,7 +45,33 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                int brojRecepta = ZdravstveniKartonMenadzer.GenerisanjeIdRecepta();
+                String nazivLeka = naziv.Text;
+                String formatirano = null;
+                DateTime? selectedDate = datum.SelectedDate;
+                Console.WriteLine(selectedDate);
+                if (selectedDate.HasValue)
+                {
+                    formatirano = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
+                }
+                int kolicinaNaDan = int.Parse(brojUzimanja.Text);
+                int kolikoDana = int.Parse(dani.Text);
+                String pocetakKoriscenja = sati.Text + ":" + min.Text;
+                
+                LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);
+               
+                ZdravstveniKartonMenadzer.DodajRecept(recept);
+                //TerminMenadzer.ZakaziTerminLekar(s);
+                this.Close();
+
+            }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
