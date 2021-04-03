@@ -32,6 +32,7 @@ namespace Projekat
             int Kolicina = int.Parse(kolicina.Text);
             int idOpreme = OpremaMenadzer.GenerisanjeIdOpreme();
             Oprema o = new Oprema(nazivOpreme, Kolicina, staticka);
+            o.IdOpreme = idOpreme;
             OpremaMenadzer.DodajOpremu(o);
             this.Close();
         }

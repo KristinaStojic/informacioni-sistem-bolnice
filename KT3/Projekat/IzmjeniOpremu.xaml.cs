@@ -23,6 +23,27 @@ namespace Projekat
         public IzmjeniOpremu(Oprema izabranaOprema)
         {
             InitializeComponent();
+            this.oprema = izabranaOprema;
+            if(izabranaOprema != null)
+            {
+                this.naziv.Text = izabranaOprema.NazivOpreme;
+                this.kolicina.Text = izabranaOprema.Kolicina.ToString();
+            }
+        }
+
+        public void Potvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            string naziv = this.naziv.Text;
+            int kolicina = int.Parse(this.kolicina.Text);
+            Oprema o = new Oprema(naziv, kolicina, oprema.Staticka);
+            o.IdOpreme = oprema.IdOpreme;
+            OpremaMenadzer.izmjeniOpremu(oprema, o);
+            this.Close();
+        }
+
+        private void Odustani_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

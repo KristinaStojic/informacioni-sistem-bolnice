@@ -25,6 +25,31 @@ namespace Projekat.Model
             return staticka;
         }
 
+        public static void izmjeniOpremu(Oprema oprema, Oprema o1)
+        {
+            foreach(Oprema o in NadjiSvuOpremu())
+            {
+                if(o.IdOpreme == oprema.IdOpreme)
+                {
+                    o.NazivOpreme = o1.NazivOpreme;
+                    o.Kolicina = o1.Kolicina;
+                    if (o1.Staticka)
+                    {
+                        int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
+                        Skladiste.OpremaStaticka.RemoveAt(idx);
+                        Skladiste.OpremaStaticka.Insert(idx, o);
+                    }
+                    else
+                    {
+                        int idx = Skladiste.OpremaDinamicka.IndexOf(oprema);
+                        Skladiste.OpremaDinamicka.RemoveAt(idx);
+                        Skladiste.OpremaDinamicka.Insert(idx, o);
+                    }
+                }
+            }
+           
+        }
+
         public static List<Oprema> NadjiDinamickuOpremu()
         {
             List<Oprema> dinamicka = new List<Oprema>();
@@ -42,7 +67,7 @@ namespace Projekat.Model
 
         public static List<Oprema> NadjiSvuOpremu()
         {
-            /*if (File.ReadAllText("oprema.xml").Trim().Equals(""))
+            if (File.ReadAllText("oprema.xml").Trim().Equals(""))
             {
                 return oprema;
             }
@@ -53,9 +78,7 @@ namespace Projekat.Model
                 oprema = (List<Oprema>)serializer.Deserialize(filestream);
                 filestream.Close();
                 return oprema;
-            }*/
-            
-            return oprema;
+            }
         }
 
         public static void DodajOpremu(Oprema o)
@@ -73,7 +96,13 @@ namespace Projekat.Model
 
         public static void ObrisiOpremu(Oprema o)
         {
-            oprema.Remove(o);
+            for(int i = 0; i < oprema.Count; i++)
+            {
+                if(o.IdOpreme == oprema[i].IdOpreme)
+                {
+                    oprema.RemoveAt(i);
+                }
+            }
             if (o.Staticka)
             {
                 Skladiste.OpremaStaticka.Remove(o);
@@ -103,6 +132,7 @@ namespace Projekat.Model
             serializer.Serialize(filestream, oprema);
             filestream.Close();
         }
+
         public static int GenerisanjeIdOpreme()
         {
             bool pomocna = false;

@@ -56,6 +56,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            OpremaMenadzer.sacuvajIzmjene();
             this.Close();
         }
 
@@ -95,7 +96,44 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            if (T1.IsSelected)
+            {
+                Oprema izabranaOprema = (Oprema)dataGridT1.SelectedItem;
+                if (izabranaOprema != null)
+                {
+                    IzmjeniOpremu iop = new IzmjeniOpremu(izabranaOprema);
+                    iop.Show();
+                }
+            }
+            else
+            {
+                Oprema izabranaOprema = (Oprema)dataGridT2.SelectedItem;
+                if (izabranaOprema != null)
+                {
+                    IzmjeniOpremu iop = new IzmjeniOpremu(izabranaOprema);
+                    iop.Show();
+                }
+            }
+        }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            OpremaMenadzer.sacuvajIzmjene();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            if (T1.IsSelected)
+            {
+                Oprema izabranaOprema = (Oprema)dataGridT1.SelectedItem;
+                PrebaciStaticku ps = new PrebaciStaticku(izabranaOprema);
+                ps.Show();
+            }
+            else
+            {
+                PrebaciDinamicku pd = new PrebaciDinamicku();
+                pd.Show();
+            }
         }
     }
 }
