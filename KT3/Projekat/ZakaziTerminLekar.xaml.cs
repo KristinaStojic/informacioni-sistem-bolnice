@@ -58,17 +58,51 @@ namespace Projekat
                 
 
                 Lekar l = new Lekar(5, "Filip", "Filipovic");
-
-                int idPac = int.Parse(IDpacijenta.Text);
-                List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
                 List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
-                int idSale = int.Parse(prostorije.Text);
-                Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
-                                                                  //Sala sala = new Sala(idSale);
 
-                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l, sala, p);
-                TerminMenadzer.ZakaziTermin(s);
+
+                int idSale = int.Parse(prostorije.Text);
+
+
+                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
+                int idPac = int.Parse(IDpacijenta.Text);
+                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                {
+                    if (p.IdPacijenta == idPac)
+                    {
+                        s.Pacijent = p;
+                    }
+                }
+                foreach(Sala sala in SaleMenadzer.NadjiSveSale())
+                {
+                    if(sala.Id == idSale)
+                    {
+                        s.Prostorija = sala;
+
+                    }
+                }
+                                      
+                /*if (sala.Status == status.Zauzeta)
+                {
+                    MessageBox.Show("Izabrana sala je zauzeta u tom terminu", "Promenite salu", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                if (pacijent == null)
+                {
+
+                    MessageBox.Show("Uneli ste nepostojećeg pacijenta!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (sala == null)
+                {
+
+                    MessageBox.Show("Uneli ste nepostojeću prostoriju!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                */
+
+              
+                TerminMenadzer.ZakaziTerminLekar(s);
                 this.Close();
 
             }
