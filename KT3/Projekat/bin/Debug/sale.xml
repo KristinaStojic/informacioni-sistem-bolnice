@@ -7,6 +7,7 @@
     <brojSale>1</brojSale>
     <Namjena>kardiovaskularna hirurgija</Namjena>
     <Oprema />
+    <zauzetiTermini />
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
@@ -23,6 +24,7 @@
         <Skladiste>false</Skladiste>
       </Oprema>
     </Oprema>
+    <zauzetiTermini />
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
@@ -39,6 +41,7 @@
         <Skladiste>false</Skladiste>
       </Oprema>
     </Oprema>
+    <zauzetiTermini />
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
@@ -47,5 +50,6 @@
     <brojSale>4</brojSale>
     <Namjena>vaskularna hirurgija</Namjena>
     <Oprema />
+    <zauzetiTermini />
   </Sala>
 </ArrayOfSala>

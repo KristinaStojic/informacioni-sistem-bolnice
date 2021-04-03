@@ -89,6 +89,7 @@
     <Compile Include="Model\TabelaRecepata.xaml.cs">
       <DependentUpon>TabelaRecepata.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
     <Compile Include="OtkaziTermin.xaml.cs">
