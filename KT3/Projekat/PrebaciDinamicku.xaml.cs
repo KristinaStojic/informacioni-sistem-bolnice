@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Model;
+using Projekat.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -18,9 +21,34 @@ namespace Projekat
     /// </summary>
     public partial class PrebaciDinamicku : Window
     {
-        public PrebaciDinamicku()
+        public Oprema izabranaOprema;
+        public PrebaciDinamicku(Oprema oprema)
         {
             InitializeComponent();
+            this.izabranaOprema = oprema;
+            if (izabranaOprema != null)
+            {
+                this.oprema.Text = izabranaOprema.NazivOpreme;
+            }
+            DataContext = new ViewModel();
         }
+        public class ViewModel
+        {
+            public ObservableCollection<Sala> sale { get; set; }
+            public ViewModel()
+            {
+                sale = new ObservableCollection<Sala>();
+                foreach (Sala s in SaleMenadzer.sale)
+                {
+                    sale.Add(s);
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

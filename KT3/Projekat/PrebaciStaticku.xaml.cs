@@ -32,6 +32,11 @@ namespace Projekat
             }
             DataContext = new ViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
     public class ViewModel

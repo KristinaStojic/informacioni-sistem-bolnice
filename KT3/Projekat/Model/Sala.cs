@@ -45,8 +45,8 @@ namespace Model
         public int Id { get; set; }
         public int brojSale { get; set; }
         public string Namjena { get; set; }
-
-        //public List<Oprema> Oprema { get; set; };
+        public List<Oprema> Oprema { get; set; }
+        public List<ZauzeceSale> zauzetiTermini { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
@@ -61,5 +61,9 @@ namespace Model
             this.Id = id;
         }
         public Sala() { }
+        public override string ToString()
+        {
+            return brojSale + " - " + Namjena;
+        }
     }
 }

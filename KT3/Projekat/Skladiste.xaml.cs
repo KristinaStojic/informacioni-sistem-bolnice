@@ -67,7 +67,7 @@ namespace Projekat
                 DodajOpremu w1 = new DodajOpremu(true);
                 w1.Show();
             }
-            else
+            else if(T2.IsSelected)
             {
                 DodajOpremu w1 = new DodajOpremu(false);
                 w1.Show();
@@ -84,7 +84,7 @@ namespace Projekat
                     OpremaMenadzer.ObrisiOpremu((Oprema)izabranaOprema);
                 }
             }
-            else
+            else if(T2.IsSelected)
             {
                 var izabranaOprema = dataGridT2.SelectedItem;
                 if (izabranaOprema != null)
@@ -105,7 +105,7 @@ namespace Projekat
                     iop.Show();
                 }
             }
-            else
+            else if(T2.IsSelected)
             {
                 Oprema izabranaOprema = (Oprema)dataGridT2.SelectedItem;
                 if (izabranaOprema != null)
@@ -131,7 +131,8 @@ namespace Projekat
             }
             else
             {
-                PrebaciDinamicku pd = new PrebaciDinamicku();
+                Oprema izabranaOprema = (Oprema)dataGridT1.SelectedItem;
+                PrebaciDinamicku pd = new PrebaciDinamicku(izabranaOprema);
                 pd.Show();
             }
         }

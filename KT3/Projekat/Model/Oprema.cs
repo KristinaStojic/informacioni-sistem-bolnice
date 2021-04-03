@@ -21,6 +21,7 @@ namespace Projekat.Model
         public int Kolicina { get; set; }
         public bool Staticka { get; set; }
         public int IdOpreme { get; set; }
+        public bool Skladiste { get; set; }
 
         public Oprema(string naziv, int kolicina, bool staticka)
         {
@@ -28,9 +29,15 @@ namespace Projekat.Model
             this.NazivOpreme = naziv;
             this.Kolicina = kolicina;
             this.Staticka = staticka;
+            this.Skladiste = true;
         }
 
         public Oprema() { }
+
+        public override string ToString()
+        {
+            return NazivOpreme;
+        }
 
     }
 }
