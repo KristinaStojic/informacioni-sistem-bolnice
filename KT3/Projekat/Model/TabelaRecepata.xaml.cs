@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,21 +22,44 @@ namespace Projekat.Model
     public partial class TabelaRecepata : Window
     {
         public int colNum = 0;
-        public TabelaRecepata()
+        Pacijent pacijent;
+        public static ObservableCollection<LekarskiRecept> PrikazRecepata
+        {
+            get;
+            set;
+        }
+        public TabelaRecepata(Pacijent izabraniPacijent)
         {
             InitializeComponent();
+            this.DataContext = this; 
+            this.pacijent = izabraniPacijent;
+            PrikazRecepata = new ObservableCollection<LekarskiRecept>();
+            foreach (ZdravstveniKarton k in ZdravstveniKartonMenadzer.NadjiSveKartone())
+            {
+                if(k.idPacijenta == pacijent.IdPacijenta)
+                {
+                    foreach(LekarskiRecept lr in k.LekarskiRecepti)
+                    {
+                        PrikazRecepata.Add(lr);
+                    }
+                    
+                }
+               
+            }
+            
         }
+
 
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
-            if (colNum == 5) // **
+            if (colNum == 6) 
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Recept rec = new Recept(/*pacijent*/);
+            Recept rec = new Recept(pacijent);
             rec.Show();
         }
 

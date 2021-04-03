@@ -90,6 +90,7 @@
       <DependentUpon>TabelaRecepata.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ZdravstveniKarton.cs" />
+    <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
     </Compile>
@@ -111,11 +112,17 @@
     <Compile Include="PrikazStaticke.xaml.cs">
       <DependentUpon>PrikazStaticke.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikaziTerminSekretar.xaml.cs">
+      <DependentUpon>PrikaziTerminSekretar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikazTerminaLekar.xaml.cs">
       <DependentUpon>PrikazTerminaLekar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Recept.xaml.cs">
       <DependentUpon>Recept.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sekretar.xaml.cs">
+      <DependentUpon>Sekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Skladiste.xaml.cs">
       <DependentUpon>Skladiste.xaml</DependentUpon>
@@ -243,11 +250,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrikaziTerminSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrikazTerminaLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

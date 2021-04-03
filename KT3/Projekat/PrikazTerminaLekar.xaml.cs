@@ -35,6 +35,10 @@ namespace Projekat
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.NadjiSveTermine())
             {
+               /* if(t.Lekar.IdLekara == 5)
+                {
+                    Termini.Add(t);
+                }*/
                 Termini.Add(t);
             }
         }
@@ -49,7 +53,6 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //zakazi
-            // ZakaziTermin zt = new ZakaziTermin();
             ZakaziTerminLekar zt = new ZakaziTerminLekar();
             zt.Show();
         }
@@ -60,9 +63,7 @@ namespace Projekat
             Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
             if (izabraniTermin != null)
             {
-                //IzmeniTermin it = new IzmeniTermin(izabraniTermin);
                 IzmeniTerminLekara it = new IzmeniTerminLekara(izabraniTermin);
-                //TerminMenadzer.sacuvajIzmene();
                 it.Show();
             }
             else
@@ -74,7 +75,7 @@ namespace Projekat
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             // nazad
-            //TerminMenadzer.sacuvajIzmene();
+            TerminMenadzer.sacuvajIzmene();
             this.Close();
         }
 
@@ -85,8 +86,7 @@ namespace Projekat
             if (zaBrisanje != null)
             {
 
-                TerminMenadzer.OtkaziTermin(zaBrisanje);
-                //TerminMenadzer.sacuvajIzmene();
+                TerminMenadzer.OtkaziTerminLekar(zaBrisanje);
             }
             else
             {
@@ -114,6 +114,11 @@ namespace Projekat
             {
                 MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TerminMenadzer.sacuvajIzmene();
         }
     }
 }

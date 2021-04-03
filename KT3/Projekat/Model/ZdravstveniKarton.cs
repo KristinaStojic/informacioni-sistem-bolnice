@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,13 @@ namespace Model
             this.BracnoStanje = p.BracnoStanje;
             //this.IzabraniLekar = p.IzabraniLekar;*/
         }
+
+        public ZdravstveniKarton(int idPac)
+        {
+            this.idPacijenta = idPac;
+        }
         public int IdKartona { get; set; }
+        public int idPacijenta { get; set; }
         public string ImePacijenta { get; set; }
         public string PrezimePacijenta { get; set; }
         public pol Pol { get; set; }
@@ -36,6 +43,7 @@ namespace Model
         public bracnoStanje BracnoStanje { get; set; }
         //public Lekar IzabraniLekar { get; set; }  // ili id?
         public int idLekara { get; set; }
-        public String Izvestaj { get; set;  }
+       
+        public List<LekarskiRecept> LekarskiRecepti { get; set; }
     }
 }

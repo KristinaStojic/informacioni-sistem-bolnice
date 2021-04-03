@@ -24,24 +24,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Grid.Column="0" Grid.Row="0" Margin="16,16,23.6,24" Click="Button_Click" Background="Azure">NAZAD</Button>
-        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="165.4,0,0.4,0">Nalozi pacijenata</Label>
-        <Button Grid.Row="1" Margin="130,6,42.2,33.6" Click="Button_Click_1" RenderTransformOrigin="1.366,0.614" Grid.ColumnSpan="2">Dodaj</Button>
-        <Button Grid.Column="1" Grid.Row="1" Margin="149.4,6,21.8,33.6" Click="Button_Click_2" RenderTransformOrigin="1.378,0.509" Grid.ColumnSpan="2">Izmeni</Button>
-        <Button Grid.Column="3" Grid.Row="1" Margin="5.2,6,0.4,33.6" Click="Button_Click_3" RenderTransformOrigin="1.63,0.404">Obrisi</Button>
-        <Button Grid.Column="4" Grid.Row="1" Margin="29.6,6,141.6,33.6" Click="Button_Click_4" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2" Content="Zdravstveni karton"/>
+        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="165.4,32,0.4,65.6" Grid.RowSpan="2">Nalozi pacijenata</Label>
+        <Button Grid.Row="1" Margin="107.6,96,64.6,41.2" Click="Button_Click_1" RenderTransformOrigin="1.366,0.614" Grid.ColumnSpan="2" Grid.Column="4" Grid.RowSpan="2">Dodaj</Button>
+        <Button Grid.Column="4" Grid.Row="2" Margin="106.6,97.4,64.6,39.8" Click="Button_Click_2" RenderTransformOrigin="1.378,0.509" Grid.ColumnSpan="2" Grid.RowSpan="2">Izmeni</Button>
+        <Button Grid.Column="4" Grid.Row="3" Margin="106.6,96.8,64.6,40.4" Click="Button_Click_3" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2" Grid.RowSpan="2">Obrisi</Button>
+        <Button Grid.Column="4" Margin="106.6,0,64.6,39.6" Click="Button_Click_4" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2" Content="Zdravstveni karton" Grid.Row="1"/>
 
-        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="4" Margin="21,94,18.6,44.4" AutoGenerateColumns="False">
+        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="3" Margin="63,0.4,91,40.4" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ime" Width="100" Binding="{Binding ImePacijenta}"/>
                 <DataGridTextColumn Header="Prezime" Width="110" Binding="{Binding PrezimePacijenta}"/>
-                <DataGridTextColumn Header="JMBG" Width="100" Binding="{Binding Jmbg}"/>
+                <DataGridTextColumn Header="JMBG" Width="110" Binding="{Binding Jmbg}"/>
                 <DataGridTextColumn Header="Pol" Width="40" Binding="{Binding Pol}"/>
                 <DataGridTextColumn Header="Status" Width="60" Binding="{Binding StatusNaloga}"/>
                 <DataGridTextColumn Header="Broj telefona" Width="100" Binding="{Binding BrojTelefona}"/>
-                <DataGridTextColumn Header="Email" Width="100" Binding="{Binding Email}"/>
-                <DataGridTextColumn Header="Adresa stanovanja" Width="110" Binding="{Binding AdresaStanovanja}"/>
-                <DataGridTextColumn Header="Bracno stanje" Width="110" Binding="{Binding BracnoStanje}"/>
-                <DataGridTextColumn Header="Zanimanje" Width="100" Binding="{Binding Zanimanje}"/>
+                <DataGridTextColumn Header="Email" Width="130" Binding="{Binding Email}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
