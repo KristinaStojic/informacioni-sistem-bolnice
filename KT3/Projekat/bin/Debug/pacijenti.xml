@@ -1,47 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfPacijent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Pacijent>
-    <IdPacijenta>1</IdPacijenta>
-    <ImePacijenta>Ana</ImePacijenta>
-    <PrezimePacijenta>Anic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>1111</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>100</BrojTelefona>
-    <Email>jjhujh</Email>
-    <AdresaStanovanja>hnuj</AdresaStanovanja>
-    <BracnoStanje>Neozenjen</BracnoStanje>
-    <IdLekara>0</IdLekara>
-    <IdKartona>0</IdKartona>
-  </Pacijent>
-  <Pacijent>
     <IdPacijenta>2</IdPacijenta>
-    <ImePacijenta>Nikola</ImePacijenta>
-    <PrezimePacijenta>Nikolic</PrezimePacijenta>
+    <ImePacijenta>DDDDD</ImePacijenta>
+    <PrezimePacijenta>DDDD</PrezimePacijenta>
     <Pol>M</Pol>
-    <Jmbg>4444</Jmbg>
+    <Jmbg>45678</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>4444</BrojTelefona>
-    <Email>mm</Email>
-    <AdresaStanovanja>mm</AdresaStanovanja>
-    <Zanimanje>mm</Zanimanje>
-    <BracnoStanje>Udovac</BracnoStanje>
-    <IdLekara>0</IdLekara>
-    <IdKartona>2</IdKartona>
-  </Pacijent>
-  <Pacijent>
-    <IdPacijenta>3</IdPacijenta>
-    <ImePacijenta>Anaaaaaaaa</ImePacijenta>
-    <PrezimePacijenta>Anic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>1234</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>768576</BrojTelefona>
-    <Email>gcfgcgfcf</Email>
-    <AdresaStanovanja>gcgfcgf</AdresaStanovanja>
-    <Zanimanje>hgcgh</Zanimanje>
-    <BracnoStanje>Neudata</BracnoStanje>
-    <IdLekara>0</IdLekara>
-    <IdKartona>3</IdKartona>
+    <BrojTelefona>567</BrojTelefona>
+    <Email>fgh</Email>
+    <AdresaStanovanja>cfg</AdresaStanovanja>
+    <Zanimanje>frtgyh</Zanimanje>
+    <BracnoStanje>Razveden</BracnoStanje>
+    <Karton>
+      <IdPacijenta>2</IdPacijenta>
+    </Karton>
   </Pacijent>
 </ArrayOfPacijent>

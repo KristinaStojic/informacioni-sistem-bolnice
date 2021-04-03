@@ -27,6 +27,8 @@ namespace Projekat
             InitializeComponent();
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
+            TerminMenadzer.NadjiSveTermine();
+            PacijentiMenadzer.PronadjiSve();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

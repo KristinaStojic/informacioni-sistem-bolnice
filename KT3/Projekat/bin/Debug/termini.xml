@@ -1,73 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTermin xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Termin>
-    <IdTermin>3</IdTermin>
-    <VremePocetka>08:00</VremePocetka>
-    <VremeKraja>08:30</VremeKraja>
+    <IdTermin>2</IdTermin>
+    <VremePocetka>07:00</VremePocetka>
+    <VremeKraja>11:30</VremeKraja>
     <Lekar>
-      <IdLekara>1000</IdLekara>
+      <IdLekara>5</IdLekara>
       <Ime>Filip</Ime>
       <Prezime>Filipovic</Prezime>
     </Lekar>
     <Pacijent>
-      <IdPacijenta>1</IdPacijenta>
-      <ImePacijenta>Ana</ImePacijenta>
-      <PrezimePacijenta>Anic</PrezimePacijenta>
-      <Pol>Z</Pol>
-      <Jmbg>1111</Jmbg>
+      <IdPacijenta>2</IdPacijenta>
+      <ImePacijenta>BBBBB</ImePacijenta>
+      <PrezimePacijenta>BBBBB</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>567</Jmbg>
       <StatusNaloga>Stalni</StatusNaloga>
-      <BrojTelefona>100</BrojTelefona>
-      <Email>jjhujh</Email>
-      <AdresaStanovanja>hnuj</AdresaStanovanja>
-      <BracnoStanje>Neozenjen</BracnoStanje>
-      <IdLekara>0</IdLekara>
-      <IdKartona>0</IdKartona>
+      <BrojTelefona>5678</BrojTelefona>
+      <Email>fghbj</Email>
+      <AdresaStanovanja>cfgvhbjn</AdresaStanovanja>
+      <Zanimanje>ftrgyh</Zanimanje>
+      <BracnoStanje>Razveden</BracnoStanje>
+      <Karton>
+        <IdPacijenta>2</IdPacijenta>
+        <LekarskiRecepti />
+      </Karton>
     </Pacijent>
-    <Datum>04/27/2021</Datum>
-    <Prostorija>
-      <Status>Zauzeta</Status>
-      <TipSale>OperacionaSala</TipSale>
-      <Id>1</Id>
-      <brojSale>1</brojSale>
-      <Namjena>kardiovaskularna hirurgija</Namjena>
-    </Prostorija>
-    <tipTermina>Pregled</tipTermina>
-  </Termin>
-  <Termin>
-    <IdTermin>1</IdTermin>
-    <VremePocetka>10:30</VremePocetka>
-    <VremeKraja>11:00</VremeKraja>
-    <Lekar>
-      <IdLekara>2</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
-    </Lekar>
-    <Pacijent>
-      <IdPacijenta>1</IdPacijenta>
-      <ImePacijenta>Ana</ImePacijenta>
-      <PrezimePacijenta>Anic</PrezimePacijenta>
-      <Pol>Z</Pol>
-      <Jmbg>1111</Jmbg>
-      <StatusNaloga>Stalni</StatusNaloga>
-      <BrojTelefona>100</BrojTelefona>
-      <Email>jjhujh</Email>
-      <AdresaStanovanja>hnuj</AdresaStanovanja>
-      <BracnoStanje>Neozenjen</BracnoStanje>
-      <IdLekara>0</IdLekara>
-      <IdKartona>0</IdKartona>
-    </Pacijent>
-    <Datum>04/15/2021</Datum>
+    <Datum>04/20/2021</Datum>
     <Prostorija>
       <Status>Slobodna</Status>
       <TipSale>OperacionaSala</TipSale>
       <Id>1</Id>
       <brojSale>1</brojSale>
       <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>spric</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini />
     </Prostorija>
-    <tipTermina>Operacija</tipTermina>
+    <tipTermina>Pregled</tipTermina>
   </Termin>
   <Termin>
-    <IdTermin>2</IdTermin>
+    <IdTermin>1</IdTermin>
     <VremePocetka>07:00</VremePocetka>
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
@@ -77,26 +56,38 @@
     </Lekar>
     <Pacijent>
       <IdPacijenta>1</IdPacijenta>
-      <ImePacijenta>Ana</ImePacijenta>
-      <PrezimePacijenta>Anic</PrezimePacijenta>
-      <Pol>Z</Pol>
-      <Jmbg>1111</Jmbg>
+      <ImePacijenta>CCCCC</ImePacijenta>
+      <PrezimePacijenta>CCCCC</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>45678</Jmbg>
       <StatusNaloga>Stalni</StatusNaloga>
-      <BrojTelefona>100</BrojTelefona>
-      <Email>jjhujh</Email>
-      <AdresaStanovanja>hnuj</AdresaStanovanja>
-      <BracnoStanje>Neozenjen</BracnoStanje>
-      <IdLekara>0</IdLekara>
-      <IdKartona>0</IdKartona>
+      <BrojTelefona>3456789</BrojTelefona>
+      <Email>rftgyhuji</Email>
+      <AdresaStanovanja>dftrgh</AdresaStanovanja>
+      <Zanimanje>edrftgyh</Zanimanje>
+      <BracnoStanje>Razveden</BracnoStanje>
+      <Karton>
+        <IdPacijenta>1</IdPacijenta>
+        <LekarskiRecepti />
+      </Karton>
     </Pacijent>
-    <Datum>04/26/2021</Datum>
+    <Datum>04/20/2021</Datum>
     <Prostorija>
       <Status>Slobodna</Status>
       <TipSale>OperacionaSala</TipSale>
       <Id>1</Id>
       <brojSale>1</brojSale>
       <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>spric</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini />
     </Prostorija>
-    <tipTermina>Operacija</tipTermina>
+    <tipTermina>Pregled</tipTermina>
   </Termin>
 </ArrayOfTermin>

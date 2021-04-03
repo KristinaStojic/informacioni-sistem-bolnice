@@ -92,7 +92,7 @@ namespace Projekat
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
 
             // promeni da bude metoda u PacijentMenadzer kad se merge uradi
-            foreach (Pacijent pac in PacijentiMenadzer.PronadjiSve())
+            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
             {
                 if (podaci[2].Equals(pac.Jmbg))
                 {

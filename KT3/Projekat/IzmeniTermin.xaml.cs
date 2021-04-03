@@ -108,9 +108,9 @@ namespace Projekat
                 Lekar l = new Lekar(idLek, "Filip", "Filipovic");
 
                 Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l);
-                List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+                //List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
                 // promeniti ovo na id, kasnije
-                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
                 {
                     if (p.IdPacijenta == 1)
                     {

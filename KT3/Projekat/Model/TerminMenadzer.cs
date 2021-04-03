@@ -227,14 +227,14 @@ namespace Model
 
         public static Boolean SlobodanTermin(String datum, String VremePocetka, String VremeKraja, Sala sala) 
         {
-            foreach (Termin t in TerminMenadzer.NadjiSveTermine())
-            {
+           // foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            //{
                 // postoji zakazan termin u tom opsegu
                // if (/*t.Datum.Equals(datum) &&*/ t.Prostorija.Id == sala.Id /*&& Int32.Parse(VremePocetka) >= Int32.Parse(t.VremePocetka) && Int32.Parse(VremeKraja) <= Int32.Parse(t.VremeKraja)*/)
                /* {
                     return false;
                 } */
-            }
+            //}
             return true;
         }
 
