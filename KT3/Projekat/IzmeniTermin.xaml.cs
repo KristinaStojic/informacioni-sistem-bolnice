@@ -119,18 +119,22 @@ namespace Projekat
                 }
 
                 List<Sala> sale = SaleMenadzer.NadjiSveSale();
+                
                 foreach (Sala sala in SaleMenadzer.NadjiSveSale())
                 {
-                    /* if (sala.Id == idSale)
-                     {
-                         s.Prostorija = sala; // seter
-                     }*/
-                    if (sala.Status == status.Slobodna)
+                    try
                     {
-                        t.Prostorija = sala;  // kad naidje na prvu slobodnu
-                        break;
+                        if (sala.Status == status.Slobodna)
+                        {
+                            t.Prostorija = sala;  // kad naidje na prvu slobodnu
+                            sala.Status = status.Zauzeta;
+                            break;
+                        }
+                    } catch (Exception)
+                    {
+                        MessageBox.Show("Ne postoji nijedna slobodna sala", "Zauzete sale");
                     }
-                }
+                } 
 
                 TerminMenadzer.IzmeniTermin(termin, t);
                 this.Close();

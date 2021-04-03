@@ -155,6 +155,7 @@ namespace Model
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
                     termini.RemoveAt(i);
+                    termin.Prostorija.Status = status.Slobodna;
                 }
             }
             PrikaziTermin.Termini.Remove(termin);

@@ -68,18 +68,9 @@ namespace Projekat
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             // brisanje
-            /*var izabraniTermin = dataGridTermini.SelectedItem;
-            if (izabranaSala != null)
-            {
-
-                //SaleMenadzer.ObrisiSalu((Sala)izabranaSala);
-                OtkaziTermin ot = new OtkaziTermin();
-                ot.Show();
-            }          */
             Termin zaBrisanje = (Termin)dataGridTermini.SelectedItem;
             if (zaBrisanje != null)
             {
-
                 TerminMenadzer.OtkaziTermin(zaBrisanje);
                 //TerminMenadzer.sacuvajIzmene();
             }
