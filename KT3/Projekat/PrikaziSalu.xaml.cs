@@ -32,9 +32,12 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             Sale = new ObservableCollection<Sala>();
-            foreach (Sala s in SaleMenadzer.NadjiSveSale())
+            foreach (Sala s in SaleMenadzer.sale)
             {
-                Sale.Add(s);
+                if (!s.Namjena.Equals("Skladiste"))
+                { 
+                    Sale.Add(s);
+                }
             }
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)

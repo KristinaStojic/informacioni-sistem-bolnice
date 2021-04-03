@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,11 +17,8 @@ namespace Projekat.Model
             List<Oprema> staticka = new List<Oprema>();
             List<Oprema> sve = NadjiSvuOpremu();
             foreach(Oprema o in sve)
-            {
-                if (o.Staticka && o.Skladiste)
-                {
+            { 
                     staticka.Add(o);
-                }
             }
             return staticka;
         }
@@ -47,7 +45,13 @@ namespace Projekat.Model
                     }
                 }
             }
-           
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Namjena.Equals("Skladiste"))
+                {
+                    s.Oprema = OpremaMenadzer.oprema;
+                }
+            }
         }
 
         public static List<Oprema> NadjiDinamickuOpremu()
@@ -58,10 +62,7 @@ namespace Projekat.Model
             {
                 if (!o.Staticka)
                 {
-                    if (o.Skladiste)
-                    {
-                        dinamicka.Add(o);
-                    }
+                   dinamicka.Add(o);
                 }
             }
             
@@ -80,6 +81,13 @@ namespace Projekat.Model
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Oprema>));
                 oprema = (List<Oprema>)serializer.Deserialize(filestream);
                 filestream.Close();
+                foreach (Sala s in SaleMenadzer.sale)
+                {
+                    if (s.Namjena.Equals("Skladiste"))
+                    {
+                        s.Oprema = OpremaMenadzer.oprema;
+                    }
+                }
                 return oprema;
             }
         }
@@ -87,6 +95,13 @@ namespace Projekat.Model
         public static void DodajOpremu(Oprema o)
         {
             oprema.Add(o);
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Namjena.Equals("Skladiste"))
+                {
+                    s.Oprema = OpremaMenadzer.oprema;
+                }
+            }
             if (o.Staticka)
             {
                 Skladiste.OpremaStaticka.Add(o);
@@ -104,6 +119,13 @@ namespace Projekat.Model
                 if(o.IdOpreme == oprema[i].IdOpreme)
                 {
                     oprema.RemoveAt(i);
+                }
+            }
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Namjena.Equals("Skladiste"))
+                {
+                    s.Oprema = OpremaMenadzer.oprema;
                 }
             }
             if (o.Staticka)
