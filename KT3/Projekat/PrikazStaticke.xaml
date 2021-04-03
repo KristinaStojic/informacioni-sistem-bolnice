@@ -1,0 +1,27 @@
+﻿<Window x:Class="Projekat.PrikazStaticke"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Prikaz staticke opreme" Height="373" Width="400" WindowStartupLocation="CenterScreen">
+    <StackPanel>
+        <Button Click="Button_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <Image Source="slike/back.png" Width="25" Height="25"></Image>
+        </Button>
+        <TextBlock Name="tekst"></TextBlock>
+        <DataGrid x:Name="dataGridStaticka" ItemsSource="{Binding OpremaStaticka}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="161" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="241">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv opreme              " Binding="{Binding NazivOpreme}"/>
+                <DataGridTextColumn Header="Kolicina                  " Binding="{Binding Kolicina}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal">
+            <Button Height="39" Width="100" Margin="90, 10, 10, 10" Background="LightBlue">Dodaj</Button>
+            <Button Height="39" Width="100" Margin="10, 10, 10, 10" Background="LightBlue">Premjesti</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

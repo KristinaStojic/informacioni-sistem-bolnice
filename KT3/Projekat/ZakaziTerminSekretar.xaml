@@ -1,0 +1,111 @@
+﻿<Window x:Class="Projekat.ZakaziTerminSekretar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="ZakaziTerminSekretar" Height="510" Width="560" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="204"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="67*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalContentAlignment="Center" Content="Datum:" Margin="5.2,0.6,7.8,50.2" Grid.RowSpan="2"/>
+        <Label Grid.Column="1" Grid.Row="2" FontSize="17" VerticalContentAlignment="Center" Content="Vreme pocetka:" Margin="5.2,0.2,7.8,0.2"/>
+        <Label Grid.Column="1" Grid.Row="2" FontSize="17" VerticalContentAlignment="Center" Content="Vreme kraja:" Margin="5.2,50.2,7.8,49.4" Grid.RowSpan="3"/>
+        <Label Grid.Column="1" Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Tip usluge:" Margin="5.2,0.2,7.8,0.4"/>
+        <Label Grid.Column="1" Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Prostorija:" Margin="5.2,49.2,7.8,0" Grid.RowSpan="2"/>
+        <Label Grid.Column="1" Grid.Row="6" FontSize="17" VerticalContentAlignment="Center" Content="Pacijent:" Margin="5.2,0,7.8,0.6"/>
+        <DatePicker HorizontalAlignment="Left" Name="datum"  Grid.Column="2" Grid.Row="1" Margin="16.2,11.6,0,11.8" Width="169"/>
+
+        <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="2" Margin="16.2,12.2,0,12.2" Width="167" SelectedIndex="0">
+            <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="3" Margin="16.2,13.8,0,9.8" Width="167" SelectedIndex="1">
+            <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">09:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">10:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">11:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">12:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">13:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">14:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">15:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">16:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">17:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">18:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="4"  Margin="16.2,10.2,26.4,11.4" SelectedIndex="0">
+            <ComboBoxItem Content="Pregled"/>
+            <ComboBoxItem Content="Operacija"/>
+        </ComboBox>
+
+        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="5"  Margin="16.2,9.6,0,12" SelectedIndex="0" HorizontalAlignment="Left" Width="167" >
+        </ComboBox>
+        <Button Grid.Column="1" Grid.Row="9" Click="Button_Click" Content="Potvrdi" Margin="10.2,9.4,32.8,11"/>
+        <Button Grid.Column="2" Grid.Row="9"  Click="Button_Click_1" Content="Odustani" Margin="16.2,9.4,26.4,11"/>
+        <ComboBox x:Name="pacijenti" Grid.Column="2" Grid.Row="6"  Margin="16.2,11,26.4,10.6" SelectedIndex="0">
+        </ComboBox>
+        <ComboBox x:Name="lekari" Grid.Column="2" Grid.Row="7"  Margin="16.2,11.4,26.4,10.2" SelectedIndex="0">
+            <ComboBoxItem>Filip Filipovic</ComboBoxItem>
+        </ComboBox>
+        <Label Grid.Column="1" Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Lekar:" Margin="5.2,0.4,7.8,0.2"/>
+    </Grid>
+</Window>

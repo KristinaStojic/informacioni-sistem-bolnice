@@ -1,0 +1,30 @@
+﻿<Window x:Class="Projekat.Model.TabelaRecepata"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat.Model"
+        mc:Ignorable="d"
+        Title="Recepti" Height="473.54" Width="609.373" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,20,15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
+                  SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
+                  Height="331" Margin="34,36,0,0" VerticalAlignment="Top" Width="535" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="ID" Binding="{Binding IdRecepta}"  Width="50"/>
+                <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="105"/>
+                <DataGridTextColumn Header="Datum" Binding="{Binding DatumPropisivanjaLeka}" Width="86"/>
+                <DataGridTextColumn Header="Pocetak koriscenja" Binding="{Binding PocetakKoriscenja}"  Width="120"/>
+                <DataGridTextColumn Header="Broj dana" Binding="{Binding BrojDanaKoriscenja}" Width="70"/>
+                <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="100"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="151,386,0,0" Height="36" Click="Button_Click"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="321,386,0,0" Height="36" Click="Button_Click_1"/>
+
+    </Grid>
+</Window>

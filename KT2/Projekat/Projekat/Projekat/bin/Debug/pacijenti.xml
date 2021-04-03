@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfPacijent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Pacijent>
-    <IdPacijenta>0</IdPacijenta>
-    <ImePacijenta>Masa</ImePacijenta>
-    <PrezimePacijenta>Masic</PrezimePacijenta>
+    <IdPacijenta>1</IdPacijenta>
+    <ImePacijenta>Ana</ImePacijenta>
+    <PrezimePacijenta>Anic</PrezimePacijenta>
+    <Pol>Z</Pol>
     <Jmbg>1111</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>5555</BrojTelefona>
-    <Email>masa123@gmail.com</Email>
-    <AdresaStanovanja>Gogoljeva 13</AdresaStanovanja>
+    <BrojTelefona>100</BrojTelefona>
+    <Email>jjhujh</Email>
+    <AdresaStanovanja>hnuj</AdresaStanovanja>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+    <IdLekara>0</IdLekara>
+    <IdKartona>0</IdKartona>
   </Pacijent>
   <Pacijent>
-    <IdPacijenta>0</IdPacijenta>
+    <IdPacijenta>2</IdPacijenta>
     <ImePacijenta>Nikola</ImePacijenta>
     <PrezimePacijenta>Nikolic</PrezimePacijenta>
-    <Jmbg>1234</Jmbg>
+    <Pol>M</Pol>
+    <Jmbg>4444</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>888</BrojTelefona>
-    <Email>nikola.nikolic@gmail.com</Email>
-    <AdresaStanovanja>Bulevar Oslobodjenja 55</AdresaStanovanja>
+    <BrojTelefona>4444</BrojTelefona>
+    <Email>mm</Email>
+    <AdresaStanovanja>mm</AdresaStanovanja>
+    <Zanimanje>mm</Zanimanje>
+    <BracnoStanje>Udovac</BracnoStanje>
+    <IdLekara>0</IdLekara>
+    <IdKartona>2</IdKartona>
   </Pacijent>
   <Pacijent>
-    <IdPacijenta>0</IdPacijenta>
-    <ImePacijenta>Petar</ImePacijenta>
-    <PrezimePacijenta>Petrovic</PrezimePacijenta>
-    <Jmbg>5678</Jmbg>
+    <IdPacijenta>5</IdPacijenta>
+    <ImePacijenta>fghj</ImePacijenta>
+    <PrezimePacijenta>gfvhb</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>99</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>9999</BrojTelefona>
-    <Email>petar.petrovic@gmail.com</Email>
-    <AdresaStanovanja>Mise Dimitrijevica 30</AdresaStanovanja>
+    <BrojTelefona>0</BrojTelefona>
+    <Email />
+    <AdresaStanovanja />
+    <Zanimanje>hygtgtfdsx</Zanimanje>
+    <BracnoStanje>Udata</BracnoStanje>
+    <IdLekara>0</IdLekara>
+    <IdKartona>0</IdKartona>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>6</IdPacijenta>
+    <ImePacijenta>rftyghuji</ImePacijenta>
+    <PrezimePacijenta>dftgyhu</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>546789</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neodredjeno</BracnoStanje>
+    <IdLekara>0</IdLekara>
+    <IdKartona>0</IdKartona>
   </Pacijent>
 </ArrayOfPacijent>

@@ -1,3 +1,4 @@
+
 # Created by https://www.toptal.com/developers/gitignore/api/csharp,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=csharp,visualstudio
 
@@ -146,7 +147,7 @@ _TeamCity*
 !.axoCover/settings.json
 
 # Coverlet is a free, cross platform Code Coverage Tool
-coverage*[.json, .xml, .info]
+coverage*[.json, .info]
 
 # Visual Studio code coverage results
 *.coverage
@@ -387,13 +388,6 @@ FodyWeavers.xsd
 # Benchmark Results
 
 # .NET Core
-[Oo]bj/
-[Bb]in/
-*.suo
-*.user
-/TestResults
-*.vspscc
-*.vssscc
 
 # ASP.NET Scaffolding
 

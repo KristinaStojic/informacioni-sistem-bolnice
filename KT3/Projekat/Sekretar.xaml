@@ -1,0 +1,14 @@
+﻿<Window x:Class="Projekat.Sekretar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Sekretar" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button Content="Nalozi pacijenata" HorizontalAlignment="Left" Margin="160,92,0,0" VerticalAlignment="Top" Width="201" Height="77" Click="Button_Click"/>
+        <Button Content="Termini" HorizontalAlignment="Left" Margin="425,92,0,0" VerticalAlignment="Top" Width="201" Height="77" Click="Button_Click_1"/>
+
+    </Grid>
+</Window>

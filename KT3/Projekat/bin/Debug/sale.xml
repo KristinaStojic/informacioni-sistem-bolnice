@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSala xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>OperacionaSala</TipSale>
+    <Id>1</Id>
+    <brojSale>1</brojSale>
+    <Namjena>kardiovaskularna hirurgija</Namjena>
+    <Oprema />
+    <zauzetiTermini />
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>2</Id>
+    <brojSale>2</brojSale>
+    <Namjena>opsta praksa</Namjena>
+    <Oprema>
+      <Oprema>
+        <NazivOpreme>kk</NazivOpreme>
+        <Kolicina>1</Kolicina>
+        <Staticka>true</Staticka>
+        <IdOpreme>4</IdOpreme>
+        <Skladiste>false</Skladiste>
+      </Oprema>
+    </Oprema>
+    <zauzetiTermini />
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>3</Id>
+    <brojSale>3</brojSale>
+    <Namjena>opsta praksa</Namjena>
+    <Oprema>
+      <Oprema>
+        <NazivOpreme>kk</NazivOpreme>
+        <Kolicina>1</Kolicina>
+        <Staticka>true</Staticka>
+        <IdOpreme>4</IdOpreme>
+        <Skladiste>false</Skladiste>
+      </Oprema>
+    </Oprema>
+    <zauzetiTermini />
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>OperacionaSala</TipSale>
+    <Id>4</Id>
+    <brojSale>4</brojSale>
+    <Namjena>vaskularna hirurgija</Namjena>
+    <Oprema />
+    <zauzetiTermini />
+  </Sala>
+</ArrayOfSala>
