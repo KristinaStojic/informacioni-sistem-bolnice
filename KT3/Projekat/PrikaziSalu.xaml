@@ -53,8 +53,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
-                <Button Height="40" Width="150" Margin="110, 10, 10, 10" Background="LightBlue">Pregled staticke opreme</Button>
-                <Button Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightBlue">Pregled dinamicke opreme</Button>
+                <Button Height="40" Width="150" Margin="110, 10, 10, 10" Background="LightBlue" Click="Button_Click_5">Pregled staticke opreme</Button>
+                <Button Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightBlue" Click="Button_Click_6">Pregled dinamicke opreme</Button>
             </StackPanel>
         </StackPanel>
         <TextBlock HorizontalAlignment="Right"><Hyperlink>Potrebna vam je pomoc?</Hyperlink></TextBlock>

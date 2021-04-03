@@ -100,8 +100,17 @@
     <Compile Include="PrebaciStaticku.xaml.cs">
       <DependentUpon>PrebaciStaticku.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PreraspodjelaDinamicke.xaml.cs">
+      <DependentUpon>PreraspodjelaDinamicke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikazDinamicke.xaml.cs">
+      <DependentUpon>PrikazDinamicke.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikazStaticke.xaml.cs">
+      <DependentUpon>PrikazStaticke.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikaziTerminSekretar.xaml.cs">
       <DependentUpon>PrikaziTerminSekretar.xaml</DependentUpon>
@@ -217,6 +226,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PreraspodjelaDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrikaziPacijenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -226,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazStaticke.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

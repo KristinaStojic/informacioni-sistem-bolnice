@@ -6,6 +6,7 @@
     <Id>1</Id>
     <brojSale>1</brojSale>
     <Namjena>kardiovaskularna hirurgija</Namjena>
+    <Oprema />
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
@@ -13,6 +14,15 @@
     <Id>2</Id>
     <brojSale>2</brojSale>
     <Namjena>opsta praksa</Namjena>
+    <Oprema>
+      <Oprema>
+        <NazivOpreme>kk</NazivOpreme>
+        <Kolicina>1</Kolicina>
+        <Staticka>true</Staticka>
+        <IdOpreme>4</IdOpreme>
+        <Skladiste>false</Skladiste>
+      </Oprema>
+    </Oprema>
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
@@ -20,5 +30,22 @@
     <Id>3</Id>
     <brojSale>3</brojSale>
     <Namjena>opsta praksa</Namjena>
+    <Oprema>
+      <Oprema>
+        <NazivOpreme>kk</NazivOpreme>
+        <Kolicina>1</Kolicina>
+        <Staticka>true</Staticka>
+        <IdOpreme>4</IdOpreme>
+        <Skladiste>false</Skladiste>
+      </Oprema>
+    </Oprema>
+  </Sala>
+  <Sala>
+    <Status>Slobodna</Status>
+    <TipSale>OperacionaSala</TipSale>
+    <Id>4</Id>
+    <brojSale>4</brojSale>
+    <Namjena>vaskularna hirurgija</Namjena>
+    <Oprema />
   </Sala>
 </ArrayOfSala>

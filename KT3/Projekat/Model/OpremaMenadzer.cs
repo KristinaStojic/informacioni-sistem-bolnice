@@ -17,7 +17,7 @@ namespace Projekat.Model
             List<Oprema> sve = NadjiSvuOpremu();
             foreach(Oprema o in sve)
             {
-                if (o.Staticka)
+                if (o.Staticka && o.Skladiste)
                 {
                     staticka.Add(o);
                 }
@@ -58,7 +58,10 @@ namespace Projekat.Model
             {
                 if (!o.Staticka)
                 {
-                    dinamicka.Add(o);
+                    if (o.Skladiste)
+                    {
+                        dinamicka.Add(o);
+                    }
                 }
             }
             

@@ -90,5 +90,25 @@ namespace Projekat
         {
             SaleMenadzer.sacuvajIzmjene();
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if (izabranaSala != null)
+            {
+                PrikazStaticke ps = new PrikazStaticke(izabranaSala);
+                ps.Show();
+            }
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if (izabranaSala != null)
+            {
+                PrikazDinamicke pd = new PrikazDinamicke(izabranaSala);
+                pd.Show();
+            }
+        }
     }
 }
