@@ -14,25 +14,13 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for Upravnik.xaml
+    /// Interaction logic for PrebaciDinamicku.xaml
     /// </summary>
-    public partial class Upravnik : Window
+    public partial class PrebaciDinamicku : Window
     {
-        public Upravnik()
+        public PrebaciDinamicku()
         {
             InitializeComponent();
-        }
-
-        private void Prostorije_Click(object sender, RoutedEventArgs e)
-        {
-            PrikaziSalu w1 = new PrikaziSalu();
-            w1.Show();
-        }
-
-        private void Zahtjevi_Click(object sender, RoutedEventArgs e)
-        {
-            Zahtjevi w2 = new Zahtjevi();
-            w2.Show();
         }
     }
 }

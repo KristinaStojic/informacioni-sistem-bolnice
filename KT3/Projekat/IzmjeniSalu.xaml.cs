@@ -27,7 +27,7 @@ namespace Projekat
             this.sala = izabranaSala;
             if (izabranaSala != null)
             {
-                this.text1.Text = izabranaSala.Id.ToString();
+                this.text1.Text = izabranaSala.brojSale.ToString();
                 this.text2.Text = izabranaSala.Namjena;
                 if (izabranaSala.Status.Equals(status.Slobodna))
                 {
@@ -53,7 +53,7 @@ namespace Projekat
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(this.text1.Text);
+            int brojSale = int.Parse(this.text1.Text);
             string namjena = this.text2.Text;
             tipSale Tip;
             status Status;
@@ -77,7 +77,7 @@ namespace Projekat
             {
                 Tip = tipSale.OperacionaSala;
             }
-            Sala s = new Sala(id, namjena, Tip);
+            Sala s = new Sala(sala.Id, brojSale, namjena, Tip);
             s.Status = Status;
             SaleMenadzer.IzmjeniSalu(sala, s);
             this.Close();

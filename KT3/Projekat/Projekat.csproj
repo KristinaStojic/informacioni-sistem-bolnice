@@ -62,6 +62,9 @@
     <Compile Include="DodajAnamnezu.xaml.cs">
       <DependentUpon>DodajAnamnezu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajOpremu.xaml.cs">
+      <DependentUpon>DodajOpremu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzmeniPacijenta.xaml.cs">
       <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
     </Compile>
@@ -77,13 +80,25 @@
     <Compile Include="IzmeniTerminSekretar.xaml.cs">
       <DependentUpon>IzmeniTerminSekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IzmjeniOpremu.xaml.cs">
+      <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\LekarskiRecept.cs" />
+    <Compile Include="Model\Oprema.cs" />
+    <Compile Include="Model\OpremaMenadzer.cs" />
     <Compile Include="Model\TabelaRecepata.xaml.cs">
       <DependentUpon>TabelaRecepata.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ZdravstveniKarton.cs" />
+    <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrebaciDinamicku.xaml.cs">
+      <DependentUpon>PrebaciDinamicku.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrebaciStaticku.xaml.cs">
+      <DependentUpon>PrebaciStaticku.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
@@ -112,6 +127,9 @@
     <Compile Include="UvidZdravstveniKartonLekar.xaml.cs">
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Zahtjevi.xaml.cs">
+      <DependentUpon>Zahtjevi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
     </Compile>
@@ -126,6 +144,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="DodajAnamnezu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +170,10 @@
     <Page Include="IzmeniTerminSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmjeniOpremu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="IzmjeniSalu.xaml">
       <SubType>Designer</SubType>
@@ -180,6 +206,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtkaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrebaciDinamicku.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrebaciStaticku.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UvidZdravstveniKartonLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Zahtjevi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +316,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\back.png" />
+    <Resource Include="slike\brush.png" />
+    <Resource Include="slike\menager.jpg" />
+    <Resource Include="slike\pen.png" />
+    <Resource Include="slike\plus.png" />
+    <Resource Include="slike\search.png" />
+    <Resource Include="slike\trash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

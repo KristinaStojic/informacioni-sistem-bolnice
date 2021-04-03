@@ -5,25 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Model"
         mc:Ignorable="d"
-        Title="Recepti" Height="476.5" Width="510" WindowStartupLocation="CenterScreen">
+        Title="Recepti" Height="473.54" Width="609.373" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,20,15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding Recepti}" IsReadOnly="True" 
+        <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="331" Margin="34,36,0,0" VerticalAlignment="Top" Width="434" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
+                  Height="331" Margin="34,36,0,0" VerticalAlignment="Top" Width="535" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="ID" Binding="{Binding IdTermin}"  Width="50"/>
-                <DataGridTextColumn Header="Naziv leka" Binding="{Binding Pacijent.Jmbg}" Width="105"/>
-                <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" Width="86"/>
-                <DataGridTextColumn Header="Broj dana" Binding="{Binding VremePocetka}" Width="90"/>
-                <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding VremeKraja}"  Width="100"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdRecepta}"  Width="50"/>
+                <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="105"/>
+                <DataGridTextColumn Header="Datum" Binding="{Binding DatumPropisivanjaLeka}" Width="86"/>
+                <DataGridTextColumn Header="Pocetak koriscenja" Binding="{Binding PocetakKoriscenja}"  Width="120"/>
+                <DataGridTextColumn Header="Broj dana" Binding="{Binding BrojDanaKoriscenja}" Width="70"/>
+                <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="100"/>
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="136,386,0,0" Height="36" Click="Button_Click"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="288,386,0,0" Height="36" Click="Button_Click_1"/>
+        <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="151,386,0,0" Height="36" Click="Button_Click"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="321,386,0,0" Height="36" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Skladiste" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Skladiste" Height="370" Width="450" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <StackPanel>
+        <Button Click="Button_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <Image Source="slike/back.png" Width="25" Height="25"></Image>
+        </Button>
+        <TabControl>
+            <TabItem Name="T1" Header="Staticka oprema" IsSelected="True">
+                <DataGrid x:Name="dataGridT1" ItemsSource="{Binding OpremaStaticka}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="161" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="241">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv opreme              " Binding="{Binding NazivOpreme}"/>
+                        <DataGridTextColumn Header="Kolicina                  " Binding="{Binding Kolicina}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Name="T2" Header="Dinamicka oprema">
+                <Grid>
+                    <DataGrid x:Name="dataGridT2" ItemsSource="{Binding OpremaDinamicka}" IsReadOnly="True" 
+                        SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                        Height="161" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="241">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Naziv opreme              " Binding="{Binding NazivOpreme}"/>
+                            <DataGridTextColumn Header="Kolicina                  " Binding="{Binding Kolicina}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel Orientation="Horizontal">
+            <Button Width="94" Height="32" Margin="20, 1, 1, 1" Background="AliceBlue" Click="Button_Click_1">Dodaj</Button>
+            <Button Width="94" Height="32" Margin="10, 1, 1, 1" Background="AliceBlue" Click="Button_Click_3">Izmjeni</Button>
+            <Button Width="94" Height="32" Margin="9, 1, 1, 1" Background="AliceBlue" Click="Button_Click_4">Prebaci</Button>
+            <Button Width="94" Height="32" Margin="9, 1, 1, 1" Background="AliceBlue" Click="Button_Click_2">Obrisi</Button>
+        </StackPanel>
+    </StackPanel>
 </Window>

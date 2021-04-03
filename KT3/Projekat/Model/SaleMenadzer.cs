@@ -32,14 +32,15 @@ namespace Model
             {
                 if (s.Id == sala1.Id)
                 {
+                    s.brojSale = sala.brojSale;
                     s.Namjena = sala.Namjena;
                     s.TipSale = sala.TipSale;
                     s.Status = sala.Status;
+                    int idx = PrikaziSalu.Sale.IndexOf(sala1);
+                    PrikaziSalu.Sale.RemoveAt(idx);
+                    PrikaziSalu.Sale.Insert(idx, s);
                 }
             }
-            int idx = PrikaziSalu.Sale.IndexOf(sala1);
-            PrikaziSalu.Sale.RemoveAt(idx);
-            PrikaziSalu.Sale.Insert(idx, sala);
         }
       
       public static List<Sala> NadjiSveSale()
@@ -77,6 +78,32 @@ namespace Model
             filestream.Close();
         }
 
-      public static List<Sala> sale = new List<Sala>();
+        public static int GenerisanjeIdSale()
+        {
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= sale.Count; id++)
+            {
+                foreach (Sala s in sale)
+                {
+                    if (s.Id.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
+        }
+
+        public static List<Sala> sale = new List<Sala>();
    }
 }
