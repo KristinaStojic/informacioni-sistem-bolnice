@@ -1,4 +1,5 @@
-﻿using Projekat.Model;
+﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,13 +38,22 @@ namespace Projekat
             this.DataContext = this;
             OpremaStaticka = new ObservableCollection<Oprema>();
             OpremaDinamicka = new ObservableCollection<Oprema>();
-            foreach (Oprema o in OpremaMenadzer.NadjiStatickuOpremu())
+            foreach(Sala s in SaleMenadzer.sale)
             {
-                OpremaStaticka.Add(o);
-            }
-            foreach (Oprema o in OpremaMenadzer.NadjiDinamickuOpremu())
-            {
-                OpremaDinamicka.Add(o);
+                if (s.Namjena.Equals("Skladiste"))
+                {
+                    foreach(Oprema o in OpremaMenadzer.oprema)
+                    {
+                        if (o.Staticka)
+                        {
+                            OpremaStaticka.Add(o);
+                        }
+                        else
+                        {
+                            OpremaDinamicka.Add(o);
+                        }
+                    }
+                }
             }
         }
 
