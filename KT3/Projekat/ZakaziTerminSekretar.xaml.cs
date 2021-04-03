@@ -24,12 +24,12 @@ namespace Projekat
         public ZakaziTerminSekretar()
         {
             InitializeComponent();
-            foreach (Sala s in SaleMenadzer.NadjiSveSale())
+            foreach (Sala s in SaleMenadzer.NadjiSveSale()) // IZMENIIIIIIIIIIIIIIIIIIIIII
             {
                 prostorije.Items.Add(s.Id);
             }
 
-            foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+            foreach (Pacijent p in PrikaziPacijenta.PacijentiTabela)
             {
                 pacijenti.Items.Add(p.ImePacijenta + " " +  p.PrezimePacijenta + " " + p.Jmbg);
             }

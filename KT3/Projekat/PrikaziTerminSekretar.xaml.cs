@@ -31,7 +31,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             TerminiSekretar = new ObservableCollection<Termin>();
-            foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            foreach (Termin t in TerminMenadzer.termini)
             {
                 TerminiSekretar.Add(t);
             }
@@ -58,6 +58,10 @@ namespace Projekat
                 IzmeniTerminSekretar it = new IzmeniTerminSekretar(izabraniTermin);
                 it.Show();
             }
+            else
+            {
+                MessageBox.Show("Niste selektovali termin koji zelite da izmenite!");
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -66,6 +70,10 @@ namespace Projekat
             if (zaBrisanje != null)
             {
                 TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali termin koji zelite da otkazete!");
             }
         }
 

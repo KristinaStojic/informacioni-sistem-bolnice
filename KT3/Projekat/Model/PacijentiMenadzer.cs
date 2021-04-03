@@ -16,7 +16,7 @@ namespace Model
 {
     public static class PacijentiMenadzer
     {
-        static List<Pacijent> pacijenti = new List<Pacijent>();
+        public static List<Pacijent> pacijenti = new List<Pacijent>();
 
         public static void DodajNalog(Pacijent noviNalog)
         {
@@ -53,11 +53,21 @@ namespace Model
             {
                 for (int i = 0; i < pacijenti.Count; i++)
                 {
-                    Pacijent p = pacijenti[i];
-                    if (p.IdPacijenta == nalog.IdPacijenta)
+                    if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
                     {
-                        pacijenti.Remove(nalog);
+                        pacijenti.RemoveAt(i);
                         PrikaziPacijenta.PacijentiTabela.Remove(nalog);
+
+                        for (int j = 0; j < TerminMenadzer.termini.Count; j++)
+                        {
+                            if (TerminMenadzer.termini[i].Pacijent.IdPacijenta == nalog.IdPacijenta)
+                            {
+                                TerminMenadzer.termini.RemoveAt(j);
+                                Console.WriteLine("USLOOOOOOOOOOOOOOOOOOOOOOO");
+                                                            //      NE RADI !!!!!!!!!!!!!!!
+                                //PrikaziTerminSekretar.TerminiSekretar.Remove(TerminMenadzer.termini[i]);
+                            }
+                        }
                     }
                 }
             }

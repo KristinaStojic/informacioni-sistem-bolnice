@@ -32,15 +32,21 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             PacijentiTabela = new ObservableCollection<Pacijent>();
-            foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+            
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
                 PacijentiTabela.Add(p);
             }
+           // foreach (ZdravstveniKarton z in ZdravstveniKartonMenadzer.NadjiSveKartone())
+           // { 
+                   
+           // }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
+            ZdravstveniKartonMenadzer.SacuvajKartone();
             this.Hide();
         }
 
@@ -67,13 +73,31 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
-            PacijentiMenadzer.ObrisiNalog(zaBrisanje);
+            //Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
+            //PacijentiMenadzer.ObrisiNalog(zaBrisanje);
+
+            // brisanje svih termina tog pacijenta
+            /*   foreach (Termin t in TerminMenadzer.termini)
+               {
+                   if (t.Pacijent.IdPacijenta == zaBrisanje.IdPacijenta)
+                   {
+                       TerminMenadzer.OtkaziTerminSekretar(t);
+                   }
+               }*/
+
+            var zaBrisanje = TabelaPacijenata.SelectedItem;
+            if (zaBrisanje != null)
+            {
+                PacijentiMenadzer.ObrisiNalog((Pacijent)zaBrisanje);
+            }
+
+           // PacijentiMenadzer.SacuvajIzmenePacijenta();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
+            ZdravstveniKartonMenadzer.SacuvajKartone();
         }
 
         // otvaranje zdravstvenog kartona pacijenta (uvid u zdravstveni karton)

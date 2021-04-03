@@ -15,23 +15,40 @@ namespace Projekat.Model
 
         public static List<ZdravstveniKarton> NadjiSveKartone()
         {
-            /*if (File.ReadAllText("kartoni.xml").Trim().Equals(""))
+            if (File.ReadAllText("kartoni.xml").Trim().Equals(""))
             {
                 return kartoni;
             }
             else
             {
                 FileStream fileStream = File.OpenRead("kartoni.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Termin>));
+                XmlSerializer serializer = new XmlSerializer(typeof(List<ZdravstveniKarton>));
                 kartoni = (List<ZdravstveniKarton>)serializer.Deserialize(fileStream);
                 fileStream.Close();
                 return kartoni;
             }
-            */
-            Console.WriteLine(kartoni.Count + " DODATO U TABELU");
-            return kartoni;
         }
 
+        /*
+        public static ZdravstveniKarton NadjiKartonPoId(int id)
+        {
+            foreach (ZdravstveniKarton z in kartoni)
+            {
+                if (z.IdKartona == id)
+                {
+                    return z;
+                }
+            }
+            return null;
+        }*/
+
+        public static void SacuvajKartone()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<ZdravstveniKarton>));
+            TextWriter filestream = new StreamWriter("kartoni.xml");
+            serializer.Serialize(filestream, kartoni);
+            filestream.Close();
+        }
 
         public static int GenerisanjeIdRecepta()
         {
@@ -62,16 +79,17 @@ namespace Projekat.Model
         public static void DodajRecept(LekarskiRecept recept) /*TO DO: PROMIJENITI OVO KAD SE DODA FAJL SA KARTONIMA*/
         {
             recepti.Add(recept);
-            kartoni.Add(new ZdravstveniKarton(1));
-            kartoni.Add(new ZdravstveniKarton(3));
+           // kartoni.Add(new ZdravstveniKarton(1));
+           // kartoni.Add(new ZdravstveniKarton(3));
             foreach (ZdravstveniKarton karton in kartoni)
             {
-                Console.WriteLine(karton.idPacijenta);
-                if(karton.idPacijenta == recept.idPacijenta)
+               // Console.WriteLine(karton.PrezimePacijenta);
+                if(karton.IdPacijenta == recept.idPacijenta)
                 {
                         List<LekarskiRecept> lr = new List<LekarskiRecept>();
                         karton.LekarskiRecepti = lr;
-                        karton.LekarskiRecepti.Add(recept);    
+                        karton.LekarskiRecepti.Add(recept);
+                        Console.WriteLine("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
                         TabelaRecepata.PrikazRecepata.Add(recept);
 
                 }
