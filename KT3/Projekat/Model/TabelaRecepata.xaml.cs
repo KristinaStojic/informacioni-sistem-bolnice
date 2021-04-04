@@ -34,7 +34,7 @@ namespace Projekat.Model
             this.DataContext = this; 
             this.pacijent = izabraniPacijent;
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (ZdravstveniKarton k in ZdravstveniKartonMenadzer.NadjiSveKartone())
+            /*foreach (ZdravstveniKarton k in ZdravstveniKartonMenadzer.NadjiSveKartone())
             {
                 if(k.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -45,7 +45,7 @@ namespace Projekat.Model
                     
                 }
                
-            }
+            }*/
             
         }
 
@@ -65,7 +65,7 @@ namespace Projekat.Model
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ZdravstveniKartonMenadzer.SacuvajKartone();
+            //ZdravstveniKartonMenadzer.SacuvajKartone();
             this.Close();
         }
     }

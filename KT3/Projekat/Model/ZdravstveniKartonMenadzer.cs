@@ -13,7 +13,7 @@ namespace Projekat.Model
         public static List<ZdravstveniKarton> kartoni = new List<ZdravstveniKarton>();
         public static List<LekarskiRecept> recepti = new List<LekarskiRecept>();
 
-        public static List<ZdravstveniKarton> NadjiSveKartone()
+        /*public static List<ZdravstveniKarton> NadjiSveKartone()
         {
             if (File.ReadAllText("kartoni.xml").Trim().Equals(""))
             {
@@ -27,7 +27,7 @@ namespace Projekat.Model
                 fileStream.Close();
                 return kartoni;
             }
-        }
+        }*/
 
         /*
         public static ZdravstveniKarton NadjiKartonPoId(int id)
@@ -42,13 +42,13 @@ namespace Projekat.Model
             return null;
         }*/
 
-        public static void SacuvajKartone()
+        /*public static void SacuvajKartone()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<ZdravstveniKarton>));
             TextWriter filestream = new StreamWriter("kartoni.xml");
             serializer.Serialize(filestream, kartoni);
             filestream.Close();
-        }
+        }*/
 
         public static int GenerisanjeIdRecepta()
         {

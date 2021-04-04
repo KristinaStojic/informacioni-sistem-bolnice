@@ -1,32 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTermin xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Termin>
-    <IdTermin>2</IdTermin>
+    <IdTermin>3</IdTermin>
     <VremePocetka>07:00</VremePocetka>
-    <VremeKraja>11:30</VremeKraja>
+    <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
       <Ime>Filip</Ime>
       <Prezime>Filipovic</Prezime>
     </Lekar>
     <Pacijent>
-      <IdPacijenta>2</IdPacijenta>
-      <ImePacijenta>BBBBB</ImePacijenta>
-      <PrezimePacijenta>BBBBB</PrezimePacijenta>
+      <IdPacijenta>1</IdPacijenta>
+      <ImePacijenta>LLLL</ImePacijenta>
+      <PrezimePacijenta>LLLL</PrezimePacijenta>
       <Pol>M</Pol>
-      <Jmbg>567</Jmbg>
+      <Jmbg>45678</Jmbg>
       <StatusNaloga>Stalni</StatusNaloga>
       <BrojTelefona>5678</BrojTelefona>
-      <Email>fghbj</Email>
-      <AdresaStanovanja>cfgvhbjn</AdresaStanovanja>
-      <Zanimanje>ftrgyh</Zanimanje>
-      <BracnoStanje>Razveden</BracnoStanje>
+      <Email>fgyhu</Email>
+      <AdresaStanovanja>fvghbj</AdresaStanovanja>
+      <Zanimanje>ftghyj</Zanimanje>
+      <BracnoStanje>Udovac</BracnoStanje>
       <Karton>
-        <IdPacijenta>2</IdPacijenta>
+        <IdPacijenta>1</IdPacijenta>
         <LekarskiRecepti />
       </Karton>
     </Pacijent>
-    <Datum>04/20/2021</Datum>
+    <Datum>04/13/2021</Datum>
+    <Prostorija>
+      <Status>Slobodna</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>1</Id>
+      <brojSale>1</brojSale>
+      <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>spric</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini />
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
+  <Termin>
+    <IdTermin>7</IdTermin>
+    <VremePocetka>07:00</VremePocetka>
+    <VremeKraja>07:30</VremeKraja>
+    <Lekar>
+      <IdLekara>5</IdLekara>
+      <Ime>Filip</Ime>
+      <Prezime>Filipovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>7</IdPacijenta>
+      <ImePacijenta>OOOOO</ImePacijenta>
+      <PrezimePacijenta>OOOOO</PrezimePacijenta>
+      <Pol>Z</Pol>
+      <Jmbg>999</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>567</BrojTelefona>
+      <Email>tgfyhu</Email>
+      <AdresaStanovanja>fgh</AdresaStanovanja>
+      <Zanimanje>tfgytf</Zanimanje>
+      <BracnoStanje>Udovica</BracnoStanje>
+      <Karton>
+        <IdPacijenta>7</IdPacijenta>
+        <LekarskiRecepti />
+      </Karton>
+    </Pacijent>
+    <Datum>05/01/2021</Datum>
+    <Prostorija>
+      <Status>Slobodna</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>1</Id>
+      <brojSale>1</brojSale>
+      <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>spric</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini />
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
+  <Termin>
+    <IdTermin>11</IdTermin>
+    <VremePocetka>07:00</VremePocetka>
+    <VremeKraja>07:30</VremeKraja>
+    <Lekar>
+      <IdLekara>5</IdLekara>
+      <Ime>Filip</Ime>
+      <Prezime>Filipovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>7</IdPacijenta>
+      <ImePacijenta>OOOOO</ImePacijenta>
+      <PrezimePacijenta>OOOOO</PrezimePacijenta>
+      <Pol>Z</Pol>
+      <Jmbg>999</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>567</BrojTelefona>
+      <Email>tgfyhu</Email>
+      <AdresaStanovanja>fgh</AdresaStanovanja>
+      <Zanimanje>tfgytf</Zanimanje>
+      <BracnoStanje>Udovica</BracnoStanje>
+      <Karton>
+        <IdPacijenta>7</IdPacijenta>
+        <LekarskiRecepti />
+      </Karton>
+    </Pacijent>
+    <Datum>05/03/2021</Datum>
+    <Prostorija>
+      <Status>Slobodna</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>1</Id>
+      <brojSale>1</brojSale>
+      <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>spric</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini />
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
+  <Termin>
+    <IdTermin>12</IdTermin>
+    <VremePocetka>07:00</VremePocetka>
+    <VremeKraja>07:30</VremeKraja>
+    <Lekar>
+      <IdLekara>5</IdLekara>
+      <Ime>Filip</Ime>
+      <Prezime>Filipovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>1</IdPacijenta>
+      <ImePacijenta>LLLL</ImePacijenta>
+      <PrezimePacijenta>LLLL</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>45678</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>5678</BrojTelefona>
+      <Email>fgyhu</Email>
+      <AdresaStanovanja>fvghbj</AdresaStanovanja>
+      <Zanimanje>ftghyj</Zanimanje>
+      <BracnoStanje>Udovac</BracnoStanje>
+      <Karton>
+        <IdPacijenta>1</IdPacijenta>
+        <LekarskiRecepti />
+      </Karton>
+    </Pacijent>
+    <Datum>04/29/2021</Datum>
     <Prostorija>
       <Status>Slobodna</Status>
       <TipSale>OperacionaSala</TipSale>
@@ -55,23 +190,67 @@
       <Prezime>Filipovic</Prezime>
     </Lekar>
     <Pacijent>
-      <IdPacijenta>1</IdPacijenta>
-      <ImePacijenta>CCCCC</ImePacijenta>
-      <PrezimePacijenta>CCCCC</PrezimePacijenta>
+      <IdPacijenta>3</IdPacijenta>
+      <ImePacijenta>Novi</ImePacijenta>
+      <PrezimePacijenta>Pacijent</PrezimePacijenta>
       <Pol>M</Pol>
-      <Jmbg>45678</Jmbg>
+      <Jmbg>5555</Jmbg>
       <StatusNaloga>Stalni</StatusNaloga>
-      <BrojTelefona>3456789</BrojTelefona>
-      <Email>rftgyhuji</Email>
-      <AdresaStanovanja>dftrgh</AdresaStanovanja>
-      <Zanimanje>edrftgyh</Zanimanje>
-      <BracnoStanje>Razveden</BracnoStanje>
+      <BrojTelefona>5467</BrojTelefona>
+      <Email>frtyguh</Email>
+      <AdresaStanovanja>rftyghu</AdresaStanovanja>
+      <Zanimanje>rtfgyh</Zanimanje>
+      <BracnoStanje>Udovac</BracnoStanje>
       <Karton>
-        <IdPacijenta>1</IdPacijenta>
+        <IdPacijenta>3</IdPacijenta>
         <LekarskiRecepti />
       </Karton>
     </Pacijent>
-    <Datum>04/20/2021</Datum>
+    <Datum>05/03/2021</Datum>
+    <Prostorija>
+      <Status>Slobodna</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>1</Id>
+      <brojSale>1</brojSale>
+      <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>spric</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini />
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
+  <Termin>
+    <IdTermin>2</IdTermin>
+    <VremePocetka>07:00</VremePocetka>
+    <VremeKraja>07:30</VremeKraja>
+    <Lekar>
+      <IdLekara>5</IdLekara>
+      <Ime>Filip</Ime>
+      <Prezime>Filipovic</Prezime>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>4</IdPacijenta>
+      <ImePacijenta>ANA</ImePacijenta>
+      <PrezimePacijenta>ANA</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>67890</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>56678</BrojTelefona>
+      <Email>ftgyhu</Email>
+      <AdresaStanovanja>fgvyhj</AdresaStanovanja>
+      <Zanimanje>tgfyyhuj</Zanimanje>
+      <BracnoStanje>Udovac</BracnoStanje>
+      <Karton>
+        <IdPacijenta>4</IdPacijenta>
+      </Karton>
+    </Pacijent>
+    <Datum>05/20/2021</Datum>
     <Prostorija>
       <Status>Slobodna</Status>
       <TipSale>OperacionaSala</TipSale>
