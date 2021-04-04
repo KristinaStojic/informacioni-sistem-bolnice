@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zakazi termin" Height="400" Width="600" WindowStartupLocation="CenterScreen" Background="AliceBlue">
-    <Grid Margin="0,0,0,0">
+        Title="Zakazi termin" Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="AliceBlue">
+    <Window.Resources>
+        <Style TargetType="{x:Type DatePicker}" x:Key="datePickerGeneralStyle" BasedOn="{StaticResource {x:Type DatePicker}}">
+            <Setter Property="TextElement.FontSize" Value="24" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="DatePicker.CalendarStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Calendar}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Calendar}">
+                                    <Viewbox Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DatePicker}}}">
+                                        <CalendarItem x:Name="PART_CalendarItem"
+                              Background="{TemplateBinding Background}"
+                              BorderBrush="{TemplateBinding BorderBrush}"
+                              BorderThickness="{TemplateBinding BorderThickness}"/>
+                                    </Viewbox>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,5,-2.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
@@ -50,8 +75,14 @@
         </ComboBox>
         <Label Content="ID Lekar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="217,192,0,0" Height="26" Width="62" RenderTransformOrigin="0.871,0.577"/>
         <Label Content="Datum" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="415,95,0,0" Height="26" Width="46"/>
-        <DatePicker HorizontalAlignment="Left" Name="dp" VerticalAlignment="Top" Margin="414,121,0,0" Width="153" Height="23"/>
+        <DatePicker HorizontalAlignment="Left" IsTodayHighlighted="True"  Name="dp" VerticalAlignment="Top" Margin="414,121,0,0" Width="153" Height="23"/>
+        
+        <Viewbox HorizontalAlignment="Left" Width="160" Margin="0,0,0,427">
+            <DatePicker Height="26" Width="134" />
+        </Viewbox>
         <TextBox HorizontalAlignment="Left" x:Name = "text4" Height="22" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="217,223,0,0"/>
+
+
 
     </Grid>
 </Window>

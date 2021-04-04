@@ -90,5 +90,15 @@ namespace Projekat
         {
             TerminMenadzer.sacuvajIzmene();
         }
+
+        private void zdravstveniKarton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
