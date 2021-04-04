@@ -61,20 +61,6 @@ namespace Projekat
                  tp = TipTermina.Operacija;
             }
 
-            /*   Lekar l;
-               if (lekari.SelectedItem.Equals("Filip Filipovic"))
-               {
-                   l = new Lekar(5, "Filip", "Filipovic");
-               }
-               else if (lekari.SelectedItem.Equals("Milica Milic"))
-               {
-                   l = new Lekar(2, "Milica", "Milic");
-               }
-               else if (lekari.SelectedItem.Equals("Nevena Nevenic"))
-               {
-                   l = new Lekar(3, "Nevena", "Nevenic");
-               }
-            */
             Lekar l = new Lekar(5, "Filip", "Filipovic");
 
             Sala s =  SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
@@ -107,6 +93,24 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        // kreiranje guest naloga
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            DodajPacijentaGuest dodavanje = new DodajPacijentaGuest();
+            dodavanje.Show();
+        }
+
+        private void Button_LostFocus(object sender, RoutedEventArgs e)
+        {
+            pacijenti.Items.Clear();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                pacijenti.Items.Add(p.ImePacijenta + " " + p.PrezimePacijenta + " " + p.Jmbg);
+            }
+            int ukupno = PacijentiMenadzer.pacijenti.Count;
+            pacijenti.SelectedIndex = ukupno-1;
         }
     }
 }

@@ -1,55 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfPacijent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Pacijent>
-    <IdPacijenta>1</IdPacijenta>
-    <ImePacijenta>LLLL</ImePacijenta>
-    <PrezimePacijenta>LLLL</PrezimePacijenta>
-    <Pol>M</Pol>
-    <Jmbg>45678</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>5678</BrojTelefona>
-    <Email>fgyhu</Email>
-    <AdresaStanovanja>fvghbj</AdresaStanovanja>
-    <Zanimanje>ftghyj</Zanimanje>
-    <BracnoStanje>Udovac</BracnoStanje>
-    <Karton>
-      <IdPacijenta>1</IdPacijenta>
-      <LekarskiRecepti />
-    </Karton>
-  </Pacijent>
-  <Pacijent>
-    <IdPacijenta>2</IdPacijenta>
-    <ImePacijenta>CCCC</ImePacijenta>
-    <PrezimePacijenta>CCCC</PrezimePacijenta>
-    <Pol>M</Pol>
-    <Jmbg>6666</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>5678</BrojTelefona>
-    <Email>fgtyuh</Email>
-    <AdresaStanovanja>gtfy</AdresaStanovanja>
-    <Zanimanje>gyughy</Zanimanje>
-    <BracnoStanje>Neozenjen</BracnoStanje>
-    <Karton>
-      <IdPacijenta>2</IdPacijenta>
-      <LekarskiRecepti />
-    </Karton>
-  </Pacijent>
-  <Pacijent>
     <IdPacijenta>7</IdPacijenta>
-    <ImePacijenta>OOOOO</ImePacijenta>
-    <PrezimePacijenta>OOOOO</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>999</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>567</BrojTelefona>
-    <Email>tgfyhu</Email>
-    <AdresaStanovanja>fgh</AdresaStanovanja>
-    <Zanimanje>tfgytf</Zanimanje>
-    <BracnoStanje>Udovica</BracnoStanje>
-    <Karton>
-      <IdPacijenta>7</IdPacijenta>
-      <LekarskiRecepti />
-    </Karton>
+    <ImePacijenta>Luka</ImePacijenta>
+    <PrezimePacijenta>Luka</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>23151212</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>5</IdPacijenta>
+    <ImePacijenta>KKK</ImePacijenta>
+    <PrezimePacijenta>KKKK</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>111111</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>1</IdPacijenta>
+    <ImePacijenta>Nemanj</ImePacijenta>
+    <PrezimePacijenta>nemanj</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>87776655</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>3</IdPacijenta>
@@ -72,14 +51,14 @@
     <IdPacijenta>4</IdPacijenta>
     <ImePacijenta>ANA</ImePacijenta>
     <PrezimePacijenta>ANA</PrezimePacijenta>
-    <Pol>M</Pol>
-    <Jmbg>67890</Jmbg>
+    <Pol>Z</Pol>
+    <Jmbg>99</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
     <BrojTelefona>56678</BrojTelefona>
     <Email>ftgyhu</Email>
     <AdresaStanovanja>fgvyhj</AdresaStanovanja>
     <Zanimanje>tgfyyhuj</Zanimanje>
-    <BracnoStanje>Udovac</BracnoStanje>
+    <BracnoStanje>Udovica</BracnoStanje>
     <Karton>
       <IdPacijenta>4</IdPacijenta>
       <LekarskiRecepti>
@@ -97,5 +76,15 @@
         </LekarskiRecept>
       </LekarskiRecepti>
     </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>6</IdPacijenta>
+    <ImePacijenta>Teodora</ImePacijenta>
+    <PrezimePacijenta>Maruna</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>2203</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
   </Pacijent>
 </ArrayOfPacijent>

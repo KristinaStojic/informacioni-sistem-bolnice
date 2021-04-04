@@ -34,5 +34,10 @@ namespace Projekat
             PrikaziTerminSekretar s = new PrikaziTerminSekretar();
             s.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

@@ -123,5 +123,15 @@ namespace Projekat
         {
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

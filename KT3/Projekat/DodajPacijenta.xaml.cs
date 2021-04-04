@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
-namespace Projekat.Model
+namespace Projekat
 {
     /// <summary>
     /// Interaction logic for DodajPacijenta.xaml
@@ -50,11 +51,10 @@ namespace Projekat.Model
             }
             
             // ukoliko je guest nalog
-            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals("") || combo3.Text.Equals("Neodredjeno"))  // bice izmene ?
+            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals(""))  // bice izmene ?
             {
                 int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
                 Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
-                p1.BracnoStanje = bracnoStanje.Neodredjeno;
                 PacijentiMenadzer.DodajNalog(p1);
             }
             else  // ukoliko je stalan nalog

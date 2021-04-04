@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Sekretar" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Nalozi pacijenata" HorizontalAlignment="Left" Margin="160,92,0,0" VerticalAlignment="Top" Width="201" Height="77" Click="Button_Click"/>
-        <Button Content="Termini" HorizontalAlignment="Left" Margin="425,92,0,0" VerticalAlignment="Top" Width="201" Height="77" Click="Button_Click_1"/>
-
+        <Button Content="Nalozi pacijenata" HorizontalAlignment="Left" Margin="160,118,0,0" VerticalAlignment="Top" Width="201" Height="77" Click="Button_Click"/>
+        <Button Content="Termini" HorizontalAlignment="Left" Margin="425,118,0,0" VerticalAlignment="Top" Width="201" Height="77" Click="Button_Click_1"/>
+        <Button Margin="17,17,652.6,359" Click="Button_Click_2" Background="Azure">NAZAD</Button>
     </Grid>
 </Window>
