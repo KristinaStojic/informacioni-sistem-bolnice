@@ -45,24 +45,10 @@ namespace Projekat
                 if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
                 {
                     combo.SelectedIndex = 0;
-                    combo.IsEnabled = false;
-
-                    brojTelefona.IsEnabled = true;
-                    email.IsEnabled = true;
-                    adresa.IsEnabled = true;
-                    combo3.IsEnabled = true;
-                    zanimanje.IsEnabled = true;
-
                 }
                 else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest))
                 {
                     combo.SelectedIndex = 1;
-
-                    brojTelefona.IsEnabled = false;
-                    email.IsEnabled = false;
-                    adresa.IsEnabled = false;
-                    combo3.IsEnabled = false;
-                    zanimanje.IsEnabled = false;
                 }
 
                 brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
@@ -86,6 +72,17 @@ namespace Projekat
                 {
                     combo3.SelectedIndex = 3;
                 }
+
+                ime.IsEnabled = false;
+                prezime.IsEnabled = false;
+                jmbg.IsEnabled = false;
+                combo.IsEnabled = false;
+                combo2.IsEnabled = false;
+                brojTelefona.IsEnabled = false;
+                email.IsEnabled = false;
+                adresa.IsEnabled = false;
+                combo3.IsEnabled = false;
+                zanimanje.IsEnabled = false;
             }
         }
 
