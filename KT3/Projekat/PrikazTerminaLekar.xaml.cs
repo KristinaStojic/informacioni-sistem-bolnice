@@ -75,7 +75,9 @@ namespace Projekat
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             // nazad
+
             TerminMenadzer.sacuvajIzmene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
             this.Close();
         }
 

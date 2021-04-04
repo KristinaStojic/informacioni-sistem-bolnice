@@ -93,7 +93,6 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //Recept rec = new Recept(pacijent);
             TabelaRecepata tp = new TabelaRecepata(pacijent);
             tp.Show();
             

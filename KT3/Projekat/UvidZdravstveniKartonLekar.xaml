@@ -47,7 +47,7 @@
         <TextBox x:Name="zanimanje" Margin="455,228,47,159" IsReadOnly="True"/>
         <Label Content="Podaci o zanimanju:" HorizontalAlignment="Left" Margin="455,151,0,0" VerticalAlignment="Top" Width="132" Height="26" FontSize="14"/>
         <Button Content="Alergeni" HorizontalAlignment="Left" Margin="517,55,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" />
-        <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Izbrani lekar:" Margin="455,48,100.6,325.2"/>
+        <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Izabrani lekar:" Margin="455,48,100.6,325.2"/>
         <TextBox x:Name="izabraniLekar" Grid.Row="0" Margin="455,95,46.6,291.2"/>
         <Button Content="Nazad" HorizontalAlignment="Left" Margin="673,55,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="44" Click="Button_Click"/>
         <Button Content="Recepti" HorizontalAlignment="Left" Margin="15,55,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" Click="Button_Click_1"/>

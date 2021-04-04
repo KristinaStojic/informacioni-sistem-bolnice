@@ -85,8 +85,6 @@
       <LekarskiRecepti>
         <LekarskiRecept>
           <IdRecepta>1</IdRecepta>
-          <ImePacijenta>ANA</ImePacijenta>
-          <PrezimePacijenta>ANA</PrezimePacijenta>
           <idPacijenta>4</idPacijenta>
           <IdLekara>0</IdLekara>
           <NazivLeka>tfrgyh</NazivLeka>
@@ -96,6 +94,147 @@
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
         </LekarskiRecept>
       </LekarskiRecepti>
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>5</IdPacijenta>
+    <ImePacijenta>Kristina</ImePacijenta>
+    <PrezimePacijenta>Stojic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>5464654</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>5465456</BrojTelefona>
+    <Email>fdsfsf</Email>
+    <AdresaStanovanja>dfsfs</AdresaStanovanja>
+    <Zanimanje>dfsfs</Zanimanje>
+    <BracnoStanje>Neudata</BracnoStanje>
+    <Karton>
+      <IdPacijenta>5</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>5</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>LEK1</NazivLeka>
+          <DatumPropisivanjaLeka>04/03/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>5</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>LEK2</NazivLeka>
+          <DatumPropisivanjaLeka>04/09/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>4</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>11:00</PocetakKoriscenja>
+        </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>3</IdRecepta>
+          <idPacijenta>5</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>KAKAKKA</NazivLeka>
+          <DatumPropisivanjaLeka>04/07/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>5</DnevnaKolicina>
+          <PocetakKoriscenja>5:1</PocetakKoriscenja>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>6</IdPacijenta>
+    <ImePacijenta>MARKO</ImePacijenta>
+    <PrezimePacijenta>MARKOVUC</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>44545</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>4444</BrojTelefona>
+    <Email>EREWR</Email>
+    <AdresaStanovanja>RWWEWRE</AdresaStanovanja>
+    <Zanimanje>WWEEEW</Zanimanje>
+    <BracnoStanje>Neudata</BracnoStanje>
+    <Karton>
+      <IdPacijenta>6</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>6</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>L1</NazivLeka>
+          <DatumPropisivanjaLeka>04/03/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>5</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>6</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>L2</NazivLeka>
+          <DatumPropisivanjaLeka>04/15/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>15:00</PocetakKoriscenja>
+        </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>3</IdRecepta>
+          <idPacijenta>6</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>L3</NazivLeka>
+          <DatumPropisivanjaLeka>03/31/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>10</DnevnaKolicina>
+          <PocetakKoriscenja>15:00</PocetakKoriscenja>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>8</IdPacijenta>
+    <ImePacijenta>Konstantin </ImePacijenta>
+    <PrezimePacijenta>Despotovic</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>1231315</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>123154</BrojTelefona>
+    <Email>kosta123@gmail.com</Email>
+    <AdresaStanovanja>NS</AdresaStanovanja>
+    <Zanimanje>Lekar</Zanimanje>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+    <Karton>
+      <IdPacijenta>8</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>8</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>LEK1</NazivLeka>
+          <DatumPropisivanjaLeka>04/08/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>5</DnevnaKolicina>
+          <PocetakKoriscenja>10:20</PocetakKoriscenja>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>9</IdPacijenta>
+    <ImePacijenta>Dimitrije</ImePacijenta>
+    <PrezimePacijenta>Petrovic</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>454665</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>456456</BrojTelefona>
+    <Email>dim@gmail.com</Email>
+    <AdresaStanovanja>NS</AdresaStanovanja>
+    <Zanimanje>12546</Zanimanje>
+    <BracnoStanje>Razveden</BracnoStanje>
+    <Karton>
+      <IdPacijenta>9</IdPacijenta>
+      <LekarskiRecepti />
     </Karton>
   </Pacijent>
 </ArrayOfPacijent>
