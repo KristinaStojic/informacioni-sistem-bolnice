@@ -12,11 +12,7 @@ namespace Model
         public int IdPacijenta { get; set; }
         public List<LekarskiRecept> LekarskiRecepti { get; set; }
 
-        public ZdravstveniKarton() 
-        {
-           
-        }
-
+        public ZdravstveniKarton() {}
         public ZdravstveniKarton(int id)
         {
             this.IdPacijenta = id;

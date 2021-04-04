@@ -48,32 +48,23 @@ namespace Model
         }
 
         public static void ObrisiNalog(Pacijent nalog)
-        {
-            if (nalog != null)
+        {  
+            for (int i = 0; i < pacijenti.Count; i++)
             {
-                for (int i = 0; i < pacijenti.Count; i++)
+                if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
                 {
-                    if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
+                    pacijenti.RemoveAt(i);
+                    PrikaziPacijenta.PacijentiTabela.Remove(nalog);
+                    
+                    for (int j = 0; j < TerminMenadzer.termini.Count; j++)
                     {
-                        pacijenti.RemoveAt(i);
-                        PrikaziPacijenta.PacijentiTabela.Remove(nalog);
-
-                        for (int j = 0; j < TerminMenadzer.termini.Count; j++)
+                        if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
                         {
-                            if (TerminMenadzer.termini[i].Pacijent.IdPacijenta == nalog.IdPacijenta)
-                            {
-                                TerminMenadzer.termini.RemoveAt(j);
-                                Console.WriteLine("USLOOOOOOOOOOOOOOOOOOOOOOO");
-                                                            //      NE RADI !!!!!!!!!!!!!!!
-                                //PrikaziTerminSekretar.TerminiSekretar.Remove(TerminMenadzer.termini[i]);
-                            }
+                            TerminMenadzer.termini.RemoveAt(j);
+                            j--;      
                         }
                     }
                 }
-            }
-            else 
-            {
-                MessageBox.Show("Niste selektovali pacijenta za brisanje!");
             }
         }
 

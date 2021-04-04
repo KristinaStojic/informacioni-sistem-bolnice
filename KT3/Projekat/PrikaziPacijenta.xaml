@@ -32,6 +32,7 @@
 
         <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="63,58,91,40.4" AutoGenerateColumns="False">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="30" Binding="{Binding IdPacijenta}"/>
                 <DataGridTextColumn Header="Ime" Width="100" Binding="{Binding ImePacijenta}"/>
                 <DataGridTextColumn Header="Prezime" Width="110" Binding="{Binding PrezimePacijenta}"/>
                 <DataGridTextColumn Header="JMBG" Width="110" Binding="{Binding Jmbg}"/>

@@ -24,12 +24,12 @@ namespace Projekat
         public ZakaziTerminSekretar()
         {
             InitializeComponent();
-            foreach (Sala s in SaleMenadzer.NadjiSveSale()) // IZMENIIIIIIIIIIIIIIIIIIIIII
+            foreach (Sala s in SaleMenadzer.sale)
             {
                 prostorije.Items.Add(s.Id);
             }
 
-            foreach (Pacijent p in PrikaziPacijenta.PacijentiTabela)
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
                 pacijenti.Items.Add(p.ImePacijenta + " " +  p.PrezimePacijenta + " " + p.Jmbg);
             }
@@ -84,13 +84,13 @@ namespace Projekat
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
 
             // promeni da bude metoda u PacijentMenadzer kad se merge uradi
-            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            /*foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
             {
                 if (podaci[2].Equals(pac.Jmbg))
                 {
                     pacijent = pac;
                 }
-            }
+            }*/
             
             if (TerminMenadzer.SlobodanTermin(dat, vp,vk,s) == false)
             {
