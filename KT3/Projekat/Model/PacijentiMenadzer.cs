@@ -16,7 +16,7 @@ namespace Model
 {
     public static class PacijentiMenadzer
     {
-        static List<Pacijent> pacijenti = new List<Pacijent>();
+        public static List<Pacijent> pacijenti = new List<Pacijent>();
 
         public static void DodajNalog(Pacijent noviNalog)
         {
@@ -48,22 +48,23 @@ namespace Model
         }
 
         public static void ObrisiNalog(Pacijent nalog)
-        {
-            if (nalog != null)
+        {  
+            for (int i = 0; i < pacijenti.Count; i++)
             {
-                for (int i = 0; i < pacijenti.Count; i++)
+                if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
                 {
-                    Pacijent p = pacijenti[i];
-                    if (p.IdPacijenta == nalog.IdPacijenta)
+                    pacijenti.RemoveAt(i);
+                    PrikaziPacijenta.PacijentiTabela.Remove(nalog);
+                    
+                    for (int j = 0; j < TerminMenadzer.termini.Count; j++)
                     {
-                        pacijenti.Remove(nalog);
-                        PrikaziPacijenta.PacijentiTabela.Remove(nalog);
+                        if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
+                        {
+                            TerminMenadzer.termini.RemoveAt(j);
+                            j--;      
+                        }
                     }
                 }
-            }
-            else 
-            {
-                MessageBox.Show("Niste selektovali pacijenta za brisanje!");
             }
         }
 

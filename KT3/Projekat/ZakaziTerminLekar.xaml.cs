@@ -66,7 +66,7 @@ namespace Projekat
 
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
                 int idPac = int.Parse(IDpacijenta.Text);
-                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
                 {
                     if (p.IdPacijenta == idPac)
                     {

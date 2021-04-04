@@ -6,7 +6,14 @@
     <Id>1</Id>
     <brojSale>1</brojSale>
     <Namjena>kardiovaskularna hirurgija</Namjena>
-    <Oprema />
+    <Oprema>
+      <Oprema>
+        <NazivOpreme>spric</NazivOpreme>
+        <Kolicina>10</Kolicina>
+        <Staticka>false</Staticka>
+        <IdOpreme>4</IdOpreme>
+      </Oprema>
+    </Oprema>
     <zauzetiTermini />
   </Sala>
   <Sala>
@@ -14,14 +21,13 @@
     <TipSale>SalaZaPregled</TipSale>
     <Id>2</Id>
     <brojSale>2</brojSale>
-    <Namjena>opsta praksa</Namjena>
+    <Namjena>Opsta praksa</Namjena>
     <Oprema>
       <Oprema>
-        <NazivOpreme>kk</NazivOpreme>
-        <Kolicina>1</Kolicina>
-        <Staticka>true</Staticka>
-        <IdOpreme>4</IdOpreme>
-        <Skladiste>false</Skladiste>
+        <NazivOpreme>rukavice</NazivOpreme>
+        <Kolicina>10</Kolicina>
+        <Staticka>false</Staticka>
+        <IdOpreme>3</IdOpreme>
       </Oprema>
     </Oprema>
     <zauzetiTermini />
@@ -31,25 +37,21 @@
     <TipSale>SalaZaPregled</TipSale>
     <Id>3</Id>
     <brojSale>3</brojSale>
-    <Namjena>opsta praksa</Namjena>
+    <Namjena>Opsta praksa</Namjena>
     <Oprema>
       <Oprema>
-        <NazivOpreme>kk</NazivOpreme>
-        <Kolicina>1</Kolicina>
-        <Staticka>true</Staticka>
+        <NazivOpreme>maska</NazivOpreme>
+        <Kolicina>20</Kolicina>
+        <Staticka>false</Staticka>
+        <IdOpreme>2</IdOpreme>
+      </Oprema>
+      <Oprema>
+        <NazivOpreme>spric</NazivOpreme>
+        <Kolicina>130</Kolicina>
+        <Staticka>false</Staticka>
         <IdOpreme>4</IdOpreme>
-        <Skladiste>false</Skladiste>
       </Oprema>
     </Oprema>
-    <zauzetiTermini />
-  </Sala>
-  <Sala>
-    <Status>Slobodna</Status>
-    <TipSale>OperacionaSala</TipSale>
-    <Id>4</Id>
-    <brojSale>4</brojSale>
-    <Namjena>vaskularna hirurgija</Namjena>
-    <Oprema />
     <zauzetiTermini />
   </Sala>
 </ArrayOfSala>

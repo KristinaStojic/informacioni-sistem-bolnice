@@ -24,6 +24,8 @@ namespace Projekat.Model
             this.DnevnaKolicina = kol;
             this.PocetakKoriscenja = pocetak;
         }
+
+        public LekarskiRecept() { }
         public int IdRecepta { get; set; }
         public string ImePacijenta { get; set; }
         public string PrezimePacijenta { get; set; }

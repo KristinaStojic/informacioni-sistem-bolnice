@@ -2,46 +2,100 @@
 <ArrayOfPacijent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Pacijent>
     <IdPacijenta>1</IdPacijenta>
-    <ImePacijenta>Ana</ImePacijenta>
-    <PrezimePacijenta>Anic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>1111</Jmbg>
+    <ImePacijenta>LLLL</ImePacijenta>
+    <PrezimePacijenta>LLLL</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>45678</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>100</BrojTelefona>
-    <Email>jjhujh</Email>
-    <AdresaStanovanja>hnuj</AdresaStanovanja>
-    <BracnoStanje>Neozenjen</BracnoStanje>
-    <IdLekara>0</IdLekara>
-    <IdKartona>0</IdKartona>
+    <BrojTelefona>5678</BrojTelefona>
+    <Email>fgyhu</Email>
+    <AdresaStanovanja>fvghbj</AdresaStanovanja>
+    <Zanimanje>ftghyj</Zanimanje>
+    <BracnoStanje>Udovac</BracnoStanje>
+    <Karton>
+      <IdPacijenta>1</IdPacijenta>
+      <LekarskiRecepti />
+    </Karton>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>2</IdPacijenta>
-    <ImePacijenta>Nikola</ImePacijenta>
-    <PrezimePacijenta>Nikolic</PrezimePacijenta>
+    <ImePacijenta>CCCC</ImePacijenta>
+    <PrezimePacijenta>CCCC</PrezimePacijenta>
     <Pol>M</Pol>
-    <Jmbg>4444</Jmbg>
+    <Jmbg>6666</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>4444</BrojTelefona>
-    <Email>mm</Email>
-    <AdresaStanovanja>mm</AdresaStanovanja>
-    <Zanimanje>mm</Zanimanje>
-    <BracnoStanje>Udovac</BracnoStanje>
-    <IdLekara>0</IdLekara>
-    <IdKartona>2</IdKartona>
+    <BrojTelefona>5678</BrojTelefona>
+    <Email>fgtyuh</Email>
+    <AdresaStanovanja>gtfy</AdresaStanovanja>
+    <Zanimanje>gyughy</Zanimanje>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+    <Karton>
+      <IdPacijenta>2</IdPacijenta>
+      <LekarskiRecepti />
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>7</IdPacijenta>
+    <ImePacijenta>OOOOO</ImePacijenta>
+    <PrezimePacijenta>OOOOO</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>999</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>567</BrojTelefona>
+    <Email>tgfyhu</Email>
+    <AdresaStanovanja>fgh</AdresaStanovanja>
+    <Zanimanje>tfgytf</Zanimanje>
+    <BracnoStanje>Udovica</BracnoStanje>
+    <Karton>
+      <IdPacijenta>7</IdPacijenta>
+      <LekarskiRecepti />
+    </Karton>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>3</IdPacijenta>
-    <ImePacijenta>Anaaaaaaaa</ImePacijenta>
-    <PrezimePacijenta>Anic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>1234</Jmbg>
+    <ImePacijenta>Novi</ImePacijenta>
+    <PrezimePacijenta>Pacijent</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>5555</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>768576</BrojTelefona>
-    <Email>gcfgcgfcf</Email>
-    <AdresaStanovanja>gcgfcgf</AdresaStanovanja>
-    <Zanimanje>hgcgh</Zanimanje>
-    <BracnoStanje>Neudata</BracnoStanje>
-    <IdLekara>0</IdLekara>
-    <IdKartona>3</IdKartona>
+    <BrojTelefona>5467</BrojTelefona>
+    <Email>frtyguh</Email>
+    <AdresaStanovanja>rftyghu</AdresaStanovanja>
+    <Zanimanje>rtfgyh</Zanimanje>
+    <BracnoStanje>Udovac</BracnoStanje>
+    <Karton>
+      <IdPacijenta>3</IdPacijenta>
+      <LekarskiRecepti />
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>4</IdPacijenta>
+    <ImePacijenta>ANA</ImePacijenta>
+    <PrezimePacijenta>ANA</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>67890</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>56678</BrojTelefona>
+    <Email>ftgyhu</Email>
+    <AdresaStanovanja>fgvyhj</AdresaStanovanja>
+    <Zanimanje>tgfyyhuj</Zanimanje>
+    <BracnoStanje>Udovac</BracnoStanje>
+    <Karton>
+      <IdPacijenta>4</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <ImePacijenta>ANA</ImePacijenta>
+          <PrezimePacijenta>ANA</PrezimePacijenta>
+          <idPacijenta>4</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>tfrgyh</NazivLeka>
+          <DatumPropisivanjaLeka>04/07/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>12</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+    </Karton>
   </Pacijent>
 </ArrayOfPacijent>

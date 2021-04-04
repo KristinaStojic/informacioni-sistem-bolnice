@@ -33,7 +33,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
-            foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            foreach (Termin t in TerminMenadzer.termini)
             {
                /* if(t.Lekar.IdLekara == 5)
                 {

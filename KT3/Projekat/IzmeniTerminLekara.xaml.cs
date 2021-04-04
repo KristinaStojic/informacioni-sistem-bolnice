@@ -82,10 +82,10 @@ namespace Projekat
                 // int idLek = int.Parse(idlekara.Text);
                 // Lekar l = new Lekar(5, "Filip", "Filipovic");
 
-                List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
+             //   List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
                 int idPac = int.Parse(IDpacijenta.Text);
                 Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp, termin.Lekar);
-                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
                 {
                     if (p.IdPacijenta == idPac)
                     {

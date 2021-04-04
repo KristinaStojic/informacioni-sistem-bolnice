@@ -29,7 +29,8 @@ namespace Projekat
             InitializeComponent();
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
-
+            TerminMenadzer.NadjiSveTermine();
+            PacijentiMenadzer.PronadjiSve();
 
             lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;

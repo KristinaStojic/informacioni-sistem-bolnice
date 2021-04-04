@@ -134,11 +134,7 @@ namespace Model
                     //Console.WriteLine(termin1.Pacijent.ImePacijenta + "  "  + termin1.Pacijent.PrezimePacijenta);
                 }
 
-            }
-            /*int idx = PrikaziTermin.Termini.IndexOf(termin);
-            PrikaziTermin.Termini.RemoveAt(idx);
-            PrikaziTermin.Termini.Insert(idx, termin1);*/
-            
+            }            
             int idx = PrikaziTerminSekretar.TerminiSekretar.IndexOf(termin);
             PrikaziTerminSekretar.TerminiSekretar.RemoveAt(idx);
             PrikaziTerminSekretar.TerminiSekretar.Insert(idx, termin1);
@@ -231,14 +227,14 @@ namespace Model
 
         public static Boolean SlobodanTermin(String datum, String VremePocetka, String VremeKraja, Sala sala) 
         {
-            foreach (Termin t in TerminMenadzer.NadjiSveTermine())
-            {
+           // foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            //{
                 // postoji zakazan termin u tom opsegu
-                if (/*t.Datum.Equals(datum) &&*/ t.Prostorija == sala /*&& Int32.Parse(VremePocetka) >= Int32.Parse(t.VremePocetka) && Int32.Parse(VremeKraja) <= Int32.Parse(t.VremeKraja)*/)
-                {
+               // if (/*t.Datum.Equals(datum) &&*/ t.Prostorija.Id == sala.Id /*&& Int32.Parse(VremePocetka) >= Int32.Parse(t.VremePocetka) && Int32.Parse(VremeKraja) <= Int32.Parse(t.VremeKraja)*/)
+               /* {
                     return false;
-                }
-            }
+                } */
+            //}
             return true;
         }
 

@@ -11,7 +11,7 @@
             <Image Source="slike/back.png" Width="25" Height="25"></Image>
         </Button>
         <TextBlock Name="tekst"></TextBlock>
-        <DataGrid x:Name="dataGridT1" ItemsSource="{Binding OpremaStaticka}" IsReadOnly="True" 
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding OpremaDinamicka}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="161" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="241">
             <DataGrid.Columns>
@@ -21,7 +21,7 @@
         </DataGrid>
         <StackPanel Orientation="Horizontal">
             <Button Height="39" Width="100" Margin="90, 10, 10, 10" Background="LightBlue" Click="Button_Click_1">Dodaj</Button>
-            <Button Height="39" Width="100" Margin="10, 10, 10, 10" Background="LightBlue">Premjesti</Button>
+            <Button Height="39" Width="100" Margin="10, 10, 10, 10" Background="LightBlue" Click="Button_Click_2">Premjesti</Button>
         </StackPanel>
     </StackPanel>
 </Window>

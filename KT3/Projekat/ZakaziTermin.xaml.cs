@@ -87,7 +87,7 @@ namespace Projekat
                 Lekar l = new Lekar(idLek, "Filip", "Filipovic");
 
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
-                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
                 {
                     if (p.IdPacijenta == 1)
                     {
