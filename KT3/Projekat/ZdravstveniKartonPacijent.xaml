@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zdravstveni karton" Height="500" Width="600" FontSize="15" WindowStartupLocation="CenterScreen"
-        Background="#e3fdfd">
+        Title="Zdravstveni karton" Height="500" Width="600" FontSize="15" WindowStartupLocation="CenterScreen" Background="AliceBlue">
 
     <Grid>
+
         <!-- Tabovi -->
         <TabControl x:Name="tab" HorizontalAlignment="Left" 
                     Height="395" VerticalAlignment="Top" Width="540" Margin="31,20,0,0" BorderBrush="Gainsboro" SelectionChanged="tab_SelectionChanged">
@@ -39,47 +39,47 @@
             </TabControl.Resources>
             <!-- licni podaci-->
             <TabItem Header="Lični podaci" Name="podaci" FontSize="15" Height="25" Margin="0,0,0.5,0" VerticalAlignment="Top">
-                <Grid Margin="0">
+                <Grid Margin="-2,0,2,0" Background="GhostWhite">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="311*"></ColumnDefinition>
                         <ColumnDefinition Width="223*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBox x:Name="ime"
-                             HorizontalAlignment="Left" Height="30" Margin="130,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-                    <Label Content="Ime" Margin="0,0,190,312" FontSize="15" HorizontalAlignment="Right" Width="35"/>
+                             HorizontalAlignment="Left" Height="25" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Ime" Margin="0,8,190,304" FontSize="15" HorizontalAlignment="Right" Width="35"/>
                     <TextBox x:Name="prezime"
-                        HorizontalAlignment="Left" Height="30" Margin="130,37,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                    <Label Content="Prezime" Margin="0,35,190,277" FontSize="15" HorizontalAlignment="Right" Width="63"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="Prezime" Margin="0,43,190,269" FontSize="15" HorizontalAlignment="Right" Width="63"/>
                     <TextBox x:Name="pol"
-                        HorizontalAlignment="Left" Height="30" Margin="130,107,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                    <Label Content="Pol" Margin="0,105,190,207" FontSize="15" HorizontalAlignment="Right" Width="31"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,115,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="Pol" Margin="0,113,190,199" FontSize="15" HorizontalAlignment="Right" Width="31"/>
                     <TextBox x:Name="jmbg"
-                        HorizontalAlignment="Left" Height="30" Margin="130,72,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                    <Label Content="JMBG" Margin="0,70,190,242" FontSize="15" HorizontalAlignment="Right" Width="47"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="JMBG" Margin="0,78,190,234" FontSize="15" HorizontalAlignment="Right" Width="47"/>
                     <TextBox x:Name="brojTel"
-                        HorizontalAlignment="Left" Height="30" Margin="130,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-                    <Label Content="Broj telefona" Margin="0,140,190,172" FontSize="15" HorizontalAlignment="Right" Width="95"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Broj telefona" Margin="0,148,190,164" FontSize="15" HorizontalAlignment="Right" Width="95"/>
                     <TextBox x:Name="email"
-                        HorizontalAlignment="Left" Height="30" Margin="130,176,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                    <Label Content="E-mail" Margin="0,174,190,138" FontSize="15" HorizontalAlignment="Right" Width="51"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,184,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="E-mail" Margin="0,182,190,130" FontSize="15" HorizontalAlignment="Right" Width="51"/>
                     <TextBox x:Name="adresa"
-                        HorizontalAlignment="Left" Height="30" Margin="130,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-                    <Label Content="Adresa" Margin="0,209,190,103" FontSize="15" HorizontalAlignment="Right" Width="55"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Adresa" Margin="0,217,190,95" FontSize="15" HorizontalAlignment="Right" Width="55"/>
                     <TextBox x:Name="bracnoStanje"
-                        HorizontalAlignment="Left" Height="30" Margin="130,246,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                    <Label Content="Bracno stanje" Margin="0,244,190,68" FontSize="15" HorizontalAlignment="Right" Width="99"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="Bracno stanje" Margin="0,252,190,60" FontSize="15" HorizontalAlignment="Right" Width="99"/>
                     <TextBox x:Name="zanimanje"
-                        HorizontalAlignment="Left" Height="30" Margin="130,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-                    <Label Content="Zanimanje" Margin="0,279,190,33" FontSize="15" HorizontalAlignment="Right" Width="79"/>
-                    <Border BorderThickness="2" BorderBrush="Black" Grid.Column="1" Margin="52,35,70,227">
+                        HorizontalAlignment="Left" Height="25" Margin="130,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Zanimanje" Margin="0,287,190,25" FontSize="15" HorizontalAlignment="Right" Width="79"/>
+                    <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Margin="52,35,70,227">
                         <Image Grid.Column="1" Margin="5" Source="slike\menager.jpg" />
                     </Border>
                     <Label Content="Korisnicko ime" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="30,0,0,184" FontWeight="Bold" Grid.Column="1"/>
                     <Button x:Name="izmeniBtn" Content="Izmenite podatke" Grid.Column="1" Height="30" Margin="34,317,46,15"/>
                     <Label Content="Lozinka" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="32,0,0,125" FontWeight="Bold" Grid.Column="1"/>
                     <TextBox x:Name="lekar"
-                        HorizontalAlignment="Left" Height="30" Margin="130,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-                    <Label Content="Izabrani lekar" Margin="0,315,188,-3" FontSize="15" HorizontalAlignment="Right" Width="99"/>
+                        HorizontalAlignment="Left" Height="25" Margin="130,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Izabrani lekar" Margin="0,323,188,-11" FontSize="15" HorizontalAlignment="Right" Width="99"/>
                     <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Height="25"  RenderTransformOrigin="0.5,0.5" Width="145" Grid.Column="1" Margin="34,233,0,104">
                         <PasswordBox.RenderTransform>
                             <TransformGroup>
@@ -96,7 +96,7 @@
             <!-- lekarski recepti -->
             <TabItem Header="Lekarski recepti" 
                      ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
-                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" FontFamily="Segoe UI" FontSize="13" Margin="0,0,-6,0">
+                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="GhostWhite" FontFamily="Segoe UI" FontSize="13" Margin="0,0,-6,0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Naziv leka" 
