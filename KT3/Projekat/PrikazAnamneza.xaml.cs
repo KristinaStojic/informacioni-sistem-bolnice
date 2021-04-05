@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Model;
+using Projekat.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -18,11 +21,38 @@ namespace Projekat
     /// </summary>
     public partial class PrikazAnamneza : Window
     {
-        int colNum = 0;
-        public PrikazAnamneza()
+        Pacijent pacijent;
+        public int colNum = 0;
+         
+        
+       
+        public static ObservableCollection<Anamneza> TabelaAnamneza
+        {
+            get;
+            set;
+        }
+
+        public PrikazAnamneza(Pacijent izabraniPacijent)
         {
             InitializeComponent();
+            this.DataContext = this;
+            this.pacijent = izabraniPacijent;
+            TabelaAnamneza = new ObservableCollection<Anamneza>();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                if (p.IdPacijenta == pacijent.IdPacijenta)
+                {
+                    foreach (Anamneza an in p.Karton.Anamneze)
+                    {
+                        TabelaAnamneza.Add(an);
+                    }
+
+                }
+
+            }
+
         }
+
 
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -32,7 +62,7 @@ namespace Projekat
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DodajAnamnezu da = new DodajAnamnezu();
+            DodajAnamnezu da = new DodajAnamnezu(pacijent);
             da.Show();
         }
 

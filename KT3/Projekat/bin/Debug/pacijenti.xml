@@ -15,6 +15,7 @@
     <Karton>
       <IdPacijenta>1</IdPacijenta>
       <LekarskiRecepti />
+      <Anamneze />
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -32,6 +33,7 @@
     <Karton>
       <IdPacijenta>2</IdPacijenta>
       <LekarskiRecepti />
+      <Anamneze />
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -49,6 +51,7 @@
     <Karton>
       <IdPacijenta>7</IdPacijenta>
       <LekarskiRecepti />
+      <Anamneze />
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -66,6 +69,7 @@
     <Karton>
       <IdPacijenta>3</IdPacijenta>
       <LekarskiRecepti />
+      <Anamneze />
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -94,6 +98,7 @@
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
         </LekarskiRecept>
       </LekarskiRecepti>
+      <Anamneze />
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -151,7 +156,27 @@
           <DnevnaKolicina>2</DnevnaKolicina>
           <PocetakKoriscenja>12:22</PocetakKoriscenja>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>5</IdRecepta>
+          <idPacijenta>5</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Paracetamol</NazivLeka>
+          <DatumPropisivanjaLeka>04/14/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>5</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
       </LekarskiRecepti>
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>0</IdLekara>
+          <OpisBolesti>BVBVCBCVBCVB</OpisBolesti>
+          <Terapija>DSFSDFSDFS</Terapija>
+          <Datum>04/16/2021</Datum>
+        </Anamneza>
+      </Anamneze>
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -200,6 +225,7 @@
           <PocetakKoriscenja>15:00</PocetakKoriscenja>
         </LekarskiRecept>
       </LekarskiRecepti>
+      <Anamneze />
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -228,6 +254,7 @@
           <PocetakKoriscenja>10:20</PocetakKoriscenja>
         </LekarskiRecept>
       </LekarskiRecepti>
+      <Anamneze />
     </Karton>
   </Pacijent>
   <Pacijent>
@@ -245,6 +272,7 @@
     <Karton>
       <IdPacijenta>9</IdPacijenta>
       <LekarskiRecepti />
+      <Anamneze />
     </Karton>
   </Pacijent>
 </ArrayOfPacijent>

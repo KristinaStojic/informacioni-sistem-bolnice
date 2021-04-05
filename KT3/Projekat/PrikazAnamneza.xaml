@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="PrikazAnamneza" Height="401.981" Width="422.713">
     <Grid Margin="0,0,4,0">
-        <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
+        <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
                   Height="270" Margin="27,28,0,0" VerticalAlignment="Top" Width="354" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="ID pregleda" Binding="{Binding IdTermin}" Width="100" />
+                <DataGridTextColumn Header="ID pregleda" Binding="{Binding IdAnamneze}" Width="100" />
                 <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="122" />
-                <DataGridTextColumn Header="Lekar" Binding="{Binding VremePocetka}" Width="130"/>
+                <DataGridTextColumn Header="Lekar" Width="130"/> <!--Binding ="{Binding IdLekara}"-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="108,314,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click" Height="35"/>
-        <Button Content="Detaljnije" HorizontalAlignment="Left" Margin="242,314,0,0" VerticalAlignment="Top" Width="80" Height="35" Click="Button_Click_1"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="94,314,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click" Height="35"/>
+        <Button Content="Detaljnije" HorizontalAlignment="Left" Margin="228,314,0,0" VerticalAlignment="Top" Width="80" Height="35" Click="Button_Click_1"/>
     </Grid>
 </Window>

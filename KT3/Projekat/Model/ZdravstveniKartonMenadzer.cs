@@ -80,6 +80,36 @@ namespace Projekat.Model
             
 
             return id;
+        }public static int GenerisanjeIdAnamneze(int idPac)
+        {
+            bool pomocna = false;
+            int id = 1;
+            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
+            {
+                if(pac.IdPacijenta == idPac)
+                {
+                    for (id = 1; id <= pac.Karton.LekarskiRecepti.Count; id++)
+                    {
+                        foreach (Anamneza p in pac.Karton.Anamneze)
+                        {
+                            if (p.IdAnamneze.Equals(id))
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
+                }
+            }
+            
+
+            return id;
         }
 
         public static void DodajRecept(LekarskiRecept recept) /*TO DO: PROMIJENITI OVO KAD SE DODA FAJL SA KARTONIMA*/
@@ -91,6 +121,18 @@ namespace Projekat.Model
                     pacijent.Karton.LekarskiRecepti.Add(recept);
                     Console.WriteLine(pacijent.Karton.LekarskiRecepti.Count);
                     TabelaRecepata.PrikazRecepata.Add(recept);
+
+                }
+            }
+        }public static void DodajAnamnezu(Anamneza anamneza) /*TO DO: PROMIJENITI OVO KAD SE DODA FAJL SA KARTONIMA*/
+        {
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if(pacijent.IdPacijenta == anamneza.IdPacijenta)
+                {                    
+                    pacijent.Karton.Anamneze.Add(anamneza);
+                    Console.WriteLine(pacijent.Karton.Anamneze.Count);
+                    PrikazAnamneza.TabelaAnamneza.Add(anamneza);
 
                 }
             }

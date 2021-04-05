@@ -70,6 +70,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.recepti = lr;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);     
@@ -82,6 +84,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -93,6 +97,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
 
@@ -105,6 +111,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -117,6 +125,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -128,6 +138,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -139,6 +151,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -150,6 +164,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
