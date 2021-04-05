@@ -7,10 +7,11 @@
         mc:Ignorable="d"
         Title="Zdravstveni karton" Height="500" Width="600" FontSize="15" WindowStartupLocation="CenterScreen"
         Background="#e3fdfd">
+
     <Grid>
         <!-- Tabovi -->
         <TabControl x:Name="tab" HorizontalAlignment="Left" 
-                    Height="375" VerticalAlignment="Top" Width="540" Margin="29,30,0,0" BorderBrush="Gainsboro" SelectionChanged="tab_SelectionChanged">
+                    Height="387" VerticalAlignment="Top" Width="540" Margin="31,26,0,0" BorderBrush="Gainsboro" SelectionChanged="tab_SelectionChanged">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -36,41 +37,94 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <TabItem Header="Lični podaci" Name="podaci" FontSize="15">
-                <!--DataGrid x:Name="dataGridKarton" Margin="10,3,6,3" SelectionChanged="DataGrid_SelectionChanged">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="RBR"></DataGridTextColumn>
-                        <DataGridTextColumn Header="lekarski recept" MaxWidth="100"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </-->
+            <!-- licni podaci-->
+            <TabItem Header="Lični podaci" Name="podaci" FontSize="15" Height="25" Margin="0,0,0.5,0" VerticalAlignment="Top">
+                <Grid Margin="0,2,0,-2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="311*"></ColumnDefinition>
+                        <ColumnDefinition Width="223*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="ime"
+                             HorizontalAlignment="Left" Height="30" Margin="130,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Ime" Margin="0,0,190,312" FontSize="15" HorizontalAlignment="Right" Width="35"/>
+                    <TextBox x:Name="prezime"
+                        HorizontalAlignment="Left" Height="30" Margin="130,37,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="Prezime" Margin="0,35,190,277" FontSize="15" HorizontalAlignment="Right" Width="63"/>
+                    <TextBox x:Name="pol"
+                        HorizontalAlignment="Left" Height="30" Margin="130,107,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="Pol" Margin="0,105,190,207" FontSize="15" HorizontalAlignment="Right" Width="31"/>
+                    <TextBox x:Name="jmbg"
+                        HorizontalAlignment="Left" Height="30" Margin="130,72,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="JMBG" Margin="0,70,190,242" FontSize="15" HorizontalAlignment="Right" Width="47"/>
+                    <TextBox x:Name="brojTel"
+                        HorizontalAlignment="Left" Height="30" Margin="130,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Broj telefona" Margin="0,140,190,172" FontSize="15" HorizontalAlignment="Right" Width="95"/>
+                    <TextBox x:Name="email"
+                        HorizontalAlignment="Left" Height="30" Margin="130,176,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="E-mail" Margin="0,174,190,138" FontSize="15" HorizontalAlignment="Right" Width="51"/>
+                    <TextBox x:Name="adresa"
+                        HorizontalAlignment="Left" Height="30" Margin="130,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Adresa" Margin="0,209,190,103" FontSize="15" HorizontalAlignment="Right" Width="55"/>
+                    <TextBox x:Name="bracnoStanje"
+                        HorizontalAlignment="Left" Height="30" Margin="130,246,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
+                    <Label Content="Bracno stanje" Margin="0,244,190,68" FontSize="15" HorizontalAlignment="Right" Width="99"/>
+                    <TextBox x:Name="zanimanje"
+                        HorizontalAlignment="Left" Height="30" Margin="130,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Zanimanje" Margin="0,279,190,33" FontSize="15" HorizontalAlignment="Right" Width="79"/>
+                    <Border BorderThickness="2" BorderBrush="Black" Grid.Column="1" Margin="40,20,65,217">
+                        <Image Grid.Column="1" Margin="5" Source="slike\menager.jpg" />
+                    </Border>
+                    <Label Content="Korisnicko ime" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="28,0,0,169" FontWeight="Bold" Grid.Column="1"/>
+                    <Button x:Name="izmeniBtn" Content="Izmenite podatke" Grid.Column="1" Height="30" Margin="30,307,50,17"/>
+                    <Label Content="Lozinka" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="28,0,0,113" FontWeight="Bold" Grid.Column="1"/>
+                    <TextBox x:Name="lekar"
+                        HorizontalAlignment="Left" Height="30" Margin="130,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <Label Content="Izabrani lekar" Margin="0,315,188,-3" FontSize="15" HorizontalAlignment="Right" Width="99"/>
+                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Height="25"  RenderTransformOrigin="0.5,0.5" Width="145" Grid.Column="1" Margin="30,240,0,89">
+                        <PasswordBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </PasswordBox.RenderTransform>
+                    </PasswordBox>
+                    <TextBox x:Name="korisnickoIme" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="143" Grid.Column="1" Margin="30,185,0,144"/>
+                    <Rectangle  HorizontalAlignment="Left" Height="276" Margin="0,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" Grid.Column="1"/>
+                </Grid>
             </TabItem>
             <!-- lekarski recepti -->
             <TabItem Header="Lekarski recepti" 
                      ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
-                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" FontFamily="Segoe UI" FontWeight="Bold" FontSize="13" Margin="0,0,-6,0">
+                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" FontFamily="Segoe UI" FontSize="13" Margin="0,0,-6,0">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Naziv leka" 
-                                        Width="85" DisplayMemberBinding="{Binding NazivLeka}"/>
+                                        Width="90" DisplayMemberBinding="{Binding NazivLeka}"/>
                             <GridViewColumn Header="Datum" 
-                                         Width="83" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
+                                         Width="85" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
                             <GridViewColumn Header="Početak korišćenja" 
-                                         DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
+                                        Width="115" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
                             <GridViewColumn Header="Broj dana"
                                          DisplayMemberBinding="{Binding BrojDanaKoriscenja}"/>
                             <GridViewColumn Header="Dnevna kolicina"
                                             DisplayMemberBinding="{Binding DnevnaKolicina}"/>
                             <GridViewColumn Header="Informacije"
-                                            Width="80" DisplayMemberBinding="{Binding DnevnaKolicina}">
+                                            Width="85" DisplayMemberBinding="{Binding DnevnaKolicina}">
                             </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Header="Istorija bolesti" Name="istorijaBolesti" FontSize="15"/>
-            <TabItem Header="Lekarski uputi" Name="uputi" FontSize="15"/>
+            <TabItem Header="Istorija bolesti" Name="istorijaBolesti" FontSize="15" >
+
+            </TabItem>
+            <TabItem Header="Lekarski uputi" Name="uputi" FontSize="15" />
         </TabControl>
         <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"  Height="30" Margin="29,426,0,0" Click="Button_Click"  />
+
+
 
     </Grid>
 </Window>

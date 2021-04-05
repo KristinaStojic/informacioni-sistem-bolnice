@@ -6,8 +6,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>1</IdPacijenta>
@@ -51,8 +50,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>7</IdPacijenta>
@@ -96,8 +94,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>7</IdPacijenta>
@@ -141,8 +138,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>1</IdPacijenta>
@@ -186,8 +182,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>3</IdPacijenta>
@@ -231,8 +226,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>4</IdPacijenta>
@@ -276,8 +270,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>5</IdPacijenta>
@@ -342,8 +335,7 @@
     <VremeKraja>07:30</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>6</IdPacijenta>
@@ -408,8 +400,7 @@
     <VremeKraja>10:00</VremeKraja>
     <Lekar>
       <IdLekara>5</IdLekara>
-      <Ime>Filip</Ime>
-      <Prezime>Filipovic</Prezime>
+      <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>8</IdPacijenta>
@@ -459,5 +450,3 @@
     <tipTermina>Pregled</tipTermina>
   </Termin>
 </ArrayOfTermin>
-
-
