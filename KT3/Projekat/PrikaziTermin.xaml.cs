@@ -35,6 +35,10 @@ namespace Projekat
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.termini)
             {
+                /*if (t.Pacijent.IdPacijenta == 1)
+                {
+                    Termini.Add(t);
+                }*/
                 Termini.Add(t);
             }
         }
@@ -81,19 +85,27 @@ namespace Projekat
         {
             // nazad
             TerminMenadzer.sacuvajIzmene();
-            //MainWindow mw = new MainWindow();
-            //mw.Show();
+            SaleMenadzer.sacuvajIzmjene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
             this.Hide();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+            SaleMenadzer.sacuvajIzmjene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
         }
 
         private void zdravstveniKarton_Click(object sender, RoutedEventArgs e)
         {
-
+            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
+            if (izabraniTermin != null)
+            {
+                ZdravstveniKartonPacijent it = new ZdravstveniKartonPacijent(izabraniTermin.Pacijent);
+                //TerminMenadzer.sacuvajIzmene();
+                it.Show();
+            }
         }
 
         private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)

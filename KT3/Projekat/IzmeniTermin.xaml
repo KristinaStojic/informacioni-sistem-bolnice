@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="Izmenite termin"  Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="AliceBlue">
-    <Grid Margin="0,0,-5,-2.5">
+    <Grid Background="#e3fdfd" Margin="0,0,-5,-2.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
@@ -16,7 +16,7 @@
         <Button Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="312,408,0,0" Height="30" Click="Button_Click"/>
         <!--DatePicker HorizontalAlignment="Left" Name="datum" Text="dd/MM/yyyy" VerticalAlignment="Top" Margin="278,128,0,0" Width="153" Height="23"/!-->
         <GroupBox Header="Izaberite datum" HorizontalAlignment="Left" Height="192" Margin="352,15,0,0" VerticalAlignment="Top" Width="213" RenderTransformOrigin="0.517,0.878">
-            <Calendar x:Name="datum" Background="Beige" RenderTransformOrigin="-0.356,0.389" Margin="8,3,-2,-13"/>
+            <Calendar x:Name="datum" Background="#bde4f4" RenderTransformOrigin="-0.356,0.389" Margin="8,3,-2,-13"/>
         </GroupBox>
         <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="23" VerticalAlignment="Top" Width="152" Margin="383,326,0,0" SelectionChanged="vpp_SelectionChanged_1" RenderTransformOrigin="0.724,0.565">
             <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
