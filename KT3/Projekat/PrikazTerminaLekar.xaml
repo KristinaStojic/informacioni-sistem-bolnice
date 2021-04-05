@@ -29,7 +29,7 @@
                 <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
                 <!-- PROMIJENITI NA ID KAD ISPRAVIMO CUVANJE-->
                 <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                <DataGridTextColumn Header="Prostorija" Binding="{Binding Lekar.IdLekara}"  />
+                <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}"  />
                 <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}" />
             </DataGrid.Columns>
 

@@ -40,89 +40,71 @@ namespace Projekat
         {
             //potvrdi
 
-            try
+            int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
+
+            string vp = vpp.Text;
+            string vk = vkk.Text;
+
+            /* if (Int32.Parse(vp) >= Int32.Parse(vk))
+             {
+                 MessageBox.Show("Neispravno vreme pocetka i kraja");
+             }*/
+
+            String dat = null;
+            DateTime selectedDate = (DateTime)dp.SelectedDate;
+            dat = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            TipTermina tp;
+            if (prostorije.Text.Equals("Pregled"))
             {
-                int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-                String formatted = null;
-                DateTime? selectedDate = dp.SelectedDate;
-                Console.WriteLine(selectedDate);
-                if (selectedDate.HasValue)
-                {
-                    formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-                }
-
-                String vp = vpp.Text;
-                String vk = vkk.Text;
-                TipTermina tp;
-                if (tipPregleda.Text.Equals("Pregled"))
-                {
-                    tp = TipTermina.Pregled;
-                }
-                else
-                {
-                    tp = TipTermina.Operacija;
-                }
-                //int idLek = int.Parse(text4.Text);
-                
-
-                Lekar l = new Lekar(5, "Filip", "Filipovic");
-                List<Sala> sale = SaleMenadzer.NadjiSveSale();
-
-
-                int idSale = int.Parse(prostorije.Text);
-
-
-                Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
-                /*int idPac = int.Parse(IDpacijenta.Text);
-                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
-                {
-                    if (p.IdPacijenta == idPac)
-                    {
-                        s.Pacijent = p;
-                    }
-                }*/
-                String p = pacijenti.Text;
-                string[] podaci = p.Split(' ');
-                Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
-
-                foreach (Sala sala in SaleMenadzer.sale)
-                {
-                    if(sala.Id == idSale)
-                    {
-                        s.Prostorija = sala;
-
-                    }
-                }
-                                      
-                /*if (sala.Status == status.Zauzeta)
-                {
-                    MessageBox.Show("Izabrana sala je zauzeta u tom terminu", "Promenite salu", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                if (pacijent == null)
-                {
-
-                    MessageBox.Show("Uneli ste nepostojećeg pacijenta!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                if (sala == null)
-                {
-
-                    MessageBox.Show("Uneli ste nepostojeću prostoriju!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                */
-
-              
-                TerminMenadzer.ZakaziTerminLekar(s);
-                this.Close();
-
+                tp = TipTermina.Pregled;
             }
-            catch (System.Exception)
+            else
             {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                tp = TipTermina.Operacija;
             }
+
+            /*   Lekar l;
+               if (lekari.SelectedItem.Equals("Filip Filipovic"))
+               {
+                   l = new Lekar(5, "Filip", "Filipovic");
+               }
+               else if (lekari.SelectedItem.Equals("Milica Milic"))
+               {
+                   l = new Lekar(2, "Milica", "Milic");
+               }
+               else if (lekari.SelectedItem.Equals("Nevena Nevenic"))
+               {
+                   l = new Lekar(3, "Nevena", "Nevenic");
+               }
+            */
+            Lekar l = new Lekar(5, "Filip", "Filipovic");
+
+            Sala s = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+            String p = pacijenti.Text;
+
+            string[] podaci = p.Split(' ');
+            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
+
+            // promeni da bude metoda u PacijentMenadzer kad se merge uradi
+            /*foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            {
+                if (podaci[2].Equals(pac.Jmbg))
+                {
+                    pacijent = pac;
+                }
+            }*/
+
+            if (TerminMenadzer.SlobodanTermin(dat, vp, vk, s) == false)
+            {
+                MessageBox.Show("Vec postoji zakazan termin u to vreme u toj prostoriji");
+            }
+            else
+            {
+                Termin t = new Termin(brojTermina, dat, vp, vk, tp, l, s, pacijent);
+                TerminMenadzer.ZakaziTerminLekar(t);
+            }
+            this.Close();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
