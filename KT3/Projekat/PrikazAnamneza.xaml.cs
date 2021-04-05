@@ -68,8 +68,21 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            DetaljiAnamneze da = new DetaljiAnamneze();
-            da.Show();
+           
+            Anamneza izabranaAnamneza = (Anamneza)dataGridTermini.SelectedItem;
+            Console.WriteLine(pacijent.Karton.LekarskiRecepti.Count);
+            Console.WriteLine(pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta);
+            if (izabranaAnamneza != null)
+            {
+                
+                DetaljiAnamneze da = new DetaljiAnamneze(pacijent,izabranaAnamneza);
+                da.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijednu anamnezu!");
+            }
+           
         }
     }
 }

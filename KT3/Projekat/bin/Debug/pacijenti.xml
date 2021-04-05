@@ -37,24 +37,6 @@
     </Karton>
   </Pacijent>
   <Pacijent>
-    <IdPacijenta>7</IdPacijenta>
-    <ImePacijenta>OOOOO</ImePacijenta>
-    <PrezimePacijenta>OOOOO</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>999</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>567</BrojTelefona>
-    <Email>tgfyhu</Email>
-    <AdresaStanovanja>fgh</AdresaStanovanja>
-    <Zanimanje>tfgytf</Zanimanje>
-    <BracnoStanje>Udovica</BracnoStanje>
-    <Karton>
-      <IdPacijenta>7</IdPacijenta>
-      <LekarskiRecepti />
-      <Anamneze />
-    </Karton>
-  </Pacijent>
-  <Pacijent>
     <IdPacijenta>3</IdPacijenta>
     <ImePacijenta>Novi</ImePacijenta>
     <PrezimePacijenta>Pacijent</PrezimePacijenta>
@@ -176,6 +158,14 @@
           <Terapija>DSFSDFSDFS</Terapija>
           <Datum>04/16/2021</Datum>
         </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>0</IdLekara>
+          <OpisBolesti>Umor</OpisBolesti>
+          <Terapija>Spavanje</Terapija>
+          <Datum>04/21/2021</Datum>
+        </Anamneza>
       </Anamneze>
     </Karton>
   </Pacijent>
@@ -273,6 +263,70 @@
       <IdPacijenta>9</IdPacijenta>
       <LekarskiRecepti />
       <Anamneze />
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>10</IdPacijenta>
+    <ImePacijenta>Una</ImePacijenta>
+    <PrezimePacijenta>Markovic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>45616548</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>54</BrojTelefona>
+    <Email>una</Email>
+    <AdresaStanovanja>ns</AdresaStanovanja>
+    <Zanimanje>student</Zanimanje>
+    <BracnoStanje>Neudata</BracnoStanje>
+    <Karton>
+      <IdPacijenta>10</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>10</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Sirup</NazivLeka>
+          <DatumPropisivanjaLeka>04/08/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>20:00</PocetakKoriscenja>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+      <Anamneze />
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>7</IdPacijenta>
+    <ImePacijenta>Dusan</ImePacijenta>
+    <PrezimePacijenta>Blazic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>564564</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>444444</BrojTelefona>
+    <Email>ksks</Email>
+    <AdresaStanovanja>sasas</AdresaStanovanja>
+    <Zanimanje>kaldfd</Zanimanje>
+    <BracnoStanje>Neudata</BracnoStanje>
+    <Karton>
+      <IdPacijenta>7</IdPacijenta>
+      <LekarskiRecepti />
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>7</IdPacijenta>
+          <IdLekara>0</IdLekara>
+          <OpisBolesti>Umor</OpisBolesti>
+          <Terapija>Spavanje</Terapija>
+          <Datum>04/02/2021</Datum>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>7</IdPacijenta>
+          <IdLekara>0</IdLekara>
+          <OpisBolesti>Glavobolja</OpisBolesti>
+          <Terapija>Tableta</Terapija>
+          <Datum>04/09/2021</Datum>
+        </Anamneza>
+      </Anamneze>
     </Karton>
   </Pacijent>
 </ArrayOfPacijent>

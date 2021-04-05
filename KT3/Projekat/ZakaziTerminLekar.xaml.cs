@@ -95,15 +95,7 @@ namespace Projekat
                 }
             }*/
 
-            if (TerminMenadzer.SlobodanTermin(dat, vp, vk, s) == false)
-            {
-                MessageBox.Show("Vec postoji zakazan termin u to vreme u toj prostoriji");
-            }
-            else
-            {
-                Termin t = new Termin(brojTermina, dat, vp, vk, tp, l, s, pacijent);
-                TerminMenadzer.ZakaziTerminLekar(t);
-            }
+           
             this.Close();
         }
 

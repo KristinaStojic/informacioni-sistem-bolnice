@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model;
+using Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +20,25 @@ namespace Projekat
     /// </summary>
     public partial class DetaljiAnamneze : Window
     {
-        public DetaljiAnamneze()
+        Pacijent pacijent;
+        public DetaljiAnamneze(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
             InitializeComponent();
+            this.pacijent = izabraniPacijent;
+
+           
+            foreach (Anamneza anamneza in izabraniPacijent.Karton.Anamneze)
+            {
+                Console.WriteLine("Lista: " + anamneza.IdAnamneze + " Izabrana: " + izabranaAnamneza.IdAnamneze);
+               if(anamneza.IdAnamneze == izabranaAnamneza.IdAnamneze)
+                {
+                    this.datum.SelectedDate = DateTime.Parse(izabranaAnamneza.Datum);
+                    this.bolest.Text = izabranaAnamneza.OpisBolesti;
+                    this.terapija.Text = izabranaAnamneza.Terapija;
+
+                }
+            }
+    
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
