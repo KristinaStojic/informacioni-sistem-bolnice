@@ -34,18 +34,18 @@ namespace Projekat.Model
             this.DataContext = this; 
             this.pacijent = izabraniPacijent;
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            /*foreach (ZdravstveniKarton k in ZdravstveniKartonMenadzer.NadjiSveKartone())
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
-                if(k.IdPacijenta == pacijent.IdPacijenta)
+                if(p.IdPacijenta == pacijent.IdPacijenta)
                 {
-                    foreach(LekarskiRecept lr in k.LekarskiRecepti)
+                    foreach(LekarskiRecept lr in p.Karton.LekarskiRecepti)
                     {
                         PrikazRecepata.Add(lr);
                     }
                     
                 }
                
-            }*/
+            }
             
         }
 
@@ -65,7 +65,6 @@ namespace Projekat.Model
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //ZdravstveniKartonMenadzer.SacuvajKartone();
             this.Close();
         }
     }

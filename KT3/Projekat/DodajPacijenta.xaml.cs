@@ -68,7 +68,10 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.recepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);     
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
@@ -77,7 +80,9 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
@@ -86,7 +91,9 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
 
                 }
@@ -96,7 +103,9 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
 
@@ -106,7 +115,9 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
@@ -115,7 +126,9 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
@@ -124,7 +137,9 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
@@ -133,7 +148,9 @@ namespace Projekat.Model
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
                     ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                     p.Karton = karton;
-                    ZdravstveniKartonMenadzer.kartoni.Add(karton);
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
             }

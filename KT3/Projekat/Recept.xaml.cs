@@ -47,7 +47,7 @@ namespace Projekat
         {
             try
             {
-                int brojRecepta = ZdravstveniKartonMenadzer.GenerisanjeIdRecepta();
+                int brojRecepta = ZdravstveniKartonMenadzer.GenerisanjeIdRecepta(pacijent.IdPacijenta);
                 String nazivLeka = naziv.Text;
                 String formatirano = null;
                 DateTime? selectedDate = datum.SelectedDate;
@@ -62,9 +62,16 @@ namespace Projekat
                 String pocetakKoriscenja = sati.Text + ":" + min.Text;
                 
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);
-               
+                //pacijent.Karton.LekarskiRecepti.Add(recept);
+               /*foreach(Pacijent p in PacijentiMenadzer.pacijenti)
+                {
+                    if(pacijent.IdPacijenta == p.IdPacijenta)
+                    {
+                        p.Karton.LekarskiRecepti.Add(recept);
+                    }
+                }*/
                 ZdravstveniKartonMenadzer.DodajRecept(recept);
-                //TerminMenadzer.ZakaziTerminLekar(s);
+                //TabelaRecepata.PrikazRecepata.Add(recept);
                 this.Close();
 
             }
