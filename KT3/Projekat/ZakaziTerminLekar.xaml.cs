@@ -23,6 +23,15 @@ namespace Projekat
         public ZakaziTerminLekar()
         {
             InitializeComponent();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                pacijenti.Items.Add(p.ImePacijenta + " " + p.PrezimePacijenta + " " + p.Jmbg);
+            }
+
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                prostorije.Items.Add(s.Id);
+            }
         }
 
 
@@ -65,15 +74,19 @@ namespace Projekat
 
 
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
-                int idPac = int.Parse(IDpacijenta.Text);
+                /*int idPac = int.Parse(IDpacijenta.Text);
                 foreach (Pacijent p in PacijentiMenadzer.pacijenti)
                 {
                     if (p.IdPacijenta == idPac)
                     {
                         s.Pacijent = p;
                     }
-                }
-                foreach(Sala sala in SaleMenadzer.NadjiSveSale())
+                }*/
+                String p = pacijenti.Text;
+                string[] podaci = p.Split(' ');
+                Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
+
+                foreach (Sala sala in SaleMenadzer.sale)
                 {
                     if(sala.Id == idSale)
                     {

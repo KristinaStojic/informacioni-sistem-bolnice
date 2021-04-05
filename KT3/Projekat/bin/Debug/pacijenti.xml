@@ -141,6 +141,16 @@
           <DnevnaKolicina>5</DnevnaKolicina>
           <PocetakKoriscenja>5:1</PocetakKoriscenja>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>4</IdRecepta>
+          <idPacijenta>5</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>sirup</NazivLeka>
+          <DatumPropisivanjaLeka>04/07/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>11</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>12:22</PocetakKoriscenja>
+        </LekarskiRecept>
       </LekarskiRecepti>
     </Karton>
   </Pacijent>
