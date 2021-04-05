@@ -88,7 +88,7 @@ namespace Projekat.Model
             {
                 if(pac.IdPacijenta == idPac)
                 {
-                    for (id = 1; id <= pac.Karton.LekarskiRecepti.Count; id++)
+                    for (id = 1; id <= pac.Karton.Anamneze.Count; id++)
                     {
                         foreach (Anamneza p in pac.Karton.Anamneze)
                         {
