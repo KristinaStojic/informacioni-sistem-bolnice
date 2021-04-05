@@ -100,8 +100,8 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Anamneza a = new Anamneza();
-            a.Show();
+            PrikazAnamneza pa = new PrikazAnamneza();
+            pa.Show();
         }
     }
 }

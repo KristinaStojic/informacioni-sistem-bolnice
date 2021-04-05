@@ -1,0 +1,22 @@
+﻿<Window x:Class="Projekat.PrikazAnamneza"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="PrikazAnamneza" Height="401.981" Width="422.713">
+    <Grid Margin="0,0,4,0">
+        <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
+                  SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
+                  Height="270" Margin="27,28,0,0" VerticalAlignment="Top" Width="354" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="ID pregleda" Binding="{Binding IdTermin}" Width="100" />
+                <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="122" />
+                <DataGridTextColumn Header="Lekar" Binding="{Binding VremePocetka}" Width="130"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="108,314,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click" Height="35"/>
+        <Button Content="Detaljnije" HorizontalAlignment="Left" Margin="242,314,0,0" VerticalAlignment="Top" Width="80" Height="35" Click="Button_Click_1"/>
+    </Grid>
+</Window>

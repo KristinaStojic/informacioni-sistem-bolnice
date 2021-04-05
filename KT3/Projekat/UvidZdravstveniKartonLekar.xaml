@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="UvidZdravstveniKartonLekar" Height="580" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,-6,2">
+        Title="UvidZdravstveniKartonLekar" Height="576.167" Width="798.834" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,-6,1" Background="LightSkyBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="419*"/>
             <RowDefinition Height="131*"/>
         </Grid.RowDefinitions>
-        <Label Content="Zdravstveni karton" HorizontalAlignment="Left" Margin="251,14,0,0" VerticalAlignment="Top" Height="38" Width="161" FontWeight="Bold" FontSize="17"/>
+        <Label Content="Zdravstveni karton"  HorizontalAlignment="Left" Margin="251,14,0,0" VerticalAlignment="Top" Height="38" Width="161" FontWeight="Bold" FontSize="17"/>
         <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="365" Margin="15,46,0,0" VerticalAlignment="Top" Width="416" FontSize="14"/>
         <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="60,82,495.6,291.2"/>
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Prezime pacijenta:" Margin="60,116,495.6,256.2"/>
@@ -23,36 +23,37 @@
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Adresa stanovanja:" Margin="60,322,424.6,51.2"/>
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Bracno stanje:" Margin="60,356,424.6,17.2"/>
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Zanimanje:" Margin="455,176,137,190"/>
-        <TextBox x:Name="ime" Grid.Row="0" Margin="209,90,381.6,296.2" IsReadOnly="True" />
-        <TextBox x:Name="prezime" Margin="209,125,381.6,261.2" IsReadOnly="True"/>
-        <TextBox  x:Name="jmbg" Margin="209,159,381.6,227.2" IsReadOnly="True"/>
-        <ComboBox x:Name="combo2"  Margin="209,193,381.6,193.2" IsReadOnly="True" IsEnabled="False">
+        <TextBox x:Name="ime" Grid.Row="0" Margin="209,90,381.6,296.2" IsReadOnly="True"  Background="OldLace" />
+        <TextBox x:Name="prezime" Margin="209,125,381.6,261.2" IsReadOnly="True" Background="OldLace"/>
+        <TextBox  x:Name="jmbg" Margin="209,159,381.6,227.2" IsReadOnly="True" Background="OldLace"/>
+        <ComboBox x:Name="combo2"  Margin="209,193,381.6,193.2" IsReadOnly="True" IsEnabled="False" Background="OldLace">
             <ComboBoxItem Content="M"/>
             <ComboBoxItem Content="Z"/>
         </ComboBox>
-        <ComboBox x:Name="combo"  Margin="209,227,381.6,159.2" SelectedIndex="0" IsReadOnly="True">
+        <ComboBox x:Name="combo"  Margin="209,227,381.6,159.2" SelectedIndex="0" IsReadOnly="True" Background="OldLace">
             <ComboBoxItem Content="STALAN"/>
             <ComboBoxItem Content="GUEST"/>
         </ComboBox>
-        <ComboBox x:Name="combo3"  Margin="209,363,381.6,21.2" IsReadOnly="True" IsEnabled="False">
+        <ComboBox x:Name="combo3"  Margin="209,363,381.6,21.2" IsReadOnly="True" IsEnabled="False" Background="OldLace">
             <ComboBoxItem Content="Neozenjen/Neudata"/>
             <ComboBoxItem Content="Ozenjen/Udata"/>
             <ComboBoxItem Content="Udovac/Udovica"/>
             <ComboBoxItem Content="Razveden/Razvedena"/>
             <ComboBoxItem Content="Neodredjeno"/>
         </ComboBox>
-        <TextBox x:Name="brojTelefona" Margin="209,263,381.6,123.2" IsReadOnly="True"/>
-        <TextBox x:Name="email" Margin="209,297,381.6,89.2" IsReadOnly="True"/>
-        <TextBox x:Name="adresa" Margin="209,330,381.6,56.2" IsReadOnly="True"/>
-        <TextBox x:Name="zanimanje" Margin="455,228,47,159" IsReadOnly="True"/>
+        <TextBox x:Name="brojTelefona" Margin="209,263,381.6,123.2" IsReadOnly="True" Background="OldLace"/>
+        <TextBox x:Name="email" Margin="209,297,381.6,89.2" IsReadOnly="True" Background="OldLace"/>
+        <TextBox x:Name="adresa" Margin="209,330,381.6,56.2" IsReadOnly="True" Background="OldLace"/>
+        <TextBox x:Name="zanimanje" Margin="455,228,47,159" IsReadOnly="True" Background="OldLace"/>
         <Label Content="Podaci o zanimanju:" HorizontalAlignment="Left" Margin="455,151,0,0" VerticalAlignment="Top" Width="132" Height="26" FontSize="14"/>
-        <Button Content="Alergeni" HorizontalAlignment="Left" Margin="517,55,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" />
+        <Button Content="Alergeni" Background="DodgerBlue" HorizontalAlignment="Left" Margin="525,28,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" />
         <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Izabrani lekar:" Margin="455,48,100.6,325.2"/>
-        <TextBox x:Name="izabraniLekar" Grid.Row="0" Margin="455,95,46.6,291.2"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="673,55,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="44" Click="Button_Click"/>
-        <Button Content="Recepti" HorizontalAlignment="Left" Margin="15,55,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" Click="Button_Click_1"/>
-        <Button Content="Uputi" HorizontalAlignment="Left" Margin="173,55,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1"/>
-        <Button Content="Anamneza" HorizontalAlignment="Left" Margin="346,55,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" Click="Button_Click_2"/>
+        <TextBox x:Name="izabraniLekar" Grid.Row="0" Margin="455,95,46.6,291.2" Background="OldLace"/>
+        <Button Content="Nazad" Background="DodgerBlue" HorizontalAlignment="Left" Margin="681,28,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="44" Click="Button_Click"/>
+        <Button Content="Nazad" Background="DodgerBlue" HorizontalAlignment="Left" Margin="681,28,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="44" Click="Button_Click"/>
+        <Button Content="Recepti" Background="DodgerBlue" HorizontalAlignment="Left" Margin="23,28,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" Click="Button_Click_1"/>
+        <Button Content="Uputi" Background="DodgerBlue" HorizontalAlignment="Left" Margin="181,28,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1"/>
+        <Button Content="Anamneza" Background="DodgerBlue" HorizontalAlignment="Left" Margin="354,28,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" Click="Button_Click_2"/>
 
     </Grid>
 </Window>

@@ -14,23 +14,32 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for DodajAnamnezu.xaml
+    /// Interaction logic for PrikazAnamneza.xaml
     /// </summary>
-    public partial class DodajAnamnezu : Window
+    public partial class PrikazAnamneza : Window
     {
-        public DodajAnamnezu()
+        int colNum = 0;
+        public PrikazAnamneza()
         {
             InitializeComponent();
         }
 
+        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            colNum++;
+            if (colNum == 3)
+                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DodajAnamnezu da = new DodajAnamnezu();
+            da.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DetaljiAnamneze da = new DetaljiAnamneze();
+            da.Show();
         }
     }
 }
