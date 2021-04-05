@@ -22,10 +22,11 @@ namespace Projekat
     {
         public Pacijent pacijent;
         public List<LekarskiRecept> tempRecepti;
-        public ZdravstveniKartonPacijent(Pacijent izbaraniPacijent)
+        public ZdravstveniKartonPacijent(Pacijent izabraniPacijent)
         {
             InitializeComponent();
-            this.pacijent = izbaraniPacijent;
+            this.pacijent = izabraniPacijent;
+            /* LEKARSKI RECEPTI */
             tempRecepti = new List<LekarskiRecept>();
             foreach(Pacijent p in PacijentiMenadzer.pacijenti)
             {
@@ -38,6 +39,21 @@ namespace Projekat
                 }
             }
             this.tabelaRecepata.ItemsSource = tempRecepti;
+
+            /* LICNI PODACI */
+            this.ime.Text = izabraniPacijent.ImePacijenta;
+            this.prezime.Text = izabraniPacijent.PrezimePacijenta;
+            this.jmbg.Text = izabraniPacijent.Jmbg.ToString();
+            if (izabraniPacijent.Pol.Equals("M"))
+                this.pol.Text = "M";
+            else
+                this.pol.Text = "Z";
+            this.brojTel.Text = izabraniPacijent.BrojTelefona.ToString(); 
+            this.email.Text = izabraniPacijent.Email;
+            this.adresa.Text = izabraniPacijent.AdresaStanovanja;
+            this.bracnoStanje.Text = izabraniPacijent.BracnoStanje.ToString();
+            //this.lekar.Text = izabraniPacijent.IzabraniLekar.ToString();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
