@@ -44,7 +44,7 @@ namespace Projekat
                 //TO DO: DODAJ ZA DOKTORA
                 string bolest = bol.Text;
                 string terapija = terap.Text;
-                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent, formatirano, bolest, terapija);
+                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, formatirano, bolest, terapija);
                
                 ZdravstveniKartonMenadzer.DodajAnamnezu(anamneza);
                 this.Close();

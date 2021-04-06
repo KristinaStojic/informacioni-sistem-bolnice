@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
          Title="Dodaj anamnezu" Height="602.667" Width="447.5">
-    <Grid Margin="0,0,4,1">
+    <Grid Margin="0,0,4,1" Background="#FF9AD8DE">
         <Label Content="Datum" HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
         <DatePicker Name ="datum" HorizontalAlignment="Left" Margin="216,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.871,0.065" Width="169"/>
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,107,0,0"/>

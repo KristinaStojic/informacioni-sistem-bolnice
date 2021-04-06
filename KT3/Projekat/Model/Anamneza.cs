@@ -18,10 +18,10 @@ namespace Projekat.Model
         public string Datum { get; set; }
         /*TO DO: DODAJ KONSTRUKTOR SA LEKAROM*/
 
-        public Anamneza(int id,Pacijent p,string dat,string bolest, string terapija)
+        public Anamneza(int id,int p,string dat,string bolest, string terapija)
         {
             this.IdAnamneze = id;
-            this.IdPacijenta = p.IdPacijenta;
+            this.IdPacijenta = p;
             this.Datum = dat;
             this.OpisBolesti = bolest;
             this.Terapija = terapija;

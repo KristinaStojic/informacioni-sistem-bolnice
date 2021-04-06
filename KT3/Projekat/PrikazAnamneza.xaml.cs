@@ -70,7 +70,7 @@ namespace Projekat
         {
            
             Anamneza izabranaAnamneza = (Anamneza)dataGridTermini.SelectedItem;
-            Console.WriteLine(pacijent.Karton.LekarskiRecepti.Count);
+            Console.WriteLine(pacijent.Karton.Anamneze.Count);
             Console.WriteLine(pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta);
             if (izabranaAnamneza != null)
             {
@@ -84,5 +84,7 @@ namespace Projekat
             }
            
         }
+
+        
     }
 }

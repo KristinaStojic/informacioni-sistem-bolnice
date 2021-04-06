@@ -50,7 +50,6 @@
         <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Izabrani lekar:" Margin="455,48,100.6,325.2"/>
         <TextBox x:Name="izabraniLekar" Grid.Row="0" Margin="455,95,46.6,291.2" Background="OldLace"/>
         <Button Content="Nazad" Background="DodgerBlue" HorizontalAlignment="Left" Margin="681,28,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="44" Click="Button_Click"/>
-        <Button Content="Nazad" Background="DodgerBlue" HorizontalAlignment="Left" Margin="681,28,0,0" Grid.Row="1" VerticalAlignment="Top" Width="99" Height="44" Click="Button_Click"/>
         <Button Content="Recepti" Background="DodgerBlue" HorizontalAlignment="Left" Margin="23,28,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" Click="Button_Click_1"/>
         <Button Content="Uputi" Background="DodgerBlue" HorizontalAlignment="Left" Margin="181,28,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1"/>
         <Button Content="Anamneza" Background="DodgerBlue" HorizontalAlignment="Left" Margin="354,28,0,0" VerticalAlignment="Top" Width="100" Height="44" RenderTransformOrigin="0.475,0.747" Grid.Row="1" Click="Button_Click_2"/>

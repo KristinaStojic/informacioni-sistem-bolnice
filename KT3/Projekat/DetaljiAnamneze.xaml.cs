@@ -26,12 +26,15 @@ namespace Projekat
             InitializeComponent();
             this.pacijent = izabraniPacijent;
 
-           
-            foreach (Anamneza anamneza in izabraniPacijent.Karton.Anamneze)
+            Console.WriteLine(pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta);
+            Console.WriteLine("Broj anamneza u kartonu: " + pacijent.Karton.Anamneze.Count);
+            foreach (Anamneza anamneza in pacijent.Karton.Anamneze)
             {
-                Console.WriteLine("Lista: " + anamneza.IdAnamneze + " Izabrana: " + izabranaAnamneza.IdAnamneze);
+                Console.WriteLine("Lista: " + anamneza.IdAnamneze + " Izabrana: " + izabranaAnamneza.IdAnamneze); 
+                Console.WriteLine("Lista: " + anamneza.OpisBolesti + " Izabrana: " + izabranaAnamneza.OpisBolesti);
                if(anamneza.IdAnamneze == izabranaAnamneza.IdAnamneze)
                 {
+                    Console.WriteLine("Lista: " + anamneza.IdAnamneze + " Izabrana: " + izabranaAnamneza.IdAnamneze);
                     this.datum.SelectedDate = DateTime.Parse(izabranaAnamneza.Datum);
                     this.bolest.Text = izabranaAnamneza.OpisBolesti;
                     this.terapija.Text = izabranaAnamneza.Terapija;

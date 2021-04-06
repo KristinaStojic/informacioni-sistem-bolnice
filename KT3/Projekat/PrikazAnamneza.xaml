@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="PrikazAnamneza" Height="401.981" Width="422.713">
-    <Grid Margin="0,0,4,0">
+    <Grid Margin="0,0,4,0" Background="#FF9AD8DE">
         <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
                   Height="270" Margin="27,28,0,0" VerticalAlignment="Top" Width="354" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">

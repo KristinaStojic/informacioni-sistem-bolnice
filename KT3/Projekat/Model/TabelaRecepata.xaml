@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:Projekat.Model"
         mc:Ignorable="d"
         Title="Recepti" Height="473.54" Width="609.373" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,20,15">
+    <Grid Margin="0,0,4,3" Background="#FF87EAFA">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid Grid.Column="0" x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="331" Margin="34,36,0,0" VerticalAlignment="Top" Width="535" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
+                  Height="331" Margin="34,36,0,0" VerticalAlignment="Top" Width="535" GridLinesVisibility="All" Background="#FF9AD8DE" FontSize="13">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="ID" Binding="{Binding IdRecepta}"  Width="50"/>
                 <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="105"/>
@@ -23,8 +23,8 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="151,386,0,0" Height="36" Click="Button_Click"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="321,386,0,0" Height="36" Click="Button_Click_1"/>
+        <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="151,386,0,0" Height="36" Click="Button_Click" Background="#FF293BEE" BorderBrush="#FFF1E7E7" Foreground="White"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="321,386,0,0" Height="36" Click="Button_Click_1" Background="#FF2B3DF0" BorderBrush="#FFE6D8D8" Foreground="White"/>
 
     </Grid>
 </Window>

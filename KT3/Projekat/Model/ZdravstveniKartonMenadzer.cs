@@ -124,7 +124,7 @@ namespace Projekat.Model
 
                 }
             }
-        }public static void DodajAnamnezu(Anamneza anamneza) /*TO DO: PROMIJENITI OVO KAD SE DODA FAJL SA KARTONIMA*/
+        }public static void DodajAnamnezu(Anamneza anamneza)
         {
             foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {

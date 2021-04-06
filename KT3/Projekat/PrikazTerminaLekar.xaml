@@ -5,23 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazTerminaLekar" Height="534.795" Width="979.965">
-    <Grid Background="LightSkyBlue" Margin="0,0,-6,-3">
+        Title="PrikazTerminaLekar" Height="534.795" Width="924.465">
+    <Grid Background="#FF87EAFA" Margin="0,0,-6,-4">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="1" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"   
+
+        <DataGrid Grid.Column="1" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"  
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="453" Margin="20,24,0,0" VerticalAlignment="Top" Width="691" GridLinesVisibility="All" Background="#e0fcff" FontSize="13">
+                  Height="453" Margin="20,24,0,0" VerticalAlignment="Top" Width="691" GridLinesVisibility="All" Background="#FFA4E4EA" FontSize="13" BorderBrush="DarkRed" Grid.ColumnSpan="2">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="ID" Binding="{Binding IdTermin}" />
+                <DataGridTextColumn Header="ID" Binding="{Binding IdTermin}"/>
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
                 <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
                 <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
@@ -34,11 +28,11 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Content="Zakaži termin" Background="DodgerBlue" HorizontalAlignment="Left" Margin="764,25,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" Grid.Column="1" />
-        <Button Content="Izmeni termin" Background="DodgerBlue" HorizontalAlignment="Left" Margin="764,122,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508" Grid.Column="1"/>
-        <Button Content="Nazad" Background="DodgerBlue" HorizontalAlignment="Left" Margin="764,412,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654" Grid.Column="1"/>
-        <Button Content="Otkaži termin" Background="DodgerBlue" HorizontalAlignment="Left" Margin="764,217,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508" Grid.Column="1"/>
-        <Button Content="Podaci o pacijentu" Background="DodgerBlue" HorizontalAlignment="Left" Margin="764,312,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_6" Grid.Column="1"/>
+        <Button Content="Zakaži termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,24,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" />
+        <Button Content="Izmeni termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,102,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="Nazad" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,344,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
+        <Button Content="Otkaži termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,182,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="Podaci o pacijentu" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,262,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_6"/>
 
 
 
