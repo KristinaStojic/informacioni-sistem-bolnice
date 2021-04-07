@@ -36,8 +36,31 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Pretrazite listu lekara po prezimenu" HorizontalAlignment="Left" Height="355" Margin="32,17,0,0" VerticalAlignment="Top" Width="318" RenderTransformOrigin="0.858,0.494">
-            <TextBox DockPanel.Dock="Top" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="16,16,22,291" Height="25" />
+        <GroupBox Header="Izaberite lekara" HorizontalAlignment="Left" Height="355" Margin="32,17,0,0" VerticalAlignment="Top" Width="318" RenderTransformOrigin="0.858,0.494">
+            <TextBox DockPanel.Dock="Top" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="16,16,22,291" Height="25">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Pretražite listu po prezimenu lekara" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
         </GroupBox>
         <ListView x:Name="dgSearch" Height="200" SelectionMode="Single" Margin="42,87,253,185.5" SelectionChanged="dgSearch_SelectionChanged" >
             <ListView.View>

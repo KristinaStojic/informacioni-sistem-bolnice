@@ -26,6 +26,17 @@ namespace Projekat
         {
             InitializeComponent();
             this.pacijent = izabraniPacijent;
+            this.sacuvajIzmene.Visibility = Visibility.Hidden;
+            this.odustani.Visibility = Visibility.Hidden;
+            this.ime.IsEnabled = false;
+            this.prezime.IsEnabled = false;
+            this.jmbg.IsEnabled = false;
+            this.pol.IsEnabled = false;
+            this.brojTel.IsEnabled = false;
+            this.email.IsEnabled = false;
+            this.adresa.IsEnabled = false;
+            this.bracnoStanje.IsEnabled = false;
+            this.zanimanje.IsEnabled = false;
             /* LEKARSKI RECEPTI */
             tempRecepti = new List<LekarskiRecept>();
             foreach(Pacijent p in PacijentiMenadzer.pacijenti)
@@ -39,7 +50,6 @@ namespace Projekat
                 }
             }
             this.tabelaRecepata.ItemsSource = tempRecepti;
-
             /* LICNI PODACI */
             this.ime.Text = izabraniPacijent.ImePacijenta;
             this.prezime.Text = izabraniPacijent.PrezimePacijenta;
@@ -52,8 +62,11 @@ namespace Projekat
             this.email.Text = izabraniPacijent.Email;
             this.adresa.Text = izabraniPacijent.AdresaStanovanja;
             this.bracnoStanje.Text = izabraniPacijent.BracnoStanje.ToString();
-            //this.lekar.Text = izabraniPacijent.IzabraniLekar.ToString();
-
+            this.zanimanje.Text = izabraniPacijent.Zanimanje;
+            if (izabraniPacijent.IzabraniLekar != null)
+            {
+                this.lekar.Text = izabraniPacijent.IzabraniLekar.ToString();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -72,5 +85,45 @@ namespace Projekat
 
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            // lekarski recepti
+            MessageBox.Show(sender.ToString(), e.ToString());
+            
+        }
+
+        private void izmeniBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.izmeniBtn.Visibility = Visibility.Hidden;
+            this.sacuvajIzmene.Visibility = Visibility.Visible;
+            this.odustani.Visibility = Visibility.Visible;
+
+            this.ime.IsEnabled = true;
+            this.prezime.IsEnabled = true;
+            this.jmbg.IsEnabled = true;
+            this.pol.IsEnabled = true;
+            this.brojTel.IsEnabled = true;
+            this.email.IsEnabled = true;
+            this.adresa.IsEnabled = true;
+            this.bracnoStanje.IsEnabled = true;
+            this.zanimanje.IsEnabled = true;
+        }
+
+        private void odustani_Click(object sender, RoutedEventArgs e)
+        {
+            this.sacuvajIzmene.Visibility = Visibility.Hidden;
+            this.odustani.Visibility = Visibility.Hidden;
+            this.izmeniBtn.Visibility = Visibility.Visible;
+
+            this.ime.IsEnabled = false;
+            this.prezime.IsEnabled = false;
+            this.jmbg.IsEnabled = false;
+            this.pol.IsEnabled = false;
+            this.brojTel.IsEnabled = false;
+            this.email.IsEnabled = false;
+            this.adresa.IsEnabled = false;
+            this.bracnoStanje.IsEnabled = false;
+            this.zanimanje.IsEnabled = false;
+        }
     }
 }
