@@ -83,10 +83,10 @@
                     <TextBox x:Name="lekar"
                         HorizontalAlignment="Left" Height="25" Margin="130,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
                     <Label Content="Izabrani lekar" Margin="0,323,188,-11" FontSize="15" HorizontalAlignment="Right" Width="99"/>
-                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Height="25"  RenderTransformOrigin="0.5,0.5" Width="145" Grid.Column="1" Margin="34,233,0,104">
+                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="145" Grid.Column="1" Margin="34,233,0,104">
                         <PasswordBox.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="-1"/>
+                                <ScaleTransform ScaleX="1"/>
                                 <SkewTransform/>
                                 <RotateTransform/>
                                 <TranslateTransform/>
