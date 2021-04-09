@@ -37,7 +37,7 @@ namespace Model
             {
                 if (Lekar != null)
                 {
-                    return Lekar.Ime + " " + Lekar.Prezime;
+                    return Lekar.ImeLek + " " + Lekar.PrezimeLek;
                 }
                 else
                 {

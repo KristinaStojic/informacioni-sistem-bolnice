@@ -120,8 +120,8 @@ namespace Projekat
                 imePac.Text = t.Pacijent.ImePacijenta;
                 prezimePac.Text = t.Pacijent.PrezimePacijenta;
                 jmbgPac.Text = t.Pacijent.Jmbg.ToString();
-                imeLek.Text = t.Lekar.Ime;
-                prezimeLek.Text = t.Lekar.Prezime;
+                imeLek.Text = t.Lekar.ImeLek;
+                prezimeLek.Text = t.Lekar.PrezimeLek;
             }
         }
     }
