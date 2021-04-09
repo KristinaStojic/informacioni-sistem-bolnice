@@ -86,16 +86,9 @@ namespace Projekat
             string[] podaci = p.Split(' ');
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
 
-            // promeni da bude metoda u PacijentMenadzer kad se merge uradi
-            /*foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
-            {
-                if (podaci[2].Equals(pac.Jmbg))
-                {
-                    pacijent = pac;
-                }
-            }*/
+            Termin t = new Termin(brojTermina, dat, vp, vk, tp, l, s, pacijent);
+            TerminMenadzer.ZakaziTerminLekar(t);
 
-           
             this.Close();
         }
 
