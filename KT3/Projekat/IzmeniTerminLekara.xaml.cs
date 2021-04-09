@@ -28,6 +28,17 @@ namespace Projekat
         public IzmeniTerminLekara(Termin izabraniTermin)
         {
             InitializeComponent();
+
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                pacijenti.Items.Add(p.ImePacijenta + " " + p.PrezimePacijenta + " " + p.Jmbg);
+            }
+
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                prostorije.Items.Add(s.Id);
+            }
+
             this.termin = izabraniTermin;
             if (izabraniTermin != null)
             {
@@ -36,7 +47,49 @@ namespace Projekat
                 this.vkk.Text = izabraniTermin.VremeKraja;
 
 
-                this.IDpacijenta.Text = izabraniTermin.Pacijent.IdPacijenta.ToString();
+                foreach(Pacijent pacij in PacijentiMenadzer.pacijenti)
+                {
+                    if(pacij.ImePacijenta.Equals(izabraniTermin.Pacijent.ImePacijenta) && pacij.PrezimePacijenta.Equals(izabraniTermin.Pacijent.PrezimePacijenta) && pacij.Jmbg == izabraniTermin.Pacijent.Jmbg && pacij.IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
+                    {
+     
+                        if(PacijentiMenadzer.pacijenti.IndexOf(pacij) == PacijentiMenadzer.pacijenti.Count - 1)
+                        {
+                            this.pacijenti.SelectedIndex = izabraniTermin.Pacijent.IdPacijenta - 1;
+                        }
+                        else
+                        {
+                            this.pacijenti.SelectedIndex = izabraniTermin.Pacijent.IdPacijenta;
+                        }
+                       
+                        Console.WriteLine("T: " + izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta + " " + izabraniTermin.Pacijent.Jmbg + " " +izabraniTermin.Pacijent.IdPacijenta);
+                        Console.WriteLine("P: " + pacij.ImePacijenta + " " + pacij.PrezimePacijenta + " " + pacij.Jmbg + " " +pacij.IdPacijenta);
+                        break;
+                    }
+                }
+
+
+
+               /* foreach (Pacijent pacij in PacijentiMenadzer.pacijenti)
+                {
+                    //if (pacij.ImePacijenta.Equals(izabraniTermin.Pacijent.ImePacijenta) && pacij.PrezimePacijenta.Equals(izabraniTermin.Pacijent.PrezimePacijenta) && pacij.Jmbg == izabraniTermin.Pacijent.Jmbg && pacij.IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
+                    //{
+                        for(int i = 0; i < pacijenti.Items.Count; i++)
+                        {
+                        if (pacijenti.Items.Equals(pacij.ImePacijenta + " " + pacij.PrezimePacijenta + " " + pacij.Jmbg))
+                        {
+                            this.pacijenti.SelectedIndex = izabraniTermin.Pacijent.IdPacijenta;
+                        }
+                    }
+                        
+                        Console.WriteLine("T: " + izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta + " " + izabraniTermin.Pacijent.Jmbg + " " + izabraniTermin.Pacijent.IdPacijenta);
+                        Console.WriteLine("P: " + pacij.ImePacijenta + " " + pacij.PrezimePacijenta + " " + pacij.Jmbg + " " + pacij.IdPacijenta);
+                        break;
+                   // }
+                }
+               */
+
+
+                // this.pacijenti.SelectedItem = izabraniTermin.Pacijent;
                 TipTermina tp;
                 if (izabraniTermin.tipTermina.Equals(TipTermina.Operacija))
                 {
@@ -56,81 +109,31 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //potvrdi
-            try
+            string vp = vpp.Text;
+            string vk = vkk.Text;
+            String dat = null;
+            DateTime selectedDate = (DateTime)dp.SelectedDate;
+            dat = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            TipTermina tp;
+            if (prostorije.Text.Equals("Pregled"))
             {
-
-
-                String formatted = null;
-                DateTime? selectedDate = dp.SelectedDate;
-                Console.WriteLine(selectedDate);
-                if (selectedDate.HasValue)
-                {
-                    formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-                }
-                String vp = vpp.Text;
-                String vk = vkk.Text;
-                TipTermina tp;
-                if (tipPregleda.Text.Equals("Pregled"))
-                {
-                    tp = TipTermina.Pregled;
-                }
-                else
-                {
-                    tp = TipTermina.Operacija;
-                }
-                // int idLek = int.Parse(idlekara.Text);
-                // Lekar l = new Lekar(5, "Filip", "Filipovic");
-
-             //   List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-                int idPac = int.Parse(IDpacijenta.Text);
-                Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp, termin.Lekar);
-                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
-                {
-                    if (p.IdPacijenta == idPac)
-                    {
-                        t.Pacijent = p;
-                    }
-                }
-
-                int idSale = int.Parse(prostorije.Text);
-
-                foreach (Sala sala in SaleMenadzer.NadjiSveSale())
-                {
-                    if (sala.Id == idSale)
-                    {
-                        t.Prostorija = sala;
-
-                    }
-                }
-
-
-               /* if (PacijentiMenadzer.PronadjiPoId(idPac) == null)
-                {
-                    MessageBox.Show("Uneli ste nepostojećeg pacijenta!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-               
-               
-                
-                if (SaleMenadzer.NadjiSaluPoId(idSale) == null)
-                {
-                    MessageBox.Show("Uneli ste nepostojeću prostoriju!", "Proverite podatke", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-               
-                if(sala.Status == status.Zauzeta)
-                {
-                    MessageBox.Show("Izabrana sala je zauzeta u tom terminu", "Promenite salu", MessageBoxButton.OK, MessageBoxImage.Error);
-                }*/
-              
-                TerminMenadzer.IzmeniTerminLekar(termin, t);
-                this.Close();
+                tp = TipTermina.Pregled;
             }
-            catch (System.Exception)
+            else
             {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                tp = TipTermina.Operacija;
             }
+            Lekar l = new Lekar(5, "Filip", "Filipovic");
+            Sala s = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+            String p = pacijenti.Text;
+            string[] podaci = p.Split(' ');
+            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
+
+            
+             Termin t = new Termin(termin.IdTermin, dat, vp, vk, tp, l, s, pacijent);
+             TerminMenadzer.IzmeniTerminLekar(termin,t);
+            
+            this.Close();
         }
 
 

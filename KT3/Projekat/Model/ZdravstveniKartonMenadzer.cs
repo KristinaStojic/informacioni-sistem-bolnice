@@ -50,48 +50,109 @@ namespace Projekat.Model
             filestream.Close();
         }*/
 
-        public static int GenerisanjeIdRecepta()
+        public static int GenerisanjeIdRecepta(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-
-            for (id = 1; id <= recepti.Count; id++)
+            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
             {
-                foreach (LekarskiRecept p in recepti)
+                if(pac.IdPacijenta == idPac)
                 {
-                    if (p.IdRecepta.Equals(id))
+                    for (id = 1; id <= pac.Karton.LekarskiRecepti.Count; id++)
                     {
-                        pomocna = true;
-                        break;
+                        foreach (LekarskiRecept p in pac.Karton.LekarskiRecepti)
+                        {
+                            if (p.IdRecepta.Equals(id))
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
                     }
                 }
-
-                if (!pomocna)
-                {
-                    return id;
-                }
-                pomocna = false;
             }
+            
+
+            return id;
+        }public static int GenerisanjeIdAnamneze(int idPac)
+        {
+            bool pomocna = false;
+            int id = 1;
+            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
+            {
+                if(pac.IdPacijenta == idPac)
+                {
+                    for (id = 1; id <= pac.Karton.Anamneze.Count; id++)
+                    {
+                        foreach (Anamneza p in pac.Karton.Anamneze)
+                        {
+                            if (p.IdAnamneze.Equals(id))
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
+                }
+            }
+            
 
             return id;
         }
 
-        public static void DodajRecept(LekarskiRecept recept) /*TO DO: PROMIJENITI OVO KAD SE DODA FAJL SA KARTONIMA*/
+        public static void DodajRecept(LekarskiRecept recept)
         {
-            recepti.Add(recept);
-           // kartoni.Add(new ZdravstveniKarton(1));
-           // kartoni.Add(new ZdravstveniKarton(3));
-            foreach (ZdravstveniKarton karton in kartoni)
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {
-               // Console.WriteLine(karton.PrezimePacijenta);
-                if(karton.IdPacijenta == recept.idPacijenta)
-                {
-                        List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                        karton.LekarskiRecepti = lr;
-                        karton.LekarskiRecepti.Add(recept);
-                        Console.WriteLine("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
-                        TabelaRecepata.PrikazRecepata.Add(recept);
+                if(pacijent.IdPacijenta == recept.idPacijenta)
+                {                    
+                    pacijent.Karton.LekarskiRecepti.Add(recept);
+                    TabelaRecepata.PrikazRecepata.Add(recept);
 
+                }
+            }
+        }
+        
+        public static void DodajAnamnezu(Anamneza anamneza)  //OVO RADI
+        {
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if(pacijent.IdPacijenta == anamneza.IdPacijenta)
+                {                    
+                    pacijent.Karton.Anamneze.Add(anamneza);
+                    Console.WriteLine("DODALA SE ANAMNEZA, SADA IH IMA U LISTI: " + pacijent.Karton.Anamneze.Count);
+                    PrikazAnamneza.TabelaAnamneza.Add(anamneza);
+                    Console.WriteLine("DODALA SE ANAMNEZA, SADA IH IMA U TABELI: " + PrikazAnamneza.TabelaAnamneza.Count);
+                }
+            }
+        }
+
+        public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
+        {
+            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if(pacijent.IdPacijenta == stara.IdPacijenta)
+                {
+                    foreach(Anamneza a in pacijent.Karton.Anamneze)
+                    {
+                        if(a.IdAnamneze == stara.IdAnamneze)
+                        {
+                            a.OpisBolesti = nova.OpisBolesti;
+                            a.Terapija = nova.Terapija;
+                        }
+                    }
                 }
             }
         }
