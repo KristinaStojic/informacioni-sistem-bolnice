@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -42,14 +43,19 @@ namespace Projekat
             string vp = vremePocetka.Text;
             string vk = vremeKraja.Text;
 
-           /* if (Int32.Parse(vp) >= Int32.Parse(vk))
+
+            /*if (Convert.ToInt32(vp) >= Convert.ToInt32(vk))
             {
                 MessageBox.Show("Neispravno vreme pocetka i kraja");
             }*/
-           
-            String dat = null;
-            DateTime selectedDate = (DateTime)datum.SelectedDate;
-            dat = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            String formatted = null;
+            DateTime? selectedDate = datum.SelectedDate;
+            Console.WriteLine(selectedDate);
+            if (selectedDate.HasValue)
+            {
+                formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
 
             TipTermina tp;
             if (tip.Text.Equals("Pregled"))
@@ -63,31 +69,44 @@ namespace Projekat
 
             Lekar l = new Lekar(5, "Filip", "Filipovic");
 
-            Sala s =  SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
             String p = pacijenti.Text;
-
             string[] podaci = p.Split(' ');
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Int32.Parse(podaci[2]));
 
-            // promeni da bude metoda u PacijentMenadzer kad se merge uradi
-            /*foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            Sala s = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);  
+            Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l, s, pacijent);
+
+            int flag = 0;
+            if (s.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
             {
-                if (podaci[2].Equals(pac.Jmbg))
+                foreach (ZauzeceSale zauzece in s.zauzetiTermini)
                 {
-                    pacijent = pac;
+                    if (t.Prostorija.Id.Equals(s.Id) && formatted.Equals(zauzece.datumTermina) && vp.Equals(zauzece.pocetakTermina) && vk.Equals(zauzece.krajTermina))
+                    {
+                        MessageBox.Show("Vec postoji termin");
+                        this.Close();
+                        flag = 1;                    
+                    }
                 }
-            }*/
-            
-            if (TerminMenadzer.SlobodanTermin(dat, vp,vk,s) == false)
-            {
-                MessageBox.Show("Vec postoji zakazan termin u to vreme u toj prostoriji");
+
+                if (flag == 0)
+                {
+                    TerminMenadzer.ZakaziTerminSekretar(t);
+                    ZauzeceSale z = new ZauzeceSale(vp, vk, formatted, t.IdTermin);
+                    s.zauzetiTermini.Add(z);
+                    //SaleMenadzer.sacuvajIzmjene();
+                }
+
             }
-            else
+            else    // ako ne postoje zauzeti termini
             {
-                Termin t = new Termin(brojTermina, dat, vp, vk, tp, l, s, pacijent);
                 TerminMenadzer.ZakaziTerminSekretar(t);
-            }   
-                this.Close();
+                ZauzeceSale z = new ZauzeceSale(vp, vk, formatted, t.IdTermin);
+                s.zauzetiTermini.Add(z);
+               // SaleMenadzer.sacuvajIzmjene();        
+            }
+
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -98,11 +117,11 @@ namespace Projekat
         // kreiranje guest naloga
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            DodajPacijentaGuest dodavanje = new DodajPacijentaGuest();
+            DodajPacijentaGuest dodavanje = new DodajPacijentaGuest(this);  // prosledujumeo u DodajPacijentaGuest konstrukotr klase ZakaziTermniSekretar
             dodavanje.Show();
         }
 
-        private void Button_LostFocus(object sender, RoutedEventArgs e)
+        public void AzurirajComboBox()
         {
             pacijenti.Items.Clear();
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
@@ -110,7 +129,7 @@ namespace Projekat
                 pacijenti.Items.Add(p.ImePacijenta + " " + p.PrezimePacijenta + " " + p.Jmbg);
             }
             int ukupno = PacijentiMenadzer.pacijenti.Count;
-            pacijenti.SelectedIndex = ukupno-1;
+            pacijenti.SelectedIndex = ukupno - 1;
         }
     }
 }

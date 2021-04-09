@@ -12,7 +12,7 @@
             <RowDefinition Height="67*"/>
         </Grid.RowDefinitions>
         <Label Content="Zdravstveni karton" HorizontalAlignment="Left" Margin="251,14,0,0" VerticalAlignment="Top" Height="38" Width="161" FontWeight="Bold" FontSize="17"/>
-        <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="365" Margin="15,46,0,0" VerticalAlignment="Top" Width="416" FontSize="14" Grid.RowSpan="2"/>
+        <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="365" Margin="11,46,0,0" VerticalAlignment="Top" Width="416" FontSize="14" Grid.RowSpan="2"/>
         <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="60,82,495.6,285.2"/>
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Prezime pacijenta:" Margin="60,116,495.6,251.2"/>
         <Label FontSize="15" VerticalContentAlignment="Center" Content="JMBG:" Margin="60,151,424.6,216.2"/>
@@ -47,7 +47,7 @@
         <TextBox x:Name="zanimanje" Margin="455,235,46.6,132.2"/>
         <Label Content="Podaci o zanimanju:" HorizontalAlignment="Left" Margin="455,159,0,0" VerticalAlignment="Top" Width="132" Height="26" FontSize="14"/>
         <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Izbrani lekar:" Margin="455,56,100.6,311.2"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="669,9.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="96" Height="35" Click="Button_Click"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" Margin="655,9.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="110" Height="47" Click="Button_Click" Background="#FFA2D1F0"/>
         <ComboBox x:Name="lekari"  Margin="455,95,46.6,272.2" SelectedIndex="0">
         </ComboBox>
 

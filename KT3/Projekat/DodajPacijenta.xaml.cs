@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,6 +25,7 @@ namespace Projekat
         public DodajPacijenta()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -49,7 +50,7 @@ namespace Projekat
             {
                 pol = pol.Z;
             }
-            
+
             // ukoliko je guest nalog
             if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals(""))  // bice izmene ?
             {
@@ -165,6 +166,16 @@ namespace Projekat
                 combo3.IsEnabled = true;
             }
         }
+
+        private void jmbg_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!PacijentiMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            {
+                MessageBox.Show("JMBG vec postoji");
+                jmbg.Text = "";
+            }
+        }
+
     }
 }
 

@@ -19,9 +19,17 @@ namespace Projekat
     /// </summary>
     public partial class DodajPacijentaGuest : Window
     {
+        public ZakaziTerminSekretar z;
+
         public DodajPacijentaGuest()
         {
             InitializeComponent();
+        }       
+
+        public DodajPacijentaGuest(ZakaziTerminSekretar terminSekretar)
+        {
+            InitializeComponent();
+            this.z = terminSekretar;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -39,10 +47,8 @@ namespace Projekat
 
             int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
             Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
-            //PacijentiMenadzer.DodajNalog(p1);
-            //PacijentiMenadzer.pacijenti.Insert(0, p1);
             PacijentiMenadzer.pacijenti.Add(p1);
-
+            z.AzurirajComboBox();
             this.Close();
         }
 

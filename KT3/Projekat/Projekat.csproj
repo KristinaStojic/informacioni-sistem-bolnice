@@ -362,5 +362,15 @@
     <Resource Include="slike\search.png" />
     <Resource Include="slike\trash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\icons8-pull-down-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\right-arrow1.png" />
+    <Resource Include="slike\right-arrow2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\cancel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

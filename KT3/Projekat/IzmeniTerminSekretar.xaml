@@ -105,8 +105,8 @@
         <ComboBox x:Name="lekari" Grid.Column="2" Grid.Row="8"  Margin="16.2,11.4,26.4,10.2" SelectedIndex="0">
             <ComboBoxItem>Filip Filipovic</ComboBoxItem>
         </ComboBox>
-        <Button Grid.Column="1" Grid.Row="10" Click="Button_Click" Content="Potvrdi" Margin="10.2,9.4,32.8,11"/>
-        <Button Grid.Column="2" Grid.Row="10"  Click="Button_Click_1" Content="Odustani" Margin="16.2,9.4,26.4,11"/>
-        <Button Grid.Column="2" Grid.Row="7"  Click="Button_Click_2" Content="GUEST" Margin="16.2,9.4,26.4,11"  LostFocus="Button_LostFocus"/>
+        <Button Grid.Column="1" Grid.Row="10" Click="Button_Click" Content="Potvrdi" Margin="10.2,9.4,32.8,11" Background="#FFA3DADE" />
+        <Button Grid.Column="2" Grid.Row="10"  Click="Button_Click_1" Content="Odustani" Margin="16.2,9.4,26.4,11" Background="#FFA3DADE" />
+        <Button Grid.Column="2" Grid.Row="7"  Click="Button_Click_2" Content="GUEST" Margin="16.2,9.4,26.4,11" Background="#FF5DBFC5" />
     </Grid>
 </Window>

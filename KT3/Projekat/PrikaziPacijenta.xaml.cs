@@ -39,18 +39,23 @@ namespace Projekat
             }
         }
 
+        // nazad
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            this.Hide();
+            // dodato
+            SaleMenadzer.sacuvajIzmjene();
+            this.Close();
         }
 
+        // dodavanje
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             DodajPacijenta dodavanje = new DodajPacijenta();
             dodavanje.Show();
         }
 
+        // izmena
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Pacijent zaIzmenu = (Pacijent)TabelaPacijenata.SelectedItem;
@@ -65,7 +70,8 @@ namespace Projekat
                 MessageBox.Show("Niste selektovali pacijenta kojeg zelite da izmenite!");
             }
         }
-
+        
+        // brisanje
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             var zaBrisanje = TabelaPacijenata.SelectedItem;
@@ -73,12 +79,13 @@ namespace Projekat
             {
                 PacijentiMenadzer.ObrisiNalog((Pacijent)zaBrisanje);
             }
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
+            // dodato
+            SaleMenadzer.sacuvajIzmjene();
         }
 
         // otvaranje zdravstvenog kartona pacijenta (uvid u zdravstveni karton)
@@ -102,6 +109,43 @@ namespace Projekat
             {
                 MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
             }
+        }
+
+        // X na prikazu naloga pacijenta
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            canvas2.Visibility = Visibility.Hidden;
+        }
+
+        private void TabelaPacijenata_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            canvas2.Visibility = Visibility.Visible;
+            Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
+
+            if (p != null)
+            {
+                ime.Text = p.ImePacijenta;
+                prezime.Text = p.PrezimePacijenta;
+                jmbg.Text = p.Jmbg.ToString();
+                pol.Text = p.Pol.ToString();
+                status.Text = p.StatusNaloga.ToString();
+                telefon.Text = p.BrojTelefona.ToString();
+                email.Text = p.Email;
+                adresa.Text = p.AdresaStanovanja;
+                stanje.Text = p.BracnoStanje.ToString();
+                zanimanje.Text = p.Zanimanje;
+            }
+        }
+
+        // button termini
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            SaleMenadzer.sacuvajIzmjene();
+
+            this.Close();
+            PrikaziTerminSekretar p = new PrikaziTerminSekretar();
+            p.Show();
         }
     }
 }
