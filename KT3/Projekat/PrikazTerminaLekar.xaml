@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazTerminaLekar" Height="534.795" Width="924.465">
+        Title="Pregledi i operacije" Height="600" Width="1100">
     <Grid Background="#FF87EAFA" Margin="0,0,-6,-4">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <DataGrid Grid.Column="1" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"  
+
+
+        <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"  
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="453" Margin="20,24,0,0" VerticalAlignment="Top" Width="691" GridLinesVisibility="All" Background="#FFA4E4EA" FontSize="13" BorderBrush="DarkRed" Grid.ColumnSpan="2">
+                  Height="375" Margin="20,83,0,0" VerticalAlignment="Top" Width="775" GridLinesVisibility="All" Background="#FFA4E4EA" FontSize="13" BorderBrush="DarkRed">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="ID" Binding="{Binding IdTermin}"/>
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
@@ -28,15 +27,22 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Content="Zakaži termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,24,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" />
-        <Button Content="Izmeni termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,102,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508"/>
-        <Button Content="Nazad" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,344,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
-        <Button Content="Otkaži termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,182,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
-        <Button Content="Podaci o pacijentu" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="716,262,0,0" VerticalAlignment="Top" Width="161" Height="60" Click="Button_Click_6"/>
-
-
-
-
+        <Button Content="          Zakaži termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="20,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_1" />
+        <Button Content="           Izmeni termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="181,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="Nazad" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="665,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
+        <Button Content="        Otkaži termin" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="342,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="           Karton pacijenta" BorderBrush="DarkRed" Foreground="White" Background="DodgerBlue" HorizontalAlignment="Left" Margin="504,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_6" RenderTransformOrigin="-1.488,3.89"/>
+        <ScrollBar HorizontalAlignment="Left" Margin="778,110,0,0" VerticalAlignment="Top" Width="17" Height="348"/>
+        <Label Content="Zakazani termini" HorizontalAlignment="Left" Margin="20,33,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="375" VerticalAlignment="Top" Width="243" Margin="825,83,0,0">
+        </Border>
+        <Image Source="slike/grafik1.png" Width="163" HorizontalAlignment="Center" Margin="866,178,70.6,213.4" RenderTransformOrigin="0.475,0.468"/>
+        <Label Content="    Grafik 1. Zakazani termini&#xD;&#xA;" HorizontalAlignment="Left" Margin="866,361,0,0" VerticalAlignment="Top" Width="163"/>
+        <Image Source="slike/plus.png" Width="20" HorizontalAlignment="Center" Margin="30,496,1049.6,55.4" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="slike/pen.png" Width="27" HorizontalAlignment="Center" Margin="194,496,878.6,55.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="slike/obrisi.jpg" Width="27" HorizontalAlignment="Center" Margin="351,496,721.6,55.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="slike/osoba.jpg" Width="27" HorizontalAlignment="Center" Margin="513,496,559.6,55.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="/slike/nazad.jpg" Width="27" HorizontalAlignment="Center" Margin="675,496,397.6,55.4" RenderTransformOrigin="0.574,0.51"/>
 
     </Grid>
 </Window>
