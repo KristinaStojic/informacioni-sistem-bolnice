@@ -65,6 +65,9 @@
     <Compile Include="DodajOpremu.xaml.cs">
       <DependentUpon>DodajOpremu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajPacijentaGuest.xaml.cs">
+      <DependentUpon>DodajPacijentaGuest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzmeniPacijenta.xaml.cs">
       <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajOpremu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajPacijentaGuest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -362,6 +369,16 @@
     <Resource Include="slike\plus.png" />
     <Resource Include="slike\search.png" />
     <Resource Include="slike\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\icons8-pull-down-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\right-arrow1.png" />
+    <Resource Include="slike\right-arrow2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\cancel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="doktor.png" />

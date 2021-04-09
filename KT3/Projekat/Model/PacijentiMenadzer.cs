@@ -59,9 +59,18 @@ namespace Model
                     for (int j = 0; j < TerminMenadzer.termini.Count; j++)
                     {
                         if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
-                        {
+                        {   
+                            foreach (Sala s in SaleMenadzer.sale)
+                            {
+                                if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
+                                {
+                                    s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
+                                    //SaleMenadzer.sacuvajIzmjene();
+                                }
+                            }
+
                             TerminMenadzer.termini.RemoveAt(j);
-                            j--;      
+                            j--;
                         }
                     }
                 }
@@ -130,5 +139,17 @@ namespace Model
             serializer.Serialize(filestream, pacijenti);
             filestream.Close();
         }
+
+        public static bool JedinstvenJmbg(int jmbg)
+        {
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                if (p.Jmbg == jmbg)
+                {
+                    return false;
+                }
+            }
+            return true;         
+        } 
     }
 }
