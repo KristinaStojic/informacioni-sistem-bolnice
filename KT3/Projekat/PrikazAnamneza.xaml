@@ -5,18 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazAnamneza" Height="401.981" Width="422.713" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,4,0" Background="#FF9AD8DE">
+        Title="PrikazAnamneza" Height="550" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,-6.4,-1.2"  Background="LightSkyBlue">
         <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="270" Margin="27,28,0,0" VerticalAlignment="Top" Width="354" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
+                  Height="353" Margin="24,77,0,0" VerticalAlignment="Top" Width="543" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="ID pregleda" Binding="{Binding IdAnamneze}" Width="100" />
-                <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="122" />
-                <DataGridTextColumn Header="Lekar" Width="130"/> <!--Binding ="{Binding IdLekara}"-->
+                <DataGridTextColumn Width="130" Header="Redni broj pregleda" Binding="{Binding IdAnamneze}"/>
+                <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="160" />
+                <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Width="252"/>
+                <!--Binding ="{Binding IdLekara}"-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="94,314,0,0" VerticalAlignment="Top" Width="87" Click="Button_Click" Height="35"/>
-        <Button Content="Detaljnije" HorizontalAlignment="Left" Margin="228,314,0,0" VerticalAlignment="Top" Width="80" Height="35" Click="Button_Click_1"/>
+        <Button   Background="#FF6895C5" Content="Nova anamneza" HorizontalAlignment="Left" Margin="168,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" Click="Button_Click" RenderTransformOrigin="0.706,4.291"/>
+        <Button Background="#FF6895C5" Content="Detalji" HorizontalAlignment="Left" Margin="24,459,0,0" VerticalAlignment="Top" Width="115" Height="38" Click="Button_Click_1"/>
+        <Label Content="Anamneze" HorizontalAlignment="Left" Margin="24,23,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Button  Background="#FF6895C5" Content="Izveštaj" HorizontalAlignment="Left" Margin="309,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" RenderTransformOrigin="0.706,4.291"/>
+        <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="452,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" RenderTransformOrigin="0.706,4.291"/>
     </Grid>
 </Window>

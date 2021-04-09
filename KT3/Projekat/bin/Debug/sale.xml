@@ -60,5 +60,7 @@
     <Id>4</Id>
     <brojSale>10</brojSale>
     <Namjena>ghgh</Namjena>
+    <Oprema />
+    <zauzetiTermini />
   </Sala>
 </ArrayOfSala>

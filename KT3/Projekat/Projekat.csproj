@@ -363,5 +363,26 @@
     <Resource Include="slike\search.png" />
     <Resource Include="slike\trash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="doktor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="grafik1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="obrisi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="osoba.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="nazad.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

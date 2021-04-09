@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
          Title="Dodaj anamnezu" Height="602.667" Width="447.5">
-    <Grid Margin="0,0,4,1" Background="#FF9AD8DE">
+    <Grid Margin="0,0,4,1"  Background="LightSkyBlue">
         <Label Content="Datum" HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
         <DatePicker Name ="datum" HorizontalAlignment="Left" Margin="216,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.871,0.065" Width="169"/>
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,107,0,0"/>
@@ -15,8 +15,8 @@
         <Label Content="Opis bolesti" HorizontalAlignment="Left" Margin="31,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
         <TextBox Name="terap" HorizontalAlignment="Left" Height="134" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,334,0,0"/>
         <Label Content="Terapija" HorizontalAlignment="Left" Margin="31,334,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" Margin="128,502,0,0" VerticalAlignment="Top" Height="34" Width="64" Click="Button_Click"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" Margin="245,502,0,0" VerticalAlignment="Top" Height="34" Width="64" Click="Button_Click_1"/>
+        <Button Background="#FF6895C5" Content="Sacuvaj" HorizontalAlignment="Left" Margin="128,502,0,0" VerticalAlignment="Top" Height="34" Width="64" Click="Button_Click"/>
+        <Button Background="#FF6895C5" Content="Odustani" HorizontalAlignment="Left" Margin="245,502,0,0" VerticalAlignment="Top" Height="34" Width="64" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
