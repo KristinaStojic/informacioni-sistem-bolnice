@@ -24,4 +24,16 @@
     <Staticka>false</Staticka>
     <IdOpreme>4</IdOpreme>
   </Oprema>
+  <Oprema>
+    <NazivOpreme>sdsad</NazivOpreme>
+    <Kolicina>10</Kolicina>
+    <Staticka>true</Staticka>
+    <IdOpreme>5</IdOpreme>
+  </Oprema>
+  <Oprema>
+    <NazivOpreme>rukavice</NazivOpreme>
+    <Kolicina>10</Kolicina>
+    <Staticka>false</Staticka>
+    <IdOpreme>6</IdOpreme>
+  </Oprema>
 </ArrayOfOprema>

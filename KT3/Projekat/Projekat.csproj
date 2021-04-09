@@ -56,8 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Anamneza.xaml.cs">
-      <DependentUpon>Anamneza.xaml</DependentUpon>
+    <Compile Include="DetaljiAnamneze.xaml.cs">
+      <DependentUpon>DetaljiAnamneze.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajAnamnezu.xaml.cs">
       <DependentUpon>DodajAnamnezu.xaml</DependentUpon>
@@ -83,6 +83,7 @@
     <Compile Include="IzmjeniOpremu.xaml.cs">
       <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Anamneza.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
     <Compile Include="Model\Oprema.cs" />
     <Compile Include="Model\OpremaMenadzer.cs" />
@@ -103,6 +104,9 @@
     </Compile>
     <Compile Include="PreraspodjelaDinamicke.xaml.cs">
       <DependentUpon>PreraspodjelaDinamicke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikazAnamneza.xaml.cs">
+      <DependentUpon>PrikazAnamneza.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikazDinamicke.xaml.cs">
       <DependentUpon>PrikazDinamicke.xaml</DependentUpon>
@@ -152,9 +156,9 @@
     <Compile Include="ZakaziTerminSekretar.xaml.cs">
       <DependentUpon>ZakaziTerminSekretar.xaml</DependentUpon>
     </Compile>
-    <Page Include="Anamneza.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="DetaljiAnamneze.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajAnamnezu.xaml">
       <SubType>Designer</SubType>
@@ -231,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PreraspodjelaDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazAnamneza.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,6 +362,27 @@
     <Resource Include="slike\plus.png" />
     <Resource Include="slike\search.png" />
     <Resource Include="slike\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="doktor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="grafik1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="obrisi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="osoba.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="nazad.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

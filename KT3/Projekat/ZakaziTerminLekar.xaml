@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="ZakaziTerminLekar" Height="517" Width="647">
-    <Grid Margin="0,0,4,0">
+    <Grid Margin="0,0,4,0" Background="#FF9AD8DE">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
