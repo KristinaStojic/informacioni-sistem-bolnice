@@ -452,7 +452,7 @@
           <IdPacijenta>11</IdPacijenta>
           <IdLekara>0</IdLekara>
           <OpisBolesti>KJSDLKAJ</OpisBolesti>
-          <Terapija>SDLKFJSDLKFJL</Terapija>
+          <Terapija>provjera</Terapija>
           <Datum>04/29/2021</Datum>
         </Anamneza>
         <Anamneza>
@@ -712,7 +712,7 @@
           <IdPacijenta>14</IdPacijenta>
           <IdLekara>0</IdLekara>
           <OpisBolesti>CETVRTA</OpisBolesti>
-          <Terapija>CETVRTA</Terapija>
+          <Terapija>PETA</Terapija>
           <Datum>04/30/2021</Datum>
         </Anamneza>
       </Anamneze>

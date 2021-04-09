@@ -138,5 +138,23 @@ namespace Projekat.Model
                 }
             }
         }
+
+        public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
+        {
+            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if(pacijent.IdPacijenta == stara.IdPacijenta)
+                {
+                    foreach(Anamneza a in pacijent.Karton.Anamneze)
+                    {
+                        if(a.IdAnamneze == stara.IdAnamneze)
+                        {
+                            a.OpisBolesti = nova.OpisBolesti;
+                            a.Terapija = nova.Terapija;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

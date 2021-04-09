@@ -28,5 +28,11 @@ namespace Projekat.Model
         }
 
         public Anamneza () { }
+        
+        public Anamneza (string ter, string bol)
+        {
+            this.Terapija = ter;
+            this.OpisBolesti = bol;
+        }
     }
 }

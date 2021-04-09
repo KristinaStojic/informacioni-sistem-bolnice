@@ -21,9 +21,11 @@ namespace Projekat
     public partial class DetaljiAnamneze : Window
     {
         Pacijent pacijent;
+        Anamneza stara;
         public DetaljiAnamneze(Anamneza izabranaAnamneza)
         {
             InitializeComponent();
+            this.stara = izabranaAnamneza;
             foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
             {
                 if(pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
@@ -38,11 +40,20 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //sacuvaj
+            string ter = terapija.Text;
+            string bol = bolest.Text;
+
+            Anamneza nova = new Anamneza(ter, bol);
+            ZdravstveniKartonMenadzer.IzmeniAnamnezu(stara, nova);
+
+            
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            //odustani
             this.Close();
         }
     }
