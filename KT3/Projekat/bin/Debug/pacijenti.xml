@@ -179,4 +179,22 @@
       </Anamneze>
     </Karton>
   </Pacijent>
+  <Pacijent>
+    <IdPacijenta>6</IdPacijenta>
+    <ImePacijenta>Kristina</ImePacijenta>
+    <PrezimePacijenta>Stojic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>5446</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>456456</BrojTelefona>
+    <Email>kris</Email>
+    <AdresaStanovanja>ns</AdresaStanovanja>
+    <Zanimanje>student</Zanimanje>
+    <BracnoStanje>Neudata</BracnoStanje>
+    <Karton>
+      <IdPacijenta>6</IdPacijenta>
+      <LekarskiRecepti />
+      <Anamneze />
+    </Karton>
+  </Pacijent>
 </ArrayOfPacijent>

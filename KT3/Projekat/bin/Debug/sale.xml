@@ -14,7 +14,14 @@
         <IdOpreme>4</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini />
+    <zauzetiTermini>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>04/10/2021</datumTermina>
+        <idTermina>5</idTermina>
+      </ZauzeceSale>
+    </zauzetiTermini>
   </Sala>
   <Sala>
     <Status>Slobodna</Status>

@@ -208,4 +208,58 @@
     </Prostorija>
     <tipTermina>Operacija</tipTermina>
   </Termin>
+  <Termin>
+    <IdTermin>5</IdTermin>
+    <VremePocetka>07:00</VremePocetka>
+    <VremeKraja>07:30</VremeKraja>
+    <Lekar>
+      <IdLekara>5</IdLekara>
+      <ImeLek>Filip</ImeLek>
+      <PrezimeLek>Filipovic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>6</IdPacijenta>
+      <ImePacijenta>Kristina</ImePacijenta>
+      <PrezimePacijenta>Stojic</PrezimePacijenta>
+      <Pol>Z</Pol>
+      <Jmbg>5446</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>456456</BrojTelefona>
+      <Email>kris</Email>
+      <AdresaStanovanja>ns</AdresaStanovanja>
+      <Zanimanje>student</Zanimanje>
+      <BracnoStanje>Neudata</BracnoStanje>
+      <Karton>
+        <IdPacijenta>6</IdPacijenta>
+        <LekarskiRecepti />
+        <Anamneze />
+      </Karton>
+    </Pacijent>
+    <Datum>04/10/2021</Datum>
+    <Prostorija>
+      <Status>Slobodna</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>1</Id>
+      <brojSale>1</brojSale>
+      <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>spric</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>07:00</pocetakTermina>
+          <krajTermina>07:30</krajTermina>
+          <datumTermina>04/10/2021</datumTermina>
+          <idTermina>5</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
 </ArrayOfTermin>
