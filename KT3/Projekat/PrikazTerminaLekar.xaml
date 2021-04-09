@@ -32,7 +32,6 @@
         <Button Content="Nazad" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="665,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
         <Button Content="        Otkaži termin" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="342,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
         <Button Content="           Karton pacijenta" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="504,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_6" RenderTransformOrigin="-1.488,3.89"/>
-        <ScrollBar HorizontalAlignment="Left" Margin="778,110,0,0" VerticalAlignment="Top" Width="17" Height="348"/>
         <Label Content="Zakazani termini" HorizontalAlignment="Left" Margin="20,33,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Border  BorderBrush="DarkRed"  BorderThickness="1" HorizontalAlignment="Left" Height="375" VerticalAlignment="Top" Width="243" Margin="825,83,0,0">
         </Border>
