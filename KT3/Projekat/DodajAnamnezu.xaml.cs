@@ -29,8 +29,8 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            
+            
                 int brojAnamneze = ZdravstveniKartonMenadzer.GenerisanjeIdAnamneze(pacijent.IdPacijenta);
                 
                 String formatirano = null;
@@ -49,12 +49,7 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajAnamnezu(anamneza);
                 this.Close();
 
-            }
-            catch (System.Exception)
-            {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            this.Close();
+           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -782,89 +782,52 @@
       <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
-      <IdPacijenta>12</IdPacijenta>
-      <ImePacijenta>Petar</ImePacijenta>
-      <PrezimePacijenta>Jovic</PrezimePacijenta>
+      <IdPacijenta>13</IdPacijenta>
+      <ImePacijenta>DUSAN</ImePacijenta>
+      <PrezimePacijenta>DUSAN</PrezimePacijenta>
       <Pol>M</Pol>
-      <Jmbg>45454</Jmbg>
+      <Jmbg>456456</Jmbg>
       <StatusNaloga>Stalni</StatusNaloga>
-      <BrojTelefona>5454</BrojTelefona>
-      <Email>ssss</Email>
-      <AdresaStanovanja>sss</AdresaStanovanja>
-      <Zanimanje>ssss</Zanimanje>
-      <BracnoStanje>Udovac</BracnoStanje>
+      <BrojTelefona>4546</BrojTelefona>
+      <Email>DSADASD</Email>
+      <AdresaStanovanja>DSDFDSFS</AdresaStanovanja>
+      <Zanimanje>DSDFDFS</Zanimanje>
+      <BracnoStanje>Neozenjen</BracnoStanje>
       <Karton>
-        <IdPacijenta>12</IdPacijenta>
-        <LekarskiRecepti />
+        <IdPacijenta>13</IdPacijenta>
+        <LekarskiRecepti>
+          <LekarskiRecept>
+            <IdRecepta>1</IdRecepta>
+            <idPacijenta>13</idPacijenta>
+            <IdLekara>0</IdLekara>
+            <NazivLeka>SADASD</NazivLeka>
+            <DatumPropisivanjaLeka>04/15/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>5</BrojDanaKoriscenja>
+            <DnevnaKolicina>1</DnevnaKolicina>
+            <PocetakKoriscenja>11:00</PocetakKoriscenja>
+          </LekarskiRecept>
+        </LekarskiRecepti>
         <Anamneze>
           <Anamneza>
             <IdAnamneze>1</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
+            <IdPacijenta>13</IdPacijenta>
             <IdLekara>0</IdLekara>
-            <OpisBolesti>aaaa</OpisBolesti>
-            <Terapija>asasas</Terapija>
-            <Datum>04/15/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>2</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>dsdasd</OpisBolesti>
-            <Terapija>fgfgfgf</Terapija>
-            <Datum>04/16/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>3</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>vfcvfdvfv</OpisBolesti>
-            <Terapija>cvxvvxv</Terapija>
-            <Datum>04/22/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>4</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>xcvxcvff</OpisBolesti>
-            <Terapija>gfdgfgf</Terapija>
-            <Datum>04/15/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>5</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>fgdgdf</OpisBolesti>
-            <Terapija>fgfgdfg</Terapija>
+            <OpisBolesti>sdadsa</OpisBolesti>
+            <Terapija>sdadasdas</Terapija>
             <Datum>04/23/2021</Datum>
           </Anamneza>
           <Anamneza>
-            <IdAnamneze>6</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
+            <IdAnamneze>2</IdAnamneze>
+            <IdPacijenta>13</IdPacijenta>
             <IdLekara>0</IdLekara>
-            <OpisBolesti>sdadasd</OpisBolesti>
-            <Terapija>fdvfvcvdf</Terapija>
-            <Datum>04/22/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>7</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>fdfdf</OpisBolesti>
-            <Terapija>dfdfd</Terapija>
-            <Datum>05/05/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>8</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>dfdfd</OpisBolesti>
-            <Terapija>dfdfdffff</Terapija>
-            <Datum>04/21/2021</Datum>
+            <OpisBolesti>sdasda</OpisBolesti>
+            <Terapija>dsdadsad</Terapija>
+            <Datum>04/30/2021</Datum>
           </Anamneza>
         </Anamneze>
       </Karton>
     </Pacijent>
-    <Datum>04/27/2021</Datum>
+    <Datum>04/15/2021</Datum>
     <Prostorija>
       <Status>Slobodna</Status>
       <TipSale>OperacionaSala</TipSale>
@@ -894,105 +857,33 @@
       <specijalizacija>Opsta_praksa</specijalizacija>
     </Lekar>
     <Pacijent>
-      <IdPacijenta>12</IdPacijenta>
-      <ImePacijenta>Petar</ImePacijenta>
-      <PrezimePacijenta>Jovic</PrezimePacijenta>
-      <Pol>M</Pol>
-      <Jmbg>45454</Jmbg>
+      <IdPacijenta>14</IdPacijenta>
+      <ImePacijenta>KRISTINA</ImePacijenta>
+      <PrezimePacijenta>KRISTINA</PrezimePacijenta>
+      <Pol>Z</Pol>
+      <Jmbg>646454</Jmbg>
       <StatusNaloga>Stalni</StatusNaloga>
-      <BrojTelefona>5454</BrojTelefona>
-      <Email>ssss</Email>
-      <AdresaStanovanja>sss</AdresaStanovanja>
-      <Zanimanje>ssss</Zanimanje>
-      <BracnoStanje>Udovac</BracnoStanje>
+      <BrojTelefona>5645</BrojTelefona>
+      <Email>S</Email>
+      <AdresaStanovanja>SS</AdresaStanovanja>
+      <Zanimanje>DFFSF</Zanimanje>
+      <BracnoStanje>Neudata</BracnoStanje>
       <Karton>
-        <IdPacijenta>12</IdPacijenta>
+        <IdPacijenta>14</IdPacijenta>
         <LekarskiRecepti />
         <Anamneze>
           <Anamneza>
             <IdAnamneze>1</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
+            <IdPacijenta>14</IdPacijenta>
             <IdLekara>0</IdLekara>
-            <OpisBolesti>aaaa</OpisBolesti>
-            <Terapija>asasas</Terapija>
+            <OpisBolesti>PRVA</OpisBolesti>
+            <Terapija>PRVA</Terapija>
             <Datum>04/15/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>2</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>dsdasd</OpisBolesti>
-            <Terapija>fgfgfgf</Terapija>
-            <Datum>04/16/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>3</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>vfcvfdvfv</OpisBolesti>
-            <Terapija>cvxvvxv</Terapija>
-            <Datum>04/22/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>4</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>xcvxcvff</OpisBolesti>
-            <Terapija>gfdgfgf</Terapija>
-            <Datum>04/15/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>5</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>fgdgdf</OpisBolesti>
-            <Terapija>fgfgdfg</Terapija>
-            <Datum>04/23/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>6</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>sdadasd</OpisBolesti>
-            <Terapija>fdvfvcvdf</Terapija>
-            <Datum>04/22/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>7</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>fdfdf</OpisBolesti>
-            <Terapija>dfdfd</Terapija>
-            <Datum>05/05/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>8</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>dfdfd</OpisBolesti>
-            <Terapija>dfdfdffff</Terapija>
-            <Datum>04/21/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>9</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>vsfsg</OpisBolesti>
-            <Terapija>dffdfds</Terapija>
-            <Datum>04/08/2021</Datum>
-          </Anamneza>
-          <Anamneza>
-            <IdAnamneze>10</IdAnamneze>
-            <IdPacijenta>12</IdPacijenta>
-            <IdLekara>0</IdLekara>
-            <OpisBolesti>XCZXCXZ</OpisBolesti>
-            <Terapija>XZCZCZXC</Terapija>
-            <Datum>04/28/2021</Datum>
           </Anamneza>
         </Anamneze>
       </Karton>
     </Pacijent>
-    <Datum>04/30/2021</Datum>
+    <Datum>04/29/2021</Datum>
     <Prostorija>
       <Status>Slobodna</Status>
       <TipSale>OperacionaSala</TipSale>

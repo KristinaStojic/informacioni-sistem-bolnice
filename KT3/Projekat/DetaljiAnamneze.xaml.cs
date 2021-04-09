@@ -21,24 +21,16 @@ namespace Projekat
     public partial class DetaljiAnamneze : Window
     {
         Pacijent pacijent;
-        public DetaljiAnamneze(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
+        public DetaljiAnamneze(Anamneza izabranaAnamneza)
         {
             InitializeComponent();
-            this.pacijent = izabraniPacijent;
-
-            Console.WriteLine(pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta);
-            Console.WriteLine("Broj anamneza u kartonu: " + pacijent.Karton.Anamneze.Count);
-            foreach (Anamneza anamneza in pacijent.Karton.Anamneze)
+            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
             {
-                Console.WriteLine("Lista: " + anamneza.IdAnamneze + " Izabrana: " + izabranaAnamneza.IdAnamneze); 
-                Console.WriteLine("Lista: " + anamneza.OpisBolesti + " Izabrana: " + izabranaAnamneza.OpisBolesti);
-               if(anamneza.IdAnamneze == izabranaAnamneza.IdAnamneze)
+                if(pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
                 {
-                    Console.WriteLine("Lista: " + anamneza.IdAnamneze + " Izabrana: " + izabranaAnamneza.IdAnamneze);
                     this.datum.SelectedDate = DateTime.Parse(izabranaAnamneza.Datum);
                     this.bolest.Text = izabranaAnamneza.OpisBolesti;
                     this.terapija.Text = izabranaAnamneza.Terapija;
-
                 }
             }
     

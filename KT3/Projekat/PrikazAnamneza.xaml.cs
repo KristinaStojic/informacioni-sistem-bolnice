@@ -37,6 +37,8 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             this.pacijent = izabraniPacijent;
+            //Console.WriteLine(pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta); //dobro nadje pacijenta
+            Console.WriteLine("PACIJENT IMA ANAMNEZA NA ULAZU U PRIKAZ: " + pacijent.Karton.Anamneze.Count);
             TabelaAnamneza = new ObservableCollection<Anamneza>();
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
@@ -63,6 +65,7 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             DodajAnamnezu da = new DodajAnamnezu(pacijent);
+            Console.WriteLine("PACIJENT IMA ANAMNEZA NA ULAZU U DODAVANJE ANAMNEZE : " + pacijent.Karton.Anamneze.Count);
             da.Show();
         }
 
@@ -70,12 +73,13 @@ namespace Projekat
         {
            
             Anamneza izabranaAnamneza = (Anamneza)dataGridTermini.SelectedItem;
-            Console.WriteLine(pacijent.Karton.Anamneze.Count);
-            Console.WriteLine(pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta);
+            Console.WriteLine("IZABRANA ANAMNEZA: " + izabranaAnamneza.Terapija);
+            Console.WriteLine("PACIJENT IMA ANAMNEZA NA ULAZU U DETALJE: " + pacijent.Karton.Anamneze.Count);
+           
             if (izabranaAnamneza != null)
             {
                 
-                DetaljiAnamneze da = new DetaljiAnamneze(pacijent,izabranaAnamneza);
+                DetaljiAnamneze da = new DetaljiAnamneze(izabranaAnamneza);
                 da.Show();
             }
             else
