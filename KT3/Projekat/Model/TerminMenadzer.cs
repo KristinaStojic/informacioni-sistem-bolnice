@@ -78,18 +78,12 @@ namespace Model
                     t.tipTermina = termin1.tipTermina;
                     t.Datum = termin1.Datum;
                     t.Prostorija = termin1.Prostorija;
-                    //Console.WriteLine(termin1.Pacijent.ImePacijenta + "  "  + termin1.Pacijent.PrezimePacijenta);
+                    int idx = PrikaziTermin.Termini.IndexOf(termin);
+                    PrikaziTermin.Termini.RemoveAt(idx);
+                    PrikaziTermin.Termini.Insert(idx, termin1);
                 }
                 
             }
-            int idx = PrikaziTermin.Termini.IndexOf(termin);
-            PrikaziTermin.Termini.RemoveAt(idx);
-            PrikaziTermin.Termini.Insert(idx, termin1);
-            
-            //  **** napraviti metodu --> izmeniTerminLekar(...)
-            /*int idx = PrikazTerminaLekar.Termini.IndexOf(termin);
-            PrikazTerminaLekar.Termini.RemoveAt(idx);
-            PrikazTerminaLekar.Termini.Insert(idx, termin1);*/
         }
 
         public static void IzmeniTerminLekar(Termin termin, Termin termin1)

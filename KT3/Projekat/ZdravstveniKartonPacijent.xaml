@@ -44,31 +44,31 @@
                         <ColumnDefinition Width="311*"></ColumnDefinition>
                         <ColumnDefinition Width="223*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="ime"
+                    <TextBox x:Name="ime" IsEnabled="False"
                              HorizontalAlignment="Left" Height="25" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
                     <Label Content="Ime" Margin="0,8,190,304" FontSize="15" HorizontalAlignment="Right" Width="35"/>
-                    <TextBox x:Name="prezime"
+                    <TextBox x:Name="prezime" IsEnabled="False"
                         HorizontalAlignment="Left" Height="25" Margin="130,45,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
                     <Label Content="Prezime" Margin="0,43,190,269" FontSize="15" HorizontalAlignment="Right" Width="63"/>
-                    <TextBox x:Name="pol"
+                    <TextBox x:Name="poltxt" IsEnabled="False"
                         HorizontalAlignment="Left" Height="25" Margin="130,115,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
                     <Label Content="Pol" Margin="0,113,190,199" FontSize="15" HorizontalAlignment="Right" Width="31"/>
-                    <TextBox x:Name="jmbg"
+                    <TextBox x:Name="jmbg" IsEnabled="False"
                         HorizontalAlignment="Left" Height="25" Margin="130,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
                     <Label Content="JMBG" Margin="0,78,190,234" FontSize="15" HorizontalAlignment="Right" Width="47"/>
-                    <TextBox x:Name="brojTel"
+                    <TextBox x:Name="brojTel" IsEnabled="False"
                         HorizontalAlignment="Left" Height="25" Margin="130,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
                     <Label Content="Broj telefona" Margin="0,148,190,164" FontSize="15" HorizontalAlignment="Right" Width="95"/>
-                    <TextBox x:Name="email"
+                    <TextBox x:Name="email" IsEnabled="False"
                         HorizontalAlignment="Left" Height="25" Margin="130,184,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
                     <Label Content="E-mail" Margin="0,182,190,130" FontSize="15" HorizontalAlignment="Right" Width="51"/>
-                    <TextBox x:Name="adresa"
+                    <TextBox x:Name="adresa" IsEnabled="False"
                         HorizontalAlignment="Left" Height="25" Margin="130,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
                     <Label Content="Adresa" Margin="0,217,190,95" FontSize="15" HorizontalAlignment="Right" Width="55"/>
-                    <TextBox x:Name="bracnoStanje"
+                    <TextBox x:Name="bracStanje" IsEnabled="False" 
                         HorizontalAlignment="Left" Height="25" Margin="130,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
                     <Label Content="Bracno stanje" Margin="0,252,190,60" FontSize="15" HorizontalAlignment="Right" Width="99"/>
-                    <TextBox x:Name="zanimanje"
+                    <TextBox x:Name="zanimanje" IsEnabled="False"
                         HorizontalAlignment="Left" Height="25" Margin="130,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
                     <Label Content="Zanimanje" Margin="0,287,190,25" FontSize="15" HorizontalAlignment="Right" Width="79"/>
                     <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Margin="52,35,70,227">
@@ -76,14 +76,12 @@
                     </Border>
                     <Label Content="Korisnicko ime" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="30,0,0,184" FontWeight="Bold" Grid.Column="1"/>
                     <Button x:Name="izmeniBtn" Content="Izmenite podatke" Grid.Column="1" Height="30" Margin="34,317,46,15" Click="izmeniBtn_Click"/>
-                    <Button x:Name="sacuvajIzmene" Content="Potvrdi" Grid.Column="1" Height="30" Margin="34,317,126,15"/>
+                    <Button x:Name="sacuvajIzmene" Content="Potvrdi" Grid.Column="1" Height="30" Margin="34,317,126,15" Click="sacuvajIzmene_Click"/>
                     <Button x:Name="odustani" Content="Odustani" Grid.Column="1" Height="30" Margin="102,317,46,15" Click="odustani_Click"/>
                     <Label Content="Lozinka" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="32,0,0,125" FontWeight="Bold" Grid.Column="1"/>
-                    
-                    <TextBox x:Name="lekar"
-                        HorizontalAlignment="Left" Height="25" Margin="130,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
+                    <ComboBox IsEnabled="False" Width="140" Height="25" Name="lekar" Margin="130,327,41,10"></ComboBox>
                     <Label Content="Izabrani lekar" Margin="0,323,188,-11" FontSize="15" HorizontalAlignment="Right" Width="99"/>
-                    <PasswordBox x:Name="lozinka" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="145" Grid.Column="1" Margin="34,233,0,104">
+                    <PasswordBox x:Name="lozinka" IsEnabled="False" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="145" Grid.Column="1" Margin="34,233,0,104">
                         <PasswordBox.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="1"/>
@@ -93,7 +91,7 @@
                             </TransformGroup>
                         </PasswordBox.RenderTransform>
                     </PasswordBox>
-                    <TextBox x:Name="korisnickoIme" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="143" Grid.Column="1" Margin="34,178,0,159"/>
+                    <TextBox x:Name="korisnickoIme" IsEnabled="False" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="143" Grid.Column="1" Margin="34,178,0,159"/>
                 </Grid>
             </TabItem>
             <!-- lekarski recepti -->
@@ -116,7 +114,7 @@
                                             Width="85" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Info" Click="Button_Click_1"/>
+                                        <Button Content="Prikaži" Click="Button_Click_1"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

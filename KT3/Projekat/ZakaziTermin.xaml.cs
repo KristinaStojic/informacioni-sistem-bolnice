@@ -20,9 +20,14 @@ namespace Projekat
     public partial class ZakaziTermin : Window
     {
         public Lekar lekarr;
+        public Termin noviTermin;
+        //
+        public IObservable<string> sviSlobodni;
+        public List<Sala> slobodneSale;
         public ZakaziTermin()
         {
             InitializeComponent();
+            noviTermin = new Termin();
             datum.BlackoutDates.AddDatesInPast();
             //TODO: lekarr je izabrani lekar prijavljenog pacijenta
             //lekarr = 
@@ -94,7 +99,6 @@ namespace Projekat
                 {
                     MessageBox.Show("Izaberite lekara kod kog želite da zakažete termin", "Greška", MessageBoxButton.OK);
                 }
-                    
                 /*else
                 {
                     // TODO: optimizovati!
@@ -191,12 +195,35 @@ namespace Projekat
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            slobodneSale = new List<Sala>();
+            string tip = combo.SelectedValue.ToString().Split(' ')[1];
+            foreach(Sala s in SaleMenadzer.sale)
+            {
+                if(tip.Equals("Opeacija"))
+                {
+                    if(s.TipSale.Equals(tipSale.OperacionaSala) && s.Status.Equals(status.Slobodna))
+                    {
+                        slobodneSale.Add(s);
+                        MessageBox.Show(s.Id.ToString());
+                    }
+                } else
+                {
+                    if (s.TipSale.Equals(tipSale.SalaZaPregled) && s.Status.Equals(status.Slobodna))
+                    {
+                        slobodneSale.Add(s);
+                        MessageBox.Show(s.Id.ToString());
+                    }
+                }
+            }
+
 
         }
 
         private void preferenca_Click(object sender, RoutedEventArgs e)
         {
-           // prozor za odabir lekara po preferenci
+            // prozor za odabir lekara po preferenci
+            ZakaziTerminPreferenca ztp = new ZakaziTerminPreferenca();
+            ztp.Show();
         }
     }
 }

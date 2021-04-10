@@ -1,0 +1,60 @@
+﻿<Window x:Class="Projekat.ZakaziTerminPreferenca"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Ponudjeni termini" Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="AliceBlue">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Opcije -->
+
+
+        <!-- Hidden ! -->
+        <Button x:Name="termin1" Height="250" Width="150" Margin="34,85,14.5,137.5" Click="termin1_Click" BorderThickness="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <Rectangle Fill="FloralWhite"></Rectangle>
+
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="termin2" Height="250" Width="150" Margin="21.5,85,27,137.5" Grid.Column="1">
+            <Button.Template>
+                <ControlTemplate>
+                    <Rectangle Fill="FloralWhite"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="termin3" Height="250" Width="150" Margin="20,85,28,137.5" Grid.Column="2">
+            <Button.Template>
+                <ControlTemplate>
+                    <Rectangle Fill="FloralWhite"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBox x:Name="datum1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="datum1" Width="120" Margin="48,115,30.5,334.5"/>
+        <TextBox x:Name="vreme1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="vreme1" Width="120" Margin="48,162,30.5,287.5"/>
+        <TextBox x:Name="lekar1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="lekar1" Width="120" Margin="48,212,30.5,237.5"/>
+        <TextBox x:Name="brSale1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="brSale1" Width="120" Margin="48,262,30.5,187.5"/>
+
+
+        <TextBox x:Name="datum2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="datum2" Width="120" Margin="37.5,115,41,334.5" Grid.Column="1" />
+        <TextBox x:Name="vreme2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="vreme2" Width="120" Margin="37.5,162,41,287.5" Grid.Column="1"/>
+        <TextBox x:Name="lekar2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="lekar2" Width="120" Margin="37.5,212,41,237.5" Grid.Column="1"/>
+        <TextBox x:Name="brSale2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="brSale2" Width="120" Margin="37.5,262,41,187.5" Grid.Column="1"/>
+
+        <TextBox x:Name="datum3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="datum3" Width="120" Grid.Column="2" Margin="35,115,43,334.5" />
+        <TextBox x:Name="vreme3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="vreme3" Width="120"  Grid.Column="2" Margin="35,162,43,287.5"/>
+        <TextBox x:Name="lekar3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="lekar3" Width="120"  Grid.Column="2" Margin="35,212,43,237.5"/>
+        <TextBox x:Name="brSale3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="brSale3" Width="120"  Grid.Column="2" Margin="35,262,43,187.5"/>
+    </Grid>
+
+</Window>
