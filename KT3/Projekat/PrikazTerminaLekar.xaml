@@ -5,44 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazTerminaLekar" Height="534.795" Width="979.965">
-    <Grid Background="AntiqueWhite" Margin="0,0,-6,-3">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="1" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True" 
+        Title="Pregledi i operacije" Height="600" Width="1100">
+    <Grid  Background="LightSkyBlue" Margin="0,0,-6,-4">
+
+
+
+        <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"  
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="453" Margin="20,24,0,0" VerticalAlignment="Top" Width="691" GridLinesVisibility="All" Background="#FFE4DEDE" FontSize="13">
+                  Height="375" Margin="20,83,0,0" VerticalAlignment="Top" Width="775" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13" BorderBrush="DarkRed">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="ID" Binding="{Binding IdTermin}" />
-                <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
-                <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
-                <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                <DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
-                <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
+                <DataGridTextColumn  Width="30" Header="ID" Binding="{Binding IdTermin}"/>
+                <DataGridTextColumn  Width="65" Header="Datum" Binding="{Binding Datum}" />
+                <DataGridTextColumn  Width="100" Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
+                <DataGridTextColumn  Width="100" Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
+                <DataGridTextColumn  Width="80" Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
+                <DataGridTextColumn  Width="100" Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
                 <!-- PROMIJENITI NA ID KAD ISPRAVIMO CUVANJE-->
-                <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                <DataGridTextColumn Header="Prostorija" Binding="{Binding Lekar.IdLekara}"  />
-                <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}" />
+                <DataGridTextColumn  Width="113" Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
+                <DataGridTextColumn  Width="80" Header="Prostorija" Binding="{Binding Prostorija.Id}"  />
+                <DataGridTextColumn  Width="90" Header="Tip usluge " Binding="{Binding tipTermina}" />
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button Content="Zakaži termin" HorizontalAlignment="Left" Margin="764,25,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" Grid.Column="1" />
-        <Button Content="Izmeni termin" HorizontalAlignment="Left" Margin="764,122,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508" Grid.Column="1"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="764,412,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654" Grid.Column="1"/>
-        <Button Content="Otkaži termin" HorizontalAlignment="Left" Margin="764,217,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508" Grid.Column="1"/>
-        <Button Content="Podaci o pacijentu" HorizontalAlignment="Left" Margin="764,312,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_6" Grid.Column="1"/>
-
-
-
-
+        <Button Content="          Zakaži termin" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="20,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_1" />
+        <Button Content="           Izmeni termin" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="181,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="Nazad" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="665,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
+        <Button Content="        Otkaži termin" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="342,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="           Karton pacijenta" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="504,483,0,0" VerticalAlignment="Top" Width="130" Height="50" Click="Button_Click_6" RenderTransformOrigin="-1.488,3.89"/>
+        <Label Content="Zakazani termini" HorizontalAlignment="Left" Margin="20,33,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Border  BorderBrush="DarkRed"  BorderThickness="1" HorizontalAlignment="Left" Height="375" VerticalAlignment="Top" Width="243" Margin="825,83,0,0">
+        </Border>
+        <Image Source="grafik1.png" Width="163" HorizontalAlignment="Center" Margin="866,178,70.6,213.4" RenderTransformOrigin="0.475,0.468"/>
+        <Label Content="    Grafik 1. Zakazani termini&#xD;&#xA;" HorizontalAlignment="Left" Margin="866,361,0,0" VerticalAlignment="Top" Width="163"/>
+        <Image Source="plus.png" Width="27" HorizontalAlignment="Center" Margin="33,496,1039.6,50.4" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="pen.png" Width="29" HorizontalAlignment="Center" Margin="193,496,877.6,50.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="obrisi.jpg" Width="31" HorizontalAlignment="Center" Margin="352,496,716.6,50.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="osoba.jpg" Width="31" HorizontalAlignment="Center" Margin="512,496,556.6,50.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="nazad.jpg" Width="36" HorizontalAlignment="Center" Margin="674,496,389.6,50.4" RenderTransformOrigin="0.574,0.51"/>
 
     </Grid>
 </Window>

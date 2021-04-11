@@ -21,18 +21,22 @@ namespace Projekat
     public partial class IzmeniTermin : Window
     {
         public Termin termin;
+        private Lekar idLek;
+        private string stariDatum;
         public IzmeniTermin(Termin izabraniTermin)
         {
             InitializeComponent();
+            //this.DataContext = this;
+            datum.BlackoutDates.AddDatesInPast();
+            CalendarDateRange cdr = new CalendarDateRange();
+            cdr.Start = DateTime.Now.AddDays(3);
+            cdr.End = DateTime.Now.AddDays(2000);
+            datum.BlackoutDates.Add(cdr);
+            //this.datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
+
             this.termin = izabraniTermin;
-            if (izabraniTermin != null) 
+            if (izabraniTermin != null)
             {
-                this.rbr.Text = izabraniTermin.IdTermin.ToString();
-                this.vpp.Text = izabraniTermin.VremePocetka;
-               // this.vkk.Text = izabraniTermin.VremeKraja;
-                this.idlekara.Text = izabraniTermin.Lekar.IdLekara.ToString();
-               
-                //this.idPacijenta.Text = izabraniTermin.Pacijent.Jmbg.ToString();
                 TipTermina tp;
                 if (izabraniTermin.tipTermina.Equals(TipTermina.Operacija))
                 {
@@ -42,12 +46,30 @@ namespace Projekat
                 {
                     this.combo.SelectedIndex = 1;
                 }
-
-
                 tp = izabraniTermin.tipTermina;
-                datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
-                //this.prostorije.SelectedIndex = izabraniTermin.Prostorija.Id;  
+                this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
+                this.dgSearch.SelectedValue = izabraniTermin.Lekar.IdLekara;
+                idLek = izabraniTermin.Lekar;
+                stariDatum = izabraniTermin.Datum;
+                this.vpp.Text = izabraniTermin.VremePocetka;
+                this.dgSearch.ItemsSource = MainWindow.lekari;
+
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
+                view.Filter = UserFilter;
             }
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dgSearch.ItemsSource).Refresh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,85 +81,123 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //dugme sacuvaj
-            try
+           try
+           {
+            //int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
+            String formatted = null;
+            DateTime? selectedDate = datum.SelectedDate;
+            if (selectedDate.HasValue)
             {
-                int brojTermina = int.Parse(rbr.Text);
-                String formatted = null;
-                DateTime? selectedDate = datum.SelectedDate;
-                Console.WriteLine(selectedDate);
-                if (selectedDate.HasValue)
-                {
-                    formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-                }
-                String vp = vpp.Text;
-                //String vk = vkk.Text;
+            } else
+            {
+                formatted = stariDatum;
+            }
 
-                //TODO
-                String vk;
-                String hh = vp.Substring(0, 2);
-                String min = vp.Substring(3);
-                if (min == "30")
+            String vp = vpp.Text;
+            String vk;
+            String hh = vp.Substring(0, 2);
+            String min = vp.Substring(3);
+            if (min == "30")
+            {
+                int vkInt = int.Parse(hh);
+                vkInt++;
+                if (vkInt <= 9)
                 {
-                    int vkInt = int.Parse(hh);
-                    vkInt++;
-                    if (vkInt <= 9)
-                    {
-                        vk = "0" + vkInt.ToString() + ":00";
-                    }
-                    else
-                    {
-                        vk = vkInt.ToString() + ":00";
-                    }
+                    vk = "0" + vkInt.ToString() + ":00";
                 }
                 else
                 {
-                    vk = hh + ":30";
+                    vk = vkInt.ToString() + ":00";
                 }
+            }
+            else
+            {
+                vk = hh + ":30";
+            }
 
-                TipTermina tp;
-                if (combo.Text.Equals("Pregled"))
+            TipTermina tp;
+            if (combo.Text.Equals("Pregled"))
+            {
+                tp = TipTermina.Pregled;
+            }
+            else
+            {
+                tp = TipTermina.Operacija;
+            }
+            Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp);
+            // TODO: promeniti ovo na id pacijenta koji je prijavljen
+            foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+            {
+                if (p.IdPacijenta == 1)
                 {
-                    tp = TipTermina.Pregled;
+                    t.Pacijent = p;
                 }
-                else
+            }
+            foreach (Sala sala in SaleMenadzer.NadjiSveSale())
+            {
+                try
                 {
-                    tp = TipTermina.Operacija;
-                }
-                int idLek = int.Parse(idlekara.Text);
-                Lekar l = new Lekar(idLek, "Filip", "Filipovic");
-
-                Termin t = new Termin(brojTermina, formatted, vp, vk, tp, l);
-                List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-                // promeniti ovo na id, kasnije
-                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
-                {
-                    if (p.IdPacijenta == 1)
-                    {
-                        t.Pacijent = p;
-                    }
-                }
-
-                List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                foreach (Sala sala in SaleMenadzer.NadjiSveSale())
-                {
-                    /* if (sala.Id == idSale)
-                     {
-                         s.Prostorija = sala; // seter
-                     }*/
                     if (sala.Status == status.Slobodna)
                     {
                         t.Prostorija = sala;  // kad naidje na prvu slobodnu
+                        //sala.Status = status.Zauzeta;
                         break;
                     }
                 }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ne postoji nijedna slobodna sala", "Zauzete sale");
+                }
+            }
 
-                TerminMenadzer.IzmeniTermin(termin, t);
-                this.Close();
-            } catch (System.Exception)
+            if (dgSearch.SelectedItems.Count > 0)
+            {
+                Lekar selLekar = (Lekar)dgSearch.SelectedItem;
+                t.Lekar = selLekar;
+            } else
+            {
+                // TODO: optimizovati!
+                t.Lekar = idLek; 
+            }
+            TerminMenadzer.IzmeniTermin(termin, t);
+            this.Close();
+         } catch (System.Exception)
             {
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void lvWithSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void vpp_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dgSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgSearch.SelectedItems.Count > 0)
+            {
+                Lekar item = (Lekar)dgSearch.SelectedItems[0];
+                imePrz.Text = item.ToString();
+            }
+        }
+
+        private void imePrz_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+
+        }
+
     }
 }

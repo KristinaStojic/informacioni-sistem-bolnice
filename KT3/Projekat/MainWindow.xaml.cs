@@ -2,6 +2,7 @@
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,25 @@ namespace Projekat
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ObservableCollection<Lekar> lekari;
         public MainWindow()
         {
             InitializeComponent();
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
+
             PremjestajMenadzer.NadjiSvePremjestaje();
+
+            TerminMenadzer.NadjiSveTermine();
+            PacijentiMenadzer.PronadjiSve();
+
+            lekari = new ObservableCollection<Lekar>();
+            lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
+            lekari.Add(new Lekar() {IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa });
+            lekari.Add(new Lekar() {IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
+            lekari.Add(new Lekar() {IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
+            lekari.Add(new Lekar() {IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista });
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,8 +68,8 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Sekretar s = new Sekretar();
-            s.Show();
+             Sekretar s = new Sekretar();
+             s.Show();
            // this.Close();
         }
 

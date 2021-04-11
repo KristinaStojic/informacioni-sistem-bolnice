@@ -62,9 +62,9 @@ namespace Model
         public string AdresaStanovanja { get; set; }
         public string Zanimanje { get; set; }
         public bracnoStanje BracnoStanje { get; set; }
-        public int IdLekara { get; set; }
-        public int IdKartona { get; set; }
-       
+        public Lekar IzabraniLekar { get; set; }
+        public ZdravstveniKarton Karton { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {

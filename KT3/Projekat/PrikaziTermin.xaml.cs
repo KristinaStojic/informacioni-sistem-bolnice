@@ -33,7 +33,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
-            foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            foreach (Termin t in TerminMenadzer.termini)
             {
                 Termini.Add(t);
             }
@@ -68,18 +68,9 @@ namespace Projekat
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             // brisanje
-            /*var izabraniTermin = dataGridTermini.SelectedItem;
-            if (izabranaSala != null)
-            {
-
-                //SaleMenadzer.ObrisiSalu((Sala)izabranaSala);
-                OtkaziTermin ot = new OtkaziTermin();
-                ot.Show();
-            }          */
             Termin zaBrisanje = (Termin)dataGridTermini.SelectedItem;
             if (zaBrisanje != null)
             {
-
                 TerminMenadzer.OtkaziTermin(zaBrisanje);
                 //TerminMenadzer.sacuvajIzmene();
             }
@@ -98,6 +89,16 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+        }
+
+        private void zdravstveniKarton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

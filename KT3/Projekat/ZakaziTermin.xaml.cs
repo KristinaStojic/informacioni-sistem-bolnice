@@ -24,6 +24,11 @@ namespace Projekat
         public ZakaziTermin()
         {
             InitializeComponent();
+            dp.BlackoutDates.AddDatesInPast();
+            CalendarDateRange cdr = new CalendarDateRange();
+            cdr.Start = DateTime.Now.AddDays(3);
+            cdr.End = DateTime.Now.AddDays(2000);
+            dp.BlackoutDates.Add(cdr);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -82,30 +87,37 @@ namespace Projekat
                 Lekar l = new Lekar(idLek, "Filip", "Filipovic");
 
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp, l);
-                foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
                 {
                     if (p.IdPacijenta == 1)
                     {
                         s.Pacijent = p;
                     }
                 }
-                //int idPac = int.Parse(text5.Text);
-                // List<Pacijent> pacijenti = PacijentiMenadzer.PronadjiSve();
-                //List<Sala> sale = SaleMenadzer.NadjiSveSale();
-                //Pacijent p = PacijentiMenadzer.PronadjiPoId(idPac);
-                //int idSale = int.Parse(prostorije.Text);
-                //int idSale = 1;
-                //Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);   //kada uradimo serijalizaciju
-                //Sala sala = new Sala(idSale);
                 foreach (Sala sala in SaleMenadzer.NadjiSveSale())
                 {
-                    if (sala.Status == status.Slobodna)
+                    try
                     {
-                        s.Prostorija = sala;
-                        break;
+                        if (sala.Status.Equals(status.Slobodna))
+                        {
+                            s.Prostorija = sala;  // kad naidje na prvu slobodnu
+
+                            // TODO: ispraviti , NIJE DOBRO!!!
+                            for(int i = 0; i < PrikaziSalu.Sale.Count(); i++) 
+                            { 
+                                if (PrikaziSalu.Sale[i].Id == sala.Id)
+                                {
+                                    PrikaziSalu.Sale[i].Status = status.Zauzeta;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ne postoji nijedna slobodna sala", "Zauzete sale");
                     }
                 }
-
                 TerminMenadzer.ZakaziTermin(s);
                 this.Close();
 
@@ -114,6 +126,11 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
+        }
+
+        private void zdravstevniKarton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
