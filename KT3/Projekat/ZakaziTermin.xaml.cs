@@ -126,14 +126,13 @@ namespace Projekat
                     }
                 }
 
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted);
+                ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, _sala.Id, s.IdTermin);
                 _sala.zauzetiTermini.Add(zs);
                 s.Prostorija = _sala;
-                SaleMenadzer.sacuvajIzmjene(); // ?
+                //SaleMenadzer.sacuvajIzmjene(); // ?
 
                 TerminMenadzer.ZakaziTermin(s);
                 this.Close();
-
             }
             catch (System.Exception)
             {
@@ -241,13 +240,11 @@ namespace Projekat
                                                                                            "17:00", "17:30", "18:00", "18:30",
                                                                                            "19:00", "19:30", "20:00"};
             string selectDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            vremeSala = new List<string>();
             int i = 0;
             foreach (Sala s in slobodneSale)
             {
                 foreach (ZauzeceSale zs in s.zauzetiTermini)
                 {
-
                     /* foreach(string slot in sviSlobodni2)
                      {
                          if (zs.datumTermina.Equals(selectDatum) && zs.pocetakTermina.Equals(slot))
@@ -258,298 +255,275 @@ namespace Projekat
                                  sviSlobodni.Remove(slot);
                              }
                          }
-                         else
-                         {
-                             MessageBox.Show("OVDEE : " + s.Id + "-" + slot);
-                         }
                      } */
-
-                    //zs.idSale = s.Id;
                     if (zs.datumTermina.Equals(selectDatum))
                     {
-                        // int i = 0;
-                        //foreach (string slot in sviSlobodni2)
-                        //{
                         switch (zs.pocetakTermina)
                         {
                             case "07:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("07:00");
-                                        MessageBox.Show("Postoji zauzeti termin u sali " + s.brojSale + ": " + zs.datumTermina + " " + zs.pocetakTermina);
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("07:00");
+                                    MessageBox.Show("Postoji zauzeti termin u sali " + s.brojSale + ": " + zs.datumTermina + " " + zs.pocetakTermina);
                                 }
+                                break;
+                            }
                             case "07:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("07:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("07:30");
                                 }
+                                break;
+                            }
                             case "08:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("08:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("08:00");
                                 }
+                                break;
+                            }
                             case "08:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("08:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("08:30");
                                 }
+                                break;
+                            }
                             case "09:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("09:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("09:00");
                                 }
+                                break;
+                            }
                             case "09:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("09:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("09:30");
                                 }
+                                break;
+                            }
                             case "10:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("10:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("10:00");
                                 }
+                                break;
+                            }
                             case "10:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("10:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("10:30");
                                 }
+                                break;
+                            }
                             case "11:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("11:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("11:00");
                                 }
+                                break;
+                            }
                             case "11:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("11:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("11:30");
                                 }
+                                break;
+                            }
                             case "12:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("12:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("12:00");
                                 }
+                                break;
+                            }
                             case "12:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("12:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("12:30");
                                 }
+                                break;
+                            }
                             case "13:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("13:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("13:00");
                                 }
+                                break;
+                            }
                             case "13:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("13:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("13:30");
                                 }
+                                break;
+                            }
                             case "14:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("14:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("14:00");
                                 }
+                                break;
+                            }
                             case "14:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("14:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("14:30");
                                 }
+                                break;
+                            }
                             case "15:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("15:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("15:00");
                                 }
+                                break;
+                            }
                             case "15:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("15:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("15:30");
                                 }
+                                break;
+                            }
                             case "16:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("16:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("16:00");
                                 }
+                                break;
+                            }
                             case "16:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("16:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("16:30");
                                 }
+                                break;
+                            }
                             case "17:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("17:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("17:00");
                                 }
+                                break;
+                            }
                             case "17:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("17:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("17:30");
                                 }
+                                break;
+                            }
                             case "18:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("18:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("18:00");
                                 }
+                                break;
+                            }
                             case "18:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("18:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("18:30");
                                 }
+                                break;
+                            }
                             case "19:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("19:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("19:00");
                                 }
+                                break;
+                            }
                             case "19:30":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("19:30");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("19:30");
                                 }
+                                break;
+                            }
                             case "20:00":
+                            {
+                                i++;
+                                if (i == brSala)
                                 {
-                                    i++;
-                                    if (i == brSala)
-                                    {
-                                        sviSlobodni.Remove("20:00");
-                                    }
-                                    break;
+                                    sviSlobodni.Remove("20:00");
                                 }
+                                break;
+                            }
                             default:
-                                {
-                                    Console.WriteLine("Greska");
-                                    break;
-                                }
+                            {
+                                Console.WriteLine("Greska");
+                                break;
+                            }
                         }
-                        //break;
                     }
                 }
             }
             vpp.ItemsSource = sviSlobodni;
-            /*if (!sviSlobodni.Any())
+            if (!sviSlobodni.Any())
             {
                 MessageBox.Show("Ne postoji nijedan slobodan temrin za izabrani datum", "Izaberite drugi datum");
-            }*/
-            Console.WriteLine("----- Pre distincta -------");
-            for (int j = 0; j < vremeSala.Count(); j++)
-            {
-                Console.WriteLine(vremeSala[j]);
-            }
-            Console.WriteLine("----- Posle distincta -------");
-            for (int j = 0; j < vremeSala.Count(); j++)
-            {
-                vremeSala[i].Split('?');
-                Console.WriteLine(vremeSala[j]);
             }
         }
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // novo zauzece, koje treba dodati u listu zauzeca ma sacuvaj
             string selektDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             string vreme = vpp.SelectedValue.ToString();
-
             /* foreach (string s in vremeSala)
               {
                   string[] split = s.Split('?');
@@ -568,6 +542,10 @@ namespace Projekat
                     _sala = SaleMenadzer.NadjiSaluPoId(s.Id);
                     break;
                 }
+            }
+            if(_sala == null)
+            {
+                MessageBox.Show("Ne postoji slobodna sala za odabrani datum i vreme");
             }
         }
     }

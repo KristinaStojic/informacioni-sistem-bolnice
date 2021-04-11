@@ -20,6 +20,7 @@ namespace Model
       {
             termini.Add(termin);
             PrikaziTermin.Termini.Add(termin);
+            //SaleMenadzer.sacuvajIzmjene();
             //PrikazTerminaLekar.Termini.Add(termin);
             //PrikaziTerminSekretar.TerminiSekretar.Add(termin);
         }
@@ -148,7 +149,7 @@ namespace Model
                     termini.RemoveAt(i);
                 }
             }
-            foreach(Sala s in SaleMenadzer.sale)
+            /*foreach(Sala s in SaleMenadzer.sale)
             {
                 foreach (ZauzeceSale zs in s.zauzetiTermini)
                 {
@@ -157,7 +158,7 @@ namespace Model
                         s.zauzetiTermini.Remove(zs);
                     }
                 }
-            }
+            }*/
             PrikaziTermin.Termini.Remove(termin);
        }
 

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Model;
-
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -77,6 +77,16 @@ namespace Projekat
             {
                 TerminMenadzer.OtkaziTermin(zaBrisanje);
                 //TerminMenadzer.sacuvajIzmene();
+            }
+            Sala s = SaleMenadzer.NadjiSaluPoId(zaBrisanje.Prostorija.Id);
+            foreach(ZauzeceSale zs in s.zauzetiTermini)
+            {
+                MessageBox.Show(zs.idTermina.ToString());
+                if (zs.idTermina.Equals(zaBrisanje.IdTermin))
+                {
+                    s.zauzetiTermini.Remove(zs);
+                    break;
+                }
             }
 
         }
