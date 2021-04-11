@@ -9,52 +9,28 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-        <!-- Opcije -->
-
-
-        <!-- Hidden ! -->
-        <Button x:Name="termin1" Height="250" Width="150" Margin="34,85,14.5,137.5" Click="termin1_Click" BorderThickness="1">
-            <Button.Template>
-                <ControlTemplate>
-                    <Rectangle Fill="FloralWhite"></Rectangle>
-
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="termin2" Height="250" Width="150" Margin="21.5,85,27,137.5" Grid.Column="1">
-            <Button.Template>
-                <ControlTemplate>
-                    <Rectangle Fill="FloralWhite"/>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button x:Name="termin3" Height="250" Width="150" Margin="20,85,28,137.5" Grid.Column="2">
-            <Button.Template>
-                <ControlTemplate>
-                    <Rectangle Fill="FloralWhite"/>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <TextBox x:Name="datum1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="datum1" Width="120" Margin="48,115,30.5,334.5"/>
-        <TextBox x:Name="vreme1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="vreme1" Width="120" Margin="48,162,30.5,287.5"/>
-        <TextBox x:Name="lekar1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="lekar1" Width="120" Margin="48,212,30.5,237.5"/>
-        <TextBox x:Name="brSale1" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="brSale1" Width="120" Margin="48,262,30.5,187.5"/>
-
-
-        <TextBox x:Name="datum2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="datum2" Width="120" Margin="37.5,115,41,334.5" Grid.Column="1" />
-        <TextBox x:Name="vreme2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="vreme2" Width="120" Margin="37.5,162,41,287.5" Grid.Column="1"/>
-        <TextBox x:Name="lekar2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="lekar2" Width="120" Margin="37.5,212,41,237.5" Grid.Column="1"/>
-        <TextBox x:Name="brSale2" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="brSale2" Width="120" Margin="37.5,262,41,187.5" Grid.Column="1"/>
-
-        <TextBox x:Name="datum3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="datum3" Width="120" Grid.Column="2" Margin="35,115,43,334.5" />
-        <TextBox x:Name="vreme3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="vreme3" Width="120"  Grid.Column="2" Margin="35,162,43,287.5"/>
-        <TextBox x:Name="lekar3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="lekar3" Width="120"  Grid.Column="2" Margin="35,212,43,237.5"/>
-        <TextBox x:Name="brSale3" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="brSale3" Width="120"  Grid.Column="2" Margin="35,262,43,187.5"/>
+        <DataGrid Height="350" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Path=Termini2}" SelectionChanged="preferencaGrid_SelectionChanged"
+                  IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  AutoGenerateColumns="False" Margin="50,15,45,107.5" BorderBrush="DarkBlue" VerticalAlignment="Top" Foreground="Black" >
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0089FF" Offset="0.113"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" Width="100" />
+                <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}" Width="100" />
+                <DataGridTextColumn x:Name="lekar" Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}" Width="110"/>
+                <DataGridTextColumn x:Name="lekar2" Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" Width="100"/>
+                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Zakazi termin" Name="zakazi" HorizontalAlignment="Left" Margin="190,390,0,0" VerticalAlignment="Top" Width="100" 
+                Height="40" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="zakazi_Click"/>
+        <Button Content="Nazad"  Name="nazad" HorizontalAlignment="Left" Margin="350,390,0,0" VerticalAlignment="Top" Width="100" 
+            Height="40" Click="nazad_Click"/>
     </Grid>
 
 </Window>

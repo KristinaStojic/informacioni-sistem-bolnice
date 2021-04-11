@@ -81,7 +81,7 @@ namespace Projekat
             Sala s = SaleMenadzer.NadjiSaluPoId(zaBrisanje.Prostorija.Id);
             foreach(ZauzeceSale zs in s.zauzetiTermini)
             {
-                MessageBox.Show(zs.idTermina.ToString());
+                //MessageBox.Show(zs.idTermina.ToString());
                 if (zs.idTermina.Equals(zaBrisanje.IdTermin))
                 {
                     s.zauzetiTermini.Remove(zs);
