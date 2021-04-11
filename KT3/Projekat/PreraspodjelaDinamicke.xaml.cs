@@ -40,6 +40,28 @@ namespace Projekat
                     dinamicka.Add(o);
                 }
             }
+            bool ima = false;
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                foreach (Oprema op in s.Oprema)
+                {
+                    ima = false;
+                    if (!op.Staticka)
+                    {
+                        foreach (Oprema ops in dinamicka)
+                        {
+                            if (ops.IdOpreme == op.IdOpreme)
+                            {
+                                ima = true;
+                            }
+                        }
+                        if (!ima)
+                        {
+                            dinamicka.Add(op);
+                        }
+                    }
+                }
+            }
         }
 
         private void kombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
