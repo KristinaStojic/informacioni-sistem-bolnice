@@ -123,7 +123,9 @@ namespace Projekat
             Termin t = (Termin)preferencaGrid.SelectedItem;
             MessageBox.Show(t.Datum);
             // TODO: sacuvati u listu zauzetih termina, srediti id termina
-
+            TerminMenadzer.ZakaziTermin(t);
+            TerminMenadzer.sacuvajIzmene();
+            this.Close();
         }
 
         private void nazad_Click(object sender, RoutedEventArgs e)
