@@ -9,8 +9,8 @@
     <Grid Margin="0,0,-6,1" Background="LightSkyBlue">
 
         <Label Content="Zdravstveni karton"  HorizontalAlignment="Left" Margin="37,28,0,0" VerticalAlignment="Top" Height="38" Width="161" FontWeight="Bold" FontSize="17"/>
-        <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="427" Margin="37,71,0,0" VerticalAlignment="Top" Width="427" FontSize="14">
-            <Label  FontSize="15" Content="Zanimanje" HorizontalAlignment="Left" Margin="20,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.264,0.824"/>
+        <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="427" Margin="37,71,0,0" VerticalAlignment="Top" Width="427" FontSize="14" BorderBrush="White" FontWeight="Bold">
+            <Label  FontSize="15" Content="Zanimanje" HorizontalAlignment="Left" Margin="20,364,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.264,0.824" FontWeight="Normal"/>
 
         </GroupBox>
         <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="63,97,661.6,519.2" Height="30"/>
@@ -31,40 +31,44 @@
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Email:" Margin="63,339,661.6,277.2" Height="30"/>
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Adresa stanovanja:" Margin="63,378,644.6,238.2" Height="30"/>
         <Label FontSize="15" VerticalContentAlignment="Center" Content="Bracno stanje:" Margin="63,419,661.6,197.2" Height="30"/>
-        <TextBox x:Name="ime" Grid.Row="0" Margin="267,99,432.6,519.2" IsReadOnly="True"  Background="OldLace" Height="28" Width="160" />
-        <TextBox x:Name="prezime" Margin="267,141,432.6,477.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160"/>
-        <TextBox  x:Name="jmbg" Margin="267,181,432.6,437.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160"/>
-        <ComboBox x:Name="combo2"  Margin="267,223,432.6,395.2" IsReadOnly="True" IsEnabled="False" Background="OldLace" Height="28" Width="160">
+        <TextBox x:Name="ime" Grid.Row="0" Margin="267,99,432.6,519.2" IsReadOnly="True"  Background="OldLace" Height="28" Width="160" FontSize="14" />
+        <TextBox x:Name="prezime" Margin="267,141,432.6,477.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160" BorderBrush="White" FontSize="14"/>
+        <TextBox  x:Name="jmbg" Margin="267,181,432.6,437.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160" FontSize="14"/>
+        <ComboBox x:Name="combo2"  Margin="267,223,432.6,395.2" IsReadOnly="True" IsEnabled="False" Background="OldLace" Height="28" Width="160" FontSize="14">
             <ComboBoxItem Content="M"/>
             <ComboBoxItem Content="Z"/>
         </ComboBox>
-        <ComboBox x:Name="combo"  Margin="267,262,432.6,356.2" SelectedIndex="0" IsReadOnly="True" Background="OldLace" Height="28" Width="160">
+        <ComboBox x:Name="combo"  Margin="267,262,432.6,356.2" SelectedIndex="0" IsReadOnly="True" Background="OldLace" Height="28" Width="160" FontSize="14">
             <ComboBoxItem Content="STALAN"/>
             <ComboBoxItem Content="GUEST"/>
         </ComboBox>
-        <ComboBox x:Name="combo3"  Margin="267,419,432.6,199.2" IsReadOnly="True" IsEnabled="False" Background="OldLace" Height="28" Width="160">
+        <ComboBox x:Name="combo3"  Margin="267,419,432.6,199.2" IsReadOnly="True" IsEnabled="False" Background="OldLace" Height="28" Width="160" FontSize="14">
             <ComboBoxItem Content="Neozenjen/Neudata"/>
             <ComboBoxItem Content="Ozenjen/Udata"/>
             <ComboBoxItem Content="Udovac/Udovica"/>
             <ComboBoxItem Content="Razveden/Razvedena"/>
             <ComboBoxItem Content="Neodredjeno"/>
         </ComboBox>
-        <TextBox x:Name="brojTelefona" Margin="267,300,432.6,318.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160"/>
-        <TextBox x:Name="email" Margin="267,341,432.6,277.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160"/>
-        <TextBox x:Name="adresa" Margin="267,380,432.6,238.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160"/>
-        <TextBox x:Name="zanimanje" Margin="267,458,432.6,160.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160"/>
-        <Button Content="Alergeni" Background="#FF6895C5" HorizontalAlignment="Left" Margin="529,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747" />
-        <Button Content="Nazad" Background="#FF6895C5" HorizontalAlignment="Left" Margin="694,552,0,0" VerticalAlignment="Top" Width="135" Height="50" Click="Button_Click"/>
-        <Button Content="Recepti" Background="#FF6895C5" HorizontalAlignment="Left" Margin="197,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747" Click="Button_Click_1"/>
-        <Button Content="Uputi" Background="#FF6895C5" HorizontalAlignment="Left" Margin="359,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747"/>
-        <Button Content="Anamneza" Background="#FF6895C5" HorizontalAlignment="Left" Margin="37,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747" Click="Button_Click_2"/>
-        <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="208" Margin="517,296,0,0" VerticalAlignment="Top" Width="312" >
-            <TextBox Name="lekar" HorizontalAlignment="Left" Height="28" Margin="77,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
+        <TextBox x:Name="brojTelefona" Margin="267,300,432.6,318.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160" FontSize="14"/>
+        <TextBox x:Name="email" Margin="267,341,432.6,277.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160" FontSize="14"/>
+        <TextBox x:Name="adresa" Margin="267,380,432.6,238.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160" FontSize="14"/>
+        <TextBox x:Name="zanimanje" Margin="267,458,432.6,160.2" IsReadOnly="True" Background="OldLace" Height="28" Width="160" FontSize="14"/>
+        <Button Content="       Alergeni" Background="#FF6895C5" HorizontalAlignment="Left" Margin="529,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747" BorderBrush="Black" Foreground="Black" />
+        <Button Content="    Nazad" Background="#FF6895C5" HorizontalAlignment="Left" Margin="694,552,0,0" VerticalAlignment="Top" Width="135" Height="50" Click="Button_Click" Foreground="Black" BorderBrush="Black"/>
+        <Button Content="Recepti" Background="#FF6895C5" HorizontalAlignment="Left" Margin="197,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747" Click="Button_Click_1" BorderBrush="Black" Foreground="Black"/>
+        <Button Content="    Uputi" Background="#FF6895C5" HorizontalAlignment="Left" Margin="359,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747" Foreground="Black" BorderBrush="Black"/>
+        <Button Content="      Anamneza" Background="#FF6895C5" HorizontalAlignment="Left" Margin="37,552,0,0" VerticalAlignment="Top" Width="135" Height="50" RenderTransformOrigin="0.475,0.747" Click="Button_Click_2" Foreground="Black" BorderBrush="#FF110000"/>
+        <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="208" Margin="517,296,0,0" VerticalAlignment="Top" Width="312" BorderBrush="White" FontWeight="Bold">
+            <TextBox Name="lekar" HorizontalAlignment="Left" Height="28" Margin="77,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsEnabled="False" FontSize="14"/>
         </GroupBox>
-        <Image Source="doktor.png" Width="108" HorizontalAlignment="Center" Margin="626,322,125.6,197.2" RenderTransformOrigin="0.475,0.468"/>
-        <Image Source="osoba.jpg" Width="108" HorizontalAlignment="Center" Margin="626,99,125.6,395.2" RenderTransformOrigin="0.475,0.468"/>
-        <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="201" Margin="517,71,0,0" VerticalAlignment="Top" Width="312"/>
-
+        <Image Source="sticky-note.png" Width="47" HorizontalAlignment="Center" Margin="45,562,767.6,50.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="flask.png" Width="47" HorizontalAlignment="Center" Margin="203,564,609.6,48.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="stethoscope.png" Width="47" HorizontalAlignment="Center" Margin="369,562,443.6,50.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="cancel.png" Width="47" HorizontalAlignment="Center" Margin="535,563,277.6,49.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="nazadd.png" Width="47" HorizontalAlignment="Center" Margin="704,562,108.6,50.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="user.png" Width="219" HorizontalAlignment="Center" Margin="570,111,70.6,410.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="doctor.png" Width="138" HorizontalAlignment="Center" Margin="613,339,108.6,199.2" RenderTransformOrigin="0.475,0.468"/>
+        <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="201" Margin="517,71,0,0" VerticalAlignment="Top" Width="312" BorderBrush="White" FontWeight="Bold"/>
     </Grid>
 </Window>
     

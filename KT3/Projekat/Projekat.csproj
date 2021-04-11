@@ -408,5 +408,29 @@
   <ItemGroup>
     <Resource Include="nazad.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sticky-note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="flask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="stethoscope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="alergeni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="nazadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="doctor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
