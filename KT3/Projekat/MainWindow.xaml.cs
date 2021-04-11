@@ -49,8 +49,9 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //PrikaziTermin w1 = new PrikaziTermin();
-            PrikazTerminaLekar w1 = new PrikazTerminaLekar();
+           
+            PocetnaStrana w1 = new PocetnaStrana();
+           // PrikazTerminaLekar w1 = new PrikazTerminaLekar();
             w1.Show();
             //this.Close();
         }

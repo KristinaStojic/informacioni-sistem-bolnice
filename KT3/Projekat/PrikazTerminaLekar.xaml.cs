@@ -79,6 +79,8 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             this.Close();
+            PocetnaStrana ps = new PocetnaStrana();
+            ps.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -108,6 +110,7 @@ namespace Projekat
                 }
                 else
                 {
+                    this.Close();
                     UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent);
                     karton.Show();
                 }
@@ -121,6 +124,9 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PocetnaStrana ps = new PocetnaStrana();
+            //ps.Show();   /*ISPRAVITI*/
         }
     }
 }

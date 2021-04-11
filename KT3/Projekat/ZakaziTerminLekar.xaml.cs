@@ -98,7 +98,7 @@ namespace Projekat
                 {
                     foreach (ZauzeceSale z in sala.zauzetiTermini.ToList())
                     {
-                        if (t.Prostorija.Id.Equals(sala.Id) && dat.Equals(z.datumTermina) && vp.Equals(z.pocetakTermina) && vk.Equals(z.krajTermina))
+                        if (/*t.Prostorija.Id.Equals(sala.Id) &&*/ dat.Equals(z.datumTermina) && vp.Equals(z.pocetakTermina) && vk.Equals(z.krajTermina))
                         {
                             MessageBox.Show("Postoji termin!");
                             //this.Close();

@@ -99,6 +99,9 @@
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PocetnaStrana.xaml.cs">
+      <DependentUpon>PocetnaStrana.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrebaciDinamicku.xaml.cs">
       <DependentUpon>PrebaciDinamicku.xaml</DependentUpon>
     </Compile>
@@ -232,6 +235,10 @@
     <Page Include="OtkaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PocetnaStrana.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrebaciDinamicku.xaml">
       <SubType>Designer</SubType>

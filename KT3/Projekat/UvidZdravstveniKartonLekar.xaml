@@ -64,5 +64,8 @@
         <Image Source="doktor.png" Width="108" HorizontalAlignment="Center" Margin="626,322,125.6,197.2" RenderTransformOrigin="0.475,0.468"/>
         <Image Source="osoba.jpg" Width="108" HorizontalAlignment="Center" Margin="626,99,125.6,395.2" RenderTransformOrigin="0.475,0.468"/>
         <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="201" Margin="517,71,0,0" VerticalAlignment="Top" Width="312"/>
+
     </Grid>
 </Window>
+    
+    

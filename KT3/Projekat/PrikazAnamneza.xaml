@@ -21,6 +21,6 @@
         <Button Background="#FF6895C5" Content="Detalji" HorizontalAlignment="Left" Margin="24,459,0,0" VerticalAlignment="Top" Width="115" Height="38" Click="Button_Click_1"/>
         <Label Content="Anamneze" HorizontalAlignment="Left" Margin="24,23,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
         <Button  Background="#FF6895C5" Content="Izveštaj" HorizontalAlignment="Left" Margin="309,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" RenderTransformOrigin="0.706,4.291"/>
-        <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="452,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" RenderTransformOrigin="0.706,4.291"/>
+        <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="452,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
     </Grid>
 </Window>
