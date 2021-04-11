@@ -5,6 +5,7 @@
  ***********************************************************************/
 
 using Projekat;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -73,7 +74,7 @@ namespace Model
                     t.IdTermin = termin1.IdTermin;
                     t.VremePocetka = termin1.VremePocetka;
                     t.VremeKraja = termin1.VremeKraja;
-                    t.Lekar = termin1.Lekar;  // ili preko id-ja?
+                    t.Lekar = termin1.Lekar; 
                     t.Pacijent = termin1.Pacijent;
                     t.tipTermina = termin1.tipTermina;
                     t.Datum = termin1.Datum;
@@ -145,7 +146,16 @@ namespace Model
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
                     termini.RemoveAt(i);
-                    termin.Prostorija.Status = status.Slobodna;
+                }
+            }
+            foreach(Sala s in SaleMenadzer.sale)
+            {
+                foreach (ZauzeceSale zs in s.zauzetiTermini)
+                {
+                    if (zs.idTermina.Equals(termin.IdTermin))
+                    {
+                        s.zauzetiTermini.Remove(zs);
+                    }
                 }
             }
             PrikaziTermin.Termini.Remove(termin);

@@ -79,11 +79,11 @@
         <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="25" Margin="45,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252"/>
         <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,298,0,0" Width="121" Height="26"/>
         <GroupBox Header="Izaberite datum" HorizontalAlignment="Left" Height="192" Margin="352,15,0,0" VerticalAlignment="Top" Width="215" RenderTransformOrigin="0.517,0.878">
-            <Calendar x:Name="datum" Background="Beige" RenderTransformOrigin="-0.356,0.389"
+            <Calendar x:Name="datum" Background="Beige" RenderTransformOrigin="-0.356,0.389" SelectedDatesChanged="datum_SelectedDatesChanged"
                       Margin="14,3,0,-13" FontSize="20" FontStyle="Italic" HorizontalAlignment="Left" Width="175"/>
         </GroupBox>
         <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="25" VerticalAlignment="Top" Width="180" Margin="370,324,0,0" SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.724,0.565">
-            <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
+            <!--ComboBoxItem HorizontalAlignment="Center">07:00</>
             <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">08:30</ComboBoxItem>
@@ -109,10 +109,10 @@
             <ComboBoxItem HorizontalAlignment="Center">18:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">19:00</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem-->
         </ComboBox>
         <GroupBox Header="Izaberite tip termina" HorizontalAlignment="Left" Height="74" Margin="354,213,0,0" VerticalAlignment="Top" Width="213" RenderTransformOrigin="0.858,0.494">
-            <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="176" Margin="10,0,0,13" Height="25" >
+            <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="176" Margin="10,0,0,13" Height="25" SelectionChanged="combo_SelectionChanged" >
                 <ComboBoxItem>Operacija</ComboBoxItem>
                 <ComboBoxItem>Pregled</ComboBoxItem>
             </ComboBox>
