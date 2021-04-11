@@ -42,6 +42,28 @@ namespace Projekat
                     staticka.Add(o);
                 }
             }
+            bool ima = false;
+            foreach(Sala s in SaleMenadzer.sale)
+            {
+                foreach(Oprema op in s.Oprema)
+                {
+                    ima = false;
+                    if (op.Staticka)
+                    {
+                        foreach(Oprema ops in staticka)
+                        {
+                            if(ops.IdOpreme == op.IdOpreme)
+                            {
+                                ima = true;
+                            }
+                        }
+                        if (!ima)
+                        {
+                            staticka.Add(op);
+                        }
+                    }
+                }
+            }
             int x = 0;
             for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
             {
@@ -58,16 +80,16 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            termini.Add("21:40");
-            termini.Add("21:41");
-            termini.Add("21:42");
-            termini.Add("21:43");
-            termini.Add("21:44");
-            termini.Add("21:45");
-            termini.Add("21:46");
-            termini.Add("21:47");
-            termini.Add("21:48");
-            termini.Add("21:49");
+            termini.Add("14:40");
+            termini.Add("14:41");
+            termini.Add("14:42");
+            termini.Add("14:43");
+            termini.Add("14:44");
+            termini.Add("14:45");
+            termini.Add("14:46");
+            termini.Add("14:47");
+            termini.Add("14:48");
+            termini.Add("14:49");
         }
 
         private void kombo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
