@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,8 +25,11 @@ namespace Projekat
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Skladiste.otvoren = true;
             Skladiste w1 = new Skladiste();
-            w1.Show();
+            
+            PremjestajMenadzer.odradiZakazano();
+            w1.ShowDialog();
         }
     }
 }

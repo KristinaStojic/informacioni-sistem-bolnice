@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,7 +51,7 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             DodajSalu ds = new DodajSalu();
-            ds.Show();
+            ds.ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -69,7 +70,7 @@ namespace Projekat
             if (izabranaSala != null)
             {
                 IzmjeniSalu iss = new IzmjeniSalu(izabranaSala);
-                iss.Show();
+                iss.ShowDialog();
             }
         }
 
@@ -99,8 +100,10 @@ namespace Projekat
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
             if (izabranaSala != null)
             {
+                PrikazStaticke.otvoren = true;
                 PrikazStaticke ps = new PrikazStaticke(izabranaSala);
-                ps.Show();
+                PremjestajMenadzer.odradiZakazano();
+                ps.ShowDialog();
             }
         }
 
@@ -110,7 +113,7 @@ namespace Projekat
             if (izabranaSala != null)
             {
                 PrikazDinamicke pd = new PrikazDinamicke(izabranaSala);
-                pd.Show();
+                pd.ShowDialog();
             }
         }
     }

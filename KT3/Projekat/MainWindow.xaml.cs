@@ -27,6 +27,7 @@ namespace Projekat
             InitializeComponent();
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
+            PremjestajMenadzer.NadjiSvePremjestaje();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

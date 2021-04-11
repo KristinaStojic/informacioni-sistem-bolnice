@@ -15,7 +15,7 @@ namespace Projekat.Model
         public static List<Oprema> NadjiStatickuOpremu()
         {
             List<Oprema> staticka = new List<Oprema>();
-            List<Oprema> sve = NadjiSvuOpremu();
+            List<Oprema> sve = OpremaMenadzer.oprema;
             foreach(Oprema o in sve)
             { 
                     staticka.Add(o);
@@ -25,7 +25,7 @@ namespace Projekat.Model
 
         public static void izmjeniOpremu(Oprema oprema, Oprema o1)
         {
-            foreach(Oprema o in NadjiSvuOpremu())
+            foreach(Oprema o in OpremaMenadzer.oprema)
             {
                 if(o.IdOpreme == oprema.IdOpreme)
                 {
@@ -57,7 +57,7 @@ namespace Projekat.Model
         public static List<Oprema> NadjiDinamickuOpremu()
         {
             List<Oprema> dinamicka = new List<Oprema>();
-            List<Oprema> sve = NadjiSvuOpremu();
+            List<Oprema> sve = OpremaMenadzer.oprema;
             foreach (Oprema o in sve)
             {
                 if (!o.Staticka)

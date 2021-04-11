@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net40\Caliburn.Micro.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -86,9 +89,12 @@
     <Compile Include="Model\LekarskiRecept.cs" />
     <Compile Include="Model\Oprema.cs" />
     <Compile Include="Model\OpremaMenadzer.cs" />
+    <Compile Include="Model\Premjestaj.cs" />
+    <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\TabelaRecepata.xaml.cs">
       <DependentUpon>TabelaRecepata.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Validation.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
@@ -103,6 +109,9 @@
     </Compile>
     <Compile Include="PreraspodjelaDinamicke.xaml.cs">
       <DependentUpon>PreraspodjelaDinamicke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PreraspodjelaStaticke.xaml.cs">
+      <DependentUpon>PreraspodjelaStaticke.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikazDinamicke.xaml.cs">
       <DependentUpon>PrikazDinamicke.xaml</DependentUpon>
@@ -130,6 +139,9 @@
     </Compile>
     <Compile Include="SlanjeDinamicke.xaml.cs">
       <DependentUpon>SlanjeDinamicke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SlanjeStaticke.xaml.cs">
+      <DependentUpon>SlanjeStaticke.xaml</DependentUpon>
     </Compile>
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
@@ -234,6 +246,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PreraspodjelaStaticke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrikazDinamicke.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -275,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SlanjeDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SlanjeStaticke.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,6 +358,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
