@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zahtjev za preraspodjelu dinamicke opreme" Height="328" Width="298" WindowStartupLocation="CenterScreen">
+        Title="Zahtjev za preraspodjelu dinamicke opreme" Height="328" Width="298" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

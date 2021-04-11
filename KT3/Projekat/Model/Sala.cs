@@ -4,6 +4,7 @@
  * Purpose: Definition of the Class Sala
  ***********************************************************************/
 
+using Projekat;
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,25 @@ namespace Model
         public Sala() { }
         public override string ToString()
         {
-            return brojSale + " - " + Namjena;
+            string val = brojSale + " - " + Namjena;
+            if (PreraspodjelaStaticke.aktivna && PreraspodjelaStaticke.izabranaOprema != null)
+            { 
+                foreach (Oprema o in Oprema) {
+                    if (o.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme) {
+                        val += " (" + o.Kolicina + ")";
+                    }
+                }
+            }else if (PreraspodjelaDinamicke.aktivna && PreraspodjelaDinamicke.izabranaOprema != null)
+            {
+                foreach (Oprema o in Oprema)
+                {
+                    if (o.IdOpreme == PreraspodjelaDinamicke.izabranaOprema.IdOpreme)
+                    {
+                        val += " (" + o.Kolicina + ")";
+                    }
+                }
+            }
+            return val;
         }
     }
 }

@@ -29,6 +29,9 @@ namespace Projekat
             InitializeComponent();
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
+
+            PremjestajMenadzer.NadjiSvePremjestaje();
+
             TerminMenadzer.NadjiSveTermine();
             PacijentiMenadzer.PronadjiSve();
 
@@ -38,6 +41,7 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
             lekari.Add(new Lekar() {IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
             lekari.Add(new Lekar() {IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista });
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

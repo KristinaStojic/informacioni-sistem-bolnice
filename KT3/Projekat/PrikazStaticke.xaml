@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz staticke opreme" Height="373" Width="400" WindowStartupLocation="CenterScreen">
+        Title="Prikaz staticke opreme" Height="373" Width="400" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <StackPanel>
         <Button Click="Button_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
             <Image Source="slike/back.png" Width="25" Height="25"></Image>
@@ -20,8 +20,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal">
-            <Button Height="39" Width="100" Margin="90, 10, 10, 10" Background="LightBlue">Dodaj</Button>
-            <Button Height="39" Width="100" Margin="10, 10, 10, 10" Background="LightBlue">Premjesti</Button>
+            <Button Height="39" Width="100" Margin="90, 10, 10, 10" Background="LightBlue" Click="Button_Click_1">Dodaj</Button>
+            <Button Height="39" Width="100" Margin="10, 10, 10, 10" Background="LightBlue" Click="Button_Click_2">Premjesti</Button>
         </StackPanel>
     </StackPanel>
 </Window>

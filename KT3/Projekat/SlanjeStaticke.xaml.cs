@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,26 +17,26 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for PrebaciStaticku.xaml
+    /// Interaction logic for SlanjeStaticke.xaml
     /// </summary>
-    public partial class PrebaciStaticku : Window
+    public partial class SlanjeStaticke : Window
     {
         public ObservableCollection<Sala> Sale { get; set; }
         public ObservableCollection<string> termini { get; set; }
         Oprema opremaZaSlanje;
-        public DateTime datumIVrijemeSlanja;
-        public PrebaciStaticku(Oprema oprema)
+        Sala salaIzKojeSaljem;
+        public SlanjeStaticke(Sala izabranaSala, Oprema opremaZaSlanje)
         {
-
             termini = new ObservableCollection<string>();
             InitializeComponent();
-            this.opremaZaSlanje = oprema;
+            this.opremaZaSlanje = opremaZaSlanje;
+            this.salaIzKojeSaljem = izabranaSala;
             this.oprema.Text = opremaZaSlanje.NazivOpreme;
             this.DataContext = this;
             Sale = new ObservableCollection<Sala>();
             foreach (Sala s in SaleMenadzer.sale)
             {
-                if (!s.Namjena.Equals("Skladiste"))
+                if (s.Id != izabranaSala.Id)
                 {
                     Sale.Add(s);
                 }
@@ -46,7 +45,7 @@ namespace Projekat
             for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
             {
                 x = 0;
-                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                foreach(Premjestaj p in PremjestajMenadzer.premjestaji)
                 {
                     if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
                     {
@@ -92,16 +91,13 @@ namespace Projekat
             string sat = sati[0];
             string minuti = sati[1];
             DateTime datumIVrijeme = new DateTime(int.Parse(godina), int.Parse(mjesec), int.Parse(dan), int.Parse(sat), int.Parse(minuti), 0);
-            //Console.WriteLine(datumIVrijeme.TimeOfDay.ToString());
-            Console.Write(DateTime.Now.TimeOfDay);
-
             if (datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
             {
                 if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
                 {
                     foreach (Sala s in SaleMenadzer.sale)
                     {
-                        if (s.Namjena.Equals("Skladiste"))
+                        if (s.Id == salaIzKojeSaljem.Id)
                         {
                             foreach (Oprema o in s.Oprema)
                             {
@@ -110,15 +106,15 @@ namespace Projekat
                                     if (o.Kolicina - kolicina == 0)
                                     {
                                         s.Oprema.Remove(o);
-                                        Skladiste.OpremaStaticka.Remove(o);
+                                        PrikazStaticke.OpremaStaticka.Remove(o);
                                         break;
                                     }
                                     else
                                     {
                                         o.Kolicina -= kolicina;
-                                        int idx = Skladiste.OpremaStaticka.IndexOf(o);
-                                        Skladiste.OpremaStaticka.RemoveAt(idx);
-                                        Skladiste.OpremaStaticka.Insert(idx, o);
+                                        int idx = PrikazStaticke.OpremaStaticka.IndexOf(o);
+                                        PrikazStaticke.OpremaStaticka.RemoveAt(idx);
+                                        PrikazStaticke.OpremaStaticka.Insert(idx, o);
                                     }
 
                                 }
@@ -149,7 +145,7 @@ namespace Projekat
                     zakazi.kolicina = kolicina;
                     foreach (Sala s in SaleMenadzer.sale)
                     {
-                        if (s.Namjena.Equals("Skladiste"))
+                        if (s.Id == salaIzKojeSaljem.Id)
                         {
                             zakazi.izSale = s;
                         }
@@ -174,18 +170,20 @@ namespace Projekat
             {
                 Premjestaj zakazi = new Premjestaj();
                 zakazi.kolicina = kolicina;
-                foreach (Sala s in SaleMenadzer.sale) {
-                    if (s.Namjena.Equals("Skladiste")) {
+                foreach (Sala s in SaleMenadzer.sale)
+                {
+                    if (s.Id == salaIzKojeSaljem.Id)
+                    {
                         zakazi.izSale = s;
                     }
-                    if(s.Id == salaUKojuSaljem.Id)
+                    if (s.Id == salaUKojuSaljem.Id)
                     {
                         zakazi.uSalu = s;
                     }
                 }
-                foreach(Oprema o in OpremaMenadzer.oprema)
+                foreach (Oprema o in OpremaMenadzer.oprema)
                 {
-                    if(opremaZaSlanje.IdOpreme == o.IdOpreme)
+                    if (opremaZaSlanje.IdOpreme == o.IdOpreme)
                     {
                         zakazi.oprema = o;
                     }
@@ -195,7 +193,6 @@ namespace Projekat
                 PremjestajMenadzer.dodajPremjestaj(zakazi);
             }
             this.Close();
-        
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -241,15 +238,9 @@ namespace Projekat
                             termini.Insert(0, i + ":00");
                         }
                     }
-
+                    
                 }
             }
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //PremjestajMenadzer.sacuvajIzmjene();
-            //this.Close();
         }
     }
 }
