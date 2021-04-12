@@ -38,26 +38,6 @@ namespace Projekat
                                                                 "17:00", "17:30", "18:00", "18:30",
                                                                 "19:00", "19:30", "20:00"};
 
-           /* List<Termin> termini = pronadjiSlobodanTermin();
-            foreach(Termin t in termini) {
-                
-                termins.Add(t);
-            }*/
-            /*Termin t1 = termins.ElementAt(1);
-            this.vreme1.Text = t1.VremePocetka;
-            this.datum1.Text = t1.Datum;
-            this.brSale1.Text = t1.Prostorija.Id.ToString();
-
-            Termin t2 = termins.ElementAt(1);
-            this.vreme2.Text = t2.VremePocetka;
-            this.datum2.Text = t2.Datum;
-            this.brSale2.Text = t2.Prostorija.Id.ToString();
-
-            Termin t3 = termins.ElementAt(2);
-            this.vreme3.Text = t3.VremePocetka;
-            this.datum3.Text = t3.Datum;
-            this.brSale3.Text = t3.Prostorija.Id.ToString();*/
-       
             int count = 0;
             lista = new List<Termin>();
             bool jeTri = false;
