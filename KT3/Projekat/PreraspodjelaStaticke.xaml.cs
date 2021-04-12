@@ -80,16 +80,16 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            termini.Add("14:40");
-            termini.Add("14:41");
-            termini.Add("14:42");
-            termini.Add("14:43");
-            termini.Add("14:44");
-            termini.Add("14:45");
-            termini.Add("14:46");
-            termini.Add("14:47");
-            termini.Add("14:48");
-            termini.Add("14:49");
+            termini.Add("10:10");
+            termini.Add("10:11");
+            termini.Add("10:12");
+            termini.Add("10:13");
+            termini.Add("10:14");
+            termini.Add("10:15");
+            termini.Add("10:16");
+            termini.Add("10:17");
+            termini.Add("10:18");
+            termini.Add("10:19");
         }
 
         private void kombo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -296,6 +296,19 @@ namespace Projekat
                             zakazi.oprema = o;
                         }
                     }
+                    if (zakazi.oprema == null)
+                    {
+                        foreach (Sala s in SaleMenadzer.sale)
+                        {
+                            foreach (Oprema o in s.Oprema)
+                            {
+                                if (izabranaOprema.IdOpreme == o.IdOpreme)
+                                {
+                                    zakazi.oprema = o;
+                                }
+                            }
+                        }
+                    }
                     zakazi.salji = false;
                     zakazi.datumIVrijeme = datumIVrijeme;
                     PremjestajMenadzer.dodajPremjestaj(zakazi);
@@ -321,6 +334,19 @@ namespace Projekat
                     if (izabranaOprema.IdOpreme == o.IdOpreme)
                     {
                         zakazi.oprema = o;
+                    }
+                }
+                if (zakazi.oprema == null)
+                {
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        foreach (Oprema o in s.Oprema)
+                        {
+                            if (izabranaOprema.IdOpreme == o.IdOpreme)
+                            {
+                                zakazi.oprema = o;
+                            }
+                        }
                     }
                 }
                 zakazi.salji = false;

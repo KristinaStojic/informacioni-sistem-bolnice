@@ -102,6 +102,9 @@
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
+    <Compile Include="ObrisiOpremu.xaml.cs">
+      <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
     </Compile>
@@ -244,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Model\TabelaRecepata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObrisiOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -435,6 +442,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="nazad.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\move.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

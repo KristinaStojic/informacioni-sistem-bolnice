@@ -67,6 +67,29 @@ namespace Projekat
             
         }
 
+        public static void azurirajOpremu()
+        {
+            OpremaDinamicka.Clear();
+            OpremaStaticka.Clear();
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Namjena.Equals("Skladiste"))
+                {
+                    foreach (Oprema o in OpremaMenadzer.oprema)
+                    {
+                        if (o.Staticka)
+                        {
+                            OpremaStaticka.Add(o);
+                        }
+                        else
+                        {
+                            OpremaDinamicka.Add(o);
+                        }
+                    }
+                }
+            }
+        }
+
         public void izvrsi()
         {
             while (otvoren)
@@ -172,6 +195,60 @@ namespace Projekat
                     pd.ShowDialog();
                 }
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Pomoc
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            //O aplikaciji
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            //Osoblje
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            PrikaziSalu ps = new PrikaziSalu();
+            ps.Show();
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            //Komunikacija
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+            //Izvjestaj
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            if (T1.IsSelected)
+            {
+                Oprema izabranaOprema = (Oprema)dataGridT1.SelectedItem;
+                if (izabranaOprema != null)
+                {
+                    ObrisiOpremu oo = new ObrisiOpremu(izabranaOprema);
+                    oo.Show();
+                }
+            }
+            else if (T2.IsSelected)
+            {
+                Oprema izabranaOprema = (Oprema)dataGridT2.SelectedItem;
+                if (izabranaOprema != null)
+                {
+                    ObrisiOpremu oo = new ObrisiOpremu(izabranaOprema);
+                    oo.Show();
+                }
+            }
+            
         }
     }
     public class ObservableCollectionEx<t> : ObservableCollection<t>
