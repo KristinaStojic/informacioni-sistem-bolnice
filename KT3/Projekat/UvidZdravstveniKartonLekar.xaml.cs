@@ -23,10 +23,12 @@ namespace Projekat
     {
 
         public Pacijent pacijent;
-        public UvidZdravstveniKartonLekar(Pacijent izabraniNalog)
+        public Termin termin;
+        public UvidZdravstveniKartonLekar(Pacijent izabraniNalog, Termin termin)
         {
             InitializeComponent();
             this.pacijent = izabraniNalog;
+            this.termin = termin;
             if (izabraniNalog != null)
             {
                 ime.Text = izabraniNalog.ImePacijenta;
@@ -104,7 +106,7 @@ namespace Projekat
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
            
-            PrikazAnamneza pa = new PrikazAnamneza(pacijent);
+            PrikazAnamneza pa = new PrikazAnamneza(pacijent,termin);
             pa.Show();
         }
 

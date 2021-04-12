@@ -21,10 +21,14 @@ namespace Projekat
     public partial class DodajAnamnezu : Window
     {
         public Pacijent pacijent;
-        public DodajAnamnezu(Pacijent izabraniPacijent)
+        public Termin termin;
+        public DodajAnamnezu(Pacijent izabraniPacijent, Termin termin)
         {
-            this.pacijent = izabraniPacijent;
             InitializeComponent();
+            this.pacijent = izabraniPacijent;
+            this.termin = termin;
+            this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+            this.datum.SelectedDate = DateTime.Parse(termin.Datum);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

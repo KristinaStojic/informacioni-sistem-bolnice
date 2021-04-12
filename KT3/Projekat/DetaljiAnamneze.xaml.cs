@@ -22,15 +22,18 @@ namespace Projekat
     {
         Pacijent pacijent;
         Anamneza stara;
-        public DetaljiAnamneze(Anamneza izabranaAnamneza)
+        Termin termin;
+        public DetaljiAnamneze(Anamneza izabranaAnamneza, Termin termin)
         {
             InitializeComponent();
             this.stara = izabranaAnamneza;
+            this.termin = termin;
             foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
             {
                 if(pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
                 {
                     this.datum.SelectedDate = DateTime.Parse(izabranaAnamneza.Datum);
+                    this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
                     this.bolest.Text = izabranaAnamneza.OpisBolesti;
                     this.terapija.Text = izabranaAnamneza.Terapija;
                 }

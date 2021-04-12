@@ -23,7 +23,7 @@ namespace Projekat
     {
         Pacijent pacijent;
         public int colNum = 0;
-         
+        public Termin termin;
         
        
         public static ObservableCollection<Anamneza> TabelaAnamneza
@@ -32,14 +32,13 @@ namespace Projekat
             set;
         }
 
-        public PrikazAnamneza(Pacijent izabraniPacijent)
+        public PrikazAnamneza(Pacijent izabraniPacijent, Termin termin)
         {
             InitializeComponent();
+            TabelaAnamneza = new ObservableCollection<Anamneza>();
             this.DataContext = this;
             this.pacijent = izabraniPacijent;
-            //Console.WriteLine(pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta); //dobro nadje pacijenta
-            Console.WriteLine("PACIJENT IMA ANAMNEZA NA ULAZU U PRIKAZ: " + pacijent.Karton.Anamneze.Count);
-            TabelaAnamneza = new ObservableCollection<Anamneza>();
+            this.termin = termin;
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
@@ -64,8 +63,7 @@ namespace Projekat
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DodajAnamnezu da = new DodajAnamnezu(pacijent);
-            Console.WriteLine("PACIJENT IMA ANAMNEZA NA ULAZU U DODAVANJE ANAMNEZE : " + pacijent.Karton.Anamneze.Count);
+            DodajAnamnezu da = new DodajAnamnezu(pacijent,termin);   
             da.Show();
         }
 
@@ -73,13 +71,11 @@ namespace Projekat
         {
            
             Anamneza izabranaAnamneza = (Anamneza)dataGridTermini.SelectedItem;
-            Console.WriteLine("IZABRANA ANAMNEZA: " + izabranaAnamneza.Terapija);
-            Console.WriteLine("PACIJENT IMA ANAMNEZA NA ULAZU U DETALJE: " + pacijent.Karton.Anamneze.Count);
-           
+            
             if (izabranaAnamneza != null)
             {
                 
-                DetaljiAnamneze da = new DetaljiAnamneze(izabranaAnamneza);
+                DetaljiAnamneze da = new DetaljiAnamneze(izabranaAnamneza,termin);
                 da.Show();
             }
             else

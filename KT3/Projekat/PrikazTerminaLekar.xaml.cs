@@ -22,6 +22,7 @@ namespace Projekat
     public partial class PrikazTerminaLekar : Window
     {
         private int colNum = 0;
+        int idLekara;
         public static ObservableCollection<Termin> Termini
         {
             get;
@@ -35,11 +36,37 @@ namespace Projekat
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.termini)
             {
-               /* if(t.Lekar.IdLekara == 5)
+                /*foreach(Lekar l in MainWindow.lekari)
+                {
+                    if(t.Lekar.IdLekara == l.IdLekara)
+                    {
+                        Termini.Add(t);
+                    }
+                }*/
+
+
+                /*if (t.Lekar.IdLekara == 1)
                 {
                     Termini.Add(t);
                 }*/
-                Termini.Add(t);
+                /*if (t.Lekar.IdLekara == 2)
+                {
+                    Termini.Add(t);
+                }*/
+                /*if (t.Lekar.IdLekara == 3)
+                {
+                    Termini.Add(t);
+                } */
+                /*if (t.Lekar.IdLekara == 4)
+                {
+                    Termini.Add(t);
+                }*/ 
+                 if (t.Lekar.IdLekara == 5)
+                {
+                    Termini.Add(t);
+                }
+
+                //Termini.Add(t);
             }
         }
 
@@ -111,7 +138,7 @@ namespace Projekat
                 else
                 {
                     this.Close();
-                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent);
+                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
                     karton.Show();
                 }
             }
