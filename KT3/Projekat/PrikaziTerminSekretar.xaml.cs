@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -41,15 +42,18 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
-            this.Hide();
+            SaleMenadzer.sacuvajIzmjene();
+            this.Close();
         }
 
+        // zakazivanje
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             ZakaziTerminSekretar zakazivanje = new ZakaziTerminSekretar();
             zakazivanje.Show();
         }
 
+        // izmena
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Termin izabraniTermin = (Termin)terminiSekretarTabela.SelectedItem;
@@ -64,12 +68,13 @@ namespace Projekat
             }
         }
 
+        // brisanje
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Termin zaBrisanje = (Termin)terminiSekretarTabela.SelectedItem;
             if (zaBrisanje != null)
             {
-                TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);
+                TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);   
             }
             else
             {
@@ -80,6 +85,44 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+            SaleMenadzer.sacuvajIzmjene();
+        }
+
+        // button nalozi pacijenata
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            TerminMenadzer.sacuvajIzmene();
+            SaleMenadzer.sacuvajIzmjene();
+
+            this.Close();
+            PrikaziPacijenta p = new PrikaziPacijenta();
+            p.Show();
+        }
+
+        // X na prikazu termina
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            canvas2.Visibility = Visibility.Hidden;
+        }
+
+        private void terminiSekretarTabela_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            canvas2.Visibility = Visibility.Visible;
+            Termin t = (Termin)terminiSekretarTabela.SelectedItem;
+
+            if (t != null)
+            {
+                datum.Text = t.Datum;
+                pocetak.Text = t.VremePocetka;
+                kraj.Text = t.VremeKraja;
+                prostorija.Text = t.Prostorija.brojSale.ToString();
+                tip.Text = t.tipTermina.ToString();
+                imePac.Text = t.Pacijent.ImePacijenta;
+                prezimePac.Text = t.Pacijent.PrezimePacijenta;
+                jmbgPac.Text = t.Pacijent.Jmbg.ToString();
+                imeLek.Text = t.Lekar.ImeLek;
+                prezimeLek.Text = t.Lekar.PrezimeLek;
+            }
         }
     }
 }

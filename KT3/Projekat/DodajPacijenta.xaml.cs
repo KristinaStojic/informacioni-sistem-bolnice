@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
-namespace Projekat.Model
+namespace Projekat
 {
     /// <summary>
     /// Interaction logic for DodajPacijenta.xaml
@@ -24,6 +25,7 @@ namespace Projekat.Model
         public DodajPacijenta()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -48,13 +50,12 @@ namespace Projekat.Model
             {
                 pol = pol.Z;
             }
-            
+
             // ukoliko je guest nalog
-            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals("") || combo3.Text.Equals("Neodredjeno"))  // bice izmene ?
+            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals(""))  // bice izmene ?
             {
                 int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
                 Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
-                p1.BracnoStanje = bracnoStanje.Neodredjeno;
                 PacijentiMenadzer.DodajNalog(p1);
             }
             else  // ukoliko je stalan nalog
@@ -70,6 +71,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.recepti = lr;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);     
@@ -82,6 +85,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -93,6 +98,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
 
@@ -105,6 +112,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -117,6 +126,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -128,6 +139,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -139,6 +152,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -150,6 +165,8 @@ namespace Projekat.Model
                     p.Karton = karton;
                     List<LekarskiRecept> lr = new List<LekarskiRecept>();
                     p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     //ZdravstveniKartonMenadzer.kartoni.Add(karton);
                     PacijentiMenadzer.DodajNalog(p);
                 }
@@ -182,6 +199,16 @@ namespace Projekat.Model
                 combo3.IsEnabled = true;
             }
         }
+
+        private void jmbg_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!PacijentiMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            {
+                MessageBox.Show("JMBG vec postoji");
+                jmbg.Text = "";
+            }
+        }
+
     }
 }
 

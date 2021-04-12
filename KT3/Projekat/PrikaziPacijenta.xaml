@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikaziPacijenta" Height="500" Width="1000" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="PrikaziPacijenta" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -23,23 +23,67 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Grid.Row="0" Margin="16,16,23.6,24" Click="Button_Click" Background="Azure">NAZAD</Button>
-        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="165.4,32,0.4,65.6" Grid.RowSpan="2">Nalozi pacijenata</Label>
-        <Button Grid.Row="1" Margin="107.6,96,64.6,41.2" Click="Button_Click_1" RenderTransformOrigin="1.366,0.614" Grid.ColumnSpan="2" Grid.Column="4" Grid.RowSpan="2">Dodaj</Button>
-        <Button Grid.Column="4" Grid.Row="2" Margin="106.6,97.4,64.6,39.8" Click="Button_Click_2" RenderTransformOrigin="1.378,0.509" Grid.ColumnSpan="2" Grid.RowSpan="2">Izmeni</Button>
-        <Button Grid.Column="4" Grid.Row="3" Margin="106.6,96.8,64.6,40.4" Click="Button_Click_3" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2" Grid.RowSpan="2">Obrisi</Button>
-        <Button Grid.Column="4" Margin="106.6,0,64.6,39.6" Click="Button_Click_4" RenderTransformOrigin="1.63,0.404" Grid.ColumnSpan="2" Content="Zdravstveni karton" Grid.Row="1"/>
+        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="691" Grid.RowSpan="5" StrokeThickness="0" VerticalAlignment="Top" Width="424" Margin="0.4,0,-0.4,0" Grid.Column="4" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="0" FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="4.2,0,167.6,150.8" Content="Nalozi pacijenata" Grid.ColumnSpan="2" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold" Grid.RowSpan="2" Grid.Column="1"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="45.4,50,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="172.4,50,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="88.4,50,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="3"/>
 
-        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="63,58,91,40.4" AutoGenerateColumns="False">
+        <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="5" Margin="-2,0,0,0" >
+            <MenuItem Height="106" Width="75" Click="Button_Click">
+                <MenuItem.Icon>
+                    <Image Source="slike/right-arrow1.png" Margin="-10,-20,-56,-22"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="  Nalozi pacijenata" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Button_Click_6"/>
+            <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+        </Menu>
+        <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="424" Background="#FFE7F6F7" Grid.Column="4" Margin="0.4,0,-0.4,0" Grid.RowSpan="5" Grid.ColumnSpan="2" >
+            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Button_Click_5">
+                <StackPanel>
+                    <Image Source="slike/cancel.png" Height="25" Width="27" RenderTransformOrigin="0.254,0.462" />
+                    <TextBlock Height="1"/>
+                </StackPanel>
+            </Button>
+            <Label Content="Nalog pacijenta" Canvas.Left="70" Canvas.Top="58" Height="42" Width="157" FontSize="20"/>
+            <Label Canvas.Left="70" Canvas.Top="110">IME:</Label>
+            <Label Canvas.Left="70" Canvas.Top="145">PREZIME:</Label>
+            <Label Canvas.Left="70" Canvas.Top="175">JMBG:</Label>
+            <Label Canvas.Left="70" Canvas.Top="205">POL:</Label>
+            <Label Canvas.Left="70" Canvas.Top="235">STATUS:</Label>
+            <Label Canvas.Left="70" Canvas.Top="265">BROJ TELEFONA:</Label>
+            <Label Canvas.Left="70" Canvas.Top="295">EMAIL:</Label>
+            <Label Canvas.Left="70" Canvas.Top="325">ADRESA:</Label>
+            <Label Canvas.Left="70" Canvas.Top="355">BRACNO STANJE:</Label>
+            <Label Canvas.Left="70" Canvas.Top="385">ZANIMANJE:</Label>
+            <TextBox Name="ime" Canvas.Left="180" Canvas.Top="110" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" ></TextBox>
+            <TextBox x:Name="prezime" Canvas.Left="180" Canvas.Top="145" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="jmbg" Canvas.Left="180" Canvas.Top="175" Width="145"  Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="pol" Canvas.Left="180" Canvas.Top="205" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="status" Canvas.Left="180" Canvas.Top="235" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="telefon" Canvas.Left="180" Canvas.Top="265" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="email" Canvas.Left="180" Canvas.Top="295" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="adresa" Canvas.Left="180" Canvas.Top="325" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="stanje" Canvas.Left="180" Canvas.Top="355" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <TextBox x:Name="zanimanje" Canvas.Left="180" Canvas.Top="385" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" />
+            <Button Click="Button_Click_4" RenderTransformOrigin="1.63,0.404" Content="Zdravstveni karton" Background="#FFA3DADE" BorderThickness="1" BorderBrush="#FF110F0F" FontSize="17" Grid.Column="1" Grid.Row="1" Canvas.Left="180" Canvas.Top="604" Height="42" Width="169" />
+        </Canvas>
+        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,111,211.6,-0.2" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaPacijenata_SelectionChanged" >
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE7F6F7" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="30" Binding="{Binding IdPacijenta}"/>
-                <DataGridTextColumn Header="Ime" Width="100" Binding="{Binding ImePacijenta}"/>
-                <DataGridTextColumn Header="Prezime" Width="110" Binding="{Binding PrezimePacijenta}"/>
-                <DataGridTextColumn Header="JMBG" Width="110" Binding="{Binding Jmbg}"/>
-                <DataGridTextColumn Header="Pol" Width="40" Binding="{Binding Pol}"/>
-                <DataGridTextColumn Header="Status" Width="60" Binding="{Binding StatusNaloga}"/>
-                <DataGridTextColumn Header="Broj telefona" Width="100" Binding="{Binding BrojTelefona}"/>
-                <DataGridTextColumn Header="Email" Width="130" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Ime" Width="130" Binding="{Binding ImePacijenta}"/>
+                <DataGridTextColumn Header="Prezime" Width="130" Binding="{Binding PrezimePacijenta}"/>
+                <DataGridTextColumn Header="JMBG" Width="130" Binding="{Binding Jmbg}"/>
+                <DataGridTextColumn Header="Pol" Width="60" Binding="{Binding Pol}"/>
+                <DataGridTextColumn Header="Status" Width="95" Binding="{Binding StatusNaloga}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="Recept" Height="650" Width="484.333"  WindowStartupLocation="CenterScreen">
-    <Grid Margin="-14,0,4,1">
+    <Grid Margin="-14,0,-6,3"  Background="LightSkyBlue">
         <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" Margin="245,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged" IsEnabled="False"/>
         <Label Content="Ime pacijenta" FontSize="15" HorizontalAlignment="Left" Margin="70,42,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" Margin="245,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged" IsEnabled="False"/>
@@ -26,6 +26,8 @@
         <Label FontSize="15" Content="Pocetak terapije" HorizontalAlignment="Left" Margin="70,462,0,0" VerticalAlignment="Top"/>
         <Button Content="Odustani" HorizontalAlignment="Left" Margin="105,537,0,0" VerticalAlignment="Top" Width="91" Height="29"  Click="Button_Click"/>
         <Button x:Name="sacuvaj"  Content="Sacuvaj" HorizontalAlignment="Left" Margin="258,537,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="Button_Click_1"/>
+        <Button Background="#FF6895C5"  Content="Odustani" HorizontalAlignment="Left" Margin="105,537,0,0" VerticalAlignment="Top" Width="91" Height="29"  Click="Button_Click"/>
+        <Button Background="#FF6895C5" Content="Sacuvaj" HorizontalAlignment="Left" Margin="258,537,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="Button_Click_1"/>
         <DatePicker Name ="datum" HorizontalAlignment="Left" Margin="245,297,0,0" VerticalAlignment="Top" Width="175"/>
         <Label Content="h" HorizontalAlignment="Left" Margin="305,460,0,0" VerticalAlignment="Top" Width="22"/>
         <TextBox x:Name ="min" HorizontalAlignment="Left" Height="24" Margin="332,462,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" TextChanged="TextBox_TextChanged"/>

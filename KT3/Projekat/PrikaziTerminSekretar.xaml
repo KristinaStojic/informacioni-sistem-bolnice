@@ -5,32 +5,116 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikaziTerminSekretar" Height="500" Width="1200" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="PrikaziTerminSekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
-        <Button Margin="16,16,1048.6,413.4" Click="Button_Click" Background="Azure">NAZAD</Button>
-        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="1039,152,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click_1" Height="45"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="1039,241,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click_2" Height="45"/>
-        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="1039,331,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click_3" Height="45"/>
-        <Label Content="Termini" HorizontalAlignment="Left" Margin="552,31,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <DataGrid Grid.Column="0" x:Name="terminiSekretarTabela" ItemsSource="{Binding TerminiSekretar}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                  Height="304" Margin="22,121,0,0" VerticalAlignment="Top" Width="990" GridLinesVisibility="All" FontSize="13">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="454,43,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="579,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="42" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
+        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="700,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="42" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
+        <Label Content="Termini" HorizontalAlignment="Left" Margin="217,0,0,0" VerticalAlignment="Center" FontSize="22" FontFamily="Segoe UI Semibold" Foreground="#FF18A3AC" Width="162" HorizontalContentAlignment="Center" Height="88" VerticalContentAlignment="Center"/>
+        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="680" Grid.RowSpan="2" StrokeThickness="0" VerticalAlignment="Top" Width="457" Margin="820,7,-3.4,0"/>
+        <DataGrid Grid.Column="0" x:Name="terminiSekretarTabela" ItemsSource="{Binding TerminiSekretar}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="499" Margin="212,100,0,0" VerticalAlignment="Top" Width="608" GridLinesVisibility="All" FontSize="14" Grid.Row="1" SelectionChanged="terminiSekretarTabela_SelectionChanged">
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE7F6F7" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
             <DataGrid.Columns >
                 <DataGridTextColumn Header="ID" Binding="{Binding IdTermin}" />
-                <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
-                <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
-                <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
-                <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                <DataGridTextColumn Header="Br. kartona" Binding="{Binding Pacijent.idKartona}"/>
-                <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  />
-                <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.Ime}" />
-                <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.Prezime}"/>
-                <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
-                <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"  />
-                <DataGridTextColumn Header="Obavljen" />
-                <DataGridTextColumn Header="Naplacen" />
+                <DataGridTextColumn Header="Datum" Width="90" Binding="{Binding Datum}" />
+                <DataGridTextColumn Header="Pocetak" Width="60" Binding="{Binding VremePocetka}"/>
+                <DataGridTextColumn Header="Kraj" Width="60" Binding="{Binding VremeKraja}"/>
+                <DataGridTextColumn Header="Pacijent" Width="150" Binding="{Binding imePrezimePacijenta}" />
+                <DataGridTextColumn Header="Lekar" Width="150" Binding="{Binding imePrezimeLekara}"/>
+                <DataGridTextColumn Header="Sala" Width="65" Binding="{Binding Prostorija.brojSale}"/>
             </DataGrid.Columns>
-
         </DataGrid>
+        <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="457" Background="#FFE7F6F7" Margin="820,0,-3.4,0" Grid.RowSpan="2">
+            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="17" Canvas.Top="10" Width="37" Click="Button_Click_5">
+                <StackPanel>
+                    <Image Source="slike/cancel.png" Height="25" Width="27" RenderTransformOrigin="0.254,0.462" />
+                    <TextBlock Height="1"/>
+                </StackPanel>
+            </Button>
+            <GroupBox Header="LEKAR" HorizontalAlignment="Left" Height="133" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="31" Canvas.Top="500" BorderBrush="#FF18A3AC">
+                <Grid Margin="0,0,0.2,8.8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="59*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="182*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="12" Margin="18,8,0.6,63.4" Grid.ColumnSpan="2">IME:</Label>
+                    <Label FontSize="12" Margin="18,38,2.2,31.4" Grid.ColumnSpan="3" >PREZIME:</Label>
+                    <Label FontSize="12" Margin="18,69,2.2,0.4" Grid.ColumnSpan="3" >JMBG:</Label>
+                    <TextBox x:Name="imeLek"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,6,42.2,65.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="prezimeLek"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,36,42.2,34.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="jmbgLek"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,67,42.2,4.4" Grid.Column="3" FontSize="12" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="TERMIN" HorizontalAlignment="Left" Height="133" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="30" Canvas.Top="77" BorderBrush="#FF18A3AC">
+                <Grid Margin="0,0,0.2,8.8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="59*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="182*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="12" Margin="18,8,0.6,63.4" Grid.ColumnSpan="2">DATUM:</Label>
+                    <Label FontSize="12" Margin="18,38,2.2,31.4" Grid.ColumnSpan="3" >VREME POCETKA:</Label>
+                    <Label FontSize="12" Margin="18,69,2.2,0.4" Grid.ColumnSpan="3" >VREME KRAJA:</Label>
+                    <TextBox x:Name="datum"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,6,42.2,65.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="pocetak"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,36,42.2,34.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="kraj"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,67,42.2,4.4" Grid.Column="3" FontSize="12" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="PROSTORIJA" HorizontalAlignment="Left" Height="95" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="30" Canvas.Top="230" BorderBrush="#FF18A3AC">
+                <Grid Margin="0,0,0.2,-1.6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="12*"/>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="18*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="182*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="12" Margin="2,5,18.4,39.2" Grid.ColumnSpan="4" Grid.Column="1">BROJ PROSTORIJE:</Label>
+                    <Label FontSize="12" Margin="2,37,5.4,10.2" Grid.ColumnSpan="4" Grid.Column="1" >TIP USLUGE:</Label>
+                    <TextBox x:Name="prostorija"  BorderThickness="0,0,0,1" Background="Transparent" Grid.Column="5" FontSize="12" Margin="24.6,4,48.2,39.2" />
+                    <TextBox x:Name="tip"  BorderThickness="0,0,0,1" Background="Transparent" Grid.Column="5" FontSize="12" Margin="24.6,36,48.2,7.2" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="PACIJENT" HorizontalAlignment="Left" Height="133" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="31" Canvas.Top="346" BorderBrush="#FF18A3AC">
+                <Grid Margin="0,0,0.2,8.8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="59*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="182*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label FontSize="12" Margin="18,8,0.6,63.4" Grid.ColumnSpan="2">IME:</Label>
+                    <Label FontSize="12" Margin="18,38,2.2,31.4" Grid.ColumnSpan="3" >PREZIME:</Label>
+                    <Label FontSize="12" Margin="18,69,2.2,0.4" Grid.ColumnSpan="3" >JMBG:</Label>
+                    <TextBox x:Name="imePac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,6,42.2,65.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="prezimePac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,36,42.2,34.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="jmbgPac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,67,42.2,4.4" Grid.Column="3" FontSize="12" />
+                </Grid>
+            </GroupBox>
+        </Canvas>
+        <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="2" Margin="-2,0,0,0" >
+            <MenuItem Height="106" Width="75" Click="Button_Click">
+                <MenuItem.Icon>
+                    <Image Source="slike/right-arrow1.png" Margin="-10,-20,-56,-22"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="Button_Click_4" FontSize="17"/>
+            <MenuItem Header="  Termini" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+        </Menu>
     </Grid>
 </Window>

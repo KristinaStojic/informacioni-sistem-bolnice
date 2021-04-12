@@ -88,7 +88,8 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Console.WriteLine("NA IZLAZU IZ TABELE PACIJENTA IMA : " + pacijent.Karton.Anamneze.Count + "ANAMNEZA");
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -100,8 +101,9 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Anamneza a = new Anamneza();
-            a.Show();
+            Console.WriteLine("NA ULAZU U TABELU PACIJENTA IMA : " + pacijent.Karton.Anamneze.Count + "ANAMNEZA");
+            PrikazAnamneza pa = new PrikazAnamneza(pacijent);
+            pa.Show();
         }
     }
 }

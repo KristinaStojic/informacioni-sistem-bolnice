@@ -20,9 +20,31 @@ namespace Model
         public int IdTermin { get; set; }
         public String VremePocetka { get; set; }
         public String VremeKraja { get; set; }
-
         public Lekar Lekar { get; set; }
         public Pacijent Pacijent { get; set; }
+
+        public String imePrezimePacijenta 
+        {
+            get
+            {
+                return Pacijent.ImePacijenta + " " + Pacijent.PrezimePacijenta; 
+            } 
+        }
+
+        public String imePrezimeLekara
+        {
+            get
+            {
+                if (Lekar != null)
+                {
+                    return Lekar.ImeLek + " " + Lekar.PrezimeLek;
+                }
+                else
+                {
+                    return "Filip Filipovic";
+                }
+            }
+        }
 
         public String Datum { get; set; }
 

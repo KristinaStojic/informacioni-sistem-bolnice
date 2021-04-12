@@ -1,0 +1,26 @@
+﻿<Window x:Class="Projekat.PrikazAnamneza"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="PrikazAnamneza" Height="550" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,-6.4,-1.2"  Background="LightSkyBlue">
+        <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
+                  SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
+                  Height="353" Margin="24,77,0,0" VerticalAlignment="Top" Width="543" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13">
+            <DataGrid.Columns >
+                <DataGridTextColumn Width="130" Header="Redni broj pregleda" Binding="{Binding IdAnamneze}"/>
+                <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="160" />
+                <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Width="252"/>
+                <!--Binding ="{Binding IdLekara}"-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button   Background="#FF6895C5" Content="Nova anamneza" HorizontalAlignment="Left" Margin="168,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" Click="Button_Click" RenderTransformOrigin="0.706,4.291"/>
+        <Button Background="#FF6895C5" Content="Detalji" HorizontalAlignment="Left" Margin="24,459,0,0" VerticalAlignment="Top" Width="115" Height="38" Click="Button_Click_1"/>
+        <Label Content="Anamneze" HorizontalAlignment="Left" Margin="24,23,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Button  Background="#FF6895C5" Content="Izveštaj" HorizontalAlignment="Left" Margin="309,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" RenderTransformOrigin="0.706,4.291"/>
+        <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="452,459,0,0" VerticalAlignment="Top"  Width="115" Height="38" RenderTransformOrigin="0.706,4.291"/>
+    </Grid>
+</Window>

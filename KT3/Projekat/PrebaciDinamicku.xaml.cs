@@ -21,28 +21,24 @@ namespace Projekat
     /// </summary>
     public partial class PrebaciDinamicku : Window
     {
-        public Oprema izabranaOprema;
+        public ObservableCollection<Sala> Sale { get; set; }
+        Oprema opremaZaSlanje;
         public PrebaciDinamicku(Oprema oprema)
         {
             InitializeComponent();
-            this.izabranaOprema = oprema;
-            if (izabranaOprema != null)
+            this.opremaZaSlanje = oprema;
+            this.oprema.Text = opremaZaSlanje.NazivOpreme;
+            this.DataContext = this;
+            Sale = new ObservableCollection<Sala>();
+            foreach (Sala s in SaleMenadzer.sale)
             {
-                this.oprema.Text = izabranaOprema.NazivOpreme;
-            }
-            DataContext = new ViewModel();
-        }
-        public class ViewModel
-        {
-            public ObservableCollection<Sala> sale { get; set; }
-            public ViewModel()
-            {
-                sale = new ObservableCollection<Sala>();
-                foreach (Sala s in SaleMenadzer.sale)
+                if (!s.Namjena.Equals("Skladiste"))
                 {
-                    sale.Add(s);
+                    Sale.Add(s);
                 }
             }
+            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,5 +46,55 @@ namespace Projekat
             this.Close();
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Sala salaUKojuSaljem = (Sala)kombo.SelectedItem;
+            int kolicina = int.Parse(Kolicina.Text);
+            int x = 0;
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Namjena.Equals("Skladiste"))
+                {
+                    foreach (Oprema o in s.Oprema)
+                    {
+                        if (o.IdOpreme == opremaZaSlanje.IdOpreme)
+                        {
+                            if (o.Kolicina - kolicina == 0)
+                            {
+                                s.Oprema.Remove(o);
+                                Skladiste.OpremaDinamicka.Remove(o);
+                                break;
+                            }
+                            else
+                            {
+                                o.Kolicina -= kolicina;
+                                int idx = Skladiste.OpremaDinamicka.IndexOf(o);
+                                Skladiste.OpremaDinamicka.RemoveAt(idx);
+                                Skladiste.OpremaDinamicka.Insert(idx, o);
+                            }
+
+                        }
+                    }
+                }
+                if (s.Id == salaUKojuSaljem.Id)
+                {
+                    foreach (Oprema o in s.Oprema)
+                    {
+                        if (o.IdOpreme == opremaZaSlanje.IdOpreme)
+                        {
+                            o.Kolicina += kolicina;
+                            x += 1;
+                        }
+                    }
+                    if (x == 0)
+                    {
+                        Oprema op = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, false);
+                        op.IdOpreme = opremaZaSlanje.IdOpreme;
+                        s.Oprema.Add(op);
+                    }
+                }
+            }
+            this.Close();
+        }
     }
 }

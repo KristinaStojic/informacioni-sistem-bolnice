@@ -105,6 +105,19 @@ namespace Model
             return id;
         }
 
+        public static ZauzeceSale NadjiZauzece(int idProstorije, int idTermin, string datum, string poc, string kraj)
+        {
+            Sala sala = NadjiSaluPoId(idProstorije);
+            foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
+            {
+                if (idTermin == zauzece.idTermina && datum.Equals(zauzece.datumTermina) && poc.Equals(zauzece.pocetakTermina) && kraj.Equals(zauzece.krajTermina))
+                {
+                    return zauzece;
+                }
+            }
+            return null;
+        }
+
         public static List<Sala> sale = new List<Sala>();
    }
 }

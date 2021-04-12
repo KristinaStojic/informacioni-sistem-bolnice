@@ -29,6 +29,14 @@ namespace Projekat.Model
         }
         
 
+        public ZauzeceSale(string pocetakTermina, string krajTermina, string datumTermina, int id)
+        {
+            this.pocetakTermina = pocetakTermina;
+            this.krajTermina = krajTermina;
+            this.datumTermina = datumTermina;
+            this.idTermina = id;
+        }
+
         public ZauzeceSale() { }
         
     }

@@ -21,8 +21,9 @@ namespace Projekat
     /// </summary>
     public partial class PreraspodjelaDinamicke : Window
     {
-        public Oprema izabranaOprema;
+        public static Oprema izabranaOprema;
         public Sala salaDodavanje;
+        public static bool aktivna;
         public ObservableCollection<Sala> sale { get; set; }
         public ObservableCollection<Oprema> dinamicka { get; set; }
         public PreraspodjelaDinamicke(Sala izabranaSala)
@@ -32,18 +33,40 @@ namespace Projekat
             dinamicka = new ObservableCollection<Oprema>();
             sale = new ObservableCollection<Sala>();
             this.salaDodavanje = izabranaSala;
-            foreach (Oprema o in OpremaMenadzer.NadjiSvuOpremu())
+            foreach (Oprema o in OpremaMenadzer.oprema)
             {
                 if (!o.Staticka)
                 {
                     dinamicka.Add(o);
                 }
             }
+            bool ima = false;
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                foreach (Oprema op in s.Oprema)
+                {
+                    ima = false;
+                    if (!op.Staticka)
+                    {
+                        foreach (Oprema ops in dinamicka)
+                        {
+                            if (ops.IdOpreme == op.IdOpreme)
+                            {
+                                ima = true;
+                            }
+                        }
+                        if (!ima)
+                        {
+                            dinamicka.Add(op);
+                        }
+                    }
+                }
+            }
         }
 
         private void kombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.izabranaOprema = (Oprema)kombo.SelectedItem;
+            PreraspodjelaDinamicke.izabranaOprema = (Oprema)kombo.SelectedItem;
             azurirajSale(izabranaOprema);
         }
 
@@ -69,6 +92,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            PreraspodjelaDinamicke.aktivna = false;
             this.Close();
         }
 
@@ -77,7 +101,7 @@ namespace Projekat
             Sala izabranaSala = (Sala)komboSale.SelectedItem;
             int kolicina = int.Parse(Kolicina.Text);
             int x = 0;
-            this.izabranaOprema = (Oprema)kombo.SelectedItem;
+            PreraspodjelaDinamicke.izabranaOprema = (Oprema)kombo.SelectedItem;
             foreach(Sala s in SaleMenadzer.sale)
             {
                 if(s.Id == izabranaSala.Id)
@@ -143,6 +167,11 @@ namespace Projekat
                     }
                 }
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            PreraspodjelaDinamicke.aktivna = false;
         }
     }
 }

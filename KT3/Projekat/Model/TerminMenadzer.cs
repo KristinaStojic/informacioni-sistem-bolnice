@@ -9,6 +9,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 using System.Xml.Serialization;
 
 
@@ -29,7 +30,6 @@ namespace Model
         {
             termini.Add(termin);
             PrikaziTerminSekretar.TerminiSekretar.Add(termin);
-            //PrikaziTermin.Termini.Add(termin);
         }
 
         // isto ovu metodu
@@ -122,12 +122,11 @@ namespace Model
                     t.IdTermin = termin1.IdTermin;
                     t.VremePocetka = termin1.VremePocetka;
                     t.VremeKraja = termin1.VremeKraja;
-                    t.Lekar = termin1.Lekar;  // ili preko id-ja?
+                    t.Lekar = termin1.Lekar; 
                     t.Pacijent = termin1.Pacijent;
                     t.tipTermina = termin1.tipTermina;
                     t.Datum = termin1.Datum;
                     t.Prostorija = termin1.Prostorija;
-                    //Console.WriteLine(termin1.Pacijent.ImePacijenta + "  "  + termin1.Pacijent.PrezimePacijenta);
                 }
 
             }            
@@ -169,8 +168,19 @@ namespace Model
             {
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
+                    // brisanje termina iz zauzetih termina u prostorijama
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        if (s.Id == termin.Prostorija.Id)
+                        {
+                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            //SaleMenadzer.sacuvajIzmjene();
+                        }
+                    }
+
                     termini.RemoveAt(i);
                     termin.Prostorija.Status = status.Slobodna;
+                    Console.WriteLine("obrisan i termin");
                 }
             }          
           
