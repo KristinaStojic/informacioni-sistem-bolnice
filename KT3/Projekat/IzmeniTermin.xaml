@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="Izmenite termin"  Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="AliceBlue">
-    <Grid Margin="0,0,-5,-2.5">
+    <Grid  Margin="0,0,-5,-2.5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,25,0,0" Height="27" Width="74"/>
-        <Button Content="Sacuvaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="429,408,0,0"  Height="30" Click="Button_Click_1"/>
-        <Button Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="312,408,0,0" Height="30" Click="Button_Click"/>
+        <Button Content="Sacuvaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="475,408,0,0"  Height="30" Click="Button_Click_1"/>
+        <Button Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="380,408,0,0" Height="30" Click="Button_Click"/>
         <!--DatePicker HorizontalAlignment="Left" Name="datum" Text="dd/MM/yyyy" VerticalAlignment="Top" Margin="278,128,0,0" Width="153" Height="23"/!-->
-        <GroupBox Header="Izaberite datum" HorizontalAlignment="Left" Height="192" Margin="352,15,0,0" VerticalAlignment="Top" Width="213" RenderTransformOrigin="0.517,0.878">
-            <Calendar x:Name="datum" Background="Beige" RenderTransformOrigin="-0.356,0.389" Margin="8,3,-2,-13"/>
+        <GroupBox Header="Izaberite datum" HorizontalAlignment="Left" Height="219" Margin="352,15,0,0" VerticalAlignment="Top" Width="213" RenderTransformOrigin="0.517,0.878">
+            <Calendar x:Name="datum" Background="Beige" RenderTransformOrigin="-0.356,0.389" Margin="-16,16,-18,-2" FontSize="15" FontWeight="Bold"/>
         </GroupBox>
-        <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="23" VerticalAlignment="Top" Width="152" Margin="383,326,0,0" SelectionChanged="vpp_SelectionChanged_1" RenderTransformOrigin="0.724,0.565">
+        <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="23" VerticalAlignment="Top" Width="152" Margin="387,349,0,0" SelectionChanged="vpp_SelectionChanged_1" RenderTransformOrigin="0.724,0.565">
             <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
@@ -47,16 +47,39 @@
             <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
         </ComboBox>
-        <GroupBox Header="Izaberite tip termina" HorizontalAlignment="Left" Height="74" Margin="354,213,0,0" VerticalAlignment="Top" Width="213" RenderTransformOrigin="0.858,0.494">
-            <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="160" Margin="20,0,0,10" Height="25" SelectedIndex="0">
+        <GroupBox Header="Izaberite tip termina" HorizontalAlignment="Left" Height="74" Margin="355,239,0,0" VerticalAlignment="Top" Width="213" RenderTransformOrigin="0.897,1.041">
+            <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="160" Margin="20,0,0,10" Height="25">
                 <ComboBoxItem>Operacija</ComboBoxItem>
                 <ComboBoxItem>Pregled</ComboBoxItem>
             </ComboBox>
         </GroupBox>
 
         <!--GroupBox Header="Pronadjite lekara" HorizontalAlignment="Left" Height="220" Margin="240,24,0,0" VerticalAlignment="Top" Width="335" RenderTransformOrigin="0.568,0.482"/!-->
-        <GroupBox Header="Pretrazite listu lekara po prezimenu" HorizontalAlignment="Left" Height="355" Margin="32,17,0,0" VerticalAlignment="Top" Width="318" RenderTransformOrigin="0.858,0.494">
-            <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="16,16,22,291" Height="25" />
+        <GroupBox Header="Izaberite lekara" HorizontalAlignment="Left" Height="378" Margin="32,17,0,0" VerticalAlignment="Top" Width="318" RenderTransformOrigin="0.858,0.494">
+            <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="16,16,22,291" TextAlignment="Left" Height="25" ToolTip="Pretrazite listu po prezimenu lekara" FontSize="13">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Pretražite listu po prezimenu lekara" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
         </GroupBox>
         <!--DataGrid x:Name="dgSearch" Margin="59,95,285,170" SelectionMode="Single" SelectionChanged="dgSearch_SelectionChanged">
             <DataGrid.Columns>
@@ -66,7 +89,7 @@
                 <DataGridTextColumn Header="Specijalizacija" Binding="{Binding specijalizacija}" Width="110"/>
             </DataGrid.Columns>
         </!-->
-        <ListView x:Name="dgSearch" Height="200" SelectionMode="Single" Margin="42,87,258,188" SelectionChanged="dgSearch_SelectionChanged" >
+        <ListView x:Name="dgSearch" Height="200" SelectionMode="Single" Margin="42,99,258,176" SelectionChanged="dgSearch_SelectionChanged" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" 
@@ -81,8 +104,9 @@
             </ListView.View>
         </ListView>
 
-        <GroupBox Header="Izaberite vreme termina" Height="72" Margin="352,298,35,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494"/>
-        <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="25" Margin="61,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252"/>
-        <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,298,0,0" Width="121"/>
+        <GroupBox Header="Izaberite vreme termina" Height="77" Margin="352,318,35,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494"/>
+        <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="Ime i prezime izabranog lekara"
+                   DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="25" Margin="61,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" FontSize="13"/>
+        <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,320,0,0" Width="121"/>
     </Grid>
 </Window>

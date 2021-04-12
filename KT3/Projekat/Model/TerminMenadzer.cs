@@ -21,6 +21,7 @@ namespace Model
       {
             termini.Add(termin);
             PrikaziTermin.Termini.Add(termin);
+            //SaleMenadzer.sacuvajIzmjene();
             //PrikazTerminaLekar.Termini.Add(termin);
             //PrikaziTerminSekretar.TerminiSekretar.Add(termin);
         }
@@ -74,23 +75,17 @@ namespace Model
                     t.IdTermin = termin1.IdTermin;
                     t.VremePocetka = termin1.VremePocetka;
                     t.VremeKraja = termin1.VremeKraja;
-                    t.Lekar = termin1.Lekar;  // ili preko id-ja?
+                    t.Lekar = termin1.Lekar; 
                     t.Pacijent = termin1.Pacijent;
                     t.tipTermina = termin1.tipTermina;
                     t.Datum = termin1.Datum;
                     t.Prostorija = termin1.Prostorija;
-                    //Console.WriteLine(termin1.Pacijent.ImePacijenta + "  "  + termin1.Pacijent.PrezimePacijenta);
+                    int idx = PrikaziTermin.Termini.IndexOf(termin);
+                    PrikaziTermin.Termini.RemoveAt(idx);
+                    PrikaziTermin.Termini.Insert(idx, termin1);
                 }
                 
             }
-            int idx = PrikaziTermin.Termini.IndexOf(termin);
-            PrikaziTermin.Termini.RemoveAt(idx);
-            PrikaziTermin.Termini.Insert(idx, termin1);
-            
-            //  **** napraviti metodu --> izmeniTerminLekar(...)
-            /*int idx = PrikazTerminaLekar.Termini.IndexOf(termin);
-            PrikazTerminaLekar.Termini.RemoveAt(idx);
-            PrikazTerminaLekar.Termini.Insert(idx, termin1);*/
         }
 
         public static void IzmeniTerminLekar(Termin termin, Termin termin1)
@@ -151,9 +146,18 @@ namespace Model
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
                     termini.RemoveAt(i);
-                    termin.Prostorija.Status = status.Slobodna;
                 }
             }
+            /*foreach(Sala s in SaleMenadzer.sale)
+            {
+                foreach (ZauzeceSale zs in s.zauzetiTermini)
+                {
+                    if (zs.idTermina.Equals(termin.IdTermin))
+                    {
+                        s.zauzetiTermini.Remove(zs);
+                    }
+                }
+            }*/
             PrikaziTermin.Termini.Remove(termin);
        }
 

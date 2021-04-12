@@ -168,9 +168,17 @@
     <Compile Include="ZakaziTerminLekar.xaml.cs">
       <DependentUpon>ZakaziTerminLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZakaziTerminPreferenca.xaml.cs">
+      <DependentUpon>ZakaziTerminPreferenca.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakaziTerminSekretar.xaml.cs">
       <DependentUpon>ZakaziTerminSekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZdravstveniKartonPacijent.xaml.cs">
+      <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Anamneza.xaml">
+      <Generator>MSBuild:Compile</Generator>
     <Page Include="DetaljiAnamneze.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,9 +345,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ZakaziTerminPreferenca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ZakaziTerminSekretar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZdravstveniKartonPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
