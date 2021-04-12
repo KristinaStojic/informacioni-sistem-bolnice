@@ -177,8 +177,6 @@
     <Compile Include="ZdravstveniKartonPacijent.xaml.cs">
       <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
     </Compile>
-    <Page Include="Anamneza.xaml">
-      <Generator>MSBuild:Compile</Generator>
     <Page Include="DetaljiAnamneze.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
