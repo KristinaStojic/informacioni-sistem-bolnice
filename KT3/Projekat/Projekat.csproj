@@ -68,6 +68,9 @@
     <Compile Include="DodajPacijentaGuest.xaml.cs">
       <DependentUpon>DodajPacijentaGuest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajRecept.xaml.cs">
+      <DependentUpon>DodajRecept.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzmeniPacijenta.xaml.cs">
       <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,7 @@
       <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Anamneza.cs" />
+    <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
     <Compile Include="Model\Oprema.cs" />
     <Compile Include="Model\OpremaMenadzer.cs" />
@@ -175,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajPacijentaGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajRecept.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
