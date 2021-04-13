@@ -61,7 +61,7 @@ namespace Projekat
                 int kolikoDana = int.Parse(dani.Text);
                 String pocetakKoriscenja = sati.Text + ":" + min.Text;
                 
-                LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);
+                //LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);
                 //pacijent.Karton.LekarskiRecepti.Add(recept);
                /*foreach(Pacijent p in PacijentiMenadzer.pacijenti)
                 {
@@ -70,7 +70,7 @@ namespace Projekat
                         p.Karton.LekarskiRecepti.Add(recept);
                     }
                 }*/
-                ZdravstveniKartonMenadzer.DodajRecept(recept);
+                //ZdravstveniKartonMenadzer.DodajRecept(recept);
                 //TabelaRecepata.PrikazRecepata.Add(recept);
                 this.Close();
 

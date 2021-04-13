@@ -82,7 +82,7 @@
         </ListView>
 
         <GroupBox Header="Izaberite vreme termina" Height="72" Margin="352,298,35,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494"/>
-        <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="25" Margin="61,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252"/>
+        <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" DataContextChanged="imePrz_DataContextChanged" HorizontalAlignment="Left" Height="25" Margin="61,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252"/>
         <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,298,0,0" Width="121"/>
     </Grid>
 </Window>

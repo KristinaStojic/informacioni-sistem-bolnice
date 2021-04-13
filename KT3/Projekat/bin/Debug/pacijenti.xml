@@ -166,6 +166,16 @@
           <DnevnaKolicina>4</DnevnaKolicina>
           <PocetakKoriscenja>15:00</PocetakKoriscenja>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>5</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Pentraxil</NazivLeka>
+          <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>5</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -174,6 +184,14 @@
           <IdLekara>0</IdLekara>
           <OpisBolesti>Anamneza</OpisBolesti>
           <Terapija>Terapija1</Terapija>
+          <Datum>04/22/2021</Datum>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>dsfdsf</OpisBolesti>
+          <Terapija>dsfsdf</Terapija>
           <Datum>04/22/2021</Datum>
         </Anamneza>
       </Anamneze>
