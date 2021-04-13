@@ -66,7 +66,7 @@
                 <DataGridTextColumn Header="Specijalizacija" Binding="{Binding specijalizacija}" Width="110"/>
             </DataGrid.Columns>
         </!-->
-        <ListView x:Name="dgSearch" Height="200" SelectionMode="Single" Margin="42,87,258,188" SelectionChanged="dgSearch_SelectionChanged" >
+        <ListView x:Name="dgSearch" Height="200" SelectionMode="Single" Margin="42,87,258,188" SelectionChanged="dgSearch_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" 
