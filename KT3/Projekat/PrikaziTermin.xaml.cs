@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Model;
 using Projekat.Model;
+using System.Threading;
+using System.Globalization;
 
 namespace Projekat
 {
@@ -22,6 +24,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziTermin : Window
     {
+        public static bool pacijentProzor;
         private int colNum = 0;
         public static ObservableCollection<Termin> Termini
         {
@@ -33,6 +36,10 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
+
+            Thread thread = new Thread(izvrsiNit);
+            thread.Start();
+            pacijentProzor = true;
             foreach (Termin t in TerminMenadzer.termini)
             {
                 /*if (t.Pacijent.IdPacijenta == 1)
@@ -41,6 +48,55 @@ namespace Projekat
                 }*/
                 Termini.Add(t);
             }
+        }
+
+        public void izvrsiNit()
+        {
+            while (pacijentProzor)
+            {
+                Thread.Sleep(100); 
+                ProveriRecepte();
+            }
+        }
+
+        public static void ProveriRecepte()
+        {
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(1);  // TODO: promeniti kada uradimo prijavljivanje
+            foreach (LekarskiRecept lp in p.Karton.LekarskiRecepti)
+            {
+                /*DateTime datum = DateTime.Parse(lp.DatumPropisivanjaLeka);
+               
+                if (datum.Date == DateTime.Now.Date)
+                {
+                    DateTime vremePocetka = DateTime.Parse(lp.PocetakKoriscenja);
+                    //DateTime vreme = DateTime.Now.TimeOfDay;
+                    MessageBox.Show("Vreme pocetka " + vremePocetka.TimeOfDay + " , sada: " + DateTime.Now.TimeOfDay);
+                    /*if (DateTime.Now.TimeOfDay == vremePocetka.TimeOfDay)
+                    {
+                        //MessageBox.Show("Uzmite lek (" + lp.NazivLeka + ")", "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
+                        //Console.Beep();
+                        //break;
+                    }
+                    int godina = int.Parse(lp.DatumPropisivanjaLeka.Substring(6));
+                    int mesec = int.Parse(lp.DatumPropisivanjaLeka.Substring(0, 2));
+                    int dan = int.Parse(lp.DatumPropisivanjaLeka.Substring(3, 2));
+                    int sat = int.Parse(lp.PocetakKoriscenja.Substring(0, 2));
+                    int min = int.Parse(lp.PocetakKoriscenja.Substring(3));
+                    DateTime datumVreme = new DateTime(godina, mesec, dan, sat, min, 00);
+                    Console.WriteLine(datumVreme.ToString());
+                    MessageBox.Show("Datum " + datumVreme.ToString() + " , sada: " + DateTime.Now.Date);*/
+                //MessageBox.Show(DateTime.Now.Date.ToString());
+                MessageBox.Show("ovdee");
+                foreach (DateTime d in lp.UzimanjeTerapije)
+                {
+                    if (d <= DateTime.Now.Date)
+                    {
+                        MessageBox.Show("Uzmite terapiju - " + lp.NazivLeka, "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
+                        lp.UzimanjeTerapije.Remove(d);
+                    }
+                }
+            }
+
         }
 
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -97,6 +153,7 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             SaleMenadzer.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
+            pacijentProzor = false;
             this.Hide();
         }
 
@@ -122,5 +179,7 @@ namespace Projekat
         {
 
         }
+
+
     }
 }

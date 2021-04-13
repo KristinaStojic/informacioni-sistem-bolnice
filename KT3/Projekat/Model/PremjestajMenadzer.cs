@@ -30,6 +30,7 @@ namespace Projekat.Model
                 return premjestaji;
             }
         }
+
         public static void sacuvajIzmjene()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Premjestaj>));

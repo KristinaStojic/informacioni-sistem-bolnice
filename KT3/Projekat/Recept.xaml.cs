@@ -87,8 +87,28 @@ namespace Projekat
                 int kolicinaNaDan = int.Parse(brojUzimanja.Text);
                 int kolikoDana = int.Parse(dani.Text);
                 String pocetakKoriscenja = sati.Text + ":" + min.Text;
-                
-                LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);
+
+
+                List<DateTime> uzimanjeTerapije = new List<DateTime>();
+                int x = 24 / kolicinaNaDan;
+                int ukupno = kolicinaNaDan * kolikoDana;
+
+                int godina = int.Parse(formatirano.Substring(6));
+                int mesec = int.Parse(formatirano.Substring(0, 2));
+                int dan = int.Parse(formatirano.Substring(3, 2));
+                int sat = int.Parse(sati.Text);
+                int mm = int.Parse(min.Text);
+                DateTime datumVreme = new DateTime(godina, mesec, dan, sat, mm, 00);
+
+                for (int i = 0; i <= ukupno; i++)
+                {
+                    DateTime dt = datumVreme.AddHours(i*x);
+                    Console.WriteLine(dt.ToString()); ;
+                    uzimanjeTerapije.Add(dt);
+                }
+
+
+                LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
                 //pacijent.Karton.LekarskiRecepti.Add(recept);
                /*foreach(Pacijent p in PacijentiMenadzer.pacijenti)
                 {
@@ -107,5 +127,6 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }
