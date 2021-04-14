@@ -58,7 +58,14 @@ namespace Projekat
             {
                 tp = TipTermina.Operacija;
             }
-            Lekar l = new Lekar(5, "Filip", "Filipovic");
+
+            //Lekar l = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
+           // Lekar l = new Lekar() { IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa };
+            //Lekar l = new Lekar() { IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
+           // Lekar l = new Lekar() { IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
+            Lekar l = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
+            
+
             Sala sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
             String p = pacijenti.Text;
             string[] podaci = p.Split(' ');

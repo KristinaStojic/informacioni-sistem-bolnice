@@ -60,7 +60,7 @@ namespace Projekat
                 /*if (t.Lekar.IdLekara == 4)
                 {
                     Termini.Add(t);
-                }*/ 
+                }*/
                  if (t.Lekar.IdLekara == 5)
                 {
                     Termini.Add(t);
