@@ -54,6 +54,11 @@
 
         <Rectangle Fill="#ff7f50"  HorizontalAlignment="Left" Height="50" Margin="35,508,0,0" Stroke="#ff7f50" VerticalAlignment="Top" Width="171" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left"  Margin="37,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="169" RenderTransformOrigin="1.806,0.4" Grid.Column="1"><Run FontWeight="Bold" Text=" Prostorije"/><LineBreak/><Run Text="     1-20 -&gt; ordinacije "/><LineBreak/><Run Text="     20-30 -&gt; operacione sale"/></TextBlock>
+        <DataGrid x:Name="obavestenja" HorizontalAlignment="Left" Height="148" Margin="10,410,0,0" VerticalAlignment="Top" Width="160" ItemsSource="{Binding Terapije}"
+                  SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal"  >
+            <!--DataGrid.Columns>
+            </-->
+        </DataGrid>
 
         <!--Button x:Name="zdravstevniKarton" Click="zdravstevniKarton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="30,160,0,0">
             <Grid RenderTransformOrigin="0.267,0.59" Width="105" Height="15">

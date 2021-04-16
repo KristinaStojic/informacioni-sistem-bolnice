@@ -62,6 +62,7 @@ namespace Projekat
                                     t.VremeKraja = ZakaziTermin.IzracunajVremeKraja(slot);
                                     t.Prostorija = s;
                                     t.tipTermina = TipTermina.Pregled;
+                                    // TODO: ispraviti kada dobijemo raspored radnog vremena
                                     foreach (Lekar l in MainWindow.lekari)
                                     {
                                         if (l.IdLekara.Equals(1))

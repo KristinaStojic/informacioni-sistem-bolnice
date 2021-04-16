@@ -31,15 +31,17 @@ namespace Projekat
             get;
             set;
         }
+        public static ObservableCollection<DateTime> Terapije { get; set; }
         public PrikaziTermin()
         {
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
+            Terapije = new ObservableCollection<DateTime>();
 
-            Thread thread = new Thread(izvrsiNit);
-            thread.Start();
             pacijentProzor = true;
+           // Thread thread = new Thread(izvrsiNit);
+            //thread.Start();
             foreach (Termin t in TerminMenadzer.termini)
             {
                 /*if (t.Pacijent.IdPacijenta == 1)
@@ -48,11 +50,20 @@ namespace Projekat
                 }*/
                 Termini.Add(t);
             }
+
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(1);  // TODO: promeniti kada uradimo prijavljivanje
+            foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
+            {
+                foreach (DateTime dt in lr.UzimanjeTerapije)
+                {
+                    Terapije.Add(dt);
+                }
+            }
         }
 
         public void izvrsiNit()
         {
-            while (pacijentProzor)
+            while (pacijentProzor == true)
             {
                 Thread.Sleep(100); 
                 ProveriRecepte();
@@ -62,37 +73,25 @@ namespace Projekat
         public static void ProveriRecepte()
         {
             Pacijent p = PacijentiMenadzer.PronadjiPoId(1);  // TODO: promeniti kada uradimo prijavljivanje
+            /*foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
+            {
+                foreach (DateTime dt in lr.UzimanjeTerapije)
+                {
+
+                }
+            }*/
+                
             foreach (LekarskiRecept lp in p.Karton.LekarskiRecepti)
             {
-                /*DateTime datum = DateTime.Parse(lp.DatumPropisivanjaLeka);
-               
-                if (datum.Date == DateTime.Now.Date)
-                {
-                    DateTime vremePocetka = DateTime.Parse(lp.PocetakKoriscenja);
-                    //DateTime vreme = DateTime.Now.TimeOfDay;
-                    MessageBox.Show("Vreme pocetka " + vremePocetka.TimeOfDay + " , sada: " + DateTime.Now.TimeOfDay);
-                    /*if (DateTime.Now.TimeOfDay == vremePocetka.TimeOfDay)
-                    {
-                        //MessageBox.Show("Uzmite lek (" + lp.NazivLeka + ")", "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
-                        //Console.Beep();
-                        //break;
-                    }
-                    int godina = int.Parse(lp.DatumPropisivanjaLeka.Substring(6));
-                    int mesec = int.Parse(lp.DatumPropisivanjaLeka.Substring(0, 2));
-                    int dan = int.Parse(lp.DatumPropisivanjaLeka.Substring(3, 2));
-                    int sat = int.Parse(lp.PocetakKoriscenja.Substring(0, 2));
-                    int min = int.Parse(lp.PocetakKoriscenja.Substring(3));
-                    DateTime datumVreme = new DateTime(godina, mesec, dan, sat, min, 00);
-                    Console.WriteLine(datumVreme.ToString());
-                    MessageBox.Show("Datum " + datumVreme.ToString() + " , sada: " + DateTime.Now.Date);*/
-                //MessageBox.Show(DateTime.Now.Date.ToString());
-                MessageBox.Show("ovdee");
-                foreach (DateTime d in lp.UzimanjeTerapije)
+                //foreach (DateTime d in lp.UzimanjeTerapije)
+                foreach(DateTime d in Terapije)
                 {
                     if (d <= DateTime.Now.Date)
                     {
                         MessageBox.Show("Uzmite terapiju - " + lp.NazivLeka, "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
-                        lp.UzimanjeTerapije.Remove(d);
+                        //lp.UzimanjeTerapije.Remove(d); //TODO : observablecollection lista
+                        //Terapije.Remove(d);
+                        // sacuvaj izmene?
                     }
                 }
             }
@@ -133,17 +132,18 @@ namespace Projekat
             {
                 TerminMenadzer.OtkaziTermin(zaBrisanje);
                 //TerminMenadzer.sacuvajIzmene();
-            }
-            Sala s = SaleMenadzer.NadjiSaluPoId(zaBrisanje.Prostorija.Id);
-            foreach(ZauzeceSale zs in s.zauzetiTermini)
-            {
-                //MessageBox.Show(zs.idTermina.ToString());
-                if (zs.idTermina.Equals(zaBrisanje.IdTermin))
+                Sala s = SaleMenadzer.NadjiSaluPoId(zaBrisanje.Prostorija.Id);
+                foreach (ZauzeceSale zs in s.zauzetiTermini)
                 {
-                    s.zauzetiTermini.Remove(zs);
-                    break;
+                    //MessageBox.Show(zs.idTermina.ToString());
+                    if (zs.idTermina.Equals(zaBrisanje.IdTermin))
+                    {
+                        s.zauzetiTermini.Remove(zs);
+                        break;
+                    }
                 }
             }
+           
 
         }
 
@@ -180,6 +180,9 @@ namespace Projekat
 
         }
 
+        private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace Projekat.Model
         
         }
 
-        public LekarskiRecept() { }
+        public LekarskiRecept() {}
 
         public LekarskiRecept(int idPac) {
             this.idPacijenta = idPac;
@@ -37,7 +37,8 @@ namespace Projekat.Model
         public int BrojDanaKoriscenja { get; set; }
         public int DnevnaKolicina { get; set; }
         public String PocetakKoriscenja { get; set; }
-        //public bool Obavestenje {get; set;}
+        // Sanja
+        public bool Obavestenje { get; set;}
         public List<DateTime> UzimanjeTerapije { get; set; }
     }
 }
