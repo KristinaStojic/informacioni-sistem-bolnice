@@ -27,7 +27,14 @@ namespace Model
         {
             get
             {
-                return Pacijent.ImePacijenta + " " + Pacijent.PrezimePacijenta; 
+                if (Pacijent != null)
+                {
+                    return Pacijent.ImePacijenta + " " + Pacijent.PrezimePacijenta;
+                }
+                else
+                {
+                    return "Pacijent je null";
+                }
             } 
         }
 

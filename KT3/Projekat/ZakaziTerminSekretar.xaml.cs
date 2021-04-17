@@ -32,7 +32,7 @@ namespace Projekat
 
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
-                pacijenti.Items.Add(p.ImePacijenta + " " +  p.PrezimePacijenta + " " + p.Jmbg);
+                pacijenti.Items.Add(p.ImePacijenta + " " +  p.PrezimePacijenta + " " + p.IdPacijenta);
             }
 
             foreach (Lekar l in MainWindow.lekari)

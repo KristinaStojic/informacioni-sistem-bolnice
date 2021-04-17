@@ -71,6 +71,12 @@
     <Compile Include="DodajPacijentaGuest.xaml.cs">
       <DependentUpon>DodajPacijentaGuest.xaml</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
+=======
+    <Compile Include="DodajRecept.xaml.cs">
+      <DependentUpon>DodajRecept.xaml</DependentUpon>
+    </Compile>
+>>>>>>> Stashed changes
     <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
       <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
     </Compile>
@@ -109,9 +115,6 @@
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ObavestenjaPacijent.xaml.cs">
-      <DependentUpon>ObavestenjaPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
@@ -207,6 +210,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< Updated upstream
+=======
+    <Page Include="DodajRecept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+>>>>>>> Stashed changes
     <Page Include="DodajPacijentaGuestIzmeni.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -269,10 +279,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ObavestenjaPacijent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>  
     <Page Include="ObrisiOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
