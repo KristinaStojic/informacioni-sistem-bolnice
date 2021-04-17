@@ -61,13 +61,13 @@
         <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="208" Margin="517,296,0,0" VerticalAlignment="Top" Width="312" BorderBrush="White" FontWeight="Bold">
             <TextBox Name="lekar" HorizontalAlignment="Left" Height="28" Margin="77,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsEnabled="False" FontSize="14"/>
         </GroupBox>
-        <Image Source="sticky-note.png" Width="47" HorizontalAlignment="Center" Margin="45,562,767.6,50.2" RenderTransformOrigin="0.475,0.468"/>
-        <Image Source="flask.png" Width="47" HorizontalAlignment="Center" Margin="203,564,609.6,48.2" RenderTransformOrigin="0.475,0.468"/>
-        <Image Source="stethoscope.png" Width="47" HorizontalAlignment="Center" Margin="369,562,443.6,50.2" RenderTransformOrigin="0.475,0.468"/>
-        <Image Source="cancel.png" Width="47" HorizontalAlignment="Center" Margin="535,563,277.6,49.2" RenderTransformOrigin="0.475,0.468"/>
-        <Image Source="nazadd.png" Width="47" HorizontalAlignment="Center" Margin="704,562,108.6,50.2" RenderTransformOrigin="0.475,0.468"/>
-        <Image Source="user.png" Width="219" HorizontalAlignment="Center" Margin="570,111,70.6,410.2" RenderTransformOrigin="0.475,0.468"/>
-        <Image Source="doctor.png" Width="138" HorizontalAlignment="Center" Margin="613,339,108.6,199.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="/slike/sticky-note.png" Width="47" HorizontalAlignment="Center" Margin="40,562,772.6,50.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="/slike/flask.png" Width="47" HorizontalAlignment="Center" Margin="200,561,612.6,51.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="/slike/stethoscope.png" Width="47" HorizontalAlignment="Center" Margin="369,562,443.6,50.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="/slike/cancel.png" Width="47" HorizontalAlignment="Center" Margin="535,563,277.6,49.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="/slike/nazadd.png" Width="47" HorizontalAlignment="Center" Margin="704,562,108.6,50.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="/slike/user.png" Width="219" HorizontalAlignment="Center" Margin="570,111,70.6,410.2" RenderTransformOrigin="0.475,0.468"/>
+        <Image Source="/slike/doctor.png" Width="138" HorizontalAlignment="Center" Margin="609,339,112.6,199.2" RenderTransformOrigin="0.475,0.468"/>
         <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="201" Margin="517,71,0,0" VerticalAlignment="Top" Width="312" BorderBrush="White" FontWeight="Bold"/>
     </Grid>
 </Window>

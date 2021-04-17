@@ -25,5 +25,6 @@
         <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,423,0,0" FontSize="18"/>
         <Label Content="Adresa stanovanja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,502,0,0" FontSize="18"/>
         <Label Content="Specijalizacija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,583,0,0" FontSize="18"/>
+        <Image Source="slike/stethoscope.png" Margin="143,124,430.6,503.4" Grid.Column="1"></Image>
     </Grid>
 </Window>

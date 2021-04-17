@@ -46,11 +46,17 @@ namespace Projekat
             //sacuvaj
             string ter = terapija.Text;
             string bol = bolest.Text;
+            String dat = null;
+            DateTime selectedDate = (DateTime)datum.SelectedDate;
+            dat = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            Anamneza nova = new Anamneza(ter, bol);
+            Anamneza nova = new Anamneza(stara.IdAnamneze,stara.IdPacijenta, dat,bol, ter,stara.IdLekara);
             ZdravstveniKartonMenadzer.IzmeniAnamnezu(stara, nova);
 
-            
+            TerminMenadzer.sacuvajIzmene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            SaleMenadzer.sacuvajIzmjene();
+
             this.Close();
         }
 

@@ -151,10 +151,16 @@ namespace Projekat.Model
                         {
                             a.OpisBolesti = nova.OpisBolesti;
                             a.Terapija = nova.Terapija;
+                            a.Datum = nova.Datum;
                         }
                     }
                 }
             }
+
+
+            int idx = PrikazAnamneza.TabelaAnamneza.IndexOf(stara);
+            PrikazAnamneza.TabelaAnamneza.RemoveAt(idx);
+            PrikazAnamneza.TabelaAnamneza.Insert(idx, nova);
         }
     }
 }

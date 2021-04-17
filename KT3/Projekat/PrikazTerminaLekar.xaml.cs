@@ -57,11 +57,11 @@ namespace Projekat
                 {
                     Termini.Add(t);
                 } */
-                /*if (t.Lekar.IdLekara == 4)
+               /* if (t.Lekar.IdLekara == 4)
                 {
                     Termini.Add(t);
                 }*/
-                 if (t.Lekar.IdLekara == 5)
+                if (t.Lekar.IdLekara == 5)
                 {
                     Termini.Add(t);
                 }
@@ -152,6 +152,7 @@ namespace Projekat
         {
             TerminMenadzer.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
+            SaleMenadzer.sacuvajIzmjene();
             PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/
         }

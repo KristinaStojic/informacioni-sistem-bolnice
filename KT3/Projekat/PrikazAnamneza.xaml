@@ -13,7 +13,7 @@
             <DataGrid.Columns >
                 <DataGridTextColumn Width="130" Header="Redni broj pregleda" Binding="{Binding IdAnamneze}"/>
                 <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="160" />
-                <DataGridTextColumn Header="Lekar koji je kreirao anamnezu"  Binding="{Binding IdLekara}" Width="252"/>
+                <DataGridTextColumn Header="Lekar koji je kreirao anamnezu"  Binding="{Binding ImePrezimeLekara}" Width="252"/>
                 <!--Binding ="{Binding IdLekara}"-->
             </DataGrid.Columns>
         </DataGrid>

@@ -396,49 +396,43 @@
     <Resource Include="slike\cancel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="doktor.png" />
+    <Resource Include="slike\doktor.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="grafik1.png" />
+    <Resource Include="slike\grafik1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="plus.png" />
+    <Resource Include="slike\obrisi.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pen.png" />
+    <Resource Include="slike\osoba.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="obrisi.jpg" />
+    <Resource Include="slike\nazad.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="osoba.jpg" />
+    <Resource Include="slike\sticky-note.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="nazad.jpg" />
+    <Resource Include="slike\flask.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="sticky-note.png" />
+    <Resource Include="slike\stethoscope.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="flask.png" />
+    <Resource Include="slike\alergeni.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="stethoscope.png" />
+    <Resource Include="slike\nazadd.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="alergeni.png" />
+    <Resource Include="slike\user.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="cancel.png" />
+    <Resource Include="slike\doctor.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="nazadd.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="doctor.png" />
+    <Resource Include="slike\izmeni.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

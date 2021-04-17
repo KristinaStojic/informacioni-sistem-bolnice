@@ -251,5 +251,7 @@ namespace Model
 
       //public int AdresaFajla;  // ?
       public static List<Termin> termini = new List<Termin>();
+
+
     }
 }

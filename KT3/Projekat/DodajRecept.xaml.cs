@@ -74,6 +74,11 @@ namespace Projekat
 
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, kolikoDana, kolicinaNaDan, pocetakKoriscenja, termin.Datum);
                 ZdravstveniKartonMenadzer.DodajRecept(recept);
+
+                TerminMenadzer.sacuvajIzmene();
+                PacijentiMenadzer.SacuvajIzmenePacijenta();
+                SaleMenadzer.sacuvajIzmjene();
+
                 this.Close();
 
             }
@@ -81,6 +86,11 @@ namespace Projekat
             {
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
