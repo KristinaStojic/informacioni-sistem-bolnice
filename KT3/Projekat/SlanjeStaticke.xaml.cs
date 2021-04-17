@@ -58,16 +58,16 @@ namespace Projekat
                 }
             }
             this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            termini.Add("10:10");
-            termini.Add("10:11");
-            termini.Add("10:12");
-            termini.Add("10:13");
-            termini.Add("10:14");
-            termini.Add("10:15");
-            termini.Add("10:16");
-            termini.Add("10:17");
-            termini.Add("10:18");
-            termini.Add("10:19");
+            termini.Add("12:30");
+            termini.Add("12:31");
+            termini.Add("12:32");
+            termini.Add("12:33");
+            termini.Add("12:34");
+            termini.Add("12:35");
+            termini.Add("12:36");
+            termini.Add("12:37");
+            termini.Add("12:38");
+            termini.Add("12:39");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

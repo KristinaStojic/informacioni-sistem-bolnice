@@ -21,7 +21,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>200</Kolicina>
+        <Kolicina>197</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
@@ -33,7 +33,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>respirator</NazivOpreme>
-        <Kolicina>75</Kolicina>
+        <Kolicina>70</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>2</IdOpreme>
       </Oprema>
@@ -45,7 +45,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>lampa</NazivOpreme>
-        <Kolicina>5</Kolicina>
+        <Kolicina>3</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>8</IdOpreme>
       </Oprema>
@@ -73,7 +73,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>100</Kolicina>
+        <Kolicina>99</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
@@ -85,7 +85,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>respirator</NazivOpreme>
-        <Kolicina>15</Kolicina>
+        <Kolicina>20</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>2</IdOpreme>
       </Oprema>
@@ -97,7 +97,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>lampa</NazivOpreme>
-        <Kolicina>2</Kolicina>
+        <Kolicina>3</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>8</IdOpreme>
       </Oprema>
@@ -119,7 +119,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>10</Kolicina>
+        <Kolicina>20</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
@@ -159,13 +159,13 @@
     <Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>850</Kolicina>
+        <Kolicina>845</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
       <Oprema>
         <NazivOpreme>respirator</NazivOpreme>
-        <Kolicina>380</Kolicina>
+        <Kolicina>375</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>2</IdOpreme>
       </Oprema>
