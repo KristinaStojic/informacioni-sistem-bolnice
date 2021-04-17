@@ -33,19 +33,6 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
-<<<<<<< Updated upstream
-=======
-            Obavestenja = new ObservableCollection<Obavestenja>();
-            // Teodora
-            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
-            {
-                Obavestenja.Add(o);
-            }
-
-            pacijentProzor = true;
-            Thread thread = new Thread(izvrsiNit);
-            thread.Start();
->>>>>>> Stashed changes
             foreach (Termin t in TerminMenadzer.termini)
             {
                 /*if (t.Pacijent.IdPacijenta == 1)
