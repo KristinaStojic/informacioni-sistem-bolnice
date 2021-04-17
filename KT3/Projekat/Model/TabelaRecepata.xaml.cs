@@ -22,7 +22,6 @@ namespace Projekat.Model
     public partial class TabelaRecepata : Window
     {
         public int colNum = 0;
-        Pacijent pacijent;
         Termin termin;
         public Pacijent pacijent;
 
