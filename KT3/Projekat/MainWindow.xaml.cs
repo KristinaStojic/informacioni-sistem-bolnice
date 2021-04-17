@@ -34,6 +34,7 @@ namespace Projekat
 
             TerminMenadzer.NadjiSveTermine();
             PacijentiMenadzer.PronadjiSve();
+            ObavestenjaMenadzer.NadjiSvaObavestenja();
 
             lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
@@ -42,6 +43,19 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
             lekari.Add(new Lekar() {IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista });
 
+        }
+    
+        // dok nemamo lekari menazder
+        public static Lekar PronadjiPoId(int id)
+        {
+            foreach (Lekar p in lekari)
+            {
+                if (p.IdLekara == id)
+                {
+                    return p;
+                }
+            }
+            return null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

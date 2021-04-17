@@ -15,13 +15,13 @@ using Model;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for DodajPacijentaGuest.xaml
+    /// Interaction logic for DodajPacijentaGuestIzmeni.xaml
     /// </summary>
-    public partial class DodajPacijentaGuest : Window
+    public partial class DodajPacijentaGuestIzmeni : Window
     {
-        public ZakaziTerminSekretar z;       
+        public IzmeniTerminSekretar z;
 
-        public DodajPacijentaGuest(ZakaziTerminSekretar terminSekretar)
+        public DodajPacijentaGuestIzmeni(IzmeniTerminSekretar terminSekretar)
         {
             InitializeComponent();
             this.z = terminSekretar;

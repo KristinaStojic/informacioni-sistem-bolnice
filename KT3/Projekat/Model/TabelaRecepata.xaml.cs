@@ -22,7 +22,7 @@ namespace Projekat.Model
     public partial class TabelaRecepata : Window
     {
         public int colNum = 0;
-        Pacijent pacijent;
+        public Pacijent pacijent;
         public static ObservableCollection<LekarskiRecept> PrikazRecepata
         {
             get;

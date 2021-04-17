@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -27,7 +28,7 @@ namespace Projekat
             get;
             set;
         }
-
+       
         public PrikazTerminaLekar()
         {
             InitializeComponent();
@@ -121,6 +122,13 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+        }
+
+        // obavestenja lekara
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaLekar o = new ObavestenjaLekar();
+            o.Show();
         }
     }
 }

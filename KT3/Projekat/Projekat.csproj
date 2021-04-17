@@ -71,6 +71,9 @@
     <Compile Include="DodajPacijentaGuest.xaml.cs">
       <DependentUpon>DodajPacijentaGuest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
+      <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzmeniPacijenta.xaml.cs">
       <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,8 @@
     </Compile>
     <Compile Include="Model\Anamneza.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
+    <Compile Include="Model\Obavestenja.cs" />
+    <Compile Include="Model\ObavestenjaMenadzer.cs" />
     <Compile Include="Model\Oprema.cs" />
     <Compile Include="Model\OpremaMenadzer.cs" />
     <Compile Include="Model\Premjestaj.cs" />
@@ -102,6 +107,12 @@
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
+    <Compile Include="ObavestenjaLekar.xaml.cs">
+      <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObavestenjaPacijent.xaml.cs">
+      <DependentUpon>ObavestenjaPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
     </Compile>
@@ -196,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DodajPacijentaGuestIzmeni.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DodajSalu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,6 +265,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ObavestenjaLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObavestenjaPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>  
     <Page Include="ObrisiOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

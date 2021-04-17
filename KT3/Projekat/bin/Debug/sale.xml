@@ -50,7 +50,20 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini />
+    <zauzetiTermini>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>04/27/2021</datumTermina>
+        <idTermina>1</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>10:00</pocetakTermina>
+        <krajTermina>12:00</krajTermina>
+        <datumTermina>05/05/2021</datumTermina>
+        <idTermina>2</idTermina>
+      </ZauzeceSale>
+    </zauzetiTermini>
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
@@ -148,7 +161,14 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini />
+    <zauzetiTermini>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>04/27/2021</datumTermina>
+        <idTermina>1</idTermina>
+      </ZauzeceSale>
+    </zauzetiTermini>
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
