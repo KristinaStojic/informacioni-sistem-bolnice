@@ -23,6 +23,13 @@ namespace Projekat.Model
             this.SadrzajObavestenja = SadrzajOb;
             this.Vrsta = vrsta;
         }
+
+        public Obavestenja(String datum, string TipOb, string SadrzajOb)
+        {
+            this.Datum = datum;
+            this.TipObavestenja = TipOb;
+            this.SadrzajObavestenja = SadrzajOb;
+        }
         public string TipObavestenja { get; set; } 
         public string SadrzajObavestenja { get; set; }      
         public string Datum { get; set; }

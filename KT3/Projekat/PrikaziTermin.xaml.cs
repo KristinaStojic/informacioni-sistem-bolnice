@@ -32,13 +32,13 @@ namespace Projekat
             get;
             set;
         }
-        public static ObservableCollection<Obavestenje> Obavestenja { get; set; }
+        public static ObservableCollection<Obavestenja> Obavestenja { get; set; }
         public PrikaziTermin()
         {
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
-            Obavestenja = new ObservableCollection<Obavestenje>();
+            Obavestenja = new ObservableCollection<Obavestenja>();
 
             pacijentProzor = true;
             Thread thread = new Thread(izvrsiNit);
@@ -58,7 +58,7 @@ namespace Projekat
                 {
                     if (dt <= DateTime.Now.Date)
                     {
-                        Obavestenje ob = new Obavestenje(dt, "", "Uzmite terapiju: " + lr.NazivLeka);
+                        Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + lr.NazivLeka);
                         Obavestenja.Add(ob);
                     }
                 }
@@ -195,7 +195,7 @@ namespace Projekat
     }
     
     /*OBAVESTENJE klasa */
-    public partial class Obavestenje : INotifyPropertyChanged
+    /*public partial class Obavestenje : INotifyPropertyChanged
     {
         public string TipObavestenja { get; set; } // za preglede, za recepte
         public string SadrzajObavestenja { get; set; }      // popijte lek
@@ -226,5 +226,5 @@ namespace Projekat
             ObavestenjaPacijent o = new ObavestenjaPacijent();
             o.Show();
         }
-    }
+    }*/
 }

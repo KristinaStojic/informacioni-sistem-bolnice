@@ -70,9 +70,9 @@
         <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,25,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
         <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,215,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
 
-        <Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
+        <!--Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Obavestenja" Foreground="White" FontSize="16"></TextBlock>
-        </Button>
+        </-->
         <Rectangle Fill="#ff7f50"  HorizontalAlignment="Left" Height="50" Margin="35,508,0,0" Stroke="#ff7f50" VerticalAlignment="Top" Width="171" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left"  Margin="37,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="169" RenderTransformOrigin="1.806,0.4" Grid.Column="1"><Run FontWeight="Bold" Text=" Prostorije"/><LineBreak/><Run Text="     1-20 -&gt; ordinacije "/><LineBreak/><Run Text="     20-30 -&gt; operacione sale"/></TextBlock>
 

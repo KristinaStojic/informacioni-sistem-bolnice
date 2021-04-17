@@ -19,8 +19,17 @@ namespace Projekat.Model
             }
         }
 
-        public LekarskiRecept(Pacijent p, int id, string naziv, string datum, int brojkor, int kol, String pocetak, List<DateTime> uzimanjeTerapije)
-        {
+        public LekarskiRecept(Pacijent p, int id, string naziv, string datum, int brojkor, int kol, String pocetak, List<DateTime> uzimanjeTerapije) {
+            this.idPacijenta = p.IdPacijenta;
+            //this.IzabraniLekar = p.IzabraniLekar;*/
+            this.IdRecepta = id;
+            this.NazivLeka = naziv;
+            this.BrojDanaKoriscenja = brojkor;
+            this.DnevnaKolicina = kol;
+            this.PocetakKoriscenja = pocetak;
+            this.UzimanjeTerapije = uzimanjeTerapije;
+            this.DatumPropisivanjaLeka = datum;
+        }
 
         public LekarskiRecept(Pacijent p, int id, string naziv, int brojkor, int kol, String pocetak, String datum)
         {     
@@ -31,9 +40,7 @@ namespace Projekat.Model
             this.BrojDanaKoriscenja = brojkor;
             this.DnevnaKolicina = kol;
             this.PocetakKoriscenja = pocetak;
-            this.UzimanjeTerapije = uzimanjeTerapije;
             this.DatumPropisivanjaLeka = datum;
-
         }
 
         public LekarskiRecept() {}
