@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -22,12 +23,13 @@ namespace Projekat
     public partial class PrikazTerminaLekar : Window
     {
         private int colNum = 0;
+        int idLekara;
         public static ObservableCollection<Termin> Termini
         {
             get;
             set;
         }
-
+       
         public PrikazTerminaLekar()
         {
             InitializeComponent();
@@ -35,11 +37,37 @@ namespace Projekat
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.termini)
             {
-               /* if(t.Lekar.IdLekara == 5)
+                /*foreach(Lekar l in MainWindow.lekari)
+                {
+                    if(t.Lekar.IdLekara == l.IdLekara)
+                    {
+                        Termini.Add(t);
+                    }
+                }*/
+
+
+                /*if (t.Lekar.IdLekara == 1)
                 {
                     Termini.Add(t);
                 }*/
-                Termini.Add(t);
+                /*if (t.Lekar.IdLekara == 2)
+                {
+                    Termini.Add(t);
+                }*/
+                /*if (t.Lekar.IdLekara == 3)
+                {
+                    Termini.Add(t);
+                } */
+               /* if (t.Lekar.IdLekara == 4)
+                {
+                    Termini.Add(t);
+                }*/
+                if (t.Lekar.IdLekara == 5)
+                {
+                    Termini.Add(t);
+                }
+
+                //Termini.Add(t);
             }
         }
 
@@ -79,6 +107,8 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             this.Close();
+            PocetnaStrana ps = new PocetnaStrana();
+            ps.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -108,7 +138,8 @@ namespace Projekat
                 }
                 else
                 {
-                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent);
+                    this.Close();
+                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
                     karton.Show();
                 }
             }
@@ -121,6 +152,17 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            SaleMenadzer.sacuvajIzmjene();
+            PocetnaStrana ps = new PocetnaStrana();
+            //ps.Show();   /*ISPRAVITI*/
+        }
+
+        // obavestenja lekara
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaLekar o = new ObavestenjaLekar();
+            o.Show();
         }
     }
 }

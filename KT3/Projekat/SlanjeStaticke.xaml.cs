@@ -58,16 +58,16 @@ namespace Projekat
                 }
             }
             this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            termini.Add("14:40");
-            termini.Add("14:41");
-            termini.Add("14:42");
-            termini.Add("14:43");
-            termini.Add("14:44");
-            termini.Add("14:45");
-            termini.Add("14:46");
-            termini.Add("14:47");
-            termini.Add("14:48");
-            termini.Add("14:49");
+            termini.Add("12:30");
+            termini.Add("12:31");
+            termini.Add("12:32");
+            termini.Add("12:33");
+            termini.Add("12:34");
+            termini.Add("12:35");
+            termini.Add("12:36");
+            termini.Add("12:37");
+            termini.Add("12:38");
+            termini.Add("12:39");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -161,6 +161,19 @@ namespace Projekat
                             zakazi.oprema = o;
                         }
                     }
+                    if (zakazi.oprema == null)
+                    {
+                        foreach (Sala s in SaleMenadzer.sale)
+                        {
+                            foreach (Oprema o in s.Oprema)
+                            {
+                                if (opremaZaSlanje.IdOpreme == o.IdOpreme)
+                                {
+                                    zakazi.oprema = o;
+                                }
+                            }
+                        }
+                    }
                     zakazi.datumIVrijeme = datumIVrijeme;
                     zakazi.salji = true;
                     PremjestajMenadzer.dodajPremjestaj(zakazi);
@@ -186,6 +199,19 @@ namespace Projekat
                     if (opremaZaSlanje.IdOpreme == o.IdOpreme)
                     {
                         zakazi.oprema = o;
+                    }
+                }
+                if (zakazi.oprema == null)
+                {
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        foreach (Oprema o in s.Oprema)
+                        {
+                            if (opremaZaSlanje.IdOpreme == o.IdOpreme)
+                            {
+                                zakazi.oprema = o;
+                            }
+                        }
                     }
                 }
                 zakazi.datumIVrijeme = datumIVrijeme;

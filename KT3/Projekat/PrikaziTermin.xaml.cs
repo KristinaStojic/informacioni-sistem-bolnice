@@ -219,5 +219,12 @@ namespace Projekat
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;
         } 
+
+        // obavestenja
+        private void obavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaPacijent o = new ObavestenjaPacijent();
+            o.Show();
+        }
     }
 }

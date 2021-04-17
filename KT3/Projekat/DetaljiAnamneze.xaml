@@ -9,7 +9,7 @@
     <Grid Margin="0,0,-6.8,-5"  Background="LightSkyBlue">
         <Label Content="Datum" HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
         <DatePicker Name ="datum" HorizontalAlignment="Left" Margin="216,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.871,0.065" Width="169"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,107,0,0"/>
+        <TextBox Name="lekar" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,107,0,0" IsEnabled="False"/>
         <Label Content="Lekar" HorizontalAlignment="Left" Margin="31,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
         <TextBox Name ="bolest" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,168,0,0"/>
         <Label Content="Opis bolesti" HorizontalAlignment="Left" Margin="31,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
@@ -17,7 +17,5 @@
         <Label Content="Terapija" HorizontalAlignment="Left" Margin="31,334,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
         <Button Background="#FF6895C5" Content="Sacuvaj" HorizontalAlignment="Left" Margin="128,491,0,0" VerticalAlignment="Top" Height="29" Width="73" Click="Button_Click"/>
         <Button Background="#FF6895C5" Content="Odustani" HorizontalAlignment="Left" Margin="245,491,0,0" VerticalAlignment="Top" Height="29" Width="73" Click="Button_Click_1"/>
-        <ScrollBar HorizontalAlignment="Left" Margin="368,168,0,0" VerticalAlignment="Top" Width="17" Height="110"/>
-        <ScrollBar HorizontalAlignment="Left" Margin="368,334,0,0" VerticalAlignment="Top" Width="17" Height="110"/>
     </Grid>
 </Window>
