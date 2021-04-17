@@ -70,13 +70,13 @@ namespace Model
 
                     for (int i = 0; i < PrikaziTermin.Termini.Count; i++)
                     {
-                        if (PrikaziTermin.Termini[i].Pacijent.Equals(stari))
+                        if (PrikaziTermin.Termini[i].Pacijent.IdPacijenta.Equals(stari.IdPacijenta))
                         {
-                            // TODO: ispraviti
                             MessageBox.Show(i.ToString());
-                            PrikaziTermin.Termini.RemoveAt(i);
+                            //int i = PrikaziTermin.Termini.IndexOf(stari)
+                            // PrikaziTermin.Termini.RemoveAt(i);
                             PrikaziTermin.Termini[i].Pacijent = p;   //*
-                            PrikaziTermin.Termini.Insert(i, PrikaziTermin.Termini[i]);
+                           // PrikaziTermin.Termini.Insert(i, PrikaziTermin.Termini[i]);
                         }
                     }
                 }
@@ -130,11 +130,11 @@ namespace Model
         }
 
         // napraviti da bude po id
-        public static Pacijent PronadjiPoId(int jmbg)
+        public static Pacijent PronadjiPoId(int id)
         {
             foreach (Pacijent p in pacijenti)
             {
-                if (p.Jmbg == jmbg)
+                if (p.IdPacijenta == id)
                 {
                     return p;
                 }

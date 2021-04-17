@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zdravstveni karton" Height="500" Width="600" FontSize="15" WindowStartupLocation="CenterScreen" Background="AliceBlue">
+        Title="Zdravstveni karton" Height="500" Width="600" FontSize="15" WindowStartupLocation="CenterScreen" Background="#e6f7ff">
 
     <Grid>
 
@@ -26,7 +26,7 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                        <Setter TargetName="Border" Property="Background" Value="CornflowerBlue" />
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="False">
                                         <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
@@ -39,7 +39,7 @@
             </TabControl.Resources>
             <!-- licni podaci-->
             <TabItem Header="Lični podaci" Name="podaci" FontSize="15" Height="25" Margin="0,0,0.5,0" VerticalAlignment="Top">
-                <Grid Margin="-2,0,2,0" Background="GhostWhite">
+                <Grid Margin="-2,0,2,0" Background="#f4f3f3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="311*"></ColumnDefinition>
                         <ColumnDefinition Width="223*"></ColumnDefinition>

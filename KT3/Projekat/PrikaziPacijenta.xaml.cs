@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziPacijenta : Window
     {
+        
         public static ObservableCollection<Pacijent> PacijentiTabela
         {
             get;
@@ -32,7 +34,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             PacijentiTabela = new ObservableCollection<Pacijent>();
-            
+
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
                 PacijentiTabela.Add(p);

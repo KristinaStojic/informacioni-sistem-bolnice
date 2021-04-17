@@ -31,13 +31,12 @@ namespace Projekat
             this.DataContext = this;
             Termini2 = new ObservableCollection<Termin>();
             sviSlobodni2 = new List<string>() { "07:00", "07:30", "08:00", "08:30",
-                                                                "09:00", "09:30",  "10:00", "10:30",
-                                                                "11:00", "11:30", "12:00", "12:30",
-                                                                "13:00", "13:30", "14:00", "14:30",
-                                                                "15:00", "15:30", "16:00", "16:30",
-                                                                "17:00", "17:30", "18:00", "18:30",
-                                                                "19:00", "19:30", "20:00"};
-
+                                                "09:00", "09:30",  "10:00", "10:30",
+                                                "11:00", "11:30", "12:00", "12:30",
+                                                "13:00", "13:30", "14:00", "14:30",
+                                                "15:00", "15:30", "16:00", "16:30",
+                                                "17:00", "17:30", "18:00", "18:30",
+                                                "19:00", "19:30", "20:00"};
             int count = 0;
             lista = new List<Termin>();
             bool jeTri = false;
@@ -63,6 +62,7 @@ namespace Projekat
                                     t.VremeKraja = ZakaziTermin.IzracunajVremeKraja(slot);
                                     t.Prostorija = s;
                                     t.tipTermina = TipTermina.Pregled;
+                                    // TODO: ispraviti kada dobijemo raspored radnog vremena
                                     foreach (Lekar l in MainWindow.lekari)
                                     {
                                         if (l.IdLekara.Equals(1))
@@ -86,10 +86,6 @@ namespace Projekat
                             }
                         }
                     }
-                    /*if (count == 3)
-                    {
-                        break;
-                    }*/
                 }
             }
        }
@@ -105,6 +101,13 @@ namespace Projekat
             // TODO: sacuvati u listu zauzetih termina, srediti id termina
             TerminMenadzer.ZakaziTermin(t);
             TerminMenadzer.sacuvajIzmene();
+
+            // TODO: proveriti
+            Sala sala = SaleMenadzer.NadjiSaluPoId(t.Prostorija.Id);
+            ZauzeceSale zsNovo = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, sala.Id, t.IdTermin);
+            sala.zauzetiTermini.Add(zsNovo);
+            SaleMenadzer.sacuvajIzmjene();
+
             this.Close();
         }
 

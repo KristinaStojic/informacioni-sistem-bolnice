@@ -81,7 +81,6 @@ namespace Model
             return id;
         }
 
-
         public static void IzmeniTermin(Termin termin, Termin termin1)
         {
             foreach(Termin t in termini)
