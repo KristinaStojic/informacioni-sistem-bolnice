@@ -14,10 +14,13 @@
             <Button Name="Zahtjevi" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3" Click="Zahtjevi_Click">Zahtjevi</Button>
             <Button Name="Komunikacija" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3">Komunikacija</Button>
             <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3">Izvjestaj</Button>
-            <CheckBox Content="CheckBox"/>
         </StackPanel>
-        <StackPanel DockPanel.Dock="Top" Background="DarkBlue" Height="70"></StackPanel>
-
+        <StackPanel DockPanel.Dock="Top" Background="DarkBlue" Height="70" Orientation="Horizontal">
+            <Button Name="Odjava" HorizontalAlignment="Right" Height="40" Width="150" Margin="430, 10, 10, 10"  Background="DarkBlue" BorderBrush="Black" BorderThickness="3" Click="Odjava_Click">
+                Odjava
+            </Button>      
+        </StackPanel>
+        
         <StackPanel DockPanel.Dock="Bottom" Background="White"></StackPanel>
     </DockPanel>
 </Window>

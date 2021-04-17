@@ -74,7 +74,21 @@ namespace Projekat
             Termin zaBrisanje = (Termin)terminiSekretarTabela.SelectedItem;
             if (zaBrisanje != null)
             {
-                TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);   
+                int idProstorije = zaBrisanje.Prostorija.Id;
+                TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);
+
+                foreach (Termin t in TerminMenadzer.termini)
+                {
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        if (s.Id == idProstorije)
+                        {
+                            t.Prostorija = s;
+                        }
+                    }
+                }
+
+                TerminMenadzer.sacuvajIzmene();
             }
             else
             {

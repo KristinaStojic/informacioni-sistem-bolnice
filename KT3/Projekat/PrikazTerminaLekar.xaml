@@ -27,14 +27,19 @@
             </DataGrid.Columns>
 
         </DataGrid>
+
         <Button Content="          Zakaži termin" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="68,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_1" />
         <Button Content="           Izmeni termin" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="234,599,0,0" VerticalAlignment="Top" Width="133" Height="50" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508"/>
         <Button Content="         Nazad" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="732,599,0,0" VerticalAlignment="Top" Width="133" Height="50" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
         <Button Content="        Otkaži termin" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="399,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
         <Button Content="           Karton pacijenta" BorderBrush="DarkRed" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="566,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_6" RenderTransformOrigin="-1.488,3.89"/>
         <Label Content="Zakazani termini" HorizontalAlignment="Left" Margin="65,30,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        
+      
         <Border  BorderBrush="DarkRed"  BorderThickness="1" HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="301" Margin="925,97,0,0">
         </Border>
+      
+      
         <Image Source="slike/grafik1.png" Width="205" HorizontalAlignment="Center" Margin="977,121,97.6,233.4" RenderTransformOrigin="0.475,0.468"/>
         <Label Content="    Grafik 1. Zakazani termini&#xD;&#xA;" HorizontalAlignment="Left" Margin="1001,419,0,0" VerticalAlignment="Top" Width="163"/>
         <Image Source="slike/plus.png" Width="30" HorizontalAlignment="Center" Margin="76,593,1173.6,35.4" RenderTransformOrigin="0.467,-0.13"/>

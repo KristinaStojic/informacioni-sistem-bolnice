@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Model;
-
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -35,6 +35,10 @@ namespace Projekat
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.termini)
             {
+                /*if (t.Pacijent.IdPacijenta == 1)
+                {
+                    Termini.Add(t);
+                }*/
                 Termini.Add(t);
             }
         }
@@ -74,6 +78,16 @@ namespace Projekat
                 TerminMenadzer.OtkaziTermin(zaBrisanje);
                 //TerminMenadzer.sacuvajIzmene();
             }
+            Sala s = SaleMenadzer.NadjiSaluPoId(zaBrisanje.Prostorija.Id);
+            foreach(ZauzeceSale zs in s.zauzetiTermini)
+            {
+                //MessageBox.Show(zs.idTermina.ToString());
+                if (zs.idTermina.Equals(zaBrisanje.IdTermin))
+                {
+                    s.zauzetiTermini.Remove(zs);
+                    break;
+                }
+            }
 
         }
 
@@ -81,24 +95,39 @@ namespace Projekat
         {
             // nazad
             TerminMenadzer.sacuvajIzmene();
-            //MainWindow mw = new MainWindow();
-            //mw.Show();
+            SaleMenadzer.sacuvajIzmjene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
             this.Hide();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+            SaleMenadzer.sacuvajIzmjene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
         }
 
         private void zdravstveniKarton_Click(object sender, RoutedEventArgs e)
         {
-
+            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
+            if (izabraniTermin != null)
+            {
+                ZdravstveniKartonPacijent it = new ZdravstveniKartonPacijent(izabraniTermin.Pacijent);
+                //TerminMenadzer.sacuvajIzmene();
+                it.Show();
+            }
         }
 
         private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        // obavestenja
+        private void obavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaPacijent o = new ObavestenjaPacijent();
+            o.Show();
         }
     }
 }

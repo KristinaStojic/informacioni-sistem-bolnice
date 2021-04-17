@@ -78,12 +78,12 @@
                 </LinearGradientBrush>
             </DataGrid.Background>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="30" Binding="{Binding IdPacijenta}"/>
-                <DataGridTextColumn Header="Ime" Width="130" Binding="{Binding ImePacijenta}"/>
-                <DataGridTextColumn Header="Prezime" Width="130" Binding="{Binding PrezimePacijenta}"/>
-                <DataGridTextColumn Header="JMBG" Width="130" Binding="{Binding Jmbg}"/>
-                <DataGridTextColumn Header="Pol" Width="60" Binding="{Binding Pol}"/>
-                <DataGridTextColumn Header="Status" Width="95" Binding="{Binding StatusNaloga}"/>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding IdPacijenta}"/>
+                <DataGridTextColumn Header="Ime" Width="135" Binding="{Binding ImePacijenta}"/>
+                <DataGridTextColumn Header="Prezime" Width="140" Binding="{Binding PrezimePacijenta}"/>
+                <DataGridTextColumn Header="JMBG" Width="135" Binding="{Binding Jmbg}"/>
+                <DataGridTextColumn Header="Pol" Width="70" Binding="{Binding Pol}"/>
+                <DataGridTextColumn Header="Status" Width="100" Binding="{Binding StatusNaloga}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

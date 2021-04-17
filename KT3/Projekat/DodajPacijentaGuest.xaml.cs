@@ -19,12 +19,7 @@ namespace Projekat
     /// </summary>
     public partial class DodajPacijentaGuest : Window
     {
-        public ZakaziTerminSekretar z;
-
-        public DodajPacijentaGuest()
-        {
-            InitializeComponent();
-        }       
+        public ZakaziTerminSekretar z;       
 
         public DodajPacijentaGuest(ZakaziTerminSekretar terminSekretar)
         {
@@ -55,6 +50,15 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void jmbg_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!PacijentiMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            {
+                MessageBox.Show("JMBG vec postoji");
+                jmbg.Text = "";
+            }
         }
     }
 }

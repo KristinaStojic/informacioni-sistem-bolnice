@@ -93,35 +93,6 @@
     </Karton>
   </Pacijent>
   <Pacijent>
-    <IdPacijenta>3</IdPacijenta>
-    <ImePacijenta>Jelena</ImePacijenta>
-    <PrezimePacijenta>Radonjic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>987654</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>654321</BrojTelefona>
-    <Email>radonjic@gmail.coom</Email>
-    <AdresaStanovanja>NS</AdresaStanovanja>
-    <Zanimanje>profesor</Zanimanje>
-    <BracnoStanje>Udata</BracnoStanje>
-    <Karton>
-      <IdPacijenta>3</IdPacijenta>
-      <LekarskiRecepti>
-        <LekarskiRecept>
-          <IdRecepta>1</IdRecepta>
-          <idPacijenta>3</idPacijenta>
-          <IdLekara>0</IdLekara>
-          <NazivLeka>Sirup</NazivLeka>
-          <DatumPropisivanjaLeka>04/14/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
-          <DnevnaKolicina>3</DnevnaKolicina>
-          <PocetakKoriscenja>08:00</PocetakKoriscenja>
-        </LekarskiRecept>
-      </LekarskiRecepti>
-      <Anamneze />
-    </Karton>
-  </Pacijent>
-  <Pacijent>
     <IdPacijenta>4</IdPacijenta>
     <ImePacijenta>Kristina</ImePacijenta>
     <PrezimePacijenta>Draskovic</PrezimePacijenta>
@@ -278,5 +249,54 @@
         </Anamneza>
       </Anamneze>
     </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>6</IdPacijenta>
+    <ImePacijenta>Nevena</ImePacijenta>
+    <PrezimePacijenta>Nevenic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>9898</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>888</BrojTelefona>
+    <Email>mmm</Email>
+    <AdresaStanovanja>mmm</AdresaStanovanja>
+    <Zanimanje>mmm</Zanimanje>
+    <BracnoStanje>Neudata</BracnoStanje>
+    <Karton>
+      <IdPacijenta>6</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>6</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>m</NazivLeka>
+          <DatumPropisivanjaLeka>04/05/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>2</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+      <Anamneze />
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>3</IdPacijenta>
+    <ImePacijenta>Betmen</ImePacijenta>
+    <PrezimePacijenta>Betmen</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>77</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>7</IdPacijenta>
+    <ImePacijenta>M</ImePacijenta>
+    <PrezimePacijenta>M</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>1</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
   </Pacijent>
 </ArrayOfPacijent>

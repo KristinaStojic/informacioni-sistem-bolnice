@@ -22,7 +22,7 @@ namespace Projekat
     public partial class Recept : Window
     {
         public Pacijent pacijent;
-
+        public LekarskiRecept lekRec;
         public Recept(Pacijent izabraniPacijent)
         {
             InitializeComponent();
@@ -31,6 +31,33 @@ namespace Projekat
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.IdPacijenta.ToString();
+        }
+
+        // Sanja
+        public Recept(LekarskiRecept lp, Pacijent izabraniPacijent)
+        {
+            InitializeComponent();
+            this.lekRec = lp;
+            this.naziv.Text = lp.NazivLeka;
+            this.datum.Text = lp.DatumPropisivanjaLeka;
+            this.dani.Text = lp.BrojDanaKoriscenja.ToString();
+            this.brojUzimanja.Text = lp.BrojDanaKoriscenja.ToString();
+            this.sati.Text = lp.PocetakKoriscenja.Substring(0, 2);
+            this.min.Text = lp.PocetakKoriscenja.Substring(3);
+
+            this.naziv.IsEnabled = false;
+            this.datum.IsEnabled = false;
+            this.dani.IsEnabled = false;
+            this.brojUzimanja.IsEnabled = false;
+            this.sati.IsEnabled = false;
+            this.min.IsEnabled = false;
+            this.sacuvaj.Visibility = Visibility.Hidden;
+
+            this.pacijent = izabraniPacijent;
+            ime.Text = izabraniPacijent.ImePacijenta;
+            prezime.Text = izabraniPacijent.PrezimePacijenta;
+            id.Text = izabraniPacijent.IdPacijenta.ToString();
+
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

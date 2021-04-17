@@ -66,8 +66,9 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            PreraspodjelaDinamicke.aktivna = true;
             PreraspodjelaDinamicke pd = new PreraspodjelaDinamicke(izabranaSala);
-            pd.Show();
+            pd.ShowDialog();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -75,7 +76,7 @@ namespace Projekat
             Oprema opremaZaSlanje = (Oprema)dataGrid.SelectedItem;
             if (opremaZaSlanje != null) {
                 SlanjeDinamicke sd = new SlanjeDinamicke(izabranaSala, opremaZaSlanje);
-                sd.Show();
+                sd.ShowDialog();
             }
         }
     }

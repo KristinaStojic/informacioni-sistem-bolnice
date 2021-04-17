@@ -24,6 +24,8 @@ namespace Projekat.Model
         public int colNum = 0;
         Pacijent pacijent;
         Termin termin;
+        public Pacijent pacijent;
+
         public static ObservableCollection<LekarskiRecept> PrikazRecepata
         {
             get;
@@ -70,6 +72,11 @@ namespace Projekat.Model
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

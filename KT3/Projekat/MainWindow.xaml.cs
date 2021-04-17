@@ -30,8 +30,12 @@ namespace Projekat
             InitializeComponent();
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
+
+            PremjestajMenadzer.NadjiSvePremjestaje();
+
             TerminMenadzer.NadjiSveTermine();
             PacijentiMenadzer.PronadjiSve();
+            ObavestenjaMenadzer.NadjiSvaObavestenja();
 
             lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
@@ -40,12 +44,28 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
             lekari.Add(new Lekar() {IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista });
 
+
             lekovi = new ObservableCollection<Lek>();
             lekovi.Add(new Lek(1, "Paracetamol", "P2L"));
             lekovi.Add(new Lek(2, "Brufen", "B1E"));
             lekovi.Add(new Lek(3, "Pentraxil", "R24"));
             lekovi.Add(new Lek(4, "Andol", "M4M"));
             lekovi.Add(new Lek(5, "Sterpsils", "K5S"));
+
+
+        }
+    
+        // dok nemamo lekari menazder
+        public static Lekar PronadjiPoId(int id)
+        {
+            foreach (Lekar p in lekari)
+            {
+                if (p.IdLekara == id)
+                {
+                    return p;
+                }
+            }
+            return null;
 
         }
 
