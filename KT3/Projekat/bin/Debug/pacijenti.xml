@@ -53,6 +53,16 @@
           <DnevnaKolicina>2</DnevnaKolicina>
           <PocetakKoriscenja>07:00</PocetakKoriscenja>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>3</IdRecepta>
+          <idPacijenta>2</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Paracetamol</NazivLeka>
+          <DatumPropisivanjaLeka>04/15/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>1</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>11:11</PocetakKoriscenja>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -70,6 +80,14 @@
           <OpisBolesti>Anamneza 2</OpisBolesti>
           <Terapija>Terapija 2</Terapija>
           <Datum>04/10/2021</Datum>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>3</IdAnamneze>
+          <IdPacijenta>2</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>45sdsd</OpisBolesti>
+          <Terapija>sdsds</Terapija>
+          <Datum>04/15/2021</Datum>
         </Anamneza>
       </Anamneze>
     </Karton>
@@ -137,6 +155,16 @@
           <DnevnaKolicina>4</DnevnaKolicina>
           <PocetakKoriscenja>15:00</PocetakKoriscenja>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>5</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Pentraxil</NazivLeka>
+          <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>5</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -145,6 +173,78 @@
           <IdLekara>0</IdLekara>
           <OpisBolesti>Anamneza</OpisBolesti>
           <Terapija>Terapija1</Terapija>
+          <Datum>04/22/2021</Datum>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>dsfdsf</OpisBolesti>
+          <Terapija>dsfsdf</Terapija>
+          <Datum>04/22/2021</Datum>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>3</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>dsdsds</OpisBolesti>
+          <Terapija>sdsds</Terapija>
+          <Datum>05/01/2021</Datum>
+          <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>4</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>dffdfdsf</OpisBolesti>
+          <Terapija>dfddfdfd</Terapija>
+          <Datum>05/01/2021</Datum>
+          <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
+        </Anamneza>
+      </Anamneze>
+    </Karton>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>6</IdPacijenta>
+    <ImePacijenta>Kristina</ImePacijenta>
+    <PrezimePacijenta>Stojic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>5446</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>456456</BrojTelefona>
+    <Email>kris</Email>
+    <AdresaStanovanja>ns</AdresaStanovanja>
+    <Zanimanje>student</Zanimanje>
+    <BracnoStanje>Neudata</BracnoStanje>
+    <Karton>
+      <IdPacijenta>6</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>6</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Pentraxil</NazivLeka>
+          <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>5</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>6</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>Kristina</OpisBolesti>
+          <Terapija>Kristina</Terapija>
+          <Datum>05/05/2021</Datum>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>6</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>AAAA</OpisBolesti>
+          <Terapija>SSSS</Terapija>
           <Datum>04/22/2021</Datum>
         </Anamneza>
       </Anamneze>

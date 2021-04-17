@@ -24,6 +24,7 @@ namespace Projekat
     public partial class MainWindow : Window
     {
         public static ObservableCollection<Lekar> lekari;
+        public static ObservableCollection<Lek> lekovi;
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +44,15 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
             lekari.Add(new Lekar() {IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista });
 
+
+            lekovi = new ObservableCollection<Lek>();
+            lekovi.Add(new Lek(1, "Paracetamol", "P2L"));
+            lekovi.Add(new Lek(2, "Brufen", "B1E"));
+            lekovi.Add(new Lek(3, "Pentraxil", "R24"));
+            lekovi.Add(new Lek(4, "Andol", "M4M"));
+            lekovi.Add(new Lek(5, "Sterpsils", "K5S"));
+
+
         }
     
         // dok nemamo lekari menazder
@@ -56,6 +66,7 @@ namespace Projekat
                 }
             }
             return null;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -67,8 +78,9 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //PrikaziTermin w1 = new PrikaziTermin();
-            PrikazTerminaLekar w1 = new PrikazTerminaLekar();
+           
+            PocetnaStrana w1 = new PocetnaStrana();
+           // PrikazTerminaLekar w1 = new PrikazTerminaLekar();
             w1.Show();
             //this.Close();
         }

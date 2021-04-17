@@ -71,6 +71,8 @@
     <Compile Include="DodajPacijentaGuest.xaml.cs">
       <DependentUpon>DodajPacijentaGuest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajRecept.xaml.cs">
+      <DependentUpon>DodajRecept.xaml</DependentUpon>
     <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
       <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
     </Compile>
@@ -93,6 +95,7 @@
       <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Anamneza.cs" />
+    <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
     <Compile Include="Model\Obavestenja.cs" />
     <Compile Include="Model\ObavestenjaMenadzer.cs" />
@@ -118,6 +121,9 @@
     </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PocetnaStrana.xaml.cs">
+      <DependentUpon>PocetnaStrana.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrebaciDinamicku.xaml.cs">
       <DependentUpon>PrebaciDinamicku.xaml</DependentUpon>
@@ -207,6 +213,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DodajRecept.xaml">
     <Page Include="DodajPacijentaGuestIzmeni.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -280,6 +287,10 @@
     <Page Include="OtkaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PocetnaStrana.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrebaciDinamicku.xaml">
       <SubType>Designer</SubType>
@@ -446,25 +457,43 @@
     <Resource Include="slike\cancel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="doktor.png" />
+    <Resource Include="slike\doktor.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="grafik1.png" />
+    <Resource Include="slike\grafik1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="plus.png" />
+    <Resource Include="slike\obrisi.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pen.png" />
+    <Resource Include="slike\osoba.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="obrisi.jpg" />
+    <Resource Include="slike\nazad.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="osoba.jpg" />
+    <Resource Include="slike\sticky-note.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="nazad.jpg" />
+    <Resource Include="slike\flask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\stethoscope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\alergeni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\nazadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\izmeni.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\move.png" />
