@@ -67,5 +67,10 @@ namespace Projekat.Model
         {
             this.Close();
         }
+
+        private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz termina" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
-    <Grid Background="#e0fcff" Margin="0,0,-5.5,-2.5">
+        Title="Prikaz termina" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="AliceBlue">
+    <Grid  Margin="0,0,-5.5,-2.5">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -14,32 +14,35 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="69*"/>
         </Grid.ColumnDefinitions>
+        <!---Grid.Background>
+            <ImageBrush ImageSource="slike\1.jpg" Opacity="0.7" Stretch="UniformToFill"/>
+        </-->
         <DataGrid Grid.Column="1" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="455" Margin="10,25,0,0" VerticalAlignment="Top" Width="595" GridLinesVisibility="All" BorderBrush="#ff7f50" BorderThickness="2.5" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged">
+                  Height="450" Margin="10,25,0,0" VerticalAlignment="Top" Width="595" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
                 <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
                 <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                <DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
+                <!--DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
                 <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
                 <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  />
+                <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  /-->
                 <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
                 <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
                 <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
-                <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"  />
+                <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"/>
             </DataGrid.Columns>
 
         </DataGrid>
         <Button HorizontalAlignment="Left" Background="#404969" Margin="10,25,0,0" BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click" >
-            <TextBlock Text="Zakaži termin" Foreground="White" FontSize="16"></TextBlock>
+            <TextBlock Text="Zakaži termin" Foreground="White" FontSize="16" TextDecorations="{x:Null}"/>
         </Button>
         <Button HorizontalAlignment="Left" Background="#404969" Margin="10,125,0,0" BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Izmeni termin" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <Button HorizontalAlignment="Left" Background="#404969" Margin="463,508,0,0"  BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="142" Height="50" Click="Button_Click_3" Grid.Column="1">
+        <Button HorizontalAlignment="Left" Background="#404969" Margin="461,508,0,0"  BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="142" Height="50" Click="Button_Click_3" Grid.Column="1">
             <TextBlock Text="Nazad" Foreground="White" FontSize="16"></TextBlock>
         </Button>
         <Button Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508">

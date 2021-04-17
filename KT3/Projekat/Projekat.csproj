@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net40\Caliburn.Micro.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -95,9 +98,12 @@
     <Compile Include="Model\ObavestenjaMenadzer.cs" />
     <Compile Include="Model\Oprema.cs" />
     <Compile Include="Model\OpremaMenadzer.cs" />
+    <Compile Include="Model\Premjestaj.cs" />
+    <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\TabelaRecepata.xaml.cs">
       <DependentUpon>TabelaRecepata.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Validation.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
@@ -106,6 +112,9 @@
     </Compile>
     <Compile Include="ObavestenjaPacijent.xaml.cs">
       <DependentUpon>ObavestenjaPacijent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObrisiOpremu.xaml.cs">
+      <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
     </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
@@ -118,6 +127,9 @@
     </Compile>
     <Compile Include="PreraspodjelaDinamicke.xaml.cs">
       <DependentUpon>PreraspodjelaDinamicke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PreraspodjelaStaticke.xaml.cs">
+      <DependentUpon>PreraspodjelaStaticke.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikazAnamneza.xaml.cs">
       <DependentUpon>PrikazAnamneza.xaml</DependentUpon>
@@ -149,6 +161,9 @@
     <Compile Include="SlanjeDinamicke.xaml.cs">
       <DependentUpon>SlanjeDinamicke.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SlanjeStaticke.xaml.cs">
+      <DependentUpon>SlanjeStaticke.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
     </Compile>
@@ -167,8 +182,14 @@
     <Compile Include="ZakaziTerminLekar.xaml.cs">
       <DependentUpon>ZakaziTerminLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZakaziTerminPreferenca.xaml.cs">
+      <DependentUpon>ZakaziTerminPreferenca.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakaziTerminSekretar.xaml.cs">
       <DependentUpon>ZakaziTerminSekretar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZdravstveniKartonPacijent.xaml.cs">
+      <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
     </Compile>
     <Page Include="DetaljiAnamneze.xaml">
       <SubType>Designer</SubType>
@@ -251,6 +272,10 @@
     <Page Include="ObavestenjaPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>  
+    <Page Include="ObrisiOpremu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtkaziTermin.xaml">
       <SubType>Designer</SubType>
@@ -265,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PreraspodjelaDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreraspodjelaStaticke.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -316,6 +345,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SlanjeStaticke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Upravnik.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -340,9 +373,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ZakaziTerminPreferenca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ZakaziTerminSekretar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZdravstveniKartonPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +417,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -423,6 +465,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="nazad.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\move.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

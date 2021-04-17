@@ -24,6 +24,8 @@
         <Label FontSize="15" Content="Koliko puta na dan" HorizontalAlignment="Left" Margin="70,402,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name ="sati" HorizontalAlignment="Left" Height="24" Margin="245,462,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" TextChanged="TextBox_TextChanged"/>
         <Label FontSize="15" Content="Pocetak terapije" HorizontalAlignment="Left" Margin="70,462,0,0" VerticalAlignment="Top"/>
+        <Button Content="Odustani" HorizontalAlignment="Left" Margin="105,537,0,0" VerticalAlignment="Top" Width="91" Height="29"  Click="Button_Click"/>
+        <Button x:Name="sacuvaj"  Content="Sacuvaj" HorizontalAlignment="Left" Margin="258,537,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="Button_Click_1"/>
         <Button Background="#FF6895C5"  Content="Odustani" HorizontalAlignment="Left" Margin="105,537,0,0" VerticalAlignment="Top" Width="91" Height="29"  Click="Button_Click"/>
         <Button Background="#FF6895C5" Content="Sacuvaj" HorizontalAlignment="Left" Margin="258,537,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="Button_Click_1"/>
         <DatePicker Name ="datum" HorizontalAlignment="Left" Margin="245,297,0,0" VerticalAlignment="Top" Width="175"/>
