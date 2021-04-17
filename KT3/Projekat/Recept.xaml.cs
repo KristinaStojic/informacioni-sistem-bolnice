@@ -78,7 +78,7 @@ namespace Projekat
                 String nazivLeka = naziv.Text;
                 String formatirano = null;
                 DateTime? selectedDate = datum.SelectedDate;
-                Console.WriteLine(selectedDate);
+                //Console.WriteLine(selectedDate);
                 if (selectedDate.HasValue)
                 {
                     formatirano = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);

@@ -16,6 +16,7 @@ using Model;
 using Projekat.Model;
 using System.Threading;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace Projekat
 {
@@ -31,17 +32,17 @@ namespace Projekat
             get;
             set;
         }
-        public static ObservableCollection<DateTime> Terapije { get; set; }
+        public static ObservableCollection<Obavestenje> Obavestenja { get; set; }
         public PrikaziTermin()
         {
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
-            Terapije = new ObservableCollection<DateTime>();
+            Obavestenja = new ObservableCollection<Obavestenje>();
 
             pacijentProzor = true;
-           // Thread thread = new Thread(izvrsiNit);
-            //thread.Start();
+            Thread thread = new Thread(izvrsiNit);
+            thread.Start();
             foreach (Termin t in TerminMenadzer.termini)
             {
                 /*if (t.Pacijent.IdPacijenta == 1)
@@ -50,13 +51,16 @@ namespace Projekat
                 }*/
                 Termini.Add(t);
             }
-
             Pacijent p = PacijentiMenadzer.PronadjiPoId(1);  // TODO: promeniti kada uradimo prijavljivanje
             foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
             {
                 foreach (DateTime dt in lr.UzimanjeTerapije)
                 {
-                    Terapije.Add(dt);
+                    if (dt <= DateTime.Now.Date)
+                    {
+                        Obavestenje ob = new Obavestenje(dt, "", "Uzmite terapiju: " + lr.NazivLeka);
+                        Obavestenja.Add(ob);
+                    }
                 }
             }
         }
@@ -65,7 +69,7 @@ namespace Projekat
         {
             while (pacijentProzor == true)
             {
-                Thread.Sleep(100); 
+                Thread.Sleep(1000);  //30000
                 ProveriRecepte();
             }
         }
@@ -73,35 +77,41 @@ namespace Projekat
         public static void ProveriRecepte()
         {
             Pacijent p = PacijentiMenadzer.PronadjiPoId(1);  // TODO: promeniti kada uradimo prijavljivanje
-            /*foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
-            {
-                foreach (DateTime dt in lr.UzimanjeTerapije)
-                {
-
-                }
-            }*/
-                
+           // App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
+            //{
             foreach (LekarskiRecept lp in p.Karton.LekarskiRecepti)
             {
-                //foreach (DateTime d in lp.UzimanjeTerapije)
-                foreach(DateTime d in Terapije)
-                {
-                    if (d <= DateTime.Now.Date)
+                foreach (DateTime d in lp.UzimanjeTerapije)
+                { 
+                //foreach (string d in lp.DatumPropisivanjaLeka)
+                //{
+                    //DateTime dt = DateTime.Parse(d);
+                       
+                    if (d.Date == DateTime.Now.Date)
                     {
-                        MessageBox.Show("Uzmite terapiju - " + lp.NazivLeka, "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
-                        //lp.UzimanjeTerapije.Remove(d); //TODO : observablecollection lista
-                        //Terapije.Remove(d);
+                        MessageBox.Show(d.Date.ToString() + " " + DateTime.Now.Date.ToString()+ ", time of day:" + d.TimeOfDay.ToString().Substring(0,5) +  " " + DateTime.Now.TimeOfDay.ToString().Substring(0, 5));
+                        int vremeTren = int.Parse(DateTime.Now.TimeOfDay.ToString().Substring(0, 5));
+                        int vremeLP = int.Parse(d.TimeOfDay.ToString().Substring(0, 5));
+                        if (vremeLP == vremeTren)
+                        {
+                            
+
+                        }
+                        //MessageBox.Show("Uzmite terapiju - " + lp.NazivLeka, "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
+                        //lp.UzimanjeTerapije.Remove(d);  //TODO : observablecollection lista
+                        //Obavestenja.Remove(d);
+                        //SaleMenadzer.sacuvajIzmjene();
                         // sacuvaj izmene?
                     }
                 }
             }
-
+           // });
         }
 
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
-            if (colNum == 12) // **
+            if (colNum == 8) // **
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
@@ -143,8 +153,6 @@ namespace Projekat
                     }
                 }
             }
-           
-
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -184,5 +192,32 @@ namespace Projekat
         {
 
         }
+    }
+    
+    /*OBAVESTENJE klasa */
+    public partial class Obavestenje : INotifyPropertyChanged
+    {
+        public string TipObavestenja { get; set; } // za preglede, za recepte
+        public string SadrzajObavestenja { get; set; }      // popijte lek
+        public DateTime Datum { get; set; }
+        public bool Procitano { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+    
+        public Obavestenje() { }
+
+        public Obavestenje(DateTime datum, string TipOb, string SadrzajOb)
+        {
+            this.Datum = datum;
+            this.TipObavestenja = TipOb;
+            this.SadrzajObavestenja = SadrzajOb;
+        } 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,8 +8,16 @@ using Model;
 
 namespace Projekat.Model
 {
-    public class LekarskiRecept
+    public class LekarskiRecept : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
 
         public LekarskiRecept(Pacijent p, int id, string naziv, string datum, int brojkor, int kol, String pocetak, List<DateTime> uzimanjeTerapije)
         {
@@ -21,7 +30,6 @@ namespace Projekat.Model
             this.DnevnaKolicina = kol;
             this.PocetakKoriscenja = pocetak;
             this.UzimanjeTerapije = uzimanjeTerapije;
-        
         }
 
         public LekarskiRecept() {}
@@ -38,7 +46,7 @@ namespace Projekat.Model
         public int DnevnaKolicina { get; set; }
         public String PocetakKoriscenja { get; set; }
         // Sanja
-        public bool Obavestenje { get; set;}
+       // public bool Obavestenje { get; set;}
         public List<DateTime> UzimanjeTerapije { get; set; }
     }
 }

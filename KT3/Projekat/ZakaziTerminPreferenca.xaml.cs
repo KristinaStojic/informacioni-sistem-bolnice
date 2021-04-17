@@ -101,6 +101,13 @@ namespace Projekat
             // TODO: sacuvati u listu zauzetih termina, srediti id termina
             TerminMenadzer.ZakaziTermin(t);
             TerminMenadzer.sacuvajIzmene();
+
+            // TODO: proveriti
+            Sala sala = SaleMenadzer.NadjiSaluPoId(t.Prostorija.Id);
+            ZauzeceSale zsNovo = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, sala.Id, t.IdTermin);
+            sala.zauzetiTermini.Add(zsNovo);
+            SaleMenadzer.sacuvajIzmjene();
+
             this.Close();
         }
 
