@@ -122,13 +122,15 @@ namespace Projekat
                         string zauzetiTerminKrajSati = zauzetiTerminKraj[0];
                         string zauzetiTerminKrajMinuti = zauzetiTerminKraj[1];
 
-                        if (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) /*vp.Equals(zauzece.pocetakTermina) && vk.Equals(zauzece.krajTermina)*/
-                             && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(zauzetiTerminPocetakSati) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminKrajSati))
+                        if ( (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(zauzetiTerminPocetakSati) && (Convert.ToInt32(pocetakSati) < Convert.ToInt32(zauzetiTerminKrajSati) || Convert.ToInt32(pocetakMinuti) < Convert.ToInt32(zauzetiTerminKrajMinuti))) || 
+                            (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && (Convert.ToInt32(krajSati) > Convert.ToInt32(zauzetiTerminPocetakSati) || Convert.ToInt32(krajMinuti) > Convert.ToInt32(zauzetiTerminPocetakMinuti)) && Convert.ToInt32(krajSati) <= Convert.ToInt32(zauzetiTerminKrajSati) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati)) ||
+                            (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati) && Convert.ToInt32(krajSati) >= Convert.ToInt32(zauzetiTerminKrajSati)) && !Convert.ToInt32(krajSati).Equals(Convert.ToInt32(zauzetiTerminPocetakSati)) && !Convert.ToInt32(pocetakSati).Equals(Convert.ToInt32(zauzetiTerminKrajSati) ))
                         {
                             MessageBox.Show("Vec postoji termin");
                             vremePocetka.Text = "";
                             vremeKraja.Text = "";
                             zauzeto = 1;
+                            break;
                         }
                     }
 
@@ -137,9 +139,20 @@ namespace Projekat
                         TerminMenadzer.ZakaziTerminSekretar(t);
                         ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                         s.zauzetiTermini.Add(z);
-                        this.Close();
 
-                        //SaleMenadzer.sacuvajIzmjene();
+                        // za svaki termin koji je zakazan u istoj prostoriji s, dodati to novo zauzece u zauzeca te prostorije
+                        foreach (Termin t1 in TerminMenadzer.termini)
+                        {
+                            if (t1.Prostorija.Id == s.Id)
+                            {
+                                t1.Prostorija = s;
+                            }         
+                        }
+
+                        TerminMenadzer.sacuvajIzmene();
+                        SaleMenadzer.sacuvajIzmjene();
+
+                        this.Close();
                     }
                 }
                 else    // ako ne postoje zauzeti termini
@@ -147,9 +160,11 @@ namespace Projekat
                     TerminMenadzer.ZakaziTerminSekretar(t);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     s.zauzetiTermini.Add(z);
-                    this.Close();
 
-                    // SaleMenadzer.sacuvajIzmjene();        
+                    TerminMenadzer.sacuvajIzmene();
+                    SaleMenadzer.sacuvajIzmjene();
+
+                    this.Close();
                 }
             }
         }

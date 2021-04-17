@@ -48,7 +48,9 @@
         <Button Name="zdravstveniKarton" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="zdravstveniKarton_Click" HorizontalAlignment="Left" Margin="10,325,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Zdravstveni karton" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-
+        <Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
+            <TextBlock Text="Obavestenja" Foreground="White" FontSize="16"></TextBlock>
+        </Button>
         <Rectangle Fill="#ff7f50"  HorizontalAlignment="Left" Height="50" Margin="35,508,0,0" Stroke="#ff7f50" VerticalAlignment="Top" Width="171" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left"  Margin="37,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="169" RenderTransformOrigin="1.806,0.4" Grid.Column="1"><Run FontWeight="Bold" Text=" Prostorije"/><LineBreak/><Run Text="     1-20 -&gt; ordinacije "/><LineBreak/><Run Text="     20-30 -&gt; operacione sale"/></TextBlock>
 

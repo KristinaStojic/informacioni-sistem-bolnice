@@ -158,12 +158,15 @@ namespace Projekat
                         string zauzetiTerminKrajSati = zauzetiTerminKraj[0];
                         string zauzetiTerminKrajMinuti = zauzetiTerminKraj[1];
 
-                        if (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(zauzetiTerminPocetakSati) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminKrajSati))
+                        if (termin.IdTermin != t.IdTermin)
                         {
-                            MessageBox.Show("Vec postoji termin");
-                            vremePocetka.Text = "";
-                            vremeKraja.Text = "";
-                            zauzeto = 1;
+                            if (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(zauzetiTerminPocetakSati) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminKrajSati))                            
+                            {
+                                MessageBox.Show("Vec postoji termin");
+                                vremePocetka.Text = "";
+                                vremeKraja.Text = "";
+                                zauzeto = 1;
+                            }
                         }
                         // obrisi taj stari termin stavi novi izmenjeni
                         //    TerminMenadzer.ZakaziTerminSekretar(t);
@@ -187,28 +190,18 @@ namespace Projekat
                             }
                         }
 
-                        // za termine u istoj prostoriji gde smo izmenili termin, treba izbaciti to zauzece sale iz prostorije tog termina -------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!   NE RADI
-                        // izmena prostorije - obrisati zauzece iz stare prostorije - isti problem !!!!!!!!!!!!!!!!!!!!!!!
-
-                        // u svim terminima izbaci to zauzece iz zauzetih termina prostorija ????  preko t1.prostorija.zauzetiTermini.Remove(...);
-                        foreach (Termin t1 in TerminMenadzer.termini)
-                        {
-                           // if (termin.Prostorija.Id == t1.Prostorija.Id)
-                           // {
-                                foreach (Sala s1 in SaleMenadzer.sale)
-                                {
-                                    if (s1.Id == termin.Prostorija.Id)
-                                    {
-                                        t1.Prostorija.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s1.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                                        Console.WriteLine("USLOOOOOOOOOO JEEEE ");
-                                    }
-                                }
-                          //  }
-                        }
-
                         TerminMenadzer.IzmeniTerminSekretar(termin, t);
                         ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);  // ubaci novo izmenjeno zauzece sale 
                         s.zauzetiTermini.Add(z);
+
+                        foreach (Termin t1 in TerminMenadzer.termini)
+                        {
+                            if (t1.Prostorija.Id == s.Id) 
+                            {
+                                t1.Prostorija = s;
+                            }       
+                        }
+ 
                         this.Close();
                     }
                 }

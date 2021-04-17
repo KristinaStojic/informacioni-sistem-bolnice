@@ -100,5 +100,12 @@ namespace Projekat
         {
 
         }
+
+        // obavestenja
+        private void obavestenja_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaPacijent o = new ObavestenjaPacijent();
+            o.Show();
+        }
     }
 }
