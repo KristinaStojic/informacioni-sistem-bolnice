@@ -95,6 +95,7 @@
             <ComboBoxItem HorizontalAlignment="Center">19:00</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">20:30</ComboBoxItem>
         </ComboBox>
         <ComboBox x:Name="tipPregleda" Grid.Column="2" Grid.Row="4"  Margin="17,10,7,11" SelectedIndex="0">
             <ComboBoxItem Content="Pregled"/>

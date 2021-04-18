@@ -50,7 +50,7 @@ namespace Projekat
             dat = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             TipTermina tp;
-            if (prostorije.Text.Equals("Pregled"))
+            if (tipPregleda.Text.Equals("Pregled"))
             {
                 tp = TipTermina.Pregled;
             }
@@ -58,7 +58,6 @@ namespace Projekat
             {
                 tp = TipTermina.Operacija;
             }
-
             Lekar l = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
            // Lekar l = new Lekar() { IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa };
             //Lekar l = new Lekar() { IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
