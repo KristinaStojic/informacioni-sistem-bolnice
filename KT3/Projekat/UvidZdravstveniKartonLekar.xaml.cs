@@ -23,10 +23,12 @@ namespace Projekat
     {
 
         public Pacijent pacijent;
-        public UvidZdravstveniKartonLekar(Pacijent izabraniNalog)
+        public Termin termin;
+        public UvidZdravstveniKartonLekar(Pacijent izabraniNalog, Termin termin)
         {
             InitializeComponent();
             this.pacijent = izabraniNalog;
+            this.termin = termin;
             if (izabraniNalog != null)
             {
                 ime.Text = izabraniNalog.ImePacijenta;
@@ -88,23 +90,28 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("NA IZLAZU IZ TABELE PACIJENTA IMA : " + pacijent.Karton.Anamneze.Count + "ANAMNEZA");
+           
             this.Close();
+            PrikazTerminaLekar pt = new PrikazTerminaLekar();
+            pt.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            TabelaRecepata tp = new TabelaRecepata(pacijent);
+            TabelaRecepata tp = new TabelaRecepata(pacijent,termin);
             tp.Show();
             
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("NA ULAZU U TABELU PACIJENTA IMA : " + pacijent.Karton.Anamneze.Count + "ANAMNEZA");
-            PrikazAnamneza pa = new PrikazAnamneza(pacijent);
+           
+            PrikazAnamneza pa = new PrikazAnamneza(pacijent,termin);
             pa.Show();
         }
+
+
+
     }
 }
 

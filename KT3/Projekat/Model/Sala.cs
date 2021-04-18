@@ -31,6 +31,8 @@ namespace Model
             this.Status = status.Slobodna;
             this.TipSale = tip;
             this.Namjena = namjena;
+            //Sanja
+            this.zauzetiTermini = new List<ZauzeceSale>();
         }
 
         public Sala(int brojSale, string namjena, tipSale tip)
@@ -39,6 +41,8 @@ namespace Model
             this.Status = status.Slobodna;
             this.TipSale = tip;
             this.Namjena = namjena;
+            //Sanja
+            this.zauzetiTermini = new List<ZauzeceSale>();
         }
 
         public status Status { get; set; }
@@ -60,8 +64,14 @@ namespace Model
         public Sala(int id)
         {
             this.Id = id;
+            //Sanja
+            this.zauzetiTermini = new List<ZauzeceSale>();
         }
-        public Sala() { }
+        public Sala()
+        { 
+            //Sanja
+            this.zauzetiTermini = new List<ZauzeceSale>();
+        }
         public override string ToString()
         {
             string val = brojSale + " - " + Namjena;

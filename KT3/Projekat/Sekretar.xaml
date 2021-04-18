@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Margin="5,613,1190.6,14.4" Click="Button_Click_2" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+        <Button Margin="15,610,1180.6,17.4" Click="Button_Click_2" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

@@ -40,11 +40,47 @@ namespace Model
                     p.AdresaStanovanja = nalog.AdresaStanovanja;
                     p.BracnoStanje = nalog.BracnoStanje;
                     p.Zanimanje = nalog.Zanimanje;
+                    
+                    int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
+                    PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
+                    PrikaziPacijenta.PacijentiTabela.Insert(idx, p);
                 }
             }
-            int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
-            PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
-            PrikaziPacijenta.PacijentiTabela.Insert(idx, nalog);
+            
+        }
+
+        // Sanja 
+        public static void IzmeniNalogPacijent(Pacijent stari, Pacijent nalog)
+        {
+            foreach (Pacijent p in pacijenti)
+            {
+                if (p.IdPacijenta == stari.IdPacijenta)
+                {
+                    p.ImePacijenta = nalog.ImePacijenta;
+                    p.PrezimePacijenta = nalog.PrezimePacijenta;
+                    p.Jmbg = nalog.Jmbg;
+                    p.Pol = nalog.Pol;
+                    p.StatusNaloga = nalog.StatusNaloga;
+                    p.BrojTelefona = nalog.BrojTelefona;
+                    p.Email = nalog.Email;
+                    p.AdresaStanovanja = nalog.AdresaStanovanja;
+                    p.BracnoStanje = nalog.BracnoStanje;
+                    p.Zanimanje = nalog.Zanimanje;
+                    p.IzabraniLekar = nalog.IzabraniLekar;
+
+                    for (int i = 0; i < PrikaziTermin.Termini.Count; i++)
+                    {
+                        if (PrikaziTermin.Termini[i].Pacijent.IdPacijenta.Equals(stari.IdPacijenta))
+                        {
+                            MessageBox.Show(i.ToString());
+                            //int i = PrikaziTermin.Termini.IndexOf(stari)
+                            // PrikaziTermin.Termini.RemoveAt(i);
+                            PrikaziTermin.Termini[i].Pacijent = p;   //*
+                           // PrikaziTermin.Termini.Insert(i, PrikaziTermin.Termini[i]);
+                        }
+                    }
+                }
+            }
         }
 
         public static void ObrisiNalog(Pacijent nalog)
@@ -94,11 +130,11 @@ namespace Model
         }
 
         // napraviti da bude po id
-        public static Pacijent PronadjiPoId(int jmbg)
+        public static Pacijent PronadjiPoId(int id)
         {
             foreach (Pacijent p in pacijenti)
             {
-                if (p.Jmbg == jmbg)
+                if (p.IdPacijenta == id)
                 {
                     return p;
                 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz termina" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
-    <Grid Background="#e0fcff" Margin="0,0,-5.5,-2.5">
+        Title="Prikaz termina" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="AliceBlue">
+    <Grid  Margin="0,0,-5.5,-2.5">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -14,43 +14,65 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="69*"/>
         </Grid.ColumnDefinitions>
+        <!---Grid.Background>
+            <ImageBrush ImageSource="slike\1.jpg" Opacity="0.7" Stretch="UniformToFill"/>
+        </-->
         <DataGrid Grid.Column="1" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="455" Margin="10,25,0,0" VerticalAlignment="Top" Width="595" GridLinesVisibility="All" BorderBrush="#ff7f50" BorderThickness="2.5" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged">
+                  Height="312" Margin="3,246,0,0" VerticalAlignment="Top" Width="595" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
                 <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
                 <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                <DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
+                <!--DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
                 <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
                 <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  />
+                <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  /-->
                 <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
                 <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
                 <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
-                <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"  />
+                <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"/>
             </DataGrid.Columns>
 
         </DataGrid>
         <Button HorizontalAlignment="Left" Background="#404969" Margin="10,25,0,0" BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click" >
-            <TextBlock Text="Zakaži termin" Foreground="White" FontSize="16"></TextBlock>
+            <TextBlock Text="Zakaži termin" Foreground="White" FontSize="16" TextDecorations="{x:Null}"/>
         </Button>
-        <Button HorizontalAlignment="Left" Background="#404969" Margin="10,125,0,0" BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" RenderTransformOrigin="0.503,0.508">
+        <Button HorizontalAlignment="Left" Background="#404969" Margin="10,119,0,0" BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Izmeni termin" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <Button HorizontalAlignment="Left" Background="#404969" Margin="463,508,0,0"  BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="142" Height="50" Click="Button_Click_3" Grid.Column="1">
+        <Button HorizontalAlignment="Left" Background="#404969" Margin="10,508,0,0"  BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="160" Height="50" Click="Button_Click_3">
             <TextBlock Text="Nazad" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <Button Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508">
+        <Button Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Otkaži termin" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <Button Name="zdravstveniKarton" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="zdravstveniKarton_Click" HorizontalAlignment="Left" Margin="10,325,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
+        <Button Name="zdravstveniKarton" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="zdravstveniKarton_Click" HorizontalAlignment="Left" Margin="10,305,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Zdravstveni karton" Foreground="White" FontSize="16"></TextBlock>
         </Button>
+        <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" Height="129" Margin="8,56,0,0" VerticalAlignment="Top" Width="590" ItemsSource="{Binding Obavestenja}"
+                  SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Grid.Column="1" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Datum" Width="150" Binding="{Binding Datum}"/>
+                <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
+                <DataGridTextColumn Header="Sadrzaj" Width="330" Binding="{Binding SadrzajObavestenja}"/>
+                <!-- staviti button  -->
+                <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
+                    <DataGridCheckBoxColumn.CellStyle>
+                        <Style>
+                            <EventSetter Event="CheckBox.Checked" Handler="OnChecked"/>
+                        </Style>
+                    </>
+                </-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,25,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
+        <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,215,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
 
-        <Rectangle Fill="#ff7f50"  HorizontalAlignment="Left" Height="50" Margin="35,508,0,0" Stroke="#ff7f50" VerticalAlignment="Top" Width="171" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left"  Margin="37,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="169" RenderTransformOrigin="1.806,0.4" Grid.Column="1"><Run FontWeight="Bold" Text=" Prostorije"/><LineBreak/><Run Text="     1-20 -&gt; ordinacije "/><LineBreak/><Run Text="     20-30 -&gt; operacione sale"/></TextBlock>
+        <!--Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
+            <TextBlock Text="Obavestenja" Foreground="White" FontSize="16"></TextBlock>
+        </-->
 
         <!--Button x:Name="zdravstevniKarton" Click="zdravstevniKarton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="30,160,0,0">
             <Grid RenderTransformOrigin="0.267,0.59" Width="105" Height="15">

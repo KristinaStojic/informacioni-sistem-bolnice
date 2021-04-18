@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTermin xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Termin>
+    <IdTermin>1</IdTermin>
+    <VremePocetka>07:00</VremePocetka>
+    <VremeKraja>07:30</VremeKraja>
+    <Lekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Petar</ImeLek>
+      <PrezimeLek>Nebojsic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>1</IdPacijenta>
+      <ImePacijenta>Konstantin</ImePacijenta>
+      <PrezimePacijenta>Despotovic</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>123456</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>6435124565</BrojTelefona>
+      <Email>kosta@gmail.com</Email>
+      <AdresaStanovanja>Jardan bb</AdresaStanovanja>
+      <Zanimanje>student</Zanimanje>
+      <BracnoStanje>Neozenjen</BracnoStanje>
+      <Karton>
+        <IdPacijenta>1</IdPacijenta>
+        <LekarskiRecepti>
+          <LekarskiRecept>
+            <IdRecepta>1</IdRecepta>
+            <idPacijenta>1</idPacijenta>
+            <IdLekara>0</IdLekara>
+            <NazivLeka>Andol</NazivLeka>
+            <DatumPropisivanjaLeka>04/16/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+            <DnevnaKolicina>5</DnevnaKolicina>
+            <PocetakKoriscenja>20:00</PocetakKoriscenja>
+            <UzimanjeTerapije />
+          </LekarskiRecept>
+        </LekarskiRecepti>
+        <Anamneze>
+          <Anamneza>
+            <IdAnamneze>1</IdAnamneze>
+            <IdPacijenta>1</IdPacijenta>
+            <IdLekara>1</IdLekara>
+            <OpisBolesti>ASDAD</OpisBolesti>
+            <Terapija>SDSDSD</Terapija>
+            <Datum>04/28/2021</Datum>
+            <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
+          </Anamneza>
+        </Anamneze>
+      </Karton>
+    </Pacijent>
+    <Datum>04/16/2021</Datum>
+    <Prostorija>
+      <Status>Slobodna</Status>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>1</Id>
+      <brojSale>1</brojSale>
+      <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>flaster</NazivOpreme>
+          <Kolicina>50</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>7</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>rukavice</NazivOpreme>
+          <Kolicina>100</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>6</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>operacioni sto</NazivOpreme>
+          <Kolicina>197</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>1</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>monitor vitalnih funkcija</NazivOpreme>
+          <Kolicina>90</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>3</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>respirator</NazivOpreme>
+          <Kolicina>70</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>2</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>operaciona stolica</NazivOpreme>
+          <Kolicina>25</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>lampa</NazivOpreme>
+          <Kolicina>3</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>8</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>07:00</pocetakTermina>
+          <krajTermina>07:30</krajTermina>
+          <datumTermina>04/16/2021</datumTermina>
+          <idTermina>1</idTermina>
+          <idSale>0</idSale>
+        </ZauzeceSale>
+      </zauzetiTermini>
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+  </Termin>
+</ArrayOfTermin>
