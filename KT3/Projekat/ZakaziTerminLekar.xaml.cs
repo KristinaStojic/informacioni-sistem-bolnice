@@ -100,7 +100,8 @@ namespace Projekat
             int zauzeto = 0;
 
             if (pogresnoVreme == 0)
-            {
+            {  
+
                 /*if (sala.zauzetiTermini.Count != 0)  //ako ne postoje zauzeti termini
                 {
                     foreach (ZauzeceSale z in sala.zauzetiTermini.ToList())
