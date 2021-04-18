@@ -157,14 +157,6 @@
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>4</IdPacijenta>
-          <IdLekara>0</IdLekara>
-          <OpisBolesti>Bolest</OpisBolesti>
-          <Terapija>Terapija</Terapija>
-          <Datum>05/05/2021</Datum>
-        </Anamneza>
-        <Anamneza>
           <IdAnamneze>2</IdAnamneze>
           <IdPacijenta>4</IdPacijenta>
           <IdLekara>1</IdLekara>
@@ -216,22 +208,6 @@
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>0</IdLekara>
-          <OpisBolesti>Anamneza</OpisBolesti>
-          <Terapija>Terapija1</Terapija>
-          <Datum>04/22/2021</Datum>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>2</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>5</IdLekara>
-          <OpisBolesti>dsfdsf</OpisBolesti>
-          <Terapija>dsfsdf</Terapija>
-          <Datum>04/22/2021</Datum>
-        </Anamneza>
-        <Anamneza>
           <IdAnamneze>3</IdAnamneze>
           <IdPacijenta>5</IdPacijenta>
           <IdLekara>5</IdLekara>
@@ -248,6 +224,15 @@
           <Terapija>dfddfdfd</Terapija>
           <Datum>05/01/2021</Datum>
           <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>EFEFAAAA</OpisBolesti>
+          <Terapija>DFDFDFD</Terapija>
+          <Datum>08/18/2021</Datum>
+          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
     </Karton>
@@ -337,6 +322,7 @@
           <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
           <DnevnaKolicina>5</DnevnaKolicina>
           <PocetakKoriscenja>10:10</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
@@ -347,6 +333,7 @@
           <BrojDanaKoriscenja>2</BrojDanaKoriscenja>
           <DnevnaKolicina>1</DnevnaKolicina>
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>

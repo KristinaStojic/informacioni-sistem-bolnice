@@ -25,6 +25,10 @@
         <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,423,0,0" FontSize="18"/>
         <Label Content="Adresa stanovanja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,502,0,0" FontSize="18"/>
         <Label Content="Specijalizacija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,583,0,0" FontSize="18"/>
-        <Image Source="slike/stethoscope.png" Margin="143,124,430.6,503.4" Grid.Column="1"></Image>
+        <Image Source="slike/stethoscope.png" Margin="118,124,456,503" Grid.Column="1"></Image>
+        <Image Source="slike/lek.png" Margin="115,234,459,393" Grid.Column="1"></Image>
+        <Image Source="slike/odmor.png" Margin="118,350,456,277" Grid.Column="1"></Image>
+        <Image Source="slike/izmeni.png" Margin="118,462,456,165" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
+        <Image Source="slike/obavestenja.png" Margin="115,572,459,55" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
     </Grid>
 </Window>

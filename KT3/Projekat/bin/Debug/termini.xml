@@ -492,6 +492,7 @@
             <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
             <DnevnaKolicina>5</DnevnaKolicina>
             <PocetakKoriscenja>10:10</PocetakKoriscenja>
+            <UzimanjeTerapije />
           </LekarskiRecept>
           <LekarskiRecept>
             <IdRecepta>2</IdRecepta>
@@ -502,6 +503,7 @@
             <BrojDanaKoriscenja>2</BrojDanaKoriscenja>
             <DnevnaKolicina>1</DnevnaKolicina>
             <PocetakKoriscenja>10:00</PocetakKoriscenja>
+            <UzimanjeTerapije />
           </LekarskiRecept>
         </LekarskiRecepti>
         <Anamneze>
