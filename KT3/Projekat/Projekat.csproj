@@ -73,7 +73,7 @@
     </Compile>
     <Compile Include="DodajRecept.xaml.cs">
       <DependentUpon>DodajRecept.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
       <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
     </Compile>
@@ -113,9 +113,6 @@
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ObavestenjaPacijent.xaml.cs">
-      <DependentUpon>ObavestenjaPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
@@ -215,7 +212,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajRecept.xaml">
-	  <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajPacijentaGuestIzmeni.xaml">
@@ -280,10 +277,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ObavestenjaPacijent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>  
     <Page Include="ObrisiOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

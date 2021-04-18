@@ -38,12 +38,12 @@ namespace Model
             {   
                 ObavestenjaLekar.obavestenjaLekar = new ObservableCollection<Obavestenja>();  // ???
             }
-            if (ObavestenjaPacijent.obavestenjaPacijent == null)
+            if (PrikaziTermin.Obavestenja == null)
             {
-                ObavestenjaPacijent.obavestenjaPacijent = new ObservableCollection<Obavestenja>();  
+                PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();  
             }
             ObavestenjaLekar.obavestenjaLekar.Add(o);
-            ObavestenjaPacijent.obavestenjaPacijent.Add(o);
+            PrikaziTermin.Obavestenja.Add(o);
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }
@@ -156,12 +156,12 @@ namespace Model
             {
                 ObavestenjaLekar.obavestenjaLekar = new ObservableCollection<Obavestenja>(); 
             }
-            if (ObavestenjaPacijent.obavestenjaPacijent == null)
+            if (PrikaziTermin.Obavestenja == null)
             {
-                ObavestenjaPacijent.obavestenjaPacijent = new ObservableCollection<Obavestenja>();  
+                PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();  
             }
             ObavestenjaLekar.obavestenjaLekar.Add(o);
-            ObavestenjaPacijent.obavestenjaPacijent.Add(o);
+            PrikaziTermin.Obavestenja.Add(o);
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }
@@ -224,12 +224,12 @@ namespace Model
             {
                 ObavestenjaLekar.obavestenjaLekar = new ObservableCollection<Obavestenja>(); 
             }
-            if (ObavestenjaPacijent.obavestenjaPacijent == null)
+            if (PrikaziTermin.Obavestenja == null)
             {
-                ObavestenjaPacijent.obavestenjaPacijent = new ObservableCollection<Obavestenja>();
+                PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();
             }
             ObavestenjaLekar.obavestenjaLekar.Add(o);
-            ObavestenjaPacijent.obavestenjaPacijent.Add(o);
+            PrikaziTermin.Obavestenja.Add(o);
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }

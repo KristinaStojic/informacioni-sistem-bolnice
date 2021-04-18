@@ -42,6 +42,7 @@
           <BrojDanaKoriscenja>5</BrojDanaKoriscenja>
           <DnevnaKolicina>2</DnevnaKolicina>
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
@@ -52,6 +53,7 @@
           <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
           <DnevnaKolicina>2</DnevnaKolicina>
           <PocetakKoriscenja>07:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
         <LekarskiRecept>
           <IdRecepta>3</IdRecepta>
@@ -62,6 +64,7 @@
           <BrojDanaKoriscenja>1</BrojDanaKoriscenja>
           <DnevnaKolicina>1</DnevnaKolicina>
           <PocetakKoriscenja>11:11</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
@@ -116,6 +119,7 @@
           <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
           <DnevnaKolicina>1</DnevnaKolicina>
           <PocetakKoriscenja>15:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
@@ -154,6 +158,7 @@
           <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
           <DnevnaKolicina>4</DnevnaKolicina>
           <PocetakKoriscenja>15:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
@@ -164,6 +169,7 @@
           <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
           <DnevnaKolicina>5</DnevnaKolicina>
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
@@ -228,6 +234,7 @@
           <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
           <DnevnaKolicina>5</DnevnaKolicina>
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
@@ -274,6 +281,7 @@
           <BrojDanaKoriscenja>2</BrojDanaKoriscenja>
           <DnevnaKolicina>2</DnevnaKolicina>
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze />
