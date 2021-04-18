@@ -63,11 +63,12 @@ namespace Projekat
             {
                 foreach (DateTime dt in lr.UzimanjeTerapije)
                 {
-                    if (dt <= DateTime.Now.Date)
+                    if (dt.Date <= DateTime.Now.Date)
                     {
                         // fali za vreme
                         Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + lr.NazivLeka);
                         ObavestenjaMenadzer.obavestenja.Add(ob);
+                        Obavestenja.Add(ob);
                     }
                 }
             }

@@ -29,19 +29,21 @@ namespace Projekat.Model
             this.PocetakKoriscenja = pocetak;
             this.UzimanjeTerapije = uzimanjeTerapije;
             this.DatumPropisivanjaLeka = datum;
+            this.UzimanjeTerapije = uzimanjeTerapije;
         }
 
-        public LekarskiRecept(Pacijent p, int id, string naziv, int brojkor, int kol, String pocetak, String datum)
+        /*public LekarskiRecept(Pacijent p, int id, string naziv, int brojkor, int kol, String pocetak, String datum)
         {     
             this.idPacijenta = p.IdPacijenta;
             //this.IzabraniLekar = p.IzabraniLekar;*/
-            this.IdRecepta = id;
-            this.NazivLeka = naziv;
-            this.BrojDanaKoriscenja = brojkor;
-            this.DnevnaKolicina = kol;
-            this.PocetakKoriscenja = pocetak;
-            this.DatumPropisivanjaLeka = datum;
-        }
+           // this.IdRecepta = id;
+           // this.NazivLeka = naziv;
+           // this.BrojDanaKoriscenja = brojkor;
+           // this.DnevnaKolicina = kol;
+           // this.PocetakKoriscenja = pocetak;
+         //   this.DatumPropisivanjaLeka = datum;
+       // }
+        
 
         public LekarskiRecept() {}
 
