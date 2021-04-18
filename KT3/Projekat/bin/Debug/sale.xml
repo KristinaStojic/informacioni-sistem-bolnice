@@ -58,6 +58,20 @@
         <idTermina>1</idTermina>
         <idSale>0</idSale>
       </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>04/16/2021</datumTermina>
+        <idTermina>2</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>04/22/2021</datumTermina>
+        <idTermina>2</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>

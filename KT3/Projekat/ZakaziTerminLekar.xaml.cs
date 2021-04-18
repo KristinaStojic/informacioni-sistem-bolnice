@@ -100,37 +100,96 @@ namespace Projekat
             int zauzeto = 0;
 
             if (pogresnoVreme == 0)
-            {  
+            {
 
-                /*if (sala.zauzetiTermini.Count != 0)  //ako ne postoje zauzeti termini
+                if (sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
                 {
-                    foreach (ZauzeceSale z in sala.zauzetiTermini.ToList())
+                    foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
                     {
-                        if (dat.Equals(z.datumTermina) && vp.Equals(z.pocetakTermina) && vk.Equals(z.krajTermina))// t.Prostorija.Id.Equals(sala.Id)
-                {
-                    MessageBox.Show("Postoji termin!");
-                            //this.Close();
-                            //zauzeto = true;
-                            zauzeto = 1;
-                            // break;
-                        }
+                        string[] zauzetiTerminPocetak = zauzece.pocetakTermina.Split(':');
+                        string zauzetiTerminPocetakSati = zauzetiTerminPocetak[0];
+                        string zauzetiTerminPocetakMinuti = zauzetiTerminPocetak[1];
 
-                        if (zauzeto == 0)
+                        string[] zauzetiTerminKraj = zauzece.krajTermina.Split(':');
+                        string zauzetiTerminKrajSati = zauzetiTerminKraj[0];
+                        string zauzetiTerminKrajMinuti = zauzetiTerminKraj[1];
+
+                        if ((t.Prostorija.Id.Equals(sala.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(zauzetiTerminPocetakSati) && (Convert.ToInt32(pocetakSati) < Convert.ToInt32(zauzetiTerminKrajSati) || Convert.ToInt32(pocetakMinuti) < Convert.ToInt32(zauzetiTerminKrajMinuti))) ||
+                            (t.Prostorija.Id.Equals(sala.Id) && dat.Equals(zauzece.datumTermina) && (Convert.ToInt32(krajSati) > Convert.ToInt32(zauzetiTerminPocetakSati) || Convert.ToInt32(krajMinuti) > Convert.ToInt32(zauzetiTerminPocetakMinuti)) && Convert.ToInt32(krajSati) <= Convert.ToInt32(zauzetiTerminKrajSati) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati)) ||
+                            (t.Prostorija.Id.Equals(sala.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati) && Convert.ToInt32(krajSati) >= Convert.ToInt32(zauzetiTerminKrajSati)) && !Convert.ToInt32(krajSati).Equals(Convert.ToInt32(zauzetiTerminPocetakSati)) && !Convert.ToInt32(pocetakSati).Equals(Convert.ToInt32(zauzetiTerminKrajSati)))
                         {
-                            TerminMenadzer.ZakaziTerminLekar(t);
-                            ZauzeceSale za = new ZauzeceSale(vp, vk, dat, t.IdTermin);
-                            sala.zauzetiTermini.Add(za);
-                            this.Close();
+                            MessageBox.Show("Vec postoji termin");
+                            vpp.Text = "";
+                            vkk.Text = "";
+                            zauzeto = 1;
+                            break;
                         }
                     }
+
+                    if (zauzeto == 0)
+                    {
+                        TerminMenadzer.ZakaziTerminLekar(t);
+                        ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
+                        sala.zauzetiTermini.Add(z);
+
+                        // za svaki termin koji je zakazan u istoj prostoriji s, dodati to novo zauzece u zauzeca te prostorije
+                        foreach (Termin t1 in TerminMenadzer.termini)
+                        {
+                            if (t1.Prostorija.Id == sala.Id)
+                            {
+                                t1.Prostorija = sala;
+                            }
+                        }
+
+                        TerminMenadzer.sacuvajIzmene();
+                        SaleMenadzer.sacuvajIzmjene();
+
+                        this.Close();
+                    }
+
+
+
+                    /*if (sala.zauzetiTermini.Count != 0)  //ako ne postoje zauzeti termini
+                    {
+                        foreach (ZauzeceSale z in sala.zauzetiTermini.ToList())
+                        {
+                            if (dat.Equals(z.datumTermina) && vp.Equals(z.pocetakTermina) && vk.Equals(z.krajTermina))// t.Prostorija.Id.Equals(sala.Id)
+                    {
+                        MessageBox.Show("Postoji termin!");
+                                //this.Close();
+                                //zauzeto = true;
+                                zauzeto = 1;
+                                // break;
+                            }
+
+                            if (zauzeto == 0)
+                            {
+                                TerminMenadzer.ZakaziTerminLekar(t);
+                                ZauzeceSale za = new ZauzeceSale(vp, vk, dat, t.IdTermin);
+                                sala.zauzetiTermini.Add(za);
+                                this.Close();
+                            }
+                        }
+                    }
+                   /* else  //ako postoje zauzeti temrini
+                    {
+                    TerminMenadzer.ZakaziTerminLekar(t);
+                        ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
+                        sala.zauzetiTermini.Add(z);
+                        this.Close();
+                    }*/
                 }
-                else  //ako postoje zauzeti temrini
-                {*/
+                else    // ako ne postoje zauzeti termini
+                {
                     TerminMenadzer.ZakaziTerminLekar(t);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     sala.zauzetiTermini.Add(z);
+
+                    TerminMenadzer.sacuvajIzmene();
+                    SaleMenadzer.sacuvajIzmjene();
+
                     this.Close();
-               // }
+                }
             }
            
         }
