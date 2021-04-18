@@ -51,12 +51,12 @@
         <Button Name="zdravstveniKarton" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="zdravstveniKarton_Click" HorizontalAlignment="Left" Margin="10,305,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Zdravstveni karton" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" Height="129" Margin="8,56,0,0" VerticalAlignment="Top" Width="590" ItemsSource="{Binding Obavestenja}"
+        <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" Height="154" Margin="8,56,0,0" VerticalAlignment="Top" Width="590" ItemsSource="{Binding Obavestenja}"
                   SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Grid.Column="1" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Datum" Width="150" Binding="{Binding Datum}"/>
-                <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
-                <DataGridTextColumn Header="Sadrzaj" Width="330" Binding="{Binding SadrzajObavestenja}"/>
+                <DataGridTextColumn Header="Datum" Width="110" Binding="{Binding Datum}"/>
+                <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
+                <DataGridTextColumn Header="Sadrzaj" Width="385" Binding="{Binding SadrzajObavestenja}"/>
                 <!-- staviti button  -->
                 <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
                     <DataGridCheckBoxColumn.CellStyle>

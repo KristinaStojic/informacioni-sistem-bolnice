@@ -124,9 +124,9 @@ namespace Projekat
                          p.Karton.LekarskiRecepti.Add(recept);
                      }
                  }*/
-                //ZdravstveniKartonMenadzer.DodajRecept(recept);
+                ZdravstveniKartonMenadzer.DodajRecept(recept);
                 //TabelaRecepata.PrikazRecepata.Add(recept);
-                ObavestenjaMenadzer.sacuvajIzmene();
+               // ObavestenjaMenadzer.sacuvajIzmene();
                 this.Close();
 
             }
