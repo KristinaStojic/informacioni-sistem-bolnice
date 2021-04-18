@@ -110,17 +110,23 @@ namespace Projekat
 
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
 
+                foreach(DateTime dt in recept.UzimanjeTerapije)
+                {
+                    Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + recept.NazivLeka);
+                    ObavestenjaMenadzer.obavestenja.Add(ob);
+                }
                 //LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);
                 //pacijent.Karton.LekarskiRecepti.Add(recept);
-               /*foreach(Pacijent p in PacijentiMenadzer.pacijenti)
-                {
-                    if(pacijent.IdPacijenta == p.IdPacijenta)
-                    {
-                        p.Karton.LekarskiRecepti.Add(recept);
-                    }
-                }*/
+                /*foreach(Pacijent p in PacijentiMenadzer.pacijenti)
+                 {
+                     if(pacijent.IdPacijenta == p.IdPacijenta)
+                     {
+                         p.Karton.LekarskiRecepti.Add(recept);
+                     }
+                 }*/
                 //ZdravstveniKartonMenadzer.DodajRecept(recept);
                 //TabelaRecepata.PrikazRecepata.Add(recept);
+                ObavestenjaMenadzer.sacuvajIzmene();
                 this.Close();
 
             }
