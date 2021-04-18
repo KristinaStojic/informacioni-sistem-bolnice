@@ -39,6 +39,12 @@ namespace Projekat
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
             Obavestenja = new ObservableCollection<Obavestenja>();
+            // Teodora
+            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
+            {
+                Obavestenja.Add(o);
+            }
+
 
             pacijentProzor = true;
             Thread thread = new Thread(izvrsiNit);

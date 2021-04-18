@@ -35,5 +35,11 @@ namespace Projekat
            // DodajRecept dr = new DodajRecept();
             //dr.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaLekar o = new ObavestenjaLekar();
+            o.Show();
+        }
     }
 }

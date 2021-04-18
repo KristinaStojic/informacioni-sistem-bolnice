@@ -51,110 +51,6 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/10/2021</datumTermina>
-        <idTermina>5</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/22/2021</datumTermina>
-        <idTermina>9</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>05/01/2021</datumTermina>
-        <idTermina>10</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>05/01/2021</datumTermina>
-        <idTermina>10</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>05/05/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>05/05/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>05/05/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>05/05/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>11</idTermina>
-        <datumTermina>04/27/2021</datumTermina>
-        <idTermina>1</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>10:00</pocetakTermina>
-        <krajTermina>12:00</krajTermina>
-        <datumTermina>05/05/2021</datumTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>
@@ -259,6 +155,7 @@
         <krajTermina>07:30</krajTermina>
         <datumTermina>04/27/2021</datumTermina>
         <idTermina>1</idTermina>
+        <idSale>0</idSale>
       </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
