@@ -102,12 +102,18 @@ namespace Projekat
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
                 ZdravstveniKartonMenadzer.DodajRecept(recept);
 
+                foreach (DateTime dt in recept.UzimanjeTerapije)
+                {
+                    Obavestenja ob = new Obavestenja(dt.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka);
+                    ObavestenjaMenadzer.obavestenja.Add(ob);
+                }
+
                 TerminMenadzer.sacuvajIzmene();
                 PacijentiMenadzer.SacuvajIzmenePacijenta();
                 SaleMenadzer.sacuvajIzmjene();
+                ObavestenjaMenadzer.sacuvajIzmene();
 
                 this.Close();
-
             }
             catch (System.Exception)
             {
