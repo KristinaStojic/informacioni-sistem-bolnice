@@ -25,7 +25,16 @@ namespace Model
       {
             sale.Remove(sala);
             PrikaziSalu.Sale.Remove(sala);
-      }
+
+            foreach (Termin t in TerminMenadzer.termini.ToArray())
+            {
+                if (t.Prostorija.Id == sala.Id)
+                {
+                    TerminMenadzer.termini.Remove(t);
+                    TerminMenadzer.sacuvajIzmene();
+                }
+            }
+        }
       
       public static void IzmjeniSalu(Sala sala1, Sala sala)
       {
