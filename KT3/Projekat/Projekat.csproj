@@ -495,5 +495,14 @@
   <ItemGroup>
     <Resource Include="slike\move.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\covek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\dodaj.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -26,6 +26,17 @@
           <PocetakKoriscenja>20:00</PocetakKoriscenja>
           <UzimanjeTerapije />
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>1</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Sterpsils</NazivLeka>
+          <DatumPropisivanjaLeka>04/18/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
+          <DnevnaKolicina>3</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -152,6 +163,15 @@
           <OpisBolesti>Bolest</OpisBolesti>
           <Terapija>Terapija</Terapija>
           <Datum>05/05/2021</Datum>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>4</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>sadsd</OpisBolesti>
+          <Terapija>dsdsds</Terapija>
+          <Datum>06/02/2021</Datum>
+          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
     </Karton>
