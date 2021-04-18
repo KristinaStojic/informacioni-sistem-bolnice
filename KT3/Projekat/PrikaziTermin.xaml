@@ -55,8 +55,8 @@
                   SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Grid.Column="1" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum" Width="150" Binding="{Binding Datum}"/>
-                <DataGridTextColumn Header="Podsetnik za" Width="150" Binding="{Binding TipObavestenja}"/>
-                <DataGridTextColumn Header="Sadrzaj" Width="220" Binding="{Binding SadrzajObavestenja}"/>
+                <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
+                <DataGridTextColumn Header="Sadrzaj" Width="330" Binding="{Binding SadrzajObavestenja}"/>
                 <!-- staviti button  -->
                 <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
                     <DataGridCheckBoxColumn.CellStyle>
@@ -73,8 +73,6 @@
         <!--Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Obavestenja" Foreground="White" FontSize="16"></TextBlock>
         </-->
-        <Rectangle Fill="#ff7f50"  HorizontalAlignment="Left" Height="50" Margin="35,508,0,0" Stroke="#ff7f50" VerticalAlignment="Top" Width="171" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left"  Margin="37,508,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="50" Width="169" RenderTransformOrigin="1.806,0.4" Grid.Column="1"><Run FontWeight="Bold" Text=" Prostorije"/><LineBreak/><Run Text="     1-20 -&gt; ordinacije "/><LineBreak/><Run Text="     20-30 -&gt; operacione sale"/></TextBlock>
 
         <!--Button x:Name="zdravstevniKarton" Click="zdravstevniKarton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="30,160,0,0">
             <Grid RenderTransformOrigin="0.267,0.59" Width="105" Height="15">

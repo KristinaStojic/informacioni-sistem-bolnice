@@ -107,7 +107,7 @@ namespace Projekat
                     }
                 }
 
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, _sala.Id, s.IdTermin);
+                ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, s.IdTermin);
                 _sala.zauzetiTermini.Add(zs);
                 s.Prostorija = _sala;
                 //SaleMenadzer.sacuvajIzmjene(); // ?

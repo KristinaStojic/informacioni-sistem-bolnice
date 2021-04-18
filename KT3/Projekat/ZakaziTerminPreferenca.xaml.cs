@@ -104,7 +104,7 @@ namespace Projekat
 
             // TODO: proveriti
             Sala sala = SaleMenadzer.NadjiSaluPoId(t.Prostorija.Id);
-            ZauzeceSale zsNovo = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, sala.Id, t.IdTermin);
+            ZauzeceSale zsNovo = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, t.IdTermin);
             sala.zauzetiTermini.Add(zsNovo);
             SaleMenadzer.sacuvajIzmjene();
 

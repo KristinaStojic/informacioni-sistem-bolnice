@@ -33,6 +33,7 @@ namespace Projekat
             set;
         }
         public static ObservableCollection<Obavestenja> Obavestenja { get; set; }
+        public Thread thread;
         public PrikaziTermin()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace Projekat
 
 
             pacijentProzor = true;
-            Thread thread = new Thread(izvrsiNit);
+            thread = new Thread(izvrsiNit);
             thread.Start();
             foreach (Termin t in TerminMenadzer.termini)
             {
@@ -64,7 +65,7 @@ namespace Projekat
                 {
                     if (dt <= DateTime.Now.Date)
                     {
-                        Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + lr.NazivLeka);
+                        Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + lr.NazivLeka + " - " + lr.UzimanjeTerapije.ToString());
                         Obavestenja.Add(ob);
                     }
                 }
@@ -76,7 +77,7 @@ namespace Projekat
             while (pacijentProzor == true)
             {
                 Thread.Sleep(1000);  //30000
-                ProveriRecepte();
+                //ProveriRecepte();
             }
         }
 
@@ -89,19 +90,16 @@ namespace Projekat
             {
                 foreach (DateTime d in lp.UzimanjeTerapije)
                 { 
-                //foreach (string d in lp.DatumPropisivanjaLeka)
-                //{
-                    //DateTime dt = DateTime.Parse(d);
-                       
                     if (d.Date == DateTime.Now.Date)
                     {
                         MessageBox.Show(d.Date.ToString() + " " + DateTime.Now.Date.ToString()+ ", time of day:" + d.TimeOfDay.ToString().Substring(0,5) +  " " + DateTime.Now.TimeOfDay.ToString().Substring(0, 5));
-                        int vremeTren = int.Parse(DateTime.Now.TimeOfDay.ToString().Substring(0, 5));
-                        int vremeLP = int.Parse(d.TimeOfDay.ToString().Substring(0, 5));
+                        int vremeTren = int.Parse(DateTime.Now.TimeOfDay.ToString().Substring(0, 4));
+                        int vremeLP = int.Parse(d.TimeOfDay.ToString().Substring(0, 4));
                         if (vremeLP == vremeTren)
                         {
-                            
-
+                            // TODO: dodati uslov da obavestenje 
+                           // bool da = proveriObavestenja(lp.NazivLeka, d);
+                            Obavestenja.Add(new Obavestenja(vremeTren.ToString(), "Terapija", "Uzmite terapiju: " + lp.NazivLeka + " - " + lp.UzimanjeTerapije.ToString()));
                         }
                         //MessageBox.Show("Uzmite terapiju - " + lp.NazivLeka, "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
                         //lp.UzimanjeTerapije.Remove(d);  //TODO : observablecollection lista
@@ -111,7 +109,21 @@ namespace Projekat
                     }
                 }
             }
-           // });
+        }
+
+
+        public static bool proveriObavestenja(string nazivLeka, DateTime datumUzimanjaTerapije) 
+        {
+            foreach(Obavestenja o in ObavestenjaMenadzer.NadjiSvaObavestenja())
+            {
+                string[] s = o.SadrzajObavestenja.Split(' ');
+                if(s[2] == nazivLeka && s[4] == datumUzimanjaTerapije.TimeOfDay.ToString().Substring(0, 5))
+                {
+                    MessageBox.Show(s[2] +  nazivLeka +  s[4]  + datumUzimanjaTerapije.TimeOfDay.ToString().Substring(0, 5));
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -176,6 +188,7 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             SaleMenadzer.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
+            pacijentProzor = false;
         }
 
         private void zdravstveniKarton_Click(object sender, RoutedEventArgs e)

@@ -145,10 +145,10 @@ namespace Projekat
                 }
             }
 
-            ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, _sala.Id, t.IdTermin);
+            ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, t.IdTermin);
             _sala.zauzetiTermini.Add(zs);
             t.Prostorija = _sala;
-
+            //SaleMenadzer.sacuvajIzmjene();
 
             if (dgSearch.SelectedItems.Count > 0)
             {

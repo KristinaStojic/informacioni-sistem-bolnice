@@ -16,7 +16,7 @@ namespace Projekat.Model
     public class Obavestenja : INotifyPropertyChanged
     {
         public Obavestenja() { }
-        public Obavestenja(String datum, string TipOb, string SadrzajOb, VrstaObavestenja vrsta)
+        public Obavestenja(String datum, string TipOb, string SadrzajOb, VrstaObavestenja vrsta) // tipOb - pregled, terapija
         {
             this.Datum = datum;
             this.TipObavestenja = TipOb;
