@@ -26,7 +26,7 @@ namespace Projekat
             InitializeComponent();
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
-                pacijenti.Items.Add(p.ImePacijenta + " " + p.PrezimePacijenta + " " + p.Jmbg);
+                pacijenti.Items.Add(p.ImePacijenta + " " + p.PrezimePacijenta + " " + p.IdPacijenta);
             }
 
             foreach (Sala s in SaleMenadzer.sale)
@@ -59,11 +59,11 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
 
-            //Lekar l = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
+            Lekar l = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
            // Lekar l = new Lekar() { IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa };
             //Lekar l = new Lekar() { IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
             //Lekar l = new Lekar() { IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
-            Lekar l = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
+            //Lekar l = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
             
 
             Sala sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
@@ -101,13 +101,13 @@ namespace Projekat
 
             if (pogresnoVreme == 0)
             {
-                if (sala.zauzetiTermini.Count != 0)  //ako ne postoje zauzeti termini
+                /*if (sala.zauzetiTermini.Count != 0)  //ako ne postoje zauzeti termini
                 {
                     foreach (ZauzeceSale z in sala.zauzetiTermini.ToList())
                     {
-                        if (/*t.Prostorija.Id.Equals(sala.Id) &&*/ dat.Equals(z.datumTermina) && vp.Equals(z.pocetakTermina) && vk.Equals(z.krajTermina))
-                        {
-                            MessageBox.Show("Postoji termin!");
+                        if (dat.Equals(z.datumTermina) && vp.Equals(z.pocetakTermina) && vk.Equals(z.krajTermina))// t.Prostorija.Id.Equals(sala.Id)
+                {
+                    MessageBox.Show("Postoji termin!");
                             //this.Close();
                             //zauzeto = true;
                             zauzeto = 1;
@@ -124,12 +124,12 @@ namespace Projekat
                     }
                 }
                 else  //ako postoje zauzeti temrini
-                {
+                {*/
                     TerminMenadzer.ZakaziTerminLekar(t);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     sala.zauzetiTermini.Add(z);
                     this.Close();
-                }
+               // }
             }
            
         }
