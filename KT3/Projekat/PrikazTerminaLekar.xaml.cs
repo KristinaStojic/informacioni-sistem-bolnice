@@ -46,10 +46,10 @@ namespace Projekat
                 }*/
 
 
-                /*if (t.Lekar.IdLekara == 1)
+                if (t.Lekar.IdLekara == 1)
                 {
                     Termini.Add(t);
-                }*/
+                }
                 /*if (t.Lekar.IdLekara == 2)
                 {
                     Termini.Add(t);
@@ -62,10 +62,10 @@ namespace Projekat
                 {
                     Termini.Add(t);
                 }*/
-                if (t.Lekar.IdLekara == 5)
+               /* if (t.Lekar.IdLekara == 5)
                 {
                     Termini.Add(t);
-                }
+                }*/
 
                 //Termini.Add(t);
             }
