@@ -3,6 +3,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,12 +21,30 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for PrebaciStaticku.xaml
     /// </summary>
-    public partial class PrebaciStaticku : Window
+    public partial class PrebaciStaticku : Window, INotifyPropertyChanged
     {
         public ObservableCollection<Sala> Sale { get; set; }
         public ObservableCollection<string> termini { get; set; }
+        public static bool aktivan;
         Oprema opremaZaSlanje;
         public DateTime datumIVrijemeSlanja;
+        public int validacija;
+        public static int dozvoljenaKolicina;
+        public int Validacija
+        {
+            get
+            {
+                return validacija;
+            }
+            set
+            {
+                if(value != validacija)
+                {
+                    validacija = value;
+                    OnPropertyChanged("Validacija");
+                }
+            }
+        }
         public PrebaciStaticku(Oprema oprema)
         {
 
@@ -58,25 +77,30 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
+            postaviMax();
+            termini.Add("18:55");
+
+        }
+
+        private void postaviMax()
+        {
             bool postoji = false;
+            int kolicina = opremaZaSlanje.Kolicina;
             foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
             {
                 if (pm.izSale.Id == 4)
                 {
-                    int kolicina = opremaZaSlanje.Kolicina - pm.kolicina;
-                    this.maks.Text = "MAX: " + kolicina.ToString();
+                    kolicina -= pm.kolicina;
                 }
             }
-            if (!postoji)
-            {
-                this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            }
-
+            this.maks.Text = "MAX: " + kolicina.ToString();
+            dozvoljenaKolicina = kolicina;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            aktivan = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -95,9 +119,7 @@ namespace Projekat
             string sat = sati[0];
             string minuti = sati[1];
             DateTime datumIVrijeme = new DateTime(int.Parse(godina), int.Parse(mjesec), int.Parse(dan), int.Parse(sat), int.Parse(minuti), 0);
-            //Console.WriteLine(datumIVrijeme.TimeOfDay.ToString());
-            Console.Write(DateTime.Now.TimeOfDay);
-
+          
             if (datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
             {
                 if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
@@ -182,7 +204,7 @@ namespace Projekat
                         }
                     }
                     zakazi.datumIVrijeme = datumIVrijeme;
-                    zakazi.salji = true;
+                    //zakazi.salji = true;
                     PremjestajMenadzer.dodajPremjestaj(zakazi);
                 }
             }
@@ -220,11 +242,11 @@ namespace Projekat
                     }
                 }
                 zakazi.datumIVrijeme = datumIVrijeme;
-                zakazi.salji = true;
+                //zakazi.salji = true;
                 PremjestajMenadzer.dodajPremjestaj(zakazi);
             }
             this.Close();
-        
+            aktivan = false;
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -277,8 +299,16 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //PremjestajMenadzer.sacuvajIzmjene();
-            //this.Close();
+            PremjestajMenadzer.sacuvajIzmjene();
+            aktivan = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

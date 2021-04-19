@@ -76,6 +76,7 @@ namespace Projekat
             Oprema opremaZaSlanje = (Oprema)dataGrid.SelectedItem;
             if (opremaZaSlanje != null) {
                 SlanjeDinamicke sd = new SlanjeDinamicke(izabranaSala, opremaZaSlanje);
+                SlanjeDinamicke.aktivan = true;
                 sd.ShowDialog();
             }
         }

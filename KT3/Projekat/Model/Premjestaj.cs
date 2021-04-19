@@ -14,7 +14,6 @@ namespace Projekat.Model
         public int kolicina { get; set; }
         public int id { get; set; }
         public DateTime datumIVrijeme { get; set; }
-        public bool salji { get; set; }
 
         public Premjestaj(Sala izSale, Sala uSalu, Oprema oprema, int kolicina, DateTime datumIVrijeme)
         {

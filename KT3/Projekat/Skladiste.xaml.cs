@@ -183,6 +183,7 @@ namespace Projekat
                 if (izabranaOprema != null)
                 {
                     PrebaciStaticku ps = new PrebaciStaticku(izabranaOprema);
+                    PrebaciStaticku.aktivan = true;
                     ps.ShowDialog();
                 }
             }
@@ -192,6 +193,7 @@ namespace Projekat
                 if (izabranaOprema != null)
                 {
                     PrebaciDinamicku pd = new PrebaciDinamicku(izabranaOprema);
+                    PrebaciDinamicku.aktivan = true;
                     pd.ShowDialog();
                 }
             }

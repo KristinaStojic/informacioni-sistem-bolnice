@@ -2,7 +2,7 @@
 <ArrayOfOprema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Oprema>
     <NazivOpreme>operacioni sto</NazivOpreme>
-    <Kolicina>845</Kolicina>
+    <Kolicina>835</Kolicina>
     <Staticka>true</Staticka>
     <IdOpreme>1</IdOpreme>
   </Oprema>

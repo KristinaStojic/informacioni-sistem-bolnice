@@ -123,6 +123,7 @@ namespace Projekat
             if(opremaZaSlanje != null)
             {
                 SlanjeStaticke ss = new SlanjeStaticke(izabranaSala, opremaZaSlanje);
+                SlanjeStaticke.aktivan = true;
                 ss.ShowDialog();
             }
         }

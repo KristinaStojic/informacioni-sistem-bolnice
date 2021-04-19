@@ -12,10 +12,36 @@ namespace Projekat.Model
         public double max { get; set; }
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (value is double)
+            if (value is int)
             {
-                double i = (double)value;
-                if (i > max) return new ValidationResult(false, "Unesena vrijednost je prevelika");
+                int i = (int)value;
+                if (PrebaciStaticku.aktivan)
+                {
+                    if (i > PrebaciStaticku.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
+                    if (i < 0) return new ValidationResult(false, "Morate unijeti veci broj");
+                }
+                else if (PrebaciDinamicku.aktivan)
+                {
+                    if (i > PrebaciDinamicku.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
+                    if (i < 0) return new ValidationResult(false, "Morate unijeti veci broj");
+                }else if (PreraspodjelaDinamicke.aktivna)
+                {
+                    if (i > PreraspodjelaDinamicke.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
+                    if (i < 0) return new ValidationResult(false, "Morate unijeti veci broj");
+                }else if (PreraspodjelaStaticke.aktivna)
+                {
+                    if (i > PreraspodjelaStaticke.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
+                    if (i < 0) return new ValidationResult(false, "Morate unijeti veci broj");
+                }else if (SlanjeDinamicke.aktivan)
+                {
+                    if (i > SlanjeDinamicke.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
+                    if (i < 0) return new ValidationResult(false, "Morate unijeti veci broj");
+                }else if (SlanjeStaticke.aktivan)
+                {
+                    if (i > SlanjeStaticke.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
+                    if (i < 0) return new ValidationResult(false, "Morate unijeti veci broj");
+                }
+
                 return new ValidationResult(true, "OK");
             }
             else
