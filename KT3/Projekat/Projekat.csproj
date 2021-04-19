@@ -495,5 +495,23 @@
   <ItemGroup>
     <Resource Include="slike\move.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\covek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\dodaj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\lek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\odmor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\obavestenja.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

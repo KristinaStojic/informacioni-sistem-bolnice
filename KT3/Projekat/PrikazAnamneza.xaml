@@ -11,9 +11,8 @@
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
                   Height="353" Margin="24,77,0,0" VerticalAlignment="Top" Width="543" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13">
             <DataGrid.Columns >
-                <DataGridTextColumn Width="130" Header="Redni broj pregleda" Binding="{Binding IdAnamneze}"/>
-                <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="160" />
-                <DataGridTextColumn Header="Lekar koji je kreirao anamnezu"  Binding="{Binding ImePrezimeLekara}" Width="252"/>
+                <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="200" />
+                <DataGridTextColumn Header="Lekar koji je kreirao anamnezu"  Binding="{Binding ImePrezimeLekara}" Width="252*"/>
                 <!--Binding ="{Binding IdLekara}"-->
             </DataGrid.Columns>
         </DataGrid>

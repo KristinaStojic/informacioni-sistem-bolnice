@@ -14,12 +14,11 @@
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
                   Height="331" Margin="34,36,0,0" VerticalAlignment="Top" Width="535" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="ID" Binding="{Binding IdRecepta}"  Width="50"/>
-                <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="105"/>
-                <DataGridTextColumn Header="Datum" Binding="{Binding DatumPropisivanjaLeka}" Width="86"/>
-                <DataGridTextColumn Header="Pocetak koriscenja" Binding="{Binding PocetakKoriscenja}"  Width="120"/>
-                <DataGridTextColumn Header="Broj dana" Binding="{Binding BrojDanaKoriscenja}" Width="70"/>
-                <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="100"/>
+                <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="130"/>
+                <DataGridTextColumn Header="Datum" Binding="{Binding DatumPropisivanjaLeka}" Width="95"/>
+                <DataGridTextColumn Header="Početak koriscenja" Binding="{Binding PocetakKoriscenja}"  Width="120"/>
+                <DataGridTextColumn Header="Broj dana" Binding="{Binding BrojDanaKoriscenja}" Width="75"/>
+                <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="100*"/>
             </DataGrid.Columns>
 
         </DataGrid>
