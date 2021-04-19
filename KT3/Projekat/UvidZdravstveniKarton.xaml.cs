@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -21,10 +23,23 @@ namespace Projekat
     public partial class UvidZdravstveniKarton : Window
     {
         public Pacijent pacijent;
+        public static ObservableCollection<LekarskiRecept> PrikazRecepata
+        {
+            get;
+            set;
+        }
+        public static ObservableCollection<Anamneza> TabelaAnamneza
+        {
+            get;
+            set;
+        }
+
         public UvidZdravstveniKarton(Pacijent izabraniNalog)
         {
             InitializeComponent();
             this.pacijent = izabraniNalog;
+            this.DataContext = this;
+
             if (izabraniNalog != null)
             {
                 ime.Text = izabraniNalog.ImePacijenta;
@@ -81,6 +96,35 @@ namespace Projekat
                 adresa.IsEnabled = false;
                 combo3.IsEnabled = false;
                 zanimanje.IsEnabled = false;
+            }
+
+            PrikazRecepata = new ObservableCollection<LekarskiRecept>();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                if (p.IdPacijenta == pacijent.IdPacijenta)
+                {
+                    foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
+                    {
+                        PrikazRecepata.Add(lr);
+                    }
+                }
+            }
+
+            TabelaAnamneza = new ObservableCollection<Anamneza>();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                if (p.IdPacijenta == pacijent.IdPacijenta)
+                {
+                    foreach (Anamneza an in p.Karton.Anamneze)
+                    {
+                        TabelaAnamneza.Add(an);
+                    }
+                }
+            }
+
+            if (izabraniNalog.IzabraniLekar != null)
+            {
+                lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
             }
         }
 

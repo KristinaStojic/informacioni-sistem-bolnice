@@ -22,23 +22,27 @@ namespace Projekat.Model
     public partial class TabelaRecepata : Window
     {
         public int colNum = 0;
-        Pacijent pacijent;
+        Termin termin;
+        public Pacijent pacijent;
+
         public static ObservableCollection<LekarskiRecept> PrikazRecepata
         {
             get;
             set;
         }
-        public TabelaRecepata(Pacijent izabraniPacijent)
+        public TabelaRecepata(Pacijent izabraniPacijent, Termin Iztermin)
         {
             InitializeComponent();
-            this.DataContext = this; 
+            this.DataContext = this;
+            this.termin = Iztermin;
             this.pacijent = izabraniPacijent;
+            
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (ZdravstveniKarton k in ZdravstveniKartonMenadzer.NadjiSveKartone())
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
-                if(k.idPacijenta == pacijent.IdPacijenta)
+                if(p.IdPacijenta == pacijent.IdPacijenta)
                 {
-                    foreach(LekarskiRecept lr in k.LekarskiRecepti)
+                    foreach(LekarskiRecept lr in p.Karton.LekarskiRecepti)
                     {
                         PrikazRecepata.Add(lr);
                     }
@@ -59,13 +63,19 @@ namespace Projekat.Model
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Recept rec = new Recept(pacijent);
+            //Recept rec = new Recept(pacijent);
+            DodajRecept rec = new DodajRecept(pacijent,termin);
             rec.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

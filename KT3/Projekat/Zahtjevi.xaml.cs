@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,8 +25,50 @@ namespace Projekat
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Skladiste w1 = new Skladiste();
-            w1.Show();
+            try
+            {
+                Skladiste.otvoren = true;
+                Skladiste w1 = new Skladiste();
+
+                PremjestajMenadzer.odradiZakazano();
+                w1.ShowDialog();
+            }catch(Exception ex) { }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Osoblje
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            PrikaziSalu ps = new PrikaziSalu();
+            ps.Show();
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            //Komunikacija
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            //Izvjestaj
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            //Pomoc
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+            //O aplikaciji
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,34 +22,260 @@ namespace Projekat
     /// </summary>
     public partial class PrebaciStaticku : Window
     {
-        public Oprema izabranaOprema;
+        public ObservableCollection<Sala> Sale { get; set; }
+        public ObservableCollection<string> termini { get; set; }
+        Oprema opremaZaSlanje;
+        public DateTime datumIVrijemeSlanja;
         public PrebaciStaticku(Oprema oprema)
         {
+
+            termini = new ObservableCollection<string>();
             InitializeComponent();
-            this.izabranaOprema = oprema;
-            if (izabranaOprema != null)
+            this.opremaZaSlanje = oprema;
+            this.oprema.Text = opremaZaSlanje.NazivOpreme;
+            this.DataContext = this;
+            Sale = new ObservableCollection<Sala>();
+            foreach (Sala s in SaleMenadzer.sale)
             {
-                this.oprema.Text = izabranaOprema.NazivOpreme;
+                if (!s.Namjena.Equals("Skladiste"))
+                {
+                    Sale.Add(s);
+                }
             }
-            DataContext = new ViewModel();
+            int x = 0;
+            for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+            {
+                x = 0;
+                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                {
+                    if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
+                    {
+                        x += 1;
+                    }
+                }
+                if (x == 0)
+                {
+                    termini.Add(i + ":00");
+                }
+            }
+            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
+            termini.Add("12:30");
+            termini.Add("12:31");
+            termini.Add("12:32");
+            termini.Add("12:33");
+            termini.Add("12:34");
+            termini.Add("12:35");
+            termini.Add("12:36");
+            termini.Add("12:37");
+            termini.Add("12:38");
+            termini.Add("12:39");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-    }
 
-    public class ViewModel
-    {
-        public ObservableCollection<Sala> sale { get; set; }
-        public ViewModel()
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            sale = new ObservableCollection<Sala>();
-            foreach(Sala s in SaleMenadzer.sale)
+            Sala salaUKojuSaljem = (Sala)sale.SelectedItem;
+            int kolicina = int.Parse(Kolicina.Text);
+            int x = 0;
+            DateTime? datumSlanja = DatePicker.SelectedDate;
+            string vrijemeSlanja = vrijeme.SelectedItem.ToString();
+            string datum = datumSlanja.Value.ToString("dd.MM.yyy", System.Globalization.CultureInfo.InvariantCulture);
+            string[] datumi = datum.Split('.');
+            string dan = datumi[0];
+            string mjesec = datumi[1];
+            string godina = datumi[2];
+            string[] sati = vrijemeSlanja.Split(':');
+            string sat = sati[0];
+            string minuti = sati[1];
+            DateTime datumIVrijeme = new DateTime(int.Parse(godina), int.Parse(mjesec), int.Parse(dan), int.Parse(sat), int.Parse(minuti), 0);
+            //Console.WriteLine(datumIVrijeme.TimeOfDay.ToString());
+            Console.Write(DateTime.Now.TimeOfDay);
+
+            if (datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
             {
-                sale.Add(s);
+                if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
+                {
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        if (s.Namjena.Equals("Skladiste"))
+                        {
+                            foreach (Oprema o in s.Oprema)
+                            {
+                                if (o.IdOpreme == opremaZaSlanje.IdOpreme)
+                                {
+                                    if (o.Kolicina - kolicina == 0)
+                                    {
+                                        s.Oprema.Remove(o);
+                                        Skladiste.OpremaStaticka.Remove(o);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        o.Kolicina -= kolicina;
+                                        int idx = Skladiste.OpremaStaticka.IndexOf(o);
+                                        Skladiste.OpremaStaticka.RemoveAt(idx);
+                                        Skladiste.OpremaStaticka.Insert(idx, o);
+                                    }
+
+                                }
+                            }
+                        }
+                        if (s.Id == salaUKojuSaljem.Id)
+                        {
+                            foreach (Oprema o in s.Oprema)
+                            {
+                                if (o.IdOpreme == opremaZaSlanje.IdOpreme)
+                                {
+                                    o.Kolicina += kolicina;
+                                    x += 1;
+                                }
+                            }
+                            if (x == 0)
+                            {
+                                Oprema op = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, true);
+                                op.IdOpreme = opremaZaSlanje.IdOpreme;
+                                s.Oprema.Add(op);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Premjestaj zakazi = new Premjestaj();
+                    zakazi.kolicina = kolicina;
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        if (s.Namjena.Equals("Skladiste"))
+                        {
+                            zakazi.izSale = s;
+                        }
+                        if (s.Id == salaUKojuSaljem.Id)
+                        {
+                            zakazi.uSalu = s;
+                        }
+                    }
+                    foreach (Oprema o in OpremaMenadzer.oprema)
+                    {
+                        if (opremaZaSlanje.IdOpreme == o.IdOpreme)
+                        {
+                            zakazi.oprema = o;
+                        }
+                    }
+                    if(zakazi.oprema == null)
+                    {
+                        foreach(Sala s in SaleMenadzer.sale)
+                        {
+                            foreach(Oprema o in s.Oprema)
+                            {
+                                if (opremaZaSlanje.IdOpreme == o.IdOpreme)
+                                {
+                                    zakazi.oprema = o;
+                                }
+                            }
+                        }
+                    }
+                    zakazi.datumIVrijeme = datumIVrijeme;
+                    zakazi.salji = true;
+                    PremjestajMenadzer.dodajPremjestaj(zakazi);
+                }
             }
+            else
+            {
+                Premjestaj zakazi = new Premjestaj();
+                zakazi.kolicina = kolicina;
+                foreach (Sala s in SaleMenadzer.sale) {
+                    if (s.Namjena.Equals("Skladiste")) {
+                        zakazi.izSale = s;
+                    }
+                    if(s.Id == salaUKojuSaljem.Id)
+                    {
+                        zakazi.uSalu = s;
+                    }
+                }
+                foreach(Oprema o in OpremaMenadzer.oprema)
+                {
+                    if(opremaZaSlanje.IdOpreme == o.IdOpreme)
+                    {
+                        zakazi.oprema = o;
+                    }
+                }
+                if (zakazi.oprema == null)
+                {
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        foreach (Oprema o in s.Oprema)
+                        {
+                            if (opremaZaSlanje.IdOpreme == o.IdOpreme)
+                            {
+                                zakazi.oprema = o;
+                            }
+                        }
+                    }
+                }
+                zakazi.datumIVrijeme = datumIVrijeme;
+                zakazi.salji = true;
+                PremjestajMenadzer.dodajPremjestaj(zakazi);
+            }
+            this.Close();
+        
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (termini.Count != 0)
+            {
+                if (DatePicker.SelectedDate == DateTime.Now.Date)
+                {
+                    termini.Clear();
+                    for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+                    {
+                        int x = 0;
+                        foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                        {
+                            if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
+                            {
+                                x += 1;
+                            }
+                        }
+                        if (x == 0)
+                        {
+                            termini.Add(i + ":00");
+                        }
+                    }
+                }
+                else
+                {
+                    int x = 0;
+                    string[] t = termini[0].Split(':');
+                    string prvi = t[0];
+                    for (int i = int.Parse(prvi); i > 0; i--)
+                    {
+                        x = 0;
+                        foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                        {
+                            if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
+                            {
+                                x += 1;
+                            }
+                        }
+                        if (x == 0)
+                        {
+                            termini.Insert(0, i + ":00");
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //PremjestajMenadzer.sacuvajIzmjene();
+            //this.Close();
         }
     }
 }

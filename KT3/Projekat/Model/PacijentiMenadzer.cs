@@ -16,7 +16,7 @@ namespace Model
 {
     public static class PacijentiMenadzer
     {
-        static List<Pacijent> pacijenti = new List<Pacijent>();
+        public static List<Pacijent> pacijenti = new List<Pacijent>();
 
         public static void DodajNalog(Pacijent noviNalog)
         {
@@ -40,30 +40,76 @@ namespace Model
                     p.AdresaStanovanja = nalog.AdresaStanovanja;
                     p.BracnoStanje = nalog.BracnoStanje;
                     p.Zanimanje = nalog.Zanimanje;
+                    
+                    int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
+                    PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
+                    PrikaziPacijenta.PacijentiTabela.Insert(idx, p);
                 }
             }
-            int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
-            PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
-            PrikaziPacijenta.PacijentiTabela.Insert(idx, nalog);
+            
         }
 
-        public static void ObrisiNalog(Pacijent nalog)
+        // Sanja 
+        public static void IzmeniNalogPacijent(Pacijent stari, Pacijent nalog)
         {
-            if (nalog != null)
+            foreach (Pacijent p in pacijenti)
             {
-                for (int i = 0; i < pacijenti.Count; i++)
+                if (p.IdPacijenta == stari.IdPacijenta)
                 {
-                    Pacijent p = pacijenti[i];
-                    if (p.IdPacijenta == nalog.IdPacijenta)
+                    p.ImePacijenta = nalog.ImePacijenta;
+                    p.PrezimePacijenta = nalog.PrezimePacijenta;
+                    p.Jmbg = nalog.Jmbg;
+                    p.Pol = nalog.Pol;
+                    p.StatusNaloga = nalog.StatusNaloga;
+                    p.BrojTelefona = nalog.BrojTelefona;
+                    p.Email = nalog.Email;
+                    p.AdresaStanovanja = nalog.AdresaStanovanja;
+                    p.BracnoStanje = nalog.BracnoStanje;
+                    p.Zanimanje = nalog.Zanimanje;
+                    p.IzabraniLekar = nalog.IzabraniLekar;
+
+                    for (int i = 0; i < PrikaziTermin.Termini.Count; i++)
                     {
-                        pacijenti.Remove(nalog);
-                        PrikaziPacijenta.PacijentiTabela.Remove(nalog);
+                        if (PrikaziTermin.Termini[i].Pacijent.IdPacijenta.Equals(stari.IdPacijenta))
+                        {
+                            MessageBox.Show(i.ToString());
+                            //int i = PrikaziTermin.Termini.IndexOf(stari)
+                            // PrikaziTermin.Termini.RemoveAt(i);
+                            PrikaziTermin.Termini[i].Pacijent = p;   //*
+                           // PrikaziTermin.Termini.Insert(i, PrikaziTermin.Termini[i]);
+                        }
                     }
                 }
             }
-            else 
+        }
+
+        public static void ObrisiNalog(Pacijent nalog)
+        {  
+            for (int i = 0; i < pacijenti.Count; i++)
             {
-                MessageBox.Show("Niste selektovali pacijenta za brisanje!");
+                if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
+                {
+                    pacijenti.RemoveAt(i);
+                    PrikaziPacijenta.PacijentiTabela.Remove(nalog);
+                    
+                    for (int j = 0; j < TerminMenadzer.termini.Count; j++)
+                    {
+                        if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
+                        {   
+                            foreach (Sala s in SaleMenadzer.sale)
+                            {
+                                if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
+                                {
+                                    s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
+                                    //SaleMenadzer.sacuvajIzmjene();
+                                }
+                            }
+
+                            TerminMenadzer.termini.RemoveAt(j);
+                            j--;
+                        }
+                    }
+                }
             }
         }
 
@@ -84,11 +130,11 @@ namespace Model
         }
 
         // napraviti da bude po id
-        public static Pacijent PronadjiPoId(int jmbg)
+        public static Pacijent PronadjiPoId(int id)
         {
             foreach (Pacijent p in pacijenti)
             {
-                if (p.Jmbg == jmbg)
+                if (p.IdPacijenta == id)
                 {
                     return p;
                 }
@@ -129,5 +175,17 @@ namespace Model
             serializer.Serialize(filestream, pacijenti);
             filestream.Close();
         }
+
+        public static bool JedinstvenJmbg(int jmbg)
+        {
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                if (p.Jmbg == jmbg)
+                {
+                    return false;
+                }
+            }
+            return true;         
+        } 
     }
 }

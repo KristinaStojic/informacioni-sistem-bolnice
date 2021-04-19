@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net40\Caliburn.Micro.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -56,14 +59,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Anamneza.xaml.cs">
-      <DependentUpon>Anamneza.xaml</DependentUpon>
+    <Compile Include="DetaljiAnamneze.xaml.cs">
+      <DependentUpon>DetaljiAnamneze.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajAnamnezu.xaml.cs">
       <DependentUpon>DodajAnamnezu.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajOpremu.xaml.cs">
       <DependentUpon>DodajOpremu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodajPacijentaGuest.xaml.cs">
+      <DependentUpon>DodajPacijentaGuest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodajRecept.xaml.cs">
+      <DependentUpon>DodajRecept.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
+      <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
     </Compile>
     <Compile Include="IzmeniPacijenta.xaml.cs">
       <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
@@ -83,17 +95,33 @@
     <Compile Include="IzmjeniOpremu.xaml.cs">
       <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Anamneza.cs" />
+    <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
+    <Compile Include="Model\Obavestenja.cs" />
+    <Compile Include="Model\ObavestenjaMenadzer.cs" />
     <Compile Include="Model\Oprema.cs" />
     <Compile Include="Model\OpremaMenadzer.cs" />
+    <Compile Include="Model\Premjestaj.cs" />
+    <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\TabelaRecepata.xaml.cs">
       <DependentUpon>TabelaRecepata.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Validation.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
+    <Compile Include="ObavestenjaLekar.xaml.cs">
+      <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObrisiOpremu.xaml.cs">
+      <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PocetnaStrana.xaml.cs">
+      <DependentUpon>PocetnaStrana.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrebaciDinamicku.xaml.cs">
       <DependentUpon>PrebaciDinamicku.xaml</DependentUpon>
@@ -103,6 +131,12 @@
     </Compile>
     <Compile Include="PreraspodjelaDinamicke.xaml.cs">
       <DependentUpon>PreraspodjelaDinamicke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PreraspodjelaStaticke.xaml.cs">
+      <DependentUpon>PreraspodjelaStaticke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikazAnamneza.xaml.cs">
+      <DependentUpon>PrikazAnamneza.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikazDinamicke.xaml.cs">
       <DependentUpon>PrikazDinamicke.xaml</DependentUpon>
@@ -128,6 +162,12 @@
     <Compile Include="Skladiste.xaml.cs">
       <DependentUpon>Skladiste.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SlanjeDinamicke.xaml.cs">
+      <DependentUpon>SlanjeDinamicke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SlanjeStaticke.xaml.cs">
+      <DependentUpon>SlanjeStaticke.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
     </Compile>
@@ -146,18 +186,36 @@
     <Compile Include="ZakaziTerminLekar.xaml.cs">
       <DependentUpon>ZakaziTerminLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZakaziTerminPreferenca.xaml.cs">
+      <DependentUpon>ZakaziTerminPreferenca.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakaziTerminSekretar.xaml.cs">
       <DependentUpon>ZakaziTerminSekretar.xaml</DependentUpon>
     </Compile>
-    <Page Include="Anamneza.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="ZdravstveniKartonPacijent.xaml.cs">
+      <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DetaljiAnamneze.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajAnamnezu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajOpremu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajPacijentaGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajRecept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajPacijentaGuestIzmeni.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,9 +273,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ObavestenjaLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObrisiOpremu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OtkaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PocetnaStrana.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrebaciDinamicku.xaml">
       <SubType>Designer</SubType>
@@ -228,6 +298,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PreraspodjelaDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreraspodjelaStaticke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazAnamneza.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,6 +349,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SlanjeDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SlanjeStaticke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Upravnik.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -295,9 +381,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ZakaziTerminPreferenca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ZakaziTerminSekretar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZdravstveniKartonPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +425,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -347,6 +442,76 @@
     <Resource Include="slike\plus.png" />
     <Resource Include="slike\search.png" />
     <Resource Include="slike\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\icons8-pull-down-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\right-arrow1.png" />
+    <Resource Include="slike\right-arrow2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\doktor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\grafik1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\obrisi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\osoba.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\nazad.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\sticky-note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\flask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\stethoscope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\alergeni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\nazadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\doctor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\izmeni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\move.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\covek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\dodaj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\lek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\odmor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\obavestenja.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,10 +23,12 @@ namespace Projekat
     {
 
         public Pacijent pacijent;
-        public UvidZdravstveniKartonLekar(Pacijent izabraniNalog)
+        public Termin termin;
+        public UvidZdravstveniKartonLekar(Pacijent izabraniNalog, Termin termin)
         {
             InitializeComponent();
             this.pacijent = izabraniNalog;
+            this.termin = termin;
             if (izabraniNalog != null)
             {
                 ime.Text = izabraniNalog.ImePacijenta;
@@ -45,30 +47,22 @@ namespace Projekat
                 if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
                 {
                     combo.SelectedIndex = 0;
-                    combo.IsEnabled = false;
-
-                    brojTelefona.IsEnabled = true;
-                    email.IsEnabled = true;
-                    adresa.IsEnabled = true;
-                    combo3.IsEnabled = true;
-                    zanimanje.IsEnabled = true;
-
                 }
                 else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest))
                 {
                     combo.SelectedIndex = 1;
-
-                    brojTelefona.IsEnabled = false;
-                    email.IsEnabled = false;
-                    adresa.IsEnabled = false;
-                    combo3.IsEnabled = false;
-                    zanimanje.IsEnabled = false;
                 }
 
                 brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
                 email.Text = izabraniNalog.Email;
                 adresa.Text = izabraniNalog.AdresaStanovanja;
                 zanimanje.Text = izabraniNalog.Zanimanje;
+
+                if(izabraniNalog.IzabraniLekar != null)
+                {
+                    lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
+                }
+               
 
                 if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neudata))
                 {
@@ -86,27 +80,44 @@ namespace Projekat
                 {
                     combo3.SelectedIndex = 3;
                 }
+
+                ime.IsEnabled = false;
+                prezime.IsEnabled = false;
+                jmbg.IsEnabled = false;
+                combo.IsEnabled = false;
+                combo2.IsEnabled = false;
+                brojTelefona.IsEnabled = false;
+                email.IsEnabled = false;
+                adresa.IsEnabled = false;
+                combo3.IsEnabled = false;
+                zanimanje.IsEnabled = false;
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+           
+            this.Close();
+            PrikazTerminaLekar pt = new PrikazTerminaLekar();
+            pt.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //Recept rec = new Recept(pacijent);
-            TabelaRecepata tp = new TabelaRecepata(pacijent);
+            TabelaRecepata tp = new TabelaRecepata(pacijent,termin);
             tp.Show();
             
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Anamneza a = new Anamneza();
-            a.Show();
+           
+            PrikazAnamneza pa = new PrikazAnamneza(pacijent,termin);
+            pa.Show();
         }
+
+
+
     }
 }
 

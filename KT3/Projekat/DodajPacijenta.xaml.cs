@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
-namespace Projekat.Model
+namespace Projekat
 {
     /// <summary>
     /// Interaction logic for DodajPacijenta.xaml
@@ -24,6 +25,7 @@ namespace Projekat.Model
         public DodajPacijenta()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -48,13 +50,12 @@ namespace Projekat.Model
             {
                 pol = pol.Z;
             }
-            
+
             // ukoliko je guest nalog
-            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals("") || combo3.Text.Equals("Neodredjeno"))  // bice izmene ?
+            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals(""))  // bice izmene ?
             {
                 int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
                 Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
-                p1.BracnoStanje = bracnoStanje.Neodredjeno;
                 PacijentiMenadzer.DodajNalog(p1);
             }
             else  // ukoliko je stalan nalog
@@ -66,71 +67,99 @@ namespace Projekat.Model
                 {
                     brStanje = bracnoStanje.Neudata;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
-                    PacijentiMenadzer.DodajNalog(p);
-                 //   ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
-
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
+                    PacijentiMenadzer.DodajNalog(p);     
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Udata;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     PacijentiMenadzer.DodajNalog(p);
-                  //  ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
-
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Udovica;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     PacijentiMenadzer.DodajNalog(p);
-                  //  ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
 
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Razvedena;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     PacijentiMenadzer.DodajNalog(p);
-                   // ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
-
                 }
 
                 if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Neozenjen;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     PacijentiMenadzer.DodajNalog(p);
-                  //  ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Ozenjen;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     PacijentiMenadzer.DodajNalog(p);
-                  //  ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
-
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Udovac;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     PacijentiMenadzer.DodajNalog(p);
-                  //  ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Razveden;
                     Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                    p.Karton = karton;
+                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                    p.Karton.LekarskiRecepti = lr;
+                    List<Anamneza> an = new List<Anamneza>();
+                    p.Karton.Anamneze = an;
                     PacijentiMenadzer.DodajNalog(p);
-                  //  ZdravstveniKarton karton = new ZdravstveniKarton(p);
-                    p.IdKartona = p.IdPacijenta;
                 }
             }
 
@@ -161,6 +190,16 @@ namespace Projekat.Model
                 combo3.IsEnabled = true;
             }
         }
+
+        private void jmbg_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!PacijentiMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            {
+                MessageBox.Show("JMBG vec postoji");
+                jmbg.Text = "";
+            }
+        }
+
     }
 }
 

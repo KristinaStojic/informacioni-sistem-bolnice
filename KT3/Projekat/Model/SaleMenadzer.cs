@@ -25,7 +25,16 @@ namespace Model
       {
             sale.Remove(sala);
             PrikaziSalu.Sale.Remove(sala);
-      }
+
+            foreach (Termin t in TerminMenadzer.termini.ToArray())
+            {
+                if (t.Prostorija.Id == sala.Id)
+                {
+                    TerminMenadzer.termini.Remove(t);
+                    TerminMenadzer.sacuvajIzmene();
+                }
+            }
+        }
       
       public static void IzmjeniSalu(Sala sala1, Sala sala)
       {
@@ -103,6 +112,19 @@ namespace Model
             }
 
             return id;
+        }
+
+        public static ZauzeceSale NadjiZauzece(int idProstorije, int idTermin, string datum, string poc, string kraj)
+        {
+            Sala sala = NadjiSaluPoId(idProstorije);
+            foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
+            {
+                if (idTermin == zauzece.idTermina && datum.Equals(zauzece.datumTermina) && poc.Equals(zauzece.pocetakTermina) && kraj.Equals(zauzece.krajTermina))
+                {
+                    return zauzece;
+                }
+            }
+            return null;
         }
 
         public static List<Sala> sale = new List<Sala>();

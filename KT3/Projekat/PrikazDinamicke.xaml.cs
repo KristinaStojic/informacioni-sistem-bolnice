@@ -1,6 +1,8 @@
 ﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -20,10 +22,18 @@ namespace Projekat
     public partial class PrikazDinamicke : Window
     {
         Sala izabranaSala;
+        private int colNum = 0;
+        public static ObservableCollection<Oprema> OpremaDinamicka
+        {
+            get;
+            set;
+        }
         public PrikazDinamicke(Sala izabranaSala)
         {
             InitializeComponent();
             this.izabranaSala = izabranaSala;
+            this.DataContext = this;
+            OpremaDinamicka = new ObservableCollection<Oprema>();
             if (izabranaSala != null)
             {
                 if (izabranaSala.TipSale == tipSale.SalaZaPregled)
@@ -32,11 +42,23 @@ namespace Projekat
                 }
                 else
                 {
-                    this.tekst.Text = "Opreaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                    this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+            }
+            foreach(Oprema o in izabranaSala.Oprema)
+            {
+                if (!o.Staticka)
+                {
+                    OpremaDinamicka.Add(o);
                 }
             }
         }
-
+        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            colNum++;
+            if (colNum == 3)
+                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -44,8 +66,18 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            PreraspodjelaDinamicke pd = new PreraspodjelaDinamicke();
-            pd.Show();
+            PreraspodjelaDinamicke.aktivna = true;
+            PreraspodjelaDinamicke pd = new PreraspodjelaDinamicke(izabranaSala);
+            pd.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Oprema opremaZaSlanje = (Oprema)dataGrid.SelectedItem;
+            if (opremaZaSlanje != null) {
+                SlanjeDinamicke sd = new SlanjeDinamicke(izabranaSala, opremaZaSlanje);
+                sd.ShowDialog();
+            }
         }
     }
 }

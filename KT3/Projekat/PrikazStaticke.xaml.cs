@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,11 +22,12 @@ namespace Projekat
     /// </summary>
     public partial class PrikazStaticke : Window
     {
-        Sala izabranaSala;
+        public static Sala izabranaSala;
         
         private int colNum = 0;
+        public static bool otvoren;
         
-        public static ObservableCollection<Oprema> OpremaStaticka
+        public static ObservableCollectionEx<Oprema> OpremaStaticka
         {
             get;
             set;
@@ -34,7 +36,7 @@ namespace Projekat
         public PrikazStaticke(Sala izabranaSala)
         {
             InitializeComponent();
-            this.izabranaSala = izabranaSala;
+            PrikazStaticke.izabranaSala = izabranaSala;
             this.DataContext = this;
             if(izabranaSala != null)
             {
@@ -44,16 +46,55 @@ namespace Projekat
                 }
                 else
                 {
-                    this.tekst.Text = "Opreaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                    this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
             }
-            OpremaStaticka = new ObservableCollection<Oprema>();
-            foreach (Oprema o in izabranaSala.Oprema)
+            List<Oprema> opremaStaticka1 = new List<Oprema>();
+            if (izabranaSala.Oprema != null)
             {
-                if (o.Staticka)
+                foreach (Sala s in SaleMenadzer.sale)
                 {
-                    OpremaStaticka.Add(o);
+                    if (s.Id == izabranaSala.Id)
+                    {
+                        foreach (Oprema o in s.Oprema)
+                        {
+                            if (o.Staticka)
+                            {
+                                opremaStaticka1.Add(o);
+                            }
+                        }
+                    }
                 }
+            }
+            OpremaStaticka = new ObservableCollectionEx<Oprema>(opremaStaticka1);
+            Thread th = new Thread(izvrsi);
+            th.Start();
+        }
+
+        public static void azurirajPrikaz()
+        {
+            OpremaStaticka.Clear();
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Id == PrikazStaticke.izabranaSala.Id)
+                {
+                    foreach (Oprema o in s.Oprema)
+                    {
+                        if (o.Staticka)
+                        {
+                            OpremaStaticka.Add(o);
+                        }
+                    }
+                }
+            }
+            
+        }
+        public void izvrsi()
+        {
+            while (otvoren)
+            {
+                Thread.Sleep(10);
+                PremjestajMenadzer.odradiZakazano();
             }
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -65,7 +106,31 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            PrikazStaticke.otvoren = false;
             this.Close();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            PreraspodjelaStaticke.aktivna = true;
+            PreraspodjelaStaticke ps = new PreraspodjelaStaticke(izabranaSala);
+            ps.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Oprema opremaZaSlanje = (Oprema)dataGridStaticka.SelectedItem;
+            if(opremaZaSlanje != null)
+            {
+                SlanjeStaticke ss = new SlanjeStaticke(izabranaSala, opremaZaSlanje);
+                ss.ShowDialog();
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            PrikazStaticke.otvoren = false;
+        }
     }
+
 }

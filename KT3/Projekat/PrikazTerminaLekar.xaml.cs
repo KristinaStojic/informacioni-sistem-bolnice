@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -22,24 +23,44 @@ namespace Projekat
     public partial class PrikazTerminaLekar : Window
     {
         private int colNum = 0;
+        int idLekara;
         public static ObservableCollection<Termin> Termini
         {
             get;
             set;
         }
-
+       
         public PrikazTerminaLekar()
         {
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
-            foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            foreach (Termin t in TerminMenadzer.termini)
             {
-               /* if(t.Lekar.IdLekara == 5)
+               
+
+                if (t.Lekar.IdLekara == 1) //Petar Nebojsic
+                {
+                    Termini.Add(t);
+                }
+                /*if (t.Lekar.IdLekara == 2) //Milos Dragojevic
                 {
                     Termini.Add(t);
                 }*/
-                Termini.Add(t);
+                /*if (t.Lekar.IdLekara == 3) //Petar Milosevic
+                {
+                    Termini.Add(t);
+                } */
+                /*if (t.Lekar.IdLekara == 4) //Dejan Milosevic
+                {
+                    Termini.Add(t);
+                }*/
+                /*if (t.Lekar.IdLekara == 5) //Isidora Isidorovic
+                {
+                    Termini.Add(t);
+                }*/
+
+                //Termini.Add(t);
             }
         }
 
@@ -75,8 +96,12 @@ namespace Projekat
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             // nazad
+
             TerminMenadzer.sacuvajIzmene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
             this.Close();
+            PocetnaStrana ps = new PocetnaStrana();
+            ps.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -106,7 +131,8 @@ namespace Projekat
                 }
                 else
                 {
-                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent);
+                    this.Close();
+                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
                     karton.Show();
                 }
             }
@@ -119,6 +145,17 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            SaleMenadzer.sacuvajIzmjene();
+            PocetnaStrana ps = new PocetnaStrana();
+            //ps.Show();   /*ISPRAVITI*/
+        }
+
+        // obavestenja lekara
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaLekar o = new ObavestenjaLekar();
+            o.Show();
         }
     }
 }
