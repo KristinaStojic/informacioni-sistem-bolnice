@@ -121,6 +121,11 @@ namespace Projekat
                     }
                 }
             }
+
+            if (izabraniNalog.IzabraniLekar != null)
+            {
+                lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
