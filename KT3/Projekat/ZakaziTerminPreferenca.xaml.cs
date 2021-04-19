@@ -56,6 +56,8 @@ namespace Projekat
             int count = 0;
             lista = new List<Termin>();
             bool jeTri = false;
+
+
             foreach (Sala s in SaleMenadzer.sale)
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled))

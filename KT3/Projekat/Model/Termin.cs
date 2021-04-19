@@ -52,6 +52,8 @@ namespace Model
 
         public TipTermina tipTermina { get; set; }
 
+        public bool Pomeren { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
@@ -71,9 +73,11 @@ namespace Model
             this.Lekar = l;
             this.Prostorija = s;
             this.Pacijent = p;
+            this.Pomeren = false;
         }
 
-        public Termin() { }
+        // Sanja
+        public Termin() { this.Pomeren = false; }
 
         public Termin(int broj, String dt, String vp, String vk, TipTermina tp, Lekar l)
         {
@@ -85,6 +89,7 @@ namespace Model
             this.Lekar = l;
             //this.Prostorija = s;
             //this.Pacijent = p;
+            this.Pomeren = false;
         }
         public Termin(int broj, String dt, String vp, String vk, TipTermina tp)
         {
@@ -96,6 +101,7 @@ namespace Model
             //this.Lekar = l;
             //this.Prostorija = s;
             //this.Pacijent = p;
+            this.Pomeren = false;
         }
     }
 }

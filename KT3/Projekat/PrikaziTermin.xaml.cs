@@ -46,11 +46,11 @@ namespace Projekat
             thread.Start();
             foreach (Termin t in TerminMenadzer.termini)
             {
-                /*if (t.Pacijent.IdPacijenta == idPacijent)
+                if (t.Pacijent.IdPacijenta == idPacijent)
                 {
                     Termini.Add(t);
-                }*/
-                Termini.Add(t);
+                }
+                //Termini.Add(t);
             }
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
             /*foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
@@ -98,7 +98,7 @@ namespace Projekat
             }
         }
 
-        public static void ProveriRecepte()
+        private static void ProveriRecepte()
         {
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
             App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
