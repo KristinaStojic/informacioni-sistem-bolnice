@@ -39,12 +39,29 @@ namespace Projekat
             {
                 lekari.Items.Add(l.ImeLek + " " + l.PrezimeLek + " " + l.IdLekara);
             }
+
+            datum.BlackoutDates.AddDatesInPast();
+
+            this.search.ItemsSource = MainWindow.lekari;
+            //this.search.SelectedItem = izabraniTermin.Lekar.IdLekara; // TODO: ispraviti
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(search.ItemsSource);
+            view.Filter = UserFilter;
+
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         { 
             int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-            
+
             // vreme pocetka i kraja
             string vp = vremePocetka.Text;
             string vk = vremeKraja.Text;
@@ -194,7 +211,11 @@ namespace Projekat
 
         private void search_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (search.SelectedItems.Count > 0)
+            {
+                Lekar item = (Lekar)search.SelectedItems[0];
+               // imePrz.Text = item.ToString();
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -204,6 +225,7 @@ namespace Projekat
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
+            CollectionViewSource.GetDefaultView(search.ItemsSource).Refresh();
 
         }
 

@@ -23,7 +23,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziPacijenta : Window
     {
-        
+        bool flag = false;
         public static ObservableCollection<Pacijent> PacijentiTabela
         {
             get;
@@ -45,7 +45,6 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            // dodato
             SaleMenadzer.sacuvajIzmjene();
             this.Close();
         }
@@ -76,17 +75,20 @@ namespace Projekat
         // brisanje
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            flag = true;
             var zaBrisanje = TabelaPacijenata.SelectedItem;
+            canvas2.Visibility = Visibility.Hidden;
+
             if (zaBrisanje != null)
             {
                 PacijentiMenadzer.ObrisiNalog((Pacijent)zaBrisanje);
             }
+            flag = false;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            // dodato
             SaleMenadzer.sacuvajIzmjene();
         }
 
@@ -121,7 +123,11 @@ namespace Projekat
 
         private void TabelaPacijenata_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            canvas2.Visibility = Visibility.Visible;
+            if (flag == false)
+            {
+                canvas2.Visibility = Visibility.Visible;
+            }
+
             Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
 
             if (p != null)
@@ -136,6 +142,17 @@ namespace Projekat
                 adresa.Text = p.AdresaStanovanja;
                 stanje.Text = p.BracnoStanje.ToString();
                 zanimanje.Text = p.Zanimanje;
+                
+                if (p.Maloletnik == true)
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelj.Text = p.JmbgStaratelja.ToString();
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelj.Text = "";
+                }
             }
         }
 

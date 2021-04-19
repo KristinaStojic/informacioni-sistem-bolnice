@@ -73,10 +73,11 @@ namespace Projekat
 
                 tp = izabraniTermin.tipTermina;
 
-                // datum                                                        ------------------------------------------------------------------> NE RADI
+                // datum                                                        ------------------------------------------------------------------>
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
             }
 
+            datum.BlackoutDates.AddDatesInPast();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -96,6 +96,15 @@ namespace Projekat
                 adresa.IsEnabled = false;
                 combo3.IsEnabled = false;
                 zanimanje.IsEnabled = false;
+
+                if (izabraniNalog.Maloletnik == true)
+                {
+                    maloletnik.IsChecked = true;
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                }
             }
 
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
