@@ -25,6 +25,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziTermin : Window
     {
+        public static int idPacijent = 1;
         public static bool pacijentProzor;
         private int colNum = 0;
         public static ObservableCollection<Termin> Termini
@@ -40,35 +41,51 @@ namespace Projekat
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
             Obavestenja = new ObservableCollection<Obavestenja>();
-            // Teodora
-            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
-            {
-                Obavestenja.Add(o);
-            }
-
-
             pacijentProzor = true;
             thread = new Thread(izvrsiNit);
             thread.Start();
             foreach (Termin t in TerminMenadzer.termini)
             {
-                /*if (t.Pacijent.IdPacijenta == 1)
+                /*if (t.Pacijent.IdPacijenta == idPacijent)
                 {
                     Termini.Add(t);
                 }*/
                 Termini.Add(t);
             }
-            Pacijent p = PacijentiMenadzer.PronadjiPoId(1);  // TODO: promeniti kada uradimo prijavljivanje
-            foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
+            /*foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
             {
                 foreach (DateTime dt in lr.UzimanjeTerapije)
                 {
-                    if (dt <= DateTime.Now.Date)
+                    if (dt.Date <= DateTime.Now.Date)
                     {
-                        Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + lr.NazivLeka + " - " + lr.UzimanjeTerapije.ToString());
+                        // fali za vreme
+                        Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + lr.NazivLeka);
+                        ObavestenjaMenadzer.obavestenja.Add(ob);
                         Obavestenja.Add(ob);
                     }
                 }
+            }*/
+            foreach(Obavestenja o in ObavestenjaMenadzer.obavestenja)
+            {
+                if(o.TipObavestenja.Equals("Terapija")) 
+                {
+                   
+                    DateTime dt = DateTime.Parse(o.Datum);
+                    if (dt.Date <= DateTime.Now.Date)
+                    {
+                        string vreme = dt.ToString("HH:mm");
+                        string trenutnoVreme = DateTime.Now.ToString("HH:mm");
+                        if (dt.TimeOfDay <= DateTime.Now.TimeOfDay)
+                        {
+                            Obavestenja.Add(o);
+                        }
+                    }
+                } else
+                {
+                    Obavestenja.Add(o);
+                }
+                
             }
         }
 
@@ -77,50 +94,62 @@ namespace Projekat
             while (pacijentProzor == true)
             {
                 Thread.Sleep(1000);  //30000
-                //ProveriRecepte();
+                ProveriRecepte();
             }
         }
 
         public static void ProveriRecepte()
         {
-            Pacijent p = PacijentiMenadzer.PronadjiPoId(1);  // TODO: promeniti kada uradimo prijavljivanje
-           // App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
-            //{
-            foreach (LekarskiRecept lp in p.Karton.LekarskiRecepti)
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
+            App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
             {
-                foreach (DateTime d in lp.UzimanjeTerapije)
-                { 
-                    if (d.Date == DateTime.Now.Date)
+                foreach (LekarskiRecept lp in p.Karton.LekarskiRecepti)
+                {
+                    foreach (DateTime d in lp.UzimanjeTerapije)
                     {
-                        MessageBox.Show(d.Date.ToString() + " " + DateTime.Now.Date.ToString()+ ", time of day:" + d.TimeOfDay.ToString().Substring(0,5) +  " " + DateTime.Now.TimeOfDay.ToString().Substring(0, 5));
-                        int vremeTren = int.Parse(DateTime.Now.TimeOfDay.ToString().Substring(0, 4));
-                        int vremeLP = int.Parse(d.TimeOfDay.ToString().Substring(0, 4));
-                        if (vremeLP == vremeTren)
+                        string sadasnjeVremeStr = DateTime.Now.Date.ToString("HH:mm:00");
+                        DateTime now = DateTime.Parse(sadasnjeVremeStr);
+                        if (d.Date == DateTime.Now.Date)
                         {
-                            // TODO: dodati uslov da obavestenje 
-                           // bool da = proveriObavestenja(lp.NazivLeka, d);
-                            Obavestenja.Add(new Obavestenja(vremeTren.ToString(), "Terapija", "Uzmite terapiju: " + lp.NazivLeka + " - " + lp.UzimanjeTerapije.ToString()));
+                            bool flag = postojiObavestenje(lp.NazivLeka, d);
+                            string vremeTrenStr = DateTime.Now.TimeOfDay.ToString().Substring(0, 5);
+                            string vremeLp = d.TimeOfDay.ToString().Substring(0, 5);
+                            //MessageBox.Show(vremeLp + " " + vremeTrenStr);
+                            if (vremeLp.Equals(vremeTrenStr))
+                            {
+                                //ako ne postoji 
+                                if (flag == false)
+                                {
+                                    Obavestenja.Add(new Obavestenja(d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka));
+                                    //ObavestenjaMenadzer.obavestenja.Add(new Obavestenja(d.ToString(), "Terapija", "Uzmite terapiju: " + lp.NazivLeka)); 
+                                }
+                            }
                         }
-                        //MessageBox.Show("Uzmite terapiju - " + lp.NazivLeka, "Podsetnik", MessageBoxButton.OK, MessageBoxImage.Information);
-                        //lp.UzimanjeTerapije.Remove(d);  //TODO : observablecollection lista
-                        //Obavestenja.Remove(d);
-                        //SaleMenadzer.sacuvajIzmjene();
-                        // sacuvaj izmene?
                     }
                 }
-            }
+            });
         }
 
 
-        public static bool proveriObavestenja(string nazivLeka, DateTime datumUzimanjaTerapije) 
+        public static bool postojiObavestenje(string nazivLeka, DateTime datumUzimanjaTerapije) 
         {
-            foreach(Obavestenja o in ObavestenjaMenadzer.NadjiSvaObavestenja())
+            foreach(Obavestenja o in Obavestenja)
             {
-                string[] s = o.SadrzajObavestenja.Split(' ');
-                if(s[2] == nazivLeka && s[4] == datumUzimanjaTerapije.TimeOfDay.ToString().Substring(0, 5))
+                if (o.TipObavestenja.Equals("Terapija"))
                 {
-                    MessageBox.Show(s[2] +  nazivLeka +  s[4]  + datumUzimanjaTerapije.TimeOfDay.ToString().Substring(0, 5));
-                    return false;
+                    //MessageBox.Show("Metoda: " + datumUzimanjaTerapije + " " + o.Datum + "\n" + split[2] + " " + nazivLeka);
+                    /*if (split[2].Equals(nazivLeka) && datumUzimanjaTerapije.ToString().Equals(o.Datum))
+                    {
+                        Console.WriteLine(split[1] + " " + nazivLeka + " " + datumUzimanjaTerapije.TimeOfDay.ToString().Substring(0, 5));
+                        //return true;
+                    }*/
+                    string sadrzaj = "Uzmite terapiju: " + nazivLeka;
+                    string datum = datumUzimanjaTerapije.ToString();
+                    if (!Obavestenja.Any(x => x.SadrzajObavestenja == sadrzaj) && !Obavestenja.Any(y => y.Datum == datum))
+                    {
+                        return false;
+                    }
+                    
                 }
             }
             return true;
@@ -179,6 +208,7 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             SaleMenadzer.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
+            ObavestenjaMenadzer.sacuvajIzmene();
             pacijentProzor = false;
             this.Hide();
         }
@@ -212,38 +242,4 @@ namespace Projekat
 
         }
     }
-    
-    /*OBAVESTENJE klasa */
-    /*public partial class Obavestenje : INotifyPropertyChanged
-    {
-        public string TipObavestenja { get; set; } // za preglede, za recepte
-        public string SadrzajObavestenja { get; set; }      // popijte lek
-        public DateTime Datum { get; set; }
-        public bool Procitano { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-    
-        public Obavestenje() { }
-
-        public Obavestenje(DateTime datum, string TipOb, string SadrzajOb)
-        {
-            this.Datum = datum;
-            this.TipObavestenja = TipOb;
-            this.SadrzajObavestenja = SadrzajOb;
-        } 
-
-        // obavestenja
-        private void obavestenja_Click(object sender, RoutedEventArgs e)
-        {
-            ObavestenjaPacijent o = new ObavestenjaPacijent();
-            o.Show();
-        }
-    }*/
 }
