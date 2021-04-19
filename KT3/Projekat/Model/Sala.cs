@@ -76,10 +76,30 @@ namespace Model
         {
             string val = brojSale + " - " + Namjena;
             if (PreraspodjelaStaticke.aktivna && PreraspodjelaStaticke.izabranaOprema != null)
-            { 
+            {
+                bool postoji = false;
+                int kolicina;
                 foreach (Oprema o in Oprema) {
                     if (o.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme) {
-                        val += " (" + o.Kolicina + ")";
+                        kolicina = o.Kolicina;
+                        foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+                        {
+                            if(pm.izSale.Id == this.Id)
+                            {
+                                kolicina -= pm.kolicina;
+                                
+                                postoji = true;
+                            }
+                        }
+
+                        if (!postoji)
+                        {
+                            val = brojSale + " - " + Namjena + " (" + o.Kolicina + ")";
+                        }
+                        else
+                        {
+                            val = brojSale + " - " + Namjena + " (" + kolicina + ")";
+                        }
                     }
                 }
             }else if (PreraspodjelaDinamicke.aktivna && PreraspodjelaDinamicke.izabranaOprema != null)

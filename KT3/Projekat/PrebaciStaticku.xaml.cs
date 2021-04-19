@@ -58,17 +58,20 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            termini.Add("12:30");
-            termini.Add("12:31");
-            termini.Add("12:32");
-            termini.Add("12:33");
-            termini.Add("12:34");
-            termini.Add("12:35");
-            termini.Add("12:36");
-            termini.Add("12:37");
-            termini.Add("12:38");
-            termini.Add("12:39");
+            bool postoji = false;
+            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                if (pm.izSale.Id == 4)
+                {
+                    int kolicina = opremaZaSlanje.Kolicina - pm.kolicina;
+                    this.maks.Text = "MAX: " + kolicina.ToString();
+                }
+            }
+            if (!postoji)
+            {
+                this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

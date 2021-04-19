@@ -80,16 +80,6 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            termini.Add("12:30");
-            termini.Add("12:31");
-            termini.Add("12:32");
-            termini.Add("12:33");
-            termini.Add("12:34");
-            termini.Add("12:35");
-            termini.Add("12:36");
-            termini.Add("12:37");
-            termini.Add("12:38");
-            termini.Add("12:39");
         }
 
         private void kombo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -125,6 +115,8 @@ namespace Projekat
         }
         private void azurirajKolicinu(Sala s)
         {
+            bool postoji = false;
+            int kolicina;
             foreach (Sala sal in SaleMenadzer.sale)
             {
                 if (s.Id == sal.Id)
@@ -133,7 +125,22 @@ namespace Projekat
                     {
                         if (o.IdOpreme == izabranaOprema.IdOpreme)
                         {
-                            this.tekst.Text = "MAX:" + o.Kolicina.ToString();
+                            kolicina = o.Kolicina;
+                            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+                            {
+                                if (pm.izSale.Id == s.Id)
+                                {
+                                    postoji = true;
+                                    kolicina -= pm.kolicina;
+                                }
+                            }
+                            if (!postoji) { 
+                                this.tekst.Text = "MAX:" + o.Kolicina.ToString();
+                            }
+                            else
+                            {
+                                this.tekst.Text = "MAX:" + kolicina.ToString();
+                            }
                         }
                     }
                 }
