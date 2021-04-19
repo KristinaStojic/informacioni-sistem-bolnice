@@ -5,18 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Ponudjeni termini" Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="AliceBlue">
+        Title="Ponudjeni termini" Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="#d3e0ea">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid Height="350" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Path=Termini2}" SelectionChanged="preferencaGrid_SelectionChanged"
-                  IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  AutoGenerateColumns="False" Margin="50,15,45,107.5" BorderBrush="DarkBlue" VerticalAlignment="Top" Foreground="Black" >
+                  IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  AutoGenerateColumns="False" Margin="50,15,45,107.5" BorderBrush="#FF276678" VerticalAlignment="Top" Foreground="Black" >
             <DataGrid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF0089FF" Offset="0.113"/>
+                    <GradientStop Color="#FF0089FF" Offset="0.324"/>
                     <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#FF048AFF" Offset="0.02"/>
+                    <GradientStop Color="#FF2E9EFF" Offset="0.447"/>
+                    <GradientStop Color="#FF68B9FF" Offset="0.602"/>
+                    <GradientStop Color="#FF8DCAFF" Offset="0.701"/>
+                    <GradientStop Color="#FE0289FE" Offset="0.111"/>
+                    <GradientStop Color="#FE0189FE" Offset="0.176"/>
+                    <GradientStop Color="#FE0089FE" Offset="0.189"/>
+                    <GradientStop Color="#FE0096FE" Offset="1"/>
+                    <GradientStop Color="#FF048BFF" Offset="0.336"/>
+                    <GradientStop Color="#FE0089FE" Offset="0.266"/>
+                    <GradientStop Color="#FE0089FE" Offset="0.205"/>
+                    <GradientStop Color="#FF3DD3FF" Offset="0.795"/>
+                    <GradientStop Color="#FF80C4FF" Offset="0.668"/>
+                    <GradientStop Color="#FF3DD3FF" Offset="0.795"/>
+                    <GradientStop Color="#FF1A8CAE" Offset="0.02"/>
+                    <GradientStop Color="#FE1D6180" Offset="0.02"/>
+                    <GradientStop Color="#FE0589F2" Offset="0.541"/>
+                    <GradientStop Color="#FE3978A6" Offset="0.074"/>
                 </LinearGradientBrush>
             </DataGrid.Background>
             <DataGrid.Columns >
@@ -27,10 +45,54 @@
                 <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Zakazi termin" Name="zakazi" HorizontalAlignment="Left" Margin="190,390,0,0" VerticalAlignment="Top" Width="100" 
-                Height="40" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="zakazi_Click"/>
+        <Button Content="Zakazi" Name="zakazi" HorizontalAlignment="Left" Margin="190,390,0,0" VerticalAlignment="Top" Width="100" 
+                Height="40" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="zakazi_Click" RenderTransformOrigin="1,1" BorderBrush="#FFF6F5F5" Foreground="#FFF6F5F5" Background="#FF276678"/>
+        <Button Content="Potvrdi" Name="zakaziLekar" HorizontalAlignment="Left" Margin="190,390,0,0" VerticalAlignment="Top" Width="100" 
+                Height="40" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="zakaziLekar_Click" Background="#FF276678" Foreground="#FFF6F5F5" BorderBrush="#FFF6F5F5"/>
         <Button Content="Nazad"  Name="nazad" HorizontalAlignment="Left" Margin="350,390,0,0" VerticalAlignment="Top" Width="100" 
-            Height="40" Click="nazad_Click"/>
+            Height="40" Click="nazad_Click" Background="#FF276678" Foreground="#FFF6F5F5" BorderBrush="#FFF6F5F5"/>
+        <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="75,150,0,0" VerticalAlignment="Top" Width="195" Height="95" Click="lekari_Click" Background="#FF1687A7"/>
+        <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="325,150,0,0" VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Background="#FF1687A7" RenderTransformOrigin="0.5,0.5" FontSize="14"/>
+        <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Left" Height="355" Margin="132,19,0,0" VerticalAlignment="Top" Width="318" RenderTransformOrigin="0.858,0.494">
+            <TextBox DockPanel.Dock="Top" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="6,18,32,289" Height="25">
+                <TextBox.Style>
+                    <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Pretražite listu po prezimenu lekara" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+        </GroupBox>
+        <ListView x:Name="datagridLekari" SelectionMode="Single" Margin="142,89,152,183.5" SelectionChanged="datagridLekari_SelectionChanged" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" 
+                        Width="33" DisplayMemberBinding="{Binding IdLekara}"/>
+                    <GridViewColumn Header="Ime" 
+                        Width="80" DisplayMemberBinding="{Binding ImeLek}"/>
+                    <GridViewColumn Header="Prezime" 
+                        Width="80" DisplayMemberBinding="{Binding PrezimeLek}"/>
+                    <GridViewColumn Header="Specijalizacija"
+                        Width="90" DisplayMemberBinding="{Binding specijalizacija}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 
 </Window>

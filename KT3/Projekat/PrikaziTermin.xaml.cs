@@ -101,8 +101,8 @@ namespace Projekat
         public static void ProveriRecepte()
         {
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
-            App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
-            {
+            //App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
+            //{
                 foreach (LekarskiRecept lp in p.Karton.LekarskiRecepti)
                 {
                     foreach (DateTime d in lp.UzimanjeTerapije)
@@ -127,7 +127,7 @@ namespace Projekat
                         }
                     }
                 }
-            });
+            //});
         }
 
 

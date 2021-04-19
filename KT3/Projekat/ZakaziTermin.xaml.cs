@@ -21,7 +21,7 @@ namespace Projekat
     // TODO
     public partial class ZakaziTermin : Window
     {
-        public Lekar lekarr;
+        public int idPacijent = 1;
         public Termin noviTermin;
         //
         public List<Sala> slobodneSale;
@@ -35,21 +35,13 @@ namespace Projekat
             InitializeComponent();
             noviTermin = new Termin();
             datum.BlackoutDates.AddDatesInPast();
-            //TODO: lekarr je izabrani lekar prijavljenog pacijenta
-            //lekarr = 
+
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.imePrz.Text = p.IzabraniLekar.ToString();
 
             this.dgSearch.ItemsSource = MainWindow.lekari;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
             view.Filter = UserFilter;
-            /* Kada promenim samo zakazivanje pregleda */
-            //combo.SelectedIndex = 1;
-            //combo.IsEnabled = false;
-
-            /*Sala s = SaleMenadzer.NadjiSaluPoId(2);
-            s.zauzetiTermini = new List<ZauzeceSale>();
-            ZauzeceSale zs = new ZauzeceSale("07:30", "08:00", "04/14/2021", 2);
-            s.zauzetiTermini.Add(zs);*/
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -86,7 +78,7 @@ namespace Projekat
                 }
 
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp);
-                try
+               /* try
                 {
                     if (dgSearch.SelectedItems.Count > 0)
                     {
@@ -97,15 +89,17 @@ namespace Projekat
                 catch (Exception)
                 {
                     MessageBox.Show("Izaberite lekara kod kog želite da zakažete termin", "Greška", MessageBoxButton.OK);
-                }
+                }*/
 
-                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+                /*foreach (Pacijent p in PacijentiMenadzer.pacijenti)
                 {
-                    if (p.IdPacijenta == 1)  // STATICKO, dok ne bude prijavljivanje na sistem
+                    if (p.IdPacijenta == idPacijent)  // STATICKO, dok ne bude prijavljivanje na sistem
                     {
                         s.Pacijent = p;
                     }
-                }
+                }*/
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                s.Lekar = p.IzabraniLekar;
 
                 ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, s.IdTermin);
                 _sala.zauzetiTermini.Add(zs);
@@ -181,11 +175,6 @@ namespace Projekat
                 Lekar item = (Lekar)dgSearch.SelectedItems[0];
                 imePrz.Text = item.ToString();
             }
-        }
-
-        private void imePrz_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
         }
 
         private void preferenca_Click(object sender, RoutedEventArgs e)
