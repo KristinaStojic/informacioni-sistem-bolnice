@@ -243,6 +243,15 @@ namespace Model
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
 
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        if (s.Id == termin.Prostorija.Id)
+                        {
+                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleMenadzer.sacuvajIzmjene();
+                        }
+                    }
+
                     termini.RemoveAt(i);
                     termin.Prostorija.Status = status.Slobodna;
                 }
