@@ -225,13 +225,13 @@ namespace Projekat
 
         private void zdravstveniKarton_Click(object sender, RoutedEventArgs e)
         {
-            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
-            if (izabraniTermin != null)
-            {
-                ZdravstveniKartonPacijent it = new ZdravstveniKartonPacijent(izabraniTermin.Pacijent);
-                //TerminMenadzer.sacuvajIzmene();
-                it.Show();
-            }
+            //Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
+            // if (izabraniTermin != null)
+            //{
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            ZdravstveniKartonPacijent it = new ZdravstveniKartonPacijent(p);
+            it.Show();
+            //}
         }
 
         private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
