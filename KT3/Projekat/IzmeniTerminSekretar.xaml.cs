@@ -74,7 +74,7 @@ namespace Projekat
                 tp = izabraniTermin.tipTermina;
 
                 // datum                                                        ------------------------------------------------------------------> NE RADI
-                //datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
+                datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
             }
 
         }
@@ -92,6 +92,11 @@ namespace Projekat
             string[] kraj = vk.Split(':');
             string krajSati = kraj[0];
             string krajMinuti = kraj[1];
+
+            // termin koji menjamo
+            string[] vpt = termin.VremePocetka.Split(':');
+            string[] vkt = termin.VremeKraja.Split(':');
+            //
 
             int pogresnoVreme = 0;
 
@@ -178,14 +183,41 @@ namespace Projekat
                     {
                         if (termin.IdTermin == t.IdTermin)
                         {
-                            foreach (Sala sala in SaleMenadzer.sale)
-                            {
-                                if (sala.Id == termin.Prostorija.Id)
+                           // if (termin.Prostorija.Id == t.Prostorija.Id)  // ako se nije izmenila prostorija termina
+                            //{
+                                foreach (Sala sala in SaleMenadzer.sale)
                                 {
-                                    // izbaci iz zauzetih termina to zauzece sale koje menjamo
-                                    sala.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(sala.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                                    if (sala.Id == termin.Prostorija.Id)
+                                    {
+                                        foreach (ZauzeceSale zauzece1 in sala.zauzetiTermini)
+                                        {
+                                            string[] zauzecePocetak1 = zauzece1.pocetakTermina.Split(':');
+                                            string[] zauzeceKraj1 = zauzece1.krajTermina.Split(':');
+
+                                            // izbaci iz zauzetih termina to zauzece sale koje menjamo
+                                            if (zauzece1.datumTermina.Equals(termin.Datum) && zauzece1.idTermina == termin.IdTermin && zauzecePocetak1[0].Equals(vpt[0]) && zauzecePocetak1[1].Equals(vpt[1]) && zauzeceKraj1[0].Equals(vkt[0]) && zauzeceKraj1[1].Equals(vkt[1]))
+                                            //sala.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(sala.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                                            {
+                                                sala.zauzetiTermini.Remove(zauzece1);
+                                                SaleMenadzer.sacuvajIzmjene();
+                                            }
+                                    }
                                 }
                             }
+                            
+                            /*if (s.Id != termin.Prostorija.Id)
+                            {
+                                foreach (Sala sala in SaleMenadzer.sale)
+                                {
+                                    if (sala.Id == termin.Prostorija.Id)
+                                    {
+                                        // izbaci iz zauzetih termina to zauzece sale koje menjamo
+                                        sala.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(sala.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                                        SaleMenadzer.sacuvajIzmjene();
+
+                                    }
+                                }
+                            }*/
                         }
 
                         TerminMenadzer.IzmeniTerminSekretar(termin, t);

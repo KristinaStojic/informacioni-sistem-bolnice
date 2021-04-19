@@ -49,12 +49,12 @@
                             <TextBox x:Name="zanimanje" Margin="235,444,382.2,68" IsReadOnly="True"  Height="30"/>
                             <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="193" Margin="465,240,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Grid>
-                                    <Image Source="doktor.png" Width="87" HorizontalAlignment="Center" Margin="103,10,110,40" RenderTransformOrigin="0.475,0.468"/>
+                                    <Image Source="slike/doktor.png" Width="87" HorizontalAlignment="Center" Margin="103,10,110,40" RenderTransformOrigin="0.475,0.468"/>
                                     <TextBox Name="lekar" HorizontalAlignment="Left" Height="28" Margin="59,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="193" Margin="465,26,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
-                                <Image Source="osoba.jpg" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
+                                <Image Source="slike/osoba.jpg" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
                             </GroupBox>
                             <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click"/>
                         </Grid>

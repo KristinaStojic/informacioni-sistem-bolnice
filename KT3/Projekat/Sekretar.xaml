@@ -21,10 +21,10 @@
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="335,269,0,0" VerticalAlignment="Top" Width="48" Height="47" Background="#FFA3DADE"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="394,269,0,0" VerticalAlignment="Top" Width="63" Height="47" Background="#FF5DBFC5"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="265,269,0,0" VerticalAlignment="Top" Width="48" Height="47" Background="#FFE7F6F7"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="480,269,0,0" VerticalAlignment="Top" Width="63" Height="47" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804"/>
+        <Button HorizontalAlignment="Left" Margin="1000,600,0,0" VerticalAlignment="Top" Width="48" Height="47" Background="#FFA3DADE"/>
+        <Button HorizontalAlignment="Left" Margin="1059,600,0,0" VerticalAlignment="Top" Width="63" Height="47" Background="#FF5DBFC5"/>
+        <Button HorizontalAlignment="Left" Margin="930,600,0,0" VerticalAlignment="Top" Width="48" Height="47" Background="#FFE7F6F7"/>
+        <Button HorizontalAlignment="Left" Margin="1145,600,0,0" VerticalAlignment="Top" Width="63" Height="47" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804"/>
         <Button Margin="10,7,1179.6,617.4" BorderThickness="0" Background="#00DDDDDD" Click="Button_Click_3">
             <StackPanel>
                 <Image Source="slike/icons8-pull-down-50.png" Height="53" Width="82" />
@@ -42,5 +42,14 @@
             <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
         </Menu>
+        <Label Content="Osnovni podaci:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="873,57,0,0" FontSize="24" FontWeight="Bold"/>
+        <Label Content="Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="728,140,0,0" FontSize="18"/>
+        <Label Content="Prezime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="728,215,0,0" FontSize="18"/>
+        <Label Content="JMBG:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="728,294,0,0" FontSize="18"/>
+        <Label Content="Broj telefona:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="728,368,0,0" FontSize="18"/>
+        <Label Content="E-mail:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="728,448,0,0" FontSize="18"/>
+        <Label Content="Adresa stanovanja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="728,527,0,0" FontSize="18"/>
+        <Image Source="slike/medical-symbol.png" Margin="160,149,680.6,198.4"/>
+
     </Grid>
 </Window>
