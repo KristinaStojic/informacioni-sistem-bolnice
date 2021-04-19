@@ -21,35 +21,42 @@ namespace Projekat
     // TODO
     public partial class ZakaziTermin : Window
     {
-        public Lekar lekarr;
+        public int idPacijent = 1;
         public Termin noviTermin;
+        public Lekar lekarr;
         //
         public List<Sala> slobodneSale;
         public static ObservableCollection<string> sviSlobodni { get; set; }
+        public static ObservableCollection<string> sviSlobodni2 { get; set; }
         public Sala _sala;
         public List<string> vremeSala;
         public int brSala;
 
-        public ZakaziTermin()
+        public ZakaziTermin(Lekar l)
         {
             InitializeComponent();
             noviTermin = new Termin();
             datum.BlackoutDates.AddDatesInPast();
-            //TODO: lekarr je izabrani lekar prijavljenog pacijenta
-            //lekarr = 
+           
+            if(l != null)
+            {
+                MessageBox.Show("Promenjen lekar");
+                lekarr = l;
+                this.imePrz.Text = l.ToString();
+            } else
+            {
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                lekarr = p.IzabraniLekar;
+                this.imePrz.Text = p.IzabraniLekar.ToString();
+            }
 
-            this.dgSearch.ItemsSource = MainWindow.lekari;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
-            view.Filter = UserFilter;
-            /* Kada promenim samo zakazivanje pregleda */
-            //combo.SelectedIndex = 1;
-            //combo.IsEnabled = false;
-
-            /*Sala s = SaleMenadzer.NadjiSaluPoId(2);
-            s.zauzetiTermini = new List<ZauzeceSale>();
-            ZauzeceSale zs = new ZauzeceSale("07:30", "08:00", "04/14/2021", 2);
-            s.zauzetiTermini.Add(zs);*/
-
+            sviSlobodni2 = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
+                                                                "09:00", "09:30",  "10:00", "10:30",
+                                                                "11:00", "11:30", "12:00", "12:30",
+                                                                "13:00", "13:30", "14:00", "14:30",
+                                                                "15:00", "15:30", "16:00", "16:30",
+                                                                "17:00", "17:30", "18:00", "18:30",
+                                                                "19:00", "19:30", "20:00"};
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -86,32 +93,14 @@ namespace Projekat
                 }
 
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp);
-                try
-                {
-                    if (dgSearch.SelectedItems.Count > 0)
-                    {
-                        Lekar selLekar = (Lekar)dgSearch.SelectedItem;
-                        s.Lekar = selLekar;
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Izaberite lekara kod kog želite da zakažete termin", "Greška", MessageBoxButton.OK);
-                }
-
-                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
-                {
-                    if (p.IdPacijenta == 1)  // STATICKO, dok ne bude prijavljivanje na sistem
-                    {
-                        s.Pacijent = p;
-                    }
-                }
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                s.Pacijent = p;
+                s.Lekar = lekarr;
 
                 ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, s.IdTermin);
                 _sala.zauzetiTermini.Add(zs);
                 s.Prostorija = _sala;
                 //SaleMenadzer.sacuvajIzmjene(); // ?
-
                 TerminMenadzer.ZakaziTermin(s);
                 this.Close();
             }
@@ -155,44 +144,20 @@ namespace Projekat
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             // elektronsko placanje
+            MessageBox.Show("Elektronsko placanje ce uskoro biti implementirano", "Obavestenje");
         }
 
         private void odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-        private bool UserFilter(object item)
-        {
-            if (String.IsNullOrEmpty(txtFilter.Text))
-                return true;
-            else
-                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-
-        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(dgSearch.ItemsSource).Refresh();
-        }
-
-        private void dgSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dgSearch.SelectedItems.Count > 0)
-            {
-                Lekar item = (Lekar)dgSearch.SelectedItems[0];
-                imePrz.Text = item.ToString();
-            }
-        }
-
-        private void imePrz_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
+     
         private void preferenca_Click(object sender, RoutedEventArgs e)
         {
             // prozor za odabir lekara po preferenci
             ZakaziTerminPreferenca ztp = new ZakaziTerminPreferenca();
             ztp.Show();
+            this.Close();
         }
 
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -229,7 +194,7 @@ namespace Projekat
             }
         }
 
-        private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        public ObservableCollection<string> danasnjiSlotovi()
         {
             sviSlobodni = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
                                                                "09:00", "09:30",  "10:00", "10:30",
@@ -238,7 +203,39 @@ namespace Projekat
                                                                "15:00", "15:30", "16:00", "16:30",
                                                                "17:00", "17:30", "18:00", "18:30",
                                                                "19:00", "19:30", "20:00"};
+
+
+            return sviSlobodni;
+
+        }
+
+        private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
             string selectDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            sviSlobodni = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
+                                                               "09:00", "09:30",  "10:00", "10:30",
+                                                               "11:00", "11:30", "12:00", "12:30",
+                                                               "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30",
+                                                               "17:00", "17:30", "18:00", "18:30",
+                                                               "19:00", "19:30", "20:00"};
+
+            if (datum.SelectedDate == DateTime.Now.Date)
+            {
+               // MessageBox.Show("Odabrali ste danasnji dan");
+                foreach(string slot in sviSlobodni2)
+                {
+                    DateTime dt = DateTime.Parse(slot);
+                    DateTime sada = DateTime.Now;
+                    if (dt.TimeOfDay <= sada.TimeOfDay)
+                    {
+                        //MessageBox.Show(dt.TimeOfDay.ToString() + " " + sada.TimeOfDay.ToString());
+                        sviSlobodni.Remove(slot);
+                    }
+                       
+                }
+            }
+            
             int i = 0;
             if (slobodneSale == null)
             {

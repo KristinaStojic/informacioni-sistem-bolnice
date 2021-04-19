@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zdravstveni karton" Height="500" Width="600" FontSize="15" WindowStartupLocation="CenterScreen" Background="#e6f7ff">
+        Title="Zdravstveni karton" Height="500" Width="600" FontSize="15" WindowStartupLocation="CenterScreen" Background="#dbe2ef">
 
     <Grid>
 
@@ -26,7 +26,7 @@
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="CornflowerBlue" />
+                                        <Setter TargetName="Border" Property="Background" Value="#edffec" />
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="False">
                                         <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
@@ -39,7 +39,7 @@
             </TabControl.Resources>
             <!-- licni podaci-->
             <TabItem Header="Lični podaci" Name="podaci" FontSize="15" Height="25" Margin="0,0,0.5,0" VerticalAlignment="Top">
-                <Grid Margin="-2,0,2,0" Background="#f4f3f3">
+                <Grid Margin="-2,0,2,0" Background="#FFF9F7F7">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="311*"></ColumnDefinition>
                         <ColumnDefinition Width="223*"></ColumnDefinition>
@@ -75,9 +75,9 @@
                         <Image Grid.Column="1" Margin="5" Source="slike\menager.jpg" />
                     </Border>
                     <Label Content="Korisnicko ime" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="30,0,0,184" FontWeight="Bold" Grid.Column="1"/>
-                    <Button x:Name="izmeniBtn" Content="Izmenite podatke" Grid.Column="1" Height="30" Margin="34,317,46,15" Click="izmeniBtn_Click"/>
-                    <Button x:Name="sacuvajIzmene" Content="Potvrdi" Grid.Column="1" Height="30" Margin="34,317,126,15" Click="sacuvajIzmene_Click"/>
-                    <Button x:Name="odustani" Content="Odustani" Grid.Column="1" Height="30" Margin="102,317,46,15" Click="odustani_Click"/>
+                    <Button x:Name="izmeniBtn" Content="Izmenite podatke" Grid.Column="1" Height="30" Margin="34,317,46,15" Click="izmeniBtn_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
+                    <Button x:Name="sacuvajIzmene" Content="Potvrdi" Grid.Column="1" Height="30" Margin="34,317,126,15" Click="sacuvajIzmene_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
+                    <Button x:Name="odustani" Content="Odustani" Grid.Column="1" Height="30" Margin="102,317,46,15" Click="odustani_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
                     <Label Content="Lozinka" HorizontalAlignment="Left" Height="30" Width="113" VerticalAlignment="Bottom" Margin="32,0,0,125" FontWeight="Bold" Grid.Column="1"/>
                     <ComboBox IsEnabled="False" Width="140" Height="25" Name="lekar" Margin="130,327,41,10"></ComboBox>
                     <Label Content="Izabrani lekar" Margin="0,323,188,-11" FontSize="15" HorizontalAlignment="Right" Width="99"/>
@@ -97,7 +97,7 @@
             <!-- lekarski recepti -->
             <TabItem Header="Lekarski recepti" 
                      ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
-                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="GhostWhite" FontFamily="Segoe UI" FontSize="13" Margin="0,-2,-6,0">
+                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="13" Margin="-2,-2,-4,-1">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Naziv leka" 
@@ -114,7 +114,7 @@
                                             Width="85" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Prikaži" Click="Button_Click_1"/>
+                                        <Button Background="#112d4e" Foreground="#f9f7f7" BorderBrush="#3f72af" Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -127,7 +127,7 @@
             </TabItem>
             <TabItem Header="Lekarski uputi" Name="uputi" FontSize="15" />
         </TabControl>
-        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"  Height="30" Margin="29,426,0,0" Click="Button_Click"  />
+        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"  Height="30" Margin="29,426,0,0" Click="Button_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"  />
 
 
 

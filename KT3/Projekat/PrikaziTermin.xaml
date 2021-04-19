@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz termina" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="AliceBlue">
+        Title="Prikaz termina" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="#dbe2ef">
     <Grid  Margin="0,0,-5.5,-2.5">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="175*"/>
+            <ColumnDefinition Width="626*"/>
         </Grid.ColumnDefinitions>
         <!---Grid.Background>
             <ImageBrush ImageSource="slike\1.jpg" Opacity="0.7" Stretch="UniformToFill"/>
         </-->
         <DataGrid Grid.Column="1" x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="312" Margin="3,246,0,0" VerticalAlignment="Top" Width="595" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged">
+                  Height="312" Margin="3,246,0,0" VerticalAlignment="Top" Width="595" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged" Background="#FFF9F7F7" BorderBrush="#FF3F72AF">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
@@ -36,23 +36,23 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button HorizontalAlignment="Left" Background="#404969" Margin="10,25,0,0" BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click" >
+        <Button HorizontalAlignment="Left" Background="#FF112D4E" Margin="22,25,0,0" BorderBrush="#FF3F72AF" BorderThickness="2" VerticalAlignment="Top" Width="140" Height="59" Click="Button_Click" >
             <TextBlock Text="Zakaži termin" Foreground="White" FontSize="16" TextDecorations="{x:Null}"/>
         </Button>
-        <Button HorizontalAlignment="Left" Background="#404969" Margin="10,119,0,0" BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_1" RenderTransformOrigin="0.503,0.508">
+        <Button HorizontalAlignment="Left" Background="#FF112D4E" Margin="22,119,0,0" BorderBrush="#FF3F72AF" BorderThickness="2" VerticalAlignment="Top" Width="140" Height="59" Click="Button_Click_1" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Izmeni termin" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <Button HorizontalAlignment="Left" Background="#404969" Margin="10,508,0,0"  BorderBrush="#ff7f50" BorderThickness="2" VerticalAlignment="Top" Width="160" Height="50" Click="Button_Click_3">
+        <Button HorizontalAlignment="Left" Background="#FF112D4E" Margin="10,508,0,0"  BorderBrush="#FF3F72AF" BorderThickness="2" VerticalAlignment="Top" Width="160" Height="50" Click="Button_Click_3">
             <TextBlock Text="Nazad" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <Button Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="161" Height="59" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508">
+        <Button Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" HorizontalAlignment="Left" Margin="22,215,0,0" VerticalAlignment="Top" Width="140" Height="59" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Otkaži termin" Foreground="White" FontSize="16"></TextBlock>
         </Button>
-        <Button Name="zdravstveniKarton" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="zdravstveniKarton_Click" HorizontalAlignment="Left" Margin="10,305,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
+        <Button Name="zdravstveniKarton" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="zdravstveniKarton_Click" HorizontalAlignment="Left" Margin="22,305,0,0" VerticalAlignment="Top" Width="140" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Zdravstveni karton" Foreground="White" FontSize="16"></TextBlock>
         </Button>
         <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" Height="154" Margin="8,56,0,0" VerticalAlignment="Top" Width="590" ItemsSource="{Binding Obavestenja}"
-                  SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Grid.Column="1" >
+                  SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Grid.Column="1" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum" Width="110" Binding="{Binding Datum}"/>
                 <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
@@ -67,8 +67,8 @@
                 </-->
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,25,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
-        <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,215,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial"/>
+        <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,25,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
+        <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,215,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
 
         <!--Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Obavestenja" Foreground="White" FontSize="16"></TextBlock>

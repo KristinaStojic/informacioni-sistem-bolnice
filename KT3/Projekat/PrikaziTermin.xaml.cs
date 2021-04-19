@@ -121,6 +121,7 @@ namespace Projekat
                                 if (flag == false)
                                 {
                                     Obavestenja.Add(new Obavestenja(d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka));
+                                    Console.Beep();
                                     //ObavestenjaMenadzer.obavestenja.Add(new Obavestenja(d.ToString(), "Terapija", "Uzmite terapiju: " + lp.NazivLeka)); 
                                 }
                             }
@@ -165,7 +166,8 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // zakazi
-            ZakaziTermin zt = new ZakaziTermin();
+            Lekar l = null;
+            ZakaziTermin zt = new ZakaziTermin(l);
             zt.Show();
         }
 
