@@ -119,7 +119,7 @@ namespace Projekat.Model
                 if(pacijent.IdPacijenta == recept.idPacijenta)
                 {                    
                     pacijent.Karton.LekarskiRecepti.Add(recept);
-                    TabelaRecepata.PrikazRecepata.Add(recept);
+                    ZdravstveniKartonLekar.PrikazRecepata.Add(recept);
 
                 }
             }
@@ -132,9 +132,7 @@ namespace Projekat.Model
                 if(pacijent.IdPacijenta == anamneza.IdPacijenta)
                 {                    
                     pacijent.Karton.Anamneze.Add(anamneza);
-                    Console.WriteLine("DODALA SE ANAMNEZA, SADA IH IMA U LISTI: " + pacijent.Karton.Anamneze.Count);
-                    PrikazAnamneza.TabelaAnamneza.Add(anamneza);
-                    Console.WriteLine("DODALA SE ANAMNEZA, SADA IH IMA U TABELI: " + PrikazAnamneza.TabelaAnamneza.Count);
+                    ZdravstveniKartonLekar.TabelaAnamneza.Add(anamneza);
                 }
             }
         }
@@ -158,9 +156,9 @@ namespace Projekat.Model
             }
 
 
-            int idx = PrikazAnamneza.TabelaAnamneza.IndexOf(stara);
-            PrikazAnamneza.TabelaAnamneza.RemoveAt(idx);
-            PrikazAnamneza.TabelaAnamneza.Insert(idx, nova);
+            int idx = ZdravstveniKartonLekar.TabelaAnamneza.IndexOf(stara);
+            ZdravstveniKartonLekar.TabelaAnamneza.RemoveAt(idx);
+            ZdravstveniKartonLekar.TabelaAnamneza.Insert(idx, nova);
         }
     }
 }

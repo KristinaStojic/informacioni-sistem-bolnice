@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <Button Content="Pregledi i operacije" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,115,0,0" FontSize="18" Grid.Column="1" Click="Button_Click"/>
         <Button Content="Odobravanje lekova za korišćenje" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,226,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_1"/>
-        <Button Content="Godišnji odmor" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,337,0,0" FontSize="18" Grid.Column="1"/>
+        <Button Content="Godišnji odmor" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,337,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_3"/>
         <Button Content="Evidencija utrošenog materijala" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,449,0,0" FontSize="18" Grid.Column="1"/>
         <Button Content="Obaveštenja" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,561,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_2"/>
         <Label Content="Izaberite željenu opciju:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108.4,38,0,0" FontSize="24" FontWeight="Bold" Grid.Column="1"/>

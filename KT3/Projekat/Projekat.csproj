@@ -192,6 +192,9 @@
     <Compile Include="ZakaziTerminSekretar.xaml.cs">
       <DependentUpon>ZakaziTerminSekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZdravstveniKartonLekar.xaml.cs">
+      <DependentUpon>ZdravstveniKartonLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZdravstveniKartonPacijent.xaml.cs">
       <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
     </Compile>
@@ -388,6 +391,10 @@
     <Page Include="ZakaziTerminSekretar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ZdravstveniKartonLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ZdravstveniKartonPacijent.xaml">
       <SubType>Designer</SubType>
