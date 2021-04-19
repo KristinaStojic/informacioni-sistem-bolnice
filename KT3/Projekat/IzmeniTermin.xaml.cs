@@ -28,6 +28,7 @@ namespace Projekat
         //
         public List<Sala> slobodneSale;
         public static ObservableCollection<string> sviSlobodni { get; set; }
+        public static ObservableCollection<string> sviSlobodni2 { get; set; }
         public Sala _sala;
         public List<string> vremeSala;
         public int brSala;
@@ -65,6 +66,14 @@ namespace Projekat
 
                 CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
                 view.Filter = UserFilter;
+
+                sviSlobodni2 = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
+                                                               "09:00", "09:30",  "10:00", "10:30",
+                                                               "11:00", "11:30", "12:00", "12:30",
+                                                               "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30",
+                                                               "17:00", "17:30", "18:00", "18:30",
+                                                               "19:00", "19:30", "20:00"};
             }
         }
 
@@ -106,25 +115,6 @@ namespace Projekat
 
             String vp = vpp.Text;
             String vk = ZakaziTermin.IzracunajVremeKraja(vp);
-            /*String hh = vp.Substring(0, 2);
-            String min = vp.Substring(3);
-            if (min == "30")
-            {
-                int vkInt = int.Parse(hh);
-                vkInt++;
-                if (vkInt <= 9)
-                {
-                    vk = "0" + vkInt.ToString() + ":00";
-                }
-                else
-                {
-                    vk = vkInt.ToString() + ":00";
-                }
-            }
-            else
-            {
-                vk = hh + ":30";
-            }*/
 
             TipTermina tp;
             if (combo.Text.Equals("Pregled"))
@@ -257,6 +247,22 @@ namespace Projekat
                                                                "19:00", "19:30", "20:00"};
             string selectDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             int i = 0;
+            if (datum.SelectedDate == DateTime.Now.Date)
+            {
+                // MessageBox.Show("Odabrali ste danasnji dan");
+                foreach (string slot in sviSlobodni2)
+                {
+                    DateTime dt = DateTime.Parse(slot);
+                    DateTime sada = DateTime.Now;
+                    if (dt.TimeOfDay <= sada.TimeOfDay)
+                    {
+                        //MessageBox.Show(dt.TimeOfDay.ToString() + " " + sada.TimeOfDay.ToString());
+                        sviSlobodni.Remove(slot);
+                    }
+
+                }
+            }
+
             if (slobodneSale == null)
             {
                 MessageBox.Show("Prvo izberite tip termina", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
