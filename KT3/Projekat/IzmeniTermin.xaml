@@ -105,8 +105,6 @@
         </ListView>
 
         <GroupBox Header="4.  Izaberite vreme termina" Height="105" Margin="352,255,35,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494"/>
-
-        <GroupBox Header="Izaberite vreme termina" Height="77" Margin="352,318,35,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494"/>
         <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="Ime i prezime izabranog lekara"
                    DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="25" Margin="41,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" FontSize="13"/>
         <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,367,0,0" Width="121"/>

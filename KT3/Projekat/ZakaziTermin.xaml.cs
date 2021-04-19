@@ -38,10 +38,6 @@ namespace Projekat
 
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.imePrz.Text = p.IzabraniLekar.ToString();
-
-            this.dgSearch.ItemsSource = MainWindow.lekari;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
-            view.Filter = UserFilter;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -155,28 +151,7 @@ namespace Projekat
         {
             this.Close();
         }
-        private bool UserFilter(object item)
-        {
-            if (String.IsNullOrEmpty(txtFilter.Text))
-                return true;
-            else
-                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-
-        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(dgSearch.ItemsSource).Refresh();
-        }
-
-        private void dgSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dgSearch.SelectedItems.Count > 0)
-            {
-                Lekar item = (Lekar)dgSearch.SelectedItems[0];
-                imePrz.Text = item.ToString();
-            }
-        }
-
+     
         private void preferenca_Click(object sender, RoutedEventArgs e)
         {
             // prozor za odabir lekara po preferenci

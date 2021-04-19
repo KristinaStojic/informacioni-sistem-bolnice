@@ -151,7 +151,7 @@ namespace Projekat
 
             this.lekari.Visibility = Visibility.Hidden;
             this.preporuka.Visibility = Visibility.Hidden;
-            this.zakaziLekar.Visibility = Visibility.Hidden;
+            this.zakaziLekar.Visibility = Visibility.Visible;
 
         }
 
