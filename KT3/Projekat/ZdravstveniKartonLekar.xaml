@@ -56,7 +56,7 @@
                             <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="193" Margin="465,26,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Image Source="slike/covek.png" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
                             </GroupBox>
-                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38"/>
+                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click_2"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Anamneza" Width="100">
@@ -98,12 +98,30 @@
                     </TabItem>
                     <TabItem Header="Uputi" Width="100">
                     </TabItem>
+                    
                     <TabItem Header="Alergeni" Width="100">
+                        <Grid>
+                            <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  
+                        SelectionMode="Single" AutoGenerateColumns="False" 
+                        Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13">
+                            <DataGrid.Columns >
+                                <DataGridTextColumn Header="Šifra leka" Width="320" />
+                                <DataGridTextColumn Header="Naziv leka" Width="300*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                            <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+                            <Button Content="Novi lek" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="321,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+                            <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+
+
+                        </Grid>
                     </TabItem>
 
                 </TabControl>
             </Border>
         </StackPanel>
+        
 
     </Grid>
 </Window>
