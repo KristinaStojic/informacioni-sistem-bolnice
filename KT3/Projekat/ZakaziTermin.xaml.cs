@@ -23,6 +23,7 @@ namespace Projekat
     {
         public int idPacijent = 1;
         public Termin noviTermin;
+        public Lekar lekarr;
         //
         public List<Sala> slobodneSale;
         public static ObservableCollection<string> sviSlobodni { get; set; }
@@ -30,14 +31,23 @@ namespace Projekat
         public List<string> vremeSala;
         public int brSala;
 
-        public ZakaziTermin()
+        public ZakaziTermin(Lekar l)
         {
             InitializeComponent();
             noviTermin = new Termin();
             datum.BlackoutDates.AddDatesInPast();
-
-            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            this.imePrz.Text = p.IzabraniLekar.ToString();
+           
+            if(l != null)
+            {
+                MessageBox.Show("Promenjen lekar");
+                lekarr = l;
+                this.imePrz.Text = l.ToString();
+            } else
+            {
+                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                lekarr = p.IzabraniLekar;
+                this.imePrz.Text = p.IzabraniLekar.ToString();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -95,7 +105,8 @@ namespace Projekat
                     }
                 }*/
                 Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                s.Lekar = p.IzabraniLekar;
+                s.Pacijent = p;
+                s.Lekar = lekarr;
 
                 ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, s.IdTermin);
                 _sala.zauzetiTermini.Add(zs);
@@ -145,6 +156,7 @@ namespace Projekat
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             // elektronsko placanje
+            MessageBox.Show("Elektronsko placanje ce uskoro biti implementirano", "Obavestenje");
         }
 
         private void odustani_Click(object sender, RoutedEventArgs e)
@@ -157,6 +169,7 @@ namespace Projekat
             // prozor za odabir lekara po preferenci
             ZakaziTerminPreferenca ztp = new ZakaziTerminPreferenca();
             ztp.Show();
+            this.Close();
         }
 
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)

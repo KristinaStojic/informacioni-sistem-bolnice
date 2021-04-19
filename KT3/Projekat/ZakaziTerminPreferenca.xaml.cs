@@ -22,6 +22,8 @@ namespace Projekat
     public partial class ZakaziTerminPreferenca : Window
     {
         public static int idPacijent = 1;
+        public static int idLekar = 1;
+        public static int brojPreporucenih = 3;
         public List<string> sviSlobodni2 { get; set; }
         public ObservableCollection<Termin> Termini2 { get; set; }
         public static List<Termin> lista;
@@ -62,7 +64,7 @@ namespace Projekat
                     {
                         DateTime zsDatum = DateTime.Parse(zs.datumTermina);
                         DateTime noviDatum = DateTime.Now.AddDays(3); // tri dana unapred
-                        MessageBox.Show("Novi datum: " + noviDatum.ToString() + " trenutni datum: " + DateTime.Now.ToString() );
+                       // MessageBox.Show("Novi datum: " + noviDatum.ToString() + " trenutni datum: " + DateTime.Now.ToString() );
                         if (DateTime.Compare(zsDatum, noviDatum) < 0 && jeTri == false)
                         {
                             foreach (string slot in sviSlobodni2)
@@ -79,20 +81,21 @@ namespace Projekat
                                     // TODO: ispraviti kada dobijemo raspored radnog vremena
                                     foreach (Lekar l in MainWindow.lekari)
                                     {
-                                        if (l.IdLekara.Equals(1))
+                                        if (l.IdLekara.Equals(idLekar))
                                         {
-                                            t.Lekar = l;
-                                            MessageBox.Show(l.ToString());
+                                            t.Lekar = l ;
+                                            //MessageBox.Show(l.ToString());
                                             break;
                                         }
                                         break;
                                     }
 
                                     // TODO: isparivi kada uradimo prijavljivanje
-                                    t.Pacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                                    Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                                    t.Pacijent = p;
                                     count++;
                                     Termini2.Add(t);
-                                    if (count == 3)
+                                    if (count == brojPreporucenih)
                                     {
                                         jeTri = true;
                                     }
@@ -148,6 +151,7 @@ namespace Projekat
             this.grupa.Visibility = Visibility.Visible;
             this.datagridLekari.Visibility = Visibility.Visible;
             this.txtFilter.Visibility = Visibility.Visible;
+            this.nazad.Visibility = Visibility.Visible;
 
             this.lekari.Visibility = Visibility.Hidden;
             this.preporuka.Visibility = Visibility.Hidden;
@@ -180,10 +184,13 @@ namespace Projekat
         private void zakaziLekar_Click(object sender, RoutedEventArgs e)
         {
             // prosledjuje se lekar
+            Lekar l = null;
             if (datagridLekari.SelectedItems.Count > 0)
             {
-                Lekar l = (Lekar)datagridLekari.SelectedItems[0];
+                l = (Lekar)datagridLekari.SelectedItems[0];
             }
+            ZakaziTermin zt = new ZakaziTermin(l);
+            zt.Show();
             this.Close();
         }
 
