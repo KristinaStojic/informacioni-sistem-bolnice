@@ -58,6 +58,12 @@ namespace Projekat
                 adresa.Text = izabraniNalog.AdresaStanovanja;
                 zanimanje.Text = izabraniNalog.Zanimanje;
 
+                if(izabraniNalog.IzabraniLekar != null)
+                {
+                    lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
+                }
+               
+
                 if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neudata))
                 {
                     combo3.SelectedIndex = 0;
