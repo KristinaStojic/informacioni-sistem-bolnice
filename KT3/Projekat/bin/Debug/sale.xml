@@ -92,6 +92,27 @@
         <idTermina>2</idTermina>
         <idSale>0</idSale>
       </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>08:30</pocetakTermina>
+        <krajTermina>09:00</krajTermina>
+        <datumTermina>04/22/2021</datumTermina>
+        <idTermina>6</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>04/15/2021</datumTermina>
+        <idTermina>9</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>11:00</pocetakTermina>
+        <krajTermina>11:30</krajTermina>
+        <datumTermina>04/24/2021</datumTermina>
+        <idTermina>12</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>
@@ -159,6 +180,20 @@
         <idTermina>3</idTermina>
         <idSale>0</idSale>
       </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>08/10/2021</datumTermina>
+        <idTermina>8</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>08:30</pocetakTermina>
+        <krajTermina>09:00</krajTermina>
+        <datumTermina>04/24/2021</datumTermina>
+        <idTermina>11</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>
@@ -211,6 +246,27 @@
         <krajTermina>07:30</krajTermina>
         <datumTermina>04/27/2021</datumTermina>
         <idTermina>1</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>07:30</krajTermina>
+        <datumTermina>04/30/2021</datumTermina>
+        <idTermina>5</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:30</pocetakTermina>
+        <krajTermina>08:00</krajTermina>
+        <datumTermina>04/30/2021</datumTermina>
+        <idTermina>7</idTermina>
+        <idSale>0</idSale>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>11:00</krajTermina>
+        <datumTermina>08/05/2021</datumTermina>
+        <idTermina>10</idTermina>
         <idSale>0</idSale>
       </ZauzeceSale>
     </zauzetiTermini>

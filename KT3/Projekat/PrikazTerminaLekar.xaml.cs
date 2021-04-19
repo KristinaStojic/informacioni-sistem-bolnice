@@ -37,32 +37,25 @@ namespace Projekat
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.termini)
             {
-                /*foreach(Lekar l in MainWindow.lekari)
-                {
-                    if(t.Lekar.IdLekara == l.IdLekara)
-                    {
-                        Termini.Add(t);
-                    }
-                }*/
+               
 
-
-                if (t.Lekar.IdLekara == 1)
+                if (t.Lekar.IdLekara == 1) //Petar Nebojsic
                 {
                     Termini.Add(t);
                 }
-                /*if (t.Lekar.IdLekara == 2)
+                /*if (t.Lekar.IdLekara == 2) //Milos Dragojevic
                 {
                     Termini.Add(t);
                 }*/
-                /*if (t.Lekar.IdLekara == 3)
+                /*if (t.Lekar.IdLekara == 3) //Petar Milosevic
                 {
                     Termini.Add(t);
                 } */
-               /* if (t.Lekar.IdLekara == 4)
+                /*if (t.Lekar.IdLekara == 4) //Dejan Milosevic
                 {
                     Termini.Add(t);
                 }*/
-               /* if (t.Lekar.IdLekara == 5)
+                /*if (t.Lekar.IdLekara == 5) //Isidora Isidorovic
                 {
                     Termini.Add(t);
                 }*/

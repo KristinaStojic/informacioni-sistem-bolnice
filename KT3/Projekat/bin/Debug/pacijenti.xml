@@ -154,6 +154,17 @@
           <PocetakKoriscenja>15:00</PocetakKoriscenja>
           <UzimanjeTerapije />
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>4</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Andol</NazivLeka>
+          <DatumPropisivanjaLeka>04/30/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>4</BrojDanaKoriscenja>
+          <DnevnaKolicina>10</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -272,6 +283,17 @@
           <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
           <DnevnaKolicina>10</DnevnaKolicina>
           <PocetakKoriscenja>10:10</PocetakKoriscenja>
+          <UzimanjeTerapije />
+        </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>3</IdRecepta>
+          <idPacijenta>6</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Paracetamol</NazivLeka>
+          <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>1</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>1:1</PocetakKoriscenja>
           <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
