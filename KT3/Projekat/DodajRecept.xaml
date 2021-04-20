@@ -56,7 +56,7 @@
         <TextBox x:Name="pacijentIme" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
         <DatePicker Name="datum" Grid.Column="2" Margin="18,10,18,0" Grid.Row="4" VerticalAlignment="Top" Height="30" IsEnabled="False"/>
         <GroupBox Header="Korišćenje leka" HorizontalAlignment="Left" Height="163" Grid.RowSpan="5" VerticalAlignment="Top" Width="375" Grid.Column="1" Margin="21,0,0,0" Grid.Row="9" Grid.ColumnSpan="2" BorderBrush="Black"/>
-        <Button Content="Sačuvaj" Background="#FF6895C5" Grid.Column="1" Margin="57,10,56,1" Grid.Row="14" Width="91" Height="29" Click="Button_Click"/>
+        <Button Content="Sačuvaj" Background="#FF6895C5" Grid.Column="1" Margin="57.2,10,55.8,0" Grid.Row="14" Width="91" Height="29" Click="Button_Click" VerticalAlignment="Top"/>
         <Button Content="Odustani" Background="#FF6895C5" Grid.Column="2" Margin="57,11,56,0" Grid.Row="14"  Width="91" Height="29" RenderTransformOrigin="0.5,0.503" Click="Button_Click_1"/>
         <Label Content="Koliko dana se koristi lek" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="10" VerticalAlignment="Top" Height="30" Width="183" FontSize="16"/>
         <Label Content="Koliko puta na dan" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="11" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>

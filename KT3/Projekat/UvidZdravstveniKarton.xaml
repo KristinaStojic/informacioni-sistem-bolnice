@@ -75,7 +75,7 @@
                         </Grid>
                     </TabItem>
                     <TabItem Header="Alergeni" Width="100">
-                        <Image Source="doktor.png" Height="150" Width="200" />
+                        
                     </TabItem>
                     <TabItem Header="Recepti" Width="100" Height="25">
                         <Grid>
@@ -96,7 +96,7 @@
                         </Grid>
                     </TabItem>
                     <TabItem Header="Uputi" Width="100">
-                        <Image Source="doktor.png" Height="150" Width="200" />
+                       
                     </TabItem>
                 </TabControl>
             </Border>
