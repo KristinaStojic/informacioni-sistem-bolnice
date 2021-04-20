@@ -203,5 +203,21 @@ namespace Projekat
             DodajAlergene da = new DodajAlergene(pacijent, termin);
             da.Show();
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Alergeni izabraniAlergen = (Alergeni)dataGridAlergeni.SelectedItem;
+
+            if (izabraniAlergen != null)
+            {
+
+                DetaljiAlergena da = new DetaljiAlergena(izabraniAlergen, termin);
+                da.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan alergen!");
+            }
+        }
     }
 }

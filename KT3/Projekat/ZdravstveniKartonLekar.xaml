@@ -100,7 +100,10 @@
                     </TabItem>
                     
                     <TabItem Header="Alergeni" Width="100">
+                        
                         <Grid>
+                            <Label Content="Spisak lekova koje pacijent ne sme da koristi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+
                             <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena}"
                         SelectionMode="Single" AutoGenerateColumns="False" 
                         Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13">
@@ -110,7 +113,7 @@
                                 </DataGrid.Columns>
                         </DataGrid>
 
-                            <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+                            <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Button_Click_5"/>
                             <Button Content="Novi lek" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="321,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Click_4"/>
                             <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
 

@@ -206,6 +206,29 @@ namespace Projekat.Model
             }
         }
 
+        public static void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
+        {
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if (pacijent.IdPacijenta == stariAlergen.IdPacijenta)
+                {
+                    foreach (Alergeni a in pacijent.Karton.Alergeni)
+                    {
+                        if (a.IdAlergena == stariAlergen.IdAlergena)
+                        {
+                            a.NuspojavaNaLek = noviAlergen.NuspojavaNaLek;
+                            a.VremeReakcije = noviAlergen.VremeReakcije;
+                        }
+                    }
+                }
+            }
+
+
+            int idx = ZdravstveniKartonLekar.TabelaAlergena.IndexOf(stariAlergen);
+            ZdravstveniKartonLekar.TabelaAlergena.RemoveAt(idx);
+            ZdravstveniKartonLekar.TabelaAlergena.Insert(idx, noviAlergen);
+        }
+
 
     }
 }
