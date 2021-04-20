@@ -24,6 +24,13 @@ namespace Projekat.Model
             this.SifraLeka = sifraLeka;
             this.NuspojavaNaLek = nuspojava;
             this.VremeReakcije = vremeReakcije;
+        }  
+        
+        public Alergeni(int idAlergena, string nazivLeka, string sifraLeka)
+        {
+            this.IdAlergena = idAlergena;  
+            this.NazivLeka = nazivLeka;
+            this.SifraLeka = sifraLeka;
         }
     }
 }

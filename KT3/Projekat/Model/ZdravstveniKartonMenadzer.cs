@@ -80,7 +80,10 @@ namespace Projekat.Model
             
 
             return id;
-        }public static int GenerisanjeIdAnamneze(int idPac)
+        
+        }
+        
+        public static int GenerisanjeIdAnamneze(int idPac)
         {
             bool pomocna = false;
             int id = 1;
@@ -93,6 +96,36 @@ namespace Projekat.Model
                         foreach (Anamneza p in pac.Karton.Anamneze)
                         {
                             if (p.IdAnamneze.Equals(id))
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
+                }
+            }
+            
+
+            return id;
+        }public static int GenerisanjeIdAlergena(int idPac)
+        {
+            bool pomocna = false;
+            int id = 1;
+            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
+            {
+                if(pac.IdPacijenta == idPac)
+                {
+                    for (id = 1; id <= pac.Karton.Alergeni.Count; id++)
+                    {
+                        foreach (Alergeni p in pac.Karton.Alergeni)
+                        {
+                            if (p.IdAlergena.Equals(id))
                             {
                                 pomocna = true;
                                 break;
@@ -160,5 +193,19 @@ namespace Projekat.Model
             ZdravstveniKartonLekar.TabelaAnamneza.RemoveAt(idx);
             ZdravstveniKartonLekar.TabelaAnamneza.Insert(idx, nova);
         }
+
+        public static void DodajAlergen(Alergeni alergen)  
+        {
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if (pacijent.IdPacijenta == alergen.IdPacijenta)
+                {
+                    pacijent.Karton.Alergeni.Add(alergen);
+                    ZdravstveniKartonLekar.TabelaAlergena.Add(alergen);
+                }
+            }
+        }
+
+
     }
 }

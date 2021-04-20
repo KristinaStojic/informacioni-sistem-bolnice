@@ -34,6 +34,11 @@ namespace Projekat
             get;
             set;
         }
+          public static ObservableCollection<Alergeni> TabelaAlergena
+        {
+            get;
+            set;
+        }
 
         public ZdravstveniKartonLekar(Pacijent izabraniNalog, Termin termin)
         {
@@ -132,6 +137,18 @@ namespace Projekat
                             TabelaAnamneza.Add(an);
                         }
                     }
+                } 
+                
+                TabelaAlergena = new ObservableCollection<Alergeni>();
+                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+                {
+                    if (p.IdPacijenta == pacijent.IdPacijenta)
+                    {
+                        foreach (Alergeni an in p.Karton.Alergeni)
+                        {
+                            TabelaAlergena.Add(an);
+                        }
+                    }
                 }
 
                 //Lekar
@@ -179,6 +196,12 @@ namespace Projekat
         {
             DodajRecept rec = new DodajRecept(pacijent, termin);
             rec.Show();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            DodajAlergene da = new DodajAlergene(pacijent, termin);
+            da.Show();
         }
     }
 }

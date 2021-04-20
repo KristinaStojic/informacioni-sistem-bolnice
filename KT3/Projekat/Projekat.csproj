@@ -62,6 +62,9 @@
     <Compile Include="DetaljiAnamneze.xaml.cs">
       <DependentUpon>DetaljiAnamneze.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajAlergene.xaml.cs">
+      <DependentUpon>DodajAlergene.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajAnamnezu.xaml.cs">
       <DependentUpon>DodajAnamnezu.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,7 @@
     <Compile Include="IzmjeniOpremu.xaml.cs">
       <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Alergeni.cs" />
     <Compile Include="Model\Anamneza.cs" />
     <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
@@ -199,6 +203,10 @@
       <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
     </Compile>
     <Page Include="DetaljiAnamneze.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajAlergene.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
