@@ -87,6 +87,7 @@ namespace Projekat
                 }
                 
             }
+            this.anketa.Visibility = Visibility.Hidden;
         }
 
         public void izvrsiNit()
@@ -242,6 +243,12 @@ namespace Projekat
         private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+         //   PrikaziAnkete prikaziAnkete = new PrikaziAnkete();
+           // prikaziAnkete.Show();
         }
     }
 }
