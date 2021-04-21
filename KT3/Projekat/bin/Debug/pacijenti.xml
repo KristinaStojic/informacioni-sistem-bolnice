@@ -316,4 +316,75 @@
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
   </Pacijent>
+  <Pacijent>
+    <IdPacijenta>3</IdPacijenta>
+    <ImePacijenta>Betmen</ImePacijenta>
+    <PrezimePacijenta>Betmen</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>77</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>7</IdPacijenta>
+    <ImePacijenta>M</ImePacijenta>
+    <PrezimePacijenta>M</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>1</Jmbg>
+    <StatusNaloga>Guest</StatusNaloga>
+    <BrojTelefona>0</BrojTelefona>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>8</IdPacijenta>
+    <ImePacijenta>Marko</ImePacijenta>
+    <PrezimePacijenta>Marko</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>654645</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>6454</BrojTelefona>
+    <Email>efsfds</Email>
+    <AdresaStanovanja>fdsfds</AdresaStanovanja>
+    <Zanimanje>fdsfsd</Zanimanje>
+    <BracnoStanje>Neozenjen</BracnoStanje>
+    <Karton>
+      <IdPacijenta>8</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>8</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Sterpsils</NazivLeka>
+          <DatumPropisivanjaLeka>04/30/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>5</DnevnaKolicina>
+          <PocetakKoriscenja>10:10</PocetakKoriscenja>
+          <UzimanjeTerapije />
+        </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>8</idPacijenta>
+          <IdLekara>0</IdLekara>
+          <NazivLeka>Pentraxil</NazivLeka>
+          <DatumPropisivanjaLeka>04/30/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>2</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije />
+        </LekarskiRecept>
+      </LekarskiRecepti>
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>8</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>adadasdhghg</OpisBolesti>
+          <Terapija>sdasd</Terapija>
+          <Datum>04/30/2021</Datum>
+          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
+        </Anamneza>
+      </Anamneze>
+    </Karton>
+  </Pacijent>
 </ArrayOfPacijent>

@@ -3,6 +3,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,7 +20,7 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for PreraspodjelaStaticke.xaml
     /// </summary>
-    public partial class PreraspodjelaStaticke : Window
+    public partial class PreraspodjelaStaticke : Window, INotifyPropertyChanged
     {
         public static Oprema izabranaOprema;
         public Sala salaDodavanje;
@@ -27,6 +28,23 @@ namespace Projekat
         public ObservableCollection<Sala> sale { get; set; }
         public ObservableCollection<Oprema> staticka { get; set; }
         public ObservableCollection<string> termini { get; set; }
+        public int validacija;
+        public static int dozvoljenaKolicina;
+        public int Validacija
+        {
+            get
+            {
+                return validacija;
+            }
+            set
+            {
+                if (value != validacija)
+                {
+                    validacija = value;
+                    OnPropertyChanged("Validacija");
+                }
+            }
+        }
         public PreraspodjelaStaticke(Sala izabranaSala)
         {
             termini = new ObservableCollection<string>();
@@ -80,16 +98,7 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            termini.Add("12:30");
-            termini.Add("12:31");
-            termini.Add("12:32");
-            termini.Add("12:33");
-            termini.Add("12:34");
-            termini.Add("12:35");
-            termini.Add("12:36");
-            termini.Add("12:37");
-            termini.Add("12:38");
-            termini.Add("12:39");
+            termini.Add("18:55");
         }
 
         private void kombo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -125,6 +134,7 @@ namespace Projekat
         }
         private void azurirajKolicinu(Sala s)
         {
+            int kolicina;
             foreach (Sala sal in SaleMenadzer.sale)
             {
                 if (s.Id == sal.Id)
@@ -133,7 +143,16 @@ namespace Projekat
                     {
                         if (o.IdOpreme == izabranaOprema.IdOpreme)
                         {
-                            this.tekst.Text = "MAX:" + o.Kolicina.ToString();
+                            kolicina = o.Kolicina;
+                            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+                            {
+                                if (pm.izSale.Id == s.Id)
+                                {
+                                    kolicina -= pm.kolicina;
+                                }
+                            }
+                            this.tekst.Text = "MAX:" + kolicina.ToString();
+                            dozvoljenaKolicina = kolicina;
                         }
                     }
                 }
@@ -309,7 +328,7 @@ namespace Projekat
                             }
                         }
                     }
-                    zakazi.salji = false;
+                    //zakazi.salji = false;
                     zakazi.datumIVrijeme = datumIVrijeme;
                     PremjestajMenadzer.dodajPremjestaj(zakazi);
                 }
@@ -349,11 +368,12 @@ namespace Projekat
                         }
                     }
                 }
-                zakazi.salji = false;
+                //zakazi.salji = false;
                 zakazi.datumIVrijeme = datumIVrijeme;
                 PremjestajMenadzer.dodajPremjestaj(zakazi);
             }
             this.Close();
+            aktivna = false;
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -407,6 +427,14 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             aktivna = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

@@ -26,17 +26,21 @@ namespace Projekat
         private void Prostorije_Click(object sender, RoutedEventArgs e)
         {
             PrikaziSalu w1 = new PrikaziSalu();
+            this.Close();
             w1.ShowDialog();
         }
 
         private void Zahtjevi_Click(object sender, RoutedEventArgs e)
         {
             Zahtjevi w2 = new Zahtjevi();
+            this.Close();
             w2.ShowDialog();
         }
 
         private void Odjava_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mw = new MainWindow();
+            mw.Show();
             this.Close();
         }
     }

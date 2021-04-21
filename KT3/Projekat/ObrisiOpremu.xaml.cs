@@ -25,7 +25,21 @@ namespace Projekat
         {
             InitializeComponent();
             this.izabranaOprema = izabranaOprema;
-            this.maks.Text = "MAX: " + izabranaOprema.Kolicina.ToString();
+            postaviMax();
+        }
+
+        private void postaviMax()
+        {
+            bool postoji = false;
+            int kolicina = izabranaOprema.Kolicina;
+            foreach(Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                if(pm.izSale.Id == 4 && pm.oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    kolicina -= pm.kolicina;
+                }
+            }
+            this.maks.Text = "MAX: " + kolicina.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

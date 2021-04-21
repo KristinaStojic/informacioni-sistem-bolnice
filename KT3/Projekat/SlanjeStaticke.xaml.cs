@@ -3,6 +3,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,12 +20,30 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for SlanjeStaticke.xaml
     /// </summary>
-    public partial class SlanjeStaticke : Window
+    public partial class SlanjeStaticke : Window, INotifyPropertyChanged
     {
         public ObservableCollection<Sala> Sale { get; set; }
         public ObservableCollection<string> termini { get; set; }
         Oprema opremaZaSlanje;
         Sala salaIzKojeSaljem;
+        public static int dozvoljenaKolicina;
+        public int validacija;
+        public static bool aktivan;
+        public int Validacija
+        {
+            get
+            {
+                return validacija;
+            }
+            set
+            {
+                if (value != validacija)
+                {
+                    validacija = value;
+                    OnPropertyChanged("Validacija");
+                }
+            }
+        }
         public SlanjeStaticke(Sala izabranaSala, Oprema opremaZaSlanje)
         {
             termini = new ObservableCollection<string>();
@@ -57,21 +76,25 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            termini.Add("12:30");
-            termini.Add("12:31");
-            termini.Add("12:32");
-            termini.Add("12:33");
-            termini.Add("12:34");
-            termini.Add("12:35");
-            termini.Add("12:36");
-            termini.Add("12:37");
-            termini.Add("12:38");
-            termini.Add("12:39");
+            termini.Add("18:55");
+            
+            int kolicina = opremaZaSlanje.Kolicina;
+            foreach(Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                kolicina = opremaZaSlanje.Kolicina;
+                if (pm.izSale.Id == salaIzKojeSaljem.Id)
+                {
+                    kolicina -= pm.kolicina;
+                }
+            }
+            this.maks.Text = "MAX: " + kolicina.ToString();
+
+            dozvoljenaKolicina = kolicina;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            aktivan = false;
             this.Close();
         }
 
@@ -175,7 +198,7 @@ namespace Projekat
                         }
                     }
                     zakazi.datumIVrijeme = datumIVrijeme;
-                    zakazi.salji = true;
+                   // zakazi.salji = true;
                     PremjestajMenadzer.dodajPremjestaj(zakazi);
                 }
             }
@@ -215,9 +238,10 @@ namespace Projekat
                     }
                 }
                 zakazi.datumIVrijeme = datumIVrijeme;
-                zakazi.salji = true;
+                //zakazi.salji = true;
                 PremjestajMenadzer.dodajPremjestaj(zakazi);
             }
+            aktivan = false;
             this.Close();
         }
 
@@ -267,6 +291,19 @@ namespace Projekat
                     
                 }
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            aktivan = false;
         }
     }
 }

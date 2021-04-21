@@ -77,6 +77,8 @@ namespace Projekat
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             SaleMenadzer.sacuvajIzmjene();
+            Upravnik u = new Upravnik();
+            u.Show();
             this.Hide();
             //MainWindow mw = new MainWindow();
             //mw.Show();
@@ -132,6 +134,7 @@ namespace Projekat
         {
             Zahtjevi z = new Zahtjevi();
             z.Show();
+            this.Close();
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
