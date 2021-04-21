@@ -34,6 +34,12 @@ namespace Projekat
             set;
         }
 
+        public static ObservableCollection<Alergeni> TabelaAlergena
+        {
+            get;
+            set;
+        }
+
         public UvidZdravstveniKarton(Pacijent izabraniNalog)
         {
             InitializeComponent();
@@ -131,6 +137,19 @@ namespace Projekat
                 }
             }
 
+            TabelaAlergena = new ObservableCollection<Alergeni>();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                if (p.IdPacijenta == pacijent.IdPacijenta)
+                {
+                    foreach (Alergeni an in p.Karton.Alergeni)
+                    {
+                        TabelaAlergena.Add(an);
+                    }
+                }
+            }
+
+            // izabrani lekar
             if (izabraniNalog.IzabraniLekar != null)
             {
                 lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
@@ -141,5 +160,27 @@ namespace Projekat
         {
             this.Hide();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // detalji anamneze
+        /*private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Anamneza izabranaAnamneza = (Anamneza)dataGridAnamneze.SelectedItem;
+
+            if (izabranaAnamneza != null)
+            {
+
+                DetaljiAnamneze da = new DetaljiAnamneze(izabranaAnamneza, termin);
+                da.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijednu anamnezu!");
+            }
+        }*/
     }
 }

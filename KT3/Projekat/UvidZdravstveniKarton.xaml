@@ -62,26 +62,46 @@
                     </TabItem>
                     <TabItem Header="Anamneza" Width="100">
                         <Grid>
-                        <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="241*"/>
+                                <ColumnDefinition Width="550*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Anamneze" HorizontalAlignment="Left" Margin="52,12,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
+                            <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
                         SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                        Margin="52,56,0,0" VerticalAlignment="Top" Height="387" Width="691" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13">
-                            <DataGrid.Columns >
-                                <DataGridTextColumn Width="130" Header="Redni broj pregleda" Binding="{Binding IdAnamneze}"/>
-                                <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="160" />
-                                <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Width="252"/>
-                                <!--Binding ="{Binding IdLekara}"-->
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="613,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click"/>
+                        Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="690" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13" Grid.ColumnSpan="2">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Width="130" Header="Redni broj pregleda" Binding="{Binding IdAnamneze}"/>
+                                    <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="160" />
+                                    <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Binding="{Binding ImePrezimeLekara}" Width="252"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="371.6,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click" Grid.Column="1"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Alergeni" Width="100">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="121*"/>
+                                <ColumnDefinition Width="670*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Spisak lekova koje pacijent ne sme da koristi" HorizontalAlignment="Left" Margin="52,12,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
+                            <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena}"
+                                SelectionMode="Single" AutoGenerateColumns="False" Margin="52,64,48.2,0" VerticalAlignment="Top"  Height="387" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13" Grid.ColumnSpan="2">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Šifra leka" Width="320"  Binding="{Binding SifraLeka}" />
+                                    <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding NazivLeka}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="492.2,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click" Grid.Column="1"/>
+                        </Grid>
                     </TabItem>
                     <TabItem Header="Recepti" Width="100" Height="25">
                         <Grid>
+                            <Label Content="Recepti" HorizontalAlignment="Left" Margin="52,12,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
                             <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
                                 SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                                 Margin="52,56,0,0" VerticalAlignment="Top" Height="387" Width="691" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13" Visibility="Visible">
+                                 Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="691" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13" Visibility="Visible">
                                 <DataGrid.Columns >
                                     <DataGridTextColumn Header="ID" Binding="{Binding IdRecepta}"  Width="50"/>
                                     <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="105"/>
@@ -92,7 +112,6 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                             <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="613,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click"/>
-
                         </Grid>
                     </TabItem>
                     <TabItem Header="Uputi" Width="100">
