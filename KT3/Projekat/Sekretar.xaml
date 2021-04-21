@@ -47,7 +47,7 @@
             </MenuItem>
             <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="Button_Click" FontSize="17"/>
             <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Button_Click_1"/>
-            <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Button_Click_5"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
         </Menu>
         <Label Content="Osnovni podaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="873,57,0,0" FontSize="24" FontWeight="Bold"/>

@@ -121,7 +121,7 @@
             </MenuItem>
             <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="Button_Click_4" FontSize="17"/>
             <MenuItem Header="  Termini" Height="60" Width="209" FontSize="17"/>
-            <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Button_Click_6"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
         </Menu>
     </Grid>

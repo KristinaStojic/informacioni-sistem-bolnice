@@ -147,5 +147,12 @@ namespace Projekat
                 prezimeLek.Text = t.Lekar.PrezimeLek;
             }
         }
+
+        // oglasna tabla
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            OglasnaTabla o = new OglasnaTabla();
+            o.Show();
+        }
     }
 }

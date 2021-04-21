@@ -166,5 +166,12 @@ namespace Projekat
             PrikaziTerminSekretar p = new PrikaziTerminSekretar();
             p.Show();
         }
+
+        // oglasna tabla
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            OglasnaTabla o = new OglasnaTabla();
+            o.Show();
+        }
     }
 }

@@ -45,7 +45,7 @@
             </MenuItem>
             <MenuItem Header="  Nalozi pacijenata" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Button_Click_6"/>
-            <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Button_Click_7"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
         </Menu>
         <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="424" Background="#FFE7F6F7" Grid.Column="4" Margin="0.4,0,-0.4,0" Grid.RowSpan="5" Grid.ColumnSpan="2" >
