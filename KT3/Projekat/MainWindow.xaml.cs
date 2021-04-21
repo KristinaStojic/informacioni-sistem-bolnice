@@ -25,6 +25,7 @@ namespace Projekat
     {
         public static ObservableCollection<Lekar> lekari;
         public static ObservableCollection<Lek> lekovi;
+        public static ObservableCollection<Alergeni> alergeni;
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +52,14 @@ namespace Projekat
             lekovi.Add(new Lek(3, "Pentraxil", "R24"));
             lekovi.Add(new Lek(4, "Andol", "M4M"));
             lekovi.Add(new Lek(5, "Sterpsils", "K5S"));
+
+            alergeni = new ObservableCollection<Alergeni>();
+            alergeni.Add(new Alergeni(1, "Paracetamol", "P2L"));
+            alergeni.Add(new Alergeni(2, "Brufen", "B1E"));
+            alergeni.Add(new Alergeni(3, "Pentraxil", "R24"));
+            alergeni.Add(new Alergeni(4, "Andol", "M4M"));
+            alergeni.Add(new Alergeni(5, "Sterpsils", "K5S"));
+
 
 
         }
