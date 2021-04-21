@@ -30,13 +30,13 @@
         <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="75,150,0,0" VerticalAlignment="Top" Width="195" Height="95" Click="lekari_Click" Background="#FF112D4E" OpacityMask="White" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
         <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="325,150,0,0" VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Background="#FF112D4E" RenderTransformOrigin="0.5,0.5" FontSize="14" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
         <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Left" Height="316" Margin="132,19,0,0" VerticalAlignment="Top" Width="318" RenderTransformOrigin="0.858,0.494">
-            <TextBox DockPanel.Dock="Top" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="23,14,15,254" Height="25">
+            <TextBox DockPanel.Dock="Top" x:Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="6,21,2,247" Height="25">
                 <TextBox.Style>
                     <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
                         <Style.Resources>
                             <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
-                                    <Label Content="Pretražite listu po prezimenu lekara" Foreground="LightGray" />
+                                    <Label Content= "Pronađite lekara po prezimenu, imenu ili specijalizaciji" Foreground="LightGray" />
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Style.Resources>

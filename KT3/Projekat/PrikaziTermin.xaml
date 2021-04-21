@@ -71,6 +71,9 @@
         </DataGrid>
         <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,25,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
         <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Grid.Column="1" Margin="238,215,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
+        <Button x:Name="anketa" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="22,395,0,0" VerticalAlignment="Top" Width="140" Height="59" RenderTransformOrigin="0.503,0.508">
+            <TextBlock Text="Anketa" Foreground="White" FontSize="16"/>
+        </Button>
 
         <!--Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
             <TextBlock Text="Obavestenja" Foreground="White" FontSize="16"></TextBlock>

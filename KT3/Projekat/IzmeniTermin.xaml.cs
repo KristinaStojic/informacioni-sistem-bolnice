@@ -25,6 +25,7 @@ namespace Projekat
         public Termin termin;
         private Lekar idLek;
         private string stariDatum;
+        public static int idPacijent = 1;
         //
         public List<Sala> slobodneSale;
         public static ObservableCollection<string> sviSlobodni { get; set; }
@@ -82,7 +83,8 @@ namespace Projekat
             if (String.IsNullOrEmpty(txtFilter.Text))
                 return true;
             else
-                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0) || ((item as Lekar).ImeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Lekar).specijalizacija.ToString().IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -98,68 +100,73 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //dugme sacuvaj
-           try
-           {
-            //int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-            String formatted = null;
-            DateTime? selectedDate = datum.SelectedDate;
-            if (selectedDate.HasValue)
+            if (termin.Pomeren == false)
             {
-                formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                //dugme sacuvaj
+                try
+                {
+                    //int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
+                    String formatted = null;
+                    DateTime? selectedDate = datum.SelectedDate;
+                    if (selectedDate.HasValue)
+                    {
+                        formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            } else
-            {
-                formatted = stariDatum;
-            }
+                    }
+                    else
+                    {
+                        formatted = stariDatum;
+                    }
 
-            String vp = vpp.Text;
-            String vk = ZakaziTermin.IzracunajVremeKraja(vp);
+                    String vp = vpp.Text;
+                    String vk = ZakaziTermin.IzracunajVremeKraja(vp);
 
-            TipTermina tp;
-            if (combo.Text.Equals("Pregled"))
-            {
-                tp = TipTermina.Pregled;
+                    TipTermina tp;
+                    if (combo.Text.Equals("Pregled"))
+                    {
+                        tp = TipTermina.Pregled;
+                    }
+                    else
+                    {
+                        tp = TipTermina.Operacija;
+                    }
+                    Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp);
+                    // TODO: promeniti ovo na id pacijenta koji je prijavljen
+                    foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
+                    {
+                        if (p.IdPacijenta == idPacijent)
+                        {
+                            t.Pacijent = p;
+                        }
+                    }
+                    t.Pomeren = true;
+                    ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, t.IdTermin);
+                    _sala.zauzetiTermini.Add(zs);
+                    t.Prostorija = _sala;
+                    //SaleMenadzer.sacuvajIzmjene();
+
+                    if (dgSearch.SelectedItems.Count > 0)
+                    {
+                        Lekar selLekar = (Lekar)dgSearch.SelectedItem;
+                        t.Lekar = selLekar;
+                    }
+                    else
+                    {
+                        // TODO: optimizovati!
+                        t.Lekar = idLek;
+                    }
+                    TerminMenadzer.IzmeniTermin(termin, t);
+                    this.Close();
+                }
+                catch (System.Exception)
+                {
+                    MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                tp = TipTermina.Operacija;
+                MessageBox.Show("Nemoguce je pomeriti ovaj termin jer je vec jednom pomeren", "Upozorenje");
             }
-            Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp);
-            // TODO: promeniti ovo na id pacijenta koji je prijavljen
-            foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
-            {
-                if (p.IdPacijenta == 1)
-                {
-                    t.Pacijent = p;
-                }
-            }
-
-            ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, t.IdTermin);
-            _sala.zauzetiTermini.Add(zs);
-            t.Prostorija = _sala;
-            //SaleMenadzer.sacuvajIzmjene();
-
-            if (dgSearch.SelectedItems.Count > 0)
-            {
-                Lekar selLekar = (Lekar)dgSearch.SelectedItem;
-                t.Lekar = selLekar;
-            } else
-            {
-                // TODO: optimizovati!
-                t.Lekar = idLek; 
-            }
-            TerminMenadzer.IzmeniTermin(termin, t);
-            this.Close();
-         } catch (System.Exception)
-            {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void lvWithSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -167,7 +174,7 @@ namespace Projekat
 
         }
 
-        private void vpp_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selektDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             string vreme = vpp.SelectedValue.ToString();
