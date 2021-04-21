@@ -12,10 +12,7 @@ using System.ComponentModel;
 
 namespace Model
 {
-    public enum status
-    {
-        Zauzeta, Slobodna, Renoviranje
-    }
+   
 
     public enum tipSale
     {
@@ -28,7 +25,6 @@ namespace Model
         {
             this.Id = id;
             this.brojSale = brojSale;
-            this.Status = status.Slobodna;
             this.TipSale = tip;
             this.Namjena = namjena;
             //Sanja
@@ -38,7 +34,6 @@ namespace Model
         public Sala(int brojSale, string namjena, tipSale tip)
         { 
             this.brojSale = brojSale;
-            this.Status = status.Slobodna;
             this.TipSale = tip;
             this.Namjena = namjena;
             //Sanja

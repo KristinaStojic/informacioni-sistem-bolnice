@@ -210,7 +210,6 @@ namespace Model
                     }
 
                     termini.RemoveAt(i);
-                    termin.Prostorija.Status = status.Slobodna;
                     Console.WriteLine("obrisan i termin");
                 }
             }          
@@ -253,7 +252,6 @@ namespace Model
                     }
 
                     termini.RemoveAt(i);
-                    termin.Prostorija.Status = status.Slobodna;
                 }
             }
             PrikazTerminaLekar.Termini.Remove(termin);

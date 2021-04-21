@@ -56,10 +56,9 @@
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="225" Margin="10, 50, 10, 20" VerticalAlignment="Center" Width="531">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Broj sale      " Binding="{Binding brojSale}"/>
-                    <DataGridTextColumn Header="Namjena sale                       " Binding="{Binding Namjena}" />
-                    <DataGridTextColumn Header="Status sale                        " Binding="{Binding Status}" />
-                    <DataGridTextColumn Header="Tip sale                           " Binding="{Binding TipSale}" />
+                    <DataGridTextColumn Header="Broj sale                    " Binding="{Binding brojSale}"/>
+                    <DataGridTextColumn Header="Namjena sale                                        " Binding="{Binding Namjena}" />
+                    <DataGridTextColumn Header="Tip sale                                            " Binding="{Binding TipSale}" />
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">

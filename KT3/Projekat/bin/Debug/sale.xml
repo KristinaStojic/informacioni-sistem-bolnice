@@ -2,7 +2,7 @@
 <ArrayOfSala xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Sala>
     <Status>Slobodna</Status>
-    <TipSale>SalaZaPregled</TipSale>
+    <TipSale>OperacionaSala</TipSale>
     <Id>1</Id>
     <brojSale>1</brojSale>
     <Namjena>kardiovaskularna hirurgija</Namjena>
@@ -21,7 +21,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>207</Kolicina>
+        <Kolicina>197</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
@@ -50,69 +50,24 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <Namjena>1</Namjena>
-    <Oprema />
     <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/11/2021</datumTermina>
-        <idTermina>1</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>11:30</pocetakTermina>
-        <krajTermina>12:00</krajTermina>
-        <datumTermina>04/11/2021</datumTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>19:30</pocetakTermina>
-        <krajTermina>20:00</krajTermina>
-        <datumTermina>06/02/2021</datumTermina>
-        <idTermina>4</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>08/18/2021</datumTermina>
-        <idTermina>4</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/30/2021</datumTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
       <ZauzeceSale>
         <pocetakTermina>08:30</pocetakTermina>
         <krajTermina>09:00</krajTermina>
+        <datumTermina>04/20/2021</datumTermina>
+        <idTermina>2</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>09:30</pocetakTermina>
+        <krajTermina>10:00</krajTermina>
         <datumTermina>04/22/2021</datumTermina>
-        <idTermina>6</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/15/2021</datumTermina>
-        <idTermina>9</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>11:00</pocetakTermina>
-        <krajTermina>11:30</krajTermina>
-        <datumTermina>04/24/2021</datumTermina>
-        <idTermina>12</idTermina>
-        <datumTermina>04/16/2021</datumTermina>
-        <idTermina>3</idTermina>
+        <idTermina>4</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
-    <TipSale>OperacionaSala</TipSale>
+    <TipSale>SalaZaPregled</TipSale>
     <Id>2</Id>
     <brojSale>2</brojSale>
     <Namjena>opsta praksa</Namjena>
@@ -131,7 +86,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>94</Kolicina>
+        <Kolicina>99</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
@@ -162,36 +117,10 @@
     </Oprema>
     <zauzetiTermini>
       <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>05/01/2021</datumTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>20:00</pocetakTermina>
-        <krajTermina>20:30</krajTermina>
-        <datumTermina>04/18/2021</datumTermina>
-        <idTermina>3</idTermina>
-    <Namjena>2</Namjena>
-    <Oprema />
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>13:00</pocetakTermina>
-        <krajTermina>13:30</krajTermina>
-        <datumTermina>05/08/2021</datumTermina>
+        <pocetakTermina>12:30</pocetakTermina>
+        <krajTermina>13:00</krajTermina>
+        <datumTermina>04/21/2021</datumTermina>
         <idTermina>4</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>08:00</pocetakTermina>
-        <krajTermina>08:30</krajTermina>
-        <datumTermina>04/29/2021</datumTermina>
-        <idTermina>8</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>08:30</pocetakTermina>
-        <krajTermina>09:00</krajTermina>
-        <datumTermina>04/24/2021</datumTermina>
-        <idTermina>11</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
@@ -210,7 +139,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>25</Kolicina>
+        <Kolicina>20</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
@@ -239,40 +168,7 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/27/2021</datumTermina>
-        <idTermina>1</idTermina>
-    <Namjena>3</Namjena>
-    <Oprema />
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>19:30</pocetakTermina>
-        <krajTermina>20:00</krajTermina>
-        <datumTermina>04/22/2021</datumTermina>
-        <idTermina>6</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/30/2021</datumTermina>
-        <idTermina>5</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:30</pocetakTermina>
-        <krajTermina>08:00</krajTermina>
-        <datumTermina>04/30/2021</datumTermina>
-        <idTermina>7</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>11:00</krajTermina>
-        <datumTermina>08/05/2021</datumTermina>
-        <idTermina>10</idTermina>
-      </ZauzeceSale>
-    </zauzetiTermini>
+    <zauzetiTermini />
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
@@ -283,7 +179,7 @@
     <Oprema>
       <Oprema>
         <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>835</Kolicina>
+        <Kolicina>845</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>1</IdOpreme>
       </Oprema>
@@ -331,10 +227,5 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
-  </Sala>
-        <datumTermina>05/06/2021</datumTermina>
-        <idTermina>9</idTermina>
-      </ZauzeceSale>
-    </zauzetiTermini>
   </Sala>
 </ArrayOfSala>
