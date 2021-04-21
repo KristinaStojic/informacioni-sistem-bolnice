@@ -132,7 +132,8 @@ namespace Projekat
                 else
                 {
                     this.Close();
-                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
+                    //UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
+                    ZdravstveniKartonLekar karton = new ZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
                     karton.Show();
                 }
             }

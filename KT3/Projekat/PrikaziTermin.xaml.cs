@@ -46,11 +46,11 @@ namespace Projekat
             thread.Start();
             foreach (Termin t in TerminMenadzer.termini)
             {
-                /*if (t.Pacijent.IdPacijenta == idPacijent)
+                if (t.Pacijent.IdPacijenta == idPacijent)
                 {
                     Termini.Add(t);
-                }*/
-                Termini.Add(t);
+                }
+                //Termini.Add(t);
             }
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
             /*foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
@@ -87,6 +87,7 @@ namespace Projekat
                 }
                 
             }
+            this.anketa.Visibility = Visibility.Hidden;
         }
 
         public void izvrsiNit()
@@ -98,7 +99,7 @@ namespace Projekat
             }
         }
 
-        public static void ProveriRecepte()
+        private static void ProveriRecepte()
         {
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
             App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
@@ -242,6 +243,12 @@ namespace Projekat
         private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+         //   PrikaziAnkete prikaziAnkete = new PrikaziAnkete();
+           // prikaziAnkete.Show();
         }
     }
 }

@@ -2,7 +2,7 @@
 <ArrayOfSala xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Sala>
     <Status>Slobodna</Status>
-    <TipSale>OperacionaSala</TipSale>
+    <TipSale>SalaZaPregled</TipSale>
     <Id>1</Id>
     <brojSale>1</brojSale>
     <Namjena>kardiovaskularna hirurgija</Namjena>
@@ -50,17 +50,19 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
+    <Namjena>1</Namjena>
+    <Oprema />
     <zauzetiTermini>
       <ZauzeceSale>
         <pocetakTermina>07:00</pocetakTermina>
         <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
+        <datumTermina>04/11/2021</datumTermina>
         <idTermina>1</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>04/16/2021</datumTermina>
+        <pocetakTermina>11:30</pocetakTermina>
+        <krajTermina>12:00</krajTermina>
+        <datumTermina>04/11/2021</datumTermina>
         <idTermina>2</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
@@ -103,12 +105,14 @@
         <krajTermina>11:30</krajTermina>
         <datumTermina>04/24/2021</datumTermina>
         <idTermina>12</idTermina>
+        <datumTermina>04/16/2021</datumTermina>
+        <idTermina>3</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>
     <Status>Slobodna</Status>
-    <TipSale>SalaZaPregled</TipSale>
+    <TipSale>OperacionaSala</TipSale>
     <Id>2</Id>
     <brojSale>2</brojSale>
     <Namjena>opsta praksa</Namjena>
@@ -168,11 +172,19 @@
         <krajTermina>20:30</krajTermina>
         <datumTermina>04/18/2021</datumTermina>
         <idTermina>3</idTermina>
+    <Namjena>2</Namjena>
+    <Oprema />
+    <zauzetiTermini>
+      <ZauzeceSale>
+        <pocetakTermina>13:00</pocetakTermina>
+        <krajTermina>13:30</krajTermina>
+        <datumTermina>05/08/2021</datumTermina>
+        <idTermina>4</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>07:30</krajTermina>
-        <datumTermina>08/10/2021</datumTermina>
+        <pocetakTermina>08:00</pocetakTermina>
+        <krajTermina>08:30</krajTermina>
+        <datumTermina>04/29/2021</datumTermina>
         <idTermina>8</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
@@ -233,6 +245,14 @@
         <krajTermina>07:30</krajTermina>
         <datumTermina>04/27/2021</datumTermina>
         <idTermina>1</idTermina>
+    <Namjena>3</Namjena>
+    <Oprema />
+    <zauzetiTermini>
+      <ZauzeceSale>
+        <pocetakTermina>19:30</pocetakTermina>
+        <krajTermina>20:00</krajTermina>
+        <datumTermina>04/22/2021</datumTermina>
+        <idTermina>6</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
         <pocetakTermina>07:00</pocetakTermina>
@@ -311,5 +331,10 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
+  </Sala>
+        <datumTermina>05/06/2021</datumTermina>
+        <idTermina>9</idTermina>
+      </ZauzeceSale>
+    </zauzetiTermini>
   </Sala>
 </ArrayOfSala>

@@ -40,6 +40,8 @@ namespace Model
                     p.AdresaStanovanja = nalog.AdresaStanovanja;
                     p.BracnoStanje = nalog.BracnoStanje;
                     p.Zanimanje = nalog.Zanimanje;
+                    p.Maloletnik = nalog.Maloletnik;
+                    p.JmbgStaratelja = nalog.JmbgStaratelja;
                     
                     int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
                     PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
@@ -67,6 +69,8 @@ namespace Model
                     p.BracnoStanje = nalog.BracnoStanje;
                     p.Zanimanje = nalog.Zanimanje;
                     p.IzabraniLekar = nalog.IzabraniLekar;
+                    //p.Maloletnik = nalog.Maloletnik;
+                    //p.JmbgStaratelja = nalog.JmbgStaratelja;
 
                     for (int i = 0; i < PrikaziTermin.Termini.Count; i++)
                     {
@@ -129,7 +133,6 @@ namespace Model
             }
         }
 
-        // napraviti da bude po id
         public static Pacijent PronadjiPoId(int id)
         {
             foreach (Pacijent p in pacijenti)

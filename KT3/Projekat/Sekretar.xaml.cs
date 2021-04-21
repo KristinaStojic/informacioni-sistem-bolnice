@@ -50,5 +50,11 @@ namespace Projekat
         {
             menu.Visibility = Visibility.Hidden;
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            OglasnaTabla o = new OglasnaTabla();
+            o.Show();
+        }
     }
 }

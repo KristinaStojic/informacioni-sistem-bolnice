@@ -12,6 +12,12 @@
     <AdresaStanovanja>Jardan bb</AdresaStanovanja>
     <Zanimanje>student</Zanimanje>
     <BracnoStanje>Neozenjen</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Petar</ImeLek>
+      <PrezimeLek>Nebojsic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>1</IdPacijenta>
       <LekarskiRecepti>
@@ -50,6 +56,8 @@
         </Anamneza>
       </Anamneze>
     </Karton>
+    <Maloletnik>false</Maloletnik>
+    <JmbgStaratelja>0</JmbgStaratelja>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>2</IdPacijenta>
@@ -127,6 +135,8 @@
         </Anamneza>
       </Anamneze>
     </Karton>
+    <Maloletnik>false</Maloletnik>
+    <JmbgStaratelja>0</JmbgStaratelja>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>4</IdPacijenta>
@@ -178,6 +188,8 @@
         </Anamneza>
       </Anamneze>
     </Karton>
+    <Maloletnik>false</Maloletnik>
+    <JmbgStaratelja>0</JmbgStaratelja>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>5</IdPacijenta>
@@ -247,6 +259,8 @@
         </Anamneza>
       </Anamneze>
     </Karton>
+    <Maloletnik>true</Maloletnik>
+    <JmbgStaratelja>99</JmbgStaratelja>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>6</IdPacijenta>
@@ -299,6 +313,8 @@
       </LekarskiRecepti>
       <Anamneze />
     </Karton>
+    <Maloletnik>false</Maloletnik>
+    <JmbgStaratelja>0</JmbgStaratelja>
   </Pacijent>
   <Pacijent>
     <IdPacijenta>3</IdPacijenta>
