@@ -124,6 +124,9 @@
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OglasnaTabla.xaml.cs">
+      <DependentUpon>OglasnaTabla.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
     </Compile>
@@ -296,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ObrisiOpremu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OglasnaTabla.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -534,6 +541,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\obavestenja.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\health-report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\medical-symbol.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

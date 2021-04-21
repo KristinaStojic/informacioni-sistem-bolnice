@@ -39,6 +39,23 @@ namespace Model
             this.BracnoStanje = stanje;
         }
 
+        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, int Jmbg, pol pol, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status, String zanimanje, bracnoStanje stanje, bool Maloletnik, int JmbgStaratelja)
+        {
+            this.IdPacijenta = IdPacijenta;
+            this.ImePacijenta = ImePacijenta;
+            this.PrezimePacijenta = PrezimePacijenta;
+            this.Pol = pol;
+            this.Jmbg = Jmbg;
+            this.BrojTelefona = BrojTelefona;
+            this.Email = Email;
+            this.AdresaStanovanja = AdresaStanovanja;
+            this.StatusNaloga = Status;
+            this.Zanimanje = zanimanje;
+            this.BracnoStanje = stanje;
+            this.Maloletnik = Maloletnik;
+            this.JmbgStaratelja = JmbgStaratelja;
+        }
+
         public Pacijent() { }
 
         public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, int Jmbg, pol pol, statusNaloga Status)
@@ -64,6 +81,9 @@ namespace Model
         public bracnoStanje BracnoStanje { get; set; }
         public Lekar IzabraniLekar { get; set; }
         public ZdravstveniKarton Karton { get; set; }
+        // ukoliko je maloletno lice
+        public bool Maloletnik { get; set; }
+        public int JmbgStaratelja { get; set; } 
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)

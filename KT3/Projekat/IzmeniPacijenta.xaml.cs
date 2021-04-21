@@ -30,6 +30,7 @@ namespace Projekat
                 ime.Text = izabraniNalog.ImePacijenta;
                 prezime.Text = izabraniNalog.PrezimePacijenta;
                 jmbg.Text = izabraniNalog.Jmbg.ToString();
+                jmbgStaratelja.Text = izabraniNalog.JmbgStaratelja.ToString();
 
                 if (izabraniNalog.Pol.Equals(pol.M))
                 {
@@ -88,6 +89,16 @@ namespace Projekat
                 {
                     combo3.SelectedIndex = 4;
                 }
+
+                if (izabraniNalog.Maloletnik == true)
+                {
+                    maloletnik.IsChecked = true;
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelja.IsEnabled = false;
+                }
             }
         }
 
@@ -96,6 +107,8 @@ namespace Projekat
             statusNaloga status;
             pol pol;
             bracnoStanje brStanje;
+            bool maloletnoLice;
+            int staratelj;
 
             if (combo2.Text.Equals("M"))
             {
@@ -106,6 +119,25 @@ namespace Projekat
                 pol = pol.Z;
             }
 
+            if ((bool)maloletnik.IsChecked)
+            {
+                Console.WriteLine("cekirano");
+                maloletnoLice = true;
+            }
+            else
+            {
+                maloletnoLice = false;
+            }
+
+            if (jmbgStaratelja.Text.Equals(""))
+            {
+                staratelj = 0;
+            }
+            else
+            {
+                staratelj = Convert.ToInt32(jmbgStaratelja.Text);
+            }
+
             // za stalan nalog    
             if (combo.SelectedIndex == 0)
             {
@@ -114,50 +146,50 @@ namespace Projekat
                 if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Neudata;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Udata;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Udovica;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Razvedena;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
 
                 if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Neozenjen;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Ozenjen;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Udovac;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Razveden;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje);
+                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
                 }
                 
@@ -187,6 +219,8 @@ namespace Projekat
                 adresa.IsEnabled = false; 
                 zanimanje.IsEnabled = false;
                 combo3.IsEnabled = false;
+                maloletnik.IsEnabled = false;
+                jmbgStaratelja.IsEnabled = false;
             }
             else if (combo.Text.Equals("STALAN"))
             {
@@ -195,6 +229,20 @@ namespace Projekat
                 adresa.IsEnabled = true;
                 zanimanje.IsEnabled = true;
                 combo3.IsEnabled = true;
+                maloletnik.IsEnabled = true;
+                jmbgStaratelja.IsEnabled = true;
+            }
+        }
+
+        private void maloletnik_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((bool)maloletnik.IsChecked)
+            {
+                jmbgStaratelja.IsEnabled = true;
+            }
+            else
+            {
+                jmbgStaratelja.IsEnabled = false;
             }
         }
     }

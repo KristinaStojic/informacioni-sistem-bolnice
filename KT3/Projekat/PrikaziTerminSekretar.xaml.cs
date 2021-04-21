@@ -21,6 +21,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziTerminSekretar : Window
     {
+        bool flag = false;
         public static ObservableCollection<Termin> TerminiSekretar
         {
             get;
@@ -71,7 +72,10 @@ namespace Projekat
         // brisanje
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            flag = true;
             Termin zaBrisanje = (Termin)terminiSekretarTabela.SelectedItem;
+            canvas2.Visibility = Visibility.Hidden;
+
             if (zaBrisanje != null)
             {
                 int idProstorije = zaBrisanje.Prostorija.Id;
@@ -94,6 +98,7 @@ namespace Projekat
             {
                 MessageBox.Show("Niste selektovali termin koji zelite da otkazete!");
             }
+            flag = false;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -121,7 +126,11 @@ namespace Projekat
 
         private void terminiSekretarTabela_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            canvas2.Visibility = Visibility.Visible;
+            if (flag == false)
+            {
+                canvas2.Visibility = Visibility.Visible;
+            }
+
             Termin t = (Termin)terminiSekretarTabela.SelectedItem;
 
             if (t != null)
@@ -137,6 +146,13 @@ namespace Projekat
                 imeLek.Text = t.Lekar.ImeLek;
                 prezimeLek.Text = t.Lekar.PrezimeLek;
             }
+        }
+
+        // oglasna tabla
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            OglasnaTabla o = new OglasnaTabla();
+            o.Show();
         }
     }
 }
