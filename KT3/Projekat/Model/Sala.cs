@@ -40,7 +40,7 @@ namespace Model
             this.zauzetiTermini = new List<ZauzeceSale>();
         }
 
-        public status Status { get; set; }
+        
         public tipSale TipSale { get; set; }
         public int Id { get; set; }
         public int brojSale { get; set; }

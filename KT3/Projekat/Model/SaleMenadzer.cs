@@ -45,7 +45,6 @@ namespace Model
                     s.brojSale = sala.brojSale;
                     s.Namjena = sala.Namjena;
                     s.TipSale = sala.TipSale;
-                    s.Status = sala.Status;
                     int idx = PrikaziSalu.Sale.IndexOf(sala1);
                     PrikaziSalu.Sale.RemoveAt(idx);
                     PrikaziSalu.Sale.Insert(idx, s);
