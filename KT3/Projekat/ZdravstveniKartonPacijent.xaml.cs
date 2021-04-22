@@ -257,7 +257,8 @@ namespace Projekat
             {
                 Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
                  PrikazAnamnezePacijent pap = new PrikazAnamnezePacijent(prijavljeniPacijent, anamneza);
-                pap.Show();
+                this.NavigationService.Navigate(pap);
+                //pap.Show();
             }
             else
             {
