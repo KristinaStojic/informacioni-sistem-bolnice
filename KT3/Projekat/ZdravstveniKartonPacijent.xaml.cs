@@ -19,6 +19,7 @@ namespace Projekat
     {
         public Pacijent pacijentt;
         public List<LekarskiRecept> tempRecepti;
+        public List<Anamneza> tempAnamneze;
         public ZdravstveniKartonPacijent(Pacijent izabraniPacijent)
         {
             InitializeComponent();
@@ -47,17 +48,23 @@ namespace Projekat
             this.lekar.ItemsSource = opstaPraksa;
             /* LEKARSKI RECEPTI */
             tempRecepti = new List<LekarskiRecept>();
-            foreach(Pacijent p in PacijentiMenadzer.pacijenti)
+            tempAnamneze = new List<Anamneza>();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
                 if (p.IdPacijenta == pacijentt.IdPacijenta)
                 {
-                    foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
+                    foreach (LekarskiRecept lekRecepti in p.Karton.LekarskiRecepti)
                     {
-                        tempRecepti.Add(lr);
+                        tempRecepti.Add(lekRecepti);
+                    }
+                    foreach (Anamneza anamneza in p.Karton.Anamneze)
+                    {
+                        tempAnamneze.Add(anamneza);
                     }
                 }
             }
             this.tabelaRecepata.ItemsSource = tempRecepti;
+            this.prikazAnamnezi.ItemsSource = tempAnamneze;
             /* LICNI PODACI */
             this.ime.Text = izabraniPacijent.ImePacijenta;
             this.prezime.Text = izabraniPacijent.PrezimePacijenta;
@@ -75,6 +82,8 @@ namespace Projekat
             {
                 this.lekar.Text = izabraniPacijent.IzabraniLekar.ToString();
             }
+            
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -238,6 +247,32 @@ namespace Projekat
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
             this.izmeniBtn.Visibility = Visibility.Visible;
+        }
+
+        private void infoAnamneza_Click(object sender, RoutedEventArgs e)
+        {
+            if (prikazAnamnezi.SelectedItems.Count > 0)
+            {
+                Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
+                 PrikazAnamnezePacijent pap = new PrikazAnamnezePacijent(pacijentt, anamneza);
+                pap.Show();
+            }
+            else
+            {
+                MessageBox.Show("Selektujte anamnezu za koju želite da prikažete informacije", "Upozorenje", MessageBoxButton.OK);
+            }
+        }
+
+        private void prikazAnamnezi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
+            PrikazAnamnezePacijent pap = new PrikazAnamnezePacijent(pacijentt, anamneza);
+            pap.Show();*/
+        }
+
+        private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
