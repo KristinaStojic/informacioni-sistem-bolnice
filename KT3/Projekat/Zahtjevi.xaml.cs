@@ -74,5 +74,12 @@ namespace Projekat
         {
             //O aplikaciji
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Lijekovi lijekoviProzor = new Lijekovi();
+            lijekoviProzor.Show();
+            this.Hide();
+        }
     }
 }

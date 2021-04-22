@@ -66,6 +66,5 @@
                 <Button Height="50" Width="165" Margin="10, 10, 10, 10" Background="CadetBlue" Click="Button_Click_6">Pregled dinamicke opreme</Button>
             </StackPanel>
         </StackPanel>
-        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom"><Hyperlink>Potrebna vam je pomoc?</Hyperlink></TextBlock>
     </DockPanel>
 </Window>

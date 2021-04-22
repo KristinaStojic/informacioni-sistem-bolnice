@@ -51,15 +51,21 @@ namespace Projekat
             this.tekst.Text = kojuSaljem.NazivOpreme;
             this.DataContext = this;
             sale = new ObservableCollection<Sala>();
-            foreach(Sala s in SaleMenadzer.sale)
+            dodajSale(izabranaSala);
+            this.maks.Text = "MAX: " + kojuSaljem.Kolicina.ToString();
+            dozvoljenaKolicina = kojuSaljem.Kolicina;
+            this.Potvrdi.IsEnabled = false;
+        }
+
+        private void dodajSale(Sala izabranaSala)
+        {
+            foreach (Sala s in SaleMenadzer.sale)
             {
                 if (s.Id != izabranaSala.Id)
                 {
                     sale.Add(s);
                 }
             }
-            this.maks.Text = "MAX: " + kojuSaljem.Kolicina.ToString();
-            dozvoljenaKolicina = kojuSaljem.Kolicina;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -131,6 +137,41 @@ namespace Projekat
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+        }
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+        private void podesiDugme()
+        {
+            if (IsNumeric(this.KOlicina.Text))
+            {
+                izvrsiPodesavanje();
+            }
+            else
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+        }
+        private void izvrsiPodesavanje()
+        {
+            if (int.Parse(this.KOlicina.Text) > dozvoljenaKolicina || int.Parse(this.KOlicina.Text) <= 0 || this.kombo.SelectedItem == null)
+            {
+                this.Potvrdi.IsEnabled = false;
+            }else if (int.Parse(this.KOlicina.Text) <= dozvoljenaKolicina && int.Parse(this.KOlicina.Text) > 0 && this.kombo.SelectedItem != null)
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+        private void kombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            podesiDugme();
+        }
+
+        private void KOlicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            podesiDugme();
         }
     }
 }

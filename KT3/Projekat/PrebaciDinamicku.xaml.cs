@@ -27,7 +27,7 @@ namespace Projekat
         public static bool aktivan;
         public static int dozvoljenaKolicina;
         public int validacija;
-        public static bool dugmeOmoguceno;
+
         public int Validacija
         {
             get
@@ -43,15 +43,6 @@ namespace Projekat
                 }
             }
         }
-        public bool DugmeOmoguceno
-        {
-            get { return dugmeOmoguceno; }
-            set
-            {
-                dugmeOmoguceno = value;
-                OnPropertyChanged("DugmeOmoguceno");
-            }
-        }
 
         public PrebaciDinamicku(Oprema oprema)
         {
@@ -60,6 +51,13 @@ namespace Projekat
             this.oprema.Text = opremaZaSlanje.NazivOpreme;
             this.DataContext = this;
             Sale = new ObservableCollection<Sala>();
+            dodajSale();
+            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
+            dozvoljenaKolicina = opremaZaSlanje.Kolicina;
+        }
+
+        private void dodajSale()
+        {
             foreach (Sala s in SaleMenadzer.sale)
             {
                 if (!s.Namjena.Equals("Skladiste"))
@@ -67,8 +65,6 @@ namespace Projekat
                     Sale.Add(s);
                 }
             }
-            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            dozvoljenaKolicina = opremaZaSlanje.Kolicina;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -136,14 +132,41 @@ namespace Projekat
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+
+        private void kombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            postaviDugme();
+        }
 
         private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(int.Parse(this.Kolicina.ToString()) > dozvoljenaKolicina || int.Parse(this.Kolicina.ToString()) < 0)
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (IsNumeric(this.Kolicina.Text))
+            {
+                izvrsiPostavljanje();
+            }
+            else
             {
                 this.Potvrdi.IsEnabled = false;
             }
-            else
+        }
+
+        private void izvrsiPostavljanje()
+        {
+            if (int.Parse(this.Kolicina.Text) > dozvoljenaKolicina || int.Parse(this.Kolicina.Text) <= 0 || this.kombo.SelectedItem == null)
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if(int.Parse(this.Kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.Kolicina.Text) > 0 && this.kombo.SelectedItem != null)
             {
                 this.Potvrdi.IsEnabled = true;
             }
@@ -153,5 +176,6 @@ namespace Projekat
         {
             aktivan = false;
         }
+
     }
 }
