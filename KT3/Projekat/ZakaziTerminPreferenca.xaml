@@ -1,11 +1,11 @@
-﻿<Window x:Class="Projekat.ZakaziTerminPreferenca"
+﻿<Page x:Class="Projekat.ZakaziTerminPreferenca"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Ponudjeni termini" Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="#d3e0ea">
+        Title="Ponudjeni termini" Height="500" Width="600" Background="#d3e0ea">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -71,4 +71,4 @@
         </ListView>
     </Grid>
 
-</Window>
+</Page>

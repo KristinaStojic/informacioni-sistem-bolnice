@@ -19,7 +19,7 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for ZakaziTerminPreferenca.xaml
     /// </summary>
-    public partial class ZakaziTerminPreferenca : Window
+    public partial class ZakaziTerminPreferenca : Page
     {
         public static int idPacijent = 1;
         public static int idLekar = 1;
@@ -127,7 +127,7 @@ namespace Projekat
             sala.zauzetiTermini.Add(zsNovo);
             SaleMenadzer.sacuvajIzmjene();
             TerminMenadzer.sacuvajIzmene();
-            this.Close();
+           // this.Close();
         }
 
         private bool UserFilter(object item)
@@ -146,7 +146,7 @@ namespace Projekat
 
         private void nazad_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
 
         private void lekari_Click(object sender, RoutedEventArgs e)
@@ -193,8 +193,9 @@ namespace Projekat
                 l = (Lekar)datagridLekari.SelectedItems[0];
             }
             ZakaziTermin zt = new ZakaziTermin(l);
-            zt.Show();
-            this.Close();
+            // TODO
+            //this.Navi
+            //this.Close();
         }
 
         public string imePrz_Changed()

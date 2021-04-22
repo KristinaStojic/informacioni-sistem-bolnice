@@ -15,15 +15,16 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    public partial class ZdravstveniKartonPacijent : Window
+    public partial class ZdravstveniKartonPacijent : Page
     {
-        public Pacijent pacijentt;
+        public Pacijent prijavljeniPacijent;
         public List<LekarskiRecept> tempRecepti;
         public List<Anamneza> tempAnamneze;
         public ZdravstveniKartonPacijent(Pacijent izabraniPacijent)
         {
             InitializeComponent();
-            this.pacijentt = izabraniPacijent;
+            this.DataContext = this;
+            this.prijavljeniPacijent = izabraniPacijent;
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
            /* this.ime.IsEnabled = false;
@@ -49,20 +50,21 @@ namespace Projekat
             /* LEKARSKI RECEPTI */
             tempRecepti = new List<LekarskiRecept>();
             tempAnamneze = new List<Anamneza>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+           /* foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
                 if (p.IdPacijenta == pacijentt.IdPacijenta)
-                {
-                    foreach (LekarskiRecept lekRecepti in p.Karton.LekarskiRecepti)
+                {*/
+           
+                    foreach (LekarskiRecept lekRecepti in prijavljeniPacijent.Karton.LekarskiRecepti)
                     {
                         tempRecepti.Add(lekRecepti);
                     }
-                    foreach (Anamneza anamneza in p.Karton.Anamneze)
+                    foreach (Anamneza anamneza in prijavljeniPacijent.Karton.Anamneze)
                     {
                         tempAnamneze.Add(anamneza);
                     }
-                }
-            }
+               // }
+            //}
             this.tabelaRecepata.ItemsSource = tempRecepti;
             this.prikazAnamnezi.ItemsSource = tempAnamneze;
             /* LICNI PODACI */
@@ -89,7 +91,7 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // nazad
-            this.Close();
+            //this.Close();
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,7 +110,7 @@ namespace Projekat
             if (tabelaRecepata.SelectedItems.Count > 0)
             {
                 LekarskiRecept lp = (LekarskiRecept)tabelaRecepata.SelectedItem;
-                Recept r = new Recept(lp, pacijentt);
+                Recept r = new Recept(lp, prijavljeniPacijent);
                 r.Show();
             }
             else
@@ -225,12 +227,12 @@ namespace Projekat
             if (this.lekar != null )
             {
                 l = (Lekar)this.lekar.SelectedItem;
-                MessageBox.Show(l.ImeLek + " " + l.PrezimeLek, pacijentt.ImePacijenta + " " + pacijentt.PrezimePacijenta);
+                MessageBox.Show(l.ImeLek + " " + l.PrezimeLek, prijavljeniPacijent.ImePacijenta + " " + prijavljeniPacijent.PrezimePacijenta);
             }
           
-            Pacijent novi = new Pacijent(pacijentt.IdPacijenta, ime, prezime, jmbg, poll, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
+            Pacijent novi = new Pacijent(prijavljeniPacijent.IdPacijenta, ime, prezime, jmbg, poll, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
             novi.IzabraniLekar = l; 
-            PacijentiMenadzer.IzmeniNalogPacijent(pacijentt, novi);
+            PacijentiMenadzer.IzmeniNalogPacijent(prijavljeniPacijent, novi);
             PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
 
             this.ime.IsEnabled = false;
@@ -254,7 +256,7 @@ namespace Projekat
             if (prikazAnamnezi.SelectedItems.Count > 0)
             {
                 Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
-                 PrikazAnamnezePacijent pap = new PrikazAnamnezePacijent(pacijentt, anamneza);
+                 PrikazAnamnezePacijent pap = new PrikazAnamnezePacijent(prijavljeniPacijent, anamneza);
                 pap.Show();
             }
             else
@@ -273,6 +275,31 @@ namespace Projekat
         private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar l = null;
+            Page zakaziTermin = new ZakaziTermin(l);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO ispraviti --> uvid u zakazane poseban page
+            Page uvid = new PrikaziTermin();
+            this.NavigationService.Navigate(uvid);
         }
     }
 }
