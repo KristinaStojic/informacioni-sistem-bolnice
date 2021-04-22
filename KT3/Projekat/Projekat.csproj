@@ -148,6 +148,9 @@
     <Compile Include="PrikazAnamneza.xaml.cs">
       <DependentUpon>PrikazAnamneza.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikazAnamnezePacijent.xaml.cs">
+      <DependentUpon>PrikazAnamnezePacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikazDinamicke.xaml.cs">
       <DependentUpon>PrikazDinamicke.xaml</DependentUpon>
     </Compile>
@@ -333,6 +336,10 @@
     <Page Include="PrikazAnamneza.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazAnamnezePacijent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PrikazDinamicke.xaml">
       <SubType>Designer</SubType>
