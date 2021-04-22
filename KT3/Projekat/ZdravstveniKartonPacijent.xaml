@@ -9,7 +9,7 @@
 
     <Grid>
 
-        <!-- Tabovi -->
+        <!-- TABOVI -->
         <TabControl x:Name="tab" HorizontalAlignment="Left" 
                     Height="395" VerticalAlignment="Top" Width="540" Margin="31,20,0,0" BorderBrush="Gainsboro" SelectionChanged="tab_SelectionChanged">
             <TabControl.Resources>
@@ -37,7 +37,8 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-            <!-- licni podaci-->
+            
+            <!-- LICNI PODACI -->
             <TabItem Header="Lični podaci" Name="podaci" FontSize="15" Height="25" Margin="0,0,0.5,0" VerticalAlignment="Top">
                 <Grid Margin="-2,0,2,0" Background="#FFF9F7F7">
                     <Grid.ColumnDefinitions>
@@ -94,38 +95,67 @@
                     <TextBox x:Name="korisnickoIme" IsEnabled="False" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="143" Grid.Column="1" Margin="34,178,0,159"/>
                 </Grid>
             </TabItem>
-            <!-- lekarski recepti -->
+            
+            <!-- LEKARSKI RECEPTI  -->
             <TabItem Header="Lekarski recepti" 
                      ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
-                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="13" Margin="-2,-2,-4,-1">
+                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="14" Margin="0">
                     <ListView.View>
                         <GridView>
+                            <GridViewColumn Width="35" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Background="#112d4e" Foreground="#f9f7f7" HorizontalAlignment="Right" BorderBrush="#3f72af" Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="Naziv leka" 
                                         Width="90" DisplayMemberBinding="{Binding NazivLeka}"/>
                             <GridViewColumn Header="Datum" 
                                          Width="85" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
                             <GridViewColumn Header="Početak korišćenja" 
-                                        Width="115" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
-                            <GridViewColumn Header="Broj dana"
+                                        Width="130" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
+                            <GridViewColumn Header="Broj dana" Width="75"
                                          DisplayMemberBinding="{Binding BrojDanaKoriscenja}"/>
-                            <GridViewColumn Header="Dnevna kolicina"
+                            <GridViewColumn Header="Dnevna kolicina" Width="110"
                                             DisplayMemberBinding="{Binding DnevnaKolicina}"/>
-                            <GridViewColumn Header="Informacije"
-                                            Width="85" >
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Background="#112d4e" Foreground="#f9f7f7" BorderBrush="#3f72af" Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
+            
+            <!-- ISTORIJA BOLESTI - ANAMNEZE -->
             <TabItem Header="Istorija bolesti" Name="istorijaBolesti" FontSize="15" >
+                <ListView x:Name="prikazAnamnezi" SelectionChanged="prikazAnamnezi_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="14" Margin="0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="35">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Background="#112d4e" Name="infoAnamneza" HorizontalAlignment="Right" Foreground="#f9f7f7" BorderBrush="#3f72af" Content="ℹ︎" FontSize="14" Click="infoAnamneza_Click"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Datum" Width="120" 
+                                            DisplayMemberBinding="{Binding Datum}"/>
+                            <GridViewColumn Header="Anamneza" Width="370" 
+                                            DisplayMemberBinding="{Binding OpisBolesti}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            
+            <!-- LEKARSKI UPUTI -->
+            <TabItem Header="Lekarski uputi" Name="uputi" FontSize="15">
+                <ListView x:Name="prikazUputa" SelectionChanged="prikazUputa_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="13" Margin="0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="bice nesto...."></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
             </TabItem>
-            <TabItem Header="Lekarski uputi" Name="uputi" FontSize="15" />
         </TabControl>
         <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"  Height="30" Margin="29,426,0,0" Click="Button_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"  />
 
