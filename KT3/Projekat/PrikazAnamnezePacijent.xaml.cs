@@ -15,18 +15,16 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for PrikazAnamnezePacijent.xaml
-    /// </summary>
-    public partial class PrikazAnamnezePacijent : Window
+    public partial class PrikazAnamnezePacijent : Page
     {
 
-        public Pacijent pacijent;
+        public static Pacijent prijavljeniPacijent;
         public Anamneza anamneza;
         public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
             InitializeComponent();
-            pacijent = izabraniPacijent;
+            this.DataContext = this;
+            prijavljeniPacijent = izabraniPacijent;
             anamneza = izabranaAnamneza;
 
 
@@ -40,7 +38,34 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // nazad
-            this.Close();
+            //this.Close();
         }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar l = null;
+            Page zakaziTermin = new ZakaziTermin(l);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO ispraviti --> uvid u zakazane poseban page
+            Page uvid = new PrikaziTermin();
+            this.NavigationService.Navigate(uvid);
+        }
+
+        
     }
 }

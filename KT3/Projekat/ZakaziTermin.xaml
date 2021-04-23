@@ -1,12 +1,12 @@
-﻿<Window x:Class="Projekat.ZakaziTermin"
+﻿<Page x:Class="Projekat.ZakaziTermin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zakazi termin" Height="500" Width="600" WindowStartupLocation="CenterScreen" Background="AliceBlue">
-    <Window.Resources>
+        Title="Zakazi termin" Height="600" Width="800" Background="AliceBlue">
+    <Page.Resources>
         <Style TargetType="{x:Type DatePicker}" x:Key="datePickerGeneralStyle" BasedOn="{StaticResource {x:Type DatePicker}}">
             <Setter Property="TextElement.FontSize" Value="24" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -30,13 +30,63 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
+    </Page.Resources>
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Izabrani lekar" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara pritisnite na dugme Preference" HorizontalAlignment="Left" Height="98" Margin="306,127,0,0" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.858,0.494"/>
-        <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" Text ="{Binding}" HorizontalAlignment="Left" Height="30" Margin="333,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" RenderTransformOrigin="0.5,0.5">
+            <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
+            <StackPanel >
+                <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                    <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
+                        <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
+                        <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                    </StackPanel>
+                    <StackPanel Height="40" Width="620" HorizontalAlignment="Right">
+                        <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
+                            <MenuItem Header="_Ime i prezime">
+                                <MenuItem.Icon>
+                                    <Image Source="/slike/user.png" />
+                                </MenuItem.Icon>
+                                <MenuItem Header="_Vaš profil" />
+                                <Separator/>
+                                <MenuItem Header="_Popuni anketu" />
+                                <Separator/>
+                                <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
+                                <MenuItem Header="_sr" />
+                                <MenuItem Header="_en"/>
+                                <Separator />
+                                <MenuItem Header="_Izaberite temu" IsEnabled="False" />
+                                <MenuItem Header="_Svetla" Name="svetlaTema" />
+                                <MenuItem Header="_Tamna"/>
+                                <Separator />
+                                <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                            </MenuItem>
+                        </Menu>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
+                <Hyperlink NavigateUri="PrikaziTermin.xaml">
+                    <Run Text="Početna stranica"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="zakazi" Click="zakazi_Click">
+                    <Run Text="Zakažite termin"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="uvid" Click="uvid_Click">
+                    <Run Text="Uvid u zakazane termine"/>
+                </Hyperlink>
+                <Run Text=" "/>
+                <Hyperlink Name="karton" Click="karton_Click">
+                    <Run Text="Zdravstveni karton"/>
+                </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                
+                    <GroupBox Header="Izabrani lekar" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara pritisnite na dugme Preference" HorizontalAlignment="Left" Height="98" Margin="306,233,0,0" VerticalAlignment="Top" Width="260" RenderTransformOrigin="0.858,0.494"/>
+        <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" Text ="{Binding}" HorizontalAlignment="Left" Height="30" Margin="333,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -46,17 +96,17 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <GroupBox Header="*2. Izaberite datum" HorizontalAlignment="Left" Height="215" Margin="33,140,0,0" VerticalAlignment="Top" Width="252" RenderTransformOrigin="0.517,0.878">
+        <GroupBox Header="*2. Izaberite datum" HorizontalAlignment="Left" Height="215" Margin="33,246,0,0" VerticalAlignment="Top" Width="252" RenderTransformOrigin="0.517,0.878">
             <Calendar x:Name="datum" Background="#FFDBE2EF" RenderTransformOrigin="-0.356,0.389" SelectedDatesChanged="datum_SelectedDatesChanged"
                       Margin="30,10,0,10" FontSize="20" FontStyle="Italic" HorizontalAlignment="Left" Width="195"/>
         </GroupBox>
-        <GroupBox Header=" *1. Izaberite tip termina" HorizontalAlignment="Left" Height="89" Margin="32,40,0,0" VerticalAlignment="Top" Width="255" RenderTransformOrigin="0.858,0.494">
+        <GroupBox Header=" *1. Izaberite tip termina" HorizontalAlignment="Left" Height="89" Margin="32,146,0,0" VerticalAlignment="Top" Width="255" RenderTransformOrigin="0.858,0.494">
             <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="203" Margin="22,0,0,16" Height="27" SelectionChanged="combo_SelectionChanged" RenderTransformOrigin="0.488,0.444" >
                 <ComboBoxItem>Operacija</ComboBoxItem>
                 <ComboBoxItem>Pregled</ComboBoxItem>
             </ComboBox>
         </GroupBox>
-        <GroupBox Header="*3 .Izaberite vreme termina" Height="72" Margin="306,47,30,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494">
+        <GroupBox Header="*3 .Izaberite vreme termina" Height="72" Margin="306,153,30,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494">
             <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="25" VerticalAlignment="Top" Width="180" Margin="39,10,0,0" SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.724,0.565">
                 <!--ComboBoxItem HorizontalAlignment="Center">07:00</>
             <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
@@ -87,12 +137,12 @@
             <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem-->
             </ComboBox>
         </GroupBox>
-        <Button Content="Elektronsko placanje" HorizontalAlignment="Left" VerticalAlignment="Top" Width="115" Margin="32,410,0,0" Height="30" Click="Button_Click_2" Background="#FFDFDFDF" />
-        <Button Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="333,410,0,0" Height="30" Click="Button_Click_1" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" />
-        <Button x:Name="odustani" Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="465,410,0,0" Height="30" Click="odustani_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"  />
-        <Button Content="Preference" Name="preferenca" HorizontalAlignment="Left" VerticalAlignment="Top" Width="115" Margin="152,410,0,0" Height="30"  Click="preferenca_Click" Background="#FFDFDFDF"/>
+        <Button Content="Elektronsko placanje" HorizontalAlignment="Left" VerticalAlignment="Top" Width="115" Margin="32,516,0,0" Height="30" Click="Button_Click_2" Background="#FFDFDFDF" />
+        <Button Content="Potvrdi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="333,516,0,0" Height="30" Click="Button_Click_1" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" />
+        <Button x:Name="odustani" Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="465,516,0,0" Height="30" Click="odustani_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"  />
+        <Button Content="Preference" Name="preferenca" HorizontalAlignment="Left" VerticalAlignment="Top" Width="115" Margin="152,516,0,0" Height="30"  Click="preferenca_Click" Background="#FFDFDFDF"/>
 
 
 
     </Grid>
-</Window>
+</Page>

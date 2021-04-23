@@ -101,6 +101,9 @@
     <Compile Include="IzmjeniOpremu.xaml.cs">
       <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowPacijent.xaml.cs">
+      <DependentUpon>MainWindowPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Alergeni.cs" />
     <Compile Include="Model\Anamneza.cs" />
     <Compile Include="Model\Lek.cs" />
@@ -290,6 +293,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="DodajPacijenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindowPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -554,6 +561,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\medical-symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\barkod.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

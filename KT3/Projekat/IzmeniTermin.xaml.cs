@@ -20,7 +20,7 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for IzmeniTermin.xaml
     /// </summary>
-    public partial class IzmeniTermin : Window
+    public partial class IzmeniTermin : Page
     {
         public Termin termin;
         private Lekar idLek;
@@ -33,10 +33,11 @@ namespace Projekat
         public Sala _sala;
         public List<string> vremeSala;
         public int brSala;
+        public static Pacijent prijavljeniPacijent;
         public IzmeniTermin(Termin izabraniTermin)
         {
             InitializeComponent();
-            //this.DataContext = this;
+            this.DataContext = this;
             datum.BlackoutDates.AddDatesInPast();
             CalendarDateRange cdr = new CalendarDateRange();
             cdr.Start = DateTime.Now.AddDays(3);
@@ -58,7 +59,7 @@ namespace Projekat
                 }
                 tp = izabraniTermin.tipTermina;
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
-                
+                prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
                 idLek = izabraniTermin.Lekar;
                 stariDatum = izabraniTermin.Datum;
                 this.vpp.Text = izabraniTermin.VremePocetka;
@@ -95,7 +96,7 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //dugme odustani
-            this.Close();
+            //this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -132,13 +133,7 @@ namespace Projekat
                     }
                     Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp);
                     // TODO: promeniti ovo na id pacijenta koji je prijavljen
-                    foreach (Pacijent p in PacijentiMenadzer.PronadjiSve())
-                    {
-                        if (p.IdPacijenta == idPacijent)
-                        {
-                            t.Pacijent = p;
-                        }
-                    }
+                    t.Pacijent = prijavljeniPacijent;
                     t.Pomeren = true;
                     ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, t.IdTermin);
                     _sala.zauzetiTermini.Add(zs);
@@ -156,7 +151,7 @@ namespace Projekat
                         t.Lekar = idLek;
                     }
                     TerminMenadzer.IzmeniTermin(termin, t);
-                    this.Close();
+                    //this.Close();
                 }
                 catch (System.Exception)
                 {
@@ -544,6 +539,29 @@ namespace Projekat
                 MessageBox.Show("Ne postoji nijedan slobodan temrin za izabrani datum", "Izaberite drugi datum");
             }
         }
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: prijava 
+        }
 
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar l = null;
+            Page zakaziTermin = new ZakaziTermin(l);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO ispraviti --> uvid u zakazane poseban page
+            Page uvid = new PrikaziTermin();
+            this.NavigationService.Navigate(uvid);
+        }
     }
 }
