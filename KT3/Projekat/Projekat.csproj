@@ -562,5 +562,8 @@
   <ItemGroup>
     <Resource Include="slike\medical-symbol.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\barkod.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

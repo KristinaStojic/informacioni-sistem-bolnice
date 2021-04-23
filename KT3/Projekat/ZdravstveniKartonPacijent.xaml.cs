@@ -94,30 +94,36 @@ namespace Projekat
             //this.Close();
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
 
         private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        /* LEKARSKI RECEPTI */
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             // lekarski recepti - prikazi informacije
             if (tabelaRecepata.SelectedItems.Count > 0)
             {
                 LekarskiRecept lp = (LekarskiRecept)tabelaRecepata.SelectedItem;
-                Recept r = new Recept(lp, prijavljeniPacijent);
-                r.Show();
+                Page recept = new Recept(lp, prijavljeniPacijent);
+                this.NavigationService.Navigate(recept);
             }
             else
             {
                 MessageBox.Show("Selektujte recept za koji želite da prikažete informacije", "Upozorenje", MessageBoxButton.OK);
             }
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LekarskiRecept lp = (LekarskiRecept)tabelaRecepata.SelectedItem;
+            Page recept = new Recept(lp, prijavljeniPacijent);
+            this.NavigationService.Navigate(recept);
+        }
+        // **********
 
         private void izmeniBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -251,14 +257,14 @@ namespace Projekat
             this.izmeniBtn.Visibility = Visibility.Visible;
         }
 
+        /* ANAMNEZE */
         private void infoAnamneza_Click(object sender, RoutedEventArgs e)
         {
             if (prikazAnamnezi.SelectedItems.Count > 0)
             {
                 Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
-                 PrikazAnamnezePacijent pap = new PrikazAnamnezePacijent(prijavljeniPacijent, anamneza);
-                this.NavigationService.Navigate(pap);
-                //pap.Show();
+                PrikazAnamnezePacijent anamnezaPrikaz = new PrikazAnamnezePacijent(prijavljeniPacijent, anamneza);
+                this.NavigationService.Navigate(anamnezaPrikaz);
             }
             else
             {
@@ -268,10 +274,12 @@ namespace Projekat
 
         private void prikazAnamnezi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
-            PrikazAnamnezePacijent pap = new PrikazAnamnezePacijent(pacijentt, anamneza);
-            pap.Show();*/
+            Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
+            PrikazAnamnezePacijent anamnezaPrikaz = new PrikazAnamnezePacijent(prijavljeniPacijent, anamneza);
+            this.NavigationService.Navigate(anamnezaPrikaz);
         }
+
+        // *********
 
         private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

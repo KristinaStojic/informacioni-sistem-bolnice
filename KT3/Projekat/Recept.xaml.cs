@@ -19,14 +19,14 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for Recept.xaml
     /// </summary>
-    public partial class Recept : Window
+    public partial class Recept : Page
     {
-        public Pacijent pacijent;
+        public Pacijent prijavljeniPacijent;
         public LekarskiRecept lekRec;
         public Recept(Pacijent izabraniPacijent)
         {
             InitializeComponent();
-            this.pacijent = izabraniPacijent;
+            this.prijavljeniPacijent = izabraniPacijent;
 
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
@@ -51,9 +51,9 @@ namespace Projekat
             this.brojUzimanja.IsEnabled = false;
             this.sati.IsEnabled = false;
             this.min.IsEnabled = false;
-            this.sacuvaj.Visibility = Visibility.Hidden;
+            //this.sacuvaj.Visibility = Visibility.Hidden;
 
-            this.pacijent = izabraniPacijent;
+            this.prijavljeniPacijent = izabraniPacijent;
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.IdPacijenta.ToString();
@@ -67,23 +67,24 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try
             {
-                int brojRecepta = ZdravstveniKartonMenadzer.GenerisanjeIdRecepta(pacijent.IdPacijenta);
+                int brojRecepta = ZdravstveniKartonMenadzer.GenerisanjeIdRecepta(prijavljeniPacijent.IdPacijenta);
                 String nazivLeka = naziv.Text;
                 String formatirano = null;
-                DateTime? selectedDate = datum.SelectedDate;
+                // DateTime? selectedDate = datum.SelectedDate;
+                String selectedDate = datum.Text;
                 //Console.WriteLine(selectedDate);
-                if (selectedDate.HasValue)
+               /* if (selectedDate.HasValue)
                 {
                     formatirano = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-                }
+                }*/
                 int kolicinaNaDan = int.Parse(brojUzimanja.Text);
                 int kolikoDana = int.Parse(dani.Text);
                 String pocetakKoriscenja = sati.Text + ":" + min.Text;
@@ -108,7 +109,7 @@ namespace Projekat
                 }
 
 
-                LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
+                LekarskiRecept recept = new LekarskiRecept(prijavljeniPacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
 
                 foreach(DateTime dt in recept.UzimanjeTerapije)
                 {
@@ -127,7 +128,7 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajRecept(recept);
                 //TabelaRecepata.PrikazRecepata.Add(recept);
                // ObavestenjaMenadzer.sacuvajIzmene();
-                this.Close();
+                //this.Close();
 
             }
             catch (System.Exception)
@@ -136,5 +137,29 @@ namespace Projekat
             }
         }
 
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar l = null;
+            Page zakaziTermin = new ZakaziTermin(l);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO ispraviti --> uvid u zakazane poseban page
+            Page uvid = new PrikaziTermin();
+            this.NavigationService.Navigate(uvid);
+        }
     }
 }
