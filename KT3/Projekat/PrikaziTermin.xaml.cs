@@ -49,7 +49,7 @@ namespace Projekat
                 }
                 //Termini.Add(t);
             }
-            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
+           // Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             /*foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
             {
@@ -66,6 +66,7 @@ namespace Projekat
             }*/
             foreach(Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
+                // dodati i id pacijenta
                 if(o.TipObavestenja.Equals("Terapija")) 
                 {
                    
@@ -176,10 +177,10 @@ namespace Projekat
             Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
             if (izabraniTermin != null)
             {
-                Page it = new IzmeniTermin(izabraniTermin);
+                Page izmeniTermin = new IzmeniTermin(izabraniTermin);
                 //TerminMenadzer.sacuvajIzmene();
                 //it.Show();
-                this.NavigationService.Navigate(it);
+                this.NavigationService.Navigate(izmeniTermin);
             }
         }
 
@@ -224,12 +225,10 @@ namespace Projekat
 
         private void zdravstveniKarton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO
+            // TODO: OBRISATI dumad sa prikaziTemrin
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            Page it = new ZdravstveniKartonPacijent(p);
-            //it.Show();
-            //this.frame.
-            
+            Page zdravstveniKarton = new ZdravstveniKartonPacijent(p);
+            this.NavigationService.Navigate(zdravstveniKarton);
         }
 
         private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)

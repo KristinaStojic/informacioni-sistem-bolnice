@@ -22,6 +22,7 @@ namespace Projekat
     public partial class ZakaziTerminPreferenca : Page
     {
         public static int idPacijent = 1;
+        public static Pacijent prijavljeniPacijent;
         public static int idLekar = 1;
         public static int brojPreporucenih = 3;
         public List<string> sviSlobodni2 { get; set; }
@@ -42,7 +43,7 @@ namespace Projekat
                                                 "19:00", "19:30", "20:00"};
             // na startu
             this.preferencaGrid.Visibility = Visibility.Hidden;
-            this.zakazi.Visibility = Visibility.Hidden;
+            this.btnZakazi.Visibility = Visibility.Hidden;
             this.nazad.Visibility = Visibility.Hidden;
             this.grupa.Visibility = Visibility.Hidden;
             this.datagridLekari.Visibility = Visibility.Hidden;
@@ -52,6 +53,8 @@ namespace Projekat
             this.datagridLekari.ItemsSource = MainWindow.lekari;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource);
             view.Filter = UserFilter;
+
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
 
             int count = 0;
             lista = new List<Termin>();
@@ -93,8 +96,8 @@ namespace Projekat
                                     }
 
                                     // TODO: isparivi kada uradimo prijavljivanje
-                                    Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                                    t.Pacijent = p;
+                                    //Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                                    t.Pacijent = prijavljeniPacijent;
                                     count++;
                                     Termini2.Add(t);
                                     if (count == brojPreporucenih)
@@ -111,23 +114,6 @@ namespace Projekat
         private void preferencaGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-
-        private void zakazi_Click(object sender, RoutedEventArgs e)
-        {
-            Termin t = (Termin)preferencaGrid.SelectedItem;
-            MessageBox.Show(t.Datum);
-            // TODO: sacuvati u listu zauzetih termina, srediti id termina
-            TerminMenadzer.ZakaziTermin(t);
-            
-
-            // TODO: proveriti
-            Sala sala = SaleMenadzer.NadjiSaluPoId(t.Prostorija.Id);
-            ZauzeceSale zsNovo = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, t.IdTermin);
-            sala.zauzetiTermini.Add(zsNovo);
-            SaleMenadzer.sacuvajIzmjene();
-            TerminMenadzer.sacuvajIzmene();
-           // this.Close();
         }
 
         private bool UserFilter(object item)
@@ -165,7 +151,7 @@ namespace Projekat
         private void preporuka_Click(object sender, RoutedEventArgs e)
         {
             this.preferencaGrid.Visibility = Visibility.Visible;
-            this.zakazi.Visibility = Visibility.Visible;
+            this.btnZakazi.Visibility = Visibility.Visible;
             this.nazad.Visibility = Visibility.Visible;
 
             this.lekari.Visibility = Visibility.Hidden;
@@ -192,10 +178,9 @@ namespace Projekat
             {
                 l = (Lekar)datagridLekari.SelectedItems[0];
             }
+            // TODO: kada se bude prosledjivao prijavljeni pacijent, samo set-ovati lekara
             ZakaziTermin zt = new ZakaziTermin(l);
-            // TODO
-            //this.Navi
-            //this.Close();
+            this.NavigationService.Navigate(zt);
         }
 
         public string imePrz_Changed()
@@ -206,6 +191,49 @@ namespace Projekat
                 return l.ToString();
             }
             return null;
+        }
+
+        private void btnZakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Termin t = (Termin)preferencaGrid.SelectedItem;
+            //MessageBox.Show(t.Datum);
+            // TODO: sacuvati u listu zauzetih termina, srediti id termina
+            TerminMenadzer.ZakaziTermin(t);
+
+
+            // TODO: proveriti
+            Sala sala = SaleMenadzer.NadjiSaluPoId(t.Prostorija.Id);
+            ZauzeceSale novoZauzeceSale = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, t.IdTermin);
+            sala.zauzetiTermini.Add(novoZauzeceSale);
+            SaleMenadzer.sacuvajIzmjene();
+            TerminMenadzer.sacuvajIzmene();
+            Page prikaziTermin = new PrikaziTermin();
+            this.NavigationService.Navigate(prikaziTermin);
+        }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar l = null;
+            Page zakaziTermin = new ZakaziTermin(l);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO ispraviti --> uvid u zakazane poseban page
+            Page uvid = new PrikaziTermin();
+            this.NavigationService.Navigate(uvid);
         }
     }
 }

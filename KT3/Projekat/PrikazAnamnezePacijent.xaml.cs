@@ -18,7 +18,7 @@ namespace Projekat
     public partial class PrikazAnamnezePacijent : Page
     {
 
-        public Pacijent prijavljeniPacijent;
+        public static Pacijent prijavljeniPacijent;
         public Anamneza anamneza;
         public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
@@ -65,5 +65,7 @@ namespace Projekat
             Page uvid = new PrikaziTermin();
             this.NavigationService.Navigate(uvid);
         }
+
+        
     }
 }
