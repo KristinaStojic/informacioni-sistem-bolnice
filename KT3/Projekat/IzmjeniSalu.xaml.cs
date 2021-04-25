@@ -34,9 +34,13 @@ namespace Projekat
                 {
                     this.combo1.SelectedIndex = 1;
                 }
-                else
+                else if(izabranaSala.TipSale.Equals(tipSale.OperacionaSala))
                 {
                     this.combo1.SelectedIndex = 0;
+                }
+                else
+                {
+                    this.combo1.SelectedIndex = 2;
                 }
             }
         }
@@ -50,9 +54,13 @@ namespace Projekat
             {
                 Tip = tipSale.SalaZaPregled;
             }
-            else
+            else if(this.combo1.SelectedIndex == 0)
             {
                 Tip = tipSale.OperacionaSala;
+            }
+            else
+            {
+                Tip = tipSale.SalaZaOdmor;
             }
             Sala s = new Sala(sala.Id, brojSale, namjena, Tip);
             

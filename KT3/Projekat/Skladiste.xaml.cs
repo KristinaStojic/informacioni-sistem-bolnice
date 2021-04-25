@@ -307,9 +307,42 @@ namespace Projekat
                 return true;
             }
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (T1.IsSelected)
+            {
+                nadjiStaticku();
+            }else if (T2.IsSelected)
+            {
+                nadjiDinamicku();
+            }
+        }
+        private void nadjiStaticku()
+        {
+            OpremaStaticka.Clear();
+            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && oprema.Staticka)
+                {
+                    OpremaStaticka.Add(oprema);
+                }
+            }
+        }
+        private void nadjiDinamicku()
+        {
+            OpremaDinamicka.Clear();
+            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && !oprema.Staticka)
+                {
+                    OpremaDinamicka.Add(oprema);
+                }
+            }
+        }
     }
 
-    
+
 
     public class ObservableCollectionEx<t> : ObservableCollection<t>
     {

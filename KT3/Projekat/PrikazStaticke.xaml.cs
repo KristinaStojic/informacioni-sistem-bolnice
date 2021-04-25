@@ -164,6 +164,18 @@ namespace Projekat
         {
             PrikazStaticke.otvoren = false;
         }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OpremaStaticka.Clear();
+            foreach(Oprema oprema in izabranaSala.Oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && oprema.Staticka)
+                {
+                    OpremaStaticka.Add(oprema);
+                }
+            }
+        }
     }
 
 }

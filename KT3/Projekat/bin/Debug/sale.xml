@@ -8,7 +8,7 @@
     <Oprema>
       <Oprema>
         <NazivOpreme>flaster</NazivOpreme>
-        <Kolicina>50</Kolicina>
+        <Kolicina>42</Kolicina>
         <Staticka>false</Staticka>
         <IdOpreme>7</IdOpreme>
       </Oprema>
@@ -78,7 +78,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>flaster</NazivOpreme>
-        <Kolicina>50</Kolicina>
+        <Kolicina>58</Kolicina>
         <Staticka>false</Staticka>
         <IdOpreme>7</IdOpreme>
       </Oprema>
@@ -193,7 +193,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>operaciona stolica</NazivOpreme>
-        <Kolicina>800</Kolicina>
+        <Kolicina>900</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>4</IdOpreme>
       </Oprema>
@@ -228,6 +228,14 @@
         <IdOpreme>9</IdOpreme>
       </Oprema>
     </Oprema>
+    <zauzetiTermini />
+  </Sala>
+  <Sala>
+    <TipSale>SalaZaOdmor</TipSale>
+    <Id>5</Id>
+    <brojSale>4</brojSale>
+    <Namjena>cekaonica</Namjena>
+    <Oprema />
     <zauzetiTermini />
   </Sala>
 </ArrayOfSala>
