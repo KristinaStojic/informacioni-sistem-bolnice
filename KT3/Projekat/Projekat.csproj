@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Lijekovi.xaml.cs">
       <DependentUpon>Lijekovi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindowPacijent.xaml.cs">
       <DependentUpon>MainWindowPacijent.xaml</DependentUpon>
     </Compile>
