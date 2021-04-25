@@ -31,6 +31,7 @@ namespace Projekat
             InitializeComponent();
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
+            LekoviMenadzer.NadjiSveLijekove();
 
             PremjestajMenadzer.NadjiSvePremjestaje();
 
