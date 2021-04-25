@@ -209,10 +209,10 @@ namespace Projekat
                     TerminMenadzer.IzmeniTerminLekar(termin, t);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     s.zauzetiTermini.Add(z);
-
-                    TerminMenadzer.sacuvajIzmene();
-                    SaleMenadzer.sacuvajIzmjene();
-
+                    TerminMenadzer.sacuvajIzmene
+();
+                    SaleMenadzer.sacuvajIzmjene(
+);
                     this.Close();
                 }
             }

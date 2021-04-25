@@ -94,10 +94,16 @@ namespace Projekat
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            //SaleMenadzer.sacuvajIzmjene();
-            //this.Hide();
-            //MainWindow mw = new MainWindow();
-            //mw.Show();
+            Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if(izabranaSala != null)
+            {
+                Renoviranje renoviranje = new Renoviranje(izabranaSala);
+                renoviranje.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
