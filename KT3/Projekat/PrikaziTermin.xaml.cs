@@ -20,25 +20,24 @@ using System.Windows;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for PrikaziTermin.xaml
-    /// </summary>
     public partial class PrikaziTermin : Page
     {
         public static Pacijent prijavljeniPacijent;
-        public static int idPacijent = 1;
+        public static int idPacijent;
         public static bool pacijentProzor;
         private int colNum = 0;
         public static ObservableCollection<Termin> Termini { get; set; }
         public static ObservableCollection<Obavestenja> Obavestenja { get; set; }
         public Thread thread;
-        public PrikaziTermin()
+
+        public PrikaziTermin(int idPrijavljeniPacijent)
         {
             InitializeComponent();
             this.DataContext = this;
             Termini = new ObservableCollection<Termin>();
             Obavestenja = new ObservableCollection<Obavestenja>();
             pacijentProzor = true;
+            idPacijent = idPrijavljeniPacijent;
            // thread = new Thread(izvrsiNit);
            // thread.Start();
             foreach (Termin t in TerminMenadzer.termini)
@@ -166,8 +165,7 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // zakazi
-            Lekar l = null;
-            Page zakaziTermin = new ZakaziTermin(l);
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
 
@@ -177,7 +175,7 @@ namespace Projekat
             Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
             if (izabraniTermin != null)
             {
-                Page izmeniTermin = new IzmeniTermin(izabraniTermin);
+                Page izmeniTermin = new IzmeniTermin(izabraniTermin); // pacijent iz izabranog termina
                 //TerminMenadzer.sacuvajIzmene();
                 //it.Show();
                 this.NavigationService.Navigate(izmeniTermin);
@@ -227,7 +225,7 @@ namespace Projekat
         {
             // TODO: OBRISATI dumad sa prikaziTemrin
             Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            Page zdravstveniKarton = new ZdravstveniKartonPacijent(p);
+            Page zdravstveniKarton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(zdravstveniKarton);
         }
 
@@ -254,22 +252,26 @@ namespace Projekat
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            Page karton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(karton);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            Lekar l = null;
-            Page zakaziTermin = new ZakaziTermin(l);
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
 
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            // TODO ispraviti --> uvid u zakazane poseban page
-            Page uvid = new PrikaziTermin();
-            this.NavigationService.Navigate(uvid);
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
+            this.NavigationService.Navigate(uvid); 
+        }
+
+        private void pocetna_Click(object sender, RoutedEventArgs e)
+        {
+            Page pocetna = new PrikaziTermin(idPacijent);
+            this.NavigationService.Navigate(pocetna);
         }
     }
 }

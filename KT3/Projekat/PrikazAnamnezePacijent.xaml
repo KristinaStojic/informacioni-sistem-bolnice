@@ -24,8 +24,8 @@
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
                             <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                         </StackPanel>
-                        <StackPanel Height="40" Width="620" HorizontalAlignment="Right">
-                            <Menu Margin="500, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
+                        <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+                            <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
                                 <MenuItem Header="_Ime i prezime">
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
@@ -48,7 +48,7 @@
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                <Hyperlink NavigateUri="PrikaziTermin.xaml">
+                <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
                 <Run Text="  "/>
@@ -68,7 +68,6 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="200,0,100,100"  >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="45,30,49.5,0" Height="30" Width="305">
                 <Label Margin="0, 0, 0, 0" FontSize="14" Content="Datum"/>
                 <!--TextBlock Margin="50, 0, 0, 0"

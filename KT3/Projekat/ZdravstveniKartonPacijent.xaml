@@ -19,7 +19,7 @@
                                 <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
                                 <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                             </StackPanel>
-                            <StackPanel Height="40" Width="620" HorizontalAlignment="Right">
+                            <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                                 <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
                                     <MenuItem Header="_Ime i prezime">
                                         <MenuItem.Icon>
@@ -43,7 +43,7 @@
                             </StackPanel>
                         </StackPanel>
                         <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                <Hyperlink NavigateUri="PrikaziTermin.xaml">
+                <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
                 <Run Text="  "/>

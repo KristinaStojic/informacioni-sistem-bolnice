@@ -21,18 +21,20 @@ namespace Projekat
     /// </summary>
     public partial class ZakaziTerminPreferenca : Page
     {
-        public static int idPacijent = 1;
+        public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
         public static int idLekar = 1;
-        public static int brojPreporucenih = 3;
+        public static int maxBrojPreporucenihTermina = 3;
         public List<string> sviSlobodni2 { get; set; }
         public ObservableCollection<Termin> Termini2 { get; set; }
         public static List<Termin> lista;
         public Termin t;
-        public ZakaziTerminPreferenca()
+        public ZakaziTerminPreferenca(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
+            idPacijent = idPrijavljenogPacijenta;
+            this.nazad.Visibility = Visibility.Hidden;
             Termini2 = new ObservableCollection<Termin>();
             sviSlobodni2 = new List<string>() { "07:00", "07:30", "08:00", "08:30",
                                                 "09:00", "09:30",  "10:00", "10:30",
@@ -53,10 +55,9 @@ namespace Projekat
             this.datagridLekari.ItemsSource = MainWindow.lekari;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource);
             view.Filter = UserFilter;
-
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
 
-            int count = 0;
+            int brojacPreporucenihTermina = 0;
             lista = new List<Termin>();
             bool jeTri = false;
 
@@ -89,7 +90,6 @@ namespace Projekat
                                         if (l.IdLekara.Equals(idLekar))
                                         {
                                             t.Lekar = l ;
-                                            //MessageBox.Show(l.ToString());
                                             break;
                                         }
                                         break;
@@ -98,9 +98,9 @@ namespace Projekat
                                     // TODO: isparivi kada uradimo prijavljivanje
                                     //Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
                                     t.Pacijent = prijavljeniPacijent;
-                                    count++;
+                                    brojacPreporucenihTermina++;
                                     Termini2.Add(t);
-                                    if (count == brojPreporucenih)
+                                    if (brojacPreporucenihTermina == maxBrojPreporucenihTermina)
                                     {
                                         jeTri = true;
                                     }
@@ -133,6 +133,7 @@ namespace Projekat
         private void nazad_Click(object sender, RoutedEventArgs e)
         {
             //this.Close();
+            
         }
 
         private void lekari_Click(object sender, RoutedEventArgs e)
@@ -164,7 +165,7 @@ namespace Projekat
         {
             if (datagridLekari.SelectedItems.Count > 0)
             {
-                Lekar item = (Lekar)datagridLekari.SelectedItems[0];
+                Lekar item = (Lekar)datagridLekari.SelectedItem;
                 //mePrz.Text = item.ToString();
             }
 
@@ -179,7 +180,7 @@ namespace Projekat
                 l = (Lekar)datagridLekari.SelectedItems[0];
             }
             // TODO: kada se bude prosledjivao prijavljeni pacijent, samo set-ovati lekara
-            ZakaziTermin zt = new ZakaziTermin(l);
+            ZakaziTermin zt = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zt);
         }
 
@@ -207,7 +208,8 @@ namespace Projekat
             sala.zauzetiTermini.Add(novoZauzeceSale);
             SaleMenadzer.sacuvajIzmjene();
             TerminMenadzer.sacuvajIzmene();
-            Page prikaziTermin = new PrikaziTermin();
+
+            Page prikaziTermin = new PrikaziTermin(t.Pacijent.IdPacijenta);
             this.NavigationService.Navigate(prikaziTermin);
         }
 
@@ -218,22 +220,26 @@ namespace Projekat
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            Page karton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(karton);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            Lekar l = null;
-            Page zakaziTermin = new ZakaziTermin(l);
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
 
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            // TODO ispraviti --> uvid u zakazane poseban page
-            Page uvid = new PrikaziTermin();
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
+        }
+
+        private void pocetna_Click(object sender, RoutedEventArgs e)
+        {
+            Page pocetna = new PrikaziTermin(idPacijent);
+            this.NavigationService.Navigate(pocetna);
         }
     }
 }

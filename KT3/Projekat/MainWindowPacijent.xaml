@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Projekat.MainWindowPacijent"
         mc:Ignorable="d"
-        Title="Početna stranica" Height="600" Width="800">
+        Title="Pacijent" Height="600" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
 
     <!--StackPanel Orientation="Vertical" Margin="0,0,0,-2.5" Width="795" DockPanel.Dock="Top">
         <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
@@ -57,8 +57,9 @@
         </TextBlock>
         </StackPanel-->
     <DockPanel>
-        <Frame  Source="PrikaziTermin.xaml">
-        </Frame>
+        <ScrollViewer>
+            <Frame  Source="PrijavaPacijent.xaml"/>
+        </ScrollViewer>
     </DockPanel>
 
 </Window>

@@ -17,26 +17,18 @@ namespace Projekat
 {
     public partial class ZdravstveniKartonPacijent : Page
     {
-        public Pacijent prijavljeniPacijent;
         public List<LekarskiRecept> tempRecepti;
         public List<Anamneza> tempAnamneze;
-        public ZdravstveniKartonPacijent(Pacijent izabraniPacijent)
+        public static int idPacijent;
+        public static Pacijent prijavljeniPacijent;
+        public ZdravstveniKartonPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
-            this.prijavljeniPacijent = izabraniPacijent;
+            idPacijent = idPrijavljenogPacijenta;
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
-           /* this.ime.IsEnabled = false;
-            this.prezime.IsEnabled = false;
-            this.jmbg.IsEnabled = false;
-            this.pol.IsEnabled = false;
-            this.brojTel.IsEnabled = false;
-            this.email.IsEnabled = false;
-            this.adresa.IsEnabled = false;
-            this.bracnoStanje.IsEnabled = false;
-            this.zanimanje.IsEnabled = false;
-            this.lekar.IsEnabled = false;*/
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
             /* LEKARI OPSTE PRAKSE */
             List<Lekar> opstaPraksa = new List<Lekar>();
             foreach (Lekar l in MainWindow.lekari)
@@ -47,42 +39,43 @@ namespace Projekat
                 }
             }
             this.lekar.ItemsSource = opstaPraksa;
-            /* LEKARSKI RECEPTI */
+            /* LEKARSKI RECEPTI i ANAMNEZE */
             tempRecepti = new List<LekarskiRecept>();
             tempAnamneze = new List<Anamneza>();
-           /* foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            // TODO: proveriti
+            if (prijavljeniPacijent.Karton.LekarskiRecepti != null)
             {
-                if (p.IdPacijenta == pacijentt.IdPacijenta)
-                {*/
-           
-                    foreach (LekarskiRecept lekRecepti in prijavljeniPacijent.Karton.LekarskiRecepti)
-                    {
-                        tempRecepti.Add(lekRecepti);
-                    }
-                    foreach (Anamneza anamneza in prijavljeniPacijent.Karton.Anamneze)
-                    {
-                        tempAnamneze.Add(anamneza);
-                    }
-               // }
-            //}
+                foreach (LekarskiRecept lekRecepti in prijavljeniPacijent.Karton.LekarskiRecepti)
+                {
+                    tempRecepti.Add(lekRecepti);
+                }
+            }
+            if (prijavljeniPacijent.Karton.Anamneze != null)
+            {
+                foreach (Anamneza anamneza in prijavljeniPacijent.Karton.Anamneze)
+                {
+                    tempAnamneze.Add(anamneza);
+                }
+            }
+
             this.tabelaRecepata.ItemsSource = tempRecepti;
             this.prikazAnamnezi.ItemsSource = tempAnamneze;
             /* LICNI PODACI */
-            this.ime.Text = izabraniPacijent.ImePacijenta;
-            this.prezime.Text = izabraniPacijent.PrezimePacijenta;
-            this.jmbg.Text = izabraniPacijent.Jmbg.ToString();
-            if (izabraniPacijent.Pol.Equals("M"))
+            this.ime.Text = prijavljeniPacijent.ImePacijenta;
+            this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
+            this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
+            if (prijavljeniPacijent.Pol.Equals("M"))
                 this.poltxt.Text = "M";
             else
                 this.poltxt.Text = "Z";
-            this.brojTel.Text = izabraniPacijent.BrojTelefona.ToString(); 
-            this.email.Text = izabraniPacijent.Email;
-            this.adresa.Text = izabraniPacijent.AdresaStanovanja;
-            this.bracStanje.Text = izabraniPacijent.BracnoStanje.ToString();
-            this.zanimanje.Text = izabraniPacijent.Zanimanje;
-            if (izabraniPacijent.IzabraniLekar != null)
+            this.brojTel.Text = prijavljeniPacijent.BrojTelefona.ToString(); 
+            this.email.Text = prijavljeniPacijent.Email;
+            this.adresa.Text = prijavljeniPacijent.AdresaStanovanja;
+            this.bracStanje.Text = prijavljeniPacijent.BracnoStanje.ToString();
+            this.zanimanje.Text = prijavljeniPacijent.Zanimanje;
+            if (prijavljeniPacijent.IzabraniLekar != null)
             {
-                this.lekar.Text = izabraniPacijent.IzabraniLekar.ToString();
+                this.lekar.Text = prijavljeniPacijent.IzabraniLekar.ToString();
             }
             
            
@@ -293,22 +286,26 @@ namespace Projekat
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            Page karton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(karton);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            Lekar l = null;
-            Page zakaziTermin = new ZakaziTermin(l);
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
 
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            // TODO ispraviti --> uvid u zakazane poseban page
-            Page uvid = new PrikaziTermin();
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
+        }
+
+        private void pocetna_Click(object sender, RoutedEventArgs e)
+        {
+            Page pocetna = new PrikaziTermin(idPacijent);
+            this.NavigationService.Navigate(pocetna);
         }
     }
 }

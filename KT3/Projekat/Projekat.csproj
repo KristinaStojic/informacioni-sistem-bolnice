@@ -148,6 +148,9 @@
     <Compile Include="PreraspodjelaStaticke.xaml.cs">
       <DependentUpon>PreraspodjelaStaticke.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrijavaPacijent.xaml.cs">
+      <DependentUpon>PrijavaPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikazAnamneza.xaml.cs">
       <DependentUpon>PrikazAnamneza.xaml</DependentUpon>
     </Compile>
@@ -195,6 +198,9 @@
     </Compile>
     <Compile Include="Zahtjevi.xaml.cs">
       <DependentUpon>Zahtjevi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZakazaniTerminiPacijent.xaml.cs">
+      <DependentUpon>ZakazaniTerminiPacijent.xaml</DependentUpon>
     </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
@@ -340,6 +346,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrijavaPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrikazAnamneza.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -409,6 +419,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Zahtjevi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZakazaniTerminiPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
