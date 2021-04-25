@@ -17,7 +17,7 @@ namespace Projekat.Model
         public String datumSlanjaZahteva { get; set; }
 
         public Boolean obradjenZahtev { get; set; }
-        public Boolean odbijenZahtev { get; set; }
+        public Boolean odobrenZahtev { get; set; }
 
         public String obrazlozenjeOdbijanja { get; set; }
 

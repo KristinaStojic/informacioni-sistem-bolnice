@@ -19,11 +19,12 @@ namespace Projekat
     /// </summary>
     public partial class ObradiZahtevZaLek : Window
     {
+        ZahtevZaLekove zahtev;
         public ObradiZahtevZaLek(ZahtevZaLekove izabraniZahtev)
         {
             InitializeComponent();
             this.DataContext = this;
-
+            this.zahtev = izabraniZahtev;
             
             this.spisakSastojaka.ItemsSource = LekoviMenadzer.nadjiSastojke(izabraniZahtev.sifraLeka);
             this.datum.SelectedDate = DateTime.Parse(izabraniZahtev.datumSlanjaZahteva);
@@ -34,12 +35,13 @@ namespace Projekat
 
         private void Button_Odbij(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void Button_Odobri(object sender, RoutedEventArgs e)
         {
-
+            zahtev.odobrenZahtev = true;
+            this.Close();
         }
     }
 }
