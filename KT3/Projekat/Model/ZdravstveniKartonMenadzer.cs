@@ -229,6 +229,38 @@ namespace Projekat.Model
             ZdravstveniKartonLekar.TabelaAlergena.Insert(idx, noviAlergen);
         }
 
+        public static List<Lek> NadjiPacijentuDozvoljeneLekove(int idSelektovanogPacijenta)
+        {
+            List<Lek> dozvoljeniLekovi = new List<Lek>();
+
+
+            dozvoljeniLekovi = LekoviMenadzer.lijekovi;
+
+            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if(idSelektovanogPacijenta == pacijent.IdPacijenta)
+                {
+                    
+                        foreach (Lek lek in LekoviMenadzer.lijekovi.ToArray())
+                        {
+                            foreach (Alergeni alergen in pacijent.Karton.Alergeni.ToArray())
+                            {
+
+                                if (alergen.SifraLeka.Equals(lek.sifraLeka))
+                                {
+                                    dozvoljeniLekovi.Remove(lek);
+                                }
+
+                            }
+                        }
+                    
+                }
+            }
+
+            return dozvoljeniLekovi;
+
+        }
+
 
     }
 }
