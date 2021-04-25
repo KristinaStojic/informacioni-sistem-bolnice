@@ -27,7 +27,7 @@ namespace Projekat
             InitializeComponent();
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
-            this.nadjiLek.ItemsSource = MainWindow.lekovi;
+            this.nadjiLek.ItemsSource = LekoviMenadzer.lijekovi;
             this.pacijentIme.Text = izabraniPacijent.ImePacijenta + " " + izabraniPacijent.PrezimePacijenta;
             this.jmbg.Text = izabraniPacijent.Jmbg.ToString();
             this.lekar.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
