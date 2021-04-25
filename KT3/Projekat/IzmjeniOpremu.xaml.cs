@@ -33,17 +33,51 @@ namespace Projekat
 
         public void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
+            Oprema o = napraviOpremu();
+            OpremaMenadzer.izmjeniOpremu(oprema, o);
+            this.Close();
+        }
+
+        private Oprema napraviOpremu()
+        {
             string naziv = this.naziv.Text;
             int kolicina = int.Parse(this.kolicina.Text);
             Oprema o = new Oprema(naziv, kolicina, oprema.Staticka);
             o.IdOpreme = oprema.IdOpreme;
-            OpremaMenadzer.izmjeniOpremu(oprema, o);
-            this.Close();
+            return o;
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.naziv.Text.Trim().Equals("") || IsNumeric(this.naziv.Text) || !IsNumeric(this.kolicina.Text) || this.kolicina.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if(!this.naziv.Text.Trim().Equals("") && !IsNumeric(this.naziv.Text) && IsNumeric(this.kolicina.Text) && !this.kolicina.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Projekat.Model
         public static void dodajPremjestaj(Premjestaj p)
         {
             premjestaji.Add(p);
-            PremjestajMenadzer.sacuvajIzmjene();
+            sacuvajIzmjene();
         }
         public static List<Premjestaj> NadjiSvePremjestaje()
         {

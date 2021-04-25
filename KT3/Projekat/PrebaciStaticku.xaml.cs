@@ -30,6 +30,7 @@ namespace Projekat
         public DateTime datumIVrijemeSlanja;
         public int validacija;
         public static int dozvoljenaKolicina;
+
         public int Validacija
         {
             get
@@ -54,6 +55,13 @@ namespace Projekat
             this.oprema.Text = opremaZaSlanje.NazivOpreme;
             this.DataContext = this;
             Sale = new ObservableCollection<Sala>();
+            dodajSale();
+            dodajTerminePocetak();
+            postaviMax();
+        }
+
+        private void dodajSale()
+        {
             foreach (Sala s in SaleMenadzer.sale)
             {
                 if (!s.Namjena.Equals("Skladiste"))
@@ -61,6 +69,10 @@ namespace Projekat
                     Sale.Add(s);
                 }
             }
+        }
+
+        private void dodajTerminePocetak()
+        {
             int x = 0;
             for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
             {
@@ -77,18 +89,14 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            postaviMax();
-            termini.Add("18:55");
-
         }
 
         private void postaviMax()
         {
-            bool postoji = false;
             int kolicina = opremaZaSlanje.Kolicina;
             foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
             {
-                if (pm.izSale.Id == 4)
+                if (pm.izSale.Id == 4 && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
                     kolicina -= pm.kolicina;
                 }
@@ -255,44 +263,53 @@ namespace Projekat
             {
                 if (DatePicker.SelectedDate == DateTime.Now.Date)
                 {
-                    termini.Clear();
-                    for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
-                    {
-                        int x = 0;
-                        foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
-                        {
-                            if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
-                            {
-                                x += 1;
-                            }
-                        }
-                        if (x == 0)
-                        {
-                            termini.Add(i + ":00");
-                        }
-                    }
+                    dodajTermineDanas();
                 }
                 else
                 {
-                    int x = 0;
-                    string[] t = termini[0].Split(':');
-                    string prvi = t[0];
-                    for (int i = int.Parse(prvi); i > 0; i--)
-                    {
-                        x = 0;
-                        foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
-                        {
-                            if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
-                            {
-                                x += 1;
-                            }
-                        }
-                        if (x == 0)
-                        {
-                            termini.Insert(0, i + ":00");
-                        }
-                    }
+                    dodajTermine();
+                }
+            }
+        }
 
+        private void dodajTermineDanas()
+        {
+            termini.Clear();
+            for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+            {
+                int x = 0;
+                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                {
+                    if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
+                    {
+                        x += 1;
+                    }
+                }
+                if (x == 0)
+                {
+                    termini.Add(i + ":00");
+                }
+            }
+        }
+
+        private void dodajTermine()
+        {
+            int x = 0;
+            string[] t = termini[0].Split(':');
+            string prvi = t[0];
+            for (int i = int.Parse(prvi) - 1; i > 0; i--)
+            {
+                x = 0;
+                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                {
+                    if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
+                    {
+                        x += 1;
+                    }
+                }
+                if (x == 0)
+                {
+                    termini.Insert(0, i + ":00");
                 }
             }
         }
@@ -308,6 +325,46 @@ namespace Projekat
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+
+        private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void sale_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (IsNumeric(this.Kolicina.Text))
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.potvrda.IsEnabled = false;
+            }
+        }
+
+        private void izvrsiPostavljanje()
+        {
+            if (int.Parse(this.Kolicina.Text) > dozvoljenaKolicina || int.Parse(this.Kolicina.Text) <= 0 || this.sale.SelectedItem == null)
+            {
+                this.potvrda.IsEnabled = false;
+            }
+            else if (int.Parse(this.Kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.Kolicina.Text) > 0 && this.sale.SelectedItem != null)
+            {
+                this.potvrda.IsEnabled = true;
             }
         }
     }

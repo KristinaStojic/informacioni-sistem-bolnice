@@ -62,6 +62,10 @@ namespace Projekat
                 
                 SaleMenadzer.ObrisiSalu((Sala)izabranaSala);
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -71,6 +75,10 @@ namespace Projekat
             {
                 IzmjeniSalu iss = new IzmjeniSalu(izabranaSala);
                 iss.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
             }
         }
 
@@ -86,8 +94,8 @@ namespace Projekat
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            SaleMenadzer.sacuvajIzmjene();
-            this.Hide();
+            //SaleMenadzer.sacuvajIzmjene();
+            //this.Hide();
             //MainWindow mw = new MainWindow();
             //mw.Show();
         }
@@ -110,6 +118,10 @@ namespace Projekat
                     ps.ShowDialog();
                 }catch(Exception ex) { }
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -122,6 +134,10 @@ namespace Projekat
                     PrikazDinamicke pd = new PrikazDinamicke(izabranaSala);
                     pd.ShowDialog();
                 }catch(Exception ex) { }
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
             }
         }
 

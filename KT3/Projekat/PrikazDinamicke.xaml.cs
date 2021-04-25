@@ -79,6 +79,10 @@ namespace Projekat
                 SlanjeDinamicke.aktivan = true;
                 sd.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati opremu");
+            }
         }
     }
 }

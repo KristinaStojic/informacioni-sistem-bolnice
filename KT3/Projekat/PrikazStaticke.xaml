@@ -10,7 +10,7 @@
         <Button Click="Button_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
-        <TextBlock Name="tekst"  FontWeight="Black" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Name="tekst"  FontWeight="Black" FontSize="15" HorizontalAlignment="Center"></TextBlock>
         <DataGrid x:Name="dataGridStaticka" ItemsSource="{Binding OpremaStaticka}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="161" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="291">

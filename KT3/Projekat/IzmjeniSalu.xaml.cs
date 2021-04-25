@@ -64,5 +64,51 @@ namespace Projekat
         {
             this.Close();
         }
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+
+        private void text1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void text2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.text1.Text.Trim().Equals("") || this.text2.Text.Trim().Equals("") || !IsNumeric(this.text1.Text) || IsNumeric(this.text2.Text) || postojiBrojSale())
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if (!this.text1.Text.Trim().Equals("") && !this.text2.Text.Trim().Equals("") && IsNumeric(this.text1.Text) && !IsNumeric(this.text2.Text) && !postojiBrojSale())
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+
+        private bool postojiBrojSale()
+        {
+            if (IsNumeric(this.text1.Text))
+            {
+                foreach (Sala sala in SaleMenadzer.sale)
+                {
+                    if (sala.brojSale == int.Parse(this.text1.Text) && sala.Id != this.sala.Id)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

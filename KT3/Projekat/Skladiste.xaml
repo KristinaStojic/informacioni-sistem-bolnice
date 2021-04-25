@@ -14,7 +14,7 @@
             </MenuItem>
             <MenuItem Header="Uredi" FontSize="15">
                 <MenuItem Header="Izmjeni" FontSize="15" Click="Button_Click_3"></MenuItem>
-                <MenuItem Header="Izbrisi" FontSize="15" Click="Button_Click_2"></MenuItem>
+                <MenuItem Header="Izbrisi" FontSize="15" Click="Button_Click_5"></MenuItem>
                 <MenuItem Header="Prebaci" FontSize="15" Click="Button_Click_4"></MenuItem>
             </MenuItem>
             <MenuItem Header="Navigacija" FontSize="15">

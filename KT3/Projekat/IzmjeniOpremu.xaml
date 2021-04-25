@@ -20,7 +20,7 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Name="Kolicina" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Kolicina:</TextBlock>
         <Button Grid.Row="2" Grid.Column="0" Name="Potvrdi" Click="Potvrdi_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="95" Height="40" Background="CadetBlue" Margin="60, 10, 10, 10">Potvrdi</Button>
         <Button Grid.Row="2" Grid.Column="1" Name="Odustani" Click="Odustani_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="95" Height="40" Background="CadetBlue" Margin="10, 10, 60, 10">Odustani</Button>
-        <TextBox Name="naziv" Grid.Row="0" Grid.Column="1" Width="122" Height="27"></TextBox>
-        <TextBox Name="kolicina" Grid.Row="1" Grid.Column="1" Width="122" Height="27"></TextBox>
+        <TextBox Name="naziv" Grid.Row="0" Grid.Column="1" Width="122" Height="27" TextChanged="naziv_TextChanged"></TextBox>
+        <TextBox Name="kolicina" Grid.Row="1" Grid.Column="1" Width="122" Height="27" TextChanged="kolicina_TextChanged"></TextBox>
     </Grid>
 </Window>

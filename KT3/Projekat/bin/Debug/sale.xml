@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfSala xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Sala>
-    <Status>Slobodna</Status>
     <TipSale>OperacionaSala</TipSale>
     <Id>1</Id>
     <brojSale>1</brojSale>
@@ -66,7 +65,6 @@
     </zauzetiTermini>
   </Sala>
   <Sala>
-    <Status>Slobodna</Status>
     <TipSale>SalaZaPregled</TipSale>
     <Id>2</Id>
     <brojSale>2</brojSale>
@@ -125,7 +123,6 @@
     </zauzetiTermini>
   </Sala>
   <Sala>
-    <Status>Slobodna</Status>
     <TipSale>SalaZaPregled</TipSale>
     <Id>3</Id>
     <brojSale>3</brojSale>
@@ -171,7 +168,6 @@
     <zauzetiTermini />
   </Sala>
   <Sala>
-    <Status>Slobodna</Status>
     <TipSale>SalaZaPregled</TipSale>
     <Id>4</Id>
     <brojSale>0</brojSale>
@@ -185,7 +181,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>respirator</NazivOpreme>
-        <Kolicina>375</Kolicina>
+        <Kolicina>380</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>2</IdOpreme>
       </Oprema>
@@ -224,6 +220,12 @@
         <Kolicina>1</Kolicina>
         <Staticka>true</Staticka>
         <IdOpreme>8</IdOpreme>
+      </Oprema>
+      <Oprema>
+        <NazivOpreme>naocare</NazivOpreme>
+        <Kolicina>120</Kolicina>
+        <Staticka>false</Staticka>
+        <IdOpreme>9</IdOpreme>
       </Oprema>
     </Oprema>
     <zauzetiTermini />

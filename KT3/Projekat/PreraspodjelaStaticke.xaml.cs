@@ -53,35 +53,12 @@ namespace Projekat
             staticka = new ObservableCollection<Oprema>();
             sale = new ObservableCollection<Sala>();
             this.salaDodavanje = izabranaSala;
-            foreach (Oprema o in OpremaMenadzer.oprema)
-            {
-                if (o.Staticka)
-                {
-                    staticka.Add(o);
-                }
-            }
-            bool ima = false;
-            foreach(Sala s in SaleMenadzer.sale)
-            {
-                foreach(Oprema op in s.Oprema)
-                {
-                    ima = false;
-                    if (op.Staticka)
-                    {
-                        foreach(Oprema ops in staticka)
-                        {
-                            if(ops.IdOpreme == op.IdOpreme)
-                            {
-                                ima = true;
-                            }
-                        }
-                        if (!ima)
-                        {
-                            staticka.Add(op);
-                        }
-                    }
-                }
-            }
+            dodajStaticku();
+            dodajTermine();
+        }
+
+        private void dodajTermine()
+        {
             int x = 0;
             for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
             {
@@ -98,13 +75,56 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            termini.Add("18:55");
+        }
+
+        private void dodajStaticku()
+        {
+            dodajStatickuIzSkladista();
+            dodajStatickuIzSala();
+        }
+
+        private void dodajStatickuIzSkladista()
+        {
+            foreach (Oprema o in OpremaMenadzer.oprema)
+            {
+                if (o.Staticka)
+                {
+                    staticka.Add(o);
+                }
+            }
+        }
+
+        private void dodajStatickuIzSala()
+        {
+            bool ima = false;
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                foreach (Oprema op in s.Oprema)
+                {
+                    ima = false;
+                    if (op.Staticka)
+                    {
+                        foreach (Oprema ops in staticka)
+                        {
+                            if (ops.IdOpreme == op.IdOpreme)
+                            {
+                                ima = true;
+                            }
+                        }
+                        if (!ima)
+                        {
+                            staticka.Add(op);
+                        }
+                    }
+                }
+            }
         }
 
         private void kombo_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             PreraspodjelaStaticke.izabranaOprema = (Oprema)kombo.SelectedItem;
             azurirajSale(izabranaOprema);
+            podesiDugme();
         }
 
         private void azurirajSale(Oprema izabranaOprema)
@@ -116,7 +136,7 @@ namespace Projekat
                 {
                     if (o.IdOpreme == izabranaOprema.IdOpreme)
                     {
-                        if (s.Id != salaDodavanje.Id)
+                        if (s.Id != salaDodavanje.Id && provjeriPreostalo(o, s))
                         {
                             sale.Add(s);
                         }
@@ -127,10 +147,34 @@ namespace Projekat
 
         }
 
+        private bool provjeriPreostalo(Oprema opremaZaSlanje, Sala izabranaSala)
+        {
+            int kolicina = opremaZaSlanje.Kolicina;
+            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                if (pm.izSale.Id == izabranaSala.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+                {
+                    kolicina -= pm.kolicina;
+                }
+            }
+            if (kolicina == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         private void komboSale_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Sala s = (Sala)komboSale.SelectedItem;
-            azurirajKolicinu(s);
+            if (s != null)
+            {
+                azurirajKolicinu(s);
+            }
+            podesiDugme();
         }
         private void azurirajKolicinu(Sala s)
         {
@@ -422,6 +466,40 @@ namespace Projekat
 
                 }
             }
+            podesiDugme();
+        }
+
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+
+        private void podesiDugme()
+        {
+            if (this.Kolicina != null)
+            {
+                if (IsNumeric(this.Kolicina.Text))
+                {
+                    postaviDugme();
+                }
+                else
+                {
+                    this.Potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void postaviDugme()
+        {
+            if (int.Parse(this.Kolicina.Text) > dozvoljenaKolicina || int.Parse(this.Kolicina.Text) <= 0 || this.kombo.SelectedItem == null || this.komboSale.SelectedItem == null || this.vrijeme.SelectedItem == null)
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if (int.Parse(this.Kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.Kolicina.Text) > 0 && this.kombo.SelectedItem != null && this.komboSale.SelectedItem != null && this.vrijeme.SelectedItem != null)
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -435,6 +513,16 @@ namespace Projekat
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        private void vrijeme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            podesiDugme();
+        }
+
+        private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            podesiDugme();
         }
     }
 }

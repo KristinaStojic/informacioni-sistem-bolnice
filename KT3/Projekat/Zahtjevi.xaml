@@ -32,7 +32,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Obracun plate</Button>
-            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Nabavka lijekova</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Click="Button_Click_2">Lijekovi</Button>
         </StackPanel>
     </StackPanel>
 </Window>

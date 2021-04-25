@@ -53,18 +53,30 @@ namespace Projekat
             this.oprema.Text = opremaZaSlanje.NazivOpreme;
             this.DataContext = this;
             Sale = new ObservableCollection<Sala>();
-            foreach (Sala s in SaleMenadzer.sale)
+            dodajSale(izabranaSala);
+            dodajTermine();
+            
+            int kolicina = opremaZaSlanje.Kolicina;
+            foreach(Premjestaj pm in PremjestajMenadzer.premjestaji)
             {
-                if (s.Id != izabranaSala.Id)
+                kolicina = opremaZaSlanje.Kolicina;
+                if (pm.izSale.Id == salaIzKojeSaljem.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    Sale.Add(s);
+                    kolicina -= pm.kolicina;
                 }
             }
+            this.maks.Text = "MAX: " + kolicina.ToString();
+
+            dozvoljenaKolicina = kolicina;
+            this.Potvrdi.IsEnabled = false;
+        }
+        private void dodajTermine()
+        {
             int x = 0;
             for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
             {
                 x = 0;
-                foreach(Premjestaj p in PremjestajMenadzer.premjestaji)
+                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
                 {
                     if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
                     {
@@ -76,22 +88,17 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            termini.Add("18:55");
-            
-            int kolicina = opremaZaSlanje.Kolicina;
-            foreach(Premjestaj pm in PremjestajMenadzer.premjestaji)
+        }
+        private void dodajSale(Sala izabranaSala)
+        {
+            foreach (Sala s in SaleMenadzer.sale)
             {
-                kolicina = opremaZaSlanje.Kolicina;
-                if (pm.izSale.Id == salaIzKojeSaljem.Id)
+                if (s.Id != izabranaSala.Id)
                 {
-                    kolicina -= pm.kolicina;
+                    Sale.Add(s);
                 }
             }
-            this.maks.Text = "MAX: " + kolicina.ToString();
-
-            dozvoljenaKolicina = kolicina;
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             aktivan = false;
@@ -291,6 +298,7 @@ namespace Projekat
                     
                 }
             }
+            podesiDugme();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
@@ -304,6 +312,50 @@ namespace Projekat
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             aktivan = false;
+        }
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+        private void podesiDugme()
+        {
+            if (this.Kolicina != null)
+            {
+                if (IsNumeric(this.Kolicina.Text))
+                {
+                    izvrsiPodesavanje();
+                }
+                else
+                {
+                    this.Potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void izvrsiPodesavanje()
+        {
+            if(int.Parse(this.Kolicina.Text) > dozvoljenaKolicina || int.Parse(this.Kolicina.Text) <= 0 || this.sale.SelectedItem == null || this.vrijeme.SelectedItem == null)
+            {
+                this.Potvrdi.IsEnabled = false;
+            }else if (int.Parse(this.Kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.Kolicina.Text) > 0 && this.sale.SelectedItem != null && this.vrijeme.SelectedItem != null)
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+        private void sale_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            podesiDugme();
+        }
+
+        private void vrijeme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            podesiDugme();
+        }
+
+        private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            podesiDugme();
         }
     }
 }
