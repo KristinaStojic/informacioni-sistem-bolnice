@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SpisakZahtevaZaLekove" Height="600" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
     <Grid DockPanel.Dock="Top" Margin="0,0,4,-1">
-        <DataGrid x:Name="dataGridTermini" IsReadOnly="True" ItemsSource="{Binding TabelaZahteva}"
+        <DataGrid x:Name="dataGridZahtevi" IsReadOnly="True" ItemsSource="{Binding TabelaZahteva}"
                                 SelectionMode="Single" AutoGenerateColumns="False"
                                  Margin="41,56,41.4,0" VerticalAlignment="Top" Height="427" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13" Visibility="Visible">
             <DataGrid.Columns >

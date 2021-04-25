@@ -43,6 +43,17 @@ namespace Projekat
 
         private void Button_Obradi(object sender, RoutedEventArgs e)
         {
+            ZahtevZaLekove izabraniZahtev = (ZahtevZaLekove)dataGridZahtevi.SelectedItem;
+            if(izabraniZahtev != null)
+            {
+                ObradiZahtevZaLek obradiZahtev = new ObradiZahtevZaLek(izabraniZahtev);
+                obradiZahtev.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali zahtev koji zelite da obradite!");
+            }
 
         }
         
