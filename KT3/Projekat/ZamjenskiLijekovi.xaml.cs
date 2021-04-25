@@ -74,5 +74,37 @@ namespace Projekat
             DodajZamjenskiLijek dodajZamjenskiLijek = new DodajZamjenskiLijek(izabraniLijek);
             dodajZamjenskiLijek.Show();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Lek izabraniLijek = (Lek)dataGridLijekovi.SelectedItem;
+            if(izabraniLijek != null)
+            {
+                IzmjeniLijek izmjeniLijek = new IzmjeniLijek(izabraniLijek);
+                izmjeniLijek.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati lijek!");
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Lek zamjenskiLijek = (Lek)dataGridLijekovi.SelectedItem;
+            if(zamjenskiLijek != null)
+            {
+                LekoviMenadzer.obrisiZamjenski(izabraniLijek, zamjenskiLijek);
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati lijek!");
+            }
+        }
     }
 }

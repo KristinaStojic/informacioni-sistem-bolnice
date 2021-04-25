@@ -104,5 +104,19 @@ namespace Projekat
                 MessageBox.Show("Morate izabrati lijek!");
             }
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            Lek izabraniLijek = (Lek)dataGridLijekovi.SelectedItem;
+            if (izabraniLijek != null)
+            {
+                Sastojci sastojci = new Sastojci(izabraniLijek);
+                sastojci.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati lijek!");
+            }
+        }
     }
 }

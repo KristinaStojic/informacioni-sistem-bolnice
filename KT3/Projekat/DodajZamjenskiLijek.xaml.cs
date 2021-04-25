@@ -74,10 +74,7 @@ namespace Projekat
             List<Lek> izabraniLijekovi = nadjiIzabraneLijekove();
             if(izabraniLijekovi != null)
             {
-                foreach(Lek lijek in izabraniLijekovi)
-                {
-                    LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, izabraniLijekovi);
-                }
+                LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, izabraniLijekovi);
             }
             else
             {
@@ -95,6 +92,11 @@ namespace Projekat
             }
             
             return izabraniLijekovi;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -86,6 +86,9 @@
     <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
       <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajSastojak.xaml.cs">
+      <DependentUpon>DodajSastojak.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajZamjenskiLijek.xaml.cs">
       <DependentUpon>DodajZamjenskiLijek.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,12 @@
     </Compile>
     <Compile Include="IzmjeniOpremu.xaml.cs">
       <DependentUpon>IzmjeniOpremu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzmjeniSastojak.xaml.cs">
+      <DependentUpon>IzmjeniSastojak.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzmjeniZamjenskiLijek.xaml.cs">
+      <DependentUpon>IzmjeniZamjenskiLijek.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lijekovi.xaml.cs">
       <DependentUpon>Lijekovi.xaml</DependentUpon>
@@ -179,6 +188,9 @@
     </Compile>
     <Compile Include="Recept.xaml.cs">
       <DependentUpon>Recept.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sastojci.xaml.cs">
+      <DependentUpon>Sastojci.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sekretar.xaml.cs">
       <DependentUpon>Sekretar.xaml</DependentUpon>
@@ -265,6 +277,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DodajSastojak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DodajZamjenskiLijek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -294,6 +310,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="IzmjeniSalu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmjeniSastojak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmjeniZamjenskiLijek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -396,6 +420,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sastojci.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
