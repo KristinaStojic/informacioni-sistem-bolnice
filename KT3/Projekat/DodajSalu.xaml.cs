@@ -35,9 +35,13 @@ namespace Projekat
             {
                 TipSale = tipSale.SalaZaPregled;
             }
-            else
+            else if(combo.Text.Equals("Sala za operacije"))
             {
                 TipSale = tipSale.OperacionaSala;
+            }
+            else
+            {
+                TipSale = tipSale.SalaZaOdmor;
             }
             Sala s = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
             SaleMenadzer.DodajSalu(s);

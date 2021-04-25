@@ -44,7 +44,7 @@
             <Button Click="Button_Click_5" ToolTip="Obrisi">
                 <Image Source="slike/trash.png" Width="30" Height="30"></Image>
             </Button>
-            <TextBox HorizontalAlignment="Right" Width="130" Height="30" Margin="310, 0, 0, 0"></TextBox>
+            <TextBox HorizontalAlignment="Right" Width="130" Height="30" Margin="310, 0, 0, 0" TextChanged="TextBox_TextChanged" Name="Pretraga"></TextBox>
             <Button ToolTip="Pretrazi">
                 <Image Source="slike/search.png" Width="30" Height="30"></Image>
             </Button>

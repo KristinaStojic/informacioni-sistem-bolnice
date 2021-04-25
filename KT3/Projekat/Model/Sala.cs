@@ -16,7 +16,7 @@ namespace Model
 
     public enum tipSale
     {
-        OperacionaSala, SalaZaPregled
+        OperacionaSala, SalaZaPregled, SalaZaOdmor
     }
 
     public class Sala: INotifyPropertyChanged

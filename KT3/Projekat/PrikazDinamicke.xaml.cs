@@ -84,5 +84,17 @@ namespace Projekat
                 MessageBox.Show("Morate izabrati opremu");
             }
         }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OpremaDinamicka.Clear();
+            foreach(Oprema oprema in izabranaSala.Oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && !oprema.Staticka)
+                {
+                    OpremaDinamicka.Add(oprema);
+                }
+            }
+        }
     }
 }

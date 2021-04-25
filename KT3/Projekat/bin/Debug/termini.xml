@@ -72,7 +72,6 @@
     </Pacijent>
     <Datum>04/11/2021</Datum>
     <Prostorija>
-      <Status>Slobodna</Status>
       <TipSale>SalaZaPregled</TipSale>
       <Id>1</Id>
       <brojSale>1</brojSale>
@@ -180,7 +179,6 @@
     </Pacijent>
     <Datum>04/11/2021</Datum>
     <Prostorija>
-      <Status>Slobodna</Status>
       <TipSale>SalaZaPregled</TipSale>
       <Id>1</Id>
       <brojSale>1</brojSale>
@@ -288,7 +286,6 @@
     </Pacijent>
     <Datum>04/16/2021</Datum>
     <Prostorija>
-      <Status>Slobodna</Status>
       <TipSale>SalaZaPregled</TipSale>
       <Id>1</Id>
       <brojSale>1</brojSale>
@@ -391,7 +388,6 @@
     </Pacijent>
     <Datum>08/05/2021</Datum>
     <Prostorija>
-      <Status>Slobodna</Status>
       <TipSale>SalaZaPregled</TipSale>
       <Id>1</Id>
       <brojSale>1</brojSale>
@@ -493,7 +489,6 @@
     </Pacijent>
     <Datum>04/22/2021</Datum>
     <Prostorija>
-      <Status>Slobodna</Status>
       <TipSale>SalaZaPregled</TipSale>
       <Id>1</Id>
       <brojSale>1</brojSale>

@@ -172,5 +172,25 @@ namespace Projekat
         {
             //O aplikaciji
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Sale.Clear();
+            foreach(Sala sala in SaleMenadzer.sale)
+            {
+                if(sala.Id == 4)
+                {
+                    break;
+                }
+                foreach(Oprema oprema in sala.Oprema)
+                {
+                    if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text))
+                    {
+                        Sale.Add(sala);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
