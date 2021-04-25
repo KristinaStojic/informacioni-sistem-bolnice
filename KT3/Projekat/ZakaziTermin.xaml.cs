@@ -19,7 +19,7 @@ using static Model.Termin;
 namespace Projekat
 {
     // TODO
-    public partial class ZakaziTermin : Window
+    public partial class ZakaziTermin : Page
     {
         public int idPacijent = 1;
         public Termin noviTermin;
@@ -31,10 +31,11 @@ namespace Projekat
         public Sala _sala;
         public List<string> vremeSala;
         public int brSala;
-
+        public static Pacijent prijavljeniPacijent;
         public ZakaziTermin(Lekar l)
         {
             InitializeComponent();
+            this.DataContext = this;
             noviTermin = new Termin();
             datum.BlackoutDates.AddDatesInPast();
            
@@ -45,9 +46,9 @@ namespace Projekat
                 this.imePrz.Text = l.ToString();
             } else
             {
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                lekarr = p.IzabraniLekar;
-                this.imePrz.Text = p.IzabraniLekar.ToString();
+                prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                lekarr = prijavljeniPacijent.IzabraniLekar;
+                this.imePrz.Text = prijavljeniPacijent.IzabraniLekar.ToString();
             }
 
             sviSlobodni2 = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
@@ -63,7 +64,7 @@ namespace Projekat
         {
             // PrikaziTermin pt = new PrikaziTermin();
             //pt.Show();
-            this.Close();
+           // this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -102,7 +103,7 @@ namespace Projekat
                 s.Prostorija = _sala;
                 //SaleMenadzer.sacuvajIzmjene(); // ?
                 TerminMenadzer.ZakaziTermin(s);
-                this.Close();
+                //this.Close();
             }
             catch (System.Exception)
             {
@@ -149,15 +150,15 @@ namespace Projekat
 
         private void odustani_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+           // this.Close();
         }
      
         private void preferenca_Click(object sender, RoutedEventArgs e)
         {
             // prozor za odabir lekara po preferenci
-            ZakaziTerminPreferenca ztp = new ZakaziTerminPreferenca();
-            ztp.Show();
-            this.Close();
+            Page ztp = new ZakaziTerminPreferenca();
+            this.NavigationService.Navigate(ztp);
+            //this.Close();
         }
 
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -176,7 +177,6 @@ namespace Projekat
                     {
                         slobodneSale.Add(s);
                         brSala++;
-                      //  MessageBox.Show(s.Id.ToString());
                     }
                 }
             }
@@ -529,6 +529,31 @@ namespace Projekat
             {
                 MessageBox.Show("Ne postoji slobodna sala za odabrani datum i vreme");
             }
+        }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar l = null;
+            Page zakaziTermin = new ZakaziTermin(l);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO ispraviti --> uvid u zakazane poseban page
+            Page uvid = new PrikaziTermin();
+            this.NavigationService.Navigate(uvid);
         }
     }
 }

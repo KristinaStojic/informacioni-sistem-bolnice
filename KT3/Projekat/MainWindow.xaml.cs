@@ -97,7 +97,8 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PrikaziTermin w1 = new PrikaziTermin();
+            //PrikaziTermin w1 = new PrikaziTermin();
+            MainWindowPacijent w1 = new MainWindowPacijent();
             w1.Show();
             //this.Close();
         }

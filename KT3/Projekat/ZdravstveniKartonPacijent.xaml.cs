@@ -15,14 +15,16 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    public partial class ZdravstveniKartonPacijent : Window
+    public partial class ZdravstveniKartonPacijent : Page
     {
-        public Pacijent pacijentt;
+        public Pacijent prijavljeniPacijent;
         public List<LekarskiRecept> tempRecepti;
+        public List<Anamneza> tempAnamneze;
         public ZdravstveniKartonPacijent(Pacijent izabraniPacijent)
         {
             InitializeComponent();
-            this.pacijentt = izabraniPacijent;
+            this.DataContext = this;
+            this.prijavljeniPacijent = izabraniPacijent;
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
            /* this.ime.IsEnabled = false;
@@ -47,17 +49,24 @@ namespace Projekat
             this.lekar.ItemsSource = opstaPraksa;
             /* LEKARSKI RECEPTI */
             tempRecepti = new List<LekarskiRecept>();
-            foreach(Pacijent p in PacijentiMenadzer.pacijenti)
+            tempAnamneze = new List<Anamneza>();
+           /* foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
                 if (p.IdPacijenta == pacijentt.IdPacijenta)
-                {
-                    foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
+                {*/
+           
+                    foreach (LekarskiRecept lekRecepti in prijavljeniPacijent.Karton.LekarskiRecepti)
                     {
-                        tempRecepti.Add(lr);
+                        tempRecepti.Add(lekRecepti);
                     }
-                }
-            }
+                    foreach (Anamneza anamneza in prijavljeniPacijent.Karton.Anamneze)
+                    {
+                        tempAnamneze.Add(anamneza);
+                    }
+               // }
+            //}
             this.tabelaRecepata.ItemsSource = tempRecepti;
+            this.prikazAnamnezi.ItemsSource = tempAnamneze;
             /* LICNI PODACI */
             this.ime.Text = izabraniPacijent.ImePacijenta;
             this.prezime.Text = izabraniPacijent.PrezimePacijenta;
@@ -75,38 +84,46 @@ namespace Projekat
             {
                 this.lekar.Text = izabraniPacijent.IzabraniLekar.ToString();
             }
+            
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // nazad
-            this.Close();
+            //this.Close();
         }
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
 
         private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        /* LEKARSKI RECEPTI */
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             // lekarski recepti - prikazi informacije
             if (tabelaRecepata.SelectedItems.Count > 0)
             {
                 LekarskiRecept lp = (LekarskiRecept)tabelaRecepata.SelectedItem;
-                Recept r = new Recept(lp, pacijentt);
-                r.Show();
+                Page recept = new Recept(lp, prijavljeniPacijent);
+                this.NavigationService.Navigate(recept);
             }
             else
             {
                 MessageBox.Show("Selektujte recept za koji želite da prikažete informacije", "Upozorenje", MessageBoxButton.OK);
             }
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LekarskiRecept lp = (LekarskiRecept)tabelaRecepata.SelectedItem;
+            Page recept = new Recept(lp, prijavljeniPacijent);
+            this.NavigationService.Navigate(recept);
+        }
+        // **********
 
         private void izmeniBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -216,12 +233,12 @@ namespace Projekat
             if (this.lekar != null )
             {
                 l = (Lekar)this.lekar.SelectedItem;
-                MessageBox.Show(l.ImeLek + " " + l.PrezimeLek, pacijentt.ImePacijenta + " " + pacijentt.PrezimePacijenta);
+                //MessageBox.Show(l.ImeLek + " " + l.PrezimeLek, prijavljeniPacijent.ImePacijenta + " " + prijavljeniPacijent.PrezimePacijenta);
             }
           
-            Pacijent novi = new Pacijent(pacijentt.IdPacijenta, ime, prezime, jmbg, poll, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
+            Pacijent novi = new Pacijent(prijavljeniPacijent.IdPacijenta, ime, prezime, jmbg, poll, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
             novi.IzabraniLekar = l; 
-            PacijentiMenadzer.IzmeniNalogPacijent(pacijentt, novi);
+            PacijentiMenadzer.IzmeniNalogPacijent(prijavljeniPacijent, novi);
             PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
 
             this.ime.IsEnabled = false;
@@ -238,6 +255,60 @@ namespace Projekat
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
             this.izmeniBtn.Visibility = Visibility.Visible;
+        }
+
+        /* ANAMNEZE */
+        private void infoAnamneza_Click(object sender, RoutedEventArgs e)
+        {
+            if (prikazAnamnezi.SelectedItems.Count > 0)
+            {
+                Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
+                PrikazAnamnezePacijent anamnezaPrikaz = new PrikazAnamnezePacijent(prijavljeniPacijent, anamneza);
+                this.NavigationService.Navigate(anamnezaPrikaz);
+            }
+            else
+            {
+                MessageBox.Show("Selektujte anamnezu za koju želite da prikažete informacije", "Upozorenje", MessageBoxButton.OK);
+            }
+        }
+
+        private void prikazAnamnezi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Anamneza anamneza = (Anamneza)prikazAnamnezi.SelectedItem;
+            PrikazAnamnezePacijent anamnezaPrikaz = new PrikazAnamnezePacijent(prijavljeniPacijent, anamneza);
+            this.NavigationService.Navigate(anamnezaPrikaz);
+        }
+
+        // *********
+
+        private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(prijavljeniPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar l = null;
+            Page zakaziTermin = new ZakaziTermin(l);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO ispraviti --> uvid u zakazane poseban page
+            Page uvid = new PrikaziTermin();
+            this.NavigationService.Navigate(uvid);
         }
     }
 }
