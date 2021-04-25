@@ -170,7 +170,27 @@ namespace Projekat.Model
 
             return id;
         }
+        public static List<Sastojak> nadjiSastojke(String sifraLeka)
+        {
+            foreach(Lek lek in lijekovi)
+            {
+                if (sifraLeka.Equals(lek.sifraLeka))
+                {
+                    foreach(Sastojak sastojak in lek.sastojci)
+                    {
+                        sastojci.Add(sastojak);
+                    }
+                }
+            }
+            return sastojci;
+        }
 
+        public static List<Sastojak> sastojci = new List<Sastojak>();
         public static List<Lek> lijekovi = new List<Lek>();
+        public static List<ZahtevZaLekove> zahteviZaLekove = new List<ZahtevZaLekove>();
+
+        
+
+
     }
 }
