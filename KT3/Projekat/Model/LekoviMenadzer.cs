@@ -196,19 +196,21 @@ namespace Projekat.Model
 
             return id;
         }
-        public static List<Sastojak> nadjiSastojke(String sifraLeka)
+        public static List<Sastojak> nadjiSastojke(ZahtevZaLekove izabraniZahtev)
         {
+            sastojci.Clear();
             foreach(ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
             {
-                if(zahtev.sifraLeka == sifraLeka)
+                if(zahtev.idZahteva == izabraniZahtev.idZahteva)
                 {
                        foreach(Sastojak sastojak in zahtev.lek.sastojci)
-                    {
-                        sastojci.Add(sastojak);
-                    }
+                       {
+                            sastojci.Add(sastojak);
+                       }
                     
                 }
             }
+            Console.WriteLine(sastojci.Count);
             return sastojci;
         }
         public static int GenerisanjeIdZahtjeva()
@@ -270,6 +272,24 @@ namespace Projekat.Model
                 {
                     zahtev.obradjenZahtev = true;
                     zahtev.odobrenZahtev = true;
+
+                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                }
+            }
+
+            sacuvajIzmeneZahteva();
+        }
+        public static void odbijaZahtev(ZahtevZaLekove izabraniZahtev, String razlogOdbijanja)
+        {
+            foreach(ZahtevZaLekove zahtev in zahteviZaLekove)
+            {
+                if(zahtev.idZahteva == izabraniZahtev.idZahteva)
+                {
+                    zahtev.obradjenZahtev = true;
+                    zahtev.odobrenZahtev = false;
+                    zahtev.obrazlozenjeOdbijanja = razlogOdbijanja;
 
                     int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
                     SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);

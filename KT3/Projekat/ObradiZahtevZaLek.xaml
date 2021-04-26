@@ -27,7 +27,7 @@
         <Label Content="Naziv leka" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Width="184" FontSize="16"/>
         <Label Content="Datum primanja zahteva" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" Width="184" FontSize="16"/>
         <Label Content="Sastojci leka:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,256" Grid.Row="4" Width="184" FontSize="16"/>
-        <ListView Grid.Column="1" HorizontalAlignment="Right" Height="216" Margin="0,56,10,0" Grid.Row="4" VerticalAlignment="Top" Width="388" Grid.ColumnSpan="2" IsEnabled="False" x:Name="spisakSastojaka">
+        <ListView Grid.Column="1" HorizontalAlignment="Right" Height="216" Margin="0,56,10,0" Grid.Row="4" VerticalAlignment="Top" Width="388" Grid.ColumnSpan="2" x:Name="spisakSastojaka">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Naziv sastojka" DisplayMemberBinding="{Binding naziv}"
