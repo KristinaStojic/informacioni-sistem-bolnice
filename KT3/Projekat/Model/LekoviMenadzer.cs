@@ -184,7 +184,31 @@ namespace Projekat.Model
             }
             return sastojci;
         }
+        public static int GenerisanjeIdZahtjeva()
+        {
+            bool pomocna = false;
+            int id = 1;
 
+            for (id = 1; id <= zahteviZaLekove.Count; id++)
+            {
+                foreach (ZahtevZaLekove zahtjev in zahteviZaLekove)
+                {
+                    if (zahtjev.idZahteva.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
+        }
         public static List<Sastojak> sastojci = new List<Sastojak>();
         public static List<Lek> lijekovi = new List<Lek>();
         public static List<ZahtevZaLekove> zahteviZaLekove = new List<ZahtevZaLekove>();

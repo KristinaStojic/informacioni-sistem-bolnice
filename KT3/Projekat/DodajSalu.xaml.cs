@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,7 @@ namespace Projekat
                 TipSale = tipSale.SalaZaOdmor;
             }
             Sala s = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
+            s.Oprema = new List<Oprema>();
             SaleMenadzer.DodajSalu(s);
             this.Close();
         }

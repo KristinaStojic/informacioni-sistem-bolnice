@@ -45,11 +45,14 @@ namespace Projekat
                     this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
             }
-            foreach(Oprema o in izabranaSala.Oprema)
+            if (izabranaSala.Oprema != null)
             {
-                if (!o.Staticka)
+                foreach (Oprema o in izabranaSala.Oprema)
                 {
-                    OpremaDinamicka.Add(o);
+                    if (!o.Staticka)
+                    {
+                        OpremaDinamicka.Add(o);
+                    }
                 }
             }
         }

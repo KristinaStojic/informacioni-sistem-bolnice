@@ -29,7 +29,8 @@ namespace Projekat
         {
             string sifraLijeka = this.sifra.Text;
             string nazivLijeka = this.naziv.Text;
-            dodajLijek(sifraLijeka, nazivLijeka);
+            dodajZahtjev(sifraLijeka, nazivLijeka);
+            this.Close();
         }
 
         private void dodajLijek(string sifraLijeka, string nazivLijeka)
@@ -37,6 +38,12 @@ namespace Projekat
             Lek lijek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), nazivLijeka, sifraLijeka);
             LekoviMenadzer.DodajLijek(lijek);
             this.Close();
+        }
+
+        private void dodajZahtjev(string sifraLijeka, string nazivLijeka)
+        {
+            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), nazivLijeka, sifraLijeka, DateTime.Now.Date.ToString(), false);
+            LekoviMenadzer.zahteviZaLekove.Add(zahtjev);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

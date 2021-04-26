@@ -184,7 +184,7 @@ namespace Projekat
             Sale.Clear();
             foreach(Sala sala in SaleMenadzer.sale)
             {
-                if(sala.Id == 4)
+                if(sala.Namjena.Equals("Skladiste"))
                 {
                     break;
                 }

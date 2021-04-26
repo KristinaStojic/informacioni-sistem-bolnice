@@ -32,10 +32,10 @@ namespace Projekat
             this.DataContext = this;
             TabelaZahteva = new ObservableCollection<ZahtevZaLekove>();
             TabelaZahteva = MainWindow.zahtevi;
-            /*foreach (ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
+            foreach (ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
             {
                 TabelaZahteva.Add(zahtev);
-            }*/
+            }
 
            
 
