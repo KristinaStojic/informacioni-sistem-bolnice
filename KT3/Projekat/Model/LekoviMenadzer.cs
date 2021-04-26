@@ -73,6 +73,30 @@ namespace Projekat.Model
             }
             sacuvajIzmjene();
         }
+        
+        public static void IzmeniLekoveLekar(Lek izabraniLek, Lek izmenjeniLek)
+        {
+            foreach(Lek lek in lijekovi)
+            {
+                if(lek.idLeka == izabraniLek.idLeka)
+                {
+                    lek.sifraLeka = izmenjeniLek.sifraLeka;
+                    lek.nazivLeka = izmenjeniLek.nazivLeka;
+                    lek.zamenskiLekovi = izmenjeniLek.zamenskiLekovi;
+                    lek.sastojci = izmenjeniLek.sastojci;
+                    int idx = SpisakZahtevaZaLekove.TabelaLekova.IndexOf(izabraniLek);
+                    SpisakZahtevaZaLekove.TabelaLekova.RemoveAt(idx);
+                    SpisakZahtevaZaLekove.TabelaLekova.Insert(idx, lek);
+                   /* if (ZamjenskiLijekovi.ZamjenskiLekovi != null)
+                    {
+                        int idx1 = ZamjenskiLijekovi.ZamjenskiLekovi.IndexOf(izabraniLek);
+                        ZamjenskiLijekovi.ZamjenskiLekovi.RemoveAt(idx1);
+                        ZamjenskiLijekovi.ZamjenskiLekovi.Insert(idx1, lek);
+                    }*/
+                }
+            }
+            sacuvajIzmjene();
+        }
         public static void obrisiSastojakLijeka(Lek izabraniLijek, Sastojak sastojak)
         {
             foreach (Lek lijek in lijekovi)
