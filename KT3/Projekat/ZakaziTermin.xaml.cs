@@ -243,7 +243,7 @@ namespace Projekat
                 {
                     foreach (ZauzeceSale zs in s.zauzetiTermini)
                     {
-                        if (zs.datumTermina.Equals(selectDatum))
+                        if (zs.datumPocetkaTermina.Equals(selectDatum))
                         {
                             // TODO: cast u int i poredjenje
                             switch (zs.pocetakTermina)

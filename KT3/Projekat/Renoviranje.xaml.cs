@@ -95,10 +95,10 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DateTime pocetak = nadjiDatumIVrijeme(DatePickerPocetak.SelectedDate, vrijemePocetka.SelectedItem.ToString());
-            DateTime kraj = nadjiDatumIVrijeme(DatePickerKraj.SelectedDate, vrijemeKraja.SelectedItem.ToString());
+            //DateTime pocetak = nadjiDatumIVrijeme(DatePickerPocetak.SelectedDate, vrijemePocetka.SelectedItem.ToString());
+            //DateTime kraj = nadjiDatumIVrijeme(DatePickerKraj.SelectedDate, vrijemeKraja.SelectedItem.ToString());
             string datum = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            ZauzeceSale zauzeceSale = new ZauzeceSale(this.vrijemePocetka.Text, this.vrijemeKraja.Text, datum, 000);
+            ZauzeceSale zauzeceSale = new ZauzeceSale(this.vrijemePocetka.Text, this.vrijemeKraja.Text, datum);
             zauzmiSalu(zauzeceSale);
             SaleMenadzer.sacuvajIzmjene();
             this.Close();
@@ -113,7 +113,7 @@ namespace Projekat
                 }
             }
         }
-        private DateTime nadjiDatumIVrijeme(DateTime? dateTime, string vrijeme)
+        /*private DateTime nadjiDatumIVrijeme(DateTime? dateTime, string vrijeme)
         {
             DateTime? datumPocetka = dateTime;
             string vrijemeSlanja = vrijeme;
@@ -127,7 +127,7 @@ namespace Projekat
             string minuti = sati[1];
             DateTime datumIVrijeme = new DateTime(int.Parse(godina), int.Parse(mjesec), int.Parse(dan), int.Parse(sat), int.Parse(minuti), 0);
             return datumIVrijeme;
-        }
+        }*/
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

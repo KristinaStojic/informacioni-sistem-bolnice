@@ -167,9 +167,9 @@ namespace Projekat
                         if (termin.IdTermin != t.IdTermin)
                         {
 
-                            if ((t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(zauzetiTerminPocetakSati) && (Convert.ToInt32(pocetakSati) < Convert.ToInt32(zauzetiTerminKrajSati) || Convert.ToInt32(pocetakMinuti) < Convert.ToInt32(zauzetiTerminKrajMinuti))) ||
-                            (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && (Convert.ToInt32(krajSati) > Convert.ToInt32(zauzetiTerminPocetakSati) || Convert.ToInt32(krajMinuti) > Convert.ToInt32(zauzetiTerminPocetakMinuti)) && Convert.ToInt32(krajSati) <= Convert.ToInt32(zauzetiTerminKrajSati) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati)) ||
-                            (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumTermina) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati) && Convert.ToInt32(krajSati) >= Convert.ToInt32(zauzetiTerminKrajSati)) && !Convert.ToInt32(krajSati).Equals(Convert.ToInt32(zauzetiTerminPocetakSati)) && !Convert.ToInt32(pocetakSati).Equals(Convert.ToInt32(zauzetiTerminKrajSati)))
+                            if ((t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumPocetkaTermina) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(zauzetiTerminPocetakSati) && (Convert.ToInt32(pocetakSati) < Convert.ToInt32(zauzetiTerminKrajSati) || Convert.ToInt32(pocetakMinuti) < Convert.ToInt32(zauzetiTerminKrajMinuti))) ||
+                            (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumPocetkaTermina) && (Convert.ToInt32(krajSati) > Convert.ToInt32(zauzetiTerminPocetakSati) || Convert.ToInt32(krajMinuti) > Convert.ToInt32(zauzetiTerminPocetakMinuti)) && Convert.ToInt32(krajSati) <= Convert.ToInt32(zauzetiTerminKrajSati) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati)) ||
+                            (t.Prostorija.Id.Equals(s.Id) && dat.Equals(zauzece.datumPocetkaTermina) && Convert.ToInt32(pocetakSati) <= Convert.ToInt32(zauzetiTerminPocetakSati) && Convert.ToInt32(krajSati) >= Convert.ToInt32(zauzetiTerminKrajSati)) && !Convert.ToInt32(krajSati).Equals(Convert.ToInt32(zauzetiTerminPocetakSati)) && !Convert.ToInt32(pocetakSati).Equals(Convert.ToInt32(zauzetiTerminKrajSati)))
                             {
                                 MessageBox.Show("Vec postoji termin");
                                 vremePocetka.Text = "";
@@ -196,7 +196,7 @@ namespace Projekat
                                             string[] zauzeceKraj1 = zauzece1.krajTermina.Split(':');
 
                                             // izbaci iz zauzetih termina to zauzece sale koje menjamo
-                                            if (zauzece1.datumTermina.Equals(termin.Datum) && zauzece1.idTermina == termin.IdTermin && zauzecePocetak1[0].Equals(vpt[0]) && zauzecePocetak1[1].Equals(vpt[1]) && zauzeceKraj1[0].Equals(vkt[0]) && zauzeceKraj1[1].Equals(vkt[1]))
+                                            if (zauzece1.datumPocetkaTermina.Equals(termin.Datum) && zauzece1.idTermina == termin.IdTermin && zauzecePocetak1[0].Equals(vpt[0]) && zauzecePocetak1[1].Equals(vpt[1]) && zauzeceKraj1[0].Equals(vkt[0]) && zauzeceKraj1[1].Equals(vkt[1]))
                                             //sala.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(sala.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
                                             {
                                                 sala.zauzetiTermini.Remove(zauzece1);

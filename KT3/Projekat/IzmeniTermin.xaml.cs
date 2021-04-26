@@ -297,7 +297,7 @@ namespace Projekat
                 {
                     foreach (ZauzeceSale zs in s.zauzetiTermini)
                     {
-                        if (zs.datumTermina.Equals(selectDatum))
+                        if (zs.datumPocetkaTermina.Equals(selectDatum))
                         {
                             switch (zs.pocetakTermina)
                             {

@@ -121,7 +121,7 @@ namespace Model
             Sala sala = NadjiSaluPoId(idProstorije);
             foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
-                if (idTermin == zauzece.idTermina && datum.Equals(zauzece.datumTermina) && poc.Equals(zauzece.pocetakTermina) && kraj.Equals(zauzece.krajTermina))
+                if (idTermin == zauzece.idTermina && datum.Equals(zauzece.datumPocetkaTermina) && poc.Equals(zauzece.pocetakTermina) && kraj.Equals(zauzece.krajTermina))
                 {
                     return zauzece;
                 }

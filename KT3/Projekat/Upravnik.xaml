@@ -21,6 +21,17 @@
             </Button>      
         </StackPanel>
         
-        <StackPanel DockPanel.Dock="Bottom" Background="White"></StackPanel>
+        <StackPanel DockPanel.Dock="Bottom" Background="White">
+            <Label Content="🔔 Obavjestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,50,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
+            <DataGrid x:Name="dataGridSale" ItemsSource="{Binding Sale}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="225" Margin="10, 10, 10, 20" VerticalAlignment="Center" Width="531">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Broj sale                    " Binding="{Binding brojSale}"/>
+                    <DataGridTextColumn Header="Namjena sale                                        " Binding="{Binding Namjena}" />
+                    <DataGridTextColumn Header="Tip sale                                            " Binding="{Binding TipSale}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </DockPanel>
 </Window>

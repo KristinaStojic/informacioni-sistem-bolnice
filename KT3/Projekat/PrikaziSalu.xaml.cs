@@ -120,7 +120,7 @@ namespace Projekat
                 {
                     PrikazStaticke.otvoren = true;
                     PrikazStaticke ps = new PrikazStaticke(izabranaSala);
-                    PremjestajMenadzer.odradiZakazano();
+                    PremjestajMenadzer.odradiZakazanePremjestaje();
                     ps.ShowDialog();
                 }catch(Exception ex) { }
             }
