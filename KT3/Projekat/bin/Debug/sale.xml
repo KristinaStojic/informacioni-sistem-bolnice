@@ -53,13 +53,11 @@
       <ZauzeceSale>
         <pocetakTermina>08:30</pocetakTermina>
         <krajTermina>09:00</krajTermina>
-        <datumTermina>04/20/2021</datumTermina>
         <idTermina>2</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
         <pocetakTermina>09:30</pocetakTermina>
         <krajTermina>10:00</krajTermina>
-        <datumTermina>04/22/2021</datumTermina>
         <idTermina>4</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
@@ -117,7 +115,6 @@
       <ZauzeceSale>
         <pocetakTermina>12:30</pocetakTermina>
         <krajTermina>13:00</krajTermina>
-        <datumTermina>04/21/2021</datumTermina>
         <idTermina>4</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
@@ -169,7 +166,6 @@
       <ZauzeceSale>
         <pocetakTermina>9:00</pocetakTermina>
         <krajTermina>10:00</krajTermina>
-        <datumTermina>04/26/2021</datumTermina>
         <idTermina>0</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>

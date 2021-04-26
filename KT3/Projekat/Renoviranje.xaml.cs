@@ -97,8 +97,9 @@ namespace Projekat
         {
             //DateTime pocetak = nadjiDatumIVrijeme(DatePickerPocetak.SelectedDate, vrijemePocetka.SelectedItem.ToString());
             //DateTime kraj = nadjiDatumIVrijeme(DatePickerKraj.SelectedDate, vrijemeKraja.SelectedItem.ToString());
-            string datum = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            ZauzeceSale zauzeceSale = new ZauzeceSale(this.vrijemePocetka.Text, this.vrijemeKraja.Text, datum);
+            string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            ZauzeceSale zauzeceSale = new ZauzeceSale(this.vrijemePocetka.Text, this.vrijemeKraja.Text, datumPocetka, datumKraja);
             zauzmiSalu(zauzeceSale);
             SaleMenadzer.sacuvajIzmjene();
             this.Close();
