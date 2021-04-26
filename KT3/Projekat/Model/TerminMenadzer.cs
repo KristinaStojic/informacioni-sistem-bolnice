@@ -32,7 +32,7 @@ namespace Model
             termini.Add(termin);
             PrikaziTerminSekretar.TerminiSekretar.Add(termin);
             // dodaj obavestenje i lekaru i pacijentu
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara);
+            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara, false);
             ObavestenjaMenadzer.obavestenja.Add(o);
             if (ObavestenjaLekar.obavestenjaLekar == null) 
             {   
@@ -150,7 +150,7 @@ namespace Model
             PrikaziTerminSekretar.TerminiSekretar.Insert(idx, termin1);
 
             // notifikacija 
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara);
+            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara, false);
             ObavestenjaMenadzer.obavestenja.Add(o);
             if (ObavestenjaLekar.obavestenjaLekar == null)
             {
@@ -217,7 +217,7 @@ namespace Model
             PrikaziTerminSekretar.TerminiSekretar.Remove(termin);
 
             // notifikacija
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara);
+            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara, false);
             ObavestenjaMenadzer.obavestenja.Add(o);
             if (ObavestenjaLekar.obavestenjaLekar == null)
             {

@@ -12,13 +12,14 @@ namespace Projekat.Model
     {
         public Obavestenja() { }
 
-        public Obavestenja(String datum, string TipOb, string SadrzajOb, int IdPacijenta, int IdLekara)
+        public Obavestenja(String datum, string TipOb, string SadrzajOb, int IdPacijenta, int IdLekara, bool UpravnikObavestenja)
         {
             this.Datum = datum;
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;
             this.IdPacijenta = IdPacijenta;
             this.IdLekara = IdLekara;
+            this.UpravnikObavestenja = UpravnikObavestenja;
         }
 
         public Obavestenja(String datum, string TipOb, string SadrzajOb)
@@ -35,6 +36,7 @@ namespace Projekat.Model
         // dodato idPacijenta i idLekara
         public int IdPacijenta { get; set; }
         public int IdLekara { get; set; }
+        public bool UpravnikObavestenja { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
