@@ -6,22 +6,21 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="Izmenite termin"  Height="600" Width="800" Background="AliceBlue">
-
-    <Grid  Margin="0,0,-5,-2.5">
+        <Grid  Margin="0,0,-5,-2.5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="131*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
+            <StackPanel Orientation="Vertical" Margin="0,1,5,1.5" Grid.ColumnSpan="3">
                 <Grid  Margin="0,0,0,0" Height="578">
-                    <StackPanel >
-                        
+                    <StackPanel Margin="0,0,0,-21" >
                         <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
                             <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                                 <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
                                 <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                             </StackPanel>
-                            <StackPanel Height="40" Width="620" HorizontalAlignment="Right">
+                            <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                                 <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
                                     <MenuItem Header="_Ime i prezime">
                                         <MenuItem.Icon>
@@ -45,7 +44,7 @@
                             </StackPanel>
                         </StackPanel>
                         <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                <Hyperlink NavigateUri="PrikaziTermin.xaml">
+                <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
                 <Run Text="  "/>
@@ -65,52 +64,33 @@
                 </Grid>
             </StackPanel>
 
-            <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,77,0,0" Height="27" Width="74"/>
-            <Button Content="Sacuvaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="368,474,0,0"  Height="30" Click="Button_Click_1" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" FontSize="14"/>
-            <Button Content="Odustani" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="542,460,0,0" Height="30" Click="Button_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" FontSize="14"/>
-            <!--DatePicker HorizontalAlignment="Left" Name="datum" Text="dd/MM/yyyy" VerticalAlignment="Top" Margin="278,128,0,0" Width="153" Height="23"/!-->
-            <GroupBox Header="3.  Izaberite datum" HorizontalAlignment="Left" Height="235" Margin="352,67,0,0" VerticalAlignment="Top" Width="213" RenderTransformOrigin="0.517,0.878">
-                <Calendar x:Name="datum" Background="#dbe2ef" RenderTransformOrigin="-0.356,0.389" Margin="-66,18,-67,-25" FontSize="16" SelectedDatesChanged="datum_SelectedDatesChanged"/>
-            </GroupBox>
-            <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="23" VerticalAlignment="Top" Width="152" Margin="380,354,0,0" SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.678,0.478">
-                <!--ComboBoxItem HorizontalAlignment="Center">07:00</>
-            <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">08:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">09:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">09:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">10:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">10:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">11:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">11:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">12:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">12:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">13:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">13:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">14:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">14:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">15:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">15:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">16:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">16:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">17:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">17:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">18:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">18:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">19:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem-->
-            </ComboBox>
-            <GroupBox Header=" 1.  Izaberite tip termina" HorizontalAlignment="Left" Height="74" Margin="30,70,0,0" VerticalAlignment="Top" Width="302" RenderTransformOrigin="0.897,1.041">
-                <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="200" Margin="44,0,0,16" Height="25" SelectionChanged="combo_SelectionChanged">
+            <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.302,0.859" Margin="36,77,0,0" Height="27" Width="74" Grid.ColumnSpan="2"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0, 100" Grid.Row="1" Grid.Column="1">
+            <Button Content="Pomeri"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Height="30"
+                    Width="90"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,0"
+                    Click="Button_Click_1"
+                    Name="sacuvaj"/>
+            <Button Content="Odustani"
+                    Height="30"
+                    Width="90"
+                    Margin="10, 0, 0, 0"
+                    Click="Button_Click"
+                    Name="odustani"/>
+        </StackPanel>
+        <GroupBox Header=" Izaberite tip termina" HorizontalAlignment="Left" Height="87" Margin="18,95,0,0" VerticalAlignment="Top" Width="256" RenderTransformOrigin="0.897,1.041" Grid.Column="1">
+                <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="200" Margin="28,0,0,16" Height="27" SelectionChanged="combo_SelectionChanged">
                     <ComboBoxItem>Operacija</ComboBoxItem>
                     <ComboBoxItem>Pregled</ComboBoxItem>
                 </ComboBox>
             </GroupBox>
-
-            <!--GroupBox Header="Pronadjite lekara" HorizontalAlignment="Left" Height="220" Margin="240,24,0,0" VerticalAlignment="Top" Width="335" RenderTransformOrigin="0.568,0.482"/!-->
-            <GroupBox Header="2.  Izaberite lekara" HorizontalAlignment="Left" Height="343" Margin="24,147,0,0" VerticalAlignment="Top" Width="318" RenderTransformOrigin="0.858,0.494">
-                <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="3,12,5,283" TextAlignment="Left" Height="25" ToolTip="Pretrazite listu po prezimenu lekara" FontSize="14" BorderBrush="#FF3F72AF">
+            <GroupBox Header="Izaberite lekara" HorizontalAlignment="Left" Height="343" Margin="276,93,0,0" VerticalAlignment="Top" Width="315" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
+                <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="5,10,3,283" TextAlignment="Left" Height="27" ToolTip="Pretrazite listu po prezimenu lekara" FontSize="14" BorderBrush="#FF3F72AF">
                     <TextBox.Style>
                         <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                             <Style.Resources>
@@ -135,27 +115,7 @@
                     </TextBox.Style>
                 </TextBox>
             </GroupBox>
-            <!--DataGrid x:Name="dgSearch" Margin="59,95,285,170" SelectionMode="Single" SelectionChanged="dgSearch_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdLekara}" Width="35" />
-                <DataGridTextColumn Header="Prezime" Binding="{Binding PrezimeLek}" Width="80" />
-                <DataGridTextColumn Header="Ime" Binding="{Binding ImeLek}" Width="80" />
-                <DataGridTextColumn Header="Specijalizacija" Binding="{Binding specijalizacija}" Width="110"/>
-            </DataGrid.Columns>
-        </!-->
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="300" Margin="380,530,0,27.5">
-                <StackPanel Orientation="Horizontal">
-                    <Label Name="txtPitanje1" Margin="30, 0, 0, 0" Content="Tekst pitanja broj 1....." FontSize="14"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <RadioButton GroupName="pitanje1" x:Name="jedan" Margin="30,0,30,0" Content="1"/>
-                    <RadioButton GroupName="pitanje1" x:Name="dva" Margin="0, 0, 30, 0" Content="2"/>
-                    <RadioButton GroupName="pitanje1" x:Name="tri" Margin="0, 0, 30, 0" Content="3"/>
-                    <RadioButton GroupName="pitanje1" x:Name="cetiri" Margin="0, 0, 30, 0" Content="4"/>
-                    <RadioButton GroupName="pitanje1" x:Name="pet" Margin="0, 0, 30, 0" Content="5"/>
-                </StackPanel>
-            </StackPanel>
-            <ListView x:Name="dgSearch" SelectionMode="Single" Margin="32,276,473,183.5" SelectionChanged="dgSearch_SelectionChanged" >
+            <ListView x:Name="dgSearch" SelectionMode="Single" Margin="289,157,37,257.5" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" 
@@ -170,9 +130,16 @@
                 </ListView.View>
             </ListView>
 
-            <GroupBox Header="4.  Izaberite vreme termina" Height="105" Margin="352,307,35,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494"/>
-            <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="Ime i prezime izabranog lekara"
-                   DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="25" Margin="41,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252" FontSize="13"/>
-            <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,419,0,0" Width="121"/>
-    </Grid>
+            <GroupBox Header="Izaberite vreme termina" Height="105" Margin="34,331,341,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
+                <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="27"
+                          VerticalAlignment="Top" Width="200" Margin="11,30,0,0" 
+                          SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.6,0.63"/>
+            </GroupBox>
+            <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="Ime i prezime izabranog lekara" Width="285"
+                   DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="27" Margin="291,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13" Grid.Column="1"/>
+            <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="289,349,0,0" Width="121" Grid.Column="1" Height="26"/>
+            <GroupBox Header="Izaberite datum termina" Height="89" Margin="34,206,341,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
+            <DatePicker HorizontalAlignment="Left" Margin="12,21,0,0" Width="200" FontSize="14" VerticalAlignment="Top" Name="datum" SelectedDateChanged="datum_SelectedDatesChanged"/>
+            </GroupBox>
+        </Grid>
 </Page>

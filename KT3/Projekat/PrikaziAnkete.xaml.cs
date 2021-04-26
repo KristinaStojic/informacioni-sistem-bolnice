@@ -1,6 +1,4 @@
-﻿using Model;
-using Projekat.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,39 +9,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Projekat
 {
-    public partial class PrikazAnamnezePacijent : Page
+    /// <summary>
+    /// Interaction logic for PrikaziAnkete.xaml
+    /// </summary>
+    public partial class PrikaziAnkete : Page
     {
-
-        public Anamneza anamneza;
         public static int idPacijent;
-        public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
+        public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
-            idPacijent = izabraniPacijent.IdPacijenta;
-            anamneza = izabranaAnamneza;
-
-
-            this.datumAnamneze.Text = anamneza.Datum;
-            this.podaciLekar.Text = anamneza.ImePrezimeLekara;
-            this.opisBolesti.Text = anamneza.OpisBolesti;
-            this.terpaija.Text = anamneza.Terapija;
-
+            idPacijent = idPrijavljenogPacijenta;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // nazad
-            //this.Close();
-        }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-
+            // TODO: prijava 
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
@@ -69,5 +56,12 @@ namespace Projekat
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
         }
+
+        private void listaAnketi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO: izbor liste
+        }
     }
+
+    
 }

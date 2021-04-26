@@ -1,19 +1,97 @@
-﻿<Window x:Class="Projekat.OtkaziTermin"
+﻿<Page x:Class="Projekat.OtkaziTermin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Otkazi termin" Height="258" Width="444" WindowStartupLocation="CenterScreen" Background="AliceBlue">
-    <StackPanel Margin="0,0,3.6,13">
-        <Label Content="Da li ste sigurni da zelite da otkazete odabrani termin?" FontSize="13" HorizontalAlignment="Center" Margin="35,48,35,0" VerticalAlignment="Top" Height="42" Width="325"/>
-        <Separator Height="30" Background="AliceBlue" />
-        <StackPanel Orientation="Horizontal" Height="31" HorizontalAlignment="Center">
-            <Button Width="90" Content="Da" Background="White"/>
-            <Separator Width="60" Background="AliceBlue" />
-            <Button Width="90" Content="Ne" Background="White" Click="Button_Click"/>
-        </StackPanel>
+        Title="Otkazi termin" Height="600" Width="800" Background="AliceBlue">
 
-    </StackPanel>
-</Window>
+    <Grid  Margin="0,0,0,0" Height="578">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,-6,0,-16" >
+            <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
+                    <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
+                    <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                </StackPanel>
+                <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+                    <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
+                        <MenuItem Header="_Ime i prezime">
+                            <MenuItem.Icon>
+                                <Image Source="/slike/user.png" />
+                            </MenuItem.Icon>
+                            <MenuItem Header="_Vaš profil" />
+                            <Separator/>
+                            <MenuItem Header="_Popuni anketu" />
+                            <Separator/>
+                            <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
+                            <MenuItem Header="_sr" />
+                            <MenuItem Header="_en"/>
+                            <Separator />
+                            <MenuItem Header="_Izaberite temu" IsEnabled="False" />
+                            <MenuItem Header="_Svetla" Name="svetlaTema" />
+                            <MenuItem Header="_Tamna"/>
+                            <Separator />
+                            <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock Margin="20,35,0,518" FontSize="14" Foreground="#004a7c" Height="25">
+                <Hyperlink Name="pocetna" Click="pocetna_Click">
+                    <Run Text="Početna stranica"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="zakazi" Click="zakazi_Click">
+                    <Run Text="Zakažite termin"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="uvid" Click="uvid_Click">
+                    <Run Text="Uvid u zakazane termine"/>
+                </Hyperlink>
+                <Run Text=" "/>
+                <Hyperlink Name="karton" Click="karton_Click">
+                    <Run Text="Zdravstveni karton"/>
+                </Hyperlink>
+        </TextBlock>
+
+        <GroupBox Header="Podaci o terminu" Height="280" Margin="238,85,238,213"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="238,-6,238,0">
+
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0, 80, 0, 0" Height="305" Width="325">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0, 35, 0, 0">
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Tip termina" FontSize="14" />
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" IsEnabled="False" Name="tipTermina"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Datum" FontSize="14" />
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="datum"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Vreme" FontSize="14" />
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False"  Margin="10, 10, 18, 10" Name="vreme"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Lekar" FontSize="14" />
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="lekar"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Sala" FontSize="14" />
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="sala"/>
+                </StackPanel>
+            </StackPanel>
+            <Label Content="Da li ste sigurni da zelite da otkazete odabrani termin?" FontSize="13" Margin="0, 30, 0, 0"
+                HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Height="30" Width="325"/>
+            <Separator Height="10" Background="AliceBlue" />
+            <StackPanel Orientation="Horizontal" Height="31" HorizontalAlignment="Center">
+                <Button Width="90" Content="Da" Background="White" Click="Button_Click_1"/>
+                <Separator Width="60" Background="AliceBlue" />
+                <Button Width="90" Content="Ne" Background="White" Click="Button_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

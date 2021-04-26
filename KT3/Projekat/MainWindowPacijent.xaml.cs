@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,19 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for MainWindowPacijent.xaml
-    /// </summary>
     public partial class MainWindowPacijent : Window
     {
         public MainWindowPacijent()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            TerminMenadzer.sacuvajIzmene();
+            SaleMenadzer.sacuvajIzmjene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PrikaziTermin.pacijentProzor = false;
         }
     }
 }
