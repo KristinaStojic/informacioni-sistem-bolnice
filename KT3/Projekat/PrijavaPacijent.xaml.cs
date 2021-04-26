@@ -30,7 +30,6 @@ namespace Projekat
             int IdPacijent = Int32.Parse(this.korisnickoIme.Text);
             Page pocetna = new PrikaziTermin(IdPacijent);
             this.NavigationService.Navigate(pocetna);
-
         }
     }
 }

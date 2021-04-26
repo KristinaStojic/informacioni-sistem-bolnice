@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Projekat
         public MainWindowPacijent()
         {
             InitializeComponent();
+            PrikaziTermin.pacijentProzor = true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -26,7 +28,10 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             SaleMenadzer.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            PrikaziTermin.pacijentProzor = false;
+            AnketaMenadzer.sacuvajIzmene();
+            ObavestenjaMenadzer.sacuvajIzmene();
+
+            PrikaziTermin.pacijentProzor = false;  // nit
         }
     }
 }

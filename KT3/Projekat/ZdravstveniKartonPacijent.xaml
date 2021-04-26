@@ -171,7 +171,7 @@
                             </TabItem>
 
                             <TabItem Header="Lekarski recepti" 
-                            ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="16" FontFamily="Arial">
+                            ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
                                 <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="16" Margin="0,-2,0,0.5">
                                     <ListView.View>
                                         <GridView>
@@ -183,14 +183,14 @@
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
                                             <GridViewColumn Header="Naziv leka" 
-                                        Width="90" DisplayMemberBinding="{Binding NazivLeka}"/>
+                                                Width="90" DisplayMemberBinding="{Binding NazivLeka}"/>
                                             <GridViewColumn Header="Datum" 
-                                         Width="85" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
+                                                Width="85" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
                                             <GridViewColumn Header="Početak korišćenja" 
-                                        Width="130" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
+                                                Width="140" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
                                             <GridViewColumn Header="Broj dana" Width="75"
-                                         DisplayMemberBinding="{Binding BrojDanaKoriscenja}"/>
-                                            <GridViewColumn Header="Dnevna kolicina" Width="110"
+                                                DisplayMemberBinding="{Binding BrojDanaKoriscenja}"/>
+                                            <GridViewColumn Header="Dnevna kolicina" Width="120"
                                             DisplayMemberBinding="{Binding DnevnaKolicina}"/>
                                         </GridView>
                                     </ListView.View>
