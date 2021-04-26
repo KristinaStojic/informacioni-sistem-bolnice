@@ -12,7 +12,7 @@ namespace Projekat.Model
         public static void DodajLijek(Lek lijek)
         {
             lijekovi.Add(lijek);
-            Lijekovi.Lekovi.Add(lijek);
+            SpisakZahtevaZaLekove.TabelaLekova.Add(lijek);
             sacuvajIzmjene();
         }
 
@@ -72,7 +72,7 @@ namespace Projekat.Model
                 }
             }
             sacuvajIzmjene();
-        }
+        }      
         
         public static void IzmeniLekoveLekar(Lek izabraniLek, Lek izmenjeniLek)
         {
@@ -262,6 +262,23 @@ namespace Projekat.Model
             filestream.Close();
         }
 
+        public static void izmeniZahtev(ZahtevZaLekove izabraniZahtev)
+        {
+            foreach(ZahtevZaLekove zahtev in zahteviZaLekove)
+            {
+                if(zahtev.idZahteva == izabraniZahtev.idZahteva)
+                {
+                    zahtev.obradjenZahtev = true;
+                    zahtev.odobrenZahtev = true;
+
+                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                }
+            }
+
+            sacuvajIzmeneZahteva();
+        }
 
         public static List<Sastojak> sastojci = new List<Sastojak>();
         public static List<Lek> lijekovi = new List<Lek>();

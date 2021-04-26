@@ -41,6 +41,11 @@ namespace Projekat
         private void Button_Odobri(object sender, RoutedEventArgs e)
         {
             zahtev.odobrenZahtev = true;
+            zahtev.obradjenZahtev = true;
+            Lek lek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), zahtev.nazivLeka,zahtev.sifraLeka, zahtev.lek.zamenskiLekovi, zahtev.lek.sastojci);
+            LekoviMenadzer.DodajLijek(lek);
+            LekoviMenadzer.izmeniZahtev(zahtev);
+            LekoviMenadzer.sacuvajIzmeneZahteva();
             this.Close();
         }
     }
