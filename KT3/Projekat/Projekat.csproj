@@ -92,6 +92,9 @@
     <Compile Include="DodajZamjenskiLijek.xaml.cs">
       <DependentUpon>DodajZamjenskiLijek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IzmeniLekLekar.xaml.cs">
+      <DependentUpon>IzmeniLekLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzmeniPacijenta.xaml.cs">
       <DependentUpon>IzmeniPacijenta.xaml</DependentUpon>
     </Compile>
@@ -307,6 +310,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajZamjenskiLijek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IzmeniLekLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
