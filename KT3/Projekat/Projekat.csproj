@@ -160,6 +160,9 @@
     <Compile Include="PrikazDinamicke.xaml.cs">
       <DependentUpon>PrikazDinamicke.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikaziAnkete.xaml.cs">
+      <DependentUpon>PrikaziAnkete.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
     </Compile>
@@ -359,6 +362,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PrikazDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikaziAnkete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

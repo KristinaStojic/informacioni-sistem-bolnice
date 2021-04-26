@@ -241,8 +241,8 @@ namespace Projekat
 
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-         //   PrikaziAnkete prikaziAnkete = new PrikaziAnkete();
-           // prikaziAnkete.Show();
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)

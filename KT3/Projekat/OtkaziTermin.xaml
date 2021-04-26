@@ -59,29 +59,29 @@
                 </Hyperlink>
         </TextBlock>
 
-        <GroupBox Header="Podaci o terminu" Height="280" Width="300" Margin="250,85,250,213"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            
+        <GroupBox Header="Podaci o terminu" Height="280" Margin="238,85,238,213"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="238,-6,238,0">
+
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0, 80, 0, 0" Height="305" Width="325">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0, 35, 0, 0">
                     <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Tip termina" FontSize="14" />
-                    <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" Name="tipTermina"/>
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" IsEnabled="False" Name="tipTermina"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Datum" FontSize="14" />
-                    <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" Name="datum"/>
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="datum"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Vreme" FontSize="14" />
-                    <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" Name="vreme"/>
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False"  Margin="10, 10, 18, 10" Name="vreme"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Lekar" FontSize="14" />
-                    <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" Name="lekar"/>
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="lekar"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Sala" FontSize="14" />
-                    <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" Name="sala"/>
+                    <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="sala"/>
                 </StackPanel>
             </StackPanel>
             <Label Content="Da li ste sigurni da zelite da otkazete odabrani termin?" FontSize="13" Margin="0, 30, 0, 0"
