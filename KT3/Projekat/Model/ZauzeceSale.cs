@@ -11,7 +11,7 @@ namespace Projekat.Model
         public string krajTermina { get; set; }
         public string datumTermina { get; set; }
         public int idTermina { get; set; }
-       // public int idSale { get; set; }
+
         public ZauzeceSale(string pocetakTermina, string krajTermina, string datumTermina)
         {
             this.pocetakTermina = pocetakTermina;

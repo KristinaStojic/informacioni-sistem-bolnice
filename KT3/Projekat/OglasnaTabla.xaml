@@ -27,7 +27,7 @@
             <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
         </Menu>
-        <ListView x:Name="obavestenjaLista" SelectionChanged="obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,190,343.6,0.4" MinHeight="20" >
+        <ListView x:Name="obavestenjaLista" SelectionChanged="obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,190,354.6,328.4" MinHeight="20" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Height" Value="80" />
@@ -41,10 +41,31 @@
                         <TextBlock Text="&#x0a; " />
                         <TextBlock Text="{Binding Datum}" FontWeight="Bold" />
                         <TextBlock Text=" Sadrzaj obavestenja: " />
-                        <TextBlock Text="{Binding Vrsta}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Vrsta}" FontWeight="Bold" />                   
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <!-- dodato -->
+        <ListView x:Name="listaOb" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="13" Margin="217,432,0,-0.6" HorizontalAlignment="Left" Width="702">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Datum}"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Vrsta}"/>
+                    <GridViewColumn Width="100" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#112d4e" Foreground="#f9f7f7" BorderBrush="#3f72af" Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="494,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="635,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="774,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE"/>
     </Grid>
 </Window>

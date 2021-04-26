@@ -33,7 +33,11 @@ namespace Projekat
             obavestenjaLekar = new ObservableCollection<Obavestenja>();
             foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
-                obavestenjaLekar.Add(o);
+                // rucno odradjeno
+                if (o.IdLekara == 1)
+                {
+                    obavestenjaLekar.Add(o);
+                }
             }
         }
     }
