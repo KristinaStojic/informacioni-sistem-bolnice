@@ -151,6 +151,7 @@
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Obavjestenja.cs" />
     <Compile Include="ObradiZahtevZaLek.xaml.cs">
       <DependentUpon>ObradiZahtevZaLek.xaml</DependentUpon>
     </Compile>
@@ -195,6 +196,9 @@
     </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikazObavjestenja.xaml.cs">
+      <DependentUpon>PrikazObavjestenja.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikazStaticke.xaml.cs">
       <DependentUpon>PrikazStaticke.xaml</DependentUpon>
@@ -306,7 +310,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HitanSlucaj.xaml">
-       <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajSastojak.xaml">
@@ -456,6 +460,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazObavjestenja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
