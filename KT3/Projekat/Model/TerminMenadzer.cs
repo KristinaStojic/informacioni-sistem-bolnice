@@ -32,7 +32,7 @@ namespace Model
             termini.Add(termin);
             PrikaziTerminSekretar.TerminiSekretar.Add(termin);
             // dodaj obavestenje i lekaru i pacijentu
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), termin.VremePocetka + "- " + termin.VremeKraja + ", LEKAR: " + termin.imePrezimeLekara + ", PACIJENT: " + termin.imePrezimePacijenta + ", PROSTORIJA: " + termin.Prostorija.Id ,VrstaObavestenja.Zakazan);
+            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara);
             ObavestenjaMenadzer.obavestenja.Add(o);
             if (ObavestenjaLekar.obavestenjaLekar == null) 
             {   
@@ -150,7 +150,7 @@ namespace Model
             PrikaziTerminSekretar.TerminiSekretar.Insert(idx, termin1);
 
             // notifikacija 
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), termin.VremePocetka + "- " + termin.VremeKraja + ", LEKAR: " + termin.imePrezimeLekara + ", PACIJENT: " + termin.imePrezimePacijenta + ", PROSTORIJA: " + termin.Prostorija.Id, VrstaObavestenja.Izmenjen);
+            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara);
             ObavestenjaMenadzer.obavestenja.Add(o);
             if (ObavestenjaLekar.obavestenjaLekar == null)
             {
@@ -161,7 +161,7 @@ namespace Model
                 PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();  
             }
             ObavestenjaLekar.obavestenjaLekar.Add(o);
-            PrikaziTermin.Obavestenja.Add(o);
+            PrikaziTermin.Obavestenja.Add(o); 
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }
@@ -218,7 +218,7 @@ namespace Model
             PrikaziTerminSekretar.TerminiSekretar.Remove(termin);
 
             // notifikacija
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), termin.VremePocetka + "- " + termin.VremeKraja + ", LEKAR: " + termin.imePrezimeLekara + ", PACIJENT: " + termin.imePrezimePacijenta + ", PROSTORIJA: " + termin.Prostorija.Id, VrstaObavestenja.Otkazan);
+            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara);
             ObavestenjaMenadzer.obavestenja.Add(o);
             if (ObavestenjaLekar.obavestenjaLekar == null)
             {
@@ -229,7 +229,7 @@ namespace Model
                 PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();
             }
             ObavestenjaLekar.obavestenjaLekar.Add(o);
-            PrikaziTermin.Obavestenja.Add(o);
+            PrikaziTermin.Obavestenja.Add(o);  
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }

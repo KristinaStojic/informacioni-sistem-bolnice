@@ -11,6 +11,31 @@
         <StackPanel>
             <Border Background="#99FFFFFF" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="850" Height="636">
                 <TabControl Name="karton" TabStripPlacement="Top" Background="#FFE7F6F7" Margin="5,20,5,5">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TabItem">
+                                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="#FFA3DADE" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                                <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
                     <TabItem Header="Lični podaci" Width="100" IsSelected="True" Height="25" >
                         <Grid>
                             <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="489" Margin="19,26,0,0" VerticalAlignment="Top" Width="421" FontSize="14">
@@ -56,7 +81,18 @@
                             <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="193" Margin="465,26,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Image Source="slike/osoba.jpg" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
                             </GroupBox>
-                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click"/>
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="711,466,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Button_Click">
+                                <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="180.232"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Button>
                             <CheckBox x:Name="maloletnik" Content="Maloletnik" HorizontalAlignment="Left" Margin="57,485,0,0" VerticalAlignment="Top" FontSize="14" IsEnabled="False"/>
                         </Grid>
                     </TabItem>
@@ -66,17 +102,28 @@
                                 <ColumnDefinition Width="241*"/>
                                 <ColumnDefinition Width="550*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Anamneze" HorizontalAlignment="Left" Margin="52,12,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
+                            <Label Content="Anamneze" HorizontalAlignment="Left" Margin="52,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#FF918A8A"/>
                             <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
                         SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                        Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="690" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13" Grid.ColumnSpan="2">
+                        Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="690" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Grid.ColumnSpan="2">
                                 <DataGrid.Columns >
                                     <DataGridTextColumn Width="130" Header="Redni broj pregleda" Binding="{Binding IdAnamneze}"/>
-                                    <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="160" />
-                                    <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Binding="{Binding ImePrezimeLekara}" Width="252"/>
+                                    <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="170" />
+                                    <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Binding="{Binding ImePrezimeLekara}" Width="375"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="371.6,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click" Grid.Column="1"/>
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="447.2,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click" Grid.Column="1">
+                                <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="180.232"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Button>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Alergeni" Width="100">
@@ -85,33 +132,55 @@
                                 <ColumnDefinition Width="121*"/>
                                 <ColumnDefinition Width="670*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Spisak lekova koje pacijent ne sme da koristi" HorizontalAlignment="Left" Margin="52,12,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
+                            <Label Content="Spisak lekova koje pacijent ne sme da koristi" Foreground="#FF918A8A" HorizontalAlignment="Left" Margin="52,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
                             <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena}"
-                                SelectionMode="Single" AutoGenerateColumns="False" Margin="52,64,48.2,0" VerticalAlignment="Top"  Height="387" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13" Grid.ColumnSpan="2">
+                                SelectionMode="Single" AutoGenerateColumns="False" Margin="52,64,48.2,0" VerticalAlignment="Top"  Height="387" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Grid.ColumnSpan="2">
                                 <DataGrid.Columns >
                                     <DataGridTextColumn Header="Šifra leka" Width="320"  Binding="{Binding SifraLeka}" />
                                     <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding NazivLeka}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="492.2,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click" Grid.Column="1"/>
+                            <Button Background="Transparent" HorizontalAlignment="Right" BorderBrush="Transparent" Margin="0,466,48.2,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click" Grid.Column="1">
+                                <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="180.232"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Button>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Recepti" Width="100" Height="25">
                         <Grid>
-                            <Label Content="Recepti" HorizontalAlignment="Left" Margin="52,12,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
+                            <Label Content="Recepti" Foreground="#FF918A8A" HorizontalAlignment="Left" Margin="52,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
                             <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
                                 SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                                 Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="691" GridLinesVisibility="All" Background="#FFA3DADE" FontSize="13" Visibility="Visible">
+                                 Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="691" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Visibility="Visible">
                                 <DataGrid.Columns >
                                     <DataGridTextColumn Header="ID" Binding="{Binding IdRecepta}"  Width="50"/>
-                                    <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="105"/>
-                                    <DataGridTextColumn Header="Datum" Binding="{Binding DatumPropisivanjaLeka}" Width="86"/>
-                                    <DataGridTextColumn Header="Pocetak koriscenja" Binding="{Binding PocetakKoriscenja}"  Width="120"/>
-                                    <DataGridTextColumn Header="Broj dana" Binding="{Binding BrojDanaKoriscenja}" Width="70"/>
-                                    <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="100"/>
+                                    <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="195"/>
+                                    <DataGridTextColumn Header="Datum" Binding="{Binding DatumPropisivanjaLeka}" Width="90"/>
+                                    <DataGridTextColumn Header="Pocetak koriscenja" Binding="{Binding PocetakKoriscenja}"  Width="130"/>
+                                    <DataGridTextColumn Header="Broj dana" Binding="{Binding BrojDanaKoriscenja}" Width="90"/>
+                                    <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="120"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="Nazad" Background="LightGray" HorizontalAlignment="Left" Margin="613,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click"/>
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="689,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click">
+                                <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="180.232"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Button>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Uputi" Width="100">

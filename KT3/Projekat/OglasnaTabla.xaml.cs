@@ -19,13 +19,22 @@ namespace Projekat
     /// </summary>
     public partial class OglasnaTabla : Window
     {
+        public List<Obavestenja> list;
+
         public OglasnaTabla()
         {
             InitializeComponent();
+
+
+            list = new List<Obavestenja>();
             foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
                 obavestenjaLista.Items.Add(o);
+                list.Add(o);
             }
+            this.listaOb.ItemsSource = list;
+
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -57,7 +66,20 @@ namespace Projekat
 
         }
 
+        // dodaj
         private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // izmeni
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // obrisi
+        private void Button_Click_3(object sender, RoutedEventArgs e)
         {
 
         }
