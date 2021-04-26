@@ -103,7 +103,7 @@ namespace Projekat
             while (otvoren)
             {
                 Thread.Sleep(1000);
-                PremjestajMenadzer.odradiZakazano();
+                PremjestajMenadzer.odradiZakazanePremjestaje();
             }
         }
 

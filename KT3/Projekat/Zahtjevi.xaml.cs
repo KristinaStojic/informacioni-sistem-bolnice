@@ -30,7 +30,7 @@ namespace Projekat
                 Skladiste.otvoren = true;
                 Skladiste w1 = new Skladiste();
 
-                PremjestajMenadzer.odradiZakazano();
+                PremjestajMenadzer.odradiZakazanePremjestaje();
                 this.Close();
                 w1.ShowDialog();
             }catch(Exception ex) { }

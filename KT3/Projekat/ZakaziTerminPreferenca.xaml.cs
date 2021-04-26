@@ -68,7 +68,7 @@ namespace Projekat
                 {
                     foreach (ZauzeceSale zs in s.zauzetiTermini)
                     {
-                        DateTime zsDatum = DateTime.Parse(zs.datumTermina);
+                        DateTime zsDatum = DateTime.Parse(zs.datumPocetkaTermina);
                         DateTime noviDatum = DateTime.Now.AddDays(3); // tri dana unapred
                        // MessageBox.Show("Novi datum: " + noviDatum.ToString() + " trenutni datum: " + DateTime.Now.ToString() );
                         if (DateTime.Compare(zsDatum, noviDatum) < 0 && jeTri == false)
@@ -79,7 +79,7 @@ namespace Projekat
                                 {
                                     t = new Termin();
                                     t.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
-                                    t.Datum = zs.datumTermina;
+                                    t.Datum = zs.datumPocetkaTermina;
                                     t.VremePocetka = slot;
                                     t.VremeKraja = ZakaziTermin.IzracunajVremeKraja(slot);
                                     t.Prostorija = s;

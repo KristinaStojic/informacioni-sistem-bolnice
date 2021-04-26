@@ -94,7 +94,7 @@ namespace Projekat
             while (otvoren)
             {
                 Thread.Sleep(10);
-                PremjestajMenadzer.odradiZakazano();
+                PremjestajMenadzer.odradiZakazanePremjestaje();
             }
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
