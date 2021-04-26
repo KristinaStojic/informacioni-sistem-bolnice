@@ -81,7 +81,6 @@
                         <DataGridTextColumn Header="Datum" Width="90" Binding="{Binding Datum}"/>
                         <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
                         <DataGridTextColumn Header="Sadrzaj" Width="385" Binding="{Binding SadrzajObavestenja}"/>
-                        <DataGridTextColumn Header="Vrsta" Width="70" Binding="{Binding Vrsta}"/>
 
                         <!-- staviti button  -->
                         <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
