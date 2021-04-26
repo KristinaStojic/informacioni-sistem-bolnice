@@ -531,7 +531,8 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            
+            Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)

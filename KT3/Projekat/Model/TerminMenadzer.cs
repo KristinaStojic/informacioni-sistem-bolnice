@@ -70,14 +70,12 @@ namespace Model
                         break;
                     }
                 }
-
                 if (!pomocna)
                 {
                     return id;
                 }
                 pomocna = false;
             }
-
             return id;
         }
 

@@ -42,15 +42,15 @@ namespace Projekat
             /* LEKARSKI RECEPTI i ANAMNEZE */
             tempRecepti = new List<LekarskiRecept>();
             tempAnamneze = new List<Anamneza>();
-            // TODO: proveriti
-            if (prijavljeniPacijent.Karton.LekarskiRecepti != null)
+            // TODO: proveriti   ????
+            if (prijavljeniPacijent.Karton.LekarskiRecepti.Count != 0)
             {
                 foreach (LekarskiRecept lekRecepti in prijavljeniPacijent.Karton.LekarskiRecepti)
                 {
                     tempRecepti.Add(lekRecepti);
                 }
             }
-            if (prijavljeniPacijent.Karton.Anamneze != null)
+            if (prijavljeniPacijent.Karton.Anamneze.Count != 0)
             {
                 foreach (Anamneza anamneza in prijavljeniPacijent.Karton.Anamneze)
                 {
@@ -281,7 +281,8 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-
+            Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)

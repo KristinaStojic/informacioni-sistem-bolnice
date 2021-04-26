@@ -7,35 +7,30 @@ using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
-    public class AnketaMenadzer
+    class AnketaMenadzer
     {
         public static List<Anketa> ankete = new List<Anketa>();
 
-        public static void DodajAnketu(Anketa novaAnketa)
-        {
-            ankete.Add(novaAnketa);
-        }
-
         public static void sacuvajIzmene()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Oprema>));
-            TextWriter filestream = new StreamWriter("ankete.xml");
-            serializer.Serialize(filestream, ankete);
-            filestream.Close();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Anketa>));
+            TextWriter fileStream = new StreamWriter("anketa.xml");
+            serializer.Serialize(fileStream, ankete);
+            fileStream.Close();
         }
 
         public static List<Anketa> NadjiSveAnkete()
         {
-            if (File.ReadAllText("ankete.xml").Trim().Equals(""))
+            if (File.ReadAllText("anketa.xml").Trim().Equals(""))
             {
                 return ankete;
             }
             else
             {
-                FileStream filestream = File.OpenRead("ankete.xml");
+                FileStream fileStream = File.OpenRead("anketa.xml");
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Anketa>));
-                ankete = (List<Anketa>)serializer.Deserialize(filestream);
-                filestream.Close();
+                ankete = (List<Anketa>)serializer.Deserialize(fileStream);
+                fileStream.Close();
                 return ankete;
             }
         }
@@ -43,27 +38,24 @@ namespace Projekat.Model
         public static int GenerisanjeIdAnkete()
         {
             bool pomocna = false;
-            int id = 1;
-
-            for (id = 1; id <= ankete.Count; id++)
+            int idAnkete = 1;
+            for (idAnkete = 1; idAnkete <= ankete.Count; idAnkete++)
             {
                 foreach (Anketa anketa in ankete)
                 {
-                    if (anketa.IdAnkete.Equals(id))
+                    if (anketa.idAnkete.Equals(idAnkete))
                     {
                         pomocna = true;
                         break;
                     }
                 }
-
                 if (!pomocna)
                 {
-                    return id;
+                    return idAnkete;
                 }
                 pomocna = false;
             }
-
-            return id;
+            return idAnkete;
         }
     }
 }
