@@ -5,33 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Dobro dosli" Height="490" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Dobro dosli" Height="500" Width="800" WindowStartupLocation="CenterScreen">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="CadetBlue" Width="200">
             <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10"/>
-            <Button Name="Osoblje" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Osoblje</Button>
-            <Button Name="Prostorije" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Click="Prostorije_Click">Prostorije</Button>
-            <Button Name="Zahtjevi" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Click="Zahtjevi_Click">Zahtjevi</Button>
-            <Button Name="Komunikacija" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Komunikacija</Button>
-            <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Izvjestaj</Button>
+            <Button Name="Osoblje" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10" Background="CadetBlue" BorderBrush="Black" BorderThickness="3">Osoblje</Button>
+            <Button Name="Prostorije" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="CadetBlue" BorderBrush="Black" BorderThickness="3" Click="Prostorije_Click">Prostorije</Button>
+            <Button Name="Zahtjevi" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="CadetBlue" BorderBrush="Black" BorderThickness="3" Click="Zahtjevi_Click">Zahtjevi</Button>
+            <Button Name="Komunikacija" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="CadetBlue" BorderBrush="Black" BorderThickness="3">Komunikacija</Button>
+            <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="CadetBlue" BorderBrush="Black" BorderThickness="3">Izvjestaj</Button>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Background="CadetBlue" Height="70" Orientation="Horizontal">
-            <Button Name="Odjava" HorizontalAlignment="Right" Height="40" Width="150" Margin="430, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Click="Odjava_Click">
+            <Button Name="Odjava" HorizontalAlignment="Right" Height="40" Width="150" Margin="430, 10, 10, 10"  Background="CadetBlue" BorderBrush="Black" BorderThickness="3" Click="Odjava_Click">
                 Odjava
             </Button>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Background="LightSteelBlue">
             <Label Content="🔔 Obavjestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,50,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="31" Width="131"/>
-            <DataGrid x:Name="dataGridSale" ItemsSource="{Binding Sale}" IsReadOnly="True" 
+            <DataGrid x:Name="dataGridObavjestenja" ItemsSource="{Binding obavjestenjaUpravnik}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="225" Margin="10, 10, 10, 20" VerticalAlignment="Center" Width="531">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Broj sale                    " Binding="{Binding brojSale}"/>
-                    <DataGridTextColumn Header="Namjena sale                                        " Binding="{Binding Namjena}" />
-                    <DataGridTextColumn Header="Tip sale                                            " Binding="{Binding TipSale}" />
+                    <DataGridTextColumn Header="Datum                    " Binding="{Binding Datum}"/>
+                    <DataGridTextColumn Header="Tip                                     " Binding="{Binding TipObavestenja}" />
+                    <DataGridTextColumn Header="Sadrzaj obavjestenja                                            " Binding="{Binding SadrzajObavestenja}" />
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Width="150" Height="40" Background="CadetBlue" Margin="300, 0, 0, 0" Click="Button_Click">Detaljniji prikaz</Button>
         </StackPanel>
     </DockPanel>
 </Window>

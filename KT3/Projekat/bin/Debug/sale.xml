@@ -117,6 +117,13 @@
         <krajTermina>13:00</krajTermina>
         <idTermina>4</idTermina>
       </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>5:00</pocetakTermina>
+        <krajTermina>10:00</krajTermina>
+        <datumPocetkaTermina>04/27/2021</datumPocetkaTermina>
+        <datumKrajaTermina>04/27/2021</datumKrajaTermina>
+        <idTermina>1</idTermina>
+      </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>
@@ -166,7 +173,7 @@
       <ZauzeceSale>
         <pocetakTermina>9:00</pocetakTermina>
         <krajTermina>10:00</krajTermina>
-        <idTermina>0</idTermina>
+        <idTermina>20</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
   </Sala>

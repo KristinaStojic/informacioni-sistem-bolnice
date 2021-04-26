@@ -29,6 +29,8 @@ namespace Model
             this.Namjena = namjena;
             //Sanja
             this.zauzetiTermini = new List<ZauzeceSale>();
+
+            this.Oprema = new List<Oprema>();
         }
 
         public Sala(int brojSale, string namjena, tipSale tip)
@@ -38,6 +40,8 @@ namespace Model
             this.Namjena = namjena;
             //Sanja
             this.zauzetiTermini = new List<ZauzeceSale>();
+
+            this.Oprema = new List<Oprema>();
         }
 
         
@@ -47,7 +51,7 @@ namespace Model
         public string Namjena { get; set; }
         public List<Oprema> Oprema { get; set; }
         public List<ZauzeceSale> zauzetiTermini { get; set; }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
@@ -60,12 +64,15 @@ namespace Model
         {
             this.Id = id;
             //Sanja
+            this.Oprema = new List<Oprema>();
             this.zauzetiTermini = new List<ZauzeceSale>();
         }
         public Sala()
         { 
             //Sanja
             this.zauzetiTermini = new List<ZauzeceSale>();
+            
+            this.Oprema = new List<Oprema>();
         }
         public override string ToString()
         {
