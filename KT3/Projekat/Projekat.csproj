@@ -223,6 +223,12 @@
     <Compile Include="Sastojci.xaml.cs">
       <DependentUpon>Sastojci.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SastojciDodaj.xaml.cs">
+      <DependentUpon>SastojciDodaj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SastojciDodavanje.xaml.cs">
+      <DependentUpon>SastojciDodavanje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sekretar.xaml.cs">
       <DependentUpon>Sekretar.xaml</DependentUpon>
     </Compile>
@@ -497,6 +503,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sastojci.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SastojciDodaj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SastojciDodavanje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
