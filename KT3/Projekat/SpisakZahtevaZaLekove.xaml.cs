@@ -26,19 +26,38 @@ namespace Projekat
             get;
             set;
         }
+        public static ObservableCollection<Lek> TabelaLekova
+        {
+            get;
+            set;
+        }
+
         public SpisakZahtevaZaLekove()
         {
             InitializeComponent();
             this.DataContext = this;
+            dodajZahteveUTabelu();
+            dodajLekoveUTabelu();
+
+        }
+
+        private void dodajZahteveUTabelu()
+        {
             TabelaZahteva = new ObservableCollection<ZahtevZaLekove>();
             TabelaZahteva = MainWindow.zahtevi;
             foreach (ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
             {
                 TabelaZahteva.Add(zahtev);
             }
+        }
 
-           
-
+        private void dodajLekoveUTabelu()
+        {
+            TabelaLekova = new ObservableCollection<Lek>();
+            foreach (Lek lek in LekoviMenadzer.lijekovi)
+            {
+                TabelaLekova.Add(lek);
+            }
         }
 
         private void Button_Obradi(object sender, RoutedEventArgs e)
