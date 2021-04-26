@@ -154,5 +154,12 @@ namespace Projekat
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
         }
+
+        // hitna intervencija
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            HitanSlucaj h = new HitanSlucaj();
+            h.Show();
+        }
     }
 }

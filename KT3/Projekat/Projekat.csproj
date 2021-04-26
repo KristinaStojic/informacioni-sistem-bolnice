@@ -86,6 +86,9 @@
     <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
       <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HitanSlucaj.xaml.cs">
+      <DependentUpon>HitanSlucaj.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajSastojak.xaml.cs">
       <DependentUpon>DodajSastojak.xaml</DependentUpon>
     </Compile>
@@ -300,6 +303,10 @@
     </Page>
     <Page Include="DodajSalu.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HitanSlucaj.xaml">
+       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajSastojak.xaml">

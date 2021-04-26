@@ -8,20 +8,17 @@ using System.ComponentModel;
 
 namespace Projekat.Model
 {
-    public enum VrstaObavestenja 
-    { 
-        Zakazan, Izmenjen, Otkazan 
-    }
-
     public class Obavestenja : INotifyPropertyChanged
     {
         public Obavestenja() { }
-        public Obavestenja(String datum, string TipOb, string SadrzajOb, VrstaObavestenja vrsta) // tipOb - pregled, terapija
+
+        public Obavestenja(String datum, string TipOb, string SadrzajOb, int IdPacijenta, int IdLekara)
         {
             this.Datum = datum;
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;
-            this.Vrsta = vrsta;
+            this.IdPacijenta = IdPacijenta;
+            this.IdLekara = IdLekara;
         }
 
         public Obavestenja(String datum, string TipOb, string SadrzajOb)
@@ -30,11 +27,15 @@ namespace Projekat.Model
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;
         }
+
         public string TipObavestenja { get; set; } 
-        public string SadrzajObavestenja { get; set; }      
+        public string SadrzajObavestenja { get; set; }
         public string Datum { get; set; }
-        public VrstaObavestenja Vrsta { get; set; }
-        
+
+        // dodato idPacijenta i idLekara
+        public int IdPacijenta { get; set; }
+        public int IdLekara { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {

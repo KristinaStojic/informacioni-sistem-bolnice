@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Projekat.Model
         public string datumPocetka { get; set; }
         public string datumKraja { get; set; }
         public int idTermina { get; set; }
-       // public int idSale { get; set; }
+      
         public ZauzeceSale(string pocetakTermina, string krajTermina, string datumPocetka, string datumKraja)
         {
             this.pocetakTermina = pocetakTermina;
