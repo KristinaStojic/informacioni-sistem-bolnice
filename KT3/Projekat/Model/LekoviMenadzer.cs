@@ -169,6 +169,8 @@ namespace Projekat.Model
             filestream.Close();
         }
 
+
+
         public static int GenerisanjeIdLijeka()
         {
             bool pomocna = false;
@@ -196,14 +198,15 @@ namespace Projekat.Model
         }
         public static List<Sastojak> nadjiSastojke(String sifraLeka)
         {
-            foreach(Lek lek in lijekovi)
+            foreach(ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
             {
-                if (sifraLeka.Equals(lek.sifraLeka))
+                if(zahtev.sifraLeka == sifraLeka)
                 {
-                    foreach(Sastojak sastojak in lek.sastojci)
+                       foreach(Sastojak sastojak in zahtev.lek.sastojci)
                     {
                         sastojci.Add(sastojak);
                     }
+                    
                 }
             }
             return sastojci;
@@ -233,6 +236,33 @@ namespace Projekat.Model
 
             return id;
         }
+
+
+        public static List<ZahtevZaLekove> NadjiSveZahteve()
+        {
+
+            if (File.ReadAllText("zahtevi.xml").Trim().Equals(""))
+            {
+                return zahteviZaLekove;
+            }
+            else
+            {
+                FileStream filestream = File.OpenRead("zahtevi.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(List<ZahtevZaLekove>));
+                zahteviZaLekove = (List<ZahtevZaLekove>)serializer.Deserialize(filestream);
+                filestream.Close();
+                return zahteviZaLekove;
+            }
+        }
+        public static void sacuvajIzmeneZahteva()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<ZahtevZaLekove>));
+            TextWriter filestream = new StreamWriter("zahtevi.xml");
+            serializer.Serialize(filestream, zahteviZaLekove);
+            filestream.Close();
+        }
+
+
         public static List<Sastojak> sastojci = new List<Sastojak>();
         public static List<Lek> lijekovi = new List<Lek>();
         public static List<ZahtevZaLekove> zahteviZaLekove = new List<ZahtevZaLekove>();

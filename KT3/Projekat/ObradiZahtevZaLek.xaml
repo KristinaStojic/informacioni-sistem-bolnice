@@ -30,9 +30,9 @@
         <ListView Grid.Column="1" HorizontalAlignment="Right" Height="216" Margin="0,56,10,0" Grid.Row="4" VerticalAlignment="Top" Width="388" Grid.ColumnSpan="2" IsEnabled="False" x:Name="spisakSastojaka">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Naziv sastojka" DisplayMemberBinding="{Binding nazivLeka}"
+                    <GridViewColumn Header="Naziv sastojka" DisplayMemberBinding="{Binding naziv}"
                                     Width="178"/>
-                    <GridViewColumn Header="Kolicina sastojka" DisplayMemberBinding="{Binding sifraLeka}"
+                    <GridViewColumn Header="Kolicina sastojka" DisplayMemberBinding="{Binding kolicina}"
                                     Width="186"/>
                 </GridView>
             </ListView.View>
