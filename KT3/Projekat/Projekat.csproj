@@ -199,6 +199,9 @@
     <Compile Include="Recept.xaml.cs">
       <DependentUpon>Recept.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Renoviranje.xaml.cs">
+      <DependentUpon>Renoviranje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sastojci.xaml.cs">
       <DependentUpon>Sastojci.xaml</DependentUpon>
     </Compile>
@@ -445,6 +448,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Renoviranje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
