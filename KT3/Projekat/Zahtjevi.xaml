@@ -5,34 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zahtjevi" Height="450" Width="700" WindowStartupLocation="CenterScreen">
+        Title="Zahtjevi" Height="450" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
     <StackPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Navigacija">
-                <MenuItem Header="Osoblje" Click="MenuItem_Click"></MenuItem>
-                <MenuItem Header="Prostorije" Click="MenuItem_Click_1"></MenuItem>
-                <MenuItem Header="Komunikacija" Click="MenuItem_Click_2"></MenuItem>
-                <MenuItem Header="Izvjestaj" Click="MenuItem_Click_3"></MenuItem>
+        <Menu DockPanel.Dock="Top" Background="CadetBlue">
+            <MenuItem Header="Navigacija" FontSize="15">
+                <MenuItem Header="Osoblje" FontSize="15" Click="MenuItem_Click"></MenuItem>
+                <MenuItem Header="Prostorije" FontSize="15" Click="MenuItem_Click_1"></MenuItem>
+                <MenuItem Header="Komunikacija" FontSize="15" Click="MenuItem_Click_2"></MenuItem>
+                <MenuItem Header="Izvjestaj" FontSize="15" Click="MenuItem_Click_3"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Pomoc">
-                <MenuItem Header="Pomoc" Click="MenuItem_Click_4"></MenuItem>
-                <MenuItem Header="O aplikaciji" Click="MenuItem_Click_5"></MenuItem>
+            <MenuItem Header="Pomoc" FontSize="15">
+                <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_4"></MenuItem>
+                <MenuItem Header="O aplikaciji" FontSize="15" Click="MenuItem_Click_5"></MenuItem>
             </MenuItem>
         </Menu>
         <Button Click="Button_Click_1"  ToolTip="Nazad" HorizontalAlignment="Left">
-            <Image Source="slike/back.png" Width="25" Height="25"></Image>
+            <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
         <StackPanel Orientation="Horizontal">
-            <Button Background="LightBlue" Width="210" Height="60" Margin="110, 50, 50, 10">Evidencija utrosenog materijala</Button>
-            <Button Background="LightBlue" Width="210" Height="60" Margin="10, 50, 50, 10">Godisnji odmori</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 50, 50, 10">Evidencija utrosenog materijala</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 50, 50, 10">Godisnji odmori</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Background="LightBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Click="Button_Click">Skladiste</Button>
-            <Button Background="LightBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Radno vrijeme</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Click="Button_Click">Skladiste</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Radno vrijeme</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Background="LightBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Obracun plate</Button>
-            <Button Background="LightBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Nabavka lijekova</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Obracun plate</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Click="Button_Click_2">Lijekovi</Button>
         </StackPanel>
     </StackPanel>
 </Window>

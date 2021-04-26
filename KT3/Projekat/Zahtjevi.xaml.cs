@@ -31,13 +31,16 @@ namespace Projekat
                 Skladiste w1 = new Skladiste();
 
                 PremjestajMenadzer.odradiZakazano();
+                this.Close();
                 w1.ShowDialog();
             }catch(Exception ex) { }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Upravnik u = new Upravnik();
             this.Close();
+            u.Show();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -48,6 +51,7 @@ namespace Projekat
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             PrikaziSalu ps = new PrikaziSalu();
+            this.Close();
             ps.Show();
         }
 
@@ -69,6 +73,13 @@ namespace Projekat
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
             //O aplikaciji
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Lijekovi lijekoviProzor = new Lijekovi();
+            lijekoviProzor.Show();
+            this.Hide();
         }
     }
 }

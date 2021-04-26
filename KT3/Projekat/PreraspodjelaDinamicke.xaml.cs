@@ -3,6 +3,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,13 +20,30 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for PreraspodjelaDinamicke.xaml
     /// </summary>
-    public partial class PreraspodjelaDinamicke : Window
+    public partial class PreraspodjelaDinamicke : Window, INotifyPropertyChanged
     {
         public static Oprema izabranaOprema;
         public Sala salaDodavanje;
         public static bool aktivna;
+        public static int dozvoljenaKolicina;
         public ObservableCollection<Sala> sale { get; set; }
         public ObservableCollection<Oprema> dinamicka { get; set; }
+        public int validacija;
+        public int Validacija
+        {
+            get
+            {
+                return validacija;
+            }
+            set
+            {
+                if (value != validacija)
+                {
+                    validacija = value;
+                    OnPropertyChanged("Validacija");
+                }
+            }
+        }
         public PreraspodjelaDinamicke(Sala izabranaSala)
         {
             InitializeComponent();
@@ -33,6 +51,18 @@ namespace Projekat
             dinamicka = new ObservableCollection<Oprema>();
             sale = new ObservableCollection<Sala>();
             this.salaDodavanje = izabranaSala;
+            dodajDinamicku();
+            this.Potvrdi.IsEnabled = false;
+        }
+
+        private void dodajDinamicku()
+        {
+            dodajIzSkladista();
+            dodajIzSala();
+        }
+
+        private void dodajIzSkladista()
+        {
             foreach (Oprema o in OpremaMenadzer.oprema)
             {
                 if (!o.Staticka)
@@ -40,6 +70,10 @@ namespace Projekat
                     dinamicka.Add(o);
                 }
             }
+        }
+
+        private void dodajIzSala()
+        {
             bool ima = false;
             foreach (Sala s in SaleMenadzer.sale)
             {
@@ -64,12 +98,6 @@ namespace Projekat
             }
         }
 
-        private void kombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PreraspodjelaDinamicke.izabranaOprema = (Oprema)kombo.SelectedItem;
-            azurirajSale(izabranaOprema);
-        }
-
         private void azurirajSale(Oprema izabranaOprema)
         {
             sale.Clear();
@@ -89,11 +117,13 @@ namespace Projekat
             }
 
         }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PreraspodjelaDinamicke.aktivna = false;
             this.Close();
+            aktivna = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -145,13 +175,54 @@ namespace Projekat
                 }
             }
             this.Close();
+            aktivna = false;
+        }
+        private void kombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PreraspodjelaDinamicke.izabranaOprema = (Oprema)kombo.SelectedItem;
+            azurirajSale(izabranaOprema);
+            podesiDugme();
         }
 
         private void komboSale_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Sala s = (Sala)komboSale.SelectedItem;
-            azurirajKolicinu(s);
+            if (s != null)
+            {
+                azurirajKolicinu(s);
+            }
+            podesiDugme();
         }
+        
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+
+        private void podesiDugme()
+        {
+            if (IsNumeric(this.Kolicina.Text))
+            {
+                postaviDugme();
+            }
+            else
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+        }
+
+        private void postaviDugme()
+        {
+            if (int.Parse(this.Kolicina.Text) > dozvoljenaKolicina || int.Parse(this.Kolicina.Text) <= 0 || this.kombo.SelectedItem == null || this.komboSale.SelectedItem == null)
+            {
+                this.Potvrdi.IsEnabled = false;
+            }else if (int.Parse(this.Kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.Kolicina.Text) > 0 && this.kombo.SelectedItem != null && this.komboSale.SelectedItem != null)
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+
         private void azurirajKolicinu(Sala s)
         {
             foreach (Sala sal in SaleMenadzer.sale)
@@ -163,6 +234,7 @@ namespace Projekat
                         if (o.IdOpreme == izabranaOprema.IdOpreme)
                         {
                             this.tekst.Text = "MAX:" + o.Kolicina.ToString();
+                            dozvoljenaKolicina = o.Kolicina;
                         }
                     }
                 }
@@ -172,6 +244,19 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PreraspodjelaDinamicke.aktivna = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            podesiDugme();
         }
     }
 }

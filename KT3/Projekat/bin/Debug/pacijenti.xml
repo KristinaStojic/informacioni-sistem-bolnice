@@ -55,6 +55,7 @@
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
+      <Alergeni />
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -134,6 +135,7 @@
           <Datum>04/15/2021</Datum>
         </Anamneza>
       </Anamneze>
+      <Alergeni />
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -187,6 +189,16 @@
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>4</IdPacijenta>
+          <NazivLeka>Brufen</NazivLeka>
+          <SifraLeka>B1E</SifraLeka>
+          <NuspojavaNaLek>osip, crvenilo</NuspojavaNaLek>
+          <VremeReakcije>24 sata</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -258,6 +270,7 @@
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
+      <Alergeni />
     </Karton>
     <Maloletnik>true</Maloletnik>
     <JmbgStaratelja>99</JmbgStaratelja>
@@ -312,6 +325,7 @@
         </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze />
+      <Alergeni />
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>

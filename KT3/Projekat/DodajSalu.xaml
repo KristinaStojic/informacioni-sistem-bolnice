@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Dodaj prostoriju" Height="340" Width="380" WindowStartupLocation="CenterScreen">
+        Title="Dodaj prostoriju" Height="340" Width="400" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,13 +20,14 @@
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Broj prostorije:</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Namjena:</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Tip prostorije:</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text1" Background="AliceBlue"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text2" Background="AliceBlue"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text1" Background="AliceBlue" TextChanged="text1_TextChanged"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="text2" Background="AliceBlue" TextChanged="text2_TextChanged"></TextBox>
         <ComboBox Grid.Row="2" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="combo" SelectedIndex="0">
             <ComboBoxItem Content="Sala za preglede"/>
             <ComboBoxItem Content="Sala za operacije"/>
+            <ComboBoxItem Content="Sala za odmor"/>
         </ComboBox>
-        <Button Grid.Column="0" Grid.Row="3" Width="90" Height="30" Background="LightBlue" HorizontalAlignment="Right" Margin="10" Click="Button_Click">Dodaj</Button>
-        <Button Grid.Column="1" Grid.Row="3" Width="90" Height="30" Background="LightBlue" HorizontalAlignment="Left" Margin="10" Click="Button_Click_1">Odustani</Button>
+        <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10" Click="Button_Click" Name="Potvrdi">Dodaj</Button>
+        <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Click="Button_Click_1">Odustani</Button>
     </Grid>
 </Window>

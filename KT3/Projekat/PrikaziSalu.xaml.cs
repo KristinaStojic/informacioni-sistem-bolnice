@@ -62,6 +62,10 @@ namespace Projekat
                 
                 SaleMenadzer.ObrisiSalu((Sala)izabranaSala);
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -72,11 +76,17 @@ namespace Projekat
                 IzmjeniSalu iss = new IzmjeniSalu(izabranaSala);
                 iss.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             SaleMenadzer.sacuvajIzmjene();
+            Upravnik u = new Upravnik();
+            u.Show();
             this.Hide();
             //MainWindow mw = new MainWindow();
             //mw.Show();
@@ -84,10 +94,16 @@ namespace Projekat
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            SaleMenadzer.sacuvajIzmjene();
-            this.Hide();
-            //MainWindow mw = new MainWindow();
-            //mw.Show();
+            Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if(izabranaSala != null)
+            {
+                Renoviranje renoviranje = new Renoviranje(izabranaSala);
+                renoviranje.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -108,6 +124,10 @@ namespace Projekat
                     ps.ShowDialog();
                 }catch(Exception ex) { }
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -121,6 +141,10 @@ namespace Projekat
                     pd.ShowDialog();
                 }catch(Exception ex) { }
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -132,6 +156,7 @@ namespace Projekat
         {
             Zahtjevi z = new Zahtjevi();
             z.Show();
+            this.Close();
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
@@ -152,6 +177,26 @@ namespace Projekat
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
             //O aplikaciji
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Sale.Clear();
+            foreach(Sala sala in SaleMenadzer.sale)
+            {
+                if(sala.Namjena.Equals("Skladiste"))
+                {
+                    break;
+                }
+                foreach(Oprema oprema in sala.Oprema)
+                {
+                    if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text))
+                    {
+                        Sale.Add(sala);
+                        break;
+                    }
+                }
+            }
         }
     }
 }

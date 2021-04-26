@@ -19,10 +19,11 @@ namespace Model
       {
             sale.Add(sala);
             PrikaziSalu.Sale.Add(sala);
+            sacuvajIzmjene();
         }
 
         public static void ObrisiSalu(Sala sala)
-      {
+        {
             sale.Remove(sala);
             PrikaziSalu.Sale.Remove(sala);
 
@@ -34,6 +35,7 @@ namespace Model
                     TerminMenadzer.sacuvajIzmene();
                 }
             }
+            sacuvajIzmjene();
         }
       
       public static void IzmjeniSalu(Sala sala1, Sala sala)
@@ -45,12 +47,12 @@ namespace Model
                     s.brojSale = sala.brojSale;
                     s.Namjena = sala.Namjena;
                     s.TipSale = sala.TipSale;
-                    s.Status = sala.Status;
                     int idx = PrikaziSalu.Sale.IndexOf(sala1);
                     PrikaziSalu.Sale.RemoveAt(idx);
                     PrikaziSalu.Sale.Insert(idx, s);
                 }
             }
+            sacuvajIzmjene();
         }
       
       public static List<Sala> NadjiSveSale()

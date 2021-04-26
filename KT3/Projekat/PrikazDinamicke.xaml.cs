@@ -45,11 +45,14 @@ namespace Projekat
                     this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
             }
-            foreach(Oprema o in izabranaSala.Oprema)
+            if (izabranaSala.Oprema != null)
             {
-                if (!o.Staticka)
+                foreach (Oprema o in izabranaSala.Oprema)
                 {
-                    OpremaDinamicka.Add(o);
+                    if (!o.Staticka)
+                    {
+                        OpremaDinamicka.Add(o);
+                    }
                 }
             }
         }
@@ -76,7 +79,24 @@ namespace Projekat
             Oprema opremaZaSlanje = (Oprema)dataGrid.SelectedItem;
             if (opremaZaSlanje != null) {
                 SlanjeDinamicke sd = new SlanjeDinamicke(izabranaSala, opremaZaSlanje);
+                SlanjeDinamicke.aktivan = true;
                 sd.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati opremu");
+            }
+        }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OpremaDinamicka.Clear();
+            foreach(Oprema oprema in izabranaSala.Oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && !oprema.Staticka)
+                {
+                    OpremaDinamicka.Add(oprema);
+                }
             }
         }
     }

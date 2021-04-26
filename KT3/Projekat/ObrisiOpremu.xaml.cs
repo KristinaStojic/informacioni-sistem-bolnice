@@ -21,11 +21,27 @@ namespace Projekat
     public partial class ObrisiOpremu : Window
     {
         public Oprema izabranaOprema;
+        public int dozvoljenaKolicina;
         public ObrisiOpremu(Oprema izabranaOprema)
         {
             InitializeComponent();
             this.izabranaOprema = izabranaOprema;
-            this.maks.Text = "MAX: " + izabranaOprema.Kolicina.ToString();
+            postaviMax();
+            this.Potvrdi.IsEnabled = false;
+        }
+
+
+        private void postaviMax()
+        {
+            dozvoljenaKolicina = izabranaOprema.Kolicina;
+            foreach(Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                if(pm.izSale.Id == 4 && pm.oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    dozvoljenaKolicina -= pm.kolicina;
+                }
+            }
+            this.maks.Text = "MAX: " + dozvoljenaKolicina.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,6 +70,33 @@ namespace Projekat
             }
             Skladiste.azurirajOpremu();
             this.Close();
+        }
+
+        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (IsNumeric(this.kolicina.Text)) {
+                postaviDugme();
+            }else{
+                this.Potvrdi.IsEnabled = false;
+            }
+        }
+
+        private void postaviDugme()
+        {
+            if (int.Parse(this.kolicina.Text) > dozvoljenaKolicina || int.Parse(this.kolicina.Text) <= 0 || this.kolicina.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if (int.Parse(this.kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.kolicina.Text) > 0 && !this.kolicina.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
         }
     }
 }

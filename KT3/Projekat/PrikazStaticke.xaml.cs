@@ -122,14 +122,59 @@ namespace Projekat
             Oprema opremaZaSlanje = (Oprema)dataGridStaticka.SelectedItem;
             if(opremaZaSlanje != null)
             {
-                SlanjeStaticke ss = new SlanjeStaticke(izabranaSala, opremaZaSlanje);
-                ss.ShowDialog();
+                if (provjeriPreostalo(opremaZaSlanje))
+                {
+                    SlanjeStaticke ss = new SlanjeStaticke(izabranaSala, opremaZaSlanje);
+                    SlanjeStaticke.aktivan = true;
+                    ss.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Preostala oprema je vec zakazana za transfer");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati opremu");
+            }
+        }
+
+        private bool provjeriPreostalo(Oprema opremaZaSlanje)
+        {
+            int kolicina = opremaZaSlanje.Kolicina;
+            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                kolicina = opremaZaSlanje.Kolicina;
+                if (pm.izSale.Id == izabranaSala.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+                {
+                    kolicina -= pm.kolicina;
+                }
+            }
+            if(kolicina == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PrikazStaticke.otvoren = false;
+        }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OpremaStaticka.Clear();
+            foreach(Oprema oprema in izabranaSala.Oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && oprema.Staticka)
+                {
+                    OpremaStaticka.Add(oprema);
+                }
+            }
         }
     }
 

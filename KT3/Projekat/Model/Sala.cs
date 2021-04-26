@@ -12,14 +12,11 @@ using System.ComponentModel;
 
 namespace Model
 {
-    public enum status
-    {
-        Zauzeta, Slobodna, Renoviranje
-    }
+   
 
     public enum tipSale
     {
-        OperacionaSala, SalaZaPregled
+        OperacionaSala, SalaZaPregled, SalaZaOdmor
     }
 
     public class Sala: INotifyPropertyChanged
@@ -28,7 +25,6 @@ namespace Model
         {
             this.Id = id;
             this.brojSale = brojSale;
-            this.Status = status.Slobodna;
             this.TipSale = tip;
             this.Namjena = namjena;
             //Sanja
@@ -38,14 +34,13 @@ namespace Model
         public Sala(int brojSale, string namjena, tipSale tip)
         { 
             this.brojSale = brojSale;
-            this.Status = status.Slobodna;
             this.TipSale = tip;
             this.Namjena = namjena;
             //Sanja
             this.zauzetiTermini = new List<ZauzeceSale>();
         }
 
-        public status Status { get; set; }
+        
         public tipSale TipSale { get; set; }
         public int Id { get; set; }
         public int brojSale { get; set; }
@@ -76,10 +71,30 @@ namespace Model
         {
             string val = brojSale + " - " + Namjena;
             if (PreraspodjelaStaticke.aktivna && PreraspodjelaStaticke.izabranaOprema != null)
-            { 
+            {
+                bool postoji = false;
+                int kolicina;
                 foreach (Oprema o in Oprema) {
                     if (o.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme) {
-                        val += " (" + o.Kolicina + ")";
+                        kolicina = o.Kolicina;
+                        foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+                        {
+                            if(pm.izSale.Id == this.Id)
+                            {
+                                kolicina -= pm.kolicina;
+                                
+                                postoji = true;
+                            }
+                        }
+
+                        if (!postoji)
+                        {
+                            val = brojSale + " - " + Namjena + " (" + o.Kolicina + ")";
+                        }
+                        else
+                        {
+                            val = brojSale + " - " + Namjena + " (" + kolicina + ")";
+                        }
                     }
                 }
             }else if (PreraspodjelaDinamicke.aktivna && PreraspodjelaDinamicke.izabranaOprema != null)

@@ -30,10 +30,12 @@ namespace Projekat
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Zahtevi(object sender, RoutedEventArgs e)
         {
-           // DodajRecept dr = new DodajRecept();
-            //dr.Show();
+
+
+            SpisakZahtevaZaLekove zahtevi = new SpisakZahtevaZaLekove();
+            zahtevi.Show();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

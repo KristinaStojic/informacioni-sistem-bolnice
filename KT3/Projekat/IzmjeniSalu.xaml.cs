@@ -29,25 +29,18 @@ namespace Projekat
             {
                 this.text1.Text = izabranaSala.brojSale.ToString();
                 this.text2.Text = izabranaSala.Namjena;
-                if (izabranaSala.Status.Equals(status.Slobodna))
-                {
-                    this.combo.SelectedIndex = 0;
-                }
-                else if (izabranaSala.Status.Equals(status.Zauzeta))
-                {
-                    this.combo.SelectedIndex = 1;
-                }
-                else
-                {
-                    this.combo.SelectedIndex = 2;
-                }
+                
                 if (izabranaSala.TipSale.Equals(tipSale.SalaZaPregled))
                 {
                     this.combo1.SelectedIndex = 1;
                 }
-                else
+                else if(izabranaSala.TipSale.Equals(tipSale.OperacionaSala))
                 {
                     this.combo1.SelectedIndex = 0;
+                }
+                else
+                {
+                    this.combo1.SelectedIndex = 2;
                 }
             }
         }
@@ -56,29 +49,21 @@ namespace Projekat
             int brojSale = int.Parse(this.text1.Text);
             string namjena = this.text2.Text;
             tipSale Tip;
-            status Status;
-            if (this.combo.SelectedIndex == 0)
-            {
-                Status = status.Slobodna;
-            }
-            else if (this.combo.SelectedIndex == 1)
-            {
-                Status = status.Zauzeta;
-            }
-            else
-            {
-                Status = status.Renoviranje;
-            }
+            
             if (this.combo1.SelectedIndex == 1)
             {
                 Tip = tipSale.SalaZaPregled;
             }
-            else
+            else if(this.combo1.SelectedIndex == 0)
             {
                 Tip = tipSale.OperacionaSala;
             }
+            else
+            {
+                Tip = tipSale.SalaZaOdmor;
+            }
             Sala s = new Sala(sala.Id, brojSale, namjena, Tip);
-            s.Status = Status;
+            
             SaleMenadzer.IzmjeniSalu(sala, s);
             this.Close();
         }
@@ -86,6 +71,52 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+
+        private void text1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void text2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.text1.Text.Trim().Equals("") || this.text2.Text.Trim().Equals("") || !IsNumeric(this.text1.Text) || IsNumeric(this.text2.Text) || postojiBrojSale())
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if (!this.text1.Text.Trim().Equals("") && !this.text2.Text.Trim().Equals("") && IsNumeric(this.text1.Text) && !IsNumeric(this.text2.Text) && !postojiBrojSale())
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+
+        private bool postojiBrojSale()
+        {
+            if (IsNumeric(this.text1.Text))
+            {
+                foreach (Sala sala in SaleMenadzer.sale)
+                {
+                    if (sala.brojSale == int.Parse(this.text1.Text) && sala.Id != this.sala.Id)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
