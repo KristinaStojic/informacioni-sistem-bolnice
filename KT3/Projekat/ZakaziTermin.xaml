@@ -92,10 +92,10 @@
             <Calendar x:Name="datum" Background="#FFDBE2EF" RenderTransformOrigin="-0.356,0.389" SelectedDatesChanged="datum_SelectedDatesChanged"
                       Margin="50,10,0,12" FontSize="20" FontStyle="Italic" HorizontalAlignment="Left" Width="185"/>
         </GroupBox>
-        <GroupBox Header=" *1. Izaberite tip termina" HorizontalAlignment="Left" Height="89" Margin="265,84,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
-            <ComboBox HorizontalAlignment="Center" Name="combo" VerticalAlignment="Center" Width="200" Margin="45,16,43,23" Height="27" SelectionChanged="combo_SelectionChanged" RenderTransformOrigin="0.47,0.574" >
-                <ComboBoxItem>Operacija</ComboBoxItem>
-                <ComboBoxItem>Pregled</ComboBoxItem>
+        <GroupBox Header=" 1. Tip termina" HorizontalAlignment="Left" Height="89" Margin="265,84,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
+            <ComboBox HorizontalAlignment="Center" Name="combo" IsEnabled="False" VerticalAlignment="Center" Width="200" Margin="45,16,43,23" Height="27" SelectionChanged="combo_SelectionChanged" RenderTransformOrigin="0.47,0.574" >
+                <!--" ComboBoxItem>Operacija</-->
+                <ComboBoxItem IsSelected="True">Pregled</ComboBoxItem>
             </ComboBox>
         </GroupBox>
         <GroupBox Header="*3 .Izaberite vreme termina" Height="89" Margin="265,393,235,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494">

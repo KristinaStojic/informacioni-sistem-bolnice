@@ -30,7 +30,6 @@ namespace Projekat
             terminZaBrisanje = zaBrisanje;
             idPacijent = zaBrisanje.Pacijent.IdPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            //if (zaBrisanje.tipTermina.Equals(TipTermina.Pregled))
             this.tipTermina.Text = zaBrisanje.tipTermina.ToString();
             this.datum.Text = zaBrisanje.Datum;
             this.vreme.Text = zaBrisanje.VremePocetka;
@@ -74,17 +73,8 @@ namespace Projekat
             // brisanje termina
             if (terminZaBrisanje != null)
             {
+                SaleMenadzer.ObrisiZauzeceSale(terminZaBrisanje.Prostorija.Id, terminZaBrisanje.IdTermin);
                 TerminMenadzer.OtkaziTermin(terminZaBrisanje);
-                //TerminMenadzer.sacuvajIzmene();
-                Sala s = SaleMenadzer.NadjiSaluPoId(terminZaBrisanje.Prostorija.Id);
-                foreach (ZauzeceSale zs in s.zauzetiTermini)
-                {
-                    if (zs.idTermina.Equals(terminZaBrisanje.IdTermin))
-                    {
-                        s.zauzetiTermini.Remove(zs);
-                        break;
-                    }
-                }
             }
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);

@@ -46,9 +46,7 @@ namespace Projekat
                 {
                     Termini.Add(t);
                 }
-                //Termini.Add(t);
             }
-           // Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             /*foreach (LekarskiRecept lr in p.Karton.LekarskiRecepti)
             {
@@ -65,25 +63,26 @@ namespace Projekat
             }*/
             foreach(Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
-                // dodati i id pacijenta
-                if(o.TipObavestenja.Equals("Terapija")) 
+                if (o.IdPacijenta == idPacijent)
                 {
-                   
-                    DateTime dt = DateTime.Parse(o.Datum);
-                    if (dt.Date <= DateTime.Now.Date)
+                    if (o.TipObavestenja.Equals("Terapija"))
                     {
-                        string vreme = dt.ToString("HH:mm");
-                        string trenutnoVreme = DateTime.Now.ToString("HH:mm");
-                        if (dt.TimeOfDay <= DateTime.Now.TimeOfDay)
+                        DateTime dt = DateTime.Parse(o.Datum);
+                        if (dt.Date <= DateTime.Now.Date)
                         {
-                            Obavestenja.Add(o);
+                            string vreme = dt.ToString("HH:mm");
+                            string trenutnoVreme = DateTime.Now.ToString("HH:mm");
+                            if (dt.TimeOfDay <= DateTime.Now.TimeOfDay)
+                            {
+                                Obavestenja.Add(o);
+                            }
                         }
                     }
-                } else
-                {
-                    Obavestenja.Add(o);
+                    else
+                    {
+                        Obavestenja.Add(o);
+                    }
                 }
-                
             }
         }
 
@@ -98,8 +97,8 @@ namespace Projekat
 
         private static void ProveriRecepte()
         {
-            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  // TODO: promeniti kada uradimo prijavljivanje
-            App.Current.Dispatcher.Invoke((Action)delegate // <--- HERE
+            Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);  
+            App.Current.Dispatcher.Invoke((Action)delegate
             {
                 foreach (LekarskiRecept lp in p.Karton.LekarskiRecepti)
                 {
@@ -115,7 +114,6 @@ namespace Projekat
                             //MessageBox.Show(vremeLp + " " + vremeTrenStr);
                             if (vremeLp.Equals(vremeTrenStr))
                             {
-                                //ako ne postoji 
                                 if (flag == false)
                                 {
                                     Obavestenja.Add(new Obavestenja(d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka));
@@ -136,12 +134,6 @@ namespace Projekat
             {
                 if (o.TipObavestenja.Equals("Terapija"))
                 {
-                    //MessageBox.Show("Metoda: " + datumUzimanjaTerapije + " " + o.Datum + "\n" + split[2] + " " + nazivLeka);
-                    /*if (split[2].Equals(nazivLeka) && datumUzimanjaTerapije.ToString().Equals(o.Datum))
-                    {
-                        Console.WriteLine(split[1] + " " + nazivLeka + " " + datumUzimanjaTerapije.TimeOfDay.ToString().Substring(0, 5));
-                        //return true;
-                    }*/
                     string sadrzaj = "Uzmite terapiju: " + nazivLeka;
                     string datum = datumUzimanjaTerapije.ToString();
                     if (!Obavestenja.Any(x => x.SadrzajObavestenja == sadrzaj) && !Obavestenja.Any(y => y.Datum == datum))
