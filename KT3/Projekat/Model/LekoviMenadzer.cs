@@ -12,7 +12,7 @@ namespace Projekat.Model
         public static void DodajLijek(Lek lijek)
         {
             lijekovi.Add(lijek);
-            Lijekovi.Lekovi.Add(lijek);
+            SpisakZahtevaZaLekove.TabelaLekova.Add(lijek);
             sacuvajIzmjene();
         }
 
@@ -72,7 +72,7 @@ namespace Projekat.Model
                 }
             }
             sacuvajIzmjene();
-        }
+        }      
         
         public static void IzmeniLekoveLekar(Lek izabraniLek, Lek izmenjeniLek)
         {
@@ -169,6 +169,8 @@ namespace Projekat.Model
             filestream.Close();
         }
 
+
+
         public static int GenerisanjeIdLijeka()
         {
             bool pomocna = false;
@@ -194,18 +196,21 @@ namespace Projekat.Model
 
             return id;
         }
-        public static List<Sastojak> nadjiSastojke(String sifraLeka)
+        public static List<Sastojak> nadjiSastojke(ZahtevZaLekove izabraniZahtev)
         {
-            foreach(Lek lek in lijekovi)
+            sastojci.Clear();
+            foreach(ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
             {
-                if (sifraLeka.Equals(lek.sifraLeka))
+                if(zahtev.idZahteva == izabraniZahtev.idZahteva)
                 {
-                    foreach(Sastojak sastojak in lek.sastojci)
-                    {
-                        sastojci.Add(sastojak);
-                    }
+                       foreach(Sastojak sastojak in zahtev.lek.sastojci)
+                       {
+                            sastojci.Add(sastojak);
+                       }
+                    
                 }
             }
+            Console.WriteLine(sastojci.Count);
             return sastojci;
         }
         public static int GenerisanjeIdZahtjeva()
@@ -233,6 +238,68 @@ namespace Projekat.Model
 
             return id;
         }
+
+
+        public static List<ZahtevZaLekove> NadjiSveZahteve()
+        {
+
+            if (File.ReadAllText("zahtevi.xml").Trim().Equals(""))
+            {
+                return zahteviZaLekove;
+            }
+            else
+            {
+                FileStream filestream = File.OpenRead("zahtevi.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(List<ZahtevZaLekove>));
+                zahteviZaLekove = (List<ZahtevZaLekove>)serializer.Deserialize(filestream);
+                filestream.Close();
+                return zahteviZaLekove;
+            }
+        }
+        public static void sacuvajIzmeneZahteva()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<ZahtevZaLekove>));
+            TextWriter filestream = new StreamWriter("zahtevi.xml");
+            serializer.Serialize(filestream, zahteviZaLekove);
+            filestream.Close();
+        }
+
+        public static void izmeniZahtev(ZahtevZaLekove izabraniZahtev)
+        {
+            foreach(ZahtevZaLekove zahtev in zahteviZaLekove)
+            {
+                if(zahtev.idZahteva == izabraniZahtev.idZahteva)
+                {
+                    zahtev.obradjenZahtev = true;
+                    zahtev.odobrenZahtev = true;
+
+                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                }
+            }
+
+            sacuvajIzmeneZahteva();
+        }
+        public static void odbijaZahtev(ZahtevZaLekove izabraniZahtev, String razlogOdbijanja)
+        {
+            foreach(ZahtevZaLekove zahtev in zahteviZaLekove)
+            {
+                if(zahtev.idZahteva == izabraniZahtev.idZahteva)
+                {
+                    zahtev.obradjenZahtev = true;
+                    zahtev.odobrenZahtev = false;
+                    zahtev.obrazlozenjeOdbijanja = razlogOdbijanja;
+
+                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                }
+            }
+
+            sacuvajIzmeneZahteva();
+        }
+
         public static List<Sastojak> sastojci = new List<Sastojak>();
         public static List<Lek> lijekovi = new List<Lek>();
         public static List<ZahtevZaLekove> zahteviZaLekove = new List<ZahtevZaLekove>();

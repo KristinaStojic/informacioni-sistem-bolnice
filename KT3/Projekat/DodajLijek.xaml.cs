@@ -50,8 +50,9 @@ namespace Projekat
 
         private void dodajZahtjev(Lek lijek)
         {
-            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString(), false);
+            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString("d"), false);
             LekoviMenadzer.zahteviZaLekove.Add(zahtjev);
+            LekoviMenadzer.sacuvajIzmeneZahteva();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

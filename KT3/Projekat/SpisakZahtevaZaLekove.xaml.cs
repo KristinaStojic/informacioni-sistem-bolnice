@@ -44,7 +44,6 @@ namespace Projekat
         private void dodajZahteveUTabelu()
         {
             TabelaZahteva = new ObservableCollection<ZahtevZaLekove>();
-            TabelaZahteva = MainWindow.zahtevi;
             foreach (ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
             {
                 TabelaZahteva.Add(zahtev);
@@ -63,15 +62,19 @@ namespace Projekat
         private void Button_Obradi(object sender, RoutedEventArgs e)
         {
             ZahtevZaLekove izabraniZahtev = (ZahtevZaLekove)dataGridZahtevi.SelectedItem;
-            if(izabraniZahtev != null)
+ 
+            if(izabraniZahtev == null)
+            {
+                MessageBox.Show("Niste selektovali zahtev koji zelite da obradite!");
+            }
+            else if(izabraniZahtev.obradjenZahtev == true)
+            {
+                MessageBox.Show("Izabrani zahtev je vec obradjen!");
+            }
+            else if (izabraniZahtev != null && izabraniZahtev.obradjenZahtev == false)
             {
                 ObradiZahtevZaLek obradiZahtev = new ObradiZahtevZaLek(izabraniZahtev);
                 obradiZahtev.Show();
-
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali zahtev koji zelite da obradite!");
             }
 
         }

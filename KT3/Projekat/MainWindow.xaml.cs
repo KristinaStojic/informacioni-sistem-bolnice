@@ -33,12 +33,11 @@ namespace Projekat
             SaleMenadzer.NadjiSveSale();
             OpremaMenadzer.NadjiSvuOpremu();
             LekoviMenadzer.NadjiSveLijekove();
-
             PremjestajMenadzer.NadjiSvePremjestaje();
-
             TerminMenadzer.NadjiSveTermine();
             PacijentiMenadzer.PronadjiSve();
             ObavestenjaMenadzer.NadjiSvaObavestenja();
+            LekoviMenadzer.NadjiSveZahteve();
 
             lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;

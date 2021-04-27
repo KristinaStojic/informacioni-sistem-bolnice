@@ -37,6 +37,8 @@ namespace Projekat.Model
             this.lek = lijek;
             this.datumSlanjaZahteva = datum;
             this.obradjenZahtev = obradjen;
+            this.nazivLeka = lijek.nazivLeka;
+            this.sifraLeka = lijek.sifraLeka;
         }
 
         
