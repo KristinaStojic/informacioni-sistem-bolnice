@@ -32,6 +32,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             this.lek = izabraniLek;
+            this.tekst.Text = "Zamenski lekovi za lek: " + izabraniLek.nazivLeka;
             DodajZamenskeLekove(lek);
 
         }
@@ -98,7 +99,7 @@ namespace Projekat
 
         private void Button_Nazad(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

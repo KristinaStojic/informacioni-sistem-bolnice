@@ -32,6 +32,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             this.lek = izabranilek;
+            this.tekst.Text = "Sastojci leka: " + izabranilek.nazivLeka;
             dodajSastojkeLeka(lek);
         }
 
