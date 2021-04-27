@@ -61,7 +61,7 @@
         </TextBlock>
 
         <GroupBox Header="Podaci o terminu" Height="280" Margin="238,85,238,213"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="238,-6,238,0">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="200,0,200,0">
 
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0, 80, 0, 0" Height="305" Width="325">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0, 35, 0, 0">

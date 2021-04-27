@@ -80,25 +80,34 @@ namespace Model
             return id;
         }
 
-        public static void IzmeniTermin(Termin termin, Termin termin1)
+        public static void IzmeniTermin(Termin stariTermin, Termin noviTermin)
         {
-            foreach(Termin t in termini)
+            foreach(Termin termin in termini)
             {
-                if (t.IdTermin == termin.IdTermin)
+                if (termin.IdTermin == stariTermin.IdTermin)
                 {
-                    t.IdTermin = termin1.IdTermin;
-                    t.VremePocetka = termin1.VremePocetka;
-                    t.VremeKraja = termin1.VremeKraja;
-                    t.Lekar = termin1.Lekar; 
-                    t.Pacijent = termin1.Pacijent;
-                    t.tipTermina = termin1.tipTermina;
-                    t.Datum = termin1.Datum;
-                    t.Prostorija = termin1.Prostorija;
-                    int idx = PrikaziTermin.Termini.IndexOf(termin);
+                    termin.IdTermin = noviTermin.IdTermin;
+                    termin.VremePocetka = noviTermin.VremePocetka;
+                    termin.VremeKraja = noviTermin.VremeKraja;
+                    termin.Lekar = noviTermin.Lekar; 
+                    termin.Pacijent = noviTermin.Pacijent;
+                    termin.tipTermina = noviTermin.tipTermina;
+                    termin.Datum = noviTermin.Datum;
+                    termin.Prostorija = noviTermin.Prostorija;
+                    int idx = PrikaziTermin.Termini.IndexOf(stariTermin);
                     PrikaziTermin.Termini.RemoveAt(idx);
-                    PrikaziTermin.Termini.Insert(idx, termin1);
+                    PrikaziTermin.Termini.Insert(idx, noviTermin);
                 }
-                
+                foreach (Sala s in SaleMenadzer.sale)
+                {
+                    foreach (ZauzeceSale zs in s.zauzetiTermini)
+                    {
+                        if (zs.idTermina.Equals(stariTermin.IdTermin))
+                        {
+                            s.zauzetiTermini.Remove(zs);
+                        }
+                    }
+                }
             }
         }
 

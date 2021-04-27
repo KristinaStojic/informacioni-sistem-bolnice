@@ -81,7 +81,7 @@ namespace Projekat
                                     t.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
                                     t.Datum = zs.datumPocetkaTermina;
                                     t.VremePocetka = slot;
-                                    t.VremeKraja = ZakaziTermin.IzracunajVremeKraja(slot);
+                                    t.VremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(slot);
                                     t.Prostorija = s;
                                     t.tipTermina = TipTermina.Pregled;
                                     // TODO: ispraviti kada dobijemo raspored radnog vremena
@@ -173,25 +173,14 @@ namespace Projekat
 
         private void zakaziLekar_Click(object sender, RoutedEventArgs e)
         {
-            // prosledjuje se lekar
             Lekar l = null;
             if (datagridLekari.SelectedItems.Count > 0)
             {
                 l = (Lekar)datagridLekari.SelectedItems[0];
             }
-            // TODO: kada se bude prosledjivao prijavljeni pacijent, samo set-ovati lekara
-            ZakaziTermin zt = new ZakaziTermin(idPacijent);
+            ZakaziTermin.izabraniLekar = l;
+            Page zt = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zt);
-        }
-
-        public string imePrz_Changed()
-        {
-            if (datagridLekari.SelectedItems.Count > 0)
-            {
-                Lekar l = (Lekar)datagridLekari.SelectedItems[0];
-                return l.ToString();
-            }
-            return null;
         }
 
         private void btnZakazi_Click(object sender, RoutedEventArgs e)
