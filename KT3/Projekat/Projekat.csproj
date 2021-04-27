@@ -86,6 +86,9 @@
     <Compile Include="DodajPacijentaGuestIzmeni.xaml.cs">
       <DependentUpon>DodajPacijentaGuestIzmeni.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajSastojakLekar.xaml.cs">
+      <DependentUpon>DodajSastojakLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HitanSlucaj.xaml.cs">
       <DependentUpon>HitanSlucaj.xaml</DependentUpon>
     </Compile>
@@ -208,6 +211,9 @@
     <Compile Include="PrikazObavjestenja.xaml.cs">
       <DependentUpon>PrikazObavjestenja.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikazSastojakaLekar.xaml.cs">
+      <DependentUpon>PrikazSastojakaLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikazStaticke.xaml.cs">
       <DependentUpon>PrikazStaticke.xaml</DependentUpon>
     </Compile>
@@ -320,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajSalu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajSastojakLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -486,6 +496,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikazObavjestenja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazSastojakaLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

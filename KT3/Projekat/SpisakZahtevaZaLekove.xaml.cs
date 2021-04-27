@@ -100,5 +100,20 @@ namespace Projekat
                 MessageBox.Show("Niste selektovali nijedan lek!");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Lek izabraniLek = (Lek)dataGridLekovi.SelectedItem;
+
+            if (izabraniLek != null)
+            {
+                PrikazSastojakaLekar sastojci = new PrikazSastojakaLekar(izabraniLek);
+                sastojci.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
     }
 }

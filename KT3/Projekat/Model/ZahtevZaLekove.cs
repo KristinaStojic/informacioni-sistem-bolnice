@@ -41,6 +41,15 @@ namespace Projekat.Model
             this.sifraLeka = lijek.sifraLeka;
         }
 
-        
+        public override string ToString()
+        {
+            if (obradjenZahtev == true)
+                return "DA";
+            else
+                return "NE";
+        }
+
     }
+
 }
+
