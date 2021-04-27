@@ -229,6 +229,9 @@
     <Compile Include="PrikazTerminaLekar.xaml.cs">
       <DependentUpon>PrikazTerminaLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikazZamenskihLekovaLekar.xaml.cs">
+      <DependentUpon>PrikazZamenskihLekovaLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recept.xaml.cs">
       <DependentUpon>Recept.xaml</DependentUpon>
     </Compile>
@@ -526,6 +529,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikazTerminaLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazZamenskihLekovaLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

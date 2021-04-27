@@ -120,5 +120,22 @@ namespace Projekat
         {
             this.Close();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            Lek izabraniLek = (Lek)dataGridLekovi.SelectedItem;
+
+            if (izabraniLek != null)
+            {
+                PrikazZamenskihLekovaLekar zamenskiLekovi = new PrikazZamenskihLekovaLekar(izabraniLek);
+                zamenskiLekovi.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+
+        }
     }
 }
