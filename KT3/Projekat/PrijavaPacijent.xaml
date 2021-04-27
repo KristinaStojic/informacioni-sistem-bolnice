@@ -13,13 +13,13 @@
             <RowDefinition Height="4*"/>
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="0,0,0,0" >
+        <StackPanel >
             <StackPanel Grid.RowSpan="1" Height="40" Background="#e8f1f5" Orientation="Horizontal">
                 <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                     <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
                     <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                 </StackPanel>
-                <StackPanel Width="415" HorizontalAlignment="Right" Orientation="Horizontal" Margin="190,0,0,0">
+                <StackPanel Width="415" Orientation="Horizontal" Margin="220, 0, 0, 0">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                         <Label Content="Korisnicko ime" FontSize="8"/>
                         <TextBox x:Name="korisnickoIme" Width="150" Height="22" Margin="0,0,0,10"/>
@@ -31,7 +31,7 @@
                     </StackPanel>
                     <Button x:Name="prijava" Content="Prijavi se" Width="90" Height="22" Margin="10,13,0,5" Click="prijava_Click"/>
                 </StackPanel>
-                
+
             </StackPanel>
         </StackPanel>
 

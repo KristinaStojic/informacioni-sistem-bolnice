@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz termina" Height="600" Width="800" Background="#dbe2ef">
-    <ScrollViewer>
+        d:DesignHeight="600" d:DesignWidth="800"
+        Title="Prikaz termina" Background="#dbe2ef">
         <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
             <Grid  Margin="0,0,0,0" Height="578">
                 <StackPanel >
@@ -64,10 +64,6 @@
                         <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
                         <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
                         <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                        <!--DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
-                        <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
-                        <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                        <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  /-->
                         <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
                         <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
                         <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
@@ -81,7 +77,6 @@
                         <DataGridTextColumn Header="Datum" Width="90" Binding="{Binding Datum}"/>
                         <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
                         <DataGridTextColumn Header="Sadrzaj" Width="385" Binding="{Binding SadrzajObavestenja}"/>
-
                         <!-- staviti button  -->
                         <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
                     <DataGridCheckBoxColumn.CellStyle>
@@ -94,25 +89,9 @@
                 </DataGrid>
                 <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="325,94,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
                 <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="300,278,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
-                <Button x:Name="anketa" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="610,91,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
+                <Button x:Name="anketa" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="610,88,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
                     <TextBlock Text="Anketa" Foreground="White" FontSize="16"/>
                 </Button>
-
-                <!--Button Name="obavestenja" Background="#404969" BorderBrush="#ff7f50" BorderThickness="2" Click="obavestenja_Click" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="161" Height="59" RenderTransformOrigin="0.503,0.508">
-            <TextBlock Text="Obavestenja" Foreground="White" FontSize="16"></TextBlock>
-        </-->
-
-                <!--Button x:Name="zdravstevniKarton" Click="zdravstevniKarton_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="30,160,0,0">
-            <Grid RenderTransformOrigin="0.267,0.59" Width="105" Height="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                    <ColumnDefinition Width="23*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Image Source="slike\back.png" Grid.Column="0" Margin="-1,-1,1,-1"/>
-                <TextBlock Text="Zdravstveni karton" FontSize="10" Grid.Column="1" Margin="0,0,2,0"/>
-            </Grid>
-        </Button!-->
             </Grid>
         </StackPanel>
-    </ScrollViewer>
 </Page>

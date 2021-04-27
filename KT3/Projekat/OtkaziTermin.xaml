@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Otkazi termin" Height="600" Width="800" Background="AliceBlue">
+        d:DesignHeight="600" d:DesignWidth="800"
+        Title="Otkazi termin" Background="AliceBlue">
 
     <Grid  Margin="0,0,0,0" Height="578">
         <Grid.RowDefinitions>

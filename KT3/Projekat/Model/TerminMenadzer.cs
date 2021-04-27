@@ -22,6 +22,7 @@ namespace Model
         {
             termini.Add(termin);
             PrikaziTermin.Termini.Add(termin);
+            // TODO:
             //SaleMenadzer.sacuvajIzmjene();
             //PrikazTerminaLekar.Termini.Add(termin);
             //PrikaziTerminSekretar.TerminiSekretar.Add(termin);
