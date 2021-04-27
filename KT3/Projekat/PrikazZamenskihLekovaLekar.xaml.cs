@@ -68,7 +68,18 @@ namespace Projekat
 
         private void Button_Izmeni(object sender, RoutedEventArgs e)
         {
+            Lek izabraniLek = (Lek)dataGridZamenskiLekovi.SelectedItem;
 
+            if (izabraniLek != null)
+            {
+
+                IzmeniLekLekar izmeniLek = new IzmeniLekLekar(izabraniLek);
+                izmeniLek.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
         }
 
         private void Button_Obrisi(object sender, RoutedEventArgs e)

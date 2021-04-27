@@ -115,12 +115,12 @@ namespace Projekat.Model
                     int idx = SpisakZahtevaZaLekove.TabelaLekova.IndexOf(izabraniLek);
                     SpisakZahtevaZaLekove.TabelaLekova.RemoveAt(idx);
                     SpisakZahtevaZaLekove.TabelaLekova.Insert(idx, lek);
-                   /* if (ZamjenskiLijekovi.ZamjenskiLekovi != null)
+                    if (PrikazZamenskihLekovaLekar.TabelaZamenskihLekova != null)
                     {
-                        int idx1 = ZamjenskiLijekovi.ZamjenskiLekovi.IndexOf(izabraniLek);
-                        ZamjenskiLijekovi.ZamjenskiLekovi.RemoveAt(idx1);
-                        ZamjenskiLijekovi.ZamjenskiLekovi.Insert(idx1, lek);
-                    }*/
+                        int idx1 = PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.IndexOf(izabraniLek);
+                        PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.RemoveAt(idx1);
+                        PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.Insert(idx1, lek);
+                    }
                 }
             }
             sacuvajIzmjene();
