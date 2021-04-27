@@ -43,6 +43,19 @@ namespace Projekat.Model
             }
             sacuvajIzmjene();
         }
+        
+        public static void dodajSastojakLekar(Sastojak sastojak, Lek izabraniLek)
+        {
+            foreach (Lek lek in lijekovi)
+            {
+                if (lek.idLeka == izabraniLek.idLeka)
+                {
+                    lek.sastojci.Add(sastojak);
+                    PrikazSastojakaLekar.TabelaSastojaka.Add(sastojak);
+                }
+            }
+            sacuvajIzmjene();
+        }
         public static void obrisiLijek(Lek lijek)
         {
             lijekovi.Remove(lijek);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,13 @@ namespace Projekat
     /// </summary>
     public partial class DodajSastojakLekar : Window
     {
-        public DodajSastojakLekar()
+        Lek lek;
+        public DodajSastojakLekar(Lek izabraniLek)
         {
             InitializeComponent();
+            this.lek = izabraniLek;
+            this.Potvrdi.IsEnabled = false;
+
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
@@ -30,7 +35,49 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
+            string naziv = this.naziv.Text;
+            double kolicina = double.Parse(this.kolicina.Text);
+            Sastojak sastojak = new Sastojak(naziv, kolicina);
+            LekoviMenadzer.dodajSastojakLekar(sastojak, lek);
+            this.Close();
+        }
 
+
+        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+        private void postaviDugme()
+        {
+            if (IsNumeric(this.kolicina.Text))
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.kolicina.Text.Trim().Equals("") || this.naziv.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if (!this.kolicina.Text.Trim().Equals("") && !this.naziv.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+        public bool IsNumeric(string input)
+        {
+            double test;
+            return double.TryParse(input, out test);
         }
     }
 }

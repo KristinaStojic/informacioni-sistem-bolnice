@@ -57,7 +57,7 @@ namespace Projekat
 
         private void Button_Izmeni(object sender, RoutedEventArgs e)
         {
-            DodajSastojakLekar sastojak = new DodajSastojakLekar();
+            DodajSastojakLekar sastojak = new DodajSastojakLekar(lek);
             sastojak.Show();
         }
 
