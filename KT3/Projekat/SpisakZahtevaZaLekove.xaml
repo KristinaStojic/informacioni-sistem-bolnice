@@ -28,7 +28,7 @@
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Svi lekovi" Width="130" Height="27" Margin="0,-2,0,0" VerticalAlignment="Top">
+                    <TabItem Header="Svi lekovi" Width="130" Height="27" Margin="0,-2,0,2" VerticalAlignment="Bottom">
                         <Grid>
                             <Label Content="Spisak lekova" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
                             <DataGrid x:Name="dataGridLekovi" ItemsSource="{Binding TabelaLekova}" IsReadOnly="True" 
@@ -42,7 +42,7 @@
                             <Button   Background="#FF6895C5" Content="Sastojci leka" HorizontalAlignment="Left" Margin="198,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click"/>
                             <Button Background="#FF6895C5" Content="Izmeni lek" HorizontalAlignment="Left" Margin="48,492,0,0" VerticalAlignment="Top" Width="120" Height="38" Click="Button_Izmeni"/>
                             <Button  Background="#FF6895C5" Content="Zamenski lekovi" HorizontalAlignment="Left" Margin="345,492,0,0" VerticalAlignment="Top"  Width="119" Height="38" RenderTransformOrigin="0.706,4.291"/>
-                            <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="494,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291"/>
+                            <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="494,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_1"/>
                         </Grid>
                     </TabItem>
 

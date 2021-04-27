@@ -115,5 +115,10 @@ namespace Projekat
                 MessageBox.Show("Niste selektovali nijedan lek!");
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

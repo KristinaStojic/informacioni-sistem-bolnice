@@ -76,7 +76,16 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            Sastojak izabraniSastojak = (Sastojak)dataGridSastojci.SelectedItem;
+            if (izabraniSastojak != null)
+            {
+                ObrisiSastojakLekar obrisiSastojak = new ObrisiSastojakLekar(izabraniSastojak,lek);
+                obrisiSastojak.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati sastojak!");
+            }
         }
     }
 }

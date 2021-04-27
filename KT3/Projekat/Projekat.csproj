@@ -169,6 +169,9 @@
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ObrisiSastojakLekar.xaml.cs">
+      <DependentUpon>ObrisiSastojakLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OdbijZahtevZaLek.xaml.cs">
       <DependentUpon>OdbijZahtevZaLek.xaml</DependentUpon>
     </Compile>
@@ -435,6 +438,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ObrisiOpremu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObrisiSastojakLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

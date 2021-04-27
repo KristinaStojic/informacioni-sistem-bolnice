@@ -122,6 +122,19 @@ namespace Projekat.Model
             }
             sacuvajIzmjene();
         }
+        
+        public static void obrisiSastojakLekaLekar(Lek izabraniLek, Sastojak sastojak)
+        {
+            foreach (Lek lek in lijekovi)
+            {
+                if (lek.idLeka == izabraniLek.idLeka)
+                {
+                    lek.sastojci.Remove(sastojak);
+                    PrikazSastojakaLekar.TabelaSastojaka.Remove(sastojak);
+                }
+            }
+            sacuvajIzmjene();
+        }
         public static void izmjeniSastojakLijeka(Lek izabraniLijek, Sastojak stariSastojak, Sastojak noviSastojak)
         {
             foreach(Lek lijek in lijekovi)
