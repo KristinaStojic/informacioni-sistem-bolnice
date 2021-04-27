@@ -115,7 +115,8 @@ namespace Projekat
 
                 foreach(DateTime dt in recept.UzimanjeTerapije)
                 {
-                    Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + recept.NazivLeka);
+                    int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+                    Obavestenja ob = new Obavestenja(idObavestenja, dt.ToString(), "Terapija", "Uzmite terapiju: " + recept.NazivLeka, true);   // dodat flag da je notifikacija
                     ObavestenjaMenadzer.obavestenja.Add(ob);
                 }
                 //LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);

@@ -79,9 +79,14 @@ namespace Projekat
                             Obavestenja.Add(o);
                         }
                     }
-                } else
+                } 
+                else
                 {
-                    Obavestenja.Add(o);
+                    // filtirana obavestenja za specificne pacijente
+                    if (o.ListaIdPacijenata.Contains(prijavljeniPacijent.IdPacijenta) /*|| o.IdPacijenta == prijavljeniPacijent.IdPacijenta*/ || o.Oznaka.Equals("pacijenti") || o.Oznaka.Equals("svi"))
+                    {
+                        Obavestenja.Add(o);
+                    }
                 }
                 
             }
@@ -119,7 +124,8 @@ namespace Projekat
                                 //ako ne postoji 
                                 if (flag == false)
                                 {
-                                    Obavestenja.Add(new Obavestenja(d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka));
+                                    int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+                                    Obavestenja.Add(new Obavestenja(idObavestenja, d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka, true));   // dodat flag da je notifikacija
                                     Console.Beep();
                                     //ObavestenjaMenadzer.obavestenja.Add(new Obavestenja(d.ToString(), "Terapija", "Uzmite terapiju: " + lp.NazivLeka)); 
                                 }

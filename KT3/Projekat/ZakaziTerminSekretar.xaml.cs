@@ -53,9 +53,13 @@ namespace Projekat
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(txtFilter.Text))
+            {
                 return true;
+            }
             else
+            {
                 return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -31,10 +31,12 @@ namespace Model
         {
             termini.Add(termin);
             PrikaziTerminSekretar.TerminiSekretar.Add(termin);
-            // dodaj obavestenje i lekaru i pacijentu
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara, false);
+            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            List<int> ListaIdPacijenata = new List<int>();
+            ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
+            Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            if (ObavestenjaLekar.obavestenjaLekar == null) 
+        /*    if (ObavestenjaLekar.obavestenjaLekar == null) 
             {   
                 ObavestenjaLekar.obavestenjaLekar = new ObservableCollection<Obavestenja>();  // ???
             }
@@ -42,8 +44,8 @@ namespace Model
             {
                 PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();  
             }
-            ObavestenjaLekar.obavestenjaLekar.Add(o);
-            PrikaziTermin.Obavestenja.Add(o);
+            ObavestenjaLekar.obavestenjaLekar.Add(o);  
+            PrikaziTermin.Obavestenja.Add(o); */
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }
@@ -128,8 +130,8 @@ namespace Model
             PrikazTerminaLekar.Termini.Insert(idx, termin1);
         }
 
-      public static void IzmeniTerminSekretar(Termin termin, Termin termin1)
-      {
+        public static void IzmeniTerminSekretar(Termin termin, Termin termin1)
+        {
             foreach (Termin t in termini)
             {
                 if (t.IdTermin == termin.IdTermin)
@@ -150,9 +152,12 @@ namespace Model
             PrikaziTerminSekretar.TerminiSekretar.Insert(idx, termin1);
 
             // notifikacija 
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara, false);
+            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            List<int> ListaIdPacijenata = new List<int>();
+            ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
+            Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            if (ObavestenjaLekar.obavestenjaLekar == null)
+        /*    if (ObavestenjaLekar.obavestenjaLekar == null)
             {
                 ObavestenjaLekar.obavestenjaLekar = new ObservableCollection<Obavestenja>(); 
             }
@@ -161,7 +166,7 @@ namespace Model
                 PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();  
             }
             ObavestenjaLekar.obavestenjaLekar.Add(o);
-            PrikaziTermin.Obavestenja.Add(o); 
+            PrikaziTermin.Obavestenja.Add(o); */
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }
@@ -217,9 +222,12 @@ namespace Model
             PrikaziTerminSekretar.TerminiSekretar.Remove(termin);
 
             // notifikacija
-            Obavestenja o = new Obavestenja(termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, termin.Pacijent.IdPacijenta, termin.Lekar.IdLekara, false);
+            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            List<int> ListaIdPacijenata = new List<int>();
+            ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
+            Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            if (ObavestenjaLekar.obavestenjaLekar == null)
+         /* if (ObavestenjaLekar.obavestenjaLekar == null)
             {
                 ObavestenjaLekar.obavestenjaLekar = new ObservableCollection<Obavestenja>(); 
             }
@@ -227,8 +235,8 @@ namespace Model
             {
                 PrikaziTermin.Obavestenja = new ObservableCollection<Obavestenja>();
             }
-            ObavestenjaLekar.obavestenjaLekar.Add(o);
-            PrikaziTermin.Obavestenja.Add(o);  
+            ObavestenjaLekar.obavestenjaLekar.Add(o); 
+            PrikaziTermin.Obavestenja.Add(o);  */
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }

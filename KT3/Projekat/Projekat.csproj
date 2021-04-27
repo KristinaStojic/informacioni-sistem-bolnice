@@ -74,6 +74,9 @@
     <Compile Include="DodajLijek.xaml.cs">
       <DependentUpon>DodajLijek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajObavestenje.xaml.cs">
+      <DependentUpon>DodajObavestenje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajOpremu.xaml.cs">
       <DependentUpon>DodajOpremu.xaml</DependentUpon>
     </Compile>
@@ -285,6 +288,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DodajObavestenje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DodajOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,7 +313,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HitanSlucaj.xaml">
-       <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajSastojak.xaml">
