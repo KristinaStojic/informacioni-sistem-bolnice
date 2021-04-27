@@ -208,6 +208,19 @@ namespace Projekat.Model
             }
             sacuvajIzmjene();
         }
+        
+        public static void obrisiZamenskiLekLekar(Lek izabraniLek, Lek zamenskiLek)
+        {
+            foreach(Lek lek in lijekovi)
+            {
+                if(lek.idLeka == izabraniLek.idLeka)
+                {
+                    lek.zamenskiLekovi.Remove(zamenskiLek.idLeka);
+                    PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.Remove(zamenskiLek);
+                }
+            }
+            sacuvajIzmjene();
+        }
 
         public static List<Lek> NadjiSveLijekove()
         {
