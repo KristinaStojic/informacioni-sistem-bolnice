@@ -30,6 +30,21 @@ namespace Projekat.Model
                 }
             }
             sacuvajIzmjene();
+        } 
+        public static void dodajZamenskeLekoveLekar(Lek izabraniLek, List<Lek> zamenskiLekovi)
+        {
+            foreach(Lek lek in lijekovi)
+            {
+                if(lek.idLeka == izabraniLek.idLeka)
+                {
+                    foreach(Lek zamenski in zamenskiLekovi)
+                    {
+                        lek.zamenskiLekovi.Add(zamenski.idLeka);
+                        PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.Add(zamenski);
+                    }
+                }
+            }
+            sacuvajIzmjene();
         }
         public static void dodajSastojak(Sastojak sastojak, Lek izabraniLijek)
         {
