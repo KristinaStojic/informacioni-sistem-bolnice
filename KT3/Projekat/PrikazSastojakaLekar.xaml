@@ -20,8 +20,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Sastojci leka" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-        <Button   Background="#FF6895C5" Content="Izmeni sastojak" HorizontalAlignment="Left" Margin="143,20,0,0" VerticalAlignment="Top"  Width="94" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Click"/>
-        <Button Background="#FF6895C5" Content="Novi sastojak" HorizontalAlignment="Left" Margin="27,20,0,0" VerticalAlignment="Top" Width="93" Height="27" Click="Button_Izmeni" Grid.Row="1"/>
+        <Button   Background="#FF6895C5" Content="Izmeni sastojak" HorizontalAlignment="Left" Margin="143,20,0,0" VerticalAlignment="Top"  Width="94" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Izmeni"/>
+        <Button Background="#FF6895C5" Content="Novi sastojak" HorizontalAlignment="Left" Margin="27,20,0,0" VerticalAlignment="Top" Width="93" Height="27" Click="Button_Dodaj" Grid.Row="1"/>
         <Button  Background="#FF6895C5" Content="Obrisi sastojak" HorizontalAlignment="Left" Margin="257,20,0,0" VerticalAlignment="Top"  Width="93" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Click_1"/>
         <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="373,20,0,0" VerticalAlignment="Top"  Width="93" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Nazad"/>
     </Grid>

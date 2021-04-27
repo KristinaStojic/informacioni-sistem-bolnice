@@ -50,12 +50,25 @@ namespace Projekat
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Izmeni(object sender, RoutedEventArgs e)
         {
+            Sastojak izabraniSastojak = (Sastojak)dataGridSastojci.SelectedItem;
 
+            if (izabraniSastojak != null)
+            {
+
+                IzmeniSastojakLekar izmeniSastojak = new IzmeniSastojakLekar(lek,izabraniSastojak);
+                izmeniSastojak.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan sastojak!");
+            }
+
+            
         }
 
-        private void Button_Izmeni(object sender, RoutedEventArgs e)
+        private void Button_Dodaj(object sender, RoutedEventArgs e)
         {
             DodajSastojakLekar sastojak = new DodajSastojakLekar(lek);
             sastojak.Show();

@@ -144,6 +144,29 @@ namespace Projekat.Model
             }
             sacuvajIzmjene();
         }
+        
+        public static void izmeniSastojakLekaLekar(Lek izabraniLek, Sastojak stariSastojak, Sastojak noviSastojak)
+        {
+            foreach(Lek lek in lijekovi)
+            {
+                if(lek.idLeka == izabraniLek.idLeka)
+                {
+                    foreach(Sastojak sastojak in lek.sastojci)
+                    {
+                        if (sastojak.naziv.Equals(stariSastojak.naziv))
+                        {
+                            sastojak.naziv = noviSastojak.naziv;
+                            sastojak.kolicina = noviSastojak.kolicina;
+                            int idx = PrikazSastojakaLekar.TabelaSastojaka.IndexOf(stariSastojak);
+                            PrikazSastojakaLekar.TabelaSastojaka.RemoveAt(idx);
+                            PrikazSastojakaLekar.TabelaSastojaka.Insert(idx, sastojak);
+                            break;
+                        }
+                    }
+                }
+            }
+            sacuvajIzmjene();
+        }
 
         public static void obrisiZamjenski(Lek izabraniLijek, Lek zamjenskiLijek)
         {
