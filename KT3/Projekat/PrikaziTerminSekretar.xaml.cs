@@ -21,7 +21,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziTerminSekretar : Window
     {
-        bool flag = false;
+        private bool flag = false;
         public static ObservableCollection<Termin> TerminiSekretar
         {
             get;
@@ -45,6 +45,8 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             SaleMenadzer.sacuvajIzmjene();
             this.Close();
+            Sekretar s = new Sekretar();
+            s.Show();
         }
 
         // zakazivanje
@@ -151,6 +153,7 @@ namespace Projekat
         // oglasna tabla
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
+            this.Close();
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
         }

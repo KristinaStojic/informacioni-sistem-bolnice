@@ -23,7 +23,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziPacijenta : Window
     {
-        bool flag = false;
+        private bool flag = false;
         public static ObservableCollection<Pacijent> PacijentiTabela
         {
             get;
@@ -47,6 +47,8 @@ namespace Projekat
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             SaleMenadzer.sacuvajIzmjene();
             this.Close();
+            Sekretar s = new Sekretar();
+            s.Show();
         }
 
         // dodavanje
@@ -170,6 +172,7 @@ namespace Projekat
         // oglasna tabla
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
+            this.Close();
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
         }

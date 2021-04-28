@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ObavestenjaLekar" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="ObavestenjaLekara" ItemsSource="{Binding obavestenjaLekar}" SelectionMode="Single" IsReadOnly="True" Margin="6,77,7.6,34" AutoGenerateColumns="False" FontSize="14">
+        <DataGrid x:Name="ObavestenjaLekara" ItemsSource="{Binding Obavestenja}" SelectionMode="Single" IsReadOnly="True" Margin="6,77,7.6,34" AutoGenerateColumns="False" FontSize="14">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum" Width="80" Binding="{Binding Datum}"/>
                 <DataGridTextColumn Header="Tip" Width="60" Binding="{Binding TipObavestenja}"/>

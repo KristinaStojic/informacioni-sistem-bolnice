@@ -1,7 +1,5 @@
-﻿using Projekat.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -12,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Projekat.Model;
 
 namespace Projekat
 {
@@ -20,25 +19,19 @@ namespace Projekat
     /// </summary>
     public partial class Upravnik : Window
     {
-        public static ObservableCollection<Obavestenja> obavjestenjaUpravnik
-        {
-            get;
-            set;
-        }
         public Upravnik()
         {
             InitializeComponent();
-            this.DataContext = this;
-            obavjestenjaUpravnik = new ObservableCollection<Obavestenja>();
-            dodajObavjestenja();
-        }
-        private void dodajObavjestenja()
-        {
-            foreach (Obavestenja obavjestenje in ObavestenjaMenadzer.obavestenja)
+
+            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
-                obavjestenjaUpravnik.Add(obavjestenje);
+                if (o.Oznaka.Equals("svi") || o.Oznaka.Equals("upravnici"))
+                {
+                    obavestenjaUpravnik.Items.Add(o);
+                }
             }
         }
+
         private void Prostorije_Click(object sender, RoutedEventArgs e)
         {
             PrikaziSalu w1 = new PrikaziSalu();
@@ -58,20 +51,6 @@ namespace Projekat
             MainWindow mw = new MainWindow();
             mw.Show();
             this.Close();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Obavestenja izabranoObavjestenje = (Obavestenja)this.dataGridObavjestenja.SelectedItem;
-            if (izabranoObavjestenje != null)
-            {
-                PrikazObavjestenja prikazObavjestenja = new PrikazObavjestenja(izabranoObavjestenje);
-                prikazObavjestenja.Show();
-            }
-            else
-            {
-                MessageBox.Show("Morate izabrati obavjestenje!");
-            }
         }
     }
 }
