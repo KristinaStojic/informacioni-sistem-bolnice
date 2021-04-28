@@ -12,31 +12,36 @@ namespace Projekat.Model
     {
         public Obavestenja() { }
 
-        public Obavestenja(String datum, string TipOb, string SadrzajOb, int IdPacijenta, int IdLekara, bool UpravnikObavestenja)
+        // TODO:  izbrisati ovaj konsturktor, prosiriti u kodu sa odg konstruktorom 
+        public Obavestenja(int id, String datum, string TipOb, string SadrzajOb, bool Notifikacija)
         {
+            this.IdObavestenja = id;
             this.Datum = datum;
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;
-            this.IdPacijenta = IdPacijenta;
+            this.Notifikacija = Notifikacija;
+        }
+
+        public Obavestenja(int id, String datum, string TipOb, string SadrzajOb, List<int> ListaIdPacijenta, int IdLekara, bool Notifikacija, string Oznaka)
+        {
+            this.IdObavestenja = id;
+            this.Datum = datum;
+            this.TipObavestenja = TipOb;
+            this.SadrzajObavestenja = SadrzajOb;
+            this.ListaIdPacijenata = ListaIdPacijenta;
             this.IdLekara = IdLekara;
-            this.UpravnikObavestenja = UpravnikObavestenja;
+            this.Notifikacija = Notifikacija;
+            this.Oznaka = Oznaka;
         }
 
-        public Obavestenja(String datum, string TipOb, string SadrzajOb)
-        {
-            this.Datum = datum;
-            this.TipObavestenja = TipOb;
-            this.SadrzajObavestenja = SadrzajOb;
-        }
-
-        public string TipObavestenja { get; set; } 
+        public int IdObavestenja { get; set; }
+        public string TipObavestenja { get; set; }  // ili naslov
         public string SadrzajObavestenja { get; set; }
         public string Datum { get; set; }
-
-        // dodato idPacijenta i idLekara
-        public int IdPacijenta { get; set; }
+        public List<int> ListaIdPacijenata { get; set; }
         public int IdLekara { get; set; }
-        public bool UpravnikObavestenja { get; set; }
+        public string Oznaka { get; set; }  // kome je namenjeno obavestenje
+        public bool Notifikacija { get; set; }   // notifikacija za zakazivanje, pomeranje ili otkazivanje termina + za uzimanje leka - ove notifikacije nisu na oglasnoj tabli sekretara
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)

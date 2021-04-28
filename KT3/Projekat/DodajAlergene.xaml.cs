@@ -32,19 +32,21 @@ namespace Projekat
             this.termin = izabraniTermin;
 
            
-            this.nadjiAlergen.ItemsSource = LekoviMenadzer.lijekovi;
+            this.nadjiAlergen.ItemsSource = LekoviMenadzer.NadjiSveSastojke();
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiAlergen.ItemsSource);
             view.Filter = UserFilter;
         }
 
+        
+
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (nadjiAlergen.SelectedItems.Count > 0)
             {
-                Lek item = (Lek)nadjiAlergen.SelectedItems[0];
-                naziv.Text = item.nazivLeka;
-                sifra.Text = item.sifraLeka;
+                Sastojak item = (Sastojak)nadjiAlergen.SelectedItems[0];
+                naziv.Text = item.naziv;
+                sifra.Text = item.kolicina.ToString();
             }
         }
 
@@ -53,7 +55,7 @@ namespace Projekat
             if (String.IsNullOrEmpty(pretraga.Text))
                 return true;
             else
-                return ((item as Lek).nazivLeka.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as Sastojak).naziv.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

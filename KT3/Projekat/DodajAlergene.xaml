@@ -35,9 +35,9 @@
         <ListView x:Name="nadjiAlergen" Grid.Column="1" Height="130" Margin="21.4,10.4,17.6,0" Grid.Row="6" VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Naziv" DisplayMemberBinding="{Binding nazivLeka}"
+                    <GridViewColumn Header="Naziv" DisplayMemberBinding="{Binding naziv}"
                                     Width="178"/>
-                    <GridViewColumn Header="Šifra" DisplayMemberBinding="{Binding sifraLeka}"
+                    <GridViewColumn Header="Šifra" DisplayMemberBinding="{Binding kolicina}"
                                     Width="186"/>
                 </GridView>
             </ListView.View>

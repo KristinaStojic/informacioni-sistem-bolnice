@@ -104,7 +104,9 @@ namespace Projekat
 
                 foreach (DateTime dt in recept.UzimanjeTerapije)
                 {
-                    Obavestenja ob = new Obavestenja(dt.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka);
+                    // TODO: prosiriti konsturktor
+                    int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+                    Obavestenja ob = new Obavestenja(idObavestenja, dt.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka, true);  // dodat flag da je notifikacija
                     ObavestenjaMenadzer.obavestenja.Add(ob);
                 }
 

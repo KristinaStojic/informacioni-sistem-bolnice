@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BrisanjeLijeka.xaml.cs">
+      <DependentUpon>BrisanjeLijeka.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrisanjeSale.xaml.cs">
+      <DependentUpon>BrisanjeSale.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetaljiAlergena.xaml.cs">
       <DependentUpon>DetaljiAlergena.xaml</DependentUpon>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
     <Compile Include="DodajLijek.xaml.cs">
       <DependentUpon>DodajLijek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodajObavestenje.xaml.cs">
+      <DependentUpon>DodajObavestenje.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajOpremu.xaml.cs">
       <DependentUpon>DodajOpremu.xaml</DependentUpon>
@@ -100,6 +109,9 @@
     </Compile>
     <Compile Include="DodajZamjenskiLijek.xaml.cs">
       <DependentUpon>DodajZamjenskiLijek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IzmeniObavestenje.xaml.cs">
+      <DependentUpon>IzmeniObavestenje.xaml</DependentUpon>
     </Compile>
     <Compile Include="IzmeniLekLekar.xaml.cs">
       <DependentUpon>IzmeniLekLekar.xaml</DependentUpon>
@@ -165,7 +177,6 @@
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Obavjestenja.cs" />
     <Compile Include="ObradiZahtevZaLek.xaml.cs">
       <DependentUpon>ObradiZahtevZaLek.xaml</DependentUpon>
     </Compile>
@@ -307,6 +318,14 @@
     <Compile Include="ZdravstveniKartonPacijent.xaml.cs">
       <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
     </Compile>
+    <Page Include="BrisanjeLijeka.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrisanjeSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DetaljiAlergena.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -324,6 +343,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajLijek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajObavestenje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -367,6 +390,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IzmeniObavestenje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page> 
     <Page Include="IzmeniLekLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -773,6 +800,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\barkod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\signout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

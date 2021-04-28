@@ -98,5 +98,16 @@ namespace Projekat
         {
             this.Close();
         }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.N)
+                {
+                    Button_Click_1(sender, e);
+                }
+            }
+        }
     }
 }

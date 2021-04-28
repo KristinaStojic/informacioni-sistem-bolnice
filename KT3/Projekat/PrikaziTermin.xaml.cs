@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,13 +56,18 @@ namespace Projekat
         {
             foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
-                if (o.IdPacijenta == idPacijent)
+                if (o.ListaIdPacijenata.Contains(idPacijent))
                 {
                     if (o.TipObavestenja.Equals("Terapija"))
                     {
                         DodajObavestenjaZaTerapije(o);
                     }
-                    else
+                }
+                
+                if (!o.TipObavestenja.Equals("Terapija"))
+                {
+                    // filtirana obavestenja za specificne pacijente	
+                    if (o.ListaIdPacijenata.Contains(prijavljeniPacijent.IdPacijenta) /*|| o.IdPacijenta == prijavljeniPacijent.IdPacijenta*/ || o.Oznaka.Equals("pacijenti") || o.Oznaka.Equals("svi"))
                     {
                         ObavestenjaPacijent.Add(o);
                     }
@@ -111,6 +116,9 @@ namespace Projekat
                                 if (!postojiObavestenje)
                                 {
                                     ObavestenjaPacijent.Add(new Obavestenja(datum.ToString("MM/dd/yyyy"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka));
+                                    // TODO: prosiriti konsturktor
+                                    int id = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+                                    Obavestenja.Add(new Obavestenja(id, d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka, true));
                                     Console.Beep();
                                     ObavestenjaMenadzer.obavestenja.Add(new Obavestenja(datum.ToString("MM/dd/yyyy"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka)); 
                                 }

@@ -40,9 +40,13 @@ namespace Projekat
                 {
                     this.tekst.Text = "Sala za pregled (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
-                else
+                else if (izabranaSala.TipSale == tipSale.OperacionaSala)
                 {
                     this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+                else
+                {
+                    this.tekst.Text = "Sala za odmor (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
             }
             if (izabranaSala.Oprema != null)
@@ -96,6 +100,21 @@ namespace Projekat
                 if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && !oprema.Staticka)
                 {
                     OpremaDinamicka.Add(oprema);
+                }
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.N)
+                {
+                    Button_Click(sender, e);
+                }
+                else if (e.Key == Key.P)
+                {
+                    this.Pretraga.Focus();
                 }
             }
         }
