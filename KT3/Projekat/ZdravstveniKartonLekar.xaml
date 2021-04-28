@@ -107,8 +107,8 @@
                         SelectionMode="Single" AutoGenerateColumns="False" 
                         Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
                                 <DataGrid.Columns >
-                                    <DataGridTextColumn Header="Šifra leka" Width="320"  Binding="{Binding SifraLeka}" />
-                                    <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding NazivLeka}"/>
+                                    <DataGridTextColumn Header="Šifra leka" Width="320"  Binding="{Binding NazivSastojka}" />
+                                    <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding SifraSastojka}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
 
