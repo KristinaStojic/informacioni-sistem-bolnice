@@ -13,13 +13,16 @@ namespace Projekat.Model
         public Obavestenja() { }
 
         // TODO:  izbrisati ovaj konsturktor, prosiriti u kodu sa odg konstruktorom 
-        public Obavestenja(int id, String datum, string TipOb, string SadrzajOb, bool Notifikacija)
+        public Obavestenja(int id, String datum, string TipOb, string SadrzajOb, List<int> ListaIdPacijenta, bool Notifikacija)
         {
             this.IdObavestenja = id;
             this.Datum = datum;
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;
+            this.ListaIdPacijenata = ListaIdPacijenta;
+            this.IdLekara = 0;
             this.Notifikacija = Notifikacija;
+            this.Oznaka = " ";
         }
 
         public Obavestenja(int id, String datum, string TipOb, string SadrzajOb, List<int> ListaIdPacijenta, int IdLekara, bool Notifikacija, string Oznaka)
