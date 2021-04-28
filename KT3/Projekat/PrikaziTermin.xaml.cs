@@ -78,13 +78,13 @@ namespace Projekat
                             }
                         }
                     }
-                    else
+                }
+                else
+                {
+                    // filtirana obavestenja za specificne pacijente	
+                    if (o.ListaIdPacijenata.Contains(prijavljeniPacijent.IdPacijenta) /*|| o.IdPacijenta == prijavljeniPacijent.IdPacijenta*/ || o.Oznaka.Equals("pacijenti") || o.Oznaka.Equals("svi"))
                     {
-                      // filtirana obavestenja za specificne pacijente	
-                       if (o.ListaIdPacijenata.Contains(prijavljeniPacijent.IdPacijenta) /*|| o.IdPacijenta == prijavljeniPacijent.IdPacijenta*/ || o.Oznaka.Equals("pacijenti") || o.Oznaka.Equals("svi"))
-                       {  
-                          Obavestenja.Add(o);
-                       }
+                        Obavestenja.Add(o);
                     }
                 }
             }
