@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="OglasnaTabla" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
-        <Label FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,0,811.6,608.4" Content="Oglasna tabla" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold"/>
+        <Label FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,0,849.6,608.4" Content="Oglasna tabla" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold"/>
         <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="2" Margin="-2,0,0,0" >
-            <MenuItem Height="106" Width="206" Click="Button_Click" RenderTransformOrigin="0.5,0.5" >
+            <MenuItem Height="106" Width="206" Click="Button_Click" RenderTransformOrigin="0.5,0.5">
                 <MenuItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="179.917"/>
+                        <RotateTransform Angle="179.732"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </MenuItem.RenderTransform>
@@ -27,67 +27,66 @@
             <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
         </Menu>
-        <ListView x:Name="listView" SelectionChanged="obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,189,474.6,0.4" MinHeight="20">
+        <ListView x:Name="listView" SelectionChanged="obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,189,0,0.4" MinHeight="20" HorizontalAlignment="Left" Width="585">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Height" Value="80" />
+                    <Setter Property="Height" Value="80"/>
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel VerticalAlignment="Stretch" xml:space="preserve">
-                        <TextBlock Text="Datum:" />
-                        <TextBlock Text="{Binding Datum}" FontWeight="Bold" />
-                        <TextBlock Text="&#x0a; " />
-                        <TextBlock Text="Naslov: " />
-                        <TextBlock Text="{Binding TipObavestenja}" FontWeight="Bold" />                   
-                    </WrapPanel>
+                    <Border BorderBrush="#FF18A3AC" BorderThickness="2" Width="552" Height="75">
+                        <WrapPanel VerticalAlignment="Stretch" xml:space="preserve"  >
+                            <TextBlock Text="  Naslov: &#10;&#10;  Datum:"  FontWeight="Bold"/>
+                            <TextBlock Text="{Binding TipObavestenja}">
+                                <LineBreak/>
+                            </TextBlock>    
+                            <TextBlock Text="{Binding Datum}"/>
+                        </WrapPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" StrokeThickness="0" VerticalAlignment="Top" Width="478" Margin="799,0,-3.4,0"/>
-        <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="475" Background="#FFE7F6F7" Margin="799,0,-0.4,-0.6">
-            <!--" Visibility="Hidden"> -->
+        <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="475" Background="#FFE7F6F7" Margin="799,0,-0.4,-0.6" Visibility="Hidden">
             <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Button_Click_4">
                 <StackPanel>
                     <Image Source="slike/cancel.png" Height="25" Width="27" RenderTransformOrigin="0.254,0.462" />
                     <TextBlock Height="1"/>
                 </StackPanel>
             </Button>
-            <Label Canvas.Left="54" Canvas.Top="115" FontSize="15">NASLOV:</Label>
-            <Label Canvas.Left="54" Canvas.Top="153" FontSize="15">SADRZAJ:</Label>
-            <Label Canvas.Left="54" Canvas.Top="379" FontSize="15">DATUM:</Label>
-            <Label Canvas.Left="54" Canvas.Top="417" FontSize="15">NAMENJENO ZA:</Label>
-            <TextBox Name="naslov" Canvas.Left="187" Canvas.Top="117" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15" ></TextBox>
-            <TextBox x:Name="sadrzaj" Canvas.Left="187" Canvas.Top="158" Width="220" Height="217" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True" />
+            <Label Canvas.Left="50" Canvas.Top="115" FontSize="15">NASLOV:</Label>
+            <Label Canvas.Left="50" Canvas.Top="153" FontSize="15">SADRZAJ:</Label>
+            <Label Canvas.Left="50" Canvas.Top="379" FontSize="15">DATUM:</Label>
+            <Label Canvas.Left="50" Canvas.Top="417" FontSize="15">NAMENJENO ZA:</Label>
+            <TextBox Name="naslov" Canvas.Left="185" Canvas.Top="117" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15" ></TextBox>
+            <TextBox x:Name="sadrzaj" Canvas.Left="185" Canvas.Top="158" Width="220" Height="217" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True" />
             <!-- doadto kao linije za sadrzaj -->
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="158" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="178" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="198" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="219" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="240" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="260" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="281" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="301" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="321" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="341" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="158" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="178" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="198" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="219" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="240" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="260" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="281" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="301" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="321" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="341" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
 
 
-            <TextBox x:Name="datum" Canvas.Left="187" Canvas.Top="382" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15"/>
-            <TextBox x:Name="namena" Canvas.Left="189" Canvas.Top="420" Width="218" Height="193" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True"/>
+            <TextBox x:Name="datum" Canvas.Left="185" Canvas.Top="382" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15"/>
+            <TextBox x:Name="namena" Canvas.Left="187" Canvas.Top="420" Width="218" Height="193" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True"/>
             <!-- dodato kao linije za listu namenjenih -->
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="420" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="441" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="462" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="482" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="502" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="189" TextWrapping="Wrap" Canvas.Top="523" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="420" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="441" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="462" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="482" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="502" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
+            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="523" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
         </Canvas>
-
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="430,129,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="555,129,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="679,129,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="427,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="552,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="676,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE"/>
     </Grid>
 </Window>

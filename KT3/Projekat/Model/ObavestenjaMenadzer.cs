@@ -20,6 +20,7 @@ namespace Projekat.Model
             serializer.Serialize(fileStream, obavestenja);
             fileStream.Close();
         }
+
         public static List<Obavestenja> NadjiSvaObavestenja()
         {
             if (File.ReadAllText("obavestenja.xml").Trim().Equals(""))
@@ -43,69 +44,45 @@ namespace Projekat.Model
             {
                 OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
             }
-            OglasnaTabla.oglasnaTabla.Add(novoObavestenje);
+            OglasnaTabla.oglasnaTabla.Insert(0, novoObavestenje);  
 
             ObavestenjaMenadzer.sacuvajIzmene();
         }
 
-     /*   public static void IzmeniObavestenje(Obavestenja staroObavestenje, Obavestenja novoObavestenje)
+        public static void IzmeniObavestenje(Obavestenja staroObavestenje, Obavestenja novoObavestenje)
         {
             foreach (Obavestenja obavestenje in obavestenja)
             {
-                if (obavestenje.datum == nalog1.IdPacijenta)
+                if (obavestenje.IdObavestenja == staroObavestenje.IdObavestenja)
                 {
-                    p.ImePacijenta = nalog.ImePacijenta;
-                    p.PrezimePacijenta = nalog.PrezimePacijenta;
-                    p.Jmbg = nalog.Jmbg;
-                    p.Pol = nalog.Pol;
-                    p.StatusNaloga = nalog.StatusNaloga;
-                    p.BrojTelefona = nalog.BrojTelefona;
-                    p.Email = nalog.Email;
-                    p.AdresaStanovanja = nalog.AdresaStanovanja;
-                    p.BracnoStanje = nalog.BracnoStanje;
-                    p.Zanimanje = nalog.Zanimanje;
-                    p.Maloletnik = nalog.Maloletnik;
-                    p.JmbgStaratelja = nalog.JmbgStaratelja;
-                    
-                    int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
-                    PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
-                    PrikaziPacijenta.PacijentiTabela.Insert(idx, p);
+                    obavestenje.TipObavestenja = novoObavestenje.TipObavestenja;
+                    obavestenje.Datum = novoObavestenje.Datum;
+                    obavestenje.IdLekara = novoObavestenje.IdLekara;
+                    obavestenje.ListaIdPacijenata = novoObavestenje.ListaIdPacijenata;
+                    obavestenje.SadrzajObavestenja = novoObavestenje.SadrzajObavestenja;
+                    obavestenje.Oznaka = novoObavestenje.Oznaka;
+                    obavestenje.Notifikacija = novoObavestenje.Notifikacija;
+
+                    int idx = OglasnaTabla.oglasnaTabla.IndexOf(staroObavestenje);
+                    OglasnaTabla.oglasnaTabla.RemoveAt(idx);
+                    OglasnaTabla.oglasnaTabla.Insert(idx, obavestenje);
                 }
-            }
-            
+            }   
         }
 
         public static void ObrisiObavestenje(Obavestenja obavestenje)
         {  
-            for (int i = 0; i < pacijenti.Count; i++)
+            for (int i = 0; i < obavestenja.Count; i++)
             {
-                if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
+                if (obavestenja[i].IdObavestenja == obavestenje.IdObavestenja)
                 {
-                    pacijenti.RemoveAt(i);
-                    PrikaziPacijenta.PacijentiTabela.Remove(nalog);
-                    
-                    for (int j = 0; j < TerminMenadzer.termini.Count; j++)
-                    {
-                        if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
-                        {   
-                            foreach (Sala s in SaleMenadzer.sale)
-                            {
-                                if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
-                                {
-                                    s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
-                                    //SaleMenadzer.sacuvajIzmjene();
-                                }
-                            }
-
-                            TerminMenadzer.termini.RemoveAt(j);
-                            j--;
-                        }
-                    }
+                    obavestenja.RemoveAt(i);
+                    OglasnaTabla.oglasnaTabla.Remove(obavestenje);                 
                 }
             }
-        }*/
+        }
 
-        public static List<Obavestenja> PronadjiSve()
+        public static List<Obavestenja> PronadjiSvaObavestenjaSekretar()
         {
             if (File.ReadAllText("obavestenja.xml").Trim().Equals(""))
             {

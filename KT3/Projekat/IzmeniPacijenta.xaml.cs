@@ -191,8 +191,7 @@ namespace Projekat
                     brStanje = bracnoStanje.Razveden;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                     PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-                
+                }   
             }
             else // za guest nalog
             {

@@ -21,7 +21,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziTerminSekretar : Window
     {
-        bool flag = false;
+        private bool flag = false;
         public static ObservableCollection<Termin> TerminiSekretar
         {
             get;

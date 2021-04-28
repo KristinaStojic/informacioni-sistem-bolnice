@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -17,23 +16,66 @@ using Projekat.Model;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for DodajObavestenje.xaml
+    /// Interaction logic for IzmeniObavestenje.xaml
     /// </summary>
-    public partial class DodajObavestenje : Window
+    public partial class IzmeniObavestenje : Window
     {
-        private bool flag = false;
+        public Obavestenja obavestenje;
         public string oznaka;
-        public DodajObavestenje()
+
+        public IzmeniObavestenje(Obavestenja selektovanoObavestenje)
         {
             InitializeComponent();
-
-            pretraga.IsEnabled = false;
-            listaPacijenata.IsEnabled = false;
-            pacijenti.IsEnabled = false;
+            obavestenje = selektovanoObavestenje;
 
             this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilter;
+
+            if (selektovanoObavestenje != null)
+            {
+                naslov.Text = selektovanoObavestenje.TipObavestenja;
+                sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
+
+                if (selektovanoObavestenje.Oznaka.Equals("svi"))
+                {
+                    namena.SelectedIndex = 0;
+                }
+                else if (selektovanoObavestenje.Oznaka.Equals("lekari"))
+                {
+                    namena.SelectedIndex = 1;
+                }
+                else if (selektovanoObavestenje.Oznaka.Equals("upravnici"))
+                {
+                    namena.SelectedIndex = 2;
+                }
+                else if (selektovanoObavestenje.Oznaka.Equals("pacijenti"))
+                {
+                    namena.SelectedIndex = 3;
+                }
+                else if (selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
+                {
+                    namena.SelectedIndex = 4;
+                }
+
+                if (!selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
+                {
+                    pretraga.IsEnabled = false;
+                    listaPacijenata.IsEnabled = false;
+                    pacijenti.IsEnabled = false;
+                }
+                else 
+                {
+                    pretraga.IsEnabled = true;
+                    listaPacijenata.IsEnabled = true;
+                    pacijenti.IsEnabled = true;
+
+                    foreach (int id in obavestenje.ListaIdPacijenata)
+                    {
+                        listaPacijenata.SelectedItem = PacijentiMenadzer.PronadjiPoId(id);
+                    }
+                }
+            }
         }
 
         private bool UserFilter(object item)
@@ -55,13 +97,29 @@ namespace Projekat
             CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource).Refresh();
         }
 
+        private void namena_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (namena.Text.Equals("izabrane pacijente"))
+            {
+                pretraga.IsEnabled = true;
+                listaPacijenata.IsEnabled = true;
+                pacijenti.IsEnabled = true;
+            }
+            else
+            {
+                pretraga.IsEnabled = false;
+                listaPacijenata.IsEnabled = false;
+                pacijenti.IsEnabled = false;
+            }
+        }
+
         // potvrdi
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             int idLekara = 0;
             List<int> selektovaniPacijentiId = new List<int>();     // za slucaj kad se obavestenja salju specificnim pacijentima
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            
+
             if (namena.Text.Equals("sve zaposlene"))
             {
                 oznaka = "svi";
@@ -92,40 +150,23 @@ namespace Projekat
             if (selektovaniPacijentiId.Count > 0)
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
+                ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
                 ObavestenjaMenadzer.sacuvajIzmene();
             }
             else
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
+                ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
                 ObavestenjaMenadzer.sacuvajIzmene();
             }
-            
+
             this.Close();
         }
 
-        // odustani
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        // otkazi
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        // combo box namene obavestenja
-        private void namena_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (namena.Text.Equals("izabrane pacijente"))
-            {
-                pretraga.IsEnabled = true;
-                listaPacijenata.IsEnabled = true;
-                pacijenti.IsEnabled = true;
-            }
-            else
-            {
-                pretraga.IsEnabled = false;
-                listaPacijenata.IsEnabled = false;
-                pacijenti.IsEnabled = false;
-            }
         }
     }
 }

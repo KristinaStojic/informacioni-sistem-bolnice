@@ -21,19 +21,21 @@ namespace Projekat
     /// </summary>
     public partial class OglasnaTabla : Window
     {
-        bool flag = false;
+        private bool flag = false;
 
         public static ObservableCollection<Obavestenja> oglasnaTabla { get; set; }
 
         public OglasnaTabla()
         {
             InitializeComponent();
+            oglasnaTabla = new ObservableCollection<Obavestenja>();
+            listView.ItemsSource = oglasnaTabla;
 
             foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja)
             { 
                 if (obavestenje.Notifikacija == false)
                 {
-                    listView.Items.Add(obavestenje);
+                    oglasnaTabla.Add(obavestenje);
                 }
             }
         }
@@ -62,6 +64,12 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ObavestenjaMenadzer.sacuvajIzmene();
+        }
+
+        // X na detaljnom uvid u selektovano obavestenje
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            canvas2.Visibility = Visibility.Hidden;
         }
 
         private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -101,7 +109,7 @@ namespace Projekat
                     foreach (int id in selektovanoObavestenje.ListaIdPacijenata)
                     {
                         Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(id);
-                        namena.Text += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta +" \n";
+                        namena.Text += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta + " \n";
                     }
                 }
             }
@@ -117,19 +125,29 @@ namespace Projekat
         // izmeni
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
 
+            if (selektovanoObavestenje != null)
+            {
+                IzmeniObavestenje izmena = new IzmeniObavestenje(selektovanoObavestenje);
+                izmena.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali obavestenje koje zelite da izmenite!");
+            }
         }
 
         // obrisi
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        // X na detaljnom uvid u selektovano obavestenje
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
+            flag = true;
             canvas2.Visibility = Visibility.Hidden;
+
+            Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
+            ObavestenjaMenadzer.ObrisiObavestenje(selektovanoObavestenje);
+
+            flag = false;
         }
     }
 }

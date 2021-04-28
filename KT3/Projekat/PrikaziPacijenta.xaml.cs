@@ -23,7 +23,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziPacijenta : Window
     {
-        bool flag = false;
+        private bool flag = false;
         public static ObservableCollection<Pacijent> PacijentiTabela
         {
             get;
