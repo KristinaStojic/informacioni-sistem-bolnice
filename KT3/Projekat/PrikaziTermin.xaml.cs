@@ -63,7 +63,7 @@ namespace Projekat
             }*/
             foreach(Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
-                if (o.IdPacijenta == idPacijent)
+                if (o.ListaIdPacijenata.Contains(idPacijent))
                 {
                     if (o.TipObavestenja.Equals("Terapija"))
                     {
@@ -120,7 +120,9 @@ namespace Projekat
                             {
                                 if (flag == false)
                                 {
-                                    Obavestenja.Add(new Obavestenja(d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka));
+                                    // TODO: prosiriti konsturktor
+                                    int id = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+                                    Obavestenja.Add(new Obavestenja(id, d.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + lp.NazivLeka, true));
                                     Console.Beep();
                                     //ObavestenjaMenadzer.obavestenja.Add(new Obavestenja(d.ToString(), "Terapija", "Uzmite terapiju: " + lp.NazivLeka)); 
                                 }
