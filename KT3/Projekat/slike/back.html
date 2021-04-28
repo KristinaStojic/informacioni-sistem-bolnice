@@ -1,0 +1,679 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>var __ez=__ez||{};__ez.stms=Date.now();__ez.evt={};__ez.script={};__ez.ck=__ez.ck||{};__ez.template={};__ez.template.isOrig=true;__ez.queue=(function(){var count=0,incr=0,items=[],timeDelayFired=false,hpItems=[],lpItems=[],allowLoad=true;var obj={func:function(name,funcName,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError){var self=this;this.name=name;this.funcName=funcName;this.parameters=parameters===null?null:(parameters instanceof Array)?parameters:[parameters];this.isBlock=isBlock;this.blockedBy=blockedBy;this.deleteWhenComplete=deleteWhenComplete;this.isError=false;this.isComplete=false;this.isInitialized=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){log("... func = "+name);self.isInitialized=true;self.isComplete=true;log("... func.apply: "+name);var funcs=self.funcName.split('.');var func=null;if(funcs.length>3){}else if(funcs.length===3){func=window[funcs[0]][funcs[1]][funcs[2]];}else if(funcs.length===2){func=window[funcs[0]][funcs[1]];}else{func=window[self.funcName];}
+if(typeof func!=='undefined'&&func!==null){func.apply(null,this.parameters);}
+if(self.deleteWhenComplete===true)delete items[name];if(self.isBlock===true){log("----- F'D: "+self.name);processAll();}}},file:function(name,path,isBlock,blockedBy,async,defer,proceedIfError){var self=this;this.name=name;this.path=path;this.async=async;this.defer=defer;this.isBlock=isBlock;this.blockedBy=blockedBy;this.isInitialized=false;this.isError=false;this.isComplete=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){self.isInitialized=true;log("... file = "+name);var scr=document.createElement('script');scr.src=path;if(async===true)scr.async=true;else if(defer===true)scr.defer=true;scr.onerror=function(){log("----- ERR'D: "+self.name);self.isError=true;if(self.isBlock===true){processAll();}};scr.onreadystatechange=scr.onload=function(){var state=scr.readyState;log("----- F'D: "+self.name);if((!state||/loaded|complete/.test(state))){self.isComplete=true;if(self.isBlock===true){processAll();}}};document.getElementsByTagName('head')[0].appendChild(scr);}},fileLoaded:function(name,isComplete){this.name=name;this.path="";this.async=false;this.defer=false;this.isBlock=false;this.blockedBy=[];this.isInitialized=true;this.isError=false;this.isComplete=isComplete;this.proceedIfError=false;this.isTimeDelay=false;this.process=function(){};}};function init(){window.addEventListener("load",function(){setTimeout(function(){timeDelayFired=true;log('TDELAY -----');processAll();},5000);},false);}
+function addFile(name,path,isBlock,blockedBy,async,defer,proceedIfError,priority){var item=new obj.file(name,path,isBlock,blockedBy,async,defer,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function setallowLoad(settobool){allowLoad=settobool}
+function addFunc(name,func,parameters,isBlock,blockedBy,autoInc,deleteWhenComplete,proceedIfError,priority){if(autoInc===true)name=name+"_"+incr++;var item=new obj.func(name,func,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFile(name,path){var item=new obj.file(name,path,false,[],false,false,true);item.isTimeDelay=true;log(name+' ... '+' FILE! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFunc(name,func,parameters){var item=new obj.func(name,func,parameters,false,[],true,true);item.isTimeDelay=true;log(name+' ... '+' FUNCTION! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function checkIfBlocked(item){if(isBlocked(item)===true||allowLoad==false)return;item.process();}
+function isBlocked(item){if(item.isTimeDelay===true&&timeDelayFired===false){log(item.name+" blocked = TIME DELAY!");return true;}
+if(item.blockedBy instanceof Array){for(var i=0;i<item.blockedBy.length;i++){var block=item.blockedBy[i];if(items.hasOwnProperty(block)===false){log(item.name+" blocked = "+block);return true;}else if(item.proceedIfError===true&&items[block].isError===true){return false;}else if(items[block].isComplete===false){log(item.name+" blocked = "+block);return true;}}}
+return false;}
+function markLoaded(filename){if(!filename||0===filename.length){return;}
+if(filename in items){var item=items[filename];if(item.isComplete===true){log(item.name+' '+filename+': error loaded duplicate')}else{item.isComplete=true;item.isInitialized=true;}}else{items[filename]=new obj.fileLoaded(filename,true);}
+log("Added dummyfile: "+items[filename]);}
+function log(msg){var href=window.location.href;var reg=new RegExp('[?&]ezq=([^&#]*)','i');var string=reg.exec(href);var res=string?string[1]:null;if(res==="1")console.debug(msg);}
+function processAll(){count++;if(count>200)return;log("let's go");processItems(hpItems);processItems(lpItems);}
+function processItems(list){for(var i in list){if(list.hasOwnProperty(i)===false)continue;var item=list[i];if(item.isComplete===true||isBlocked(item)||item.isInitialized===true||item.isError===true){if(item.isError===true){log(item.name+': error')}else if(item.isComplete===true){log(item.name+': complete already')}else if(item.isInitialized===true){log(item.name+': initialized already')}}else{item.process();}}}
+init();return{addFile:addFile,addDelayFile:addTimeDelayFile,addFunc:addFunc,addDelayFunc:addTimeDelayFunc,items:items,processAll:processAll,setallowLoad:setallowLoad,markLoaded:markLoaded,};})();__ez.evt.add=function(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n()},__ez.evt.remove=function(e,t,n){e.removeEventListener?e.removeEventListener(t,n,!1):e.detachEvent?e.detachEvent("on"+t,n):delete e["on"+t]};__ez.script.add=function(e){var t=document.createElement("script");t.src=e,t.async=!0,t.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(t)};__ez.dot={};__ez.vep=(function(){var pixels=[],pxURL="/detroitchicago/grapefruit.gif";function AddPixel(vID,pixelData){if(__ez.dot.isDefined(vID)&&__ez.dot.isValid(pixelData)){pixels.push({type:'video',video_impression_id:vID,domain_id:__ez.dot.getDID(),t_epoch:__ez.dot.getEpoch(0),data:__ez.dot.dataToStr(pixelData)});}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender"){return;}
+if(__ez.dot.isDefined(pixels)&&pixels.length>0){while(pixels.length>0){var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(__ez.template.isOrig===true?1:0)+"&v="+btoa(JSON.stringify(pushPixels));__ez.dot.Fire(pixelURL);}}
+pixels=[];}
+return{Add:AddPixel,Fire:Fire};})();</script><script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>__ez.pel=(function(){var pixels=[],pxURL="/porpoiseant/army.gif";function AddAndFirePixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0);Fire();}
+function AddAndFireOrigPixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0,true);Fire();}
+function GetCurrentPixels(){return pixels;}
+function AddPixel(adSlot,pixelData,revenue,est_revenue,bid_floor_filled,bid_floor_prev,stat_source_id,isOrig){if(!__ez.dot.isDefined(adSlot)||__ez.dot.isAnyDefined(adSlot.getSlotElementId,adSlot.ElementId)==false){return;}
+var ad_position_id=parseInt(__ez.dot.getTargeting(adSlot,'ap'));var impId=__ez.dot.getSlotIID(adSlot),adUnit=__ez.dot.getAdUnit(adSlot,isOrig);var compId=parseInt(__ez.dot.getTargeting(adSlot,"compid"));var lineItemId=0;var creativeId=0;var ezimData=getEzimData(adSlot);if(typeof ezimData=='object'){if(ezimData.creative_id!==undefined){creativeId=ezimData.creative_id;}
+if(ezimData.line_item_id!==undefined){lineItemId=ezimData.line_item_id;}}
+if(__ez.dot.isDefined(impId,adUnit)&&__ez.dot.isValid(pixelData)){pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),revenue:revenue,est_revenue:est_revenue,ad_position:ad_position_id,ad_size:"",bid_floor_filled:bid_floor_filled,bid_floor_prev:bid_floor_prev,stat_source_id:stat_source_id,country_code:__ez.dot.getCC(),pageview_id:__ez.dot.getPageviewId(),comp_id:compId,line_item_id:lineItemId,creative_id:creativeId,data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig,});}}
+function AddPixelById(impFullId,pixelData,isOrig){var vals=impFullId.split('/');if(__ez.dot.isDefined(impFullId)&&vals.length===3&&__ez.dot.isValid(pixelData)){var adUnit=vals[0],impId=vals[2];pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),pageview_id:__ez.dot.getPageviewId(),data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig});}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender")return;if(__ez.dot.isDefined(pixels)&&pixels.length>0){var allPixels=[pixels.filter(function(pixel){return pixel.is_orig}),pixels.filter(function(pixel){return!pixel.is_orig})];allPixels.forEach(function(pixels){while(pixels.length>0){var isOrig=pixels[0].is_orig||false;var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(isOrig===true?1:0)+"&sts="+btoa(JSON.stringify(pushPixels));if(typeof window.isAmp!=='undefined'&&isAmp&&typeof window._ezaq!=='undefined'&&_ezaq.hasOwnProperty("domain_id")){pixelURL+="&visit_uuid="+_ezaq['visit_uuid'];}
+__ez.dot.Fire(pixelURL);}})}
+pixels=[];}
+function getEzimData(adSlot){if(typeof _ezim_d=="undefined"){return false}
+var adUnitName=__ez.dot.getAdUnitPath(adSlot).split('/').pop();if(typeof _ezim_d==='object'&&_ezim_d.hasOwnProperty(adUnitName)){return _ezim_d[adUnitName];}
+for(var ezimKey in _ezim_d){if(ezimKey.split('/').pop()===adUnitName){return _ezim_d[ezimKey];}}
+return false;}
+return{Add:AddPixel,AddAndFire:AddAndFirePixel,AddAndFireOrig:AddAndFireOrigPixel,AddById:AddPixelById,Fire:Fire,GetPixels:GetCurrentPixels,};})();</script>
+
+
+<title>Back Icon | Mono General 1 Iconset | Custom Icon Design</title>
+
+<!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+<script type="text/javascript" async="true">
+(function() {
+  var host = window.location.hostname;
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://quantcast.mgr.consensu.org'
+    .concat('/choice/', 'b9Tu_6mjKWqaw', '/', host, '/choice.js')
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
+
+  firstScript.parentNode.insertBefore(element, firstScript);
+
+  function makeStub() {
+    var TCF_LOCATOR_NAME = '__tcfapiLocator';
+    var queue = [];
+    var win = window;
+    var cmpFrame;
+
+    function addFrame() {
+      var doc = win.document;
+      var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+      if (!otherCMP) {
+        if (doc.body) {
+          var iframe = doc.createElement('iframe');
+
+          iframe.style.cssText = 'display:none';
+          iframe.name = TCF_LOCATOR_NAME;
+          doc.body.appendChild(iframe);
+        } else {
+          setTimeout(addFrame, 5);
+        }
+      }
+      return !otherCMP;
+    }
+
+    function tcfAPIHandler() {
+      var gdprApplies;
+      var args = arguments;
+
+      if (!args.length) {
+        return queue;
+      } else if (args[0] === 'setGdprApplies') {
+        if (
+          args.length > 3 &&
+          args[2] === 2 &&
+          typeof args[3] === 'boolean'
+        ) {
+          gdprApplies = args[3];
+          if (typeof args[2] === 'function') {
+            args[2]('set', true);
+          }
+        }
+      } else if (args[0] === 'ping') {
+        var retr = {
+          gdprApplies: gdprApplies,
+          cmpLoaded: false,
+          cmpStatus: 'stub'
+        };
+
+        if (typeof args[2] === 'function') {
+          args[2](retr);
+        }
+      } else {
+        queue.push(args);
+      }
+    }
+
+    function postMessageEventHandler(event) {
+      var msgIsString = typeof event.data === 'string';
+      var json = {};
+
+      try {
+        if (msgIsString) {
+          json = JSON.parse(event.data);
+        } else {
+          json = event.data;
+        }
+      } catch (ignore) {}
+
+      var payload = json.__tcfapiCall;
+
+      if (payload) {
+        window.__tcfapi(
+          payload.command,
+          payload.version,
+          function(retValue, success) {
+            var returnMsg = {
+              __tcfapiReturn: {
+                returnValue: retValue,
+                success: success,
+                callId: payload.callId
+              }
+            };
+            if (msgIsString) {
+              returnMsg = JSON.stringify(returnMsg);
+            }
+            event.source.postMessage(returnMsg, '*');
+          },
+          payload.parameter
+        );
+      }
+    }
+
+    while (win) {
+      try {
+        if (win.frames[TCF_LOCATOR_NAME]) {
+          cmpFrame = win;
+          break;
+        }
+      } catch (ignore) {}
+
+      if (win === window.top) {
+        break;
+      }
+      win = win.parent;
+    }
+    if (!cmpFrame) {
+      addFrame();
+      win.__tcfapi = tcfAPIHandler;
+      win.addEventListener('message', postMessageEventHandler, false);
+    }
+  };
+
+  makeStub();
+
+  var uspStubFunction = function() {
+    var arg = arguments;
+    if (typeof window.__uspapi !== uspStubFunction) {
+      setTimeout(function() {
+        if (typeof window.__uspapi !== 'undefined') {
+          window.__uspapi.apply(window.__uspapi, arg);
+        }
+      }, 500);
+    }
+  };
+
+  var checkIfUspIsReady = function() {
+    uspTries++;
+    if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+      console.warn('USP is not accessible');
+    } else {
+      clearInterval(uspInterval);
+    }
+  };
+
+  if (typeof window.__uspapi === 'undefined') {
+    window.__uspapi = uspStubFunction;
+    var uspInterval = setInterval(checkIfUspIsReady, 6000);
+  }
+})();
+</script>
+<!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+
+
+<meta name="keywords" content="back,left,Back"/>
+<meta name="description" content="Click to download Back, Left icon from Mono General 1 Iconset by Custom Icon Design"/>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-6648331-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-6648331-1');
+</script>
+
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png"/>
+<link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png"/>
+<link rel="icon" sizes="48x48" type="image/png" href="/favicon-48x48.png"/>
+<link rel="icon" sizes="128x128" type="image/png" href="/favicon-128x128.png"/>
+<link rel="icon" sizes="196x196" type="image/png" href="/favicon-196x196.png"/>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"/>
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png"/>
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png"/>
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png"/>
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png"/>
+<meta name="msapplication-TileColor" content="#4466ae"/>
+<meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
+
+<link rel="canonical" href="https://iconarchive.com/show/mono-general-1-icons-by-custom-icon-design/back-icon.html"/>
+<!--link rel="stylesheet" href="https://static.iconarchive.com/static/css/responsive.css" type="text/css" /-->
+<link rel="stylesheet" href="https://static.iconarchive.com/static/css/iconarchive.css" type="text/css"/>
+
+<script type="text/javascript">
+var baseurl = "/";
+var MyFileServer = "https://icons.iconarchive.com";
+var TmpTestServerIconPath = "";
+var userlogin = "0";
+var homepage = "0";
+</script>
+
+
+
+
+
+
+<script type="text/javascript">var ezouid = "1";</script><base href="https://iconarchive.com/show/mono-general-1-icons-by-custom-icon-design/back-icon.html"><script type='text/javascript'>
+var ezoTemplate = 'old_site_gc';
+if(typeof ezouid == 'undefined')
+{
+    var ezouid = 'none';
+}
+var ezoFormfactor = '1';
+var ezo_elements_to_check = Array();
+</script><!-- START EZHEAD -->
+<script data-ezscrex="false" type='text/javascript'>
+var soc_app_id = '0';
+var did = 233319;
+var ezdomain = 'iconarchive.com';
+var ezoicSearchable = 1;
+</script>
+<!--{jquery}-->
+<!-- END EZHEAD -->
+<script data-ezscrex="false" type="text/javascript" data-cfasync="false">var _ezaq = {"ad_cache_level":0,"ad_lazyload_version":0,"ad_load_version":0,"city":"Nevesinje","country":"BA","days_since_last_visit":0,"domain_id":233319,"engaged_time_visit":115,"ezcache_level":0,"ezcache_skip_code":0,"form_factor_id":1,"framework_id":1,"is_return_visitor":true,"is_sitespeed":0,"last_page_load":"1619618872893","last_pageview_id":"cf49f3ac-c518-4cce-7366-03c0f40580ab","lt_cache_level":0,"metro_code":0,"page_ad_positions":"","page_view_count":13,"page_view_id":"8660b72b-435b-402e-6703-75b8503eb44f","position_selection_id":0,"postal_code":"","pv_event_count":0,"response_size_orig":48567,"response_time_orig":483,"serverid":"18.194.168.213:23970","state":"SRP","t_epoch":1619618878,"template_id":126,"time_on_site_visit":5781,"url":"https://iconarchive.com/show/mono-general-1-icons-by-custom-icon-design/back-icon.html","user_id":0,"weather_precipitation":0,"weather_summary":"","weather_temperature":0,"word_count":410,"worst_bad_word_level":0};var _ezExtraQueries = "&ez_orig=1";</script>
+<script data-ezscrex='false' data-pagespeed-no-defer data-cfasync='false'>
+function create_ezolpl(pvID, rv) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    __ez.ck.setByCat("ezux_lpl_233319=" + new Date().getTime() + "|" + pvID + "|" + rv + "; " + expires, 3);
+}
+function attach_ezolpl(pvID, rv) {
+    if (document.readyState === "complete") {
+        create_ezolpl(pvID, rv);
+    }
+    if(window.attachEvent) {
+        window.attachEvent("onload", create_ezolpl, pvID, rv);
+    } else {
+        if(window.onload) {
+            var curronload = window.onload;
+            var newonload = function(evt) {
+                curronload(evt);
+                create_ezolpl(pvID, rv);
+            };
+            window.onload = newonload;
+        } else {
+            window.onload = create_ezolpl.bind(null, pvID, rv);
+        }
+    }
+}
+
+__ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["8660b72b-435b-402e-6703-75b8503eb44f", "true"], false, ['/detroitchicago/boise.js'], true, false, false, false);
+</script>
+<script type="text/javascript">var _audins_dom="iconarchive_com",_audins_did=233319;__ez.queue.addFile('/detroitchicago/cmb.js', '/detroitchicago/cmb.js?gcb=194-0&cb=01-100-103-1004-10d-506-507-70a-30c-30e-213-321-&cmbcb=9&01&00&03&04&0d&06&07&0a&0c&0e&13&21', true, [], true, false, true, false);</script></head>
+<body>
+
+<!-- BuySellAds.com Ad Code -->
+<script type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = '//s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</script>
+<!-- End BuySellAds.com Ad Code -->
+
+<script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('flexbar', 'CKYI6237', 'placement:wwwiconarchivecom');
+    }
+  })();
+</script>
+
+
+
+
+<div id="metanav-background">
+<div id="metanav-allcontent">
+<div id="metanav-logo"><a href="https://iconarchive.com/" rel="nofollow"><img src="https://static.iconarchive.com/static/images/ia/logo/logo.png" alt="Icon Archive - Great icons for Win, Mac &amp; Linux" width="307" height="57"/></a></div>
+<div id="metanav-search"><form action="https://iconarchive.com/search" method="get"><input type="text" name="q" value="back" id="metanav-search-field"/><div id="metanav-search-submit">Search</div></form></div>
+
+<div class="clear"></div>
+
+<ul id="topnav">
+	<li><a href="https://iconarchive.com/browse.html">Browse ▼</a>
+    <div class="topnavsub-category">
+        <ul style="width:210px;">
+        <li><a href="https://iconarchive.com/alphabet-list.html">By Alphabet</a></li>
+        <li><a href="https://iconarchive.com/news.html">Newest Sets</a></li>
+        <li><a href="https://iconarchive.com/popular.html">Popular Sets</a></li>
+        <li><a href="https://iconarchive.com/svg-icons.html">SVG Vector Sets</a></li>
+        <li><a href="https://iconarchive.com/visited.html">Most visited Sets</a></li>
+        <li><a href="https://iconarchive.com/largest.html">Largest Sets</a></li>
+		<li><a href="https://iconarchive.com/highres.html">Highest Resolution</a></li>        
+        <li><a href="https://iconarchive.com/outstanding.html">Outstanding Sets</a></li>
+        <li><a href="https://iconarchive.com/randomsets.html">Random Sets</a></li>
+        <li><a href="https://iconarchive.com/random.html">Random Icons</a></li>
+        <li><a href="https://iconarchive.com/categories.html">Categories</a></li>
+        <li><a href="https://iconarchive.com/artists.html">Artists</a></li>
+        <li><a href="https://iconarchive.com/tags.html">Tags</a></li>
+        <li><a href="https://iconarchive.com/pixelart.html">Pixelart (Classic Style)</a></li>
+        <li><a href="https://iconarchive.com/commercialfree.html">License: Commercial free</a></li>
+        </ul>
+    </div>
+    </li>
+	<li><a href="https://iconarchive.com/news.html">Newest</a></li>
+	<li><a href="https://iconarchive.com/popular.html">Popular</a></li>
+	<li><a href="https://iconarchive.com/svg-icons.html">SVG icons</a></li>
+	<li><a href="https://iconarchive.com/random.html">Random</a></li>
+	<li><a href="https://iconarchive.com/categories.html">Categories ▼</a>
+    <div class="topnavsub-category">
+        <ul>
+        <li><a href="https://iconarchive.com/category/adobe-icons.html">Adobe Icons</a></li>
+        <li><a href="https://iconarchive.com/category/alphabet-icons.html">Alphabet Icons</a></li>
+        <li><a href="https://iconarchive.com/category/animals-icons.html">Animal Icons</a></li>
+        <li><a href="https://iconarchive.com/category/apple-icons.html">Apple Icons</a></li>
+        <li><a href="https://iconarchive.com/category/application-icons.html">Application Icons</a></li>
+        <li><a href="https://iconarchive.com/category/art-icons.html">Art Icons</a></li>
+        <li><a href="https://iconarchive.com/category/avatar-icons.html">Avatar Icons</a></li>
+        <li><a href="https://iconarchive.com/category/buildings-icons.html">Buildings Icons</a></li>
+        <li><a href="https://iconarchive.com/category/business-icons.html">Business Icons</a></li>
+        <li><a href="https://iconarchive.com/category/cartoon-icons.html">Cartoon Icons</a></li>
+        <li><a href="https://iconarchive.com/category/christmas-icons.html">Christmas Icons</a></li>
+        <li><a href="https://iconarchive.com/category/computer-icons.html">Computer Icons</a></li>
+        <li><a href="https://iconarchive.com/category/culture-icons.html">Culture Icons</a></li>
+        <li><a href="https://iconarchive.com/category/drive-icons.html">Drive Icons</a></li>
+        <li><a href="https://iconarchive.com/category/easter-icons.html">Easter Icons</a></li>
+        <li><a href="https://iconarchive.com/category/emo-icons.html">Emo Icons</a></li>
+        </ul>
+        <ul>
+        <li><a href="https://iconarchive.com/category/emoji-icons.html">Emoji Icons</a></li>
+        <li><a href="https://iconarchive.com/category/flag-icons.html">Flag Icons</a></li>
+        <li><a href="https://iconarchive.com/category/folder-icons.html">Folder Icons</a></li>
+        <li><a href="https://iconarchive.com/category/food-icons.html">Food Icons</a></li>
+        <li><a href="https://iconarchive.com/category/funny-icons.html">Funny Icons</a></li>
+        <li><a href="https://iconarchive.com/category/game-icons.html">Game Icons</a></li>
+        <li><a href="https://iconarchive.com/category/halloween-icons.html">Halloween Icons</a></li>
+        <li><a href="https://iconarchive.com/category/handdrawn-icons.html">Hand-Drawn Icons</a></li>
+        <li><a href="https://iconarchive.com/category/holiday-icons.html">Holiday Icons</a></li>
+        <li><a href="https://iconarchive.com/category/kid-icons.html">Kids Icons</a></li>
+        <li><a href="https://iconarchive.com/category/lifestyle-icons.html">Lifestyle Icons</a></li>
+        <li><a href="https://iconarchive.com/category/love-icons.html">Love Icons</a></li>
+        <li><a href="https://iconarchive.com/category/media-icons.html">Media Icons</a></li>
+        <li><a href="https://iconarchive.com/category/medical-icons.html">Medical Icons</a></li>
+        <li><a href="https://iconarchive.com/category/microsoft-icons.html">Microsoft Icons</a></li>
+        <li><a href="https://iconarchive.com/category/mini-icons.html">Mini Icons</a></li>
+        </ul>
+        <ul>
+        <li><a href="https://iconarchive.com/category/mobile-icons.html">Mobile Icons</a></li>
+        <li><a href="https://iconarchive.com/category/music-icons.html">Music Icons</a></li>
+        <li><a href="https://iconarchive.com/category/nature-icons.html">Nature Icons</a></li>
+        <li><a href="https://iconarchive.com/category/object-icons.html">Object Icons</a></li>
+        <li><a href="https://iconarchive.com/category/people-icons.html">People Icons</a></li>
+        <li><a href="https://iconarchive.com/category/photographic-icons.html">Photographic Icons</a></li>
+        <li><a href="https://iconarchive.com/category/places-icons.html">Places Icons</a></li>
+        <li><a href="https://iconarchive.com/category/scifi-icons.html">Sci-Fi Icons</a></li>
+        <li><a href="https://iconarchive.com/category/social-network-icons.html">Social Network Icons</a></li>
+        <li><a href="https://iconarchive.com/category/sport-icons.html">Sport Icons</a></li>
+        <li><a href="https://iconarchive.com/category/system-icons.html">System Icons</a></li>
+        <li><a href="https://iconarchive.com/category/technology-icons.html">Technology Icons</a></li>
+        <li><a href="https://iconarchive.com/category/transport-icons.html">Transport Icons</a></li>
+        <li><a href="https://iconarchive.com/category/movie-icons.html">TV &amp; Movie Icons</a></li>
+        <li><a href="https://iconarchive.com/category/vintage-icons.html">Vintage Icons</a></li>
+        </ul>
+    </div>
+    </li>
+	<li><a href="https://iconarchive.com/artists.html">Artists</a></li>
+	<li class="last"><a href="https://iconarchive.com/mydesk.html" class="red"> ♥ My Favs</a></li>
+<div class="clear"></div>
+</ul>
+
+</div> <!--metanav-allcontent-->
+</div> <!--metanav-background-->
+<!-- End of all divs -->
+<div id="allcontent">
+
+<div class="rightcol">
+
+<div class="rightcol-block-members">
+
+<h2 style="margin-top:20px;">Share this link</h2>
+<a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Ficonarchive.com%2Fshow%2Fmono-general-1-icons-by-custom-icon-design%2Fback-icon.html&amp;t=Back+Icon+%7C+Mono+General+1+Iconset+%7C+Custom+Icon+Design" target="_blank"><img src="https://static.iconarchive.com/static/images/social/facebook-icon.png" width="32" height="32" title="Share on Facebook" class="opacityhover"/></a>
+<a href="https://twitter.com/home?status=https%3A%2F%2Ficonarchive.com%2Fshow%2Fmono-general-1-icons-by-custom-icon-design%2Fback-icon.html" target="_blank"><img src="https://static.iconarchive.com/static/images/social/twitter-icon.png" width="32" height="32" title="Share on Twitter" class="opacityhover"/></a>
+<a href="mailto:?subject=Nice%20icon/s%20from%20IconArchive.com&amp;body=Hello,%0D%0A%0D%0AI%20recently%20discovered%20this%20or%20these%20icons%20on%20IconArchive.com:%0D%0Ahttps%3A%2F%2Ficonarchive.com%2Fshow%2Fmono-general-1-icons-by-custom-icon-design%2Fback-icon.html%0D%0A%0D%0APage%20Title:%0D%0ABack%20Icon%20%7C%20Mono%20General%201%20Iconset%20%7C%20Custom%20Icon%20Design%0D%0A%0D%0ACheers,%0D%0A......"><img src="https://static.iconarchive.com/static/images/social/mail-icon.png" width="32" height="32" title="Send this link by eMail" class="opacityhover"/></a>
+<div style="margin-top:20px;"></div>
+
+</div>
+<div class="rightcol-block-ads">
+<h2 style="margin-top:0px;margin-bottom:5px;">Sponsored links</h2>
+
+</div><!--end rightcol-block-ads-->
+
+<script type="text/javascript"><!--
+    e9 = new Object();
+    e9.size = "300x250";
+    e9.addBlockingCategories="alcohol,dieting,gambling,tobacco,violence";
+//--></script>
+<script type="text/javascript" src="//tags.expo9.exponential.com/tags/iconarchivecom/ros/tags.js"></script>
+
+
+<!-- Ezoic - sidebar_right_middle 101 - sidebar_middle -->
+<div id="ezoic-pub-ad-placeholder-101">
+
+	<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Global Right Sidebar Responsive -->
+	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0713487530771755" data-ad-slot="8911544518" data-ad-format="auto" data-full-width-responsive="true"></ins>
+	<script>
+		 (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+ </div>
+<!-- End Ezoic - sidebar_right_middle 101 - sidebar_middle -->
+
+
+
+
+	<br/>
+	<br/>
+
+<!-- Ezoic - sidebar_right_below 109 - sidebar_middle -->
+<div id="ezoic-pub-ad-placeholder-109">
+
+	<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Global Right Sidebar Middle Responsive -->
+	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0713487530771755" data-ad-slot="7737207417" data-ad-format="auto" data-full-width-responsive="true"></ins>
+	<script>
+		 (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+</div>
+<!-- End Ezoic - sidebar_right_below 109 - sidebar_middle -->
+
+
+	
+</div><!--rightcol-->
+
+<div class="leftcol">
+<h3 class="tag-header">Tags</h3>
+<div class="tag" tid="375274">
+		<a href="/tag/back" class="tagedit" title="Back icons">back</a>
+		<ul>
+			<li class="view">Search tag</li>
+			<li class="up">Good (<span class="count">7</span>)</li>
+			<li class="down">Bad (<span class="count">0</span>)</li>
+			<li class="abuse">Report abuse</li>
+		</ul>
+		</div><div class="tag" tid="556570">
+		<a href="/tag/left" class="tagedit" title="Left icons">left</a>
+		<ul>
+			<li class="view">Search tag</li>
+			<li class="up">Good (<span class="count">1</span>)</li>
+			<li class="down">Bad (<span class="count">0</span>)</li>
+			<li class="abuse">Report abuse</li>
+		</ul>
+		</div><form class="tag-add" onsubmit="ajax_tagadd();return false;"><input id="tag-add-input" iconid="83494" type="text" value=""/><div id="tag-add-submit">Add Tag</div><div class="clear"></div><div class="tag-add-message"><ul><li id="tag-add-errormsg"></li><li><b>Info:</b></li><li>- Just type tag + return</li><li>- Tags should be in english</li><li>- Tags should describe what the icon shows or what the icon is commonly used for.</li></ul></div></form>
+
+<h3>Icon Rating</h3>
+
+	<div class="rating" type="i" key="83494" votes="0" value="0.00">
+	<div vote="1" class="star" title="Very poor"></div>
+	<div vote="2" class="star" title="Poor"></div>
+	<div vote="3" class="star" title="OK"></div>
+	<div vote="4" class="star" title="Good"></div>
+	<div vote="5" class="star" title="Very Good"></div>
+	<div class="rating-text"><span class="rating-text-content">0.00 (0 votes)</span>
+	
+	</div><!--toolbelow-->
+	
+	<div class="clear"></div>
+	</div>	
+		
+<h3>Stats</h3>
+<span class="greylabel">Downloads:</span> 24554
+
+<h3>Browse this Iconset</h3>
+<a href="/show/mono-general-1-icons-by-custom-icon-design.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/icons-390.jpg" width="175"/></a>
+
+<!-- Ezoic - sidebar_left_floating_1 - sidebar_floating_1 -->
+<div id="ezoic-pub-ad-placeholder-113"> </div>
+<!-- End Ezoic - sidebar_left_floating_1 - sidebar_floating_1 -->
+
+
+</div>
+
+<div class="contentbox">
+<a name="pagination"></a>
+<h1>Back Icon</h1>
+
+<div id="icon-83494-48" class="icondetail" style="height:298px;width:285px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/back-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/256/back-icon.png" style="margin-top:3px" loading="lazy" width="256" height="256" alt="Back icon" title="Back icon"/></a></div><div style="float:left;border:0px solid #dddddd;width:300px;height:270px;margin:3px 3px 3px 40px;">
+
+<!-- Ezoic -  global_top_box - under_page_title -->
+<div id="ezoic-pub-ad-placeholder-106">
+
+	<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Global Top Box 300 x 250 -->
+	<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-0713487530771755" data-ad-slot="8448510084"></ins>
+	<script>
+		 (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	
+ </div>
+<!-- End Ezoic -  global_top_box - under_page_title -->
+
+
+</div>
+<div class="clear" style="height:10px;"></div>
+<b>Artist:</b> <a href="/artist/custom-icon-design.html">Custom Icon Design</a> (Available for custom work)<br/>
+
+<b>Iconset:</b> <a href="/show/mono-general-1-icons-by-custom-icon-design.html">Mono General 1 Icons</a> (15 icons)<br/>
+<b>License:</b> Free for non-commercial use.<br/><b>Commercial usage:</b> Buy commercial license here: <a href="http://www.customicondesign.com/free-icons/mono-icon-set/mono-general-1/" target="_blank">http://www.customicondesign.com/free-icons/mono-icon-set/mono-general-1</a><br/><div class="clear"></div><a class="button" href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/back-icon.png" title="Download this icon in PNG format">Download PNG</a> <a class="button" href="https://iconarchive.com/download/i83494/custom-icon-design/mono-general-1/back.ico" title="Download this icon in ICO format">ICO</a> <a class="button" href="https://iconarchive.com/download/i83494/custom-icon-design/mono-general-1/back.icns" title="Download this icon in ICNS format">ICNS</a><br/><span class="donatebutton">Donate to artist</span>
+	<form id="donate" method="post" target="_blank" action="https://www.paypal.com/31/cgi-bin/webscr">
+	<input type="hidden" value="_xclick" name="cmd"/>
+	<input type="hidden" value="sales@customicondesign.com" name="business"/>
+	<input type="hidden" value="Donation to Custom Icon Design, from a nice IconArchive.com visitor." name="item_name"/>
+	<input type="hidden" value="Mono General 1 Iconset: Back icon." name="item_number"/>
+	<input type="hidden" value="1" name="no_shipping"/>
+	<input type="hidden" value="Add a comment" name="cn"/>
+	<input type="hidden" value="0" name="tax"/>
+	<input type="hidden" value="PP-DonationsBF" name="bn"/>
+	<input type="hidden" value="EN" name="lc"/>
+	<input type="hidden" value="en_XC" name="locale.x"/>
+	<input type="hidden" value="USD" name="currency_code"/>
+	</form>
+<!-- Ezoic - under_page_title - under_page_title -->
+<div id="ezoic-pub-ad-placeholder-115"> </div>
+<!-- End Ezoic - under_page_title - under_page_title -->
+<h3 style="margin-top:25px;">Download other sizes of this icon:</h3><div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/back-icon.png" style="margin-top:0px;" title="Back" alt="Back icon" width="128" height="128"/></a></div><div class="alticon-text">PNG File:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/back-icon.png">128x128 pixel</a></div></div>
+<div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/96/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/96/back-icon.png" style="margin-top:16px;" title="Back" alt="Back icon" width="96" height="96"/></a></div><div class="alticon-text">PNG File:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/96/back-icon.png">96x96 pixel</a></div></div>
+<div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/72/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/72/back-icon.png" style="margin-top:28px;" title="Back" alt="Back icon" width="72" height="72"/></a></div><div class="alticon-text">PNG File:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/72/back-icon.png">72x72 pixel</a></div></div>
+<div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/64/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/64/back-icon.png" style="margin-top:32px;" title="Back" alt="Back icon" width="64" height="64"/></a></div><div class="alticon-text">PNG File:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/64/back-icon.png">64x64 pixel</a></div></div>
+<div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/48/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/48/back-icon.png" style="margin-top:40px;" title="Back" alt="Back icon" width="48" height="48"/></a></div><div class="alticon-text">PNG:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/48/back-icon.png">48 pixel</a></div></div>
+<div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/32/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/32/back-icon.png" style="margin-top:48px;" title="Back" alt="Back icon" width="32" height="32"/></a></div><div class="alticon-text">PNG:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/32/back-icon.png">32 pixel</a></div></div>
+<div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/24/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/24/back-icon.png" style="margin-top:52px;" title="Back" alt="Back icon" width="24" height="24"/></a></div><div class="alticon-text">PNG:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/24/back-icon.png">24 pixel</a></div></div>
+<div class="alticon" style="height:178px;"><div style="height:128px;"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/16/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/16/back-icon.png" style="margin-top:56px;" title="Back" alt="Back icon" width="16" height="16"/></a></div><div class="alticon-text">PNG:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/16/back-icon.png">16 pixel</a></div></div>
+<div class="clear"></div><div class="alticon" style="border:0px solid red;text-align:center;height:560px;float:left;padding-left:10px;padding-right:10px;"><div style="height:512px;" class="alticon-img"><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/back-icon.png"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/back-icon.png" width="512" height="512" alt="Back icon" title="Back"/></a></div><div class="alticon-text">PNG File:<br/><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/back-icon.png">512x512 pixel</a></div></div>
+<div class="clear"></div><h2 style="margin-top:20px;">Similar icons with these tags: <a href="/tag/back" class="taglink" title="Icon back">back</a><a href="/tag/left" class="taglink" title="Icon left">left</a></h2>
+<div id="icon-7964-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i7964/hopstarter/soft-scraps/Button-Next.ico">ICO</a><a href="/download/i7964/hopstarter/soft-scraps/Button-Next.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/128/Button-Next-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/soft-scraps-icons-by-hopstarter/Button-Next-icon.html"><img src="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/128/Button-Next-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Button Next icon" title="Button Next icon"/></a></div>
+<div id="icon-86016-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i86016/graphicloads/100-flat-2/arrow-next-3.ico">ICO</a><a href="/download/i86016/graphicloads/100-flat-2/arrow-next-3.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/arrow-next-3-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/100-flat-2-icons-by-graphicloads/arrow-next-3-icon.html"><img src="https://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/arrow-next-3-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Arrow next 3 icon" title="Arrow next 3 icon"/></a></div>
+<div id="icon-8928-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="https://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/simplistica-icons-by-dryicons/back-icon.html"><img src="https://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Back icon" title="Back icon"/></a></div>
+<div id="icon-32728-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i32728/tuziibanez/profesional-red/folder-back.ico">ICO</a><a href="/download/i32728/tuziibanez/profesional-red/folder-back.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/tuziibanez/profesional-red/128/folder-back-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/profesional-red-icons-by-tuziibanez/folder-back-icon.html"><img src="https://icons.iconarchive.com/icons/tuziibanez/profesional-red/128/folder-back-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Folder back icon" title="Folder back icon"/></a></div>
+<div id="icon-95494-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i95494/iconsmind/outline/Back-2-2.ico">ICO</a><a href="/download/i95494/iconsmind/outline/Back-2-2.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/iconsmind/outline/128/Back-2-2-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/outline-icons-by-iconsmind/Back-2-2-icon.html"><img src="https://icons.iconarchive.com/icons/iconsmind/outline/128/Back-2-2-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Back 2 2 icon" title="Back 2 2 icon"/></a></div>
+<div id="icon-95495-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i95495/iconsmind/outline/Back-2.ico">ICO</a><a href="/download/i95495/iconsmind/outline/Back-2.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/iconsmind/outline/128/Back-2-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/outline-icons-by-iconsmind/Back-2-icon.html"><img src="https://icons.iconarchive.com/icons/iconsmind/outline/128/Back-2-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Back 2 icon" title="Back 2 icon"/></a></div>
+<div id="icon-106719-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i106719/praveen/minimal-outline/back-2.svg">SVG</a><a href="/download/i106719/praveen/minimal-outline/back-2.ico">ICO</a><a href="/download/i106719/praveen/minimal-outline/back-2.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/praveen/minimal-outline/128/back-2-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/minimal-outline-icons-by-praveen/back-2-icon.html"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/128/back-2-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Back 2 icon" title="Back 2 icon"/></a></div>
+<div id="icon-106720-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i106720/praveen/minimal-outline/back.svg">SVG</a><a href="/download/i106720/praveen/minimal-outline/back.ico">ICO</a><a href="/download/i106720/praveen/minimal-outline/back.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/praveen/minimal-outline/128/back-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/minimal-outline-icons-by-praveen/back-icon.html"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/128/back-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Back icon" title="Back icon"/></a></div>
+<div id="icon-95496-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i95496/iconsmind/outline/Back-Music.ico">ICO</a><a href="/download/i95496/iconsmind/outline/Back-Music.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/iconsmind/outline/128/Back-Music-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/outline-icons-by-iconsmind/Back-Music-icon.html"><img src="https://icons.iconarchive.com/icons/iconsmind/outline/128/Back-Music-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Back Music icon" title="Back Music icon"/></a></div>
+<div id="icon-95430-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i95430/iconsmind/outline/Arrow-Back-2.ico">ICO</a><a href="/download/i95430/iconsmind/outline/Arrow-Back-2.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/iconsmind/outline/128/Arrow-Back-2-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/outline-icons-by-iconsmind/Arrow-Back-2-icon.html"><img src="https://icons.iconarchive.com/icons/iconsmind/outline/128/Arrow-Back-2-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Arrow Back 2 icon" title="Arrow Back 2 icon"/></a></div>
+<div class="clear"></div>
+<!-- Ezoic - under_page_title - under_first_paragraph -->
+<div id="ezoic-pub-ad-placeholder-114"> </div>
+<!-- End Ezoic - under_page_title - under_first_paragraph -->
+<h2>More icons from the &#34;<a href="/show/mono-general-1-icons-by-custom-icon-design.html">Mono General 1 Icons</a>&#34; icon set:</h2>
+<div id="icon-83503-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83503/custom-icon-design/mono-general-1/information.ico">ICO</a><a href="/download/i83503/custom-icon-design/mono-general-1/information.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/information-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/information-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/information-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Information icon" title="Information icon"/></a></div>
+<div id="icon-83506-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83506/custom-icon-design/mono-general-1/up.ico">ICO</a><a href="/download/i83506/custom-icon-design/mono-general-1/up.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/up-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/up-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/up-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Up icon" title="Up icon"/></a></div>
+<div id="icon-83498-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83498/custom-icon-design/mono-general-1/delete.ico">ICO</a><a href="/download/i83498/custom-icon-design/mono-general-1/delete.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/delete-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/delete-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/delete-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Delete icon" title="Delete icon"/></a></div>
+<div id="icon-83504-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83504/custom-icon-design/mono-general-1/save.ico">ICO</a><a href="/download/i83504/custom-icon-design/mono-general-1/save.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/save-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/save-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Save icon" title="Save icon"/></a></div>
+<div id="icon-83493-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83493/custom-icon-design/mono-general-1/alert.ico">ICO</a><a href="/download/i83493/custom-icon-design/mono-general-1/alert.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/alert-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/alert-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/alert-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Alert icon" title="Alert icon"/></a></div>
+<div id="icon-83500-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83500/custom-icon-design/mono-general-1/event.ico">ICO</a><a href="/download/i83500/custom-icon-design/mono-general-1/event.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/event-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/event-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/event-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Event icon" title="Event icon"/></a></div>
+<div id="icon-83496-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83496/custom-icon-design/mono-general-1/chat.ico">ICO</a><a href="/download/i83496/custom-icon-design/mono-general-1/chat.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/chat-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/chat-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/chat-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Chat icon" title="Chat icon"/></a></div>
+<div id="icon-83492-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83492/custom-icon-design/mono-general-1/add.ico">ICO</a><a href="/download/i83492/custom-icon-design/mono-general-1/add.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/add-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/add-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/add-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Add icon" title="Add icon"/></a></div>
+<div id="icon-83497-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83497/custom-icon-design/mono-general-1/close.ico">ICO</a><a href="/download/i83497/custom-icon-design/mono-general-1/close.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/close-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/close-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/close-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Close icon" title="Close icon"/></a></div>
+<div id="icon-83499-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83499/custom-icon-design/mono-general-1/down.ico">ICO</a><a href="/download/i83499/custom-icon-design/mono-general-1/down.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/down-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/down-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/down-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Down icon" title="Down icon"/></a></div>
+<div id="icon-83495-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83495/custom-icon-design/mono-general-1/cancel.ico">ICO</a><a href="/download/i83495/custom-icon-design/mono-general-1/cancel.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/cancel-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/cancel-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/cancel-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Cancel icon" title="Cancel icon"/></a></div>
+<div id="icon-83501-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83501/custom-icon-design/mono-general-1/faq.ico">ICO</a><a href="/download/i83501/custom-icon-design/mono-general-1/faq.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/faq-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/faq-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/faq-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Faq icon" title="Faq icon"/></a></div>
+<div id="icon-83505-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83505/custom-icon-design/mono-general-1/success.ico">ICO</a><a href="/download/i83505/custom-icon-design/mono-general-1/success.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/success-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/success-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/success-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Success icon" title="Success icon"/></a></div>
+<div id="icon-83502-48" class="icondetail" style="height:170px;width:157px"><div class="links"><div class="fav" title="Add to Favorites"></div><div class="detail"><a href="/download/i83502/custom-icon-design/mono-general-1/forward.ico">ICO</a><a href="/download/i83502/custom-icon-design/mono-general-1/forward.icns">ICNS</a><a href="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/forward-icon.png" class="lastitem">PNG</a></div><div class="clear"></div></div><a href="/show/mono-general-1-icons-by-custom-icon-design/forward-icon.html"><img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/128/forward-icon.png" style="margin-top:3px" loading="lazy" width="128" height="128" alt="Forward icon" title="Forward icon"/></a></div>
+<div class="clear"></div><div class="clear"></div>
+</div><!--contentbox-->
+</div> <!--column-main-->
+
+<div class="clear"></div>
+ <!--allcontent-->
+
+
+
+<div style="text-align:center;">
+
+<!-- Ezoic - bottom_of_page 108 - bottom_of_page -->
+<div id="ezoic-pub-ad-placeholder-108">
+
+	<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Global Bottom Horizonal -->
+	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0713487530771755" data-ad-slot="5639024662" data-ad-format="auto" data-full-width-responsive="true"></ins>
+	<script>
+		 (adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+</div>
+<!-- End Ezoic - bottom_of_page 108 - bottom_of_page -->
+
+</div>
+
+<br/>
+<div id="footer">
+<ul id="bottomnav">
+	<li>© 2021 IconArchive.com</li>
+	<li>| <a href="https://iconarchive.com/about.html">About</a></li>
+	<li>| <a href="https://iconarchive.com/contact.html" rel="nofollow">Contact</a></li>
+	<li>| <a href="https://iconarchive.com/privacy.html" rel="nofollow">Privacy Policy</a></li>
+	<li>| <a href="https://iconarchive.com/terms.html" rel="nofollow">Terms of Services</a></li>
+</ul>
+
+
+New: <a href="https://funny-wifi.com/nerdy-wifi-names.html" target="_blank">Nerdy WiFi Names</a>
+
+
+
+
+
+
+
+</div>
+
+
+<div class="flyingheart"></div>
+<div id="metanav-favbar">
+	<div id="metanav-favbar-toggle" title="Open / Close FavBar"></div>
+	<div class="metanav-favbar-arrow" title="Show My Favorites"><a href="/mydesk.html"></a></div>
+	<div class="metanav-favbar-content">
+    	<ul class="metanav-favbar-list"></ul>
+	</div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/ia/jquery.plugins.js"></script>
+<script type="text/javascript" src="/static/js/ia/main.min.js"></script>
+
+<script type='text/javascript' style='display:none;' async>
+</script>
+
+<script type="text/javascript" data-cfasync="false"></script></body></html>

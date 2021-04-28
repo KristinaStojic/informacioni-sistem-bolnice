@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz staticke opreme" Height="390" Width="400" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue">
+        Title="Prikaz staticke opreme" Height="390" Width="400" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Click="Button_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <Button Click="Button_Click" ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
                 <Image Source="slike/back.png" Width="30" Height="30"></Image>
             </Button>
-            <TextBox HorizontalAlignment="Right" Width="130" Height="30" Margin="190, 0, 0, 0" TextChanged="Pretraga_TextChanged" Name="Pretraga"></TextBox>
+            <TextBox HorizontalAlignment="Right" Width="130" Height="30" Margin="165, 0, 0, 0" TextChanged="Pretraga_TextChanged" Name="Pretraga" ToolTip="Pretraga, Ctrl + P"></TextBox>
+            <Button ToolTip="Pretrazi, Ctrl + P" IsEnabled="False" Width="30" Height="30" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+                <Image Source="slike/search.png" Width="30" Height="30"></Image>
+            </Button>
         </StackPanel>
         <TextBlock Name="tekst"  FontWeight="Black" FontSize="15" HorizontalAlignment="Center"></TextBlock>
         <DataGrid x:Name="dataGridStaticka" ItemsSource="{Binding OpremaStaticka}" IsReadOnly="True" 

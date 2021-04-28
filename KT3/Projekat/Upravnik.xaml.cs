@@ -52,5 +52,30 @@ namespace Projekat
             mw.Show();
             this.Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Obavestenja izabranoObavjestenje = (Obavestenja)this.dataGridObavjestenja.SelectedItem;
+            if (izabranoObavjestenje != null)
+            {
+                PrikazObavjestenja prikazObavjestenja = new PrikazObavjestenja(izabranoObavjestenje);
+                prikazObavjestenja.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati obavjestenje!");
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.O)
+                {
+                    Odjava_Click(sender, e);
+                }
+            }
+        }
     }
 }

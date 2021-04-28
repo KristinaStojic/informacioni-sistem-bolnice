@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="SastojciDodavanje" Height="400" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
+        Title="Dodavanje sastojaka" Height="400" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
     <StackPanel>
         <Button ToolTip="Nazad" Width="30" Margin="5, 10, 420, 10" Click="Button_Click">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>

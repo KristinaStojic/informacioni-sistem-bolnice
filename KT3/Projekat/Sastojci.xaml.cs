@@ -97,5 +97,46 @@ namespace Projekat
                 MessageBox.Show("Morate izabrati sastojak!");
             }
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SastojciLijeka.Clear();
+            if(izabraniLijek.sastojci != null)
+            {
+                foreach(Sastojak sastojak in izabraniLijek.sastojci)
+                {
+                    if (sastojak.naziv.StartsWith(this.Pretraga.Text))
+                    {
+                        SastojciLijeka.Add(sastojak);
+                    }
+                }
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.P)
+                {
+                    this.Pretraga.Focus();
+                }else if(e.Key == Key.N || e.Key == Key.Z)
+                {
+                    Button_Click_1(sender, e);
+                }
+                else if (e.Key == Key.D)
+                {
+                    Button_Click(sender, e);
+                }
+                else if (e.Key == Key.I)
+                {
+                    Button_Click_2(sender, e);
+                }
+                else if (e.Key == Key.O)
+                {
+                    Button_Click_3(sender, e);
+                }
+            }
+        }
     }
 }
