@@ -55,7 +55,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Obavestenja izabranoObavjestenje = (Obavestenja)this.dataGridObavjestenja.SelectedItem;
+            Obavestenja izabranoObavjestenje = (Obavestenja)this.obavestenjaUpravnik.SelectedItem;
             if (izabranoObavjestenje != null)
             {
                 PrikazObavjestenja prikazObavjestenja = new PrikazObavjestenja(izabranoObavjestenje);
