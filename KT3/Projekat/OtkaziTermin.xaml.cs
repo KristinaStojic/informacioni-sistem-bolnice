@@ -73,6 +73,7 @@ namespace Projekat
             // brisanje termina
             if (terminZaBrisanje != null)
             {
+                MessageBox.Show(terminZaBrisanje.Prostorija.Id.ToString() + " " + terminZaBrisanje.IdTermin.ToString());
                 SaleMenadzer.ObrisiZauzeceSale(terminZaBrisanje.Prostorija.Id, terminZaBrisanje.IdTermin);
                 TerminMenadzer.OtkaziTermin(terminZaBrisanje);
             }

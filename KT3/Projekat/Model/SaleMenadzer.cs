@@ -131,7 +131,7 @@ namespace Model
 
         public static void ObrisiZauzeceSale(int IdSale, int IdTermina)
         {
-            Sala sala = SaleMenadzer.NadjiSaluPoId(IdSale);
+            Sala sala = NadjiSaluPoId(IdSale);
             foreach (ZauzeceSale zauzeceSale in sala.zauzetiTermini)
             {
                 if (zauzeceSale.idTermina.Equals(IdTermina))

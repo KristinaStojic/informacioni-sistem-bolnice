@@ -7,38 +7,38 @@
         mc:Ignorable="d"
         d:DesignHeight="600" d:DesignWidth="800"
         Title="Prikaz termina" Background="#dbe2ef">
-        <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
-            <Grid  Margin="0,0,0,0" Height="578">
-                <StackPanel >
-                    <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
-                        <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
-                            <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
-                        </StackPanel>
-                        <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
-                            <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
-                                <MenuItem Header="_Ime i prezime">
-                                    <MenuItem.Icon>
-                                        <Image Source="/slike/user.png" />
-                                    </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" />
-                                    <Separator/>
-                                    <MenuItem Header="_Popuni anketu" />
-                                    <Separator/>
-                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                    <MenuItem Header="_sr" />
-                                    <MenuItem Header="_en"/>
-                                    <Separator />
-                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Svetla" Name="svetlaTema" />
-                                    <MenuItem Header="_Tamna"/>
-                                    <Separator />
-                                    <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
-                                </MenuItem>
-                            </Menu>
-                        </StackPanel>
+    <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
+        <Grid  Margin="0,0,0,0" Height="578">
+            <StackPanel >
+                <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                    <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
+                        <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
+                        <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                     </StackPanel>
-                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
+                    <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+                        <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
+                            <MenuItem Header="_Ime i prezime">
+                                <MenuItem.Icon>
+                                    <Image Source="/slike/user.png" />
+                                </MenuItem.Icon>
+                                <MenuItem Header="_Vaš profil" />
+                                <Separator/>
+                                <MenuItem Header="_Popuni anketu" />
+                                <Separator/>
+                                <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
+                                <MenuItem Header="_sr" />
+                                <MenuItem Header="_en"/>
+                                <Separator />
+                                <MenuItem Header="_Izaberite temu" IsEnabled="False" />
+                                <MenuItem Header="_Svetla" Name="svetlaTema" />
+                                <MenuItem Header="_Tamna"/>
+                                <Separator />
+                                <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                            </MenuItem>
+                        </Menu>
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
                 <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
@@ -54,44 +54,45 @@
                 <Hyperlink Name="karton" Click="karton_Click">
                     <Run Text="Zdravstveni karton"/>
                 </Hyperlink>
-                    </TextBlock>
-                </StackPanel>
-                <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
+                </TextBlock>
+            </StackPanel>
+            <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="283" Margin="75,304,0,-9" VerticalAlignment="Top" Width="625" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged" Background="#FFF9F7F7" BorderBrush="#FF3F72AF">
-                    <DataGrid.Columns >
-                        <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
-                        <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
-                        <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
-                        <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                        <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
-                        <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
-                        <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
-                        <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"/>
-                    </DataGrid.Columns>
+                  Height="227" Margin="75,360,0,-9" VerticalAlignment="Top" Width="625" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged" Background="#FFF9F7F7" BorderBrush="#FF3F72AF">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
+                    <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
+                    <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
+                    <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
+                    <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
+                    <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
+                    <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
+                    <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"/>
+                </DataGrid.Columns>
 
-                </DataGrid>
-                <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" Height="154" Margin="75,119,0,0" VerticalAlignment="Top" Width="625" ItemsSource="{Binding Obavestenja}"
+            </DataGrid>
+            <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" Height="205" Margin="75,119,0,0" VerticalAlignment="Top" Width="625" ItemsSource="{Binding Obavestenja}"
                   SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Datum" Width="90" Binding="{Binding Datum}"/>
-                        <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
-                        <DataGridTextColumn Header="Sadrzaj" Width="385" Binding="{Binding SadrzajObavestenja}"/>
-                        <!-- staviti button  -->
-                        <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Datum" Width="100" Binding="{Binding Datum}"/>
+                    <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
+                    <DataGridTextColumn Header="Sadrzaj" Width="*" Binding="{Binding SadrzajObavestenja}"/>
+                    <!-- staviti button  -->
+                    <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style>
                             <EventSetter Event="CheckBox.Checked" Handler="OnChecked"/>
                         </Style>
                     </>
                 </-->
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="325,94,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
-                <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="300,278,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
-                <Button x:Name="anketa" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="610,88,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
-                    <TextBlock Text="Anketa" Foreground="White" FontSize="16"/>
-                </Button>
-            </Grid>
-        </StackPanel>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   RenderTransformOrigin="0.263,0.577" Margin="325,94,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
+            <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="325,329,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
+            <Button x:Name="anketa" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="610,88,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
+                <TextBlock Text="Anketa" Foreground="White" FontSize="16"/>
+            </Button>
+        </Grid>
+    </StackPanel>
 </Page>

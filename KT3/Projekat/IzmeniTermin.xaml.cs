@@ -327,80 +327,76 @@ namespace Projekat
             this.vpp.ItemsSource = sviSlobodni;
         }
 
-        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private bool ProveriVremeZauzecaZaTermine(string selektovaniDatum, string selektovaniSlot, Sala sala)
         {
-            string selektovaniDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string selektovaniSlot = vpp.SelectedValue.ToString();
-            int satiVreme = ParsiranjeSataVremenskogSlota(selektovaniSlot);
-            int minVreme = ParsiranjeMinutaVremenskogSlota(selektovaniSlot);
-
-            /* Pronalazenje sale za koju je slobodan selektovani slot*/
-            foreach (Sala sala in slobodneSale)
+            foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
-                foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
+                if (prvaSlobodnaSala != null) break;
+                // provera da li se poklapa sa terminom
+                if (zauzece.idTermina != oznakaZaRenoviranje && zauzece.datumPocetkaTermina.Equals(selektovaniDatum))
                 {
-                    if (prvaSlobodnaSala != null)
+                    if (zauzece.pocetakTermina.Equals(selektovaniSlot))
                     {
-                        break;
+                        return true;
                     }
+                }
+            }
+            return false;
+        }
+
+        private bool ProveriVremeZauzecaZaRenoviranje(string selektovaniDatum, int satiVreme, Sala sala)
+        {
+            foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
+            {
+                if (prvaSlobodnaSala != null) break;
+                if (zauzece.idTermina == oznakaZaRenoviranje)
+                {
                     int satiVremePocetka = ParsiranjeSataVremenskogSlota(zauzece.pocetakTermina);
                     int minVremePocetka = ParsiranjeMinutaVremenskogSlota(zauzece.pocetakTermina);
                     int satiVremeKraja = ParsiranjeSataVremenskogSlota(zauzece.krajTermina);
                     int minVremeKraja = ParsiranjeMinutaVremenskogSlota(zauzece.krajTermina);
 
-                    if (zauzece.datumPocetkaTermina.Equals(selektovaniDatum))
+                    if (selektovaniDatum.Equals(zauzece.datumPocetkaTermina) && selektovaniDatum.Equals(zauzece.datumKrajaTermina))
                     {
-                        if (satiVreme < satiVremePocetka)
+                        if (satiVremePocetka <= satiVreme && satiVreme < satiVremeKraja)
                         {
-                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
-                            break;
-                        }
-                        else if (satiVreme == satiVremePocetka && minVreme < minVremePocetka)
-                        {
-                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
-                            break;
+                            return true;
                         }
                     }
-                    else if (zauzece.datumKrajaTermina.Equals(selektovaniDatum))
+                    else if (selektovaniDatum.Equals(zauzece.datumPocetkaTermina))
                     {
-                        if (satiVreme > satiVremeKraja)
+                        if (satiVremePocetka <= satiVreme)
                         {
-                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
-                            break;
-                        }
-                        else if (satiVreme == satiVremeKraja && minVreme >= minVremeKraja)
-                        {
-                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
-                            break;
+                            return true;
                         }
                     }
-                    else if (zauzece.datumPocetkaTermina.Equals(selektovaniDatum) && zauzece.datumKrajaTermina.Equals(selektovaniDatum))  // termini
+                    else if (selektovaniDatum.Equals(zauzece.datumKrajaTermina))
                     {
-                        /* */
-                        if (!(satiVremePocetka < satiVreme && satiVreme < satiVremeKraja))
+                        if (satiVreme < satiVremeKraja)
                         {
-                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
-                            break;
-                        }
-                        else if (satiVremePocetka != satiVreme && minVremePocetka != minVreme)
-                        {
-                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
-                            break;
+                            return true;
                         }
                     }
-                    else if (!sala.zauzetiTermini.Exists(x => x.datumPocetkaTermina.Equals(selektovaniDatum)) && !sala.zauzetiTermini.Exists(x => x.datumKrajaTermina.Equals(selektovaniDatum)))
-                    {
-                        DateTime pocetakZauzecaSale = DateTime.Parse(zauzece.datumPocetkaTermina);
-                        DateTime krajZauzecaSale = DateTime.Parse(zauzece.datumKrajaTermina);
-                        if ((pocetakZauzecaSale < datum.SelectedDate) && (datum.SelectedDate < krajZauzecaSale))
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
-                        }
-                    }
+                }
+            }
+            return false;
+        }
+
+        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selektovaniDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            string selektovaniSlot = vpp.SelectedValue.ToString();
+            int satiVreme = ParsiranjeSataVremenskogSlota(selektovaniSlot);
+
+            /* Pronalazenje sale za koju je slobodan izabrani slot*/
+            foreach (Sala sala in slobodneSale)
+            {
+                bool postojiZauzece = ProveriVremeZauzecaZaTermine(selektovaniDatum, selektovaniSlot, sala);
+                postojiZauzece = ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
+                if (!postojiZauzece)
+                {
+                    prvaSlobodnaSala = sala;
+                    break;
                 }
             }
         }

@@ -72,7 +72,7 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="0,20,40,0" TextAlignment="Left" Height="27" Width="300"  ToolTip="Pretrazite listu termina po datumu" HorizontalAlignment="Right" FontSize="14" BorderBrush="#FF3F72AF">
+            <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="0,20,40,0" TextAlignment="Left" Height="25" Width="300"  ToolTip="Pretrazite listu termina po datumu" HorizontalAlignment="Right" FontSize="14" BorderBrush="#FF3F72AF">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <Style.Resources>
@@ -111,8 +111,8 @@
                         <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  /-->
                     <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
                     <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
-                    <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
-                    <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"/>
+                    <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" />
+                    <DataGridTextColumn Header="Tip usluge" Width="*" Binding="{Binding tipTermina}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="85">
