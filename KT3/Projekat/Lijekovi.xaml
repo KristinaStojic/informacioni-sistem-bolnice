@@ -41,7 +41,7 @@
                 <Button ToolTip="Obrisi, Ctrl + O" Click="Button_Click_3">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="290, 0, 0, 0" TextChanged="TextBox_TextChanged"></TextBox>
+                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="290, 0, 0, 0" TextChanged="TextBox_TextChanged"></TextBox>
                 <Button ToolTip="Pretrazi" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>

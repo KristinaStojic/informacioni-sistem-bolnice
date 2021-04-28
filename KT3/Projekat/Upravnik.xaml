@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Pocetna stranica" Height="500" Width="800" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Pocetna stranica" Height="505" Width="800" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="CadetBlue" Width="200">
             <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10"/>
@@ -32,6 +32,7 @@
                     <DataGridTextColumn Header="Sadrzaj obavestenja" Width="550" Binding="{Binding SadrzajObavestenja}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Width="160" Height="50" Background="CadetBlue" Margin="300, 0, 0, 0" Click="Button_Click">Detaljniji prikaz obavjestenja</Button>
         </StackPanel>
     </DockPanel>
 </Window>
