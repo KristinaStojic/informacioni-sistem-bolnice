@@ -40,11 +40,11 @@ namespace Projekat.Model
         }
         private static bool provjeri(Premjestaj premjestaj)
         {
-            if (premjestaj.datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
+            if (!premjestaj.datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
             {
                 return false; 
             }
-            if (premjestaj.datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
+            if (premjestaj.datumIVrijeme.TimeOfDay > DateTime.Now.TimeOfDay)
             {
                 return false;
             }
@@ -54,7 +54,7 @@ namespace Projekat.Model
         {
             foreach(Premjestaj premjestaj in premjestaji.ToList())
             {
-                if (provjeri(premjestaj))
+                if (!provjeri(premjestaj))
                 {
                     continue;
                 }

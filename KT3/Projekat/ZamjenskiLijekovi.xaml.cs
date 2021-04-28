@@ -106,5 +106,51 @@ namespace Projekat
                 MessageBox.Show("Morate izabrati lijek!");
             }
         }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.D)
+                {
+                    Button_Click(sender, e);
+                }else if(e.Key == Key.D || e.Key == Key.N)
+                {
+                    MenuItem_Click(sender, e);
+                }
+                else if (e.Key == Key.I)
+                {
+                    Button_Click_1(sender, e);
+                }
+                else if (e.Key == Key.O)
+                {
+                    Button_Click_2(sender, e);
+                }
+                else if (e.Key == Key.P)
+                {
+                    this.Pretraga.Focus();
+                }
+
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ZamjenskiLekovi.Clear();
+
+            if (izabraniLijek.zamenskiLekovi != null)
+            {
+                foreach (int zamjenskiLijek in izabraniLijek.zamenskiLekovi)
+                {
+                    foreach (Lek zamjenski in LekoviMenadzer.lijekovi)
+                    {
+                        if(zamjenski.idLeka == zamjenskiLijek && zamjenski.nazivLeka.StartsWith(this.Pretraga.Text))
+                        {
+                            ZamjenskiLekovi.Add(zamjenski);
+                        }
+                    }
+                }
+            }            
+        }
     }
 }

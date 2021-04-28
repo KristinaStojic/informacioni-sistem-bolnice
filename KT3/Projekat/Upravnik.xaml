@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Dobro dosli" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Pocetna stranica" Height="500" Width="800" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="CadetBlue" Width="200">
             <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10"/>
@@ -16,8 +16,8 @@
             <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="CadetBlue" BorderBrush="Black" BorderThickness="3">Izvjestaj</Button>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Background="CadetBlue" Height="70" Orientation="Horizontal">
-            <Button Name="Odjava" HorizontalAlignment="Right" Height="40" Width="150" Margin="430, 10, 10, 10"  Background="CadetBlue" BorderBrush="Black" BorderThickness="3" Click="Odjava_Click">
-                Odjava
+            <Button Width="40" Height="50" Margin="540, 0, 0, 0" Click="Odjava_Click" Background="CadetBlue" BorderBrush="CadetBlue" ToolTip="Odjava, Ctrl + O">
+                <Image Source="slike/signout.png" Width="40" Height="50" HorizontalAlignment="Center"/>
             </Button>
         </StackPanel>
 

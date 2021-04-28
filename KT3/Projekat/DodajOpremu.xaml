@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajOpremu" Height="227" Width="334" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+        Title="Dodavanje opreme" Height="227" Width="334" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

@@ -73,5 +73,16 @@ namespace Projekat
                 MessageBox.Show("Morate izabrati obavjestenje!");
             }
         }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.O)
+                {
+                    Odjava_Click(sender, e);
+                }
+            }
+        }
     }
 }

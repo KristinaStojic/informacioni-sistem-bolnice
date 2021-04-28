@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BrisanjeLijeka.xaml.cs">
+      <DependentUpon>BrisanjeLijeka.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BrisanjeSale.xaml.cs">
+      <DependentUpon>BrisanjeSale.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetaljiAlergena.xaml.cs">
       <DependentUpon>DetaljiAlergena.xaml</DependentUpon>
     </Compile>
@@ -165,7 +171,6 @@
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Obavjestenja.cs" />
     <Compile Include="ObradiZahtevZaLek.xaml.cs">
       <DependentUpon>ObradiZahtevZaLek.xaml</DependentUpon>
     </Compile>
@@ -304,6 +309,14 @@
     <Compile Include="ZdravstveniKartonPacijent.xaml.cs">
       <DependentUpon>ZdravstveniKartonPacijent.xaml</DependentUpon>
     </Compile>
+    <Page Include="BrisanjeLijeka.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BrisanjeSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DetaljiAlergena.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -766,6 +779,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\barkod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\signout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:local1="clr-namespace:Projekat.Model"
         mc:Ignorable="d"
-        Title="PrebaciStaticku" Height="350" Width="380" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue">
+        Title="Prebacivanje staticke opreme" Height="350" Width="380" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

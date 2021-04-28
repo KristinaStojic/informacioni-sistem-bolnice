@@ -56,16 +56,16 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var izabranaSala = dataGridSale.SelectedItem;
-            if (izabranaSala != null)
-            {
-                
-                SaleMenadzer.ObrisiSalu((Sala)izabranaSala);
+            var izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if(izabranaSala != null) {
+                BrisanjeSale brisanjeSale = new BrisanjeSale(izabranaSala);
+                brisanjeSale.Show();
             }
             else
             {
                 MessageBox.Show("Morate izabrati salu!");
             }
+            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -215,7 +215,7 @@ namespace Projekat
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             Sale.Clear();
-            foreach(Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleMenadzer.sale)
             {
                 if (sala.Namjena.Equals("Skladiste"))
                 {
@@ -224,6 +224,44 @@ namespace Projekat
                 if (sala.Namjena.StartsWith(this.Pretraga.Text))
                 {
                     Sale.Add(sala);
+                }
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))) {
+                if (e.Key == Key.D) {
+                    Button_Click(sender, e);
+                } else if (e.Key == Key.Z || e.Key == Key.N)
+                {
+                    Button_Click_3(sender, e);
+                }else if(e.Key == Key.I)
+                {
+                    Button_Click_2(sender, e);
+                }else if(e.Key == Key.R)
+                {
+                    Button_Click_4(sender, e);
+                }else if(e.Key == Key.O)
+                {
+                    Button_Click_1(sender, e);
+                }else if(e.Key == Key.P)
+                {
+                    this.Pretraga.Focus();
+                }else if(e.Key == Key.S)
+                {
+                    MenuItem_Click(sender, e);
+                }else if(e.Key == Key.H)
+                {
+                    MenuItem_Click_1(sender, e);
+                }
+                else if (e.Key == Key.K)
+                {
+                    MenuItem_Click_2(sender, e);
+                }
+                else if (e.Key == Key.V)
+                {
+                    MenuItem_Click_3(sender, e);
                 }
             }
         }
