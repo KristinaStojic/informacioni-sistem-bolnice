@@ -16,23 +16,23 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for PrikaziAnkete.xaml
+    /// Interaction logic for PrikaziAntekuZaLekare.xaml
     /// </summary>
-    public partial class PrikaziAnkete : Page
+    public partial class PrikaziAntekuZaLekare : Page
     {
-        private static int idPacijent;
         private static string prvoPitanje = null;
         private static string drugoPitanje = null;
         private static string trecePitanje = null;
         private static string cetvrtoPitanje = null;
         private static string petoPitanje = null;
-        public PrikaziAnkete(int idPrijavljenogPacijenta)
+        private static int idPacijent;
+        public PrikaziAntekuZaLekare(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
-            this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            this.potvrdi.IsEnabled = false;
+            this.lekar.Content = "Anketa o lekaru Zdravo korporacije";
         }
+
 
         public void jedan1_Click(object sender, RoutedEventArgs e)
         {
@@ -148,33 +148,6 @@ namespace Projekat
             odgovorenoNaSvaPitanja();
         }
 
-        private void jedan5_Click(object sender, RoutedEventArgs e)
-        {
-            petoPitanje = "5=";
-            if ((bool)jedan5.IsChecked)
-            {
-                petoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + petoPitanje);
-            }
-            else if ((bool)dva5.IsChecked)
-            {
-                petoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + petoPitanje);
-            }
-            else if ((bool)tri5.IsChecked)
-            {
-                petoPitanje += "3";
-            }
-            else if ((bool)cetiri5.IsChecked)
-            {
-                petoPitanje += "4";
-            }
-            else if ((bool)pet5.IsChecked)
-            {
-                petoPitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();
-        }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -210,10 +183,10 @@ namespace Projekat
         {
             // dodavanje ankete u listu --> sacuvajIzmene()
             string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
-            Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaKliniku, idPacijent, odgovoriPacijenta);
+            Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaLekare, idPacijent, odgovoriPacijenta);
             AnketaMenadzer.ankete.Add(anketa);
             AnketaMenadzer.sacuvajIzmene();
-            MessageBox.Show(odgovoriPacijenta);
+           // MessageBox.Show(odgovoriPacijenta);
         }
 
         private void odgovorenoNaSvaPitanja()
@@ -222,8 +195,8 @@ namespace Projekat
             {
                 this.potvrdi.IsEnabled = true;
             }
-        } 
+        }
+
     }
 
-    
 }

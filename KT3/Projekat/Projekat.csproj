@@ -217,6 +217,9 @@
     <Compile Include="PrikaziAnkete.xaml.cs">
       <DependentUpon>PrikaziAnkete.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikaziAntekuZaLekare.xaml.cs">
+      <DependentUpon>PrikaziAntekuZaLekare.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikaziPacijenta.xaml.cs">
       <DependentUpon>PrikaziPacijenta.xaml</DependentUpon>
     </Compile>
@@ -511,6 +514,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikaziAnkete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikaziAntekuZaLekare.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

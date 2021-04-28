@@ -50,12 +50,8 @@ namespace Projekat
                 izabraniLekar = prijavljeniPacijent.IzabraniLekar;
                 this.imePrz.Text = izabraniLekar.ToString();
             }
-            pomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
-                                                                "09:00", "09:30",  "10:00", "10:30",
-                                                                "11:00", "11:30", "12:00", "12:30",
-                                                                "13:00", "13:30", "14:00", "14:30",
-                                                                "15:00", "15:30", "16:00", "16:30",
-                                                                "17:00", "17:30", "18:00", "18:30",
+            pomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+                                                                "13:00", "13:30", "14:00", "14:30","15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
                                                                 "19:00", "19:30", "20:00"};
         }
 
@@ -64,13 +60,7 @@ namespace Projekat
             try
             {
                 int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-                String formatted = null;
-                DateTime? selectedDate = datum.SelectedDate;
-                if (selectedDate.HasValue)
-                {
-                    formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-                }
+                String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture); 
                 String vp = vpp.Text;
                 String vk = IzracunajVremeKrajaPregleda(vp);
 
@@ -84,15 +74,14 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Termin s = new Termin(brojTermina, formatted, vp, vk, tp);
+                Termin s = new Termin(brojTermina, datumTermina, vp, vk, tp);
                 Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
                 s.Pacijent = p;
                 s.Lekar = izabraniLekar;
 
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, s.IdTermin);
+                ZauzeceSale zs = new ZauzeceSale(vp, vk, datumTermina, s.IdTermin);
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
                 s.Prostorija = prvaSlobodnaSala;
-                //SaleMenadzer.sacuvajIzmjene(); // ?
                 TerminMenadzer.ZakaziTermin(s);
 
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
@@ -160,7 +149,7 @@ namespace Projekat
             }
         }
 
-        private void IzbaciProsleSlotoveZaDanas()
+        private void IzbaciProsleSlotoveZaDanasnjiDan()
         {
             if (datum.SelectedDate == DateTime.Now.Date)
             {
@@ -177,15 +166,15 @@ namespace Projekat
             }
         }
 
-        private static int ParsiranjeSataVremenskogSlota(string vreme)
+        private static int ParsiranjeSataVremenskogSlota(String vreme)
         {
-            string sat = vreme.Split(':')[0]; 
+            String sat = vreme.Split(':')[0]; 
             return Convert.ToInt32(sat);
         }
 
-        private static int ParsiranjeMinutaVremenskogSlota(string vreme)
+        private static int ParsiranjeMinutaVremenskogSlota(String vreme)
         {
-            string minuti = vreme.Split(':')[1];
+            String minuti = vreme.Split(':')[1];
             return Convert.ToInt32(minuti);
         }
 
@@ -219,7 +208,7 @@ namespace Projekat
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
                                                                "19:00", "19:30", "20:00"};
 
-            IzbaciProsleSlotoveZaDanas();
+            IzbaciProsleSlotoveZaDanasnjiDan();
 
             if (slobodneSale == null)
             {
@@ -236,11 +225,7 @@ namespace Projekat
                         DateTime datumKrajaZauzeca = DateTime.Parse(zs.datumKrajaTermina);
                         int satiVremePocetka = ParsiranjeSataVremenskogSlota(zs.pocetakTermina);
                         int minVremePocetka = ParsiranjeMinutaVremenskogSlota(zs.pocetakTermina);
-
                         int satiVremeKraja = ParsiranjeSataVremenskogSlota(zs.krajTermina);
-                        //int minVremeKraja = Convert.ToInt32(zs.krajTermina.Split(':')[1]);
-
-
                         if (datumPocetkaZauzeca.Equals(datum.SelectedDate) && datumKrajaZauzeca.Equals(datum.SelectedDate))
                         {
                             foreach (string slot in pomocnaSviSlobodniSlotovi)

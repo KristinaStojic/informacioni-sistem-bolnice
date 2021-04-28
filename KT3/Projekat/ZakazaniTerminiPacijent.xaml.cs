@@ -39,8 +39,8 @@ namespace Projekat
                 //Termini.Add(t);
             }
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dataGridTermini.ItemsSource);
-            //view.Filter = UserFilter;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
+            view.Filter = UserFilter;
         }
 
         private bool UserFilter(object item)
