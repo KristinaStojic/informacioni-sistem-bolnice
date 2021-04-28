@@ -216,7 +216,7 @@ namespace Projekat.Model
                     {
                         if (a.IdAlergena == stariAlergen.IdAlergena)
                         {
-                            a.NuspojavaNaLek = noviAlergen.NuspojavaNaLek;
+                            a.NuspojavaNaNastojak = noviAlergen.NuspojavaNaNastojak;
                             a.VremeReakcije = noviAlergen.VremeReakcije;
                         }
                     }
@@ -246,10 +246,18 @@ namespace Projekat.Model
                             foreach (Alergeni alergen in pacijent.Karton.Alergeni.ToArray())
                             {
 
-                                if (alergen.SifraLeka.Equals(lek.sifraLeka))
+                                /*if (alergen.NazivSastojka.Equals(lek.sifraLeka))
                                 {
                                     dozvoljeniLekovi.Remove(lek);
-                                }
+                                }*/
+
+                                 foreach(Sastojak sastojak in lek.sastojci.ToArray())
+                                 {
+                                        if (sastojak.naziv.Equals(alergen.NazivSastojka))
+                                        {
+                                             dozvoljeniLekovi.Remove(lek);
+                                        }
+                                 }
 
                             }
                         }

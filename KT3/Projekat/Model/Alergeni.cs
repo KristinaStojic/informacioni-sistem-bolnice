@@ -9,9 +9,9 @@ namespace Projekat.Model
     {
         public int IdAlergena { get; set; }
         public int IdPacijenta { get; set; }
-        public string NazivLeka { get; set; }
-        public string SifraLeka { get; set; }
-        public string NuspojavaNaLek { get; set; }
+        public string NazivSastojka { get; set; }
+        public string SifraSastojka{ get; set; }
+        public string NuspojavaNaNastojak { get; set; }
         public string VremeReakcije { get; set; }
 
         public Alergeni() { }
@@ -20,17 +20,17 @@ namespace Projekat.Model
         {
             this.IdAlergena = idAlergena;
             this.IdPacijenta = idPacijenta;
-            this.NazivLeka = nazivLeka;
-            this.SifraLeka = sifraLeka;
-            this.NuspojavaNaLek = nuspojava;
+            this.NazivSastojka = nazivLeka;
+            this.SifraSastojka = sifraLeka;
+            this.NuspojavaNaNastojak = nuspojava;
             this.VremeReakcije = vremeReakcije;
         }  
         
         public Alergeni(int idAlergena, string nazivLeka, string sifraLeka)
         {
             this.IdAlergena = idAlergena;  
-            this.NazivLeka = nazivLeka;
-            this.SifraLeka = sifraLeka;
+            this.NazivSastojka = nazivLeka;
+            this.SifraSastojka = sifraLeka;
         }
     }
 }

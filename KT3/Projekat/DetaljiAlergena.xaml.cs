@@ -32,9 +32,9 @@ namespace Projekat
             {
                 if (pac.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {
-                    this.naziv.Text = izabraniAlergen.NazivLeka;
-                    this.sifra.Text = izabraniAlergen.SifraLeka;
-                    this.nuspojava.Text = izabraniAlergen.NuspojavaNaLek;
+                    this.naziv.Text = izabraniAlergen.NazivSastojka;
+                    this.sifra.Text = izabraniAlergen.SifraSastojka;
+                    this.nuspojava.Text = izabraniAlergen.NuspojavaNaNastojak;
                     this.vreme.Text = izabraniAlergen.VremeReakcije;
                 }
             }
