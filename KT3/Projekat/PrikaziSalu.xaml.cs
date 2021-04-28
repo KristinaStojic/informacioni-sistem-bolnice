@@ -217,17 +217,13 @@ namespace Projekat
             Sale.Clear();
             foreach(Sala sala in SaleMenadzer.sale)
             {
-                if(sala.Namjena.Equals("Skladiste"))
+                if (sala.Namjena.Equals("Skladiste"))
                 {
-                    break;
+                    continue;
                 }
-                foreach(Oprema oprema in sala.Oprema)
+                if (sala.Namjena.StartsWith(this.Pretraga.Text))
                 {
-                    if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text))
-                    {
-                        Sale.Add(sala);
-                        break;
-                    }
+                    Sale.Add(sala);
                 }
             }
         }
