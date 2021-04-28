@@ -21,16 +21,18 @@ namespace Projekat
     // TODO
     public partial class ZakaziTermin : Page
     {
+        public static int maksimalniJednocifren = 9;
+        public static int oznakaZaRenoviranje = 0;
         public int idPacijent;
-        public Lekar lekarr;
+        public static Lekar izabraniLekar;
         //
         public List<Sala> slobodneSale;
         public static ObservableCollection<string> sviSlobodni { get; set; }
-        public static ObservableCollection<string> sviSlobodni2 { get; set; }
+        public static ObservableCollection<string> pomocnaSviSlobodniSlotovi { get; set; }
         public Sala prvaSlobodnaSala;
-        public List<string> vremeSala;
-        public int brSala;
+        public int ukupanBrojSalaZaPregled;
         public static Pacijent prijavljeniPacijent;
+        public static List<string> sviZauzetiZaSelektovaniDatum { get; set; }
 
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
@@ -38,29 +40,17 @@ namespace Projekat
             this.DataContext = this;
             datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
-
-            // TODO: ????
-            /*if(l != null)
-            {
-                //MessageBox.Show("Promenjen lekar");
-                lekarr = l;
-                this.imePrz.Text = l.ToString();
-            } else
-            {
-                prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                lekarr = prijavljeniPacijent.IzabraniLekar;
-                this.imePrz.Text = prijavljeniPacijent.IzabraniLekar.ToString();
-            }*/
-           
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            lekarr = prijavljeniPacijent.IzabraniLekar;
-            if (lekarr != null)
+            if (izabraniLekar != null)
             {
-                this.imePrz.Text = prijavljeniPacijent.IzabraniLekar.ToString();
+                this.imePrz.Text = izabraniLekar.ToString();
             }
-            
-
-            sviSlobodni2 = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
+            else
+            {
+                izabraniLekar = prijavljeniPacijent.IzabraniLekar;
+                this.imePrz.Text = izabraniLekar.ToString();
+            }
+            pomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
                                                                 "09:00", "09:30",  "10:00", "10:30",
                                                                 "11:00", "11:30", "12:00", "12:30",
                                                                 "13:00", "13:30", "14:00", "14:30",
@@ -76,14 +66,13 @@ namespace Projekat
                 int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
                 String formatted = null;
                 DateTime? selectedDate = datum.SelectedDate;
-                Console.WriteLine(selectedDate);
                 if (selectedDate.HasValue)
                 {
                     formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
                 }
                 String vp = vpp.Text;
-                String vk = IzracunajVremeKraja(vp);
+                String vk = IzracunajVremeKrajaPregleda(vp);
 
                 TipTermina tp;
                 if (combo.Text.Equals("Pregled"))
@@ -98,46 +87,44 @@ namespace Projekat
                 Termin s = new Termin(brojTermina, formatted, vp, vk, tp);
                 Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
                 s.Pacijent = p;
-                s.Lekar = lekarr;
+                s.Lekar = izabraniLekar;
 
                 ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, s.IdTermin);
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
                 s.Prostorija = prvaSlobodnaSala;
                 //SaleMenadzer.sacuvajIzmjene(); // ?
                 TerminMenadzer.ZakaziTermin(s);
+
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
             }
             catch (System.Exception)
             {
-                MessageBox.Show("Niste uneli sve podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
-        public static string IzracunajVremeKraja(string vp)
+        public static string IzracunajVremeKrajaPregleda(string vp)
         {
-            String vk;
-            String hh = vp.Substring(0, 2);
-            String min = vp.Substring(3);
-            if (min == "30")
+            string hh = vp.Substring(0, 2);
+            string mm = vp.Substring(3);
+            if (mm == "30")
             {
-                int vkInt = int.Parse(hh);
-                vkInt++;
-                if (vkInt <= 9)
+                int jednocifrenSat = int.Parse(hh);
+                jednocifrenSat++;
+                if (jednocifrenSat <= maksimalniJednocifren)
                 {
-                    vk = "0" + vkInt.ToString() + ":00";
+                    return "0" + jednocifrenSat.ToString() + ":00";
                 }
                 else
                 {
-                    vk = vkInt.ToString() + ":00";
+                    return jednocifrenSat.ToString() + ":00";
                 }
             }
             else
             {
-                vk = hh + ":30";
+                return hh + ":30";
             }
-            return vk;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -162,376 +149,257 @@ namespace Projekat
         {
             /* tip termina*/
             slobodneSale = new List<Sala>();
-            string tip = combo.SelectedValue.ToString().Split(' ')[1];
-            brSala = 0;
-            if (tip.Equals("Operacija"))
+            ukupanBrojSalaZaPregled = 0;
+            foreach (Sala s in SaleMenadzer.sale)
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                if (s.TipSale.Equals(tipSale.SalaZaPregled))
                 {
-                    if (s.TipSale.Equals(tipSale.OperacionaSala))
-                    {
-                        slobodneSale.Add(s);
-                        brSala++;
-                    }
-                }
-            }
-            else
-            {
-                foreach (Sala s in SaleMenadzer.sale)
-                {
-                    if (s.TipSale.Equals(tipSale.SalaZaPregled))
-                    {
-                        slobodneSale.Add(s);
-                        brSala++;
-                       // MessageBox.Show(s.Id.ToString() + " " + brSala);
-                    }
+                    slobodneSale.Add(s);
+                    ukupanBrojSalaZaPregled++;
                 }
             }
         }
 
-        // obrisati
-        public ObservableCollection<string> danasnjiSlotovi()
+        private void IzbaciProsleSlotoveZaDanas()
         {
-            sviSlobodni = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
-                                                               "09:00", "09:30",  "10:00", "10:30",
-                                                               "11:00", "11:30", "12:00", "12:30",
-                                                               "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30",
-                                                               "17:00", "17:30", "18:00", "18:30",
-                                                               "19:00", "19:30", "20:00"};
+            if (datum.SelectedDate == DateTime.Now.Date)
+            {
+                foreach (string slot in pomocnaSviSlobodniSlotovi)
+                {
+                    DateTime vreme = DateTime.Parse(slot);
+                    DateTime sada = DateTime.Now;
+                    if (vreme.TimeOfDay <= sada.TimeOfDay)
+                    {
+                        sviSlobodni.Remove(slot);
+                    }
+
+                }
+            }
+        }
+
+        private static int ParsiranjeSataVremenskogSlota(string vreme)
+        {
+            string sat = vreme.Split(':')[0]; 
+            return Convert.ToInt32(sat);
+        }
+
+        private static int ParsiranjeMinutaVremenskogSlota(string vreme)
+        {
+            string minuti = vreme.Split(':')[1];
+            return Convert.ToInt32(minuti);
+        }
 
 
-            return sviSlobodni;
-
+        private void UkloniZauzeteSlotove()
+        {
+            int brojacZauzetihSala;
+            foreach (string slot in pomocnaSviSlobodniSlotovi)
+            {
+                brojacZauzetihSala = 0;
+                foreach (string zauzeti in sviZauzetiZaSelektovaniDatum)
+                {
+                    if (slot.Equals(zauzeti))
+                    {
+                        brojacZauzetihSala++;
+                        if (brojacZauzetihSala == ukupanBrojSalaZaPregled)
+                        {
+                            sviSlobodni.Remove(slot);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            string selectDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            sviSlobodni = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30",
-                                                               "09:00", "09:30",  "10:00", "10:30",
-                                                               "11:00", "11:30", "12:00", "12:30",
-                                                               "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30",
-                                                               "17:00", "17:30", "18:00", "18:30",
+            string selektovaniDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            sviSlobodni = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30",
+                                                               "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
                                                                "19:00", "19:30", "20:00"};
 
-            if (datum.SelectedDate == DateTime.Now.Date)
-            {
-               // MessageBox.Show("Odabrali ste danasnji dan");
-                foreach(string slot in sviSlobodni2)
-                {
-                    DateTime dt = DateTime.Parse(slot);
-                    DateTime sada = DateTime.Now;
-                    if (dt.TimeOfDay <= sada.TimeOfDay)
-                    {
-                        //MessageBox.Show(dt.TimeOfDay.ToString() + " " + sada.TimeOfDay.ToString());
-                        sviSlobodni.Remove(slot);
-                    }
-                       
-                }
-            }
-            
-            int brojacZauzetihSala = 0;
+            IzbaciProsleSlotoveZaDanas();
+
             if (slobodneSale == null)
             {
                 MessageBox.Show("Prvo izberite tip termina", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
+                sviZauzetiZaSelektovaniDatum = new List<string>();
                 foreach (Sala s in slobodneSale)
                 {
                     foreach (ZauzeceSale zs in s.zauzetiTermini)
                     {
-                        if (zs.datumPocetkaTermina.Equals(selectDatum))
+                        DateTime datumPocetkaZauzeca = DateTime.Parse(zs.datumPocetkaTermina);
+                        DateTime datumKrajaZauzeca = DateTime.Parse(zs.datumKrajaTermina);
+                        int satiVremePocetka = ParsiranjeSataVremenskogSlota(zs.pocetakTermina);
+                        int minVremePocetka = ParsiranjeMinutaVremenskogSlota(zs.pocetakTermina);
+
+                        int satiVremeKraja = ParsiranjeSataVremenskogSlota(zs.krajTermina);
+                        //int minVremeKraja = Convert.ToInt32(zs.krajTermina.Split(':')[1]);
+
+
+                        if (datumPocetkaZauzeca.Equals(datum.SelectedDate) && datumKrajaZauzeca.Equals(datum.SelectedDate))
                         {
-                            // TODO: cast u int i poredjenje
-                            switch (zs.pocetakTermina)
+                            foreach (string slot in pomocnaSviSlobodniSlotovi)
                             {
-                                case "07:00":
+                                int satiVreme = ParsiranjeSataVremenskogSlota(slot);
+                                int minVreme = ParsiranjeMinutaVremenskogSlota(slot);
+                                /* provera u slucaju da renoviranje traje jedan dan */
+                                if (zs.idTermina == oznakaZaRenoviranje)
                                 {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
+                                    if (satiVreme >= satiVremePocetka && satiVreme < satiVremeKraja)
                                     {
-                                        sviSlobodni.Remove("07:00");
-                                        // MessageBox.Show("Postoji zauzeti termin u sali " + s.brojSale + ": " + zs.datumTermina + " " + zs.pocetakTermina);
+                                        sviZauzetiZaSelektovaniDatum.Add(slot);
                                     }
-                                    break;
                                 }
-                                case "07:30":
+                                /* provera da se selektovani datum poklapa sa nekim vec zakazanim terminom */
+                                else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
                                 {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("07:30");
-                                    }
-                                    break;
+                                    MessageBox.Show(slot);
+                                    sviZauzetiZaSelektovaniDatum.Add(slot);
                                 }
-                                case "08:00":
+                            }
+                        }
+                        /* ukoliko je selektovani datum u periodu renoviranja sale */
+                        else if (datumPocetkaZauzeca < datum.SelectedDate && datum.SelectedDate < datumKrajaZauzeca)
+                        {
+                            foreach (string slot in pomocnaSviSlobodniSlotovi)
+                            {
+                                sviZauzetiZaSelektovaniDatum.Add(slot);
+                            }
+                        }
+                        /* provera da li se selektovani datum poklapa sa pocetkom renoviranja sale - slobodni termini pre renoviranja */
+                        else if (datumPocetkaZauzeca == datum.SelectedDate)
+                        {
+                            foreach (string slot in pomocnaSviSlobodniSlotovi)  // mozda ce morati sviSlobodni2
+                            {
+                                int satiVreme = ParsiranjeSataVremenskogSlota(slot);
+                                if (satiVreme >= satiVremePocetka)
                                 {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("08:00");
-                                    }
-                                    break;
+                                    sviZauzetiZaSelektovaniDatum.Add(slot);
                                 }
-                                case "08:30":
+                            }
+                        }
+                        /* provera da li se selektovani datum poklapa sa krajem renoviranja sale - slobodni termini posle renoviranja */
+                        else if (datumKrajaZauzeca == datum.SelectedDate)
+                        {
+                            foreach (string slot in pomocnaSviSlobodniSlotovi)
+                            {
+                                int satiVreme = ParsiranjeSataVremenskogSlota(slot);
+                                if (satiVreme < satiVremeKraja)
                                 {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("08:30");
-                                    }
-                                    break;
-                                }
-                                case "09:00":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("09:00");
-                                    }
-                                    break;
-                                }
-                                case "09:30":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("09:30");
-                                    }
-                                    break;
-                                }
-                                case "10:00":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("10:00");
-                                    }
-                                    break;
-                                }
-                                case "10:30":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("10:30");
-                                    }
-                                    break;
-                                }
-                                case "11:00":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("11:00");
-                                    }
-                                    break;
-                                }
-                                case "11:30":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("11:30");
-                                    }
-                                    break;
-                                    }
-                                case "12:00":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("12:00");
-                                    }
-                                    break;
-                                }
-                                case "12:30":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("12:30");
-                                        }
-                                        break;
-                                    }
-                                case "13:00":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("13:00");
-                                        }
-                                        break;
-                                    }
-                                case "13:30":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("13:30");
-                                        }
-                                        break;
-                                    }
-                                case "14:00":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("14:00");
-                                        }
-                                        break;
-                                    }
-                                case "14:30":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("14:30");
-                                        }
-                                        break;
-                                    }
-                                case "15:00":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("15:00");
-                                        }
-                                        break;
-                                    }
-                                case "15:30":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("15:30");
-                                        }
-                                        break;
-                                    }
-                                case "16:00":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("16:00");
-                                        }
-                                        break;
-                                    }
-                                case "16:30":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("16:30");
-                                        }
-                                        break;
-                                    }
-                                case "17:00":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("17:00");
-                                        }
-                                        break;
-                                    }
-                                case "17:30":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("17:30");
-                                        }
-                                        break;
-                                    }
-                                case "18:00":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("18:00");
-                                        }
-                                        break;
-                                    }
-                                case "18:30":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("18:30");
-                                        }
-                                        break;
-                                    }
-                                case "19:00":
-                                    {
-                                        brojacZauzetihSala++;
-                                        if (brojacZauzetihSala >= brSala)
-                                        {
-                                            sviSlobodni.Remove("19:00");
-                                        }
-                                        break;
-                                    }
-                                case "19:30":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("19:30");
-                                    }
-                                    break;
-                                }
-                                case "20:00":
-                                {
-                                    brojacZauzetihSala++;
-                                    if (brojacZauzetihSala >= brSala)
-                                    {
-                                        sviSlobodni.Remove("20:00");
-                                    }
-                                    break;
-                                }
-                                default:
-                                {
-                                    Console.WriteLine("Greska");
-                                    MessageBox.Show("Ne postoje slobodni slotovi za izabrani datum");
-                                    break;
+                                    sviZauzetiZaSelektovaniDatum.Add(slot);
                                 }
                             }
                         }
                     }
                 }
             }
-            vpp.ItemsSource = sviSlobodni;
-            if (!sviSlobodni.Any())
+            //string x = null;
+            // if (sviZauzetiZaSelektovaniDatum != null)
+            //{
+            /*foreach (string s in sviZauzetiZaSelektovaniDatum)
             {
-                MessageBox.Show("Ne postoji nijedan slobodan temrin za izabrani datum", "Izaberite drugi datum");
+                x += s + " ";
             }
+            MessageBox.Show(x);*/
+            UkloniZauzeteSlotove();
+            
+            vpp.ItemsSource = sviSlobodni;
+            /* if (!sviSlobodni.Any()) // ovo mozda i ne moram --> web
+             {
+                 MessageBox.Show("Ne postoji nijedan slobodan termin za izabrani datum, molimo Vas izaberite drugi datum", "Upozorenje");
+             }*/
         }
+
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string selektDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string vreme = vpp.SelectedValue.ToString();
+            string selektovaniSlot = vpp.SelectedValue.ToString();
+            int satiVreme = ParsiranjeSataVremenskogSlota(selektovaniSlot);
+            int minVreme = ParsiranjeMinutaVremenskogSlota(selektovaniSlot);
 
-            foreach (Sala s in slobodneSale)
+            /* Pronalazenje sale za koju je slobodan izabrani slot*/
+            foreach (Sala sala in slobodneSale)
             {
-                if (!s.zauzetiTermini.Exists(x => x.pocetakTermina.Equals(vreme))) // ako ne postoji
+                foreach(ZauzeceSale zauzece in sala.zauzetiTermini)
                 {
-                    prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(s.Id);
-                    break;
+                    if (prvaSlobodnaSala != null)
+                    {
+                        break;
+                    }
+                    int satiVremePocetka = ParsiranjeSataVremenskogSlota(zauzece.pocetakTermina);
+                    int minVremePocetka = ParsiranjeMinutaVremenskogSlota(zauzece.pocetakTermina);
+                    int satiVremeKraja = ParsiranjeSataVremenskogSlota(zauzece.krajTermina);
+                    int minVremeKraja = ParsiranjeMinutaVremenskogSlota(zauzece.krajTermina);
+
+                    if (zauzece.datumPocetkaTermina.Equals(selektDatum))
+                    {
+                        if(satiVreme < satiVremePocetka)
+                        {
+                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
+                            break;
+                        } 
+                        else if(satiVreme == satiVremePocetka && minVreme < minVremePocetka)
+                        {
+                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
+                            break;
+                        }
+                    } 
+                    else if (zauzece.datumKrajaTermina.Equals(selektDatum))
+                    {
+                        
+
+                        if (satiVreme > satiVremeKraja)
+                        {
+                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
+                            break;
+                        }
+                        else if (satiVreme == satiVremeKraja && minVreme >= minVremeKraja)
+                        {
+                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
+                            break;
+                        }
+                    }
+                    else if (zauzece.datumPocetkaTermina.Equals(selektDatum) && zauzece.datumKrajaTermina.Equals(selektDatum))  // termini
+                    {
+                        /* */
+                        if (!(satiVremePocetka < satiVreme && satiVreme < satiVremeKraja))
+                        {
+                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
+                            break;
+                        }
+                        else if (satiVremePocetka != satiVreme && minVremePocetka != minVreme)
+                        {
+                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
+                            break;
+                        }
+                    }
+                    else if (!sala.zauzetiTermini.Exists(x => x.datumPocetkaTermina.Equals(selektDatum)) && !sala.zauzetiTermini.Exists(x => x.datumKrajaTermina.Equals(selektDatum)))
+                    {
+                        DateTime pocetakZauzecaSale = DateTime.Parse(zauzece.datumPocetkaTermina);
+                        DateTime krajZauzecaSale = DateTime.Parse(zauzece.datumKrajaTermina);
+                        if ((pocetakZauzecaSale < datum.SelectedDate) && (datum.SelectedDate < krajZauzecaSale))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            prvaSlobodnaSala = SaleMenadzer.NadjiSaluPoId(sala.Id);
+                        }
+                    }
                 }
-            }
-            if(prvaSlobodnaSala == null)
-            {
-                MessageBox.Show("Ne postoji slobodna sala za odabrani datum i vreme");
             }
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            
+            Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)

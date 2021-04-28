@@ -19,17 +19,25 @@ namespace Projekat
     /// </summary>
     public partial class DodajLijek : Window
     {
+        Lek uneseniLijek;
         public DodajLijek()
         {
             InitializeComponent();
             this.Potvrdi.IsEnabled = false;
+            this.Sastojci.IsEnabled = false;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            string sifraLijeka = this.sifra.Text;
-            string nazivLijeka = this.naziv.Text;
-            dodajZahtjev(sifraLijeka, nazivLijeka);
+            uneseniLijek.nazivLeka = this.naziv.Text;
+            uneseniLijek.sifraLeka = this.sifra.Text;
+            dodajZahtjev(uneseniLijek);
+            Console.WriteLine(uneseniLijek.sifraLeka);
+            Console.WriteLine(uneseniLijek.nazivLeka);
+            foreach(Sastojak s in uneseniLijek.sastojci)
+            {
+                Console.WriteLine(s.naziv);
+            }
             this.Close();
         }
 
@@ -40,10 +48,11 @@ namespace Projekat
             this.Close();
         }
 
-        private void dodajZahtjev(string sifraLijeka, string nazivLijeka)
+        private void dodajZahtjev(Lek lijek)
         {
-            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), nazivLijeka, sifraLijeka, DateTime.Now.Date.ToString(), false);
+            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString("d"), false);
             LekoviMenadzer.zahteviZaLekove.Add(zahtjev);
+            LekoviMenadzer.sacuvajIzmeneZahteva();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,9 +75,12 @@ namespace Projekat
             if(this.sifra.Text.Trim().Equals("") || this.naziv.Text.Trim().Equals("") || postojiSifraLijeka())
             {
                 this.Potvrdi.IsEnabled = false;
-            }else if(!this.sifra.Text.Trim().Equals("") && !this.naziv.Text.Trim().Equals("") && !postojiSifraLijeka())
+                this.Sastojci.IsEnabled = false;
+            }
+            else if(!this.sifra.Text.Trim().Equals("") && !this.naziv.Text.Trim().Equals("") && !postojiSifraLijeka())
             {
                 this.Potvrdi.IsEnabled = true;
+                this.Sastojci.IsEnabled = true;
             }
         }
         private bool postojiSifraLijeka()
@@ -81,6 +93,17 @@ namespace Projekat
                 }
             }
             return false;
+        }
+
+
+        private void Sastojci_Click(object sender, RoutedEventArgs e)
+        {
+            if (uneseniLijek == null)
+            {
+                uneseniLijek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), this.naziv.Text, this.sifra.Text);
+            }
+            SastojciDodavanje sastojciDodavanje = new SastojciDodavanje(uneseniLijek);
+            sastojciDodavanje.Show();
         }
     }
 }

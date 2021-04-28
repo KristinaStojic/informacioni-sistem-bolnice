@@ -39,7 +39,16 @@ namespace Projekat
                 //Termini.Add(t);
             }
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dataGridTermini.ItemsSource);
+            //view.Filter = UserFilter;
+        }
 
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+                return ((item as Termin).Datum.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,7 +95,8 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: prijava 
+            Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
@@ -111,6 +121,11 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dataGridTermini.ItemsSource).Refresh();
         }
     }
 }

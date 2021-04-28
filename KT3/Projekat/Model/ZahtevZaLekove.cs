@@ -9,7 +9,7 @@ namespace Projekat.Model
     {
         public int idZahteva { get; set; }
         public int idLeka { get; set; }
-
+        public Lek lek { get; set; }
         public String nazivLeka { get; set; }
 
         public String sifraLeka { get; set; }
@@ -31,8 +31,25 @@ namespace Projekat.Model
             this.datumSlanjaZahteva = datumSlanja;
             this.obradjenZahtev = obradjen;
         }
+        public ZahtevZaLekove(int id, Lek lijek, String datum, Boolean obradjen)
+        {
+            this.idZahteva = id;
+            this.lek = lijek;
+            this.datumSlanjaZahteva = datum;
+            this.obradjenZahtev = obradjen;
+            this.nazivLeka = lijek.nazivLeka;
+            this.sifraLeka = lijek.sifraLeka;
+        }
 
+        public override string ToString()
+        {
+            if (obradjenZahtev == true)
+                return "DA";
+            else
+                return "NE";
+        }
 
-        
     }
+
 }
+

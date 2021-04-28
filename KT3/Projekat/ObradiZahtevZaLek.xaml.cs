@@ -25,8 +25,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             this.zahtev = izabraniZahtev;
-            
-            this.spisakSastojaka.ItemsSource = LekoviMenadzer.nadjiSastojke(izabraniZahtev.sifraLeka);
+            this.spisakSastojaka.ItemsSource = LekoviMenadzer.nadjiSastojke(izabraniZahtev);
             this.datum.SelectedDate = DateTime.Parse(izabraniZahtev.datumSlanjaZahteva);
             this.naziv.Text = izabraniZahtev.nazivLeka;
             this.sifra.Text = izabraniZahtev.sifraLeka;
@@ -35,12 +34,19 @@ namespace Projekat
 
         private void Button_Odbij(object sender, RoutedEventArgs e)
         {
-           
+            OdbijZahtevZaLek odbijZahtev = new OdbijZahtevZaLek(zahtev);
+            odbijZahtev.Show();
+            this.Close();
         }
 
         private void Button_Odobri(object sender, RoutedEventArgs e)
         {
             zahtev.odobrenZahtev = true;
+            zahtev.obradjenZahtev = true;
+            Lek lek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), zahtev.nazivLeka,zahtev.sifraLeka, zahtev.lek.zamenskiLekovi, zahtev.lek.sastojci);
+            LekoviMenadzer.DodajLijek(lek);
+            LekoviMenadzer.izmeniZahtev(zahtev);
+            LekoviMenadzer.sacuvajIzmeneZahteva();
             this.Close();
         }
     }

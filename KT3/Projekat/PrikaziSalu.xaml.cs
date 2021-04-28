@@ -95,17 +95,50 @@ namespace Projekat
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
-            if(izabranaSala != null)
+            if(izabranaSala != null && !salaZakazanaZaRenoviranje(izabranaSala))
             {
                 Renoviranje renoviranje = new Renoviranje(izabranaSala);
                 renoviranje.Show();
             }
-            else
+            else if (izabranaSala != null && salaZakazanaZaRenoviranje(izabranaSala))
+            {
+                MessageBox.Show("Izabrana sala je vec zakazana za renoviranje!");
+            }else
             {
                 MessageBox.Show("Morate izabrati salu!");
             }
         }
 
+        private bool salaZakazanaZaRenoviranje(Sala izabranaSala)
+        {
+            Console.WriteLine(izabranaSala.zauzetiTermini.Count());
+            foreach(ZauzeceSale zauzeceSale in izabranaSala.zauzetiTermini)
+            {
+                if (zauzeceSale.idTermina == 0 && datumProsao(zauzeceSale.datumKrajaTermina) && vrijemeProslo(zauzeceSale.krajTermina))
+                {
+                    izabranaSala.zauzetiTermini.Remove(zauzeceSale);
+                    return false;
+                }else if(zauzeceSale.idTermina == 0 && (!datumProsao(zauzeceSale.datumKrajaTermina) || !vrijemeProslo(zauzeceSale.krajTermina)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool datumProsao(string datum)
+        {
+            datum = datum.Replace('/', '-');
+            DateTime datumKraja = DateTime.Parse(datum);
+            return datumKraja <= DateTime.Now.Date;
+        }
+
+        private bool vrijemeProslo(string vrijeme)
+        {
+            int vrijemeKraja = int.Parse(vrijeme.Split(':')[0]);
+            int sadasnjeVrijeme = int.Parse(DateTime.Now.TimeOfDay.ToString().Split(':')[0]);
+            return vrijemeKraja <= sadasnjeVrijeme;
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             SaleMenadzer.sacuvajIzmjene();
@@ -184,17 +217,13 @@ namespace Projekat
             Sale.Clear();
             foreach(Sala sala in SaleMenadzer.sale)
             {
-                if(sala.Namjena.Equals("Skladiste"))
+                if (sala.Namjena.Equals("Skladiste"))
                 {
-                    break;
+                    continue;
                 }
-                foreach(Oprema oprema in sala.Oprema)
+                if (sala.Namjena.StartsWith(this.Pretraga.Text))
                 {
-                    if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text))
-                    {
-                        Sale.Add(sala);
-                        break;
-                    }
+                    Sale.Add(sala);
                 }
             }
         }

@@ -26,33 +26,55 @@ namespace Projekat
             get;
             set;
         }
+        public static ObservableCollection<Lek> TabelaLekova
+        {
+            get;
+            set;
+        }
+
         public SpisakZahtevaZaLekove()
         {
             InitializeComponent();
             this.DataContext = this;
+            dodajZahteveUTabelu();
+            dodajLekoveUTabelu();
+
+        }
+
+        private void dodajZahteveUTabelu()
+        {
             TabelaZahteva = new ObservableCollection<ZahtevZaLekove>();
-            TabelaZahteva = MainWindow.zahtevi;
             foreach (ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
             {
                 TabelaZahteva.Add(zahtev);
             }
+        }
 
-           
-
+        private void dodajLekoveUTabelu()
+        {
+            TabelaLekova = new ObservableCollection<Lek>();
+            foreach (Lek lek in LekoviMenadzer.lijekovi)
+            {
+                TabelaLekova.Add(lek);
+            }
         }
 
         private void Button_Obradi(object sender, RoutedEventArgs e)
         {
             ZahtevZaLekove izabraniZahtev = (ZahtevZaLekove)dataGridZahtevi.SelectedItem;
-            if(izabraniZahtev != null)
+ 
+            if(izabraniZahtev == null)
+            {
+                MessageBox.Show("Niste selektovali zahtev koji zelite da obradite!");
+            }
+            else if(izabraniZahtev.obradjenZahtev == true)
+            {
+                MessageBox.Show("Izabrani zahtev je vec obradjen!");
+            }
+            else if (izabraniZahtev != null && izabraniZahtev.obradjenZahtev == false)
             {
                 ObradiZahtevZaLek obradiZahtev = new ObradiZahtevZaLek(izabraniZahtev);
                 obradiZahtev.Show();
-
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali zahtev koji zelite da obradite!");
             }
 
         }
@@ -60,6 +82,60 @@ namespace Projekat
         private void Button_Nazad(object sender, RoutedEventArgs e)
         {
             this.Close();
+        } 
+        
+        private void Button_Izmeni(object sender, RoutedEventArgs e)
+        {
+            
+            Lek izabraniLek = (Lek)dataGridLekovi.SelectedItem;
+
+            if (izabraniLek != null)
+            {
+
+                IzmeniLekLekar izmeniLek = new IzmeniLekLekar(izabraniLek);
+                izmeniLek.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Lek izabraniLek = (Lek)dataGridLekovi.SelectedItem;
+
+            if (izabraniLek != null)
+            {
+                PrikazSastojakaLekar sastojci = new PrikazSastojakaLekar(izabraniLek);
+                sastojci.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            Lek izabraniLek = (Lek)dataGridLekovi.SelectedItem;
+
+            if (izabraniLek != null)
+            {
+                PrikazZamenskihLekovaLekar zamenskiLekovi = new PrikazZamenskihLekovaLekar(izabraniLek);
+                zamenskiLekovi.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+
         }
     }
 }

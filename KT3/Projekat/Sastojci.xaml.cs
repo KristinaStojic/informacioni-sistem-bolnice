@@ -49,6 +49,12 @@ namespace Projekat
                 }
             }
         }
+        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            colNum++;
+            if (colNum == 3)
+                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
         private void postaviTekst()
         {
             this.tekst.Text = "Sastojci za lijek: " + izabraniLijek.nazivLeka;

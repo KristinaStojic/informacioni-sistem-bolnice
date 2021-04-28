@@ -33,7 +33,6 @@ namespace Projekat
         private void Button_Zahtevi(object sender, RoutedEventArgs e)
         {
 
-
             SpisakZahtevaZaLekove zahtevi = new SpisakZahtevaZaLekove();
             zahtevi.Show();
         }

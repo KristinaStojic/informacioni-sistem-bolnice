@@ -55,28 +55,28 @@
 
         <Image Source="slike/barkod.png" Height="60" Width="60" Margin="328,66,432,471" />
         <Image Source="slike/barkod.png" Height="60" Width="60" Margin="376,66,384,471" />
-        <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" Margin="385,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged" IsEnabled="False"/>
+        <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" Margin="385,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
         <Label Content="Ime pacijenta" FontSize="15" HorizontalAlignment="Left" Margin="210,122,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" Margin="385,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged" IsEnabled="False"/>
+        <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" Margin="385,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
         <Label FontSize="15" Content="Prezime pacijenta" HorizontalAlignment="Left" Margin="210,172,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="id" HorizontalAlignment="Left" Height="24" Margin="385,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged" IsEnabled="False"/>
+        <TextBox Name ="id" HorizontalAlignment="Left" Height="24" Margin="385,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
         <Label FontSize="15" Content="ID pacijenta" HorizontalAlignment="Left" Margin="210,220,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="False" Name ="idLekara" HorizontalAlignment="Left" Height="24" Margin="385,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
+        <TextBox IsEnabled="False" Name ="idLekara" HorizontalAlignment="Left" Height="24" Margin="385,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
         <Label  FontSize="15" Content="ID lekara koji izdaje lek" HorizontalAlignment="Left" Margin="210,276,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="naziv" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="385,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name ="naziv" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="385,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" />
         <Label FontSize="15" Content="Naziv leka" HorizontalAlignment="Left" Margin="210,322,0,0" VerticalAlignment="Top"/>
         <Label FontSize="15" Content="Datum propisivanja leka" HorizontalAlignment="Left" Margin="210,377,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="dani" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="385,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name ="dani" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="385,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" />
         <Label FontSize="15" Content="Koliko dana se koristi" HorizontalAlignment="Left" Margin="210,422,0,0" VerticalAlignment="Top"/>
-        <TextBox Name ="brojUzimanja" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="385,482,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name ="brojUzimanja" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="385,482,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" />
         <Label FontSize="15" Content="Koliko puta na dan" HorizontalAlignment="Left" Margin="210,482,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name ="sati" HorizontalAlignment="Left" IsEnabled="False" Height="24" Margin="385,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name ="sati" HorizontalAlignment="Left" IsEnabled="False" Height="24" Margin="385,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55"/>
         <Label FontSize="15" Content="Pocetak terapije" HorizontalAlignment="Left" Margin="210,542,0,0" VerticalAlignment="Top"/>
         <!--Button Background="#FF6895C5"  Content="Odustani" HorizontalAlignment="Left" Margin="105,537,0,0" VerticalAlignment="Top" Width="91" Height="29"  Click="Button_Click"/>
         <Button Background="#FF6895C5" Content="Sacuvaj" HorizontalAlignment="Left" Margin="258,537,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="Button_Click_1"/-->
         <TextBox Name ="datum" HorizontalAlignment="Left" IsEnabled="False" Margin="385,377,0,0" VerticalAlignment="Top" Width="175" Height="24"/>
         <Label Content="h" HorizontalAlignment="Left" Margin="445,540,0,0" VerticalAlignment="Top" Width="24"/>
-        <TextBox x:Name ="min" HorizontalAlignment="Left" Height="24" IsEnabled="False" Margin="472,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name ="min" HorizontalAlignment="Left" Height="24" IsEnabled="False" Margin="472,542,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" />
         <Label Content="min" HorizontalAlignment="Left" Margin="527,540,0,0" VerticalAlignment="Top" Width="33" Height="24" RenderTransformOrigin="0.318,0.615"/>
         <Image Source="slike/barkod.png" Height="60" Width="60" Margin="425,66,335,471" />
 
