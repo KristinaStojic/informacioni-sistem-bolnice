@@ -27,12 +27,14 @@ namespace Projekat
         {
             PrikaziPacijenta p = new PrikaziPacijenta();
             p.Show();
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             PrikaziTerminSekretar s = new PrikaziTerminSekretar();
             s.Show();
+            this.Close();
         }
 
         // nazad
@@ -55,6 +57,7 @@ namespace Projekat
         {
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
+            this.Close();
         }
     }
 }

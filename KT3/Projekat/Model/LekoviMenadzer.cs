@@ -54,6 +54,9 @@ namespace Projekat.Model
                 {
                     lijek.sastojci.Add(sastojak);
                     Sastojci.SastojciLijeka.Add(sastojak);
+                   //sastojci.Add(sastojak);
+                    
+
                 }
             }
             sacuvajIzmjene();
@@ -67,6 +70,8 @@ namespace Projekat.Model
                 {
                     lek.sastojci.Add(sastojak);
                     PrikazSastojakaLekar.TabelaSastojaka.Add(sastojak);
+                    //sastojci.Add(sastojak);
+
                 }
             }
             sacuvajIzmjene();
@@ -375,6 +380,38 @@ namespace Projekat.Model
             }
 
             sacuvajIzmeneZahteva();
+        }
+
+        public static List<Sastojak> NadjiSveSastojke()
+        {
+            List<Sastojak> sviSastojci = new List<Sastojak>();
+            foreach(Lek lek in lijekovi)
+            {
+                foreach(Sastojak sastojak in lek.sastojci)
+                {
+                    if (!PostojiSastojak(sastojak, sviSastojci))
+                    {
+                        sviSastojci.Add(sastojak);
+
+                    }
+                }
+            }
+
+            return sviSastojci;
+        }
+
+        public static bool PostojiSastojak(Sastojak noviSastojak, List<Sastojak> sastojci)
+        {
+            bool postoji = false;
+            foreach (Sastojak sastojak in sastojci)
+            {
+                if (sastojak.naziv.Equals(noviSastojak.naziv))
+                {
+                    postoji = true;
+                }
+            }
+
+            return postoji;
         }
 
         public static List<Sastojak> sastojci = new List<Sastojak>();

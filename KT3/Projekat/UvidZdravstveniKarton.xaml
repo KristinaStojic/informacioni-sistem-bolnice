@@ -43,35 +43,36 @@
                             <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="53,69,634.2,441" Height="30"/>
                             <Label FontSize="15" VerticalContentAlignment="Center" Content="Prezime pacijenta:" Margin="53,109,604.2,401" Height="30"/>
                             <Label FontSize="15" VerticalContentAlignment="Center" Content="JMBG:" Margin="53,149,640.2,353" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Pol:" Margin="53,189,661.2,307" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Status naloga:" Margin="53,229,624.2,266" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Broj telefona:" Margin="52,269,624.2,220" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Email:" Margin="53,309,640.2,175" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Adresa stanovanja:" Margin="53,349,589.2,136" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Bracno stanje:" Margin="53,389,624.2,93" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Zanimanje" Margin="53,429,640.2,54" Height="30"/>
-                            <TextBox x:Name="ime" Grid.Row="0" Margin="235,71,382.2,441" IsReadOnly="True"  Height="30" />
-                            <TextBox x:Name="prezime" Margin="235,110,382.2,402" IsReadOnly="True"  Height="30"/>
-                            <TextBox  x:Name="jmbg" Margin="235,152,382.2,360" IsReadOnly="True" Height="30"/>
-                            <ComboBox x:Name="combo2"  Margin="235,189,382.2,323" IsReadOnly="True" IsEnabled="False" Height="30">
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Pol:" Margin="53,189,661.2,317" Height="30"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Status naloga:" Margin="53,229,624.2,277" Height="30"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Broj telefona:" Margin="52,270,624.2,236" Height="30"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Email:" Margin="53,313,640.2,193" Height="30"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Adresa stanovanja:" Margin="53,353,589.2,153" Height="30"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Bracno stanje:" Margin="53,395,624.2,111" Height="30"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Zanimanje:" Margin="53,436,640.2,70" Height="30"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Maloletnik:" Margin="53,477,640.2,29" Height="30"/>
+                            <TextBox x:Name="ime" Grid.Row="0" Margin="235,71,382.2,437" IsReadOnly="True" />
+                            <TextBox x:Name="prezime" Margin="235,110,382.2,397" IsReadOnly="True"/>
+                            <TextBox  x:Name="jmbg" Margin="235,152,382.2,355" IsReadOnly="True"/>
+                            <ComboBox x:Name="combo2"  Margin="235,189,382.2,317" IsReadOnly="True" IsEnabled="False" Height="30">
                                 <ComboBoxItem Content="M"/>
                                 <ComboBoxItem Content="Z"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo"  Margin="235,229,382.2,283" SelectedIndex="0" IsReadOnly="True"  Height="30">
+                            <ComboBox x:Name="combo"  Margin="235,229,382.2,274" SelectedIndex="0" IsReadOnly="True">
                                 <ComboBoxItem Content="STALAN"/>
                                 <ComboBoxItem Content="GUEST"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo3"  Margin="235,403,382.2,109" IsReadOnly="True" IsEnabled="False"  Height="30">
+                            <ComboBox x:Name="combo3"  Margin="235,399,382.2,107" IsReadOnly="True" IsEnabled="False"  Height="30">
                                 <ComboBoxItem Content="Neozenjen/Neudata"/>
                                 <ComboBoxItem Content="Ozenjen/Udata"/>
                                 <ComboBoxItem Content="Udovac/Udovica"/>
                                 <ComboBoxItem Content="Razveden/Razvedena"/>
                                 <ComboBoxItem Content="Neodredjeno"/>
                             </ComboBox>
-                            <TextBox x:Name="brojTelefona" Margin="235,280,382.2,232" IsReadOnly="True" Height="30"/>
-                            <TextBox x:Name="email" Margin="235,324,382.2,188" IsReadOnly="True"  Height="30"/>
-                            <TextBox x:Name="adresa" Margin="235,364,382.2,148" IsReadOnly="True" Height="30"/>
-                            <TextBox x:Name="zanimanje" Margin="235,444,382.2,68" IsReadOnly="True"  Height="30"/>
+                            <TextBox x:Name="brojTelefona" Margin="235,274,382.2,233" IsReadOnly="True"/>
+                            <TextBox x:Name="email" Margin="235,316,382.2,191" IsReadOnly="True"/>
+                            <TextBox x:Name="adresa" Margin="235,356,382.2,151" IsReadOnly="True"/>
+                            <TextBox x:Name="zanimanje" Margin="235,440,382.2,67" IsReadOnly="True"/>
                             <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="193" Margin="465,240,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Grid>
                                     <Image Source="slike/doktor.png" Width="87" HorizontalAlignment="Center" Margin="103,10,110,40" RenderTransformOrigin="0.475,0.468"/>
@@ -93,7 +94,7 @@
                                     </Image.RenderTransform>
                                 </Image>
                             </Button>
-                            <CheckBox x:Name="maloletnik" Content="Maloletnik" HorizontalAlignment="Left" Margin="57,485,0,0" VerticalAlignment="Top" FontSize="14" IsEnabled="False"/>
+                            <CheckBox x:Name="maloletnik" HorizontalAlignment="Left" Margin="235,487,0,0" VerticalAlignment="Top" FontSize="14" IsEnabled="False"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Anamneza" Width="100">

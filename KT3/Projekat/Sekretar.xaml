@@ -21,10 +21,10 @@
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="1030,600,0,0" VerticalAlignment="Top" Width="38" Height="47" Background="#FFA3DADE"/>
-        <Button HorizontalAlignment="Left" Margin="1086,600,0,0" VerticalAlignment="Top" Width="42" Height="47" Background="#FF5DBFC5"/>
-        <Button HorizontalAlignment="Left" Margin="970,600,0,0" VerticalAlignment="Top" Width="38" Height="47" Background="#FFE7F6F7"/>
-        <Button HorizontalAlignment="Left" Margin="1145,600,0,0" VerticalAlignment="Top" Width="44" Height="47" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804"/>
+        <Button HorizontalAlignment="Left" Margin="1126,663,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFA3DADE"/>
+        <Button HorizontalAlignment="Left" Margin="1175,663,0,0" VerticalAlignment="Top" Width="36" Height="17" Background="#FF5DBFC5"/>
+        <Button HorizontalAlignment="Left" Margin="1074,663,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFE7F6F7"/>
+        <Button HorizontalAlignment="Left" Margin="1226,663,0,0" VerticalAlignment="Top" Width="38" Height="17" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804"/>
         <Button Margin="10,7,1179.6,617.4" BorderThickness="0" Background="#00DDDDDD" Click="Button_Click_3">
             <StackPanel>
                 <Image Source="slike/icons8-pull-down-50.png" Height="53" Width="82" />
