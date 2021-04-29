@@ -89,7 +89,7 @@ namespace Projekat
 
                 if (selektovanoObavestenje.Oznaka.Equals("svi"))
                 {
-                    namena.Text = "sve zaposlene";
+                    namena.Text = "sve";
                 }
                 else if (selektovanoObavestenje.Oznaka.Equals("lekari"))
                 {

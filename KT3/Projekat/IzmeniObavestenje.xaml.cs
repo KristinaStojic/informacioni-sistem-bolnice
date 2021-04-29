@@ -120,7 +120,7 @@ namespace Projekat
             List<int> selektovaniPacijentiId = new List<int>();     // za slucaj kad se obavestenja salju specificnim pacijentima
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            if (namena.Text.Equals("sve zaposlene"))
+            if (namena.Text.Equals("sve"))
             {
                 oznaka = "svi";
             }
