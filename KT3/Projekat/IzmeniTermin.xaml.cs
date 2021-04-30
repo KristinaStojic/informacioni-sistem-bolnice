@@ -391,8 +391,8 @@ namespace Projekat
             /* Pronalazenje sale za koju je slobodan izabrani slot*/
             foreach (Sala sala in slobodneSale)
             {
-                bool postojiZauzece = ProveriVremeZauzecaZaTermine(selektovaniDatum, selektovaniSlot, sala);
-                postojiZauzece = ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
+                bool postojiZauzece = ProveriVremeZauzecaZaTermine(selektovaniDatum, selektovaniSlot, sala) || ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
+                //postojiZauzece = ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
                 if (!postojiZauzece)
                 {
                     prvaSlobodnaSala = sala;

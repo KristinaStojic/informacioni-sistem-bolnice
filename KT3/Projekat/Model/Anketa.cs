@@ -13,7 +13,7 @@ namespace Projekat.Model
         public string odgovori { get; set; }
         public VrstaAnkete vrstaAnkete { get; set; }
         public string nazivAnkete { get; set; }
-        public int idTermina { get; set; }   /* da bih izvukla ime i prezime lekara */
+        public int idTermina { get; set; } 
         public bool popunjenaAnketa { get; set; }
 
         public Anketa() { }

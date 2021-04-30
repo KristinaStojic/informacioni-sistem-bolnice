@@ -42,6 +42,7 @@ namespace Projekat
 
         private void PrikaziAnketeZaProsleTermine()
         {
+            brojacProslihTermina = 0;
             foreach (Anketa anketa in AnketaMenadzer.ankete)
             {
                 foreach (Termin termin in TerminMenadzer.pronadjiTerminPoIdPacijenta(idPacijent))
@@ -50,17 +51,20 @@ namespace Projekat
                     TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);
                     if ((datumTermina == DateTime.Now.Date && vremeKrajaTermina <= DateTime.Now.TimeOfDay) || datumTermina < DateTime.Now.Date)
                     {
-                        if (anketa.idTermina == termin.IdTermin)
-                        {
-                            brojacProslihTermina++;
-                            AnketePacijenta.Add(anketa);
-                        }
                         if (anketa.idTermina == 0) // TODO: magic number!
                         {
                             if (brojacProslihTermina == minBrojTerminaZaAnketuKlinika)
                             {
+                                MessageBox.Show("Ankete za kliniku: " + brojacProslihTermina.ToString());
                                 AnketePacijenta.Add(anketa);
+                                return;
                             }
+                        }
+                        if (anketa.idTermina == termin.IdTermin)
+                        {
+                            brojacProslihTermina++;
+                            MessageBox.Show(brojacProslihTermina.ToString());
+                            AnketePacijenta.Add(anketa);
                         }
                     }
                 }
