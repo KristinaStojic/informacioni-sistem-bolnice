@@ -28,6 +28,7 @@ namespace Projekat
         //private static System.Timers.Timer aTimer;
         private int brojacProslihTermina;
         public static int minBrojTerminaZaAnketuKlinika = 3;
+        private static int oznakaAnketeZaKliniku = 0;
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace Projekat
             //PostaviTimer();
             AnketePacijenta = new ObservableCollection<Anketa>();
             PrikaziAnketeZaProsleTermine();
-            OnemoguciVisestrukoPopunjavanjeIsteAnkete();
+            listaAnketi.ItemsSource = AnketePacijenta;
         }
 
         private void PrikaziAnketeZaProsleTermine()
@@ -51,13 +52,13 @@ namespace Projekat
                     TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);
                     if ((datumTermina == DateTime.Now.Date && vremeKrajaTermina <= DateTime.Now.TimeOfDay) || datumTermina < DateTime.Now.Date)
                     {
-                        if (anketa.idTermina == 0) // TODO: magic number!
+                        if (anketa.idTermina == oznakaAnketeZaKliniku) 
                         {
-                            if (brojacProslihTermina == minBrojTerminaZaAnketuKlinika)
+                            if (brojacProslihTermina == minBrojTerminaZaAnketuKlinika) /* posle 3. termina - anketa o radu klinike */
                             {
                                 MessageBox.Show("Ankete za kliniku: " + brojacProslihTermina.ToString());
                                 AnketePacijenta.Add(anketa);
-                                return;
+                                //break; // ?
                             }
                         }
                         if (anketa.idTermina == termin.IdTermin)
@@ -70,30 +71,6 @@ namespace Projekat
                 }
             }
         }
-
-        private void OnemoguciVisestrukoPopunjavanjeIsteAnkete()
-        {
-            for(int i = 0; i < AnketePacijenta.Count(); i++)
-            {
-                if (AnketePacijenta[i].popunjenaAnketa == true)
-                {
-                    // TODO:
-                }
-            }
-        }
-
-        /*private static void PostaviTimer()
-        {
-            aTimer = new System.Timers.Timer(2000);
-            aTimer.Elapsed += OnTimedEvent;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
-        }
-
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            
-        }*/
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -127,8 +104,31 @@ namespace Projekat
 
         private void datagridAnkete_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Anketa anketa = (Anketa)datagridAnkete.SelectedItem;
-            if (anketa != null)
+           /* Anketa anketa = (Anketa)datagridAnkete.SelectedItem;
+            if (anketa != null && !anketa.popunjenaAnketa)
+            {
+                if (anketa.vrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
+                {
+                    PrikaziAnketuZaKliniku anketaZaKliniku = new PrikaziAnketuZaKliniku(idPacijent, anketa.idAnkete);
+                    this.NavigationService.Navigate(anketaZaKliniku);
+                }
+                else
+                {
+                    PrikaziAntekuZaLekare anketaZaLekare = new PrikaziAntekuZaLekare(idPacijent, anketa.idAnkete);
+                    this.NavigationService.Navigate(anketaZaLekare);
+                }
+            }*/
+        }
+
+        private void GridViewColumn_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
+
+        private void listaAnketi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Anketa anketa = (Anketa)listaAnketi.SelectedItem;
+            if (anketa != null && !anketa.popunjenaAnketa)
             {
                 if (anketa.vrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
                 {
@@ -143,10 +143,9 @@ namespace Projekat
             }
         }
 
-        private void GridViewColumn_SourceUpdated(object sender, DataTransferEventArgs e)
+        private void popunjenCheckBox_SourceUpdated(object sender, DataTransferEventArgs e)
         {
 
         }
-
     }
 }

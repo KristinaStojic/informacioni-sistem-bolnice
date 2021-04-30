@@ -43,11 +43,7 @@ namespace Projekat
             pomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
                                                                "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
             idPacijent = izabraniTermin.Pacijent.IdPacijenta;
-            datum.BlackoutDates.AddDatesInPast();
-            CalendarDateRange cdr = new CalendarDateRange();
-            cdr.Start = DateTime.Now.AddDays(3);
-            cdr.End = DateTime.Now.AddDays(2000);
-            datum.BlackoutDates.Add(cdr);
+            OgraniciIzborNovogDatuma(izabraniTermin);
             this.termin = izabraniTermin;
             if (izabraniTermin != null)
             {
@@ -64,9 +60,10 @@ namespace Projekat
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
                 idLek = izabraniTermin.Lekar;
-                this.datum.Text = izabraniTermin.Datum.ToString();
+                //this.datum.Add(DateTime.Parse(izabraniTermin.Datum));
                 int brojac = 0;
                 this.dgSearch.ItemsSource = MainWindow.lekari;
+                // TODO: ispraviti selektovanog lekara: upotrebiti dgsearch
                 foreach (Lekar lekar in MainWindow.lekari)
                 {
                     brojac++;
@@ -80,6 +77,20 @@ namespace Projekat
             }
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
             view.Filter = UserFilter;
+        }
+
+        private void OgraniciIzborNovogDatuma(Termin izabraniTermin)
+        {
+            CalendarDateRange daniPreTermina = new CalendarDateRange();
+            daniPreTermina.Start = DateTime.Parse(izabraniTermin.Datum).AddDays(-1000);//DateTime.Parse(izabraniTermin.Datum).AddDays(3);
+            daniPreTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(-3);
+            //MessageBox.Show(daniPreTermina.Start.ToString() + " " + daniPreTermina.End.ToString());
+            datum.BlackoutDates.Add(daniPreTermina);
+            CalendarDateRange daniPosleTermina = new CalendarDateRange();
+            daniPosleTermina.Start = DateTime.Parse(izabraniTermin.Datum).AddDays(3);
+            daniPosleTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(1000);
+            //MessageBox.Show(daniPosleTermina.Start.ToString() + " " + daniPosleTermina.End.ToString());
+            datum.BlackoutDates.Add(daniPosleTermina);
         }
 
         private bool UserFilter(object item)
@@ -120,13 +131,12 @@ namespace Projekat
         {
             try
             {
-                String formatted = null;
-                DateTime? selectedDate = datum.SelectedDate;
-                if (selectedDate.HasValue)
+                String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                /*if (selectedDate.HasValue)
                 {
                     formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-                }
+                }*/
 
                 String vp = vpp.Text;
                 String vk = ZakaziTermin.IzracunajVremeKrajaPregleda(vp);
@@ -140,12 +150,12 @@ namespace Projekat
                 {
                     tp = TipTermina.Operacija;
                 }
-                Termin t = new Termin(termin.IdTermin, formatted, vp, vk, tp);
+                Termin t = new Termin(termin.IdTermin, datumTermina, vp, vk, tp);
                 t.Pacijent = prijavljeniPacijent;
                 t.Pomeren = true;
 
                 SaleMenadzer.ObrisiZauzeceSale(termin.Prostorija.Id, termin.IdTermin);
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, formatted, t.IdTermin);
+                ZauzeceSale zs = new ZauzeceSale(vp, vk, datumTermina, t.IdTermin);
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
                 t.Prostorija = prvaSlobodnaSala;
                 if (dgSearch.SelectedItems.Count > 0)

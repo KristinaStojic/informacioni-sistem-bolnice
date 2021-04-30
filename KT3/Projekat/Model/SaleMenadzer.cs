@@ -137,7 +137,8 @@ namespace Model
                 if (zauzeceSale.idTermina == IdTermina)
                 {
                     sala.zauzetiTermini.Remove(zauzeceSale);
-                    //return;
+                    Console.WriteLine("Obrisano zauzuce sale: " + sala.Id);
+                    return;
                 }
             }
         }

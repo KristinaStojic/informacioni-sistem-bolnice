@@ -70,5 +70,15 @@ namespace Projekat.Model
             return null;
         }
 
+        public static void ObrisiAnketu(int idTermina)
+        {
+            foreach(Anketa anketa in ankete)
+            {
+                if(anketa.idTermina == idTermina)
+                {
+                    ankete.Remove(anketa);
+                }
+            }
+        }
     }
 }

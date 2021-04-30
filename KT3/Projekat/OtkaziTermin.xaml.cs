@@ -27,6 +27,7 @@ namespace Projekat
         public OtkaziTermin(Termin zaBrisanje)
         {
             InitializeComponent();
+            this.DataContext = this;
             terminZaBrisanje = zaBrisanje;
             idPacijent = zaBrisanje.Pacijent.IdPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);

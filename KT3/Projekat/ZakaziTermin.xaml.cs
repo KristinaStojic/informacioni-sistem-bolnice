@@ -82,8 +82,9 @@ namespace Projekat
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
                 termin.Prostorija = prvaSlobodnaSala;
                 TerminMenadzer.ZakaziTermin(termin);
-                Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaLekare, idPacijent, termin.IdTermin);
-                AnketaMenadzer.ankete.Add(anketa);
+                string podaciLekara = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+                Anketa anketaZaLekara = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaLekare, "Anketa za lekara: " + podaciLekara, idPacijent, termin.IdTermin);
+                AnketaMenadzer.ankete.Add(anketaZaLekara);
                 ProveriAnketuZaKliniku();
 
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
@@ -105,7 +106,7 @@ namespace Projekat
                     brojacTermina++;
                     if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika)
                     {
-                        Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaKliniku, idPacijent, 0);
+                        Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaKliniku, "Anketa o klinici Zdravo korporacije", idPacijent, 0);
                         AnketaMenadzer.ankete.Add(anketa);
                         return;
                     }

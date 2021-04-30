@@ -71,37 +71,24 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <!--ListView x:Name="listaAnketi" Height="300" Width="500" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                      SelectionChanged="listaAnketi_SelectionChanged"  Margin="0,30,0 ,0" >
+            <ListView x:Name="listaAnketi" Height="300" Width="500" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                      SelectionChanged="listaAnketi_SelectionChanged"  Margin="0,40,0 ,0" FontSize="13" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="50" Header="Status">
                             <GridViewColumn.CellTemplate >
                                 <DataTemplate>
-                                    <CheckBox Width="30" x:Name="popunjenCheckBox"/>
+                                    <CheckBox Width="30" x:Name="popunjenCheckBox" IsChecked="{Binding popunjenaAnketa}"  IsEnabled="False"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Naziv ankete" Width="450" DisplayMemberBinding="{Binding nazivAnkete}"/>
                     </GridView>
-                </>
-            </-->
+                </ListView.View>
+            </ListView>
             <!-- StackPanel Margin="180,30,180,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="302" Width="350" Background="WhiteSmoke"-->
-            <DataGrid x:Name="datagridAnkete" IsReadOnly="True"  Height="350" Width="400" Margin="0, 50, 0, 0" AutoGenerateColumns="False" 
+            <!--DataGrid x:Name="datagridAnkete" IsReadOnly="True"   Height="350" Width="400" Margin="0, 50, 0, 0" AutoGenerateColumns="False" 
                       ItemsSource="{Binding AnketePacijenta}" SelectionChanged="datagridAnkete_SelectionChanged">
-                <!--DataGrid.RowStyle>
-                    <Style TargetType="{x:Type DataGridRow}">
-                        <Setter Property="IsEnabled" Value="False" />
-                        <Setter Property="IsHitTestVisible"
-                    Value="{Binding RelativeSource={RelativeSource Self},
-                                    Path=IsEnabled}"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=nazivAnkete}" Value="{x:Null}">
-                                <Setter Property="IsEnabled" Value="True"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </-->
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv ankete" Width="*" Binding="{Binding nazivAnkete}" >
                         <DataGridTextColumn.HeaderStyle>
@@ -112,7 +99,7 @@
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
                 </DataGrid.Columns>
-            </DataGrid>
+            </-->
             <StackPanel>
                 <Button Content="Potvrdi" Visibility="Hidden" Name="potvrdi" Height="30" Width="90" Margin="0, 20, 0, 0"/>
             </StackPanel>

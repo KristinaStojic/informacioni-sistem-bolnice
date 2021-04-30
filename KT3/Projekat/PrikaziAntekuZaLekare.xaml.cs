@@ -51,12 +51,10 @@ namespace Projekat
             if ((bool)jedan1.IsChecked)
             {
                 prvoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + prvoPitanje);
             }
             else if ((bool)dva1.IsChecked)
             {
                 prvoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + prvoPitanje);
             }
             else if ((bool)tri1.IsChecked)
             {
@@ -68,7 +66,6 @@ namespace Projekat
             }
             else if ((bool)pet1.IsChecked)
             {
-                MessageBox.Show("Vas odgovor: 5");
                 prvoPitanje += "5";
             }
             odgovorenoNaSvaPitanja();
@@ -80,12 +77,10 @@ namespace Projekat
             if ((bool)jedan2.IsChecked)
             {
                 drugoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + drugoPitanje);
             }
             else if ((bool)dva2.IsChecked)
             {
                 drugoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + drugoPitanje);
             }
             else if ((bool)tri2.IsChecked)
             {
@@ -108,12 +103,10 @@ namespace Projekat
             if ((bool)jedan3.IsChecked)
             {
                 trecePitanje += "1";
-                MessageBox.Show("Vas odgovor: " + trecePitanje);
             }
             else if ((bool)dva3.IsChecked)
             {
                 trecePitanje += "2";
-                MessageBox.Show("Vas odgovor: " + trecePitanje);
             }
             else if ((bool)tri3.IsChecked)
             {
@@ -136,12 +129,10 @@ namespace Projekat
             if ((bool)jedan4.IsChecked)
             {
                 cetvrtoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + cetvrtoPitanje);
             }
             else if ((bool)dva4.IsChecked)
             {
                 cetvrtoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + cetvrtoPitanje);
             }
             else if ((bool)tri4.IsChecked)
             {

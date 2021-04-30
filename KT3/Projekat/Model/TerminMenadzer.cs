@@ -203,6 +203,7 @@ namespace Model
                             SaleMenadzer.sacuvajIzmjene();
                         }
                     }
+                    AnketaMenadzer.ObrisiAnketu(termin.Prostorija.Id);
                     termini.RemoveAt(i);
                 }
             }
