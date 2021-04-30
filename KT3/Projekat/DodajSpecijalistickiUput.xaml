@@ -1,0 +1,88 @@
+﻿<Window x:Class="Projekat.DodajSpecijalistickiUput"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="DodajSpecijalistickiUput" Height="700" Width="600" Background="LightSkyBlue">
+    <Grid>
+        <StackPanel>
+
+            <TabControl x:Name="uputi" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="31,20.4,29.6,85.4" Height="625">
+
+                <TabItem Header="Laboratorija" Width="100" Height="25">
+
+                    <Grid/>
+                </TabItem>
+                <TabItem Header="Specijalistički pregled" Width="130">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="145"/>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="230"/>
+                            <ColumnDefinition Width="230"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Ime pacijenta" Grid.Column="1" Margin="0,10,20,45.2" Grid.Row="1" Grid.RowSpan="2" FontSize="16"/>
+                        <Label Content="Prezime pacijenta" Grid.Column="1" Margin="0,9.4,20,0.2" Grid.Row="2" FontSize="16"/>
+                        <Label Content="JMBG pacijenta" Grid.Column="1" Margin="0,9.8,20,43.8" Grid.Row="3" FontSize="16" Grid.RowSpan="2"/>
+                        <Label Content="Lekar koji izdaje uput" Margin="1,9,19,44.6" Grid.Row="4" FontSize="16" Grid.RowSpan="2" Grid.Column="1"/>
+                        <Label Content="Datum izdavanja uputa" Grid.Column="1" Margin="0,9.2,10,44.4" Grid.Row="5" FontSize="16" Grid.RowSpan="2"/>
+                        <Label Content="Lekar kod god se upućuje" Grid.Column="1" Margin="0.4,8.8,10,0" Grid.Row="6" FontSize="16"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,45.2" Grid.Row="1" Grid.RowSpan="2" IsEnabled="False" Name="ime"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.4,19,44" Grid.Row="2" Grid.RowSpan="2" IsEnabled="False" Name="prezime"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,8.8,19,0" Grid.Row="3" IsEnabled="False" Name="jmbg"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="lekar"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.4,19,43.2" Grid.Row="6" IsEnabled="False" Grid.RowSpan="2" x:Name="specijalista"/>
+                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,0" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Height="35" Width="192" IsEnabled="False" Name="datum"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,9.2,19,0.6" Grid.Row="8" IsEnabled="True" x:Name="pretraga" TextChanged="pretraga_TextChanged"/>
+                        <ListView x:Name="nadjiDoktora" Grid.Column="1" Height="130" Margin="1.4,14.4,18,0" Grid.Row="9"  VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding ImeLek}"
+                                    Width="135"/>
+                                    <GridViewColumn Header="Prezime" DisplayMemberBinding="{Binding PrezimeLek}"
+                                    Width="135"/>
+                                    <GridViewColumn Header="Specijalizacija" DisplayMemberBinding="{Binding specijalizacija}"
+                                    Width="163"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button Content="Sačuvaj" Grid.Column="1" Margin="89.4,31.6,50,0" Grid.Row="10" VerticalAlignment="Top" Height="29" Background="#FF6895C5" Click="Potvrdi_Click"/>
+                        <Button Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,27.6,0,0" Grid.Row="10" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" Click="Odustani_Click"/>
+                        <Label Content="Napomena za pregled" Grid.Column="1" Margin="1.4,10,9,43.6" Grid.Row="7" FontSize="16" Grid.RowSpan="2"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="7" IsEnabled="True" Grid.RowSpan="2" x:Name="napomena"/>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Stacionarno lečenje" Width="130">
+
+                    <Grid>
+
+
+                    </Grid>
+                </TabItem>
+
+
+            </TabControl>
+
+        </StackPanel>
+
+
+    </Grid>
+</Window>

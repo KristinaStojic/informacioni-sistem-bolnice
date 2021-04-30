@@ -270,5 +270,52 @@ namespace Projekat.Model
         }
 
 
+        public static int GenerisanjeIdUputa(int idPac)
+        {
+            bool pomocna = false;
+            int id = 1;
+            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            {
+                if (pac.IdPacijenta == idPac)
+                {
+                    for (id = 1; id <= pac.Karton.Uputi.Count; id++)
+                    {
+                        foreach (Uput p in pac.Karton.Uputi)
+                        {
+                            if (p.IdUputa.Equals(id))
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
+                }
+            }
+
+
+            return id;
+
+        }
+
+        public static void DodajUput(Uput uput)
+        {
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if (pacijent.IdPacijenta == uput.idPacijenta)
+                {
+                    pacijent.Karton.Uputi.Add(uput);
+                    ZdravstveniKartonLekar.TabelaUputa.Add(uput);
+
+                }
+            }
+        }
+
+
     }
 }
