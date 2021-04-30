@@ -75,7 +75,7 @@
                   SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Datum" Width="100" Binding="{Binding Datum}"/>
-                    <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
+                    <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
                     <DataGridTextColumn Header="Sadrzaj" Width="*" Binding="{Binding SadrzajObavestenja}"/>
                     <!-- staviti button  -->
                     <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >

@@ -102,7 +102,7 @@
                           Background="#FFF9F7F7" BorderBrush="#FF3F72AF" Margin="0,20,0,0">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
-                    <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
+                    <DataGridTextColumn Header="Datum" Width="80" Binding="{Binding Datum}" />
                     <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
                     <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
                     <!--DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>

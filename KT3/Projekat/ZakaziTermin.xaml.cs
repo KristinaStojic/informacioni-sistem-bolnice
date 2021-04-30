@@ -21,17 +21,16 @@ namespace Projekat
     // TODO
     public partial class ZakaziTermin : Page
     {
-        public static int maksimalniJednocifren = 9;
-        public static int oznakaZaRenoviranje = 0;
-        public int idPacijent;
+        private static int maksimalniJednocifren = 9;
+        private static int oznakaZaRenoviranje = 0;
+        private static int idPacijent;
         public static Lekar izabraniLekar;
-        //
-        public List<Sala> slobodneSale;
-        public static ObservableCollection<string> sviSlobodni { get; set; }
-        public static ObservableCollection<string> pomocnaSviSlobodniSlotovi { get; set; }
-        public Sala prvaSlobodnaSala;
-        public int ukupanBrojSalaZaPregled;
-        public static Pacijent prijavljeniPacijent;
+        private List<Sala> slobodneSale;
+        private static ObservableCollection<string> sviSlobodni { get; set; }
+        private static ObservableCollection<string> pomocnaSviSlobodniSlotovi { get; set; }
+        private Sala prvaSlobodnaSala;
+        private int ukupanBrojSalaZaPregled;
+        private static Pacijent prijavljeniPacijent;
         public static List<string> sviZauzetiZaSelektovaniDatum { get; set; }
 
         public ZakaziTermin(int idPrijavljenogPacijenta)
@@ -74,15 +73,18 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Termin s = new Termin(brojTermina, datumTermina, vp, vk, tp);
+                Termin termin = new Termin(brojTermina, datumTermina, vp, vk, tp);
                 Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                s.Pacijent = p;
-                s.Lekar = izabraniLekar;
+                termin.Pacijent = p;
+                termin.Lekar = izabraniLekar;
 
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, datumTermina, s.IdTermin);
+                ZauzeceSale zs = new ZauzeceSale(vp, vk, datumTermina, termin.IdTermin);
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
-                s.Prostorija = prvaSlobodnaSala;
-                TerminMenadzer.ZakaziTermin(s);
+                termin.Prostorija = prvaSlobodnaSala;
+                TerminMenadzer.ZakaziTermin(termin);
+                Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaLekare, idPacijent, termin.IdTermin);
+                AnketaMenadzer.ankete.Add(anketa);
+                ProveriAnketuZaKliniku();
 
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
@@ -90,6 +92,24 @@ namespace Projekat
             catch (System.Exception)
             {
                 MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private static void ProveriAnketuZaKliniku()
+        {
+            int brojacTermina = 0;
+            foreach(Termin termin in TerminMenadzer.termini)
+            {
+                if (termin.Pacijent.IdPacijenta == idPacijent)
+                {
+                    brojacTermina++;
+                    if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika)
+                    {
+                        Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaKliniku, idPacijent, 0);
+                        AnketaMenadzer.ankete.Add(anketa);
+                        return;
+                    }
+                }
             }
         }
 

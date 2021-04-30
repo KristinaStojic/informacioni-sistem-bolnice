@@ -21,6 +21,7 @@ namespace Projekat
         {
             InitializeComponent();
             PrikaziTermin.pacijentProzor = true;
+            AnketaMenadzer.NadjiSveAnkete();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

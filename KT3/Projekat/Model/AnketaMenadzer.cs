@@ -57,5 +57,18 @@ namespace Projekat.Model
             }
             return idAnkete;
         }
+
+        public static Anketa NadjiAnketuPoId(int IdAnkete)
+        {
+            foreach (Anketa anketa in ankete)
+            {
+                if (anketa.idAnkete == IdAnkete)
+                {
+                    return anketa;
+                }
+            }
+            return null;
+        }
+
     }
 }

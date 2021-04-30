@@ -26,7 +26,6 @@ namespace Projekat
         public static int idPacijent;
         public static bool pacijentProzor;
         private int colNum = 0;
-        private static bool prolaz;
         public static ObservableCollection<Termin> Termini { get; set; }
         public static ObservableCollection<Obavestenja> ObavestenjaPacijent { get; set; }
         public Thread thread;
@@ -49,7 +48,7 @@ namespace Projekat
                 }
             }
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            ProveriDostupnostAnketeZaKlinku();
+            //ProveriDostupnostAnketeZaKlinku();
             DodajObavestenja();
         }
 
@@ -104,7 +103,6 @@ namespace Projekat
                 {
                     foreach (DateTime datum in recept.UzimanjeTerapije)
                     {
-                        prolaz = true;
                         if (datum.Date == DateTime.Now.Date)
                         {
                             bool postojiObavestenje = ProveriObjavljenaObavestenja(recept.NazivLeka, datum); 

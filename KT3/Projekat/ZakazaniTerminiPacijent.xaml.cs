@@ -36,7 +36,6 @@ namespace Projekat
                 {
                     Termini.Add(t);
                 }
-                //Termini.Add(t);
             }
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);

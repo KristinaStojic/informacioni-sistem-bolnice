@@ -1,5 +1,4 @@
-﻿using Model;
-using Projekat.Model;
+﻿using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,33 +16,25 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for PrikaziAntekuZaLekare.xaml
+    /// Interaction logic for PrikaziAnketuZaKliniku.xaml
     /// </summary>
-    public partial class PrikaziAntekuZaLekare : Page
+    public partial class PrikaziAnketuZaKliniku : Page
     {
+        private static int idPacijent;
+        private static int idAnkete;
         private static string prvoPitanje = null;
         private static string drugoPitanje = null;
         private static string trecePitanje = null;
         private static string cetvrtoPitanje = null;
         private static string petoPitanje = null;
-        private static int idPacijent;
-        private static int idAnkete;
-        public PrikaziAntekuZaLekare(int idPrijavljenogPacijenta, int idSelektovaneAnkete)
+        public PrikaziAnketuZaKliniku(int idPrijavljenogPacijenta, int idSelektovaneAnkete)
         {
             InitializeComponent();
+            this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             idAnkete = idSelektovaneAnkete;
-            Lekar lekar = pronadjiLekaraZaAnketu(idAnkete);
-            this.lekar.Content = "Anketa o radu lekara (" + lekar.ImeLek + " " + lekar.PrezimeLek + ")";
+            this.potvrdi.IsEnabled = false;
         }
-
-        private static Lekar pronadjiLekaraZaAnketu(int idAnkete)
-        {
-            Anketa anketa = AnketaMenadzer.NadjiAnketuPoId(idAnkete);
-            Termin termin = TerminMenadzer.NadjiTerminPoId(anketa.idTermina);
-            return termin.Lekar;
-        }
-
         public void jedan1_Click(object sender, RoutedEventArgs e)
         {
             // brPitanja = odgovor ; ......
@@ -158,6 +149,33 @@ namespace Projekat
             odgovorenoNaSvaPitanja();
         }
 
+        private void jedan5_Click(object sender, RoutedEventArgs e)
+        {
+            petoPitanje = "5=";
+            if ((bool)jedan5.IsChecked)
+            {
+                petoPitanje += "1";
+                MessageBox.Show("Vas odgovor: " + petoPitanje);
+            }
+            else if ((bool)dva5.IsChecked)
+            {
+                petoPitanje += "2";
+                MessageBox.Show("Vas odgovor: " + petoPitanje);
+            }
+            else if ((bool)tri5.IsChecked)
+            {
+                petoPitanje += "3";
+            }
+            else if ((bool)cetiri5.IsChecked)
+            {
+                petoPitanje += "4";
+            }
+            else if ((bool)pet5.IsChecked)
+            {
+                petoPitanje += "5";
+            }
+            odgovorenoNaSvaPitanja();
+        }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -209,5 +227,4 @@ namespace Projekat
         }
 
     }
-
 }

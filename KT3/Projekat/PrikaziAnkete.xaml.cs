@@ -1,8 +1,11 @@
-﻿using Projekat.Model;
+﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,160 +24,72 @@ namespace Projekat
     public partial class PrikaziAnkete : Page
     {
         private static int idPacijent;
-        private static string prvoPitanje = null;
-        private static string drugoPitanje = null;
-        private static string trecePitanje = null;
-        private static string cetvrtoPitanje = null;
-        private static string petoPitanje = null;
+        public static ObservableCollection<Anketa> AnketePacijenta { get; set; }
+        //private static System.Timers.Timer aTimer;
+        private int brojacProslihTermina;
+        public static int minBrojTerminaZaAnketuKlinika = 3;
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             this.potvrdi.IsEnabled = false;
+            //PostaviTimer();
+            AnketePacijenta = new ObservableCollection<Anketa>();
+            PrikaziAnketeZaProsleTermine();
+            OnemoguciVisestrukoPopunjavanjeIsteAnkete();
         }
 
-        public void jedan1_Click(object sender, RoutedEventArgs e)
+        private void PrikaziAnketeZaProsleTermine()
         {
-            // brPitanja = odgovor ; ......
-            prvoPitanje = "1=";
-            if ((bool)jedan1.IsChecked)
+            foreach (Anketa anketa in AnketaMenadzer.ankete)
             {
-                prvoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + prvoPitanje);
+                foreach (Termin termin in TerminMenadzer.pronadjiTerminPoIdPacijenta(idPacijent))
+                {
+                    DateTime datumTermina = DateTime.Parse(termin.Datum);
+                    TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);
+                    if ((datumTermina == DateTime.Now.Date && vremeKrajaTermina <= DateTime.Now.TimeOfDay) || datumTermina < DateTime.Now.Date)
+                    {
+                        if (anketa.idTermina == termin.IdTermin)
+                        {
+                            brojacProslihTermina++;
+                            AnketePacijenta.Add(anketa);
+                        }
+                        if (anketa.idTermina == 0) // TODO: magic number!
+                        {
+                            if (brojacProslihTermina == minBrojTerminaZaAnketuKlinika)
+                            {
+                                AnketePacijenta.Add(anketa);
+                            }
+                        }
+                    }
+                }
             }
-            else if ((bool)dva1.IsChecked)
-            {
-                prvoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + prvoPitanje);
-            }
-            else if ((bool)tri1.IsChecked)
-            {
-                prvoPitanje += "3";
-            }
-            else if ((bool)cetiri1.IsChecked)
-            {
-                prvoPitanje += "4";
-            }
-            else if ((bool)pet1.IsChecked)
-            {
-                MessageBox.Show("Vas odgovor: 5");
-                prvoPitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();
         }
 
-        private void jedan2_Click(object sender, RoutedEventArgs e)
+        private void OnemoguciVisestrukoPopunjavanjeIsteAnkete()
         {
-            drugoPitanje = "2=";
-            if ((bool)jedan2.IsChecked)
+            for(int i = 0; i < AnketePacijenta.Count(); i++)
             {
-                drugoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + drugoPitanje);
+                if (AnketePacijenta[i].popunjenaAnketa == true)
+                {
+                    // TODO:
+                }
             }
-            else if ((bool)dva2.IsChecked)
-            {
-                drugoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + drugoPitanje);
-            }
-            else if ((bool)tri2.IsChecked)
-            {
-                drugoPitanje += "3";
-            }
-            else if ((bool)cetiri2.IsChecked)
-            {
-                drugoPitanje += "4";
-            }
-            else if ((bool)pet2.IsChecked)
-            {
-                drugoPitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();
         }
 
-        private void jedan3_Click(object sender, RoutedEventArgs e)
+        /*private static void PostaviTimer()
         {
-            trecePitanje = "3=";
-            if ((bool)jedan3.IsChecked)
-            {
-                trecePitanje += "1";
-                MessageBox.Show("Vas odgovor: " + trecePitanje);
-            }
-            else if ((bool)dva3.IsChecked)
-            {
-                trecePitanje += "2";
-                MessageBox.Show("Vas odgovor: " + trecePitanje);
-            }
-            else if ((bool)tri3.IsChecked)
-            {
-                trecePitanje += "3";
-            }
-            else if ((bool)cetiri3.IsChecked)
-            {
-                trecePitanje += "4";
-            }
-            else if ((bool)pet3.IsChecked)
-            {
-                trecePitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();
+            aTimer = new System.Timers.Timer(2000);
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
         }
 
-        private void jedan4_Click(object sender, RoutedEventArgs e)
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            cetvrtoPitanje = "4=";
-            if ((bool)jedan4.IsChecked)
-            {
-                cetvrtoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + cetvrtoPitanje);
-            }
-            else if ((bool)dva4.IsChecked)
-            {
-                cetvrtoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + cetvrtoPitanje);
-            }
-            else if ((bool)tri4.IsChecked)
-            {
-                cetvrtoPitanje += "3";
-            }
-            else if ((bool)cetiri4.IsChecked)
-            {
-                cetvrtoPitanje += "4";
-            }
-            else if ((bool)pet4.IsChecked)
-            {
-                cetvrtoPitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();
-        }
-
-        private void jedan5_Click(object sender, RoutedEventArgs e)
-        {
-            petoPitanje = "5=";
-            if ((bool)jedan5.IsChecked)
-            {
-                petoPitanje += "1";
-                MessageBox.Show("Vas odgovor: " + petoPitanje);
-            }
-            else if ((bool)dva5.IsChecked)
-            {
-                petoPitanje += "2";
-                MessageBox.Show("Vas odgovor: " + petoPitanje);
-            }
-            else if ((bool)tri5.IsChecked)
-            {
-                petoPitanje += "3";
-            }
-            else if ((bool)cetiri5.IsChecked)
-            {
-                petoPitanje += "4";
-            }
-            else if ((bool)pet5.IsChecked)
-            {
-                petoPitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();
-        }
+            
+        }*/
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -206,24 +121,28 @@ namespace Projekat
             this.NavigationService.Navigate(pocetna);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void datagridAnkete_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // dodavanje ankete u listu --> sacuvajIzmene()
-            string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
-            Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaKliniku, idPacijent, odgovoriPacijenta);
-            AnketaMenadzer.ankete.Add(anketa);
-            AnketaMenadzer.sacuvajIzmene();
-            MessageBox.Show(odgovoriPacijenta);
+            Anketa anketa = (Anketa)datagridAnkete.SelectedItem;
+            if (anketa != null)
+            {
+                if (anketa.vrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
+                {
+                    PrikaziAnketuZaKliniku anketaZaKliniku = new PrikaziAnketuZaKliniku(idPacijent, anketa.idAnkete);
+                    this.NavigationService.Navigate(anketaZaKliniku);
+                }
+                else
+                {
+                    PrikaziAntekuZaLekare anketaZaLekare = new PrikaziAntekuZaLekare(idPacijent, anketa.idAnkete);
+                    this.NavigationService.Navigate(anketaZaLekare);
+                }
+            }
         }
 
-        private void odgovorenoNaSvaPitanja()
+        private void GridViewColumn_SourceUpdated(object sender, DataTransferEventArgs e)
         {
-            if (prvoPitanje != null && drugoPitanje != null && trecePitanje != null && cetvrtoPitanje != null && petoPitanje != null)
-            {
-                this.potvrdi.IsEnabled = true;
-            }
-        } 
-    }
 
-    
+        }
+
+    }
 }
