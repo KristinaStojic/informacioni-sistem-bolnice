@@ -45,7 +45,35 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            //godisnji odmor
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Zahtevi(sender, e);
+            }
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            } 
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                //Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
             
+
+
         }
     }
 }
