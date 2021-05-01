@@ -15,12 +15,12 @@
 
         <Menu DockPanel.Dock="Top" Background="LightSkyBlue">
             <MenuItem Header="_Opcije" FontSize="15">
-                <MenuItem Header="Obaveštenja" FontSize="15" Click="Button_Click_2" Background="White"></MenuItem>
-                <MenuItem Header="Pregledi i operacije" FontSize="15" Click="Button_Click" Background="White"></MenuItem>
-                <MenuItem Header="Odobravanje lekova" FontSize="15" Background="White"></MenuItem>
-                <MenuItem Header="Godišnji odmor" FontSize="15" Background="White"></MenuItem>
-                <MenuItem Header="Evidencija utrošenog materijala" FontSize="15" Background="White"></MenuItem>
-                <MenuItem Header="Zatvori" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
+                <MenuItem Header="Obaveštenja                                 CTRL+O" FontSize="15" Click="Button_Click_2" Background="White"></MenuItem>
+                <MenuItem Header="Pregledi i operacije                       CTRL+P" FontSize="15" Click="Button_Click" Background="White"></MenuItem>
+                <MenuItem Header="Odobravanje lekova                      CTRL+L" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Godišnji odmor                            CTRL+G" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Evidencija utrošenog materijala   CTRL+M" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Zatvori                                           CTRL+X" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Uredi" FontSize="15">
                 <MenuItem Header="Lični podaci" FontSize="15"></MenuItem>

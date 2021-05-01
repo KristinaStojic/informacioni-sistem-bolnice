@@ -71,6 +71,10 @@ namespace Projekat
             {
                 Button_Click_2(sender, e);
             }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                this.Close();
+            }
             
 
 
