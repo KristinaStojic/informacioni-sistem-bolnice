@@ -14,7 +14,7 @@
 
 
         <Menu DockPanel.Dock="Top" Background="LightSkyBlue">
-            <MenuItem Header="Opcije" FontSize="15">
+            <MenuItem Header="_Opcije" FontSize="15">
                 <MenuItem Header="Obaveštenja" FontSize="15" Click="Button_Click_2" Background="White"></MenuItem>
                 <MenuItem Header="Pregledi i operacije" FontSize="15" Click="Button_Click" Background="White"></MenuItem>
                 <MenuItem Header="Odobravanje lekova" FontSize="15" Background="White"></MenuItem>
@@ -22,10 +22,10 @@
                 <MenuItem Header="Evidencija utrošenog materijala" FontSize="15" Background="White"></MenuItem>
                 <MenuItem Header="Zatvori" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Uredi" FontSize="15">
+            <MenuItem Header="_Uredi" FontSize="15">
                 <MenuItem Header="Lični podaci" FontSize="15"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Pomoć" FontSize="15">
+            <MenuItem Header="_Pomoć" FontSize="15">
                 <MenuItem Header="Pomoc" FontSize="15"></MenuItem>
                 <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
             </MenuItem>
