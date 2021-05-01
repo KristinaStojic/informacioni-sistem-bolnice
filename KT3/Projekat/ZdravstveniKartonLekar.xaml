@@ -110,7 +110,7 @@
                             </DataGrid>
 
                             <Button Content="Novi uput" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Button_Click_6"/>
-                            <Button Content="Detalji uputa" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="321,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Click_4"/>
+                            <Button Content="Detalji uputa" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="321,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Detalji"/>
                             <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
 
 

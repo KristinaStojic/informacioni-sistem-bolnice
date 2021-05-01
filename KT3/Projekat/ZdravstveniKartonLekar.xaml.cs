@@ -243,5 +243,22 @@ namespace Projekat
             DodajSpecijalistickiUput dodajUput = new DodajSpecijalistickiUput(pacijent,termin);
             dodajUput.Show();
         }
+
+        private void Button_Detalji(object sender, RoutedEventArgs e)
+        {
+            Uput izabraniUput = (Uput)dataGridUputi.SelectedItem;
+
+            if (izabraniUput != null)
+            {
+
+                DetaljiUputa detalji = new DetaljiUputa();
+                detalji.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan alergen!");
+            }
+           
+        }
     }
 }
