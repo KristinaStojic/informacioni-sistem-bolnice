@@ -15,7 +15,7 @@
 
                     <Grid/>
                 </TabItem>
-                <TabItem Header="Specijalistički pregled" Width="130">
+                <TabItem Header="Specijalistički pregled" Width="130" x:Name="specijalistickiTab">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="10"/>
