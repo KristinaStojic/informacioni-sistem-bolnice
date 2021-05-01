@@ -71,7 +71,7 @@ namespace Projekat
                 String[] imeprz = specijalista.Text.Split(' ');
                 String imeSpecijaliste = imeprz[0];
                 String prezimeSpecijaliste = imeprz[1];
-                int idSpecijaliste = 0;
+                int idSpecijaliste = 40;
                 foreach(Lekar lekar in MainWindow.lekari)
                 {
                     if(lekar.ImeLek.Equals(imeSpecijaliste) && lekar.PrezimeLek.Equals(prezimeSpecijaliste))

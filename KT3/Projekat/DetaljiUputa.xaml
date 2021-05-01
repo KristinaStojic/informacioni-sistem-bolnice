@@ -15,7 +15,7 @@
 
                     <Grid/>
                 </TabItem>
-                <TabItem Header="Specijalistički pregled" Width="130">
+                <TabItem Header="Specijalistički pregled" Width="130" x:Name="specijalistickiTab">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"/>
@@ -49,8 +49,7 @@
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,23.8" Grid.Row="4" IsEnabled="False" x:Name="lekar"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.4,19,22.4" Grid.Row="6" IsEnabled="False" x:Name="specijalista"/>
                         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,24.6" Grid.Row="5" Width="192" IsEnabled="False" Name="datum"/>
-                        <Button Content="Sačuvaj" Grid.Column="1" Margin="89.4,2,50,0" Grid.Row="9" VerticalAlignment="Top" Height="29" Background="#FF6895C5" Click="Potvrdi_Click"/>
-                        <Button Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,2,0,0" Grid.Row="9" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" Click="Odustani_Click"/>
+                        <Button Content="Nazad" Grid.Column="1" HorizontalAlignment="Left" Margin="184.4,2,0,0" Grid.Row="9" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" Click="Odustani_Click" Grid.ColumnSpan="2"/>
                         <Label Content="Napomena za pregled" Grid.Column="1" Margin="1.4,9.6,9,23.2" Grid.Row="7" FontSize="16"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.6,19,23.2" Grid.Row="7" IsEnabled="False" x:Name="napomena"/>
                     </Grid>

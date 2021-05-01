@@ -251,7 +251,7 @@ namespace Projekat
             if (izabraniUput != null)
             {
 
-                DetaljiUputa detalji = new DetaljiUputa();
+                DetaljiUputa detalji = new DetaljiUputa(izabraniUput, termin);
                 detalji.Show();
             }
             else
