@@ -38,6 +38,12 @@ namespace Projekat
         {
             get;
             set;
+        } 
+        
+        public static ObservableCollection<Uput> TabelaUputa
+        {
+            get;
+            set;
         }
 
         public ZdravstveniKartonLekar(Pacijent izabraniNalog, Termin termin)
@@ -150,6 +156,18 @@ namespace Projekat
                         }
                     }
                 }
+                
+                TabelaUputa = new ObservableCollection<Uput>();
+                foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+                {
+                    if (p.IdPacijenta == pacijent.IdPacijenta)
+                    {
+                        foreach (Uput uput in p.Karton.Uputi)
+                        {
+                            TabelaUputa.Add(uput);
+                        }
+                    }
+                }
 
                 //Lekar
                 if (izabraniNalog.IzabraniLekar != null)
@@ -218,6 +236,29 @@ namespace Projekat
             {
                 MessageBox.Show("Niste selektovali nijedan alergen!");
             }
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            DodajSpecijalistickiUput dodajUput = new DodajSpecijalistickiUput(pacijent,termin);
+            dodajUput.Show();
+        }
+
+        private void Button_Detalji(object sender, RoutedEventArgs e)
+        {
+            Uput izabraniUput = (Uput)dataGridUputi.SelectedItem;
+
+            if (izabraniUput != null)
+            {
+
+                DetaljiUputa detalji = new DetaljiUputa(izabraniUput, termin);
+                detalji.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan alergen!");
+            }
+           
         }
     }
 }

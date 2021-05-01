@@ -14,6 +14,7 @@ namespace Model
         public List<Anamneza> Anamneze { get; set; } 
         
         public List<Alergeni> Alergeni { get; set; }
+        public List<Uput> Uputi { get; set; }
 
         public ZdravstveniKarton() {}
         public ZdravstveniKarton(int id)

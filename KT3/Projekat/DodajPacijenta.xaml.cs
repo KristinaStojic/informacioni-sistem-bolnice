@@ -96,6 +96,8 @@ namespace Projekat
                     p.Karton.Anamneze = an; 
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);     
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
@@ -110,6 +112,8 @@ namespace Projekat
                     p.Karton.Anamneze = an;
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
@@ -124,6 +128,8 @@ namespace Projekat
                     p.Karton.Anamneze = an;
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);
 
                 }
@@ -139,6 +145,8 @@ namespace Projekat
                     p.Karton.Anamneze = an;
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);
                 }
 
@@ -154,6 +162,8 @@ namespace Projekat
                     p.Karton.Anamneze = an;
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
@@ -168,6 +178,8 @@ namespace Projekat
                     p.Karton.Anamneze = an;
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
@@ -182,6 +194,8 @@ namespace Projekat
                     p.Karton.Anamneze = an;
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
@@ -196,6 +210,8 @@ namespace Projekat
                     p.Karton.Anamneze = an;
                     List<Alergeni> ale = new List<Alergeni>();
                     p.Karton.Alergeni = ale;
+                    List<Uput> uput = new List<Uput>();
+                    p.Karton.Uputi = uput;
                     PacijentiMenadzer.DodajNalog(p);
                 }
             }
