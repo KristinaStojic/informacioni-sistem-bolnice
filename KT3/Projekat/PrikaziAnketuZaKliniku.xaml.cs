@@ -1,4 +1,5 @@
-﻿using Projekat.Model;
+﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,8 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             idAnkete = idSelektovaneAnkete;
             this.potvrdi.IsEnabled = false;
+            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
         public void jedan1_Click(object sender, RoutedEventArgs e)
         {
@@ -215,5 +218,10 @@ namespace Projekat
             }
         }
 
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
     }
 }

@@ -40,6 +40,7 @@ namespace Projekat
             datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             if (izabraniLekar != null)
             {
                 this.imePrz.Text = izabraniLekar.ToString();
@@ -423,6 +424,11 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

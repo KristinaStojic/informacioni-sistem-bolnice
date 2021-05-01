@@ -17,13 +17,13 @@
                     </StackPanel>
                     <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                         <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
-                            <MenuItem Header="_Ime i prezime">
+                            <MenuItem Name="podaci" >
                                 <MenuItem.Icon>
                                     <Image Source="/slike/user.png" />
                                 </MenuItem.Icon>
                                 <MenuItem Header="_Vaš profil" />
                                 <Separator/>
-                                <MenuItem Header="_Popuni anketu" />
+                                <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
                                 <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
                                 <MenuItem Header="_sr" />
@@ -90,7 +90,7 @@
             <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top"
                    RenderTransformOrigin="0.263,0.577" Margin="325,94,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
             <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="325,329,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
-            <Button x:Name="anketa" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="610,88,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
+            <Button Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="610,88,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
                 <TextBlock Text="Anketa" Foreground="White" FontSize="16"/>
             </Button>
         </Grid>

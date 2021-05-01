@@ -34,6 +34,8 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
+            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             this.nazad.Visibility = Visibility.Hidden;
             Termini2 = new ObservableCollection<Termin>();
             sviSlobodni2 = new List<string>() { "07:00", "07:30", "08:00", "08:30",
@@ -230,6 +232,12 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

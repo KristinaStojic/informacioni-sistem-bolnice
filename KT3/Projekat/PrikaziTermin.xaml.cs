@@ -34,12 +34,26 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
+            idPacijent = idPrijavljeniPacijent;
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Termini = new ObservableCollection<Termin>();
             ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
-            idPacijent = idPrijavljeniPacijent;
+
             pacijentProzor = true;
             thread = new Thread(izvrsiNit);
             thread.Start();
+            DodajTerminePacijenta();
+            DodajObavestenja();
+        }
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
+
+        private static void DodajTerminePacijenta()
+        {
             foreach (Termin t in TerminMenadzer.termini)
             {
                 if (t.Pacijent.IdPacijenta == idPacijent)
@@ -47,9 +61,6 @@ namespace Projekat
                     Termini.Add(t);
                 }
             }
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            //ProveriDostupnostAnketeZaKlinku();
-            DodajObavestenja();
         }
 
         private static void DodajObavestenja()
@@ -180,11 +191,7 @@ namespace Projekat
 
         }
 
-        private void anketa_Click(object sender, RoutedEventArgs e)
-        {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
-        }
+        
 
         private void ProveriDostupnostAnketeZaKlinku()
         {

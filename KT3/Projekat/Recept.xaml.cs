@@ -46,7 +46,7 @@ namespace Projekat
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.IdPacijenta.ToString();
-
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -77,6 +77,12 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

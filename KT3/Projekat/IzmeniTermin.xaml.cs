@@ -77,19 +77,19 @@ namespace Projekat
             }
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
             view.Filter = UserFilter;
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private void OgraniciIzborNovogDatuma(Termin izabraniTermin)
         {
+            // TODO: provera da li su  ti datumi u proslosti
             CalendarDateRange daniPreTermina = new CalendarDateRange();
             daniPreTermina.Start = DateTime.Parse(izabraniTermin.Datum).AddDays(-1000);//DateTime.Parse(izabraniTermin.Datum).AddDays(3);
             daniPreTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(-3);
-            //MessageBox.Show(daniPreTermina.Start.ToString() + " " + daniPreTermina.End.ToString());
             datum.BlackoutDates.Add(daniPreTermina);
             CalendarDateRange daniPosleTermina = new CalendarDateRange();
             daniPosleTermina.Start = DateTime.Parse(izabraniTermin.Datum).AddDays(3);
             daniPosleTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(1000);
-            //MessageBox.Show(daniPosleTermina.Start.ToString() + " " + daniPosleTermina.End.ToString());
             datum.BlackoutDates.Add(daniPosleTermina);
         }
 
@@ -439,6 +439,12 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

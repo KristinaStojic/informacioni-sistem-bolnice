@@ -35,6 +35,8 @@ namespace Projekat
             idAnkete = idSelektovaneAnkete;
             Lekar lekar = pronadjiLekaraZaAnketu(idAnkete);
             this.lekar.Content = "Anketa o radu lekara (" + lekar.ImeLek + " " + lekar.PrezimeLek + ")";
+            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private static Lekar pronadjiLekaraZaAnketu(int idAnkete)
@@ -199,6 +201,11 @@ namespace Projekat
             }
         }
 
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
     }
 
 }

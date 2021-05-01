@@ -35,10 +35,11 @@ namespace Projekat
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             this.potvrdi.IsEnabled = false;
-            //PostaviTimer();
             AnketePacijenta = new ObservableCollection<Anketa>();
             PrikaziAnketeZaProsleTermine();
             listaAnketi.ItemsSource = AnketePacijenta;
+            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private void PrikaziAnketeZaProsleTermine()
@@ -56,15 +57,13 @@ namespace Projekat
                         {
                             if (brojacProslihTermina == minBrojTerminaZaAnketuKlinika) /* posle 3. termina - anketa o radu klinike */
                             {
-                                MessageBox.Show("Ankete za kliniku: " + brojacProslihTermina.ToString());
                                 AnketePacijenta.Add(anketa);
-                                //break; // ?
+                                break; 
                             }
                         }
                         if (anketa.idTermina == termin.IdTermin)
                         {
                             brojacProslihTermina++;
-                            MessageBox.Show(brojacProslihTermina.ToString());
                             AnketePacijenta.Add(anketa);
                         }
                     }
@@ -102,24 +101,6 @@ namespace Projekat
             this.NavigationService.Navigate(pocetna);
         }
 
-        private void datagridAnkete_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-           /* Anketa anketa = (Anketa)datagridAnkete.SelectedItem;
-            if (anketa != null && !anketa.popunjenaAnketa)
-            {
-                if (anketa.vrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
-                {
-                    PrikaziAnketuZaKliniku anketaZaKliniku = new PrikaziAnketuZaKliniku(idPacijent, anketa.idAnkete);
-                    this.NavigationService.Navigate(anketaZaKliniku);
-                }
-                else
-                {
-                    PrikaziAntekuZaLekare anketaZaLekare = new PrikaziAntekuZaLekare(idPacijent, anketa.idAnkete);
-                    this.NavigationService.Navigate(anketaZaLekare);
-                }
-            }*/
-        }
-
         private void GridViewColumn_SourceUpdated(object sender, DataTransferEventArgs e)
         {
 
@@ -146,6 +127,12 @@ namespace Projekat
         private void popunjenCheckBox_SourceUpdated(object sender, DataTransferEventArgs e)
         {
 
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

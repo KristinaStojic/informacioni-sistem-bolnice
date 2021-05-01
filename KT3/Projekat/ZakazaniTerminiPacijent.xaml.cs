@@ -38,6 +38,7 @@ namespace Projekat
                 }
             }
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
             view.Filter = UserFilter;
         }
@@ -125,6 +126,12 @@ namespace Projekat
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(dataGridTermini.ItemsSource).Refresh();
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

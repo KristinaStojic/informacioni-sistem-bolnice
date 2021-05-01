@@ -36,6 +36,7 @@ namespace Projekat
             this.vreme.Text = zaBrisanje.VremePocetka;
             this.lekar.Text = zaBrisanje.Lekar.ToString();
             this.sala.Text = zaBrisanje.Prostorija.Id.ToString();
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -86,6 +87,11 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

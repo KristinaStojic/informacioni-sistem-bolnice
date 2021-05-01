@@ -14,13 +14,13 @@
             </StackPanel>
             <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                 <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
-                    <MenuItem Name="korisnik" Header="_Ime i prezime">
+                    <MenuItem Name="podaci">
                         <MenuItem.Icon>
                             <Image Source="/slike/user.png" />
                         </MenuItem.Icon>
                         <MenuItem Header="_Vaš profil" />
                         <Separator/>
-                        <MenuItem Header="_Popuni anketu" />
+                        <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                         <Separator/>
                         <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
                         <MenuItem Header="_sr" />
@@ -55,8 +55,8 @@
 
         <Image Source="slike/barkod.png" Height="60" Width="60" Margin="328,66,432,471" />
         <Image Source="slike/barkod.png" Height="60" Width="60" Margin="376,66,384,471" />
-        <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" Margin="385,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
-        <Label Content="Ime pacijenta" FontSize="15" HorizontalAlignment="Left" Margin="210,122,0,0" VerticalAlignment="Top"/>
+        <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" Margin="385,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
+        <Label Content="Ime pacijenta" FontSize="15" HorizontalAlignment="Left" Margin="210,130,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" Margin="385,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
         <Label FontSize="15" Content="Prezime pacijenta" HorizontalAlignment="Left" Margin="210,172,0,0" VerticalAlignment="Top"/>
         <TextBox Name ="id" HorizontalAlignment="Left" Height="24" Margin="385,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
