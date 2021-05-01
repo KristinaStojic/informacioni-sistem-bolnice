@@ -819,5 +819,8 @@
   <ItemGroup>
     <Resource Include="slike\signout.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\odjava.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
