@@ -11,6 +11,28 @@
             <ColumnDefinition Width="316*"/>
             <ColumnDefinition Width="321*"/>
         </Grid.ColumnDefinitions>
+
+
+        <Menu DockPanel.Dock="Top" Background="LightSkyBlue">
+            <MenuItem Header="Opcije" FontSize="15">
+                <MenuItem Header="Obaveštenja" FontSize="15" Click="Button_Click_2" Background="White"></MenuItem>
+                <MenuItem Header="Pregledi i operacije" FontSize="15" Click="Button_Click" Background="White"></MenuItem>
+                <MenuItem Header="Odobravanje lekova" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Godišnji odmor" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Evidencija utrošenog materijala" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Zatvori" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Uredi" FontSize="15">
+                <MenuItem Header="Lični podaci" FontSize="15"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Pomoć" FontSize="15">
+                <MenuItem Header="Pomoc" FontSize="15"></MenuItem>
+                <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Image Source="slike/odjava.png" Margin="482,16,91.6,610.4" Grid.Column="1" RenderTransformOrigin="0.471,2.109" MouseDown="Image_MouseDown"></Image>
+
+
         <Button Content="Pregledi i operacije" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,115,0,0" FontSize="18" Grid.Column="1" Click="Button_Click"/>
         <Button Content="Odobravanje lekova za korišćenje" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,226,0,0" FontSize="18" Grid.Column="1" Click="Button_Zahtevi"/>
         <Button Content="Godišnji odmor" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,337,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_3"/>
