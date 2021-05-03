@@ -136,5 +136,16 @@ namespace Projekat.Model
             return id;
         }
 
+        public static void ObrisiObavestenjePacijent(Obavestenja selektovanoObavestenje)
+        {
+            foreach(Obavestenja o in obavestenja)
+            {
+                if(o.IdObavestenja == selektovanoObavestenje.IdObavestenja)
+                {
+                    obavestenja.Remove(o);
+                    return;
+                }
+            }
+        }
     }
 }

@@ -74,7 +74,6 @@ namespace Projekat
                         DodajStaraObavestenjaZaTerapije(o);
                     }
                 }
-                
                 if (!o.TipObavestenja.Equals("Terapija"))
                 {
                     if (o.ListaIdPacijenata.Contains(prijavljeniPacijent.IdPacijenta) || o.Oznaka.Equals("pacijenti") || o.Oznaka.Equals("svi"))
@@ -108,32 +107,32 @@ namespace Projekat
 
         private static void ProveriRecepte()
         {
-            App.Current.Dispatcher.Invoke((Action)delegate
-            {
-                foreach (LekarskiRecept recept in prijavljeniPacijent.Karton.LekarskiRecepti)
-                {
-                    foreach (DateTime datum in recept.UzimanjeTerapije)
-                    {
-                        if (datum.Date == DateTime.Now.Date)
-                        {
-                            bool postojiObavestenje = ProveriObjavljenaObavestenja(recept.NazivLeka, datum); 
-                            string trenutnoVreme = DateTime.Now.TimeOfDay.ToString().Substring(0, 5); // HH:mm
-                            string vremeZaTerapiju = datum.TimeOfDay.ToString().Substring(0, 5);
-                            if (vremeZaTerapiju.Equals(trenutnoVreme))
-                            {
-                                if (!postojiObavestenje)
-                                {
+             App.Current.Dispatcher.Invoke((Action)delegate
+             {
+                 foreach (LekarskiRecept recept in prijavljeniPacijent.Karton.LekarskiRecepti)
+                 {
+                     foreach (DateTime datum in recept.UzimanjeTerapije)
+                     {
+                         if (datum.Date == DateTime.Now.Date)
+                         {
+                             bool postojiObavestenje = ProveriObjavljenaObavestenja(recept.NazivLeka, datum); 
+                             string trenutnoVreme = DateTime.Now.TimeOfDay.ToString().Substring(0, 5); // HH:mm
+                             string vremeZaTerapiju = datum.TimeOfDay.ToString().Substring(0, 5);
+                             if (vremeZaTerapiju.Equals(trenutnoVreme))
+                             {
+                                 if (!postojiObavestenje)
+                                 {
+                                    //DateTime datum = DateTime.Now.Date;
                                     List<int> lista = new List<int>();
                                     lista.Add(prijavljeniPacijent.IdPacijenta);
                                     int id = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
                                     Obavestenja obavestenje = PronadjiSledeceObavestenje(datum.ToString("MM/dd/yyyy HH:mm"));
                                     if (obavestenje != null)
                                     {
-                                        //MessageBox.Show("dodato");
                                         ObavestenjaPacijent.Add(obavestenje);
                                         Console.Beep();
                                     }
-                                }
+                                 }
                             }
                         }
                     }
@@ -188,7 +187,7 @@ namespace Projekat
 
         private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
         
@@ -245,6 +244,26 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void UvidObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            Obavestenja obavestenje = (Obavestenja)obavestenja.SelectedItem;
+            if(obavestenje != null)
+            {
+                MessageBox.Show("Bice implementirano");
+            }
+        }
+
+        private void ObrisiObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: ako je obavestenje za sve, ne moze pacijent da obrise obavestenje iz menadzera(obrisace svima)
+            Obavestenja obavestenje = (Obavestenja)obavestenja.SelectedItem;
+            if (obavestenje != null && obavestenje.TipObavestenja.Equals("Terapija"))
+            {
+                ObavestenjaMenadzer.ObrisiObavestenjePacijent(obavestenje);
+                ObavestenjaPacijent.Remove(obavestenje);
+            }
         }
     }
 }

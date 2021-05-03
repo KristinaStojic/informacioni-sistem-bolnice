@@ -98,7 +98,8 @@ namespace Projekat
 
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

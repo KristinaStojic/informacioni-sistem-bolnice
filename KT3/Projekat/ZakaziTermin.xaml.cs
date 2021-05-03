@@ -187,7 +187,7 @@ namespace Projekat
             }
         }
 
-        private void IzbaciProsleSlotoveZaDanasnjiDan()
+        public void IzbaciProsleSlotoveZaDanasnjiDan()
         {
             if (datum.SelectedDate == DateTime.Now.Date)
             {
@@ -281,7 +281,7 @@ namespace Projekat
                                 /* provera da se selektovani datum poklapa sa nekim vec zakazanim terminom */
                                 else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
                                 {
-                                    MessageBox.Show(slot);
+                                    //MessageBox.Show(slot);
                                     sviZauzetiZaSelektovaniDatum.Add(slot);
                                 }
                             }

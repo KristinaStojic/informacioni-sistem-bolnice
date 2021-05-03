@@ -68,14 +68,14 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <DataGrid Height="336" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Path=Termini2}" SelectionChanged="preferencaGrid_SelectionChanged" Grid.Column="1" Grid.Row="1"
+        <DataGrid Height="336" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Termini}" SelectionChanged="preferencaGrid_SelectionChanged" Grid.Column="1" Grid.Row="1"
                   IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  AutoGenerateColumns="False" Margin="47,33,37,174" BorderBrush="#FF276678" VerticalAlignment="Center" Foreground="Black" Background="#FFF9F7F7" >
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" Width="100" />
                 <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}" Width="100" />
                 <DataGridTextColumn x:Name="lekar" Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}" Width="110"/>
                 <DataGridTextColumn x:Name="lekar2" Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" Width="100"/>
-                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="80"/>
+                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="85"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Zakazi" Name="btnZakazi" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
@@ -98,7 +98,7 @@
                         <GridViewColumn Header="Prezime" 
                         Width="80" DisplayMemberBinding="{Binding PrezimeLek}"/>
                         <GridViewColumn Header="Specijalizacija"
-                        Width="90" DisplayMemberBinding="{Binding specijalizacija}"/>
+                        Width="130" DisplayMemberBinding="{Binding specijalizacija}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
