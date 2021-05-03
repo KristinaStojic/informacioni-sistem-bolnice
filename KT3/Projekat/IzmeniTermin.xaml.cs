@@ -60,7 +60,7 @@ namespace Projekat
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
                 idLek = izabraniTermin.Lekar;
-                //this.datum.Add(DateTime.Parse(izabraniTermin.Datum));
+                this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
                 int brojac = 0;
                 this.dgSearch.ItemsSource = MainWindow.lekari;
                 // TODO: ispraviti selektovanog lekara: upotrebiti dgsearch

@@ -204,6 +204,7 @@ namespace Model
                         }
                     }
                     AnketaMenadzer.ObrisiAnketu(termin.Prostorija.Id);
+                    AnketaMenadzer.sacuvajIzmene();
                     termini.RemoveAt(i);
                 }
             }
@@ -330,7 +331,7 @@ namespace Model
         }
 
         // Sanja
-        public static List<Termin> pronadjiTerminPoIdPacijenta(int idPacijenta)
+        public static List<Termin> PronadjiTerminPoIdPacijenta(int idPacijenta)
         {
             List<Termin> terminiPacijenta = new List<Termin>();
             foreach(Termin termin in termini)

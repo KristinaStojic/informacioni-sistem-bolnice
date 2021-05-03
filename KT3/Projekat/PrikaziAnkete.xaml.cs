@@ -47,7 +47,7 @@ namespace Projekat
             brojacProslihTermina = 0;
             foreach (Anketa anketa in AnketaMenadzer.ankete)
             {
-                foreach (Termin termin in TerminMenadzer.pronadjiTerminPoIdPacijenta(idPacijent))
+                foreach (Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent))
                 {
                     DateTime datumTermina = DateTime.Parse(termin.Datum);
                     TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);

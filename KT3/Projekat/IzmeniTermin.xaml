@@ -14,8 +14,8 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Margin="0,1,5,1.5" Grid.ColumnSpan="3">
-            <Grid  Margin="0,0,0,0" Height="578">
-                <StackPanel Margin="0,0,0,-21" >
+            <Grid  Margin="0,0,0,0" Height="600">
+                <StackPanel Margin="0,0,0,0" RenderTransformOrigin="0.667,0.407" >
                     <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
@@ -82,7 +82,7 @@
                     Click="Button_Click"
                     Name="odustani"/>
         </StackPanel>
-        <GroupBox Header=" Izaberite tip termina" HorizontalAlignment="Left" Height="70" Margin="18.5,95,0,0" VerticalAlignment="Top" Width="256" RenderTransformOrigin="0.897,1.041" Grid.Column="1">
+        <GroupBox Header=" Izaberite tip termina" HorizontalAlignment="Left" Height="70" Margin="18.5,95,0,0" VerticalAlignment="Top" Width="253" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="200" Margin="28,0,0,10" Height="27" SelectionChanged="combo_SelectionChanged">
                 <!--ComboBoxItem>Operacija</-->
                 <ComboBoxItem IsSelected="True">Pregled</ComboBoxItem>
@@ -114,7 +114,18 @@
                 </TextBox.Style>
             </TextBox>
         </GroupBox>
-        <ListView x:Name="dgSearch" SelectionMode="Single" Margin="289,157,37,257.5" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1" >
+        <GroupBox Header="Izaberite vreme termina" Height="70" Margin="20.5,369,323.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.571" Grid.Column="1">
+            <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="27"
+                          VerticalAlignment="Top" Width="200" Margin="21,12,0,0" 
+                          SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.6,0.63"/>
+        </GroupBox>
+        <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="Ime i prezime izabranog lekara" Width="285"
+                   DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="27" Margin="291,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13" Grid.Column="1"/>
+        <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="289,349,0,0" Width="121" Grid.Column="1" Height="26"/>
+        <GroupBox Header="Izaberite datum termina" Height="204" Margin="20.5,165,321.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
+            <Calendar HorizontalAlignment="Left" Margin="20,11,0,0" Width="200" FontSize="14" VerticalAlignment="Top" Name="datum" Height="168" SelectedDatesChanged="datum_SelectedDatesChanged" />
+        </GroupBox>
+        <ListView x:Name="dgSearch" SelectionMode="Single" Margin="288.5,157,35,258" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" 
@@ -128,17 +139,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-        <GroupBox Header="Izaberite vreme termina" Height="70" Margin="22.5,368,336.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
-            <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="27"
-                          VerticalAlignment="Top" Width="200" Margin="21,12,0,0" 
-                          SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.6,0.63"/>
-        </GroupBox>
-        <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="Ime i prezime izabranog lekara" Width="285"
-                   DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="27" Margin="291,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13" Grid.Column="1"/>
-        <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="289,349,0,0" Width="121" Grid.Column="1" Height="26"/>
-        <GroupBox Header="Izaberite datum termina" Height="204" Margin="20.5,165,338.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
-            <Calendar HorizontalAlignment="Left" Margin="20,11,0,0" Width="200" FontSize="14" VerticalAlignment="Top" Name="datum" Height="168" SelectedDatesChanged="datum_SelectedDatesChanged" />
-        </GroupBox>
     </Grid>
 </Page>

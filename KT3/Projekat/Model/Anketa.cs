@@ -18,9 +18,9 @@ namespace Projekat.Model
 
         public Anketa() { }
 
-        public Anketa(int idAnkete, VrstaAnkete vrsta, string nazivAnkete, int idPacijent, int idTermina)
+        public Anketa(VrstaAnkete vrsta, string nazivAnkete, int idPacijent, int idTermina)
         {
-            this.idAnkete = idAnkete;
+            this.idAnkete = AnketaMenadzer.GenerisanjeIdAnkete();
             this.idPacijent = idPacijent;
             this.odgovori = "";
             this.vrstaAnkete = vrsta;

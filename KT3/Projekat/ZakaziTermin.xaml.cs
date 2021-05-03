@@ -51,43 +51,15 @@ namespace Projekat
                 this.imePrz.Text = izabraniLekar.ToString();
             }
             pomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
-                                                                "13:00", "13:30", "14:00", "14:30","15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
-                                                                "19:00", "19:30", "20:00"};
+                                                                "13:00", "13:30", "14:00", "14:30","15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
         }
 
+        // Zakazivanje termina
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try
             {
-                int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-                String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture); 
-                String vp = vpp.Text;
-                String vk = IzracunajVremeKrajaPregleda(vp);
-
-                TipTermina tp;
-                if (combo.Text.Equals("Pregled"))
-                {
-                    tp = TipTermina.Pregled;
-                }
-                else
-                {
-                    tp = TipTermina.Operacija;
-                }
-
-                Termin termin = new Termin(brojTermina, datumTermina, vp, vk, tp);
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                termin.Pacijent = p;
-                termin.Lekar = izabraniLekar;
-
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, datumTermina, termin.IdTermin);
-                prvaSlobodnaSala.zauzetiTermini.Add(zs);
-                termin.Prostorija = prvaSlobodnaSala;
-                TerminMenadzer.ZakaziTermin(termin);
-                string podaciLekara = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
-                Anketa anketaZaLekara = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaLekare, "Anketa za lekara: " + podaciLekara, idPacijent, termin.IdTermin);
-                AnketaMenadzer.ankete.Add(anketaZaLekara);
-                ProveriAnketuZaKliniku();
-
+                DetektujMalicioznoPonasanjePacijenta();
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
             }
@@ -97,20 +69,64 @@ namespace Projekat
             }
         }
 
+        private void DetektujMalicioznoPonasanjePacijenta()
+        {
+            if (!MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                PokupiPodatkeZaZakazivanjeTermina();
+            }
+            else
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili maksimalni broj modifikacije termina u danu.", "Upozorenje", MessageBoxButton.OK);
+            }
+        }
+
+        private void PokupiPodatkeZaZakazivanjeTermina()
+        {
+            int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
+            String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            String vp = vpp.Text;
+            String vk = IzracunajVremeKrajaPregleda(vp);
+            TipTermina tp;
+            if (combo.Text.Equals("Pregled"))
+            {
+                tp = TipTermina.Pregled;
+            }
+            else
+            {
+                tp = TipTermina.Operacija;
+            }
+            Termin termin = new Termin(brojTermina, datumTermina, vp, vk, tp);
+            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            termin.Pacijent = pacijent;
+            termin.Lekar = izabraniLekar;
+
+            DodajZauzeceSale(termin);
+            termin.Prostorija = prvaSlobodnaSala;
+            TerminMenadzer.ZakaziTermin(termin);
+            AnketaMenadzer.DodajAnketuZaLekara(termin, idPacijent);
+            ProveriAnketuZaKliniku();
+            MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent);
+        }
+
+        
+
+        private void DodajZauzeceSale(Termin termin)
+        {
+            ZauzeceSale zs = new ZauzeceSale(termin.VremePocetka, termin.VremeKraja, termin.Datum, termin.IdTermin);
+            prvaSlobodnaSala.zauzetiTermini.Add(zs);
+        }
+
         private static void ProveriAnketuZaKliniku()
         {
             int brojacTermina = 0;
-            foreach(Termin termin in TerminMenadzer.termini)
+            foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent)) 
             {
-                if (termin.Pacijent.IdPacijenta == idPacijent)
+                brojacTermina++;
+                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika)
                 {
-                    brojacTermina++;
-                    if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika)
-                    {
-                        Anketa anketa = new Anketa(AnketaMenadzer.GenerisanjeIdAnkete(), VrstaAnkete.ZaKliniku, "Anketa o klinici Zdravo korporacije", idPacijent, 0);
-                        AnketaMenadzer.ankete.Add(anketa);
-                        return;
-                    }
+                    AnketaMenadzer.DodajAnketuZaKliniku(idPacijent);
+                    return;
                 }
             }
         }
