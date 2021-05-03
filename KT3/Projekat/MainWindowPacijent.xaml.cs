@@ -21,6 +21,8 @@ namespace Projekat
         {
             InitializeComponent();
             PrikaziTermin.pacijentProzor = true;
+            AnketaMenadzer.NadjiSveAnkete();
+            MalicioznoPonasanjeMenadzer.NadjiSvaMalicioznaPonasanja();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -30,6 +32,7 @@ namespace Projekat
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
             ObavestenjaMenadzer.sacuvajIzmene();
+            MalicioznoPonasanjeMenadzer.sacuvajIzmene();
 
             PrikaziTermin.pacijentProzor = false;  // nit
         }

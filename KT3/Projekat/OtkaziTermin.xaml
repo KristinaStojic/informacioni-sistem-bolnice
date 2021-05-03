@@ -20,13 +20,13 @@
                 </StackPanel>
                 <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                     <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
-                        <MenuItem Header="_Ime i prezime">
+                        <MenuItem Name="podaci">
                             <MenuItem.Icon>
                                 <Image Source="/slike/user.png" />
                             </MenuItem.Icon>
                             <MenuItem Header="_Vaš profil" />
                             <Separator/>
-                            <MenuItem Header="_Popuni anketu" />
+                            <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                             <Separator/>
                             <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
                             <MenuItem Header="_sr" />

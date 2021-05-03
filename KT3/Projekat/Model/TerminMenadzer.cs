@@ -195,19 +195,19 @@ namespace Model
             {
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
+                    foreach (Sala s in SaleMenadzer.sale)
+                    {
+                        if (s.Id == termin.Prostorija.Id)
+                        {
+                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleMenadzer.sacuvajIzmjene();
+                        }
+                    }
+                    AnketaMenadzer.ObrisiAnketu(termin.Prostorija.Id);
+                    AnketaMenadzer.sacuvajIzmene();
                     termini.RemoveAt(i);
                 }
             }
-            /*foreach(Sala s in SaleMenadzer.sale)
-            {
-                foreach (ZauzeceSale zs in s.zauzetiTermini)
-                {
-                    if (zs.idTermina.Equals(termin.IdTermin))
-                    {
-                        s.zauzetiTermini.Remove(zs);
-                    }
-                }
-            }*/
             PrikaziTermin.Termini.Remove(termin);
        }
 
@@ -296,7 +296,7 @@ namespace Model
             }
         }
       
-      public Termin NadjiTerminPoId(int idTermin)
+      public static Termin NadjiTerminPoId(int idTermin)
       {
             foreach (Termin t in termini)
             {
@@ -306,7 +306,7 @@ namespace Model
                 }
             }
             return null;
-        }
+      }
 
 
         public static void sacuvajIzmene()
@@ -328,6 +328,20 @@ namespace Model
                 } */
             //}
             return true;
+        }
+
+        // Sanja
+        public static List<Termin> PronadjiTerminPoIdPacijenta(int idPacijenta)
+        {
+            List<Termin> terminiPacijenta = new List<Termin>();
+            foreach(Termin termin in termini)
+            {
+                if(termin.Pacijent.IdPacijenta == idPacijenta)
+                {
+                    terminiPacijenta.Add(termin);
+                }
+            }
+            return terminiPacijenta;
         }
 
       //public int AdresaFajla;  // ?

@@ -26,7 +26,6 @@ namespace Projekat
         public static int idPacijent;
         public static bool pacijentProzor;
         private int colNum = 0;
-        private static bool prolaz;
         public static ObservableCollection<Termin> Termini { get; set; }
         public static ObservableCollection<Obavestenja> ObavestenjaPacijent { get; set; }
         public Thread thread;
@@ -35,12 +34,26 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
+            idPacijent = idPrijavljeniPacijent;
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Termini = new ObservableCollection<Termin>();
             ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
-            idPacijent = idPrijavljeniPacijent;
+
             pacijentProzor = true;
             thread = new Thread(izvrsiNit);
             thread.Start();
+            DodajTerminePacijenta();
+            DodajObavestenja();
+        }
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
+
+        private static void DodajTerminePacijenta()
+        {
             foreach (Termin t in TerminMenadzer.termini)
             {
                 if (t.Pacijent.IdPacijenta == idPacijent)
@@ -48,9 +61,6 @@ namespace Projekat
                     Termini.Add(t);
                 }
             }
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            ProveriDostupnostAnketeZaKlinku();
-            DodajObavestenja();
         }
 
         private static void DodajObavestenja()
@@ -64,7 +74,6 @@ namespace Projekat
                         DodajStaraObavestenjaZaTerapije(o);
                     }
                 }
-                
                 if (!o.TipObavestenja.Equals("Terapija"))
                 {
                     if (o.ListaIdPacijenata.Contains(prijavljeniPacijent.IdPacijenta) || o.Oznaka.Equals("pacijenti") || o.Oznaka.Equals("svi"))
@@ -98,33 +107,32 @@ namespace Projekat
 
         private static void ProveriRecepte()
         {
-            App.Current.Dispatcher.Invoke((Action)delegate
-            {
-                foreach (LekarskiRecept recept in prijavljeniPacijent.Karton.LekarskiRecepti)
-                {
-                    foreach (DateTime datum in recept.UzimanjeTerapije)
-                    {
-                        prolaz = true;
-                        if (datum.Date == DateTime.Now.Date)
-                        {
-                            bool postojiObavestenje = ProveriObjavljenaObavestenja(recept.NazivLeka, datum); 
-                            string trenutnoVreme = DateTime.Now.TimeOfDay.ToString().Substring(0, 5); // HH:mm
-                            string vremeZaTerapiju = datum.TimeOfDay.ToString().Substring(0, 5);
-                            if (vremeZaTerapiju.Equals(trenutnoVreme))
-                            {
-                                if (!postojiObavestenje)
-                                {
+             App.Current.Dispatcher.Invoke((Action)delegate
+             {
+                 foreach (LekarskiRecept recept in prijavljeniPacijent.Karton.LekarskiRecepti)
+                 {
+                     foreach (DateTime datum in recept.UzimanjeTerapije)
+                     {
+                         if (datum.Date == DateTime.Now.Date)
+                         {
+                             bool postojiObavestenje = ProveriObjavljenaObavestenja(recept.NazivLeka, datum); 
+                             string trenutnoVreme = DateTime.Now.TimeOfDay.ToString().Substring(0, 5); // HH:mm
+                             string vremeZaTerapiju = datum.TimeOfDay.ToString().Substring(0, 5);
+                             if (vremeZaTerapiju.Equals(trenutnoVreme))
+                             {
+                                 if (!postojiObavestenje)
+                                 {
+                                    //DateTime datum = DateTime.Now.Date;
                                     List<int> lista = new List<int>();
                                     lista.Add(prijavljeniPacijent.IdPacijenta);
                                     int id = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
                                     Obavestenja obavestenje = PronadjiSledeceObavestenje(datum.ToString("MM/dd/yyyy HH:mm"));
                                     if (obavestenje != null)
                                     {
-                                        //MessageBox.Show("dodato");
                                         ObavestenjaPacijent.Add(obavestenje);
                                         Console.Beep();
                                     }
-                                }
+                                 }
                             }
                         }
                     }
@@ -179,14 +187,10 @@ namespace Projekat
 
         private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
-        private void anketa_Click(object sender, RoutedEventArgs e)
-        {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
-        }
+        
 
         private void ProveriDostupnostAnketeZaKlinku()
         {
@@ -240,6 +244,26 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void UvidObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            Obavestenja obavestenje = (Obavestenja)obavestenja.SelectedItem;
+            if(obavestenje != null)
+            {
+                MessageBox.Show("Bice implementirano");
+            }
+        }
+
+        private void ObrisiObavestenje_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: ako je obavestenje za sve, ne moze pacijent da obrise obavestenje iz menadzera(obrisace svima)
+            Obavestenja obavestenje = (Obavestenja)obavestenja.SelectedItem;
+            if (obavestenje != null && obavestenje.TipObavestenja.Equals("Terapija"))
+            {
+                ObavestenjaMenadzer.ObrisiObavestenjePacijent(obavestenje);
+                ObavestenjaPacijent.Remove(obavestenje);
+            }
         }
     }
 }

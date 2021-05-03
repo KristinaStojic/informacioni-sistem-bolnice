@@ -32,7 +32,8 @@ namespace Projekat
             this.podaciLekar.Text = anamneza.ImePrezimeLekara;
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
-
+            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -69,6 +70,12 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

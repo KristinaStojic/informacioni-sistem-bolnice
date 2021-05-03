@@ -165,6 +165,8 @@
     <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
     <Compile Include="Model\LekoviMenadzer.cs" />
+    <Compile Include="Model\MalicioznoPonasanje.cs" />
+    <Compile Include="Model\MalicioznoPonasanjeMenadzer.cs" />
     <Compile Include="Model\Obavestenja.cs" />
     <Compile Include="Model\ObavestenjaMenadzer.cs" />
     <Compile Include="Model\Oprema.cs" />
@@ -234,6 +236,9 @@
     </Compile>
     <Compile Include="PrikaziAnkete.xaml.cs">
       <DependentUpon>PrikaziAnkete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikaziAnketuZaKliniku.xaml.cs">
+      <DependentUpon>PrikaziAnketuZaKliniku.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikaziAntekuZaLekare.xaml.cs">
       <DependentUpon>PrikaziAntekuZaLekare.xaml</DependentUpon>
@@ -556,6 +561,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikaziAnkete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikaziAnketuZaKliniku.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
