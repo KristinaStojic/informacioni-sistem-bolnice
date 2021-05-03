@@ -137,5 +137,74 @@ namespace Projekat
             }
 
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            tabZahtevi(sender,e);
+            tabLekovi(sender, e);
+            otvoriTabove(sender,e);
+           
+        }
+
+        private void tabZahtevi(object sender, KeyEventArgs e)
+        {
+            if (zahtevi.IsSelected == true)
+            {
+
+                if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Obradi(sender, e);
+                }
+                else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Click_1(sender, e);
+                }
+                /*else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    dataGridZahtevi.SelectedIndex = 0;
+                    fokus na tabelu
+                }*/
+            }
+        }
+
+        private void tabLekovi(object sender, KeyEventArgs e)
+        {
+            if (sviLekovi.IsSelected == true)
+            {
+                if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Izmeni(sender, e);
+                }
+                else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Click(sender, e);
+                }
+                else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Click_2(sender, e);
+                }
+                else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Click_1(sender, e);
+                }
+               /* else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                   fokus na tabelu
+                }*/
+               
+            }
+        }
+
+        private void otvoriTabove(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                sviLekovi.IsSelected = true;
+            }
+            else if (e.Key == Key.V && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                zahtevi.IsSelected = true;
+            }
+        }
     }
 }
