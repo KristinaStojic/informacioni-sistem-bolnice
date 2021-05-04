@@ -92,7 +92,7 @@ namespace Projekat.Model
 
         public static void DodajAnketuZaKliniku(int idPacijent)
         {
-            Anketa anketa = new Anketa(VrstaAnkete.ZaKliniku, "Anketa o klinici Zdravo korporacije", idPacijent, 0);
+            Anketa anketa = new Anketa(VrstaAnkete.ZaKliniku, "Anketa o uslugama bolnice", idPacijent, 0);
             ankete.Add(anketa);
         }
     }

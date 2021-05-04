@@ -19,12 +19,12 @@ namespace Projekat
     public partial class ZakaziTerminPreferenca : Page
     {
         private static int idPacijent;
-        private static Pacijent prijavljeniPacijent { get; set; }
         private static int maxBrojPreporucenihTermina = 3;
+        private Termin preporuceniTermin;
+        private static Pacijent prijavljeniPacijent { get; set; }
         private List<string> sviSlotovi { get; set; }
         private static ObservableCollection<string> pomocnaSviSlobodniSlotovi { get; set; }
         private ObservableCollection<Termin> Termini { get; set; }
-        private Termin preporuceniTermin;
         public ZakaziTerminPreferenca(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -177,8 +177,8 @@ namespace Projekat
 
         private void nazad_Click(object sender, RoutedEventArgs e)
         {
-            //this.Close();
-            
+            Page zakazivanje = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zakazivanje);
         }
 
         private void lekari_Click(object sender, RoutedEventArgs e)

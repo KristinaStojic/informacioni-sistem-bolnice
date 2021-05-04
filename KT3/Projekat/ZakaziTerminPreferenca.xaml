@@ -73,9 +73,8 @@
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" Width="100" />
                 <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}" Width="100" />
-                <DataGridTextColumn x:Name="lekar" Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}" Width="110"/>
-                <DataGridTextColumn x:Name="lekar2" Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" Width="100"/>
-                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="85"/>
+                <DataGridTextColumn x:Name="lekar" Header="Lekar" Binding="{Binding Lekar}" Width="210"/>
+                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Zakazi" Name="btnZakazi" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
