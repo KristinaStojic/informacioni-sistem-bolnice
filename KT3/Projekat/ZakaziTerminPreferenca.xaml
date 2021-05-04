@@ -20,10 +20,10 @@
         <StackPanel Orientation="Vertical" Margin="0,0,0,-150" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Grid  Margin="0,0,0,0" Height="578">
                 <StackPanel >
-                    <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                    <StackPanel Name="zaglavlje" Height="40" Background="#e8f1f5" Orientation="Horizontal" Margin="2,0,-2,0">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                            <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                             <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">

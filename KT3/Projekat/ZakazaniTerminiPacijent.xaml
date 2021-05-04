@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Projekat"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="ZakazaniTerminiPacijent" Background="AliceBlue">
+      Title="ZakazaniTerminiPacijent" Background="{DynamicResource BackgroundColor}">
     <Grid Height="600">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
@@ -17,13 +17,19 @@
             <RowDefinition Height="13*"/>
             <RowDefinition Height="107*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,87">
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Grid  Margin="0,0,0,0" Height="578">
                 <StackPanel >
-                    <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
-                        <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
+                    <StackPanel x:Name="zaglavlje" Height="40" 
+                                Background="{DynamicResource StackPanelBackgroundColor}" 
+                                Orientation="Horizontal">
+                        <StackPanel Height="40" Width="150" 
+                                    HorizontalAlignment="Left" 
+                                    Margin="10, 0, 0, 0" 
+                                    Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                            <TextBlock Name="zdravo" Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold"
+                                       Style="{DynamicResource ZdravoText}" FontStyle="Italic" />
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                             <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
@@ -40,15 +46,14 @@
                                     <MenuItem Header="_en"/>
                                     <Separator />
                                     <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Svetla" x:Name="svetlaTema" />
-                                    <MenuItem Header="_Tamna"/>
+                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
                                     <Separator />
                                     <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
-                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
+                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Height="25">
                             <Hyperlink Name="pocetna" Click="pocetna_Click">
                             <Run Text="Početna stranica"/>
                             </Hyperlink>
@@ -72,13 +77,14 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="0,20,40,0" TextAlignment="Left" Height="25" Width="300"  ToolTip="Pretrazite listu termina po datumu" HorizontalAlignment="Right" FontSize="14" BorderBrush="#FF3F72AF">
+            <TextBox  BorderThickness="1" DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="0,20,40,0" TextAlignment="Left" Height="25" Width="300"  ToolTip="Pretrazite listu termina po datumu" HorizontalAlignment="Right" FontSize="14"
+                      BorderBrush="White">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <Style.Resources>
                             <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
-                                    <Label Content="Pronađite termin po datumu (MM/dd/yyyy)" Foreground="LightGray" />
+                                    <Label Content="Pronađite termin po datumu (MM/dd/yyyy)" Foreground="DarkGray" />
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Style.Resources>
@@ -99,7 +105,7 @@
             <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Center" 
                   Height="350" Width="635" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="14" SelectionChanged="dataGridTermini_SelectionChanged"
-                          Background="#FFF9F7F7" BorderBrush="#FF3F72AF" Margin="0,20,0,0">
+                          Background="#FFF9F7F7" BorderBrush="White" Margin="0,20,0,0">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
                     <DataGridTextColumn Header="Datum" Width="80" Binding="{Binding Datum}" />
@@ -109,7 +115,7 @@
                         <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
                         <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
                         <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  /-->
-                    <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
+                    <DataGridTextColumn Header="Lekar" Binding="{Binding Lekar}" />
                     <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
                     <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" />
                     <DataGridTextColumn Header="Tip usluge" Width="*" Binding="{Binding tipTermina}"/>
@@ -119,13 +125,15 @@
                 <Button Height="30"
                             Width="90"
                             ToolTip="Ukoliko zelite da pomerite termin, selektujte termin i pritisnite dugme 'Pomeri termin'" Content="Pomeri termin"
-                            Click="Button_Click_1"/>
+                            Click="Button_Click_1"
+                        Style="{DynamicResource ButtonStyle}"/>
                 <Button Height="30"
                             Width="90"
                             ToolTip="Ukoliko zelite da otkazete termin, selektujte zeljeni termin i pritisnite dugme 'Otkazi termin'"
                             Content="Otkazi termin"
                             Margin="20, 0, 0, 0"
-                            Click="Button_Click_2"/>
+                            Click="Button_Click_2"
+                            Style="{DynamicResource ButtonStyle}"/>
             </StackPanel>
 
 

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Projekat"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="PrikaziAntekuZaLekare" Background="AliceBlue">
+      Title="PrikaziAntekuZaLekare" Background="{DynamicResource BackgroundColor}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,10 +21,10 @@
         <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,87">
             <Grid  Margin="0,0,0,0" Height="450">
                 <StackPanel Margin="0,0,0,128" >
-                    <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                    <StackPanel Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Name="zaglavlje" Orientation="Horizontal">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                            <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                             <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
@@ -41,8 +41,7 @@
                                     <MenuItem Header="_en"/>
                                     <Separator />
                                     <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Svetla" x:Name="svetlaTema" />
-                                    <MenuItem Header="_Tamna"/>
+                                    <MenuItem Header="_Svetla" x:Name="svetlaTema" Click="PromeniTemu" />
                                     <Separator />
                                     <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
@@ -89,7 +88,8 @@
                     </GridView>
                 </ListView.View>
             </-->
-            <StackPanel Margin="179,10,181,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="342" Width="350" Background="WhiteSmoke">
+            <StackPanel Margin="179,10,181,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="342" Width="350" 
+                        Background="#e8f1f5">
                 <StackPanel Margin="0,10,0,0"  HorizontalAlignment="Center" Width="350">
                     <Label Name="lekar" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
                     <Label HorizontalAlignment="Center" Content="1️⃣-veoma lose, 2️⃣-lose, 3️⃣-dobro, 4️⃣-vrlo dobro, 5️⃣-odlicno" FontSize="11"/>
@@ -150,7 +150,8 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel>
-                <Button Content="Potvrdi" Name="potvrdi" Height="30" Width="90" Margin="0, 0, 0, 0" Click="Button_Click"/>
+                <Button Content="Potvrdi" Name="potvrdi" Height="30" Width="90" Margin="0, 0, 0, 0" Click="Button_Click"
+                        Style="{DynamicResource ButtonStyle}"/>
             </StackPanel>
         </StackPanel>
 

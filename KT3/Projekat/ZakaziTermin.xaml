@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zakazi termin" Height="845" Width="800" Background="AliceBlue">
+        Title="Zakazi termin" Height="845" Width="800" Background="{DynamicResource BackgroundColor}">
     <Page.Resources>
         <Style TargetType="{x:Type DatePicker}" x:Key="datePickerGeneralStyle" BasedOn="{StaticResource {x:Type DatePicker}}">
             <Setter Property="TextElement.FontSize" Value="24" />
@@ -37,10 +37,10 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" Width="800">
             <StackPanel >
-                <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                <StackPanel Height="40" Name="zaglavlje" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
                     <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                         <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                        <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                        <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}"  FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                     </StackPanel>
                     <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                         <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
@@ -57,8 +57,7 @@
                                 <MenuItem Header="_en"/>
                                 <Separator />
                                 <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                <MenuItem Header="_Svetla" Name="svetlaTema" />
-                                <MenuItem Header="_Tamna"/>
+                                <MenuItem Header="_Svetla" Name="svetlaTema" Click="PromeniTemu" />
                                 <Separator />
                                 <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
                             </MenuItem>
@@ -89,7 +88,7 @@
             <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" Text ="{Binding}" HorizontalAlignment="Left" Height="30" Margin="45,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         </GroupBox>
         <GroupBox Header="*2. Izaberite datum" HorizontalAlignment="Left" Height="215" Margin="265,178,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.517,0.878">
-            <Calendar x:Name="datum" Background="#FFDBE2EF" RenderTransformOrigin="-0.356,0.389" SelectedDatesChanged="datum_SelectedDatesChanged"
+            <Calendar x:Name="datum" Style="{DynamicResource CalendarStyle}" RenderTransformOrigin="-0.356,0.389" SelectedDatesChanged="datum_SelectedDatesChanged"
                       Margin="50,10,0,12" FontSize="20" FontStyle="Italic" HorizontalAlignment="Left" Width="185"/>
         </GroupBox>
         <GroupBox Header=" 1. Tip termina" HorizontalAlignment="Left" Height="89" Margin="265,84,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
@@ -102,10 +101,9 @@
             <ComboBox HorizontalAlignment="Center" x:Name="vpp" Height="27" Width="200" VerticalAlignment="Center" Margin="43,21,45,18" SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.724,0.565">
             </ComboBox>
         </GroupBox>
-        <Button Visibility="Hidden" Content="Elektronsko placanje" HorizontalAlignment="Left" ToolTip="Ukoliko zelite da zakazani pregled platite elektronski, pristisnite dugme 'Elektronsko placanje"
-                VerticalAlignment="Top" Width="120" Margin="348,615,0,0" Height="30" Click="Button_Click_2" Background="#FFDFDFDF" RenderTransformOrigin="0.609,0.5" />
         <Button Content="Potvrdi" ToolTip="Potvrdite zakazivanje termina bez elektronskog placanja"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="360,760,0,0" Height="30" Click="Button_Click_1" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" />
+                HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="360,760,0,0" Height="30" Click="Button_Click_1" 
+                Style="{DynamicResource ButtonStyle}"/>
         <TextBlock HorizontalAlignment="Center" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara ili da Vam sistem predlozi 3 slobodna termina"
                    VerticalAlignment="Bottom"  FontSize="15" Foreground="#004a7c" Height="30" Margin="371,0,359,179">
             <Hyperlink Name="preferenca" Click="preferenca_Click" ToolTip="Preporuceni termini i izbor drugog lekara">

@@ -34,6 +34,7 @@ namespace Projekat
             this.terpaija.Text = anamneza.Terapija;
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -76,6 +77,22 @@ namespace Projekat
         {
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
+        }
+
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla"))
+            {
+                mi.Header = "Tamna";
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                mi.Header = "Svetla";
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
+            }
         }
     }
 }

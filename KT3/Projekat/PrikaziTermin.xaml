@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         d:DesignHeight="600" d:DesignWidth="800"
-        Title="Prikaz termina" Background="#dbe2ef">
+        Title="Prikaz termina" Background= "{DynamicResource BackgroundColor}">
     <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
         <Grid  Margin="0,0,0,0" Height="578">
             <StackPanel >
-                <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                <StackPanel x:Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
                     <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                         <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                        <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                        <TextBlock Text="ZDRAVO" Name="zdravo" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic"
+                                   Style="{DynamicResource ZdravoText}"/>
                     </StackPanel>
                     <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                         <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
@@ -30,15 +31,14 @@
                                 <MenuItem Header="_en"/>
                                 <Separator />
                                 <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                <MenuItem Header="_Svetla" Name="svetlaTema" />
-                                <MenuItem Header="_Tamna"/>
+                                <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>
                                 <Separator />
                                 <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
                             </MenuItem>
                         </Menu>
                     </StackPanel>
                 </StackPanel>
-                <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
+                <TextBlock Margin="20, 0, 0, 0" FontSize="14"  Height="25">
                 <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
@@ -87,19 +87,20 @@
                 </-->
                 </DataGrid.Columns>
             </DataGrid>
-            <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
                    RenderTransformOrigin="0.263,0.577" Margin="335,88,0,0" FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142"/>
-            <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="325,329,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
-            <Button Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="75,84,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
-                <TextBlock Text="Anketa" Foreground="White" FontSize="16"/>
+            <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
+                   RenderTransformOrigin="0.263,0.577" Margin="325,329,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
+            <Button Style="{DynamicResource ButtonStyle}" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="75,84,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
+                <TextBlock Text="Anketa" Foreground="{DynamicResource TextColorButton}" FontSize="16"/>
             </Button>
-            <Button Background="#FF112D4E" Name="ObrisiObavestenje" Height="30" Width="30" Margin="669,87,101,461"
+            <Button Style="{DynamicResource ButtonStyle}" Name="ObrisiObavestenje" Height="30" Width="30" Margin="669,87,101,461"
                     ToolTip="Obrisi selektovano obavestenje" Click="ObrisiObavestenje_Click">
-                <TextBlock Text="🗑" Foreground="White" FontSize="16"/>
+                <TextBlock Text="🗑" Foreground="{DynamicResource TextColorButton}"  FontSize="16"/>
             </Button>
-            <Button Background="#FF112D4E" Name="UvidObavestenje" Height="30" Width="30" Margin="632,88,138,460"
+            <Button Style="{DynamicResource ButtonStyle}" Name="UvidObavestenje" Height="30" Width="30" Margin="632,88,138,460"
                     ToolTip="Uvid u selektovano obavestenje" Click="UvidObavestenje_Click">
-                <TextBlock Text="📄" Foreground="White" FontSize="16"/>
+                <TextBlock Text="📄" Foreground="{DynamicResource TextColorButton}"  FontSize="16"/>
             </Button>
         </Grid>
     </StackPanel>

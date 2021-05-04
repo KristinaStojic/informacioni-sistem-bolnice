@@ -45,6 +45,15 @@ namespace Projekat
             idPacijent = izabraniTermin.Pacijent.IdPacijenta;
             OgraniciIzborNovogDatuma(izabraniTermin);
             this.termin = izabraniTermin;
+            InicijalizujPodatkeZaIzabraniTermin(izabraniTermin);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
+            view.Filter = UserFilter;
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+        }
+
+        private void InicijalizujPodatkeZaIzabraniTermin(Termin izabraniTermin)
+        {
             if (izabraniTermin != null)
             {
                 TipTermina tp;
@@ -61,23 +70,25 @@ namespace Projekat
                 prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
                 idLek = izabraniTermin.Lekar;
                 this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
-                int brojac = 0;
-                this.dgSearch.ItemsSource = MainWindow.lekari;
-                // TODO: ispraviti selektovanog lekara: upotrebiti dgsearch
-                foreach (Lekar lekar in MainWindow.lekari)
-                {
-                    brojac++;
-                    if (lekar.IdLekara.Equals(izabraniTermin.Lekar.IdLekara))
-                    {
-                        this.dgSearch.SelectedIndex = brojac;
-                        break;
-                    }
-                }
+                InicijalizujSelektovanogLekara(izabraniTermin);
                 this.vpp.SelectedItem = izabraniTermin.VremePocetka;
             }
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
-            view.Filter = UserFilter;
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+        }
+
+        private void InicijalizujSelektovanogLekara(Termin izabraniTermin)
+        {
+            int brojac = 0;
+            this.dgSearch.ItemsSource = MainWindow.lekari;
+            // TODO: ispraviti selektovanog lekara: upotrebiti dgsearch
+            foreach (Lekar lekar in MainWindow.lekari)
+            {
+                brojac++;
+                if (lekar.IdLekara.Equals(izabraniTermin.Lekar.IdLekara))
+                {
+                    this.dgSearch.SelectedIndex = brojac;
+                    break;
+                }
+            }
         }
 
         private void OgraniciIzborNovogDatuma(Termin izabraniTermin)
@@ -445,6 +456,22 @@ namespace Projekat
         {
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
+        }
+
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla"))
+            {
+                mi.Header = "Tamna";
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                mi.Header = "Svetla";
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
+            }
         }
     }
 }

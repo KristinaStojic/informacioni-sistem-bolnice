@@ -27,9 +27,34 @@ namespace Projekat
 
         private void prijava_Click(object sender, RoutedEventArgs e)
         {
-            int IdPacijent = Int32.Parse(this.korisnickoIme.Text);
-            Page pocetna = new PrikaziTermin(IdPacijent);
-            this.NavigationService.Navigate(pocetna);
+            // TODO: moze ovde validacija
+            try
+            {
+                int IdPacijent = Int32.Parse(this.korisnickoIme.Text);
+                Page pocetna = new PrikaziTermin(IdPacijent);
+                this.NavigationService.Navigate(pocetna);
+            }
+            catch
+            {
+                MessageBox.Show("Niste uneli ispravne kredencijale");
+            }
+        }
+
+        // TODO: izmeniti
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla"))
+            {
+                mi.Header = "Tamna";
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                mi.Header = "Svetla";
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
+            }
         }
     }
 }
