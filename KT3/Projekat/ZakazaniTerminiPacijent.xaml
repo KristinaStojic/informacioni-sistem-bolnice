@@ -10,8 +10,8 @@
     <Grid Height="600">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="142*"/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="13*"/>
@@ -32,7 +32,7 @@
                                        Style="{DynamicResource ZdravoText}" FontStyle="Italic" />
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
-                            <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
+                            <Menu Margin="480,7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
                                 <MenuItem Name="podaci">
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />

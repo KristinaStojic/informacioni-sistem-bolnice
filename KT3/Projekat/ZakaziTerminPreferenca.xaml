@@ -40,8 +40,7 @@
                                     <MenuItem Header="_en"/>
                                     <Separator />
                                     <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Svetla" Name="svetlaTema" />
-                                    <MenuItem Header="_Tamna"/>
+                                    <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>
                                     <Separator />
                                     <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>

@@ -127,7 +127,7 @@
             <Calendar HorizontalAlignment="Left" Margin="20,11,0,0" Width="200" FontSize="14" VerticalAlignment="Top" Name="datum" Height="168" SelectedDatesChanged="datum_SelectedDatesChanged" />
         </GroupBox>
         <ListView x:Name="dgSearch" SelectionMode="Single" Margin="288.5,157,35,258" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1"
-                  BorderBrush="White" Foreground="DeepPink">
+                  BorderBrush="White" Foreground="Black">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" 
