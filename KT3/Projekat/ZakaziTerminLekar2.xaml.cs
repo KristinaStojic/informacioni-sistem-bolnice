@@ -191,22 +191,54 @@ namespace Projekat
 
         }
         private void tipPregleda_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tipPregleda.Text.Equals("Operacija"))
+        {          
+            prostorije.Items.Clear();
+
+            if (tipPregleda.SelectedIndex == 0) // pregled
             {
                 this.dugmeLekari.IsEnabled = false;
                 this.lekar.Text = "Petar Nebojsic";
                 this.listaLekara.IsEnabled = false;
+                dodajSaleZaPregled();
             }
-            else if (tipPregleda.Text.Equals("Pregled"))
+            else if (tipPregleda.SelectedIndex == 1) // operacija
             {
                 this.dugmeLekari.IsEnabled = true;
                 this.lekar.Text = "";
                 this.listaLekara.IsEnabled = true;
+                dodajSaleZaOperacije();
+            }
 
+            prostorije.SelectedIndex = 0;
+        }
+
+        private void dodajSaleZaPregled()
+        {
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.TipSale.Equals(tipSale.SalaZaPregled))
+                {
+                    if (!prostorije.Items.Contains(s.Id))
+                    {
+                        prostorije.Items.Add(s.Id);
+                    }
+                }
             }
         }
 
+        private void dodajSaleZaOperacije()
+        {
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.TipSale.Equals(tipSale.OperacionaSala))
+                {
+                    if (!prostorije.Items.Contains(s.Id))
+                    {
+                        prostorije.Items.Add(s.Id);
+                    }
+                }
+            }
+        }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             //sacuvaj
