@@ -32,8 +32,8 @@ namespace Projekat
         {
             InitializeComponent();
             inicijalizujElemente(izabranaSala);
-            azurirajVrijemePocetkaIstiDatum();
-            postaviVrijemeKraja();
+            postaviTerminePocetka();
+            postaviTermineKraja();
         }
        
         private void inicijalizujElemente(Sala izabranaSala)
@@ -48,7 +48,7 @@ namespace Projekat
         private void DatePickerPocetak_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             azurirajDatumKraja();
-            azurirajVrijemePocetka();
+            postaviTerminePocetka();
         }
 
         private void DatePickerKraj_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -67,7 +67,7 @@ namespace Projekat
             postaviDugme();
         }
 
-        private void azurirajVrijemePocetka()
+        private void postaviTerminePocetka()
         {
             if(DatePickerPocetak.SelectedDate == DateTime.Now.Date)
             {
@@ -146,7 +146,7 @@ namespace Projekat
             if (terminiKraj != null)
             {
                 terminiKraj.Clear();
-                if (prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka) == 23)
+                if (prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka) == 24)//Termini i pregledi ne traju vise dana...
                 {
                     for (int i = 1; i <= 23; i++)
                     {
@@ -168,10 +168,10 @@ namespace Projekat
                     return zauzetiTermin;
                 }
             }
-            return 23;
+            return 24;
         }
         
-        private void postaviVrijemeKraja()
+        private void postaviTermineKraja()
         {
             string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             if (terminiKraj != null)

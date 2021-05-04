@@ -17,13 +17,13 @@
                     </StackPanel>
                     <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                         <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
-                            <MenuItem Header="_Ime i prezime">
+                            <MenuItem Name="podaci" >
                                 <MenuItem.Icon>
                                     <Image Source="/slike/user.png" />
                                 </MenuItem.Icon>
                                 <MenuItem Header="_Vaš profil" />
                                 <Separator/>
-                                <MenuItem Header="_Popuni anketu" />
+                                <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
                                 <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
                                 <MenuItem Header="_sr" />
@@ -75,7 +75,7 @@
                   SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Datum" Width="100" Binding="{Binding Datum}"/>
-                    <DataGridTextColumn Header="Podsetnik za" Width="90" Binding="{Binding TipObavestenja}"/>
+                    <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
                     <DataGridTextColumn Header="Sadrzaj" Width="*" Binding="{Binding SadrzajObavestenja}"/>
                     <!-- staviti button  -->
                     <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
@@ -88,10 +88,18 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top"
-                   RenderTransformOrigin="0.263,0.577" Margin="325,94,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="114"/>
+                   RenderTransformOrigin="0.263,0.577" Margin="335,88,0,0" FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142"/>
             <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.577" Margin="325,329,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
-            <Button x:Name="anketa" Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="610,88,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
+            <Button Background="#FF112D4E" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="75,84,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
                 <TextBlock Text="Anketa" Foreground="White" FontSize="16"/>
+            </Button>
+            <Button Background="#FF112D4E" Name="ObrisiObavestenje" Height="30" Width="30" Margin="669,87,101,461"
+                    ToolTip="Obrisi selektovano obavestenje" Click="ObrisiObavestenje_Click">
+                <TextBlock Text="🗑" Foreground="White" FontSize="16"/>
+            </Button>
+            <Button Background="#FF112D4E" Name="UvidObavestenje" Height="30" Width="30" Margin="632,88,138,460"
+                    ToolTip="Uvid u selektovano obavestenje" Click="UvidObavestenje_Click">
+                <TextBlock Text="📄" Foreground="White" FontSize="16"/>
             </Button>
         </Grid>
     </StackPanel>

@@ -41,7 +41,7 @@ namespace Model
                 }
                 else
                 {
-                    return "Filip Filipovic";
+                    return null;
                 }
             }
         }

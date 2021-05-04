@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,6 +57,43 @@ namespace Projekat.Model
                 pomocna = false;
             }
             return idAnkete;
+        }
+
+        public static Anketa NadjiAnketuPoId(int IdAnkete)
+        {
+            foreach (Anketa anketa in ankete)
+            {
+                if (anketa.idAnkete == IdAnkete)
+                {
+                    return anketa;
+                }
+            }
+            return null;
+        }
+
+        public static void ObrisiAnketu(int idTermina)
+        {
+            foreach(Anketa anketa in ankete)
+            {
+                if(anketa.idTermina == idTermina)
+                {
+                    ankete.Remove(anketa);
+                    return;
+                }
+            }
+        }
+
+        public static void DodajAnketuZaLekara(Termin termin, int idPacijent) 
+        {
+            string podaciLekara = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+            Anketa anketaZaLekara = new Anketa(VrstaAnkete.ZaLekare, "Anketa za lekara: " + podaciLekara, idPacijent, termin.IdTermin);
+            ankete.Add(anketaZaLekara);
+        }
+
+        public static void DodajAnketuZaKliniku(int idPacijent)
+        {
+            Anketa anketa = new Anketa(VrstaAnkete.ZaKliniku, "Anketa o klinici Zdravo korporacije", idPacijent, 0);
+            ankete.Add(anketa);
         }
     }
 }

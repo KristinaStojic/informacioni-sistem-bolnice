@@ -39,6 +39,23 @@ namespace Projekat
             {
                 PacijentiTabela.Add(p);
             }
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PacijentiTabela);
+            view.Filter = UserFilterPacijenti;
+        }
+
+        private bool UserFilterPacijenti(object item)
+        {
+            if (String.IsNullOrEmpty(pretraga.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return ((item as Pacijent).ImePacijenta.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Pacijent).PrezimePacijenta.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                       || ((item as Pacijent).Jmbg.ToString().IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
         }
 
         // nazad
@@ -175,6 +192,11 @@ namespace Projekat
             this.Close();
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
+        }
+
+        private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(PacijentiTabela).Refresh();
         }
     }
 }

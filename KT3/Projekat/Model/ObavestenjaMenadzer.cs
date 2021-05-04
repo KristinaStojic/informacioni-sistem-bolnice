@@ -39,7 +39,7 @@ namespace Projekat.Model
 
         public static void DodajObavestenje(Obavestenja novoObavestenje)
         {
-            obavestenja.Add(novoObavestenje);
+            obavestenja.Insert(0, novoObavestenje);
             if (OglasnaTabla.oglasnaTabla == null)
             {
                 OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
@@ -65,7 +65,7 @@ namespace Projekat.Model
 
                     int idx = OglasnaTabla.oglasnaTabla.IndexOf(staroObavestenje);
                     OglasnaTabla.oglasnaTabla.RemoveAt(idx);
-                    OglasnaTabla.oglasnaTabla.Insert(idx, obavestenje);
+                    OglasnaTabla.oglasnaTabla.Insert(0, obavestenje);
                 }
             }   
         }
@@ -136,5 +136,16 @@ namespace Projekat.Model
             return id;
         }
 
+        public static void ObrisiObavestenjePacijent(Obavestenja selektovanoObavestenje)
+        {
+            foreach(Obavestenja o in obavestenja)
+            {
+                if(o.IdObavestenja == selektovanoObavestenje.IdObavestenja)
+                {
+                    obavestenja.Remove(o);
+                    return;
+                }
+            }
+        }
     }
 }

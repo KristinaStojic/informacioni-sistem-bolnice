@@ -28,13 +28,13 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Naslov:" FontSize="15" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="4.4,5.6,0,0" VerticalAlignment="Center" Height="40" Width="157"/>
-        <Label Content="Sadrzaj obavestenja:" FontSize="15" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="4.4,5,0,44.6" VerticalAlignment="Center" Height="40" Width="157" Grid.RowSpan="2"/>
-        <Label Content="Obavestenje za:" FontSize="15" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="4.4,4.8,0,0" VerticalAlignment="Center" Height="40" Width="157"/>
-        <Label x:Name="pacijenti" Content="Pronadji pacijente:" FontSize="15" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" Margin="4.4,5,0,44.6" VerticalAlignment="Center" Height="40" Width="157" Grid.RowSpan="2"/>
-        <TextBox x:Name="naslov" Grid.Column="2" HorizontalAlignment="Left" Margin="8,2.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="188" FontSize="15"/>
+        <Label Content="Naslov:" FontSize="17" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="4.4,5.6,0,0" VerticalAlignment="Center" Height="40" Width="157"/>
+        <Label Content="Sadrzaj obavestenja:" FontSize="17" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="4.4,5,0,44.6" VerticalAlignment="Center" Height="40" Width="167" Grid.RowSpan="2"/>
+        <Label Content="Obavestenje za:" FontSize="17" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Margin="4.4,3.8,0,1" VerticalAlignment="Center" Height="40" Width="157"/>
+        <Label x:Name="pacijenti" Content="Pronadji pacijente:" FontSize="17" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" Margin="4.4,5,0,44.6" VerticalAlignment="Center" Height="40" Width="157" Grid.RowSpan="2"/>
+        <TextBox x:Name="naslov" Grid.Column="2" HorizontalAlignment="Left" Margin="8,6.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="188" FontSize="15"/>
         <TextBox x:Name="sadrzaj" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="5.6,1.4,6,17" AcceptsReturn="True" TextWrapping="Wrap" FontSize="15"/>
-        <ComboBox x:Name="namena" Grid.Column="2" HorizontalAlignment="Left" Margin="8,2.8,0,0" Grid.Row="6" VerticalAlignment="Top" Width="188" Height="31" FontSize="15" SelectedIndex="0" LostFocus="namena_LostFocus">
+        <ComboBox x:Name="namena" Grid.Column="2" HorizontalAlignment="Left" Margin="8,3.8,0,0" Grid.Row="6" VerticalAlignment="Top" Width="188" Height="31" FontSize="17" SelectedIndex="0" LostFocus="namena_LostFocus">
             <ComboBoxItem Content="sve"/>
             <ComboBoxItem Content="sve lekare"/>
             <ComboBoxItem Content="sve upravnike"/>
@@ -42,7 +42,7 @@
             <ComboBoxItem Content="izabrane pacijente"/>
         </ComboBox>
 
-        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Margin="8,3,6.4,8.8" TextAlignment="Left" ToolTip="Pretrazite listu po imenu, prezimenu ili jmbg" FontSize="14" Grid.Column="2" Grid.Row="7">
+        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Margin="8,4,6.4,7.8" TextAlignment="Left" ToolTip="Pretrazite listu po imenu, prezimenu ili jmbg" FontSize="14" Grid.Column="2" Grid.Row="7">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
@@ -67,7 +67,6 @@
             </TextBox.Style>
         </TextBox>
 
-        <!--  <TextBox x:Name="pretraga" Grid.Column="2" Grid.Row="7" TextChanged="txtFilter_TextChanged" Margin="3.8,2.2,8,6.8" FontSize="15"/> -->
         <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="4" SelectionMode="Multiple" Margin="5.6,7.4,6,10.2" RenderTransformOrigin="0.492,0.518" >
             <ListView.View>
                 <GridView>

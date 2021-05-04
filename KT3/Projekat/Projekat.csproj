@@ -116,6 +116,9 @@
     <Compile Include="DodajZamjenskiLijek.xaml.cs">
       <DependentUpon>DodajZamjenskiLijek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HitanSlucajDodajGuest.xaml.cs">
+      <DependentUpon>HitanSlucajDodajGuest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzmeniObavestenje.xaml.cs">
       <DependentUpon>IzmeniObavestenje.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,8 @@
     <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />
     <Compile Include="Model\LekoviMenadzer.cs" />
+    <Compile Include="Model\MalicioznoPonasanje.cs" />
+    <Compile Include="Model\MalicioznoPonasanjeMenadzer.cs" />
     <Compile Include="Model\Obavestenja.cs" />
     <Compile Include="Model\ObavestenjaMenadzer.cs" />
     <Compile Include="Model\Oprema.cs" />
@@ -234,6 +239,9 @@
     </Compile>
     <Compile Include="PrikaziAnkete.xaml.cs">
       <DependentUpon>PrikaziAnkete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrikaziAnketuZaKliniku.xaml.cs">
+      <DependentUpon>PrikaziAnketuZaKliniku.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrikaziAntekuZaLekare.xaml.cs">
       <DependentUpon>PrikaziAntekuZaLekare.xaml</DependentUpon>
@@ -405,6 +413,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HitanSlucajDodajGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IzmeniObavestenje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -556,6 +568,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrikaziAnkete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikaziAnketuZaKliniku.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -821,6 +837,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\odjava.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\add-user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

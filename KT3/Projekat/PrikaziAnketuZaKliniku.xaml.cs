@@ -17,35 +17,27 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for PrikaziAntekuZaLekare.xaml
+    /// Interaction logic for PrikaziAnketuZaKliniku.xaml
     /// </summary>
-    public partial class PrikaziAntekuZaLekare : Page
+    public partial class PrikaziAnketuZaKliniku : Page
     {
+        private static int idPacijent;
+        private static int idAnkete;
         private static string prvoPitanje = null;
         private static string drugoPitanje = null;
         private static string trecePitanje = null;
         private static string cetvrtoPitanje = null;
         private static string petoPitanje = null;
-        private static int idPacijent;
-        private static int idAnkete;
-        public PrikaziAntekuZaLekare(int idPrijavljenogPacijenta, int idSelektovaneAnkete)
+        public PrikaziAnketuZaKliniku(int idPrijavljenogPacijenta, int idSelektovaneAnkete)
         {
             InitializeComponent();
+            this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             idAnkete = idSelektovaneAnkete;
-            Lekar lekar = pronadjiLekaraZaAnketu(idAnkete);
-            this.lekar.Content = "Anketa o radu lekara (" + lekar.ImeLek + " " + lekar.PrezimeLek + ")";
+            this.potvrdi.IsEnabled = false;
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
-
-        private static Lekar pronadjiLekaraZaAnketu(int idAnkete)
-        {
-            Anketa anketa = AnketaMenadzer.NadjiAnketuPoId(idAnkete);
-            Termin termin = TerminMenadzer.NadjiTerminPoId(anketa.idTermina);
-            return termin.Lekar;
-        }
-
         public void jedan1_Click(object sender, RoutedEventArgs e)
         {
             // brPitanja = odgovor ; ......
@@ -70,7 +62,7 @@ namespace Projekat
             {
                 prvoPitanje += "5";
             }
-            odgovorenoNaSvaPitanja();
+            PoveriOdgovoreNaSvaPitanja();
         }
 
         private void jedan2_Click(object sender, RoutedEventArgs e)
@@ -96,7 +88,7 @@ namespace Projekat
             {
                 drugoPitanje += "5";
             }
-            odgovorenoNaSvaPitanja();
+            PoveriOdgovoreNaSvaPitanja();
         }
 
         private void jedan3_Click(object sender, RoutedEventArgs e)
@@ -122,7 +114,7 @@ namespace Projekat
             {
                 trecePitanje += "5";
             }
-            odgovorenoNaSvaPitanja();
+            PoveriOdgovoreNaSvaPitanja();
         }
 
         private void jedan4_Click(object sender, RoutedEventArgs e)
@@ -148,9 +140,34 @@ namespace Projekat
             {
                 cetvrtoPitanje += "5";
             }
-            odgovorenoNaSvaPitanja();
+            PoveriOdgovoreNaSvaPitanja();
         }
 
+        private void jedan5_Click(object sender, RoutedEventArgs e)
+        {
+            petoPitanje = "5=";
+            if ((bool)jedan5.IsChecked)
+            {
+                petoPitanje += "1";
+            }
+            else if ((bool)dva5.IsChecked)
+            {
+                petoPitanje += "2";
+            }
+            else if ((bool)tri5.IsChecked)
+            {
+                petoPitanje += "3";
+            }
+            else if ((bool)cetiri5.IsChecked)
+            {
+                petoPitanje += "4";
+            }
+            else if ((bool)pet5.IsChecked)
+            {
+                petoPitanje += "5";
+            }
+            PoveriOdgovoreNaSvaPitanja();
+        }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -193,7 +210,7 @@ namespace Projekat
             this.NavigationService.Navigate(prikaziAnkete);
         }
 
-        private void odgovorenoNaSvaPitanja()
+        private void PoveriOdgovoreNaSvaPitanja()
         {
             if (prvoPitanje != null && drugoPitanje != null && trecePitanje != null && cetvrtoPitanje != null && petoPitanje != null)
             {
@@ -207,5 +224,4 @@ namespace Projekat
             this.NavigationService.Navigate(prikaziAnkete);
         }
     }
-
 }

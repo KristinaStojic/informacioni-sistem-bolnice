@@ -27,6 +27,7 @@ namespace Projekat
         public OtkaziTermin(Termin zaBrisanje)
         {
             InitializeComponent();
+            this.DataContext = this;
             terminZaBrisanje = zaBrisanje;
             idPacijent = zaBrisanje.Pacijent.IdPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
@@ -35,11 +36,32 @@ namespace Projekat
             this.vreme.Text = zaBrisanje.VremePocetka;
             this.lekar.Text = zaBrisanje.Lekar.ToString();
             this.sala.Text = zaBrisanje.Prostorija.Id.ToString();
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+        }
+
+        // BRISANJE TERMINA
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (!MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                OtkaziOdabraniTermin();
+            }
+            else
+            {
+                MessageBox.Show("Nije Vam omoguceno otkazivanje termina jer ste prekoracili maksimalni broj modifikacije termina u danu.", "Upozorenje", MessageBoxButton.OK);
+            }
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
+            this.NavigationService.Navigate(uvid);
+        }
+
+        private static void OtkaziOdabraniTermin()
+        {
+            TerminMenadzer.OtkaziTermin(terminZaBrisanje);
+            MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //this.Close();
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
         }
@@ -68,23 +90,16 @@ namespace Projekat
             this.NavigationService.Navigate(uvid);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            // brisanje termina
-            if (terminZaBrisanje != null)
-            {
-                MessageBox.Show(terminZaBrisanje.Prostorija.Id.ToString() + " " + terminZaBrisanje.IdTermin.ToString());
-                SaleMenadzer.ObrisiZauzeceSale(terminZaBrisanje.Prostorija.Id, terminZaBrisanje.IdTermin);
-                TerminMenadzer.OtkaziTermin(terminZaBrisanje);
-            }
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid);
-        }
-
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
         }
     }
 }

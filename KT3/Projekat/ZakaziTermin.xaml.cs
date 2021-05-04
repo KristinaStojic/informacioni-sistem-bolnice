@@ -21,17 +21,16 @@ namespace Projekat
     // TODO
     public partial class ZakaziTermin : Page
     {
-        public static int maksimalniJednocifren = 9;
-        public static int oznakaZaRenoviranje = 0;
-        public int idPacijent;
+        private static int maksimalniJednocifren = 9;
+        private static int oznakaZaRenoviranje = 0;
+        private static int idPacijent;
         public static Lekar izabraniLekar;
-        //
-        public List<Sala> slobodneSale;
-        public static ObservableCollection<string> sviSlobodni { get; set; }
-        public static ObservableCollection<string> pomocnaSviSlobodniSlotovi { get; set; }
-        public Sala prvaSlobodnaSala;
-        public int ukupanBrojSalaZaPregled;
-        public static Pacijent prijavljeniPacijent;
+        private List<Sala> slobodneSale;
+        private static ObservableCollection<string> sviSlobodni { get; set; }
+        private static ObservableCollection<string> pomocnaSviSlobodniSlotovi { get; set; }
+        private Sala prvaSlobodnaSala;
+        private int ukupanBrojSalaZaPregled;
+        private static Pacijent prijavljeniPacijent;
         public static List<string> sviZauzetiZaSelektovaniDatum { get; set; }
 
         public ZakaziTermin(int idPrijavljenogPacijenta)
@@ -41,6 +40,7 @@ namespace Projekat
             datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             if (izabraniLekar != null)
             {
                 this.imePrz.Text = izabraniLekar.ToString();
@@ -51,45 +51,83 @@ namespace Projekat
                 this.imePrz.Text = izabraniLekar.ToString();
             }
             pomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
-                                                                "13:00", "13:30", "14:00", "14:30","15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
-                                                                "19:00", "19:30", "20:00"};
+                                                                "13:00", "13:30", "14:00", "14:30","15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
         }
 
+        // Zakazivanje termina
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try
             {
-                int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-                String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture); 
-                String vp = vpp.Text;
-                String vk = IzracunajVremeKrajaPregleda(vp);
-
-                TipTermina tp;
-                if (combo.Text.Equals("Pregled"))
-                {
-                    tp = TipTermina.Pregled;
-                }
-                else
-                {
-                    tp = TipTermina.Operacija;
-                }
-
-                Termin s = new Termin(brojTermina, datumTermina, vp, vk, tp);
-                Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                s.Pacijent = p;
-                s.Lekar = izabraniLekar;
-
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, datumTermina, s.IdTermin);
-                prvaSlobodnaSala.zauzetiTermini.Add(zs);
-                s.Prostorija = prvaSlobodnaSala;
-                TerminMenadzer.ZakaziTermin(s);
-
+                DetektujMalicioznoPonasanjePacijenta();
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
             }
             catch (System.Exception)
             {
                 MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DetektujMalicioznoPonasanjePacijenta()
+        {
+            if (!MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                PokupiPodatkeZaZakazivanjeTermina();
+            }
+            else
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili maksimalni broj modifikacije termina u danu.", "Upozorenje", MessageBoxButton.OK);
+            }
+        }
+
+        private void PokupiPodatkeZaZakazivanjeTermina()
+        {
+            int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
+            String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            String vp = vpp.Text;
+            String vk = IzracunajVremeKrajaPregleda(vp);
+            TipTermina tp;
+            if (combo.Text.Equals("Pregled"))
+            {
+                tp = TipTermina.Pregled;
+            }
+            else
+            {
+                tp = TipTermina.Operacija;
+            }
+            Termin termin = new Termin(brojTermina, datumTermina, vp, vk, tp);
+            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            termin.Pacijent = pacijent;
+            termin.Lekar = izabraniLekar;
+
+            DodajZauzeceSale(termin);
+            termin.Prostorija = prvaSlobodnaSala;
+            TerminMenadzer.ZakaziTermin(termin);
+            AnketaMenadzer.DodajAnketuZaLekara(termin, idPacijent);
+            ProveriAnketuZaKliniku();
+            MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent);
+        }
+
+        
+
+        private void DodajZauzeceSale(Termin termin)
+        {
+            ZauzeceSale zs = new ZauzeceSale(termin.VremePocetka, termin.VremeKraja, termin.Datum, termin.IdTermin);
+            prvaSlobodnaSala.zauzetiTermini.Add(zs);
+        }
+
+        private static void ProveriAnketuZaKliniku()
+        {
+            int brojacTermina = 0;
+            foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent)) 
+            {
+                brojacTermina++;
+                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika)
+                {
+                    AnketaMenadzer.DodajAnketuZaKliniku(idPacijent);
+                    return;
+                }
             }
         }
 
@@ -149,7 +187,7 @@ namespace Projekat
             }
         }
 
-        private void IzbaciProsleSlotoveZaDanasnjiDan()
+        public void IzbaciProsleSlotoveZaDanasnjiDan()
         {
             if (datum.SelectedDate == DateTime.Now.Date)
             {
@@ -243,7 +281,7 @@ namespace Projekat
                                 /* provera da se selektovani datum poklapa sa nekim vec zakazanim terminom */
                                 else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
                                 {
-                                    MessageBox.Show(slot);
+                                    //MessageBox.Show(slot);
                                     sviZauzetiZaSelektovaniDatum.Add(slot);
                                 }
                             }
@@ -363,8 +401,9 @@ namespace Projekat
             /* Pronalazenje sale za koju je slobodan izabrani slot*/
             foreach (Sala sala in slobodneSale)
             {
-                bool PostojiZauzece = ProveriVremeZauzecaZaTermine(selektovaniDatum, selektovaniSlot, sala);
-                PostojiZauzece = ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
+                bool PostojiZauzece = ProveriVremeZauzecaZaTermine(selektovaniDatum, selektovaniSlot, sala) || ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
+                MessageBox.Show("da li postoji zauzece za odabrani termin:" + PostojiZauzece.ToString());
+                //PostojiZauzece = ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
                 if (!PostojiZauzece)
                 {
                     prvaSlobodnaSala = sala;
@@ -401,6 +440,11 @@ namespace Projekat
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

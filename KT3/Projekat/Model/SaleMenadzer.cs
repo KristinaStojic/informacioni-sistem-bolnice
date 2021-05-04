@@ -134,10 +134,11 @@ namespace Model
             Sala sala = NadjiSaluPoId(IdSale);
             foreach (ZauzeceSale zauzeceSale in sala.zauzetiTermini)
             {
-                if (zauzeceSale.idTermina.Equals(IdTermina))
+                if (zauzeceSale.idTermina == IdTermina)
                 {
                     sala.zauzetiTermini.Remove(zauzeceSale);
-                    break;
+                    Console.WriteLine("Obrisano zauzuce sale: " + sala.Id);
+                    return;
                 }
             }
         }

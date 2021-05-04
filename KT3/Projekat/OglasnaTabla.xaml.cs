@@ -145,7 +145,15 @@ namespace Projekat
             canvas2.Visibility = Visibility.Hidden;
 
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
-            ObavestenjaMenadzer.ObrisiObavestenje(selektovanoObavestenje);
+
+            if (selektovanoObavestenje != null)
+            {
+                ObavestenjaMenadzer.ObrisiObavestenje(selektovanoObavestenje);
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali obavestenje koje zelite da obrisete!");
+            }
 
             flag = false;
         }
