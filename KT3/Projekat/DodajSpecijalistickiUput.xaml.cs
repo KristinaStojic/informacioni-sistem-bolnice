@@ -25,13 +25,10 @@ namespace Projekat
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
-
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
-
             popuniPodatke();
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiDoktora.ItemsSource);
-            view.Filter = UserFilter;
+           
         }
         private void popuniPodatke()
         {
@@ -42,6 +39,8 @@ namespace Projekat
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             datum.SelectedDate = DateTime.Parse(termin.Datum);
             specijalistickiTab.IsSelected = true;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiDoktora.ItemsSource);
+            view.Filter = UserFilter;
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,19 +69,14 @@ namespace Projekat
         {
             try
             {
-                //id uputa
                 int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
-                //specijalista
                 int idSpecijaliste = nadjiIDSpecijaliste();
-                //datum
                 string datum = nadjiDatum();
-                //tip pregleda
-                tipUputa tip = nadjiTipUputa();
+                tipUputa tipUputa = nadjiTipUputa();
 
-                Uput noviUput= new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tip);
+                Uput noviUput= new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);
-
 
                 TerminMenadzer.sacuvajIzmene();
                 PacijentiMenadzer.SacuvajIzmenePacijenta();
@@ -94,7 +88,7 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+       
         private int nadjiIDSpecijaliste()
         {
             String[] imeprz = specijalista.Text.Split(' ');
@@ -113,14 +107,14 @@ namespace Projekat
 
         private string nadjiDatum()
         {
-            String formatirano = null;
+            String formatiranDatum = null;
             DateTime? selectedDate = datum.SelectedDate;
             if (selectedDate.HasValue)
             {
-                formatirano = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                formatiranDatum = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             }
-            return formatirano;
+            return formatiranDatum;
         }
         private tipUputa nadjiTipUputa()
         {
@@ -140,7 +134,6 @@ namespace Projekat
             }
 
             return tip;
-
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)

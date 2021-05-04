@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="SpisakZahtevaZaLekove" Height="650" Width="700" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+        Title="SpisakZahtevaZaLekove" Height="650" Width="700" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid DockPanel.Dock="Top" Margin="0,0,4,-1">
         <StackPanel>
             <Border  Background="LightSkyBlue" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="690" Height="609">
                 <TabControl x:Name="karton" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="-12" Height="589" VerticalAlignment="Bottom">
-                    <TabItem Header="Zahtevi za validaciju" Width="130" IsSelected="True" Height="25">
+                    <TabItem Header="Zahtevi za validaciju" Width="130" IsSelected="True" Height="25" x:Name="zahtevi">
                         <Grid>
                             <DataGrid x:Name="dataGridZahtevi" IsReadOnly="True" ItemsSource="{Binding TabelaZahteva}"
                                 SelectionMode="Single" AutoGenerateColumns="False"
@@ -28,7 +28,7 @@
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Svi lekovi" Width="130" Height="27" Margin="0,-2,0,2" VerticalAlignment="Bottom">
+                    <TabItem Header="Svi lekovi" Width="130" Height="27" Margin="0,-2,0,2" VerticalAlignment="Bottom" x:Name="sviLekovi">
                         <Grid>
                             <Label Content="Spisak lekova" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
                             <DataGrid x:Name="dataGridLekovi" ItemsSource="{Binding TabelaLekova}" IsReadOnly="True" 
