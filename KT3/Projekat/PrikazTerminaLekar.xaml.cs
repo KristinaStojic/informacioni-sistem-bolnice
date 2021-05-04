@@ -74,7 +74,7 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //zakazi
-            ZakaziTerminLekar zt = new ZakaziTerminLekar();
+            ZakaziTerminLekar2 zt = new ZakaziTerminLekar2();
             zt.Show();
         }
 

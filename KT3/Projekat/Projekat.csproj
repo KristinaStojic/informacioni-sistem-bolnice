@@ -318,6 +318,9 @@
     <Compile Include="ZakaziTerminLekar.xaml.cs">
       <DependentUpon>ZakaziTerminLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZakaziTerminLekar2.xaml.cs">
+      <DependentUpon>ZakaziTerminLekar2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakaziTerminPreferenca.xaml.cs">
       <DependentUpon>ZakaziTerminPreferenca.xaml</DependentUpon>
     </Compile>
@@ -680,6 +683,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ZakaziTerminLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZakaziTerminLekar2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
