@@ -33,12 +33,16 @@ namespace Projekat
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        {   
+            LekoviMenadzer.dodajSastojak(napraviSastojak(), izabraniLijek);
+            this.Close();
+        }
+
+        private Sastojak napraviSastojak()
         {
             string naziv = this.naziv.Text;
             double kolicina = double.Parse(this.kolicina.Text);
-            Sastojak sastojak = new Sastojak(naziv, kolicina);
-            LekoviMenadzer.dodajSastojak(sastojak, izabraniLijek);
-            this.Close();
+            return new Sastojak(naziv, kolicina);
         }
 
         private void naziv_TextChanged(object sender, TextChangedEventArgs e)

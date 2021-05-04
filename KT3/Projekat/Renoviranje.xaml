@@ -18,8 +18,8 @@
             <ComboBox Margin="10, 0, 0, 0" HorizontalAlignment="Center" Name = "vrijemeKraja" Grid.Column="1" Grid.Row="3" Height="27" Width="115" SelectedIndex="1" ItemsSource="{Binding terminiKraj}" SelectionChanged="vrijemeKraja_SelectionChanged"></ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Background="CadetBlue" Width="120" Height="40" Margin="120, 20, 0,0" Click="Button_Click" Name="Potvrdi">Potvrdi</Button>
-            <Button Background="CadetBlue" Width="120" Height="40" Margin="20, 20, 0,0" Click="Button_Click_1">Odustani</Button>
+            <Button Background="CadetBlue" Width="120" Height="40" Margin="120, 20, 0,0" Click="Potvrdi_Click" Name="Potvrdi">Potvrdi</Button>
+            <Button Background="CadetBlue" Width="120" Height="40" Margin="20, 20, 0,0" Click="Odustani_Click">Odustani</Button>
         </StackPanel>
     </StackPanel>
 </Window>

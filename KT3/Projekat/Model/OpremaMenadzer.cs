@@ -11,62 +11,46 @@ namespace Projekat.Model
     class OpremaMenadzer
     {
 
-
-        public static List<Oprema> NadjiStatickuOpremu()
+        public static void izmjeniOpremu(Oprema izOpreme, Oprema uOpremu)
         {
-            List<Oprema> staticka = new List<Oprema>();
-            List<Oprema> sve = OpremaMenadzer.oprema;
-            foreach(Oprema o in sve)
-            { 
-                    staticka.Add(o);
-            }
-            return staticka;
+            izmjeniPrikazOpreme(izOpreme, uOpremu);
+            azurirajOpremuUSkladistu();
+            sacuvajIzmjene();
         }
 
-        public static void izmjeniOpremu(Oprema oprema, Oprema o1)
+        private static void izmjeniPrikazOpreme(Oprema izOpreme, Oprema uOpremu)
         {
-            foreach(Oprema o in OpremaMenadzer.oprema)
+            foreach (Oprema oprema in OpremaMenadzer.oprema)
             {
-                if(o.IdOpreme == oprema.IdOpreme)
+                if (oprema.IdOpreme == izOpreme.IdOpreme)
                 {
-                    o.NazivOpreme = o1.NazivOpreme;
-                    o.Kolicina = o1.Kolicina;
-                    if (o1.Staticka)
+                    oprema.NazivOpreme = uOpremu.NazivOpreme;
+                    oprema.Kolicina = uOpremu.Kolicina;
+                    if (uOpremu.Staticka)
                     {
-                        int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
+                        int idx = Skladiste.OpremaStaticka.IndexOf(izOpreme);
                         Skladiste.OpremaStaticka.RemoveAt(idx);
-                        Skladiste.OpremaStaticka.Insert(idx, o);
+                        Skladiste.OpremaStaticka.Insert(idx, oprema);
                     }
                     else
                     {
-                        int idx = Skladiste.OpremaDinamicka.IndexOf(oprema);
+                        int idx = Skladiste.OpremaDinamicka.IndexOf(izOpreme);
                         Skladiste.OpremaDinamicka.RemoveAt(idx);
-                        Skladiste.OpremaDinamicka.Insert(idx, o);
+                        Skladiste.OpremaDinamicka.Insert(idx, oprema);
                     }
-                }
-            }
-            foreach (Sala s in SaleMenadzer.sale)
-            {
-                if (s.Namjena.Equals("Skladiste"))
-                {
-                    s.Oprema = OpremaMenadzer.oprema;
                 }
             }
         }
 
-        public static List<Oprema> NadjiDinamickuOpremu()
+        private static void azurirajOpremuUSkladistu()
         {
-            List<Oprema> dinamicka = new List<Oprema>();
-            List<Oprema> sve = OpremaMenadzer.oprema;
-            foreach (Oprema o in sve)
+            foreach (Sala sala in SaleMenadzer.sale)
             {
-                if (!o.Staticka)
+                if (sala.Namjena.Equals("Skladiste"))
                 {
-                   dinamicka.Add(o);
+                    sala.Oprema = OpremaMenadzer.oprema;
                 }
             }
-            
-            return dinamicka;
         }
 
         public static List<Oprema> NadjiSvuOpremu()
@@ -77,78 +61,71 @@ namespace Projekat.Model
             }
             else
             {
-                FileStream filestream = File.OpenRead("oprema.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Oprema>));
-                oprema = (List<Oprema>)serializer.Deserialize(filestream);
-                filestream.Close();
-                foreach (Sala s in SaleMenadzer.sale)
-                {
-                    if (s.Namjena.Equals("Skladiste"))
-                    {
-                        s.Oprema = OpremaMenadzer.oprema;
-                    }
-                }
+                ucitajOpremuIzFajla();
                 return oprema;
             }
         }
 
-        public static void DodajOpremu(Oprema o)
+        private static void ucitajOpremuIzFajla()
         {
-            oprema.Add(o);
-            foreach (Sala s in SaleMenadzer.sale)
+            FileStream filestream = File.OpenRead("oprema.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Oprema>));
+            oprema = (List<Oprema>)serializer.Deserialize(filestream);
+            filestream.Close();
+            azurirajOpremuUSkladistu();
+        }
+
+        public static void DodajOpremu(Oprema oprema)
+        {
+            OpremaMenadzer.oprema.Add(oprema);
+            azurirajOpremuUSkladistu();
+            dodajOpremuUPrikaz(oprema);
+            sacuvajIzmjene();
+        }
+
+        private static void dodajOpremuUPrikaz(Oprema oprema)
+        {
+            if (oprema.Staticka)
             {
-                if (s.Namjena.Equals("Skladiste"))
-                {
-                    s.Oprema = OpremaMenadzer.oprema;
-                }
-            }
-            if (o.Staticka)
-            {
-                Skladiste.OpremaStaticka.Add(o);
+                Skladiste.OpremaStaticka.Add(oprema);
             }
             else
             {
-                Skladiste.OpremaDinamicka.Add(o);
+                Skladiste.OpremaDinamicka.Add(oprema);
             }
         }
 
-        public static void ObrisiOpremu(Oprema o)
+        public static void ObrisiOpremu(Oprema oprema)
         {
-            for(int i = 0; i < oprema.Count; i++)
+            ukloniOpremu(oprema);
+            azurirajOpremuUSkladistu();
+            ukloniOpremuIzPrikaza(oprema);
+            sacuvajIzmjene();
+        }
+
+        private static void ukloniOpremu(Oprema oprema)
+        {
+            for (int i = 0; i < OpremaMenadzer.oprema.Count; i++)
             {
-                if(o.IdOpreme == oprema[i].IdOpreme)
+                if (oprema.IdOpreme == OpremaMenadzer.oprema[i].IdOpreme)
                 {
-                    oprema.RemoveAt(i);
+                    OpremaMenadzer.oprema.RemoveAt(i);
                 }
             }
-            foreach (Sala s in SaleMenadzer.sale)
+        }
+
+        private static void ukloniOpremuIzPrikaza(Oprema oprema)
+        {
+            if (oprema.Staticka)
             {
-                if (s.Namjena.Equals("Skladiste"))
-                {
-                    s.Oprema = OpremaMenadzer.oprema;
-                }
-            }
-            if (o.Staticka)
-            {
-                Skladiste.OpremaStaticka.Remove(o);
+                Skladiste.OpremaStaticka.Remove(oprema);
             }
             else
             {
-                Skladiste.OpremaDinamicka.Remove(o);
+                Skladiste.OpremaDinamicka.Remove(oprema);
             }
         }
 
-        public static Oprema NadjiOpremuPoId(int id)
-        {
-            foreach (Oprema o in oprema)
-            {
-                if (o.IdOpreme == id)
-                {
-                    return o;
-                }
-            }
-            return null;
-        }
 
         public static void sacuvajIzmjene()
         {
@@ -160,28 +137,27 @@ namespace Projekat.Model
 
         public static int GenerisanjeIdOpreme()
         {
-            bool pomocna = false;
-            int id = 1;
-
+            int id;
             for (id = 1; id <= oprema.Count; id++)
             {
-                foreach (Oprema o in oprema)
-                {
-                    if (o.IdOpreme.Equals(id))
-                    {
-                        pomocna = true;
-                        break;
-                    }
-                }
-
-                if (!pomocna)
+                if (!postojiIdOpreme(id))
                 {
                     return id;
                 }
-                pomocna = false;
             }
-
             return id;
+        }
+
+        private static bool postojiIdOpreme(int id)
+        {
+            foreach (Oprema o in oprema)
+            {
+                if (o.IdOpreme.Equals(id))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static List<Oprema> oprema = new List<Oprema>();

@@ -59,7 +59,6 @@ namespace Projekat
             int kolicina = opremaZaSlanje.Kolicina;
             foreach(Premjestaj pm in PremjestajMenadzer.premjestaji)
             {
-                kolicina = opremaZaSlanje.Kolicina;
                 if (pm.izSale.Id == salaIzKojeSaljem.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
                     kolicina -= pm.kolicina;

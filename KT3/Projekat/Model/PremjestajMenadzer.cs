@@ -15,6 +15,7 @@ namespace Projekat.Model
             premjestaji.Add(p);
             sacuvajIzmjene();
         }
+
         public static List<Premjestaj> NadjiSvePremjestaje()
         {
             if (File.ReadAllText("premjestaj.xml").Trim().Equals(""))
@@ -23,12 +24,17 @@ namespace Projekat.Model
             }
             else
             {
-                FileStream filestream = File.OpenRead("premjestaj.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Premjestaj>));
-                premjestaji = (List<Premjestaj>)serializer.Deserialize(filestream);
-                filestream.Close();
+                ucitajPremjestajeIzFajla();
                 return premjestaji;
             }
+        }
+
+        private static void ucitajPremjestajeIzFajla()
+        {
+            FileStream filestream = File.OpenRead("premjestaj.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Premjestaj>));
+            premjestaji = (List<Premjestaj>)serializer.Deserialize(filestream);
+            filestream.Close();
         }
 
         public static void sacuvajIzmjene()
@@ -38,7 +44,8 @@ namespace Projekat.Model
             serializer.Serialize(filestream, premjestaji);
             filestream.Close();
         }
-        private static bool provjeri(Premjestaj premjestaj)
+
+        private static bool odradiPremjestaj(Premjestaj premjestaj)
         {
             if (!premjestaj.datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
             {
@@ -50,11 +57,12 @@ namespace Projekat.Model
             }
             return true;
         }
+
         public static void odradiZakazanePremjestaje()
         {
             foreach(Premjestaj premjestaj in premjestaji.ToList())
             {
-                if (!provjeri(premjestaj))
+                if (!odradiPremjestaj(premjestaj))
                 {
                     continue;
                 }
@@ -179,29 +187,31 @@ namespace Projekat.Model
        
         public static int GenerisanjeIdPremjestaja()
         {
-            bool pomocna = false;
-            int id = 1;
+            int id;
 
             for (id = 1; id <= premjestaji.Count; id++)
-            {
-                foreach (Premjestaj s in premjestaji)
-                {
-                    if (s.id.Equals(id))
-                    {
-                        pomocna = true;
-                        break;
-                    }
-                }
-
-                if (!pomocna)
+            { 
+                if (!postojiIdPremjestaja(id))
                 {
                     return id;
                 }
-                pomocna = false;
             }
 
             return id;
         }
+
+        private static bool postojiIdPremjestaja(int id)
+        {
+            foreach (Premjestaj s in premjestaji)
+            {
+                if (s.id.Equals(id))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static List<Premjestaj> premjestaji = new List<Premjestaj>();
     }
 }

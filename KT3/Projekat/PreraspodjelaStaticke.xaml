@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:local1="clr-namespace:Projekat.Model"
         mc:Ignorable="d"
-        Title="Zahtjev za preraspodjelu staticke opreme" Height="328" Width="380" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue">
+        Title="Zahtjev za preraspodjelu staticke opreme" Height="340" Width="380" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -35,7 +35,7 @@
             <TextBox.Text>
                 <Binding Path="Validacija" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local1:Validation ValidationStep="ConvertedProposedValue"/>
+                        <local1:Validacija ValidationStep="ConvertedProposedValue"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
@@ -48,7 +48,7 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <Button Grid.Row="5" Grid.Column="0" Name="Potvrdi" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="100" Background="CadetBlue" Click="Button_Click_1" Margin="60,0,0,0">Potvrdi</Button>
-        <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="100" Background="CadetBlue" Click="Button_Click" Margin="0,0,60,0">Odustani</Button>
+        <Button Grid.Row="5" Grid.Column="0" Name="Potvrdi" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="100" Background="CadetBlue" Click="Button_Click_1" Margin="60,0,0,10">Potvrdi</Button>
+        <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="100" Background="CadetBlue" Click="Button_Click" Margin="0,0,60,10">Odustani</Button>
     </Grid>
 </Window>

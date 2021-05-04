@@ -418,8 +418,5 @@ namespace Projekat.Model
         public static List<Lek> lijekovi = new List<Lek>();
         public static List<ZahtevZaLekove> zahteviZaLekove = new List<ZahtevZaLekove>();
 
-        
-
-
     }
 }

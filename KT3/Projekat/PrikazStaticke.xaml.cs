@@ -38,21 +38,14 @@ namespace Projekat
             InitializeComponent();
             PrikazStaticke.izabranaSala = izabranaSala;
             this.DataContext = this;
-            if(izabranaSala != null)
-            {
-                if (izabranaSala.TipSale == tipSale.SalaZaPregled)
-                {
-                    this.tekst.Text = "Sala za pregled (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
-                }
-                else if(izabranaSala.TipSale == tipSale.OperacionaSala)
-                {
-                    this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
-                }
-                else
-                {
-                    this.tekst.Text = "Sala za odmor (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
-                }
-            }
+            postaviTekst();
+            dodajStatickuOpremu();
+            Thread th = new Thread(izvrsi);
+            th.Start();
+        }
+
+        private void dodajStatickuOpremu()
+        {
             List<Oprema> opremaStaticka1 = new List<Oprema>();
             if (izabranaSala.Oprema != null)
             {
@@ -71,10 +64,26 @@ namespace Projekat
                 }
             }
             OpremaStaticka = new ObservableCollectionEx<Oprema>(opremaStaticka1);
-            Thread th = new Thread(izvrsi);
-            th.Start();
         }
 
+        private void postaviTekst()
+        {
+            if (izabranaSala != null)
+            {
+                if (izabranaSala.TipSale == tipSale.SalaZaPregled)
+                {
+                    this.tekst.Text = "Sala za pregled (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+                else if (izabranaSala.TipSale == tipSale.OperacionaSala)
+                {
+                    this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+                else
+                {
+                    this.tekst.Text = "Sala za odmor (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+            }
+        }
         public static void azurirajPrikaz()
         {
             OpremaStaticka.Clear();
@@ -148,13 +157,12 @@ namespace Projekat
             int kolicina = opremaZaSlanje.Kolicina;
             foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
             {
-                kolicina = opremaZaSlanje.Kolicina;
                 if (pm.izSale.Id == izabranaSala.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
                     kolicina -= pm.kolicina;
                 }
             }
-            if(kolicina == 0)
+            if(kolicina <= 0)
             {
                 return false;
             }

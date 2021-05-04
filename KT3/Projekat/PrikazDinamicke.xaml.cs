@@ -33,7 +33,28 @@ namespace Projekat
             InitializeComponent();
             this.izabranaSala = izabranaSala;
             this.DataContext = this;
+            postaviTekst();
+            dodajDinamickuOpremu();
+        }
+
+        private void dodajDinamickuOpremu()
+        {
+
             OpremaDinamicka = new ObservableCollection<Oprema>();
+            if (izabranaSala.Oprema != null)
+            {
+                foreach (Oprema o in izabranaSala.Oprema)
+                {
+                    if (!o.Staticka)
+                    {
+                        OpremaDinamicka.Add(o);
+                    }
+                }
+            }
+        }
+
+        private void postaviTekst()
+        {
             if (izabranaSala != null)
             {
                 if (izabranaSala.TipSale == tipSale.SalaZaPregled)
@@ -47,16 +68,6 @@ namespace Projekat
                 else
                 {
                     this.tekst.Text = "Sala za odmor (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
-                }
-            }
-            if (izabranaSala.Oprema != null)
-            {
-                foreach (Oprema o in izabranaSala.Oprema)
-                {
-                    if (!o.Staticka)
-                    {
-                        OpremaDinamicka.Add(o);
-                    }
                 }
             }
         }

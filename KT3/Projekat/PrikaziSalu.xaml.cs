@@ -32,11 +32,15 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
+            dodajSale();
+        }
+        private void dodajSale()
+        {
             Sale = new ObservableCollection<Sala>();
             foreach (Sala s in SaleMenadzer.sale)
             {
                 if (!s.Namjena.Equals("Skladiste"))
-                { 
+                {
                     Sale.Add(s);
                 }
             }

@@ -15,6 +15,7 @@
                 </MenuItem>
                 <MenuItem Header="Uredi" FontSize="15">
                     <MenuItem Header="Izmjeni" FontSize="15" Click="Button_Click_1" InputGestureText="Ctrl + I"></MenuItem>
+                    <MenuItem Header="Odbijeni" FontSize="15" Click="Button_Click_6" InputGestureText="Ctrl + B"></MenuItem>
                     <MenuItem Header="Obrisi" FontSize="15" Click="Button_Click_3" InputGestureText="Ctrl + O"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Navigacija" FontSize="15">
@@ -38,10 +39,13 @@
                 <Button ToolTip="Izmjeni, Ctrl + I" Click="Button_Click_1">
                     <Image Source="slike/pen.png" Width="30" Height="30"></Image>
                 </Button>
+                <Button ToolTip="Odbijeni, Ctrl + B" Click="Button_Click_6">
+                    <Image Source="slike/removed.png" Width="30" Height="30"></Image>
+                </Button>
                 <Button ToolTip="Obrisi, Ctrl + O" Click="Button_Click_3">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="290, 0, 0, 0" TextChanged="TextBox_TextChanged"></TextBox>
+                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="260, 0, 0, 0" TextChanged="TextBox_TextChanged"></TextBox>
                 <Button ToolTip="Pretrazi" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>
