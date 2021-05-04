@@ -15,16 +15,15 @@ using Model;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for DodajPacijentaGuestIzmeni.xaml
+    /// Interaction logic for HitanSlucajDodajGuest.xaml
     /// </summary>
-    public partial class DodajPacijentaGuestIzmeni : Window
+    public partial class HitanSlucajDodajGuest : Window
     {
-        public IzmeniTerminSekretar z;
-
-        public DodajPacijentaGuestIzmeni(IzmeniTerminSekretar terminSekretar)
+        HitanSlucaj hitanSlucaj;
+        public HitanSlucajDodajGuest(HitanSlucaj hitanSlucaj)
         {
             InitializeComponent();
-            this.z = terminSekretar;
+            this.hitanSlucaj = hitanSlucaj;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,9 +43,9 @@ namespace Projekat
             PacijentiMenadzer.pacijenti.Add(guestPacijent);
             PacijentiMenadzer.SacuvajIzmenePacijenta();
 
-            z.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
-            z.AzurirajListuPacijenata();
-            z.Pacijent = guestPacijent;
+            hitanSlucaj.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
+            hitanSlucaj.AzurirajListuPacijenata();
+            hitanSlucaj.Pacijent = guestPacijent;
 
             this.Close();
         }

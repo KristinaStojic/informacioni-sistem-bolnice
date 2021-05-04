@@ -6,7 +6,7 @@
 
 using System;
 using System.Collections.Generic;
-public enum Specijalizacija { Opsta_praksa, Specijalista}
+public enum Specijalizacija { Opsta_praksa, Specijalista, Ginekologija, Hirurgija, Ortopedija}
 namespace Model
 {
    public class Lekar

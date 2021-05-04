@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="PrikaziPacijenta" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
-    <Grid>
+    <Grid Margin="-1,0,0.6,0.4">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition/>
@@ -23,11 +23,36 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Margin="10.2,59,183.6,0" TextAlignment="Left" ToolTip="Pretrazite listu" FontSize="17" Grid.Column="1" Height="35" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Pretrazi po imenu, prezimenu ili jmbg(specijalizaciji)" FontSize="17" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="691" Grid.RowSpan="5" StrokeThickness="0" VerticalAlignment="Top" Width="424" Margin="0.4,0,-0.4,0" Grid.Column="4" Grid.ColumnSpan="2"/>
         <Label Grid.Row="0" FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="4.2,0,167.6,150.8" Content="Nalozi pacijenata" Grid.ColumnSpan="2" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold" Grid.RowSpan="2" Grid.Column="1"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="45.4,50,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="172.4,50,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="88.4,50,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="3"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="69.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="191.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="99.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="3"/>
 
         <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="5" Margin="-2,0,0,0" >
             <MenuItem Height="106" Width="206" Click="Button_Click" RenderTransformOrigin="0.5,0.5">
@@ -87,7 +112,7 @@
             <Label FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Zdravstveni karton" Foreground="#FF18A3AC" FontFamily="Segoe UI Italic" Grid.Row="4" Grid.Column="5" Canvas.Left="266" Canvas.Top="641"/>
         </Canvas>
 
-        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,111,211.6,-0.2" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaPacijenata_SelectionChanged" >
+        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,109,211.6,2" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaPacijenata_SelectionChanged" >
             <DataGrid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFE7F6F7" Offset="0"/>
