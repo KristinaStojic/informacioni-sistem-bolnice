@@ -19,7 +19,7 @@ namespace Projekat
     /// </summary>
     public partial class DodajPacijentaGuest : Window
     {
-        public ZakaziTerminSekretar z;       
+        public ZakaziTerminSekretar z;
 
         public DodajPacijentaGuest(ZakaziTerminSekretar terminSekretar)
         {
@@ -40,10 +40,14 @@ namespace Projekat
                 pol = pol.Z;
             }
 
-            int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
-            Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
-            PacijentiMenadzer.pacijenti.Add(p1);
-            z.AzurirajComboBox();
+            Pacijent guestPacijent = new Pacijent(PacijentiMenadzer.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
+            PacijentiMenadzer.pacijenti.Add(guestPacijent);
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+
+            z.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
+            z.AzurirajListuPacijenata();
+            z.Pacijent = guestPacijent;
+
             this.Close();
         }
 

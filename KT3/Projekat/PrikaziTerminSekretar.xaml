@@ -6,18 +6,39 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="PrikaziTerminSekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
-    <Grid>
+    <Grid Margin="-2,0,1.6,0.4">
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
-        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="474,43,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="593,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="42" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
-        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="42" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
-        <Button HorizontalAlignment="Left" Margin="222,35,0,0" VerticalAlignment="Top" Width="100" Height="51" Click="Button_Click_7" Grid.Row="1" FontSize="17" Background="#FFF9DDD1">
-            <TextBlock TextAlignment="Center" Height="50">Hitan<LineBreak/>slucaj</TextBlock>
-        </Button>
-
+        <TextBox DockPanel.Dock="Top" Name="datumFilter" TextChanged="datumFilter_TextChanged" TextAlignment="Left" Height="35" Width="206" ToolTip="Pronadjite termin po datumu" HorizontalAlignment="Right" FontSize="17" Grid.Row="1" Margin="0,51,837,0" VerticalAlignment="Top">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Filtriranje (MM/dd/yyyy)" FontSize="17" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="481,42,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="596,42,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
+        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,42,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
+        <Button HorizontalAlignment="Left" Margin="708,28,0,0" VerticalAlignment="Top" Width="102" Height="43" Click="Button_Click_7" FontSize="17" Background="#FFE7F6F7" Content="Hitan slucaj"/>
         <Label Content="Termini" HorizontalAlignment="Left" Margin="217,0,0,0" VerticalAlignment="Center" FontSize="22" FontFamily="Segoe UI Semibold" Foreground="#FF18A3AC" Width="162" HorizontalContentAlignment="Center" Height="88" VerticalContentAlignment="Center"/>
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" Grid.RowSpan="2" StrokeThickness="0" VerticalAlignment="Top" Width="457" Margin="820,0,-3.4,0"/>
         <DataGrid Grid.Column="0" x:Name="terminiSekretarTabela" ItemsSource="{Binding TerminiSekretar}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="499" Margin="212,100,0,0" VerticalAlignment="Top" Width="608" GridLinesVisibility="All" FontSize="14" Grid.Row="1" SelectionChanged="terminiSekretarTabela_SelectionChanged">
@@ -44,7 +65,7 @@
                     <TextBlock Height="1"/>
                 </StackPanel>
             </Button>
-            <GroupBox Header="LEKAR" HorizontalAlignment="Left" Height="133" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="31" Canvas.Top="500" BorderBrush="#FF18A3AC">
+            <GroupBox Header="LEKAR" HorizontalAlignment="Left" Height="133" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="31" Canvas.Top="528" BorderBrush="#FF18A3AC">
                 <Grid Margin="0,0,0.2,8.8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="59*"/>
@@ -54,10 +75,10 @@
                     </Grid.ColumnDefinitions>
                     <Label FontSize="12" Margin="18,8,0.6,63.4" Grid.ColumnSpan="2">IME:</Label>
                     <Label FontSize="12" Margin="18,38,2.2,31.4" Grid.ColumnSpan="3" >PREZIME:</Label>
-                    <Label FontSize="12" Margin="18,69,2.2,0.4" Grid.ColumnSpan="3" >JMBG:</Label>
+                    <Label FontSize="12" Margin="18,69,2.2,0.4" Grid.ColumnSpan="3" >SPECIJALIZACIJA:</Label>
                     <TextBox x:Name="imeLek"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,6,42.2,65.4" Grid.Column="3" FontSize="12" />
                     <TextBox x:Name="prezimeLek"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,36,42.2,34.4" Grid.Column="3" FontSize="12" />
-                    <TextBox x:Name="jmbgLek"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,67,42.2,4.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="specijalizacijaLek"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,67,42.2,4.4" Grid.Column="3" FontSize="12" />
                 </Grid>
             </GroupBox>
             <GroupBox Header="TERMIN" HorizontalAlignment="Left" Height="133" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="30" Canvas.Top="77" BorderBrush="#FF18A3AC">
@@ -92,7 +113,7 @@
                     <TextBox x:Name="tip"  BorderThickness="0,0,0,1" Background="Transparent" Grid.Column="5" FontSize="12" Margin="24.6,36,48.2,7.2" />
                 </Grid>
             </GroupBox>
-            <GroupBox Header="PACIJENT" HorizontalAlignment="Left" Height="133" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="31" Canvas.Top="346" BorderBrush="#FF18A3AC">
+            <GroupBox Header="PACIJENT" HorizontalAlignment="Left" Height="170" VerticalAlignment="Top" Width="395" FontSize="14" Grid.RowSpan="2" Canvas.Left="31" Canvas.Top="346" BorderBrush="#FF18A3AC">
                 <Grid Margin="0,0,0.2,8.8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="59*"/>
@@ -103,9 +124,10 @@
                     <Label FontSize="12" Margin="18,8,0.6,63.4" Grid.ColumnSpan="2">IME:</Label>
                     <Label FontSize="12" Margin="18,38,2.2,31.4" Grid.ColumnSpan="3" >PREZIME:</Label>
                     <Label FontSize="12" Margin="18,69,2.2,0.4" Grid.ColumnSpan="3" >JMBG:</Label>
-                    <TextBox x:Name="imePac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,6,42.2,65.4" Grid.Column="3" FontSize="12" />
-                    <TextBox x:Name="prezimePac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,36,42.2,34.4" Grid.Column="3" FontSize="12" />
-                    <TextBox x:Name="jmbgPac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,67,42.2,4.4" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="imePac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,6,42.2,103.2" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="prezimePac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,34,42.2,73.2" Grid.Column="3" FontSize="12" />
+                    <TextBox x:Name="jmbgPac"  BorderThickness="0,0,0,1" Background="Transparent" Margin="28.4,62,42.2,45.2" Grid.Column="3" FontSize="12" />
+                    <Button Margin="28.4,103,42.2,-2.8" Grid.Column="3" FontSize="14" Content="ZDRAVSTENI KARTON" Background="#FFB0DFE2" Click="Button_Click_8"/>
                 </Grid>
             </GroupBox>
         </Canvas>

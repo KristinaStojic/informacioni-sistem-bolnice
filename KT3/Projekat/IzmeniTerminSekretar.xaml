@@ -5,8 +5,110 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="IzmeniTerminSekretar" Height="630" Width="580" WindowStartupLocation="CenterScreen">
+        Title="IzmeniTerminSekretar" Height="690" Width="580" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="145"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="67*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="1" FontSize="17" VerticalContentAlignment="Center" Content="Izaberite pacijenta i lekara:" Margin="83,0.2,184.6,0.4" Grid.ColumnSpan="3"/>
+        <Label Grid.Row="9" FontSize="17" VerticalContentAlignment="Center" Content="Datum:" Margin="83,0.4,71.2,44.2" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="9" FontSize="17" VerticalContentAlignment="Center" Content="Vreme pocetka i kraja:" Margin="83,44.4,19.2,0.2" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Tip usluge:" Margin="83,0,56.2,44.6" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Label Grid.Row="8" FontSize="17" VerticalContentAlignment="Center" Content="Prostorija:" Margin="83,0,72.2,44.6" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Pacijent:" Margin="83,0.2,88.2,0.4" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Lekar:" Margin="83,44.6,72.2,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <DatePicker HorizontalAlignment="Left" Name="datum" Grid.Column="2" Grid.Row="9" Width="192" Height="32" Margin="8.8,6.4,0,6.4" FontSize="15" SelectedDateChanged="datum_SelectedDateChanged"/>
+
+        <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="8.8,6.6,0,6.2" FontSize="15" LostFocus="vremePocetka_LostFocus"/>
+        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="106.8,6.6,0,6.2" FontSize="15" IsKeyboardFocusedChanged="vremeKraja_IsKeyboardFocusedChanged"/>
+
+        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="7" Height="32" Margin="8.8,6,9.6,6.8" FontSize="15" IsKeyboardFocusedChanged="tip_IsKeyboardFocusedChanged" >
+            <ComboBoxItem Content="Pregled"/>
+            <ComboBoxItem Content="Operacija"/>
+        </ComboBox>
+        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="8" Margin="8.8,6.2,0,0" HorizontalAlignment="Left" Width="192" Height="32" FontSize="15" VerticalAlignment="Top"/>
+
+        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Margin="6.8,7.6,7.2,0" TextAlignment="Left" ToolTip="Pretrazite listu" FontSize="15" Grid.Column="1" Height="32" Grid.Row="2" VerticalAlignment="Top">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Pretrazi po imenu, prezimenu ili jmbg(specijalizaciji)" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <TextBox Grid.Column="2" Grid.Row="4" Name="pacijenti" Margin="8.8,6.2,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap"/>
+        <TextBox Grid.Column="2" Grid.Row="6" Name="lekari" Margin="8.8,6.8,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" />
+
+        <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="7.2,4,8.8,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="listaPacijenata_GotKeyboardFocus">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdPacijenta}"/>
+                    <GridViewColumn Header="Ime" Width="105" DisplayMemberBinding="{Binding ImePacijenta}"/>
+                    <GridViewColumn Header="Prezime" Width="120" DisplayMemberBinding="{Binding PrezimePacijenta}"/>
+                    <GridViewColumn Header="Jmbg" Width="120" DisplayMemberBinding="{Binding Jmbg}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView x:Name="listaLekara" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="6.8,8,8.6,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="listaLekara_GotKeyboardFocus" Visibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdLekara}"/>
+                    <GridViewColumn Header="Ime" Width="100" DisplayMemberBinding="{Binding ImeLek}"/>
+                    <GridViewColumn Header="Prezime" Width="110" DisplayMemberBinding="{Binding PrezimeLek}"/>
+                    <GridViewColumn Header="Specijalizacija" Width="130" DisplayMemberBinding="{Binding specijalizacija}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Content="Pacijenti" HorizontalAlignment="Left" Margin="7.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Pacijenata"/>
+        <Button Content="Lekari" HorizontalAlignment="Left" Margin="104.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Lekara"/>
+        <Button Name="potvrdi" Grid.Column="1" Grid.Row="11" Click="Button_Click" Content="Potvrdi" Margin="8.2,27.8,13.2,23" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="11" Click="Button_Click_1" Content="Odustani" Margin="9.8,27.8,9.8,23" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="5" Click="Button_Click_2" Margin="8.8,6.6,9.6,6.2" Background="#FFE7F6F7" Height="32">
+            <Grid>
+                <Image Source="slike/add-user.png" HorizontalAlignment="Left" Margin="-12,0,0,0.2"/>
+                <Label Content="Napravite GUEST nalog" Margin="14,0,-14.2,0.2"/>
+            </Grid>
+        </Button>
+    </Grid>
+</Window>
+
+<!--    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
             <RowDefinition Height="45"/>
@@ -16,7 +118,9 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
             <RowDefinition Height="45"/>
-            <RowDefinition Height="190"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="145"/>
             <RowDefinition Height="20"/>
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -30,12 +134,12 @@
         <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalContentAlignment="Center" Content="Vreme pocetka:" Margin="8.8,44.2,63.2,2" Grid.RowSpan="2"/>
         <Label Grid.Column="1" Grid.Row="3" FontSize="17" VerticalContentAlignment="Center" Content="Vreme kraja:" Margin="8.8,5,63.2,4.8"/>
         <Label Grid.Column="1" Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Tip usluge:" Margin="8.8,0.2,63.2,0.6"/>
-        <Label Grid.Column="1" Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Prostorija:" Margin="8.8,3.8,63.2,0"/>
+        <Label Grid.Column="1" Grid.Row="8" FontSize="17" VerticalContentAlignment="Center" Content="Prostorija:" Margin="8.8,3.8,63.2,0"/>
         <Label Grid.Column="1" Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Pacijent:" Margin="8.8,0.4,63.2,0.4"/>
-        <Label Grid.Column="1" Grid.Row="6" FontSize="17" VerticalContentAlignment="Center" Content="Lekar:" Margin="8.8,0.6,63.2,0.2"/>
-        <DatePicker HorizontalAlignment="Left" Name="datum"  Grid.Column="2" Grid.Row="1" Margin="6.8,7.2,0,7.4" Width="194" FontSize="15"/>
+        <Label Grid.Column="1" Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Lekar:" Margin="8.8,0.6,63.2,0.2"/>
+        <DatePicker HorizontalAlignment="Left" Name="datum"  Grid.Column="2" Grid.Row="1" Width="197" Margin="6.8,6.8,0,7" FontSize="15"/>
 
-        <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="2" Margin="7" Width="194" SelectedIndex="0" FontSize="15">
+        <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="2" Width="197" Margin="6.8,6.8,0,7" SelectedIndex="0" FontSize="15">
             <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
@@ -64,7 +168,7 @@
             <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="3" Margin="7" Width="194" SelectedIndex="0" FontSize="15">
+        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="3" Width="197" Margin="6.8,7,0,6.8" SelectedIndex="0" FontSize="15">
             <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">08:30</ComboBoxItem>
@@ -92,32 +196,36 @@
             <ComboBoxItem HorizontalAlignment="Center">19:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">20:00</ComboBoxItem>
         </ComboBox>
-        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="4"  Margin="7" SelectedIndex="0" FontSize="15">
+        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="4" Margin="6.8,7.2,6.6,6.6" SelectedIndex="0" FontSize="15">
             <ComboBoxItem Content="Pregled"/>
             <ComboBoxItem Content="Operacija"/>
         </ComboBox>
-        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="7"  Margin="6.8,6.8,0,7" SelectedIndex="0" HorizontalAlignment="Left" Width="197" FontSize="15">
+        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="8"  Margin="6.8,6.8,0,7" HorizontalAlignment="Left" Width="197" FontSize="15">
+            <ComboBoxItem IsEnabled="False"/>
         </ComboBox>
-        <ComboBox x:Name="pacijenti" Grid.Column="2" Grid.Row="5"  Margin="6.8,7.4,6.6,7.4" SelectedIndex="0" FontSize="15">
-        </ComboBox>
-        <ComboBox x:Name="lekari" Grid.Column="2" Grid.Row="6"  Margin="6.8,6.6,6.6,7.2" SelectedIndex="0" FontSize="15">
-        </ComboBox>
-        <TextBox Grid.Column="1" Grid.Row="8" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="9.8,11,7.2,149.4" Height="30" FontSize="15" />
-        <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2" x:Name="search" SelectionMode="Single" Margin="9.8,57,6.6,19.4" SelectionChanged="search_SelectionChanged" RenderTransformOrigin="0.492,0.518" >
+        <ComboBox x:Name="pacijenti" Grid.Column="2" Grid.Row="5" Margin="6.8,6.4,6.6,7.4" SelectedIndex="0" FontSize="15"/>
+        <ComboBox x:Name="lekari" Grid.Column="2" Grid.Row="7" Margin="6.8,6.6,6.6,7.2" SelectedIndex="0" FontSize="15"/>
+        <TextBox Grid.Column="1" Grid.Row="9" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="9.8,8.8,7.2,6" Height="30" FontSize="15" />
+        <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="10" x:Name="search" SelectionMode="Single" Margin="9.8,7.4,6.6,0.4" SelectionChanged="search_SelectionChanged" RenderTransformOrigin="0.492,0.518" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding IdLekara}"/>
-                    <GridViewColumn Header="Ime" Width="110" DisplayMemberBinding="{Binding ImeLek}"/>
+                    <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdLekara}"/>
+                    <GridViewColumn Header="Ime" Width="100" DisplayMemberBinding="{Binding ImeLek}"/>
                     <GridViewColumn Header="Prezime" Width="110" DisplayMemberBinding="{Binding PrezimeLek}"/>
-                    <GridViewColumn Header="Specijalizacija" Width="135" DisplayMemberBinding="{Binding specijalizacija}"/>
+                    <GridViewColumn Header="Specijalizacija" Width="130" DisplayMemberBinding="{Binding specijalizacija}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Name="potvrdi" Grid.Column="1" Grid.Row="10" Click="Button_Click" Content="Potvrdi" Margin="10.8,0.6,33.2,20.8" Background="#FFA3DADE" Width="160" FontSize="17"/>
-        <Button Grid.Column="2" Grid.Row="10"  Click="Button_Click_1" Content="Odustani" Margin="38.8,0.6,11.6,20.8" Background="#FFA3DADE" Width="160" FontSize="17"/>
-        <Button Grid.Column="2" Grid.Row="5"  Click="Button_Click_2" Content="GUEST ?" Margin="206.8,9.4,27.6,9.4" Background="#FFE7F6F7" Grid.ColumnSpan="2"/>
-        <Button Content="Pacijenti" HorizontalAlignment="Left" Margin="8.8,11,0,0" Grid.Row="8" VerticalAlignment="Top" Height="30" Width="65" Grid.Column="2" Click="Button_Click_3" Selector.IsSelected="True" />
-        <Button Content="Lekari" HorizontalAlignment="Left" Margin="72.8,11,0,0" Grid.Row="8" VerticalAlignment="Top" Height="30" Width="67" Grid.Column="2" Click="Button_Click_4"/>
-        <Button Content="Prostorije" HorizontalAlignment="Left" Margin="138.8,11,0,0" Grid.Row="8" VerticalAlignment="Top" Height="30" Width="65" Grid.Column="2" Click="Button_Click_5"/>
+        <Button Content="Pacijenti" HorizontalAlignment="Left" Margin="8.8,9.2,0,0" Grid.Row="9" VerticalAlignment="Top" Height="30" Width="65" Grid.Column="2" Click="Button_Click_3" Selector.IsSelected="True" />
+        <Button Content="Lekari" HorizontalAlignment="Left" Margin="72.8,9.2,0,0" Grid.Row="9" VerticalAlignment="Top" Height="30" Width="67" Grid.Column="2" Click="Button_Click_4"/>
+        <Button Content="Prostorije" HorizontalAlignment="Left" Margin="138.8,9.2,0,0" Grid.Row="9" VerticalAlignment="Top" Height="30" Width="65" Grid.Column="2" Click="Button_Click_5"/>
+        <Button Name="potvrdi" Grid.Column="1" Grid.Row="12" Click="Button_Click" Content="Potvrdi" Margin="8.8,0.6,35.2,20.8" Background="#FFA3DADE" Width="160" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="12" Click="Button_Click_1" Content="Odustani" Margin="30.8,0.6,13.6,20.8" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="6" Click="Button_Click_2" Margin="6.8,7.6,6.6,7.2" Background="#FFE7F6F7" Height="30">
+            <Grid>
+                <Image Source="slike/add-user.png" HorizontalAlignment="Left" Margin="-12,0,0,0.2"/>
+                <Label Content="Napravite GUEST nalog" Margin="14,0,-14.2,0.2"/>
+            </Grid>
+        </Button>
     </Grid>
-</Window>
+</Window> -->
