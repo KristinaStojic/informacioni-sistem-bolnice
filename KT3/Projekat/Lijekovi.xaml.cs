@@ -145,6 +145,9 @@ namespace Projekat
                 }else if(e.Key == Key.P)
                 {
                     this.Pretraga.Focus();
+                }else if(e.Key == Key.B)
+                {
+                    Button_Click_6(sender, e);
                 }
             }
         }
@@ -166,6 +169,12 @@ namespace Projekat
                     Lekovi.Add(lijek);
                 }
             }
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            OdbijeniLijekovi odbijeniLijekovi = new OdbijeniLijekovi();
+            odbijeniLijekovi.Show();
         }
     }
 }

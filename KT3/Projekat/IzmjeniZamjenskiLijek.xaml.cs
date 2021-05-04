@@ -42,12 +42,16 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            string sifraLijeka = this.sifra.Text;
-            string nazivLijeka = this.sifra.Text;
-            Lek lijek = new Lek(izabraniLijek.idLeka, nazivLijeka, sifraLijeka);
-            LekoviMenadzer.izmjeniLijek(izabraniLijek, lijek);
+            LekoviMenadzer.izmjeniLijek(izabraniLijek, napraviLijek());
             //ZamjenskiLijekovi.azurirajLijekove();
             this.Close();
+        }
+
+        private Lek napraviLijek()
+        {
+            string sifraLijeka = this.sifra.Text;
+            string nazivLijeka = this.sifra.Text;
+            return new Lek(izabraniLijek.idLeka, nazivLijeka, sifraLijeka);
         }
 
         private void sifra_TextChanged(object sender, TextChangedEventArgs e)

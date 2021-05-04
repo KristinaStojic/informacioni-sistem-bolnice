@@ -23,29 +23,26 @@ namespace Projekat
         public DodajLijek()
         {
             InitializeComponent();
+            inicijalizujDugmad();
+        }
+
+        private void inicijalizujDugmad()
+        {
             this.Potvrdi.IsEnabled = false;
             this.Sastojci.IsEnabled = false;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            uneseniLijek.nazivLeka = this.naziv.Text;
-            uneseniLijek.sifraLeka = this.sifra.Text;
+            definisiLijek();
             dodajZahtjev(uneseniLijek);
-            Console.WriteLine(uneseniLijek.sifraLeka);
-            Console.WriteLine(uneseniLijek.nazivLeka);
-            foreach(Sastojak s in uneseniLijek.sastojci)
-            {
-                Console.WriteLine(s.naziv);
-            }
             this.Close();
         }
 
-        private void dodajLijek(string sifraLijeka, string nazivLijeka)
+        private void definisiLijek()
         {
-            Lek lijek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), nazivLijeka, sifraLijeka);
-            LekoviMenadzer.DodajLijek(lijek);
-            this.Close();
+            uneseniLijek.nazivLeka = this.naziv.Text;
+            uneseniLijek.sifraLeka = this.sifra.Text;
         }
 
         private void dodajZahtjev(Lek lijek)
@@ -74,15 +71,20 @@ namespace Projekat
         {
             if(this.sifra.Text.Trim().Equals("") || this.naziv.Text.Trim().Equals("") || postojiSifraLijeka())
             {
-                this.Potvrdi.IsEnabled = false;
-                this.Sastojci.IsEnabled = false;
+                inicijalizujDugmad();
             }
             else if(!this.sifra.Text.Trim().Equals("") && !this.naziv.Text.Trim().Equals("") && !postojiSifraLijeka())
             {
-                this.Potvrdi.IsEnabled = true;
-                this.Sastojci.IsEnabled = true;
+                aktivirajDugmad();
             }
         }
+
+        private void aktivirajDugmad()
+        {
+            this.Potvrdi.IsEnabled = true;
+            this.Sastojci.IsEnabled = true;
+        }
+
         private bool postojiSifraLijeka()
         {
             foreach(Lek lijek in LekoviMenadzer.lijekovi)

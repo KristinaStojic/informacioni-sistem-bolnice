@@ -26,7 +26,12 @@ namespace Model
         {
             sale.Remove(sala);
             PrikaziSalu.Sale.Remove(sala);
-
+            obrisiTermineUSali(sala);
+            sacuvajIzmjene();
+        }
+      
+        private static void obrisiTermineUSali(Sala sala)
+        {
             foreach (Termin t in TerminMenadzer.termini.ToArray())
             {
                 if (t.Prostorija.Id == sala.Id)
@@ -35,19 +40,18 @@ namespace Model
                     TerminMenadzer.sacuvajIzmene();
                 }
             }
-            sacuvajIzmjene();
         }
-      
-      public static void IzmjeniSalu(Sala sala1, Sala sala)
+
+      public static void IzmjeniSalu(Sala izSale, Sala sala)
       {
             foreach (Sala s in sale)
             {
-                if (s.Id == sala1.Id)
+                if (s.Id == izSale.Id)
                 {
                     s.brojSale = sala.brojSale;
                     s.Namjena = sala.Namjena;
                     s.TipSale = sala.TipSale;
-                    int idx = PrikaziSalu.Sale.IndexOf(sala1);
+                    int idx = PrikaziSalu.Sale.IndexOf(izSale);
                     PrikaziSalu.Sale.RemoveAt(idx);
                     PrikaziSalu.Sale.Insert(idx, s);
                 }
@@ -62,21 +66,26 @@ namespace Model
                 return sale;
             }
             else {
-                FileStream filestream = File.OpenRead("sale.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Sala>));
-                sale = (List<Sala>)serializer.Deserialize(filestream);
-                filestream.Close();
+                ucitajSaleIzFajla();
                 return sale;
             }
       }
       
+        private static void ucitajSaleIzFajla()
+        {
+            FileStream filestream = File.OpenRead("sale.xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Sala>));
+            sale = (List<Sala>)serializer.Deserialize(filestream);
+            filestream.Close();
+        }
+
       public static Sala NadjiSaluPoId(int id)
       {
-         foreach(Sala s in sale)
+         foreach(Sala sala in sale)
             {
-                if(s.Id == id)
+                if(sala.Id == id)
                 {
-                    return s;
+                    return sala;
                 }
             }
             return null;
@@ -92,28 +101,27 @@ namespace Model
 
         public static int GenerisanjeIdSale()
         {
-            bool pomocna = false;
-            int id = 1;
-
+            int id;
             for (id = 1; id <= sale.Count; id++)
             {
-                foreach (Sala s in sale)
-                {
-                    if (s.Id.Equals(id))
-                    {
-                        pomocna = true;
-                        break;
-                    }
-                }
-
-                if (!pomocna)
+                if (!postojiIdSale(id))
                 {
                     return id;
                 }
-                pomocna = false;
             }
-
             return id;
+        }
+
+        private static bool postojiIdSale(int id)
+        {
+            foreach (Sala sala in sale)
+            {
+                if (sala.Id.Equals(id))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static ZauzeceSale NadjiZauzece(int idProstorije, int idTermin, string datum, string poc, string kraj)

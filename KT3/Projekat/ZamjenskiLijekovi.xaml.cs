@@ -48,20 +48,26 @@ namespace Projekat
                 {
                     if (lijek.zamenskiLekovi != null)
                     {
-                        foreach (int zamjenskiLijek in lijek.zamenskiLekovi)
-                        {
-                            foreach(Lek zamjenski in LekoviMenadzer.lijekovi)
-                            {
-                                if(zamjenski.idLeka == zamjenskiLijek)
-                                {
-                                    ZamjenskiLekovi.Add(zamjenski);
-                                }
-                            }
-                        }
+                        dodajZamjenski(lijek);
                     }
                 }
             }
         }
+
+        private void dodajZamjenski(Lek lijek)
+        {
+            foreach (int zamjenskiLijek in lijek.zamenskiLekovi)
+            {
+                foreach (Lek zamjenski in LekoviMenadzer.lijekovi)
+                {
+                    if (zamjenski.idLeka == zamjenskiLijek)
+                    {
+                        ZamjenskiLekovi.Add(zamjenski);
+                    }
+                }
+            }
+        }
+
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;

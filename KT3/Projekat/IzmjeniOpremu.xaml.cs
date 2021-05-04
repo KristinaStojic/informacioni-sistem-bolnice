@@ -19,12 +19,17 @@ namespace Projekat
     /// </summary>
     public partial class IzmjeniOpremu : Window
     {
-        public Oprema oprema;
+        public Oprema izabranaOprema;
         public IzmjeniOpremu(Oprema izabranaOprema)
         {
             InitializeComponent();
-            this.oprema = izabranaOprema;
-            if(izabranaOprema != null)
+            this.izabranaOprema = izabranaOprema;
+            postaviElemente();
+        }
+
+        private void postaviElemente()
+        {
+            if (izabranaOprema != null)
             {
                 this.naziv.Text = izabranaOprema.NazivOpreme;
                 this.kolicina.Text = izabranaOprema.Kolicina.ToString();
@@ -32,9 +37,8 @@ namespace Projekat
         }
 
         public void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            Oprema o = napraviOpremu();
-            OpremaMenadzer.izmjeniOpremu(oprema, o);
+        { 
+            OpremaMenadzer.izmjeniOpremu(izabranaOprema, napraviOpremu());
             this.Close();
         }
 
@@ -42,9 +46,9 @@ namespace Projekat
         {
             string naziv = this.naziv.Text;
             int kolicina = int.Parse(this.kolicina.Text);
-            Oprema o = new Oprema(naziv, kolicina, oprema.Staticka);
-            o.IdOpreme = oprema.IdOpreme;
-            return o;
+            Oprema uOpremu = new Oprema(naziv, kolicina, izabranaOprema.Staticka);
+            uOpremu.IdOpreme = izabranaOprema.IdOpreme;
+            return uOpremu;
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)

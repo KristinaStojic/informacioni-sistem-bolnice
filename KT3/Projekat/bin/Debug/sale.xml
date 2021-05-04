@@ -50,16 +50,6 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>08:30</pocetakTermina>
-        <krajTermina>09:00</krajTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>09:30</pocetakTermina>
-        <krajTermina>10:00</krajTermina>
-        <idTermina>4</idTermina>
-      </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>
@@ -113,11 +103,6 @@
     </Oprema>
     <zauzetiTermini>
       <ZauzeceSale>
-        <pocetakTermina>12:30</pocetakTermina>
-        <krajTermina>13:00</krajTermina>
-        <idTermina>4</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
         <pocetakTermina>5:00</pocetakTermina>
         <krajTermina>10:00</krajTermina>
         <datumPocetkaTermina>04/27/2021</datumPocetkaTermina>
@@ -170,11 +155,6 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>9:00</pocetakTermina>
-        <krajTermina>10:00</krajTermina>
-        <idTermina>20</idTermina>
-      </ZauzeceSale>
     </zauzetiTermini>
   </Sala>
   <Sala>

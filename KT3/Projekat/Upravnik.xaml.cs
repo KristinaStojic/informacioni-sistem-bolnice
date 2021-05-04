@@ -23,6 +23,11 @@ namespace Projekat
         {
             InitializeComponent();
 
+            dodajObavjestenja();
+        }
+
+        private void dodajObavjestenja()
+        {
             foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
                 if (o.Oznaka.Equals("svi") || o.Oznaka.Equals("upravnici"))

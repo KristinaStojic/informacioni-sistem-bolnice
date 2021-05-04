@@ -29,25 +29,36 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Sala sala = napraviSalu();
+            SaleMenadzer.DodajSalu(sala);
+            this.Close();
+        }
+
+        private Sala napraviSalu()
+        {
             int brojSale = int.Parse(text1.Text);
             string namjenaSale = text2.Text;
-            tipSale TipSale;
+            tipSale TipSale = nadjiTipSale();
+
+            Sala s = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
+            s.Oprema = new List<Oprema>();
+            return s;
+        }
+
+        private tipSale nadjiTipSale()
+        {
             if (combo.Text.Equals("Sala za preglede"))
             {
-                TipSale = tipSale.SalaZaPregled;
+                return tipSale.SalaZaPregled;
             }
-            else if(combo.Text.Equals("Sala za operacije"))
+            else if (combo.Text.Equals("Sala za operacije"))
             {
-                TipSale = tipSale.OperacionaSala;
+                return tipSale.OperacionaSala;
             }
             else
             {
-                TipSale = tipSale.SalaZaOdmor;
+                return tipSale.SalaZaOdmor;
             }
-            Sala s = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
-            s.Oprema = new List<Oprema>();
-            SaleMenadzer.DodajSalu(s);
-            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -76,7 +87,8 @@ namespace Projekat
             if(this.text1.Text.Trim().Equals("") || this.text2.Text.Trim().Equals("") || !IsNumeric(this.text1.Text) || IsNumeric(this.text2.Text) || postojiBrojSale())
             {
                 this.Potvrdi.IsEnabled = false;
-            }else if (!this.text1.Text.Trim().Equals("") && !this.text2.Text.Trim().Equals("") && IsNumeric(this.text1.Text) && !IsNumeric(this.text2.Text) && !postojiBrojSale())
+            }
+            else if (!this.text1.Text.Trim().Equals("") && !this.text2.Text.Trim().Equals("") && IsNumeric(this.text1.Text) && !IsNumeric(this.text2.Text) && !postojiBrojSale())
             {
                 this.Potvrdi.IsEnabled = true;
             }

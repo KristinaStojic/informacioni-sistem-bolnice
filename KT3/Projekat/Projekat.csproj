@@ -181,7 +181,7 @@
       <DependentUpon>TabelaRecepata.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Uput.cs" />
-    <Compile Include="Model\Validation.cs" />
+    <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
@@ -192,6 +192,9 @@
     <Compile Include="ObradiZahtevZaLek.xaml.cs">
       <DependentUpon>ObradiZahtevZaLek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Obrazlozenje.xaml.cs">
+      <DependentUpon>Obrazlozenje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,9 @@
     </Compile>
     <Compile Include="ObrisiZamenskiLekLekar.xaml.cs">
       <DependentUpon>ObrisiZamenskiLekLekar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OdbijeniLijekovi.xaml.cs">
+      <DependentUpon>OdbijeniLijekovi.xaml</DependentUpon>
     </Compile>
     <Compile Include="OdbijZahtevZaLek.xaml.cs">
       <DependentUpon>OdbijZahtevZaLek.xaml</DependentUpon>
@@ -507,6 +513,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Obrazlozenje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObrisiOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -516,6 +526,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ObrisiZamenskiLekLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OdbijeniLijekovi.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -834,6 +848,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\signout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\removed.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\odjava.png" />
