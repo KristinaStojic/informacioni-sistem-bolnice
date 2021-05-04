@@ -110,6 +110,9 @@
     <Compile Include="DodajZamjenskiLijek.xaml.cs">
       <DependentUpon>DodajZamjenskiLijek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HitanSlucajDodajGuest.xaml.cs">
+      <DependentUpon>HitanSlucajDodajGuest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IzmeniObavestenje.xaml.cs">
       <DependentUpon>IzmeniObavestenje.xaml</DependentUpon>
     </Compile>
@@ -390,10 +393,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HitanSlucajDodajGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="IzmeniObavestenje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page> 
+    </Page>
     <Page Include="IzmeniLekLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -803,6 +810,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\signout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\add-user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

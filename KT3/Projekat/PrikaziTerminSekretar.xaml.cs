@@ -37,7 +37,23 @@ namespace Projekat
             {
                 TerminiSekretar.Add(t);
             }
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(TerminiSekretar);
+            view.Filter = UserFilter;
         }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(datumFilter.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return ((item as Termin).Datum.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+        }
+
 
         // nazad
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -80,26 +96,14 @@ namespace Projekat
 
             if (zaBrisanje != null)
             {
-                int idProstorije = zaBrisanje.Prostorija.Id;
                 TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);
-
-                foreach (Termin t in TerminMenadzer.termini)
-                {
-                    foreach (Sala s in SaleMenadzer.sale)
-                    {
-                        if (s.Id == idProstorije)
-                        {
-                            t.Prostorija = s;
-                        }
-                    }
-                }
-
                 TerminMenadzer.sacuvajIzmene();
             }
             else
             {
                 MessageBox.Show("Niste selektovali termin koji zelite da otkazete!");
             }
+
             flag = false;
         }
 
@@ -140,13 +144,14 @@ namespace Projekat
                 datum.Text = t.Datum;
                 pocetak.Text = t.VremePocetka;
                 kraj.Text = t.VremeKraja;
-                prostorija.Text = t.Prostorija.brojSale.ToString();
+                prostorija.Text = t.Prostorija.Id.ToString();
                 tip.Text = t.tipTermina.ToString();
                 imePac.Text = t.Pacijent.ImePacijenta;
                 prezimePac.Text = t.Pacijent.PrezimePacijenta;
                 jmbgPac.Text = t.Pacijent.Jmbg.ToString();
                 imeLek.Text = t.Lekar.ImeLek;
                 prezimeLek.Text = t.Lekar.PrezimeLek;
+                specijalizacijaLek.Text = t.Lekar.specijalizacija.ToString();
             }
         }
 
@@ -163,6 +168,34 @@ namespace Projekat
         {
             HitanSlucaj h = new HitanSlucaj();
             h.Show();
+        }
+
+        private void datumFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(terminiSekretarTabela.ItemsSource).Refresh();
+        }
+
+        // zdravstveni karton selektovanog pacijenta
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            Termin t = (Termin)terminiSekretarTabela.SelectedItem;
+
+            if (t.Pacijent != null)
+            {
+                if (t.Pacijent.StatusNaloga.Equals(statusNaloga.Guest))
+                {
+                    MessageBox.Show("Guest nalozi nemaju zdravstveni karton.");
+                }
+                else
+                {
+                    UvidZdravstveniKarton karton = new UvidZdravstveniKarton(t.Pacijent);
+                    karton.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
+            }
         }
     }
 }

@@ -32,18 +32,18 @@
                 <Style TargetType="ListViewItem">
                     <Setter Property="Height" Value="80"/>
                 </Style>
+                
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#FF18A3AC" BorderThickness="2" Width="552" Height="75">
+                    <Border BorderBrush="#FF18A3AC" BorderThickness="1.5" Width="552" Height="76">
                         <WrapPanel VerticalAlignment="Stretch" xml:space="preserve"  >
-                            <TextBlock Text="  Naslov: &#10;&#10;  Datum:"  FontWeight="Bold"/>
-                            <TextBlock Text="{Binding TipObavestenja}">
-                                <LineBreak/>
-                            </TextBlock>    
-                            <TextBlock Text="{Binding Datum}"/>
+                   <!-- <TextBlock Text="  Naslov: &#10;&#10;  Datum:"  FontWeight="Bold"/> -->
+                            <TextBlock Text="  Naslov: "  FontWeight="Bold"/> 
+                            <TextBlock Text="{Binding TipObavestenja}" Width="400"/>
+                            <TextBlock Text="{Binding Datum}" HorizontalAlignment="Right"/>
                         </WrapPanel>
-                    </Border>
+                    </Border> 
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
