@@ -91,7 +91,7 @@ namespace Projekat.Model
         public static void DodajMalicioznoPonasanje(int idPacijent)
         {
             MalicioznoPonasanje malicioznoPonasanje = new MalicioznoPonasanje(idPacijent);
-            MalicioznoPonasanjeMenadzer.malicioznaPonasanja.Add(malicioznoPonasanje);
+            malicioznaPonasanja.Add(malicioznoPonasanje);
         }
     }
 }
