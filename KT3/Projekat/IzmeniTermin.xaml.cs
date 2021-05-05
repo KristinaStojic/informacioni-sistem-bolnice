@@ -72,7 +72,7 @@ namespace Projekat
             }
         }
 
-        // TODO: ispraviti selektovanog lekara: upotrebiti dgsearch
+        // TODO: ispraviti
         private void InicijalizujSelektovanogLekara(Termin izabraniTermin)
         {
             int brojac = 0;
@@ -135,6 +135,8 @@ namespace Projekat
             {
                 MessageBox.Show("Nemoguce je pomeriti ovaj termin, dozvoljeni broj pomeranja termina je jedan", "Upozorenje");
             }
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
+            this.NavigationService.Navigate(uvid);
         }
 
         private void IzmeniIzabraniTermin()

@@ -22,8 +22,8 @@ namespace Projekat
         private static int maxBrojPreporucenihTermina = 3;
         private Termin preporuceniTermin;
         private static Pacijent prijavljeniPacijent { get; set; }
-        private List<string> sviSlotovi { get; set; }
-        private static ObservableCollection<string> pomocnaSviSlobodniSlotovi { get; set; }
+        private static ObservableCollection<string> SviSlobodniSlotovi { get; set; }
+        private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
         private ObservableCollection<Termin> Termini { get; set; }
         public ZakaziTerminPreferenca(int idPrijavljenogPacijenta)
         {
@@ -34,11 +34,9 @@ namespace Projekat
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             this.nazad.Visibility = Visibility.Hidden;
             Termini = new ObservableCollection<Termin>();
-            sviSlotovi = new List<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
-            pomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
-                                                                "13:00", "13:30", "14:00", "14:30","15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
-            InicijalizujVidljivost();
+            SviSlobodniSlotovi = SaleMenadzer.sviSlotovi;
+            PomocnaSviSlobodniSlotovi = SaleMenadzer.sviSlotovi;
+            InicijalizujVidljivostKomponenti();
 
             this.datagridLekari.ItemsSource = MainWindow.lekari;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource);
@@ -47,10 +45,9 @@ namespace Projekat
             PronadjiPreporuceneTermine(prijavljeniPacijent);
             preferencaGrid.ItemsSource = Termini;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
-
         }
 
-        private void InicijalizujVidljivost()
+        private void InicijalizujVidljivostKomponenti()
         {
             this.preferencaGrid.Visibility = Visibility.Hidden;
             this.btnZakazi.Visibility = Visibility.Hidden;
@@ -63,13 +60,13 @@ namespace Projekat
 
         public void IzbaciProsleSlotoveZaDanasnjiDan()
         {
-            foreach (string slot in pomocnaSviSlobodniSlotovi)
+            foreach (string slot in PomocnaSviSlobodniSlotovi)
             {
                 DateTime vreme = DateTime.Parse(slot);
                 DateTime sada = DateTime.Now;
                 if (vreme.TimeOfDay <= sada.TimeOfDay)
                 {
-                    sviSlotovi.Remove(slot);
+                    SviSlobodniSlotovi.Remove(slot);
                 }
             }
         }
@@ -92,7 +89,7 @@ namespace Projekat
                         foreach (ZauzeceSale zs in s.zauzetiTermini)
                         {
                             DateTime zsDatum = DateTime.Parse(zs.datumPocetkaTermina);
-                            foreach (string slot in sviSlotovi)
+                            foreach (string slot in SviSlobodniSlotovi)
                             {
                                 if (!s.zauzetiTermini.Exists(x => x.datumPocetkaTermina.Equals(noviDatum)) && zs.idTermina != 0)
                                 {
@@ -225,12 +222,12 @@ namespace Projekat
 
         private void zakaziLekar_Click(object sender, RoutedEventArgs e)
         {
-            Lekar l = null;
+            Lekar lekar = null;
             if (datagridLekari.SelectedItems.Count > 0)
             {
-                l = (Lekar)datagridLekari.SelectedItems[0];
+                lekar = (Lekar)datagridLekari.SelectedItems[0];
             }
-            ZakaziTermin.izabraniLekar = l;
+            ZakaziTermin.izabraniLekar = lekar;
             Page zt = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zt);
         }

@@ -63,7 +63,7 @@ namespace Projekat
         private static void OtkaziOdabraniTermin()
         {
             TerminMenadzer.OtkaziTermin(terminZaBrisanje);
-            MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent);
+            MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent); // potencijalno maliciozno ponasanje
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

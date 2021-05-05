@@ -86,6 +86,7 @@ namespace Projekat.Model
         public static void DodajAnketuZaLekara(Termin termin, int idPacijent) 
         {
             string podaciLekara = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+            Console.WriteLine(termin.Lekar.ToString());
             Anketa anketaZaLekara = new Anketa(VrstaAnkete.ZaLekare, "Anketa za lekara: " + podaciLekara, idPacijent, termin.IdTermin);
             ankete.Add(anketaZaLekara);
         }
