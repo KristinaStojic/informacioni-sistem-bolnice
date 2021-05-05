@@ -102,6 +102,7 @@ namespace Projekat
             daniPosleTermina.Start = DateTime.Parse(izabraniTermin.Datum).AddDays(3);
             daniPosleTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(1000);
             datum.BlackoutDates.Add(daniPosleTermina);
+            //datum.BlackoutDates.AddDatesInPast();
         }
 
         private bool UserFilter(object item)
@@ -140,48 +141,48 @@ namespace Projekat
 
         private void IzmeniIzabraniTermin()
         {
-            try
-            {
-                String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+           // try
+            //{
+                string datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 /*if (selectedDate.HasValue)
                 {
                     formatted = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
                 }*/
 
-                String vp = vpp.Text;
-                String vk = ZakaziTermin.IzracunajVremeKrajaPregleda(vp);
+                string vremePocetka = vpp.Text;
+                string vremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(vremePocetka);
 
-                TipTermina tp;
+                TipTermina tipTermina;
                 if (combo.Text.Equals("Pregled"))
                 {
-                    tp = TipTermina.Pregled;
+                    tipTermina = TipTermina.Pregled;
                 }
                 else
                 {
-                    tp = TipTermina.Operacija;
+                    tipTermina = TipTermina.Operacija;
                 }
-                Termin t = new Termin(termin.IdTermin, datumTermina, vp, vk, tp);
-                t.Pacijent = prijavljeniPacijent;
-                t.Pomeren = true;
+                Termin noviTermin = new Termin(termin.IdTermin, datumTermina, vremePocetka, vremeKraja, tipTermina);
+                noviTermin.Pacijent = prijavljeniPacijent;
+                noviTermin.Pomeren = true;
 
                 SaleMenadzer.ObrisiZauzeceSale(termin.Prostorija.Id, termin.IdTermin);
-                ZauzeceSale zs = new ZauzeceSale(vp, vk, datumTermina, t.IdTermin);
+                ZauzeceSale zs = new ZauzeceSale(vremePocetka, vremeKraja, datumTermina, noviTermin.IdTermin);
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
-                t.Prostorija = prvaSlobodnaSala;
+                noviTermin.Prostorija = prvaSlobodnaSala;
                 if (dgSearch.SelectedItems.Count > 0)
                 {
                     Lekar selLekar = (Lekar)dgSearch.SelectedItem;
-                    t.Lekar = selLekar;
+                    noviTermin.Lekar = selLekar;
                 }
-                TerminMenadzer.IzmeniTermin(termin, t);
+                TerminMenadzer.IzmeniTermin(termin, noviTermin);
                 Page uvidZakazaniTermini = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvidZakazaniTermini);
-            }
+            /*}
             catch (System.Exception)
             {
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            }*/
         }
 
       

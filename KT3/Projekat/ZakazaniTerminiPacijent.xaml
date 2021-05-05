@@ -108,16 +108,11 @@
                           Background="#FFF9F7F7" BorderBrush="White" Margin="0,20,0,0">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
-                    <DataGridTextColumn Header="Datum" Width="80" Binding="{Binding Datum}" />
-                    <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
-                    <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                    <!--DataGridTextColumn Header="ID pacijenta" Binding="{Binding Pacijent.IdPacijenta}"/>
-                        <DataGridTextColumn Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
-                        <DataGridTextColumn Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                        <DataGridTextColumn Header="ID lekara" Binding="{Binding Lekar.IdLekara}"  /-->
-                    <DataGridTextColumn Header="Lekar" Binding="{Binding Lekar}" />
-                    <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
-                    <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" />
+                    <DataGridTextColumn Header="Datum" Width="90" Binding="{Binding Datum}" />
+                    <DataGridTextColumn Header="Vreme pocetka" Width="110" Binding="{Binding VremePocetka}"/>
+                    <DataGridTextColumn Header="Vreme kraja"  Width="110" Binding="{Binding VremeKraja}"/>
+                    <DataGridTextColumn Header="Lekar" Binding="{Binding Lekar}" Width="120" />
+                    <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="65" />
                     <DataGridTextColumn Header="Tip usluge" Width="*" Binding="{Binding tipTermina}"/>
                 </DataGrid.Columns>
             </DataGrid>

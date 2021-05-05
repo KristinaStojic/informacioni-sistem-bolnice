@@ -177,16 +177,17 @@ namespace Projekat
         /*  -------- ZAKAZIVANJE TERMINA ---------- */
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            slobodneSaleZaPreglede = new List<Sala>();
-            ukupanBrojSalaZaPregled = 0;
-            foreach (Sala s in SaleMenadzer.sale)
+            slobodneSaleZaPreglede = SaleMenadzer.PronadjiSaleZaPregled();
+            ukupanBrojSalaZaPregled = SaleMenadzer.UkupanBrojSalaZaPregled();
+            MessageBox.Show(ukupanBrojSalaZaPregled.ToString());
+            /*foreach (Sala s in SaleMenadzer.sale)
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled))
                 {
                     slobodneSaleZaPreglede.Add(s);
                     ukupanBrojSalaZaPregled++;
                 }
-            }
+            }*/
         }
 
         public void IzbaciProsleSlotoveZaDanasnjiDan()
@@ -222,7 +223,7 @@ namespace Projekat
        
 
         /* pacijent ne moze imati dva ili vise termina u isto vreme */
-        private void UkloniZauzecaPacijenta(string selektovaniDatum)
+        private void UkloniZauzecaPacijentaZaSelektovaniDatum(string selektovaniDatum)
         {
             foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent))
             {
@@ -246,94 +247,114 @@ namespace Projekat
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
 
             IzbaciProsleSlotoveZaDanasnjiDan();
-            UkloniZauzecaPacijenta(selektovaniDatum);
+            UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum);
             if (slobodneSaleZaPreglede != null)
             {
                 PronadjiSvaZauzecaZaSelektovaniDatum();
             }
             else
             {
-                MessageBox.Show("Prvo izberite tip termina", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Izaberite tip termina", "Upozorenje", MessageBoxButton.OK);
             }
-            UkloniZauzeteSlotove();
+            UkolniSlotoveZauzeteUSvimSalama();
             vpp.ItemsSource = SviSlobodniSlotovi;
-            /*if (!sviSlobodniSlotovi.Any()) // ovo mozda i ne moram --> web
-            {
-                MessageBox.Show("Ne postoji nijedan slobodan termin za izabrani datum, molimo Vas izaberite drugi datum", "Upozorenje");
-            }*/
         }
 
         private void PronadjiSvaZauzecaZaSelektovaniDatum()
         {
             SviZauzetiZaSelektovaniDatum = new List<string>();
-            foreach (Sala s in slobodneSaleZaPreglede)
+            foreach (Sala sala in slobodneSaleZaPreglede)
             {
-                foreach (ZauzeceSale zs in s.zauzetiTermini)
+                foreach (ZauzeceSale zauzeceSale in sala.zauzetiTermini)
                 {
-                    DateTime datumPocetkaZauzeca = DateTime.Parse(zs.datumPocetkaTermina);
-                    DateTime datumKrajaZauzeca = DateTime.Parse(zs.datumKrajaTermina);
-                    int satiVremePocetka = ParsirajSateVremenskogSlota(zs.pocetakTermina);
-                    int minVremePocetka = ParsirajMinuteVremenskogSlota(zs.pocetakTermina);
-                    int satiVremeKraja = ParsirajSateVremenskogSlota(zs.krajTermina);
+                    DateTime datumPocetkaZauzeca = DateTime.Parse(zauzeceSale.datumPocetkaTermina);
+                    DateTime datumKrajaZauzeca = DateTime.Parse(zauzeceSale.datumKrajaTermina);
                     /* provera za termine i renoviranje(u periodu jednog dana - nekoliko sati) */
                     if (datumPocetkaZauzeca.Equals(datum.SelectedDate) && datumKrajaZauzeca.Equals(datum.SelectedDate))
                     {
-                        foreach (string slot in PomocnaSviSlobodniSlotovi)
-                        {
-                            int satiVreme = ParsirajSateVremenskogSlota(slot);
-                            int minVreme = ParsirajMinuteVremenskogSlota(slot);
-                            /* provera u slucaju da renoviranje traje jedan dan */
-                            if (zs.idTermina == oznakaZaRenoviranje)
-                            {
-                                if (satiVreme >= satiVremePocetka && satiVreme < satiVremeKraja)
-                                {
-                                    SviZauzetiZaSelektovaniDatum.Add(slot);
-                                }
-                            }
-                            /* provera da se selektovani datum poklapa sa nekim vec zakazanim terminom */
-                            else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
-                            {
-                                SviZauzetiZaSelektovaniDatum.Add(slot);
-                            }
-                        }
+                        DodajZauzecaSaleZaTermine(zauzeceSale);
                     }
                     /* ukoliko je selektovani datum u periodu renoviranja sale */
                     else if (datumPocetkaZauzeca < datum.SelectedDate && datum.SelectedDate < datumKrajaZauzeca)
                     {
-                        foreach (string slot in PomocnaSviSlobodniSlotovi)
-                        {
-                            SviZauzetiZaSelektovaniDatum.Add(slot);
-                        }
+                        DodajZauzecaSaleZaVremeRenoviranja();
                     }
                     /* provera da li se selektovani datum poklapa sa pocetkom renoviranja sale - slobodni termini pre renoviranja */
                     else if (datumPocetkaZauzeca == datum.SelectedDate)
                     {
-                        foreach (string slot in PomocnaSviSlobodniSlotovi)
-                        {
-                            int satiVreme = ParsirajSateVremenskogSlota(slot);
-                            if (satiVreme >= satiVremePocetka)
-                            {
-                                SviZauzetiZaSelektovaniDatum.Add(slot);
-                            }
-                        }
+                        DodajZauzecaSaleZaPocetakRenoviranja(zauzeceSale);
                     }
                     /* provera da li se selektovani datum poklapa sa krajem renoviranja sale - slobodni termini posle renoviranja */
                     else if (datumKrajaZauzeca == datum.SelectedDate)
                     {
-                        foreach (string slot in PomocnaSviSlobodniSlotovi)
-                        {
-                            int satiVreme = ParsirajSateVremenskogSlota(slot);
-                            if (satiVreme < satiVremeKraja)
-                            {
-                                SviZauzetiZaSelektovaniDatum.Add(slot);
-                            }
-                        }
+                        DodajZauzecaSaleZaKrajRenoviranja(zauzeceSale);
                     }
                 }
             }
         }
 
-        private void UkloniZauzeteSlotove()
+        private static void DodajZauzecaSaleZaKrajRenoviranja(ZauzeceSale zauzeceSale)
+        {
+            foreach (string slot in PomocnaSviSlobodniSlotovi)
+            {
+                int satiVreme = ParsirajSateVremenskogSlota(slot);
+                int satiVremeKraja = ParsirajSateVremenskogSlota(zauzeceSale.krajTermina);
+                if (satiVreme < satiVremeKraja)
+                {
+                    SviZauzetiZaSelektovaniDatum.Add(slot);
+                }
+            }
+        }
+
+        private static void DodajZauzecaSaleZaPocetakRenoviranja(ZauzeceSale zauzeceSale)
+        {
+            foreach (string slot in PomocnaSviSlobodniSlotovi)
+            {
+                int satiVreme = ParsirajSateVremenskogSlota(slot);
+                int satiVremePocetka = ParsirajSateVremenskogSlota(zauzeceSale.pocetakTermina);
+                if (satiVreme >= satiVremePocetka)
+                {
+                    SviZauzetiZaSelektovaniDatum.Add(slot);
+                }
+            }
+        }
+
+        private static void DodajZauzecaSaleZaVremeRenoviranja()
+        {
+            /* ukoliko je selektovani datum u periodu renoviranja sale - ceo dan sala je zauzeta */
+            foreach (string slot in PomocnaSviSlobodniSlotovi)
+            {
+                SviZauzetiZaSelektovaniDatum.Add(slot);
+            }
+        }
+
+        private static void DodajZauzecaSaleZaTermine(ZauzeceSale zauzeceSale)
+        {
+            /* provera za termine i renoviranje(u periodu jednog dana - nekoliko sati) */
+            foreach (string slot in PomocnaSviSlobodniSlotovi)
+            {
+                int satiVreme = ParsirajSateVremenskogSlota(slot);
+                int minVreme = ParsirajMinuteVremenskogSlota(slot);
+                int satiVremePocetka = ParsirajSateVremenskogSlota(zauzeceSale.pocetakTermina);
+                int minVremePocetka = ParsirajMinuteVremenskogSlota(zauzeceSale.pocetakTermina);
+                int satiVremeKraja = ParsirajSateVremenskogSlota(zauzeceSale.krajTermina);
+                /* provera u slucaju da renoviranje traje jedan dan */
+                if (zauzeceSale.idTermina == oznakaZaRenoviranje)
+                {
+                    if (satiVreme >= satiVremePocetka && satiVreme < satiVremeKraja)
+                    {
+                        SviZauzetiZaSelektovaniDatum.Add(slot);
+                    }
+                }
+                /* provera da se selektovani datum poklapa sa nekim vec zakazanim terminom */
+                else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
+                {
+                    SviZauzetiZaSelektovaniDatum.Add(slot);
+                }
+            }
+        }
+
+        private void UkolniSlotoveZauzeteUSvimSalama()
         {
             int brojacZauzetihSala;
             foreach (string slot in PomocnaSviSlobodniSlotovi)
@@ -350,6 +371,23 @@ namespace Projekat
                             break;
                         }
                     }
+                }
+            }
+        }
+
+        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selektovaniDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            string selektovaniSlot = vpp.SelectedValue.ToString();
+            int satiVremeSelektovanogSlota = ParsirajSateVremenskogSlota(selektovaniSlot);
+            /* Pronalazenje sale za koju je slobodan izabrani slot*/
+            foreach (Sala sala in slobodneSaleZaPreglede)
+            {
+                bool postojiZauzece = ProveriVremeZauzecaZaTermine(selektovaniDatum, selektovaniSlot, sala) || ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVremeSelektovanogSlota, sala);
+                if (!postojiZauzece)
+                {
+                    prvaSlobodnaSala = sala;
+                    return;
                 }
             }
         }
@@ -407,23 +445,6 @@ namespace Projekat
                 }
             }
             return false;
-        }
-
-        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string selektovaniDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string selektovaniSlot = vpp.SelectedValue.ToString();
-            int satiVreme = ParsirajSateVremenskogSlota(selektovaniSlot);
-            /* Pronalazenje sale za koju je slobodan izabrani slot*/
-            foreach (Sala sala in slobodneSaleZaPreglede)
-            {
-                bool postojiZauzece = ProveriVremeZauzecaZaTermine(selektovaniDatum, selektovaniSlot, sala) || ProveriVremeZauzecaZaRenoviranje(selektovaniDatum, satiVreme, sala);
-                if (!postojiZauzece)
-                {
-                    prvaSlobodnaSala = sala;
-                    return;
-                }
-            }
         }
         /*  --------------------------- */
 

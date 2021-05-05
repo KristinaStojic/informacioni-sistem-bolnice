@@ -143,6 +143,32 @@ namespace Model
             }
         }
 
+        public static List<Sala> PronadjiSaleZaPregled()
+        {
+            List<Sala> slobodneSaleZaPregled = new List<Sala>();
+            foreach (Sala sala in sale)
+            {
+                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
+                {
+                    slobodneSaleZaPregled.Add(sala);
+                }
+            }
+            return slobodneSaleZaPregled;
+        }
+
+        public static int UkupanBrojSalaZaPregled()
+        {
+            int ukupanBrojSalaZaPregled = 0;
+            foreach (Sala sala in sale)
+            {
+                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
+                {
+                    ukupanBrojSalaZaPregled++;
+                }
+            }
+            return ukupanBrojSalaZaPregled;
+        }
+
         public static List<Sala> sale = new List<Sala>();
    }
 }
