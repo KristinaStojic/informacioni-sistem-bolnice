@@ -36,8 +36,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
-            PomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
-                                                                "13:00", "13:30", "14:00", "14:30","15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+            PomocnaSviSlobodniSlotovi = SaleMenadzer.sviSlotovi;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
@@ -179,7 +178,6 @@ namespace Projekat
         {
             slobodneSaleZaPreglede = SaleMenadzer.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleMenadzer.UkupanBrojSalaZaPregled();
-            MessageBox.Show(ukupanBrojSalaZaPregled.ToString());
             /*foreach (Sala s in SaleMenadzer.sale)
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled))
@@ -188,6 +186,17 @@ namespace Projekat
                     ukupanBrojSalaZaPregled++;
                 }
             }*/
+        }
+        private static int ParsirajSateVremenskogSlota(String vreme)
+        {
+            String sat = vreme.Split(':')[0];
+            return Convert.ToInt32(sat);
+        }
+
+        private static int ParsirajMinuteVremenskogSlota(String vreme)
+        {
+            String minuti = vreme.Split(':')[1];
+            return Convert.ToInt32(minuti);
         }
 
         public void IzbaciProsleSlotoveZaDanasnjiDan()
@@ -206,22 +215,7 @@ namespace Projekat
                 }
             }
         }
-
-        private static int ParsirajSateVremenskogSlota(String vreme)
-        {
-            String sat = vreme.Split(':')[0]; 
-            return Convert.ToInt32(sat);
-        }
-
-        private static int ParsirajMinuteVremenskogSlota(String vreme)
-        {
-            String minuti = vreme.Split(':')[1];
-            return Convert.ToInt32(minuti);
-        }
-
-
        
-
         /* pacijent ne moze imati dva ili vise termina u isto vreme */
         private void UkloniZauzecaPacijentaZaSelektovaniDatum(string selektovaniDatum)
         {
@@ -243,9 +237,7 @@ namespace Projekat
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             string selektovaniDatum = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            SviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
-
+            SviSlobodniSlotovi = SaleMenadzer.sviSlotovi;
             IzbaciProsleSlotoveZaDanasnjiDan();
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum);
             if (slobodneSaleZaPreglede != null)
@@ -416,11 +408,11 @@ namespace Projekat
 
                 if (zauzece.idTermina == oznakaZaRenoviranje)
                 {
-                    int satiVremePocetka = ParsirajSateVremenskogSlota(zauzece.pocetakTermina);
-                    int satiVremeKraja = ParsirajSateVremenskogSlota(zauzece.krajTermina);
                     /* ukoliko renoviranje traje tokom jednog dana */
                     if (selektovaniDatum.Equals(zauzece.datumPocetkaTermina) && selektovaniDatum.Equals(zauzece.datumKrajaTermina))
                     {
+                        int satiVremePocetka = ParsirajSateVremenskogSlota(zauzece.pocetakTermina);
+                        int satiVremeKraja = ParsirajSateVremenskogSlota(zauzece.krajTermina);
                         if (satiVremePocetka <= satiVreme && satiVreme < satiVremeKraja)
                         {
                             return true;
@@ -429,6 +421,7 @@ namespace Projekat
                     /* ukoliko renoviranje traje vise dana, a termin se poklapa sa pocetkom zauzeca sale */
                     else if (selektovaniDatum.Equals(zauzece.datumPocetkaTermina))
                     {
+                        int satiVremePocetka = ParsirajSateVremenskogSlota(zauzece.pocetakTermina);
                         if (satiVremePocetka <= satiVreme)
                         {
                             return true;
@@ -437,6 +430,7 @@ namespace Projekat
                     /* ukoliko renoviranje traje vise dana, a termin se poklapa sa krajem zauzeca sale */
                     else if (selektovaniDatum.Equals(zauzece.datumKrajaTermina))
                     {
+                        int satiVremeKraja = ParsirajSateVremenskogSlota(zauzece.krajTermina);
                         if (satiVreme < satiVremeKraja)
                         {
                             return true;
