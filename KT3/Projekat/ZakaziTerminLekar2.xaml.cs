@@ -799,7 +799,9 @@ namespace Projekat
             sviSlobodniTerminiKraj.Remove(vpp.Text);
             vkk.ItemsSource = sviSlobodniTerminiKraj;
             
-            /*foreach(string s in pomocnaSviSlobodniTerminiKraj)
+            //DORADITI-----------------------------------------------------------------------------------------------------------------------------------------------------------
+            /*
+            foreach(string s in pomocnaSviSlobodniTerminiKraj)
             {
                 string[] kraj = s.Split(':');
                 string krajTerminaSati = kraj[0];
@@ -827,25 +829,22 @@ namespace Projekat
                 string[] pocetakZauzeca = zauzece.pocetakTermina.Split(':');
                 string pocetakSatiZauzeca = pocetakZauzeca[0];
                 string pocetakMinutiZauzeca = pocetakZauzeca[1];
-                //nadje prvi sledeci termin koji je zakazan
-                Console.WriteLine("Prvi sledeci zauzeti termin: " + pocetakSatiZauzeca + ":" + pocetakMinutiZauzeca);
-                Console.WriteLine("Izabrani pocetak: " + pocetakSati + ":" + pocetakMinuti);
 
+                //sprecava preklapanje termina (da kraj jednog termina bude posle/u toku drugog)
                 if (Convert.ToInt32(pocetakSatiZauzeca) > Convert.ToInt32(pocetakSati) && dat == zauzece.datumPocetkaTermina) //dodati i ako je isto
                 {
-                    Console.WriteLine("USLOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     foreach(string s in pomocnaSviSlobodniTerminiKraj.ToList())
                     {
                         string[] pocetakKraja = s.Split(':');
                         string pocetakSatiKraja = pocetakKraja[0];
                         string pocetakMinutiKraja = pocetakKraja[1];
 
-                        if(Convert.ToInt32(pocetakSatiKraja) > Convert.ToInt32(pocetakSatiZauzeca) && sviSlobodniTerminiKraj.Contains(s)) //&& sviSlobodniTerminiKraj.Contains(s)
+                        if(Convert.ToInt32(pocetakSatiKraja) > Convert.ToInt32(pocetakSatiZauzeca) && sviSlobodniTerminiKraj.Contains(s)) 
                         {
                             sviSlobodniTerminiKraj.Remove(s);
                         }
                     }
-                    //break;
+                 
                 }
             }
            
