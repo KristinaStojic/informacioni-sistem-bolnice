@@ -217,12 +217,12 @@
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
                                             <GridViewColumn Header="Naziv leka" 
-                                                Width="90" DisplayMemberBinding="{Binding NazivLeka}"/>
+                                                Width="110" DisplayMemberBinding="{Binding NazivLeka}"/>
                                             <GridViewColumn Header="Datum" 
-                                                Width="85" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
+                                                Width="100" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
                                             <GridViewColumn Header="Početak korišćenja" 
-                                                Width="140" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
-                                            <GridViewColumn Header="Broj dana" Width="75"
+                                                Width="150" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
+                                            <GridViewColumn Header="Broj dana" Width="80"
                                                 DisplayMemberBinding="{Binding BrojDanaKoriscenja}"/>
                                             <GridViewColumn Header="Dnevna kolicina" Width="120"
                                             DisplayMemberBinding="{Binding DnevnaKolicina}"/>
@@ -255,7 +255,10 @@
                                 <ListView x:Name="prikazUputa" SelectionChanged="prikazUputa_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="16" Margin="0,0,0,0.5">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="Bice nesto...."/>
+                                            <GridViewColumn Header="Datum" DisplayMemberBinding="{Binding datumIzdavanja}"
+                                                            Width="200"/>
+                                            <GridViewColumn Header="Tip uputa" DisplayMemberBinding="{Binding TipUputa}"
+                                                            Width="400"/>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>

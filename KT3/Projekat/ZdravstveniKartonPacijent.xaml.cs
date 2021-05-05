@@ -30,6 +30,16 @@ namespace Projekat
             this.odustani.Visibility = Visibility.Hidden;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
             /* LEKARI OPSTE PRAKSE */
+            InicijalizujIzborLekaraOpstePrakse();
+            this.tabelaRecepata.ItemsSource = DodajLekarskeReceptePacijenta();
+            this.prikazAnamnezi.ItemsSource = DodajAnamnezePacijenta();
+            this.prikazUputa.ItemsSource = DodajUputePacijenta();
+            InicijalizujLicnePodatke();
+            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+        }
+
+        private void InicijalizujIzborLekaraOpstePrakse()
+        {
             List<Lekar> opstaPraksa = new List<Lekar>();
             foreach (Lekar l in MainWindow.lekari)
             {
@@ -39,28 +49,10 @@ namespace Projekat
                 }
             }
             this.lekar.ItemsSource = opstaPraksa;
-            /* LEKARSKI RECEPTI i ANAMNEZE */
-            tempRecepti = new List<LekarskiRecept>();
-            tempAnamneze = new List<Anamneza>();
-            // TODO: proveriti   ????
-            if (prijavljeniPacijent.Karton.LekarskiRecepti.Count != 0)
-            {
-                foreach (LekarskiRecept lekRecepti in prijavljeniPacijent.Karton.LekarskiRecepti)
-                {
-                    tempRecepti.Add(lekRecepti);
-                }
-            }
-            if (prijavljeniPacijent.Karton.Anamneze.Count != 0)
-            {
-                foreach (Anamneza anamneza in prijavljeniPacijent.Karton.Anamneze)
-                {
-                    tempAnamneze.Add(anamneza);
-                }
-            }
+        }
 
-            this.tabelaRecepata.ItemsSource = tempRecepti;
-            this.prikazAnamnezi.ItemsSource = tempAnamneze;
-            /* LICNI PODACI */
+        private void InicijalizujLicnePodatke()
+        {
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -68,7 +60,7 @@ namespace Projekat
                 this.poltxt.Text = "M";
             else
                 this.poltxt.Text = "Z";
-            this.brojTel.Text = prijavljeniPacijent.BrojTelefona.ToString(); 
+            this.brojTel.Text = prijavljeniPacijent.BrojTelefona.ToString();
             this.email.Text = prijavljeniPacijent.Email;
             this.adresa.Text = prijavljeniPacijent.AdresaStanovanja;
             this.bracStanje.Text = prijavljeniPacijent.BracnoStanje.ToString();
@@ -78,16 +70,46 @@ namespace Projekat
                 this.lekar.Text = prijavljeniPacijent.IzabraniLekar.ToString();
             }
             this.pacijent.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private static List<Uput> DodajUputePacijenta()
         {
-            // nazad
-            //this.Close();
+            List<Uput> tempUputi = new List<Uput>();
+            if (prijavljeniPacijent.Karton.Uputi.Count != 0)
+            {
+                foreach (Uput uput in prijavljeniPacijent.Karton.Uputi)
+                {
+                    tempUputi.Add(uput);
+                }
+            }
+            return tempUputi;
         }
 
-        
+        private List<LekarskiRecept> DodajLekarskeReceptePacijenta()
+        {
+            tempRecepti = new List<LekarskiRecept>();
+            if (prijavljeniPacijent.Karton.LekarskiRecepti.Count != 0)
+            {
+                foreach (LekarskiRecept lekRecepti in prijavljeniPacijent.Karton.LekarskiRecepti)
+                {
+                    tempRecepti.Add(lekRecepti);
+                }
+            }
+            return tempRecepti;
+        }
+
+        private List<Anamneza> DodajAnamnezePacijenta()
+        {
+            tempAnamneze = new List<Anamneza>();
+            if (prijavljeniPacijent.Karton.Anamneze.Count != 0)
+            {
+                foreach (Anamneza anamneza in prijavljeniPacijent.Karton.Anamneze)
+                {
+                    tempAnamneze.Add(anamneza);
+                }
+            }
+            return tempAnamneze;
+        }
 
         private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -226,7 +248,6 @@ namespace Projekat
             if (this.lekar != null )
             {
                 l = (Lekar)this.lekar.SelectedItem;
-                //MessageBox.Show(l.ImeLek + " " + l.PrezimeLek, prijavljeniPacijent.ImePacijenta + " " + prijavljeniPacijent.PrezimePacijenta);
             }
           
             Pacijent novi = new Pacijent(prijavljeniPacijent.IdPacijenta, ime, prezime, jmbg, poll, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
