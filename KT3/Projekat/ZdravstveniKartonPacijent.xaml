@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zdravstveni karton" Height="600" Width="800" FontSize="15" Background="#dbe2ef">
+        Title="Zdravstveni karton" Height="600" Width="800" FontSize="15" Background="{DynamicResource BackgroundColor}">
     <ScrollViewer>
         <DockPanel>
             <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
@@ -14,10 +14,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel Margin="0,0,0,-22" >
-                        <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                        <StackPanel Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
                             <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                                 <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                                <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                                <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                             </StackPanel>
                             <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                                 <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
@@ -34,8 +34,7 @@
                                         <MenuItem Header="_en"/>
                                         <Separator />
                                         <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                        <MenuItem Header="_Svetla" Name="svetlaTema" />
-                                        <MenuItem Header="_Tamna"/>
+                                        <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>
                                         <Separator />
                                         <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
                                     </MenuItem>
@@ -60,13 +59,15 @@
                 </Hyperlink>
                         </TextBlock>
                         <TabControl x:Name="tab" HorizontalAlignment="Left"
-                    Height="445" VerticalAlignment="Top" Width="615" Margin="90,20,0,100" BorderBrush="Gainsboro" SelectionChanged="tab_SelectionChanged">
+                    Height="445" VerticalAlignment="Top" Width="615" Margin="90,20,0,100" BorderBrush="Gainsboro" 
+                                    SelectionChanged="tab_SelectionChanged">
                             <TabControl.Resources>
                                 <Style TargetType="{x:Type TabItem}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type TabItem}">
-                                                <Border x:Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                                <Border x:Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" 
+                                                        CornerRadius="4,4,0,0" Margin="2,0">
                                                     <ContentPresenter x:Name="ContentSite"
                                                     VerticalAlignment="Center"
                                                     HorizontalAlignment="Center"
@@ -152,11 +153,40 @@
                                         <Image Grid.Column="1" Margin="5,5,5, 5" Source="slike\menager.jpg" />
                                     </Border>
                                     <Label Content="Korisnicko ime" HorizontalAlignment="Left" Height="29" Width="114" VerticalAlignment="Bottom" Margin="41.5,0,0,209.5" FontWeight="Bold" Grid.Column="1"/>
-                                    <Button x:Name="izmeniBtn" Content="Izmenite podatke" Grid.Column="1" Height="30" Margin="33.5,341,46,39.5" Click="izmeniBtn_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
-                                    <Button x:Name="sacuvajIzmene" Content="Potvrdi" Grid.Column="1" Height="30" Margin="18.5,341,141,39.5" Click="sacuvajIzmene_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
-                                    <Button x:Name="odustani" Content="Odustani" Grid.Column="1" Height="30" Margin="121.5,341,36,39.5" Click="odustani_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"/>
-                                    <Label Content="Lozinka" HorizontalAlignment="Left" Height="28" Width="114" VerticalAlignment="Bottom" Margin="45.5,0,0,153.5" FontWeight="Bold" Grid.Column="1"/>
-                                    <PasswordBox x:Name="lozinka" IsEnabled="False" HorizontalAlignment="Left" Height="25" RenderTransformOrigin="0.5,0.5" Width="146" Grid.Column="1" Margin="43.5,257,0,128.5">
+                                    <Button x:Name="izmeniBtn"
+                                            Content="Izmenite podatke"
+                                            Grid.Column="1" 
+                                            Height="30" 
+                                            Margin="33.5,341,46,39.5" 
+                                            Click="izmeniBtn_Click" 
+                                            Style="{DynamicResource ButtonStyle}"/>
+                                    <Button x:Name="sacuvajIzmene"
+                                            Content="Potvrdi" 
+                                            Grid.Column="1" 
+                                            Height="30" 
+                                            Margin="18.5,341,141,39.5" 
+                                            Click="sacuvajIzmene_Click" 
+                                            Style="{DynamicResource ButtonStyle}"/>
+                                    <Button x:Name="odustani" 
+                                            Content="Odustani"
+                                            Grid.Column="1" 
+                                            Height="30" 
+                                            Margin="121.5,341,36,39.5" 
+                                            Click="odustani_Click" 
+                                            Style="{DynamicResource ButtonStyle}"/>
+                                    <Label Content="Lozinka"
+                                           HorizontalAlignment="Left" 
+                                           Height="28" Width="114" 
+                                           VerticalAlignment="Bottom" 
+                                           Margin="45.5,0,0,153.5"
+                                           FontWeight="Bold" 
+                                           Grid.Column="1"/>
+                                    <PasswordBox x:Name="lozinka" 
+                                                 IsEnabled="False" 
+                                                 HorizontalAlignment="Left"
+                                                 Height="25" Width="146" 
+                                                 Grid.Column="1" 
+                                                 Margin="43.5,257,0,128.5">
                                         <PasswordBox.RenderTransform>
                                             <TransformGroup>
                                                 <ScaleTransform ScaleX="1"/>
@@ -166,7 +196,11 @@
                                             </TransformGroup>
                                         </PasswordBox.RenderTransform>
                                     </PasswordBox>
-                                    <TextBox x:Name="korisnickoIme" IsEnabled="False" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Width="146" Grid.Column="1" Margin="43.5,202,0,183.5"/>
+                                    <TextBox x:Name="korisnickoIme"
+                                             IsEnabled="False" 
+                                             HorizontalAlignment="Left" 
+                                             Width="146" Grid.Column="1" 
+                                             Margin="43.5,202,0,183.5"/>
                                 </Grid>
                             </TabItem>
 
@@ -208,9 +242,9 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Header="Datum" Width="120" 
+                                            <GridViewColumn Header="Datum" Width="130" 
                                             DisplayMemberBinding="{Binding Datum}"/>
-                                            <GridViewColumn Header="Anamneza" Width="370" 
+                                            <GridViewColumn Header="Anamneza" Width="435" 
                                             DisplayMemberBinding="{Binding OpisBolesti}"/>
                                         </GridView>
                                     </ListView.View>
@@ -221,14 +255,13 @@
                                 <ListView x:Name="prikazUputa" SelectionChanged="prikazUputa_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="16" Margin="0,0,0,0.5">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="bice nesto...."/>
+                                            <GridViewColumn Header="Bice nesto...."/>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
 
                             </TabItem>
                         </TabControl>
-                        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"  Height="30" Margin="29,0,0,0" Click="Button_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF"  />
                     </StackPanel>
                 </Grid>
             </StackPanel>

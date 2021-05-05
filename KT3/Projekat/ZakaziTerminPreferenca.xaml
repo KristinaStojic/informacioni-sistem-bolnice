@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Ponudjeni termini" Height="600" Width="800" Background="#d3e0ea">
+        Title="Ponudjeni termini" Height="600" Width="800" Background="{DynamicResource BackgroundColor}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,13 +17,13 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="19*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Margin="0,0,0,-150" Grid.ColumnSpan="3" Grid.RowSpan="2">
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Grid  Margin="0,0,0,0" Height="578">
                 <StackPanel >
-                    <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                    <StackPanel Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal" Margin="2,0,-2,0">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                            <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                             <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
@@ -40,8 +40,7 @@
                                     <MenuItem Header="_en"/>
                                     <Separator />
                                     <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Svetla" Name="svetlaTema" />
-                                    <MenuItem Header="_Tamna"/>
+                                    <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>
                                     <Separator />
                                     <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
@@ -73,19 +72,23 @@
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" Width="100" />
                 <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}" Width="100" />
-                <DataGridTextColumn x:Name="lekar" Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}" Width="110"/>
-                <DataGridTextColumn x:Name="lekar2" Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" Width="100"/>
-                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="85"/>
+                <DataGridTextColumn x:Name="lekar" Header="Lekar" Binding="{Binding Lekar}" Width="210"/>
+                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Zakazi" Name="btnZakazi" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
-                Height="30" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="btnZakazi_Click" RenderTransformOrigin="1,1" BorderBrush="#FF3F72AF" Foreground="#FFF9F7F7" Background="#FF112D4E" Grid.Column="1" Grid.Row="1"/>
+                Height="30" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="btnZakazi_Click" 
+                Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
         <Button Content="Potvrdi" Name="zakaziLekar" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
-                Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" Grid.Column="1" Grid.Row="1"/>
+                Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
         <Button Content="Nazad"  Name="nazad" HorizontalAlignment="Left" Margin="260,468,0,0" VerticalAlignment="Top" Width="90" 
-            Height="30" Click="nazad_Click" Background="#FF112D4E" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="65,106,0,0" VerticalAlignment="Top" Width="195" Height="95" Click="lekari_Click" Background="#FF112D4E" OpacityMask="White" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" Grid.Row="1" Grid.Column="1"/>
-        <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="335,105,0,0" VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Background="#FF112D4E" RenderTransformOrigin="0.5,0.5" FontSize="14" Foreground="#FFF9F7F7" BorderBrush="#FF3F72AF" Grid.Column="1" Grid.Row="1"/>
+            Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
+        <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="65,106,0,0" 
+                VerticalAlignment="Top" Width="195" Height="95" Click="lekari_Click" 
+                Style="{DynamicResource ButtonStyle}"  Grid.Row="1" Grid.Column="1"/>
+        <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="335,105,0,0" 
+                VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Style="{DynamicResource ButtonStyle}"
+                Grid.Column="1" Grid.Row="1"/>
         <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Left" Height="360" Margin="107,33,0,0" VerticalAlignment="Top" Width="370" RenderTransformOrigin="0.858,0.494" Grid.Column="1" Grid.Row="1">
 
             <ListView x:Name="datagridLekari" SelectionMode="Single" Margin="14,70,14,17" SelectionChanged="datagridLekari_SelectionChanged" Background="#FFF9F7F7" Grid.Column="1" Grid.Row="1" >

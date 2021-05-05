@@ -112,7 +112,9 @@ namespace Model
                     {
                         if (zs.idTermina.Equals(stariTermin.IdTermin))
                         {
+                            MessageBox.Show(stariTermin.IdTermin.ToString());
                             s.zauzetiTermini.Remove(zs);
+                            return;
                         }
                     }
                 }

@@ -26,7 +26,13 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = izabraniPacijent.IdPacijenta;
+            InicijalizujPodatkeRecepta(lp, izabraniPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+        }
 
+        private void InicijalizujPodatkeRecepta(LekarskiRecept lp, Pacijent izabraniPacijent)
+        {
             this.lekRec = lp;
             this.naziv.Text = lp.NazivLeka;
             this.datum.Text = lp.DatumPropisivanjaLeka;
@@ -46,7 +52,6 @@ namespace Projekat
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.IdPacijenta.ToString();
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -83,6 +88,21 @@ namespace Projekat
         {
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
+        }
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla"))
+            {
+                mi.Header = "Tamna";
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                mi.Header = "Svetla";
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
+            }
         }
     }
 }

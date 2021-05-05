@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         d:DesignHeight="600" d:DesignWidth="800"
-        Title="Izmenite termin"  Background="AliceBlue">
+        Title="Izmenite termin"  Background="{DynamicResource BackgroundColor}">
     <Grid  Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -16,10 +16,10 @@
         <StackPanel Orientation="Vertical" Margin="0,1,5,1.5" Grid.ColumnSpan="3">
             <Grid  Margin="0,0,0,0" Height="600">
                 <StackPanel Margin="0,0,0,0" RenderTransformOrigin="0.667,0.407" >
-                    <StackPanel Height="40" Background="#e8f1f5" Orientation="Horizontal">
+                    <StackPanel x:Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                            <TextBlock Text="ZDRAVO" FontSize="25" Margin="5, 0, 0,0" Style="{DynamicResource ZdravoText}" FontWeight="Bold" FontStyle="Italic" />
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                             <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
@@ -36,15 +36,14 @@
                                     <MenuItem Header="_en"/>
                                     <Separator />
                                     <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Svetla" Name="svetlaTema" />
-                                    <MenuItem Header="_Tamna"/>
+                                    <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu" />
                                     <Separator />
                                     <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
-                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
+                    <TextBlock Margin="20, 0, 0, 0" FontSize="14"  Height="25">
                 <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
@@ -74,28 +73,30 @@
                     HorizontalAlignment="Center"
                     Margin="0,0,0,0"
                     Click="Button_Click_1"
-                    Name="sacuvaj"/>
+                    Name="sacuvaj"
+                    Style="{DynamicResource ButtonStyle}"/>
             <Button Content="Odustani"
                     Height="30"
                     Width="90"
                     Margin="10, 0, 0, 0"
                     Click="Button_Click"
-                    Name="odustani"/>
+                    Name="odustani" 
+                    Style="{DynamicResource ButtonStyle}"/>
         </StackPanel>
-        <GroupBox Header=" Izaberite tip termina" HorizontalAlignment="Left" Height="70" Margin="18.5,95,0,0" VerticalAlignment="Top" Width="253" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+        <GroupBox Header="1. Izaberite tip termina" HorizontalAlignment="Left" Height="70" Margin="18.5,95,0,0" VerticalAlignment="Top" Width="253" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
             <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="200" Margin="28,0,0,10" Height="27" SelectionChanged="combo_SelectionChanged">
                 <!--ComboBoxItem>Operacija</-->
                 <ComboBoxItem IsSelected="True">Pregled</ComboBoxItem>
             </ComboBox>
         </GroupBox>
-        <GroupBox Header="Izaberite lekara" HorizontalAlignment="Left" Height="345" Margin="276.5,93,0,0" VerticalAlignment="Top" Width="314" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
-            <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="5,10,3,283" TextAlignment="Left" Height="27" ToolTip="Pretrazite listu po prezimenu lekara" FontSize="14" BorderBrush="#FF3F72AF">
+        <GroupBox Header="*4. Izaberite lekara" HorizontalAlignment="Left" Height="345" Margin="276.5,93,0,0" VerticalAlignment="Top" Width="314" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
+            <TextBox DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="5,10,3,283" TextAlignment="Left" Height="27" ToolTip="Pretrazite listu po prezimenu lekara" FontSize="14" BorderBrush="White">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <Style.Resources>
                             <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
-                                    <Label Content="Pronađite lekara po prezimenu, imenu ili specijalizaciji" Foreground="LightGray" />
+                                    <Label Content="Pronađite lekara po prezimenu, imenu ili specijalizaciji" Foreground="DarkGray" />
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Style.Resources>
@@ -114,7 +115,7 @@
                 </TextBox.Style>
             </TextBox>
         </GroupBox>
-        <GroupBox Header="Izaberite vreme termina" Height="70" Margin="20.5,369,323.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.571" Grid.Column="1">
+        <GroupBox Header="*3. Izaberite vreme termina" Height="70" Margin="20.5,369,323.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,0.571" Grid.Column="1">
             <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="27"
                           VerticalAlignment="Top" Width="200" Margin="21,12,0,0" 
                           SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.6,0.63"/>
@@ -122,10 +123,11 @@
         <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="Ime i prezime izabranog lekara" Width="285"
                    DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="27" Margin="291,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13" Grid.Column="1"/>
         <Label Content="Ime i prezime lekara" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="289,349,0,0" Width="121" Grid.Column="1" Height="26"/>
-        <GroupBox Header="Izaberite datum termina" Height="204" Margin="20.5,165,321.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
+        <GroupBox Header="*2. Izaberite datum termina" Height="204" Margin="20.5,165,321.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
             <Calendar HorizontalAlignment="Left" Margin="20,11,0,0" Width="200" FontSize="14" VerticalAlignment="Top" Name="datum" Height="168" SelectedDatesChanged="datum_SelectedDatesChanged" />
         </GroupBox>
-        <ListView x:Name="dgSearch" SelectionMode="Single" Margin="288.5,157,35,258" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1" >
+        <ListView x:Name="dgSearch" SelectionMode="Single" Margin="288.5,157,35,258" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1"
+                  BorderBrush="White" Foreground="Black">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" 

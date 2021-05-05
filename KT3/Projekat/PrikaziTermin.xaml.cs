@@ -45,7 +45,21 @@ namespace Projekat
             thread.Start();
             DodajTerminePacijenta();
             DodajObavestenja();
+            AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
+
+        public static void AktivnaTema(StackPanel PanelZaglavlja, MenuItem AktivnaTema)
+        {
+            if (PanelZaglavlja.Background.ToString().Equals("#FF112D4E"))
+            {
+                AktivnaTema.Header = "Svetla";
+            }
+            else if(PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
+            {
+                AktivnaTema.Header = "Tamna";
+            }
+        }
+
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
@@ -263,6 +277,22 @@ namespace Projekat
             {
                 ObavestenjaMenadzer.ObrisiObavestenjePacijent(obavestenje);
                 ObavestenjaPacijent.Remove(obavestenje);
+            }
+        }
+
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla"))
+            {
+                mi.Header = "Tamna";
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                mi.Header = "Svetla";
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
     }

@@ -86,13 +86,14 @@ namespace Projekat.Model
         public static void DodajAnketuZaLekara(Termin termin, int idPacijent) 
         {
             string podaciLekara = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+            Console.WriteLine(termin.Lekar.ToString());
             Anketa anketaZaLekara = new Anketa(VrstaAnkete.ZaLekare, "Anketa za lekara: " + podaciLekara, idPacijent, termin.IdTermin);
             ankete.Add(anketaZaLekara);
         }
 
         public static void DodajAnketuZaKliniku(int idPacijent)
         {
-            Anketa anketa = new Anketa(VrstaAnkete.ZaKliniku, "Anketa o klinici Zdravo korporacije", idPacijent, 0);
+            Anketa anketa = new Anketa(VrstaAnkete.ZaKliniku, "Anketa o uslugama bolnice", idPacijent, 0);
             ankete.Add(anketa);
         }
     }
