@@ -31,7 +31,7 @@ namespace Projekat
         {
             foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
             {
-                if (zahtjev.obradjenZahtev && !zahtjev.odobrenZahtev && zahtjev.lek.idLeka == izabraniLijek.idLeka)
+                if (zahtjev.lek.idLeka == izabraniLijek.idLeka)
                 {
                     this.obrazlozenje.Text = zahtjev.obrazlozenjeOdbijanja;
                 }

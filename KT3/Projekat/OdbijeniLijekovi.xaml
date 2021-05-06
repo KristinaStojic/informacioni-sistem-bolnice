@@ -5,14 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Odbijeni lijekovi" Height="410" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Odbijeni lijekovi" Height="450" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
 
     <StackPanel>
         <StackPanel>
-            <Button ToolTip="Nazad, Ctrl + N" Click="Button_Click" Width="30" Height="30" Margin="0, 10, 440, 0" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
-                <Image Source="slike/back.png" Width="30" Height="30"></Image>
-            </Button>
-            
+            <ToolBar Background="CadetBlue" Margin="0, 0, 0, 30">
+                <Button ToolTip="Nazad, Ctrl + N" Click="Button_Click">
+                    <Image Source="slike/back.png" Width="30" Height="30"></Image>
+                </Button>
+                <Button ToolTip="Izmjeni, Ctrl + I" Click="Button_Click_3">
+                    <Image Source="slike/pen.png" Width="30" Height="30"></Image>
+                </Button>
+                <Button ToolTip="Posalji zahtjev ponovo, Ctrl + P" Click="Button_Click_2">
+                    <Image Source="slike/send.png" Width="30" Height="30"></Image>
+                </Button>
+                <Button ToolTip="Nazad, Ctrl + O" Click="Button_Click_4">
+                    <Image Source="slike/trash.png" Width="30" Height="30"></Image>
+                </Button>
+                    <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="145, 0, 0, 0" TextChanged="Pretraga_TextChanged"></TextBox>
+                <Button ToolTip="Pretrazi" IsEnabled="False">
+                    <Image Source="slike/search.png" Width="30" Height="30"></Image>
+                </Button>
+            </ToolBar>
+
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,0">
             <DataGrid x:Name="dataGridOdbijeniLijekovi" ItemsSource="{Binding OdbijeniLekovi}" IsReadOnly="True" 

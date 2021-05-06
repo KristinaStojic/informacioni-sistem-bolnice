@@ -16,33 +16,47 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for SastojciDodavanje.xaml
+    /// Interaction logic for IzmjeniSastojkeOdbijenog.xaml
     /// </summary>
-    public partial class SastojciDodavanje : Window
+    public partial class IzmjeniSastojkeOdbijenog : Window
     {
-        Lek uneseniLijek;
+        Lek izabraniLijek;
         private int colNum = 0;
         public static ObservableCollection<Sastojak> SastojciLijeka
         {
             get;
             set;
         }
-        public SastojciDodavanje(Lek uneseniLijek)
+        
+        
+        public IzmjeniSastojkeOdbijenog(Lek izabraniLijek)
         {
             InitializeComponent();
+            this.izabraniLijek = izabraniLijek;
             this.DataContext = this;
-            this.uneseniLijek = uneseniLijek;
+            postaviTekst();
             dodajSastojke();
         }
+
+        private void postaviTekst()
+        {
+            this.tekst.Text = "Sastojci za lijek: " + izabraniLijek.nazivLeka;
+        }
+
         private void dodajSastojke()
         {
             SastojciLijeka = new ObservableCollection<Sastojak>();
 
-            foreach (Sastojak sastojak in uneseniLijek.sastojci)
+            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
             {
-                SastojciLijeka.Add(sastojak);
+                if(zahtjev.lek.sifraLeka == izabraniLijek.sifraLeka)
+                {
+                    foreach(Sastojak sastojak in zahtjev.lek.sastojci)
+                    {
+                        SastojciLijeka.Add(sastojak);
+                    }
+                }
             }
-
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -55,12 +69,6 @@ namespace Projekat
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            SastojciDodaj dodajSastojak = new SastojciDodaj(uneseniLijek);
-            dodajSastojak.Show();
-        }
-
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
@@ -69,6 +77,20 @@ namespace Projekat
                 {
                     Button_Click(sender, e);
                 }
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Sastojak izabraniSastojak = (Sastojak)dataGridSastojci.SelectedItem;
+            if(izabraniSastojak != null)
+            {
+                IzmjeniSastojakOdbijenog izmjeniSastojak = new IzmjeniSastojakOdbijenog(izabraniLijek, izabraniSastojak);
+                izmjeniSastojak.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati sastojak!");
             }
         }
     }
