@@ -71,9 +71,9 @@ namespace Projekat
             {
                 int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
-                int idSpecijaliste = nadjiIDSpecijaliste();
-                string datum = nadjiDatum();
-                tipUputa tipUputa = nadjiTipUputa();
+                int idSpecijaliste = NadjiIDSpecijaliste();
+                string datum = NadjiDatum();
+                tipUputa tipUputa = NadjiTipUputa();
 
                 Uput noviUput= new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);
@@ -89,7 +89,7 @@ namespace Projekat
             }
         }
        
-        private int nadjiIDSpecijaliste()
+        private int NadjiIDSpecijaliste()
         {
             String[] imeprz = specijalista.Text.Split(' ');
             String imeSpecijaliste = imeprz[0];
@@ -105,7 +105,7 @@ namespace Projekat
             return idSpecijaliste;
         }
 
-        private string nadjiDatum()
+        private string NadjiDatum()
         {
             String formatiranDatum = null;
             DateTime? selectedDate = datum.SelectedDate;
@@ -116,24 +116,24 @@ namespace Projekat
             }
             return formatiranDatum;
         }
-        private tipUputa nadjiTipUputa()
+        private tipUputa NadjiTipUputa()
         {
-            tipUputa tip = tipUputa.Laboratorija;
-            string tab = (string)(uputi.SelectedItem as TabItem).Header;
-            if (tab.Equals("Specijalistički pregled"))
+            tipUputa tipUputa = tipUputa.Laboratorija;
+            string selektovaniTab = (string)(uputi.SelectedItem as TabItem).Header;
+            if (selektovaniTab.Equals("Specijalistički pregled"))
             {
-                tip = tipUputa.SpecijallistickiPregled;
+                tipUputa = tipUputa.SpecijallistickiPregled;
             }
-            else if (tab.Equals("Laboratorija"))
+            else if (selektovaniTab.Equals("Laboratorija"))
             {
-                tip = tipUputa.Laboratorija;
+                tipUputa = tipUputa.Laboratorija;
             }
-            else if (tab.Equals("Stacionarno lečenje"))
+            else if (selektovaniTab.Equals("Stacionarno lečenje"))
             {
-                tip = tipUputa.StacionarnoLecenje;
+                tipUputa = tipUputa.StacionarnoLecenje;
             }
 
-            return tip;
+            return tipUputa;
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)

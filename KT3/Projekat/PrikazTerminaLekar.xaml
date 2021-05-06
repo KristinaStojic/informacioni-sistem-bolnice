@@ -12,9 +12,8 @@
 
         <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"  
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="456" Margin="65,97,0,0" VerticalAlignment="Top" Width="802" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13" BorderBrush="DarkRed">
+                  Height="456" Margin="65,97,0,0" VerticalAlignment="Top" Width="800" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13" BorderBrush="DarkRed">
             <DataGrid.Columns >
-                <DataGridTextColumn  Width="30" Header="ID" Binding="{Binding IdTermin}"/>
                 <DataGridTextColumn  Width="75" Header="Datum" Binding="{Binding Datum}" />
                 <DataGridTextColumn  Width="100" Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
                 <DataGridTextColumn  Width="100" Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
@@ -22,8 +21,9 @@
                 <DataGridTextColumn  Width="105" Header="Ime pacijenta" Binding="{Binding Pacijent.ImePacijenta}" />
                 <!-- PROMIJENITI NA ID KAD ISPRAVIMO CUVANJE-->
                 <DataGridTextColumn  Width="113" Header="Prezime pacijenta" Binding="{Binding Pacijent.PrezimePacijenta}"/>
-                <DataGridTextColumn  Width="80" Header="Prostorija" Binding="{Binding Prostorija.Id}"  />
+                <DataGridTextColumn  Width="70" Header="Prostorija" Binding="{Binding Prostorija.Id}"  />
                 <DataGridTextColumn  Width="90" Header="Tip usluge " Binding="{Binding tipTermina}" />
+                <DataGridTextColumn  Width="90" Header="Hitno" Binding="{Binding}" />
             </DataGrid.Columns>
 
         </DataGrid>

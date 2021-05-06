@@ -177,9 +177,6 @@
     <Compile Include="Model\Premjestaj.cs" />
     <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\Sastojak.cs" />
-    <Compile Include="Model\TabelaRecepata.xaml.cs">
-      <DependentUpon>TabelaRecepata.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validation.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
@@ -314,9 +311,6 @@
     </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ZakaziTerminLekar.xaml.cs">
-      <DependentUpon>ZakaziTerminLekar.xaml</DependentUpon>
     </Compile>
     <Compile Include="ZakaziTerminLekar2.xaml.cs">
       <DependentUpon>ZakaziTerminLekar2.xaml</DependentUpon>
@@ -498,10 +492,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Model\TabelaRecepata.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ObavestenjaLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -679,10 +669,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ZakaziTermin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ZakaziTerminLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

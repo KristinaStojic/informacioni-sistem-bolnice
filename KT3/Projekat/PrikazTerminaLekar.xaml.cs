@@ -62,6 +62,8 @@ namespace Projekat
 
                 //Termini.Add(t);
             }
+
+            
         }
 
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)

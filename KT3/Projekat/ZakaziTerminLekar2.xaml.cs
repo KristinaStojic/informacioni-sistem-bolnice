@@ -37,6 +37,10 @@ namespace Projekat
         int trajanjeMinuti;
         int izbaceniSlotovi;
 
+
+        DateTime datumPocetkaRenoviranja;
+        DateTime datumKrajaRenoviranja;
+        DateTime datumZakazivanjaTermina;
         public static ObservableCollection<string> sviSlobodniTermini { get; set; }
         public static ObservableCollection<string> sviSlobodniTerminiKraj { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTermini { get; set; }
@@ -44,7 +48,7 @@ namespace Projekat
         public ZakaziTerminLekar2()
         {
             InitializeComponent();
-
+            this.hitno.IsEnabled = false;
             datum.BlackoutDates.AddDatesInPast();
             popuniTabelePodacima();
             dodajSveSlobodneTermine();
@@ -229,140 +233,174 @@ namespace Projekat
             }
         }
 
-        private void IzbaciNedozvoljeneTermine()
+        private bool RenoviranjeSaleTrajeJedanDan(ZauzeceSale zauzece)
+        {
+            return zauzece.datumPocetkaTermina.Equals(dat) && zauzece.datumKrajaTermina.Equals(dat);
+        }
+
+
+        private bool RenoviranjeSalePocinjeIstiDanKaoTermin(ZauzeceSale zauzece)
+        {
+            return zauzece.datumPocetkaTermina.Equals(dat) && !zauzece.datumKrajaTermina.Equals(dat);
+        }
+
+        private bool RenoviranjeSaleSeZavrsavaIstiDanKaoTermin(ZauzeceSale zauzece)
+        {
+            return !zauzece.datumPocetkaTermina.Equals(dat) && zauzece.datumKrajaTermina.Equals(dat);
+        }
+
+        private bool ProstorijaSeRenovira()
+        {
+            return datumZakazivanjaTermina < datumKrajaRenoviranja && datumZakazivanjaTermina > datumPocetkaRenoviranja;
+        }
+
+        private void IzracunajBrojSlotovaZaIzbacivanje()
+        {
+            
+            if (trajanjeMinuti == 0)
+            {
+                izbaceniSlotoviMinuti = 0;
+            }
+            else if (trajanjeMinuti == 30)
+            {
+                izbaceniSlotoviMinuti = 1;
+            }
+            else if (trajanjeMinuti == -30)
+            {
+                izbaceniSlotoviMinuti = -1;
+            }
+
+            izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
+
+        }
+        private void NadjiDatumeRenoviranjaSale(ZauzeceSale zauzece)
+        {
+             datumPocetkaRenoviranja = DateTime.Parse(zauzece.datumPocetkaTermina);
+             datumKrajaRenoviranja = DateTime.Parse(zauzece.datumKrajaTermina);
+             datumZakazivanjaTermina = DateTime.Parse(dat);
+        }
+        private void BrisiIzabraneSlotove(int indexTermina)
+        {
+                for (int i = 0; i < izbaceniSlotovi; i++)
+                {
+                    sviSlobodniTermini.RemoveAt(indexTermina);
+                    sviSlobodniTermini.RemoveAt(indexTermina);
+                }    
+        }
+        private void IzbaciTermineRenoviranjeJedanDan(ZauzeceSale z)
+        {
+            pocSati = z.pocetakTermina.Split(':')[0];
+            pocMinuti = z.pocetakTermina.Split(':')[1];
+
+            krajSati = z.krajTermina.Split(':')[0];
+            krajMinuti = z.krajTermina.Split(':')[1];
+
+            trajanjeSati = Convert.ToInt32(krajSati) - Convert.ToInt32(pocSati);  // 0 1 2 ... koliko slotova izbacujemo
+            trajanjeMinuti = Convert.ToInt32(krajMinuti) - Convert.ToInt32(pocMinuti);  // 0 30 -30
+
+            IzracunajBrojSlotovaZaIzbacivanje();
+            
+            int indexTermina = sviSlobodniTermini.IndexOf(z.pocetakTermina);
+
+            if (indexTermina != -1)
+            {
+                BrisiIzabraneSlotove(indexTermina);
+            }
+        }
+        private void BrisiIzabraneSlotoveRenoviranjePocinjeIstiDanKaoTermin(int indexTermina)
+        {
+            for (int i = 0; i <= izbaceniSlotovi; i++)
+            {
+                sviSlobodniTermini.RemoveAt(indexTermina);
+
+                if (i != 0) // ne brisemo vreme pocetka renovacije iz ove liste jer termin moze da traje do vremena pocetka renovacije
+                {
+                    if (sviSlobodniTerminiKraj.Count > 0)
+                    {
+                        sviSlobodniTerminiKraj.RemoveAt(indexTermina + 1);
+                    }
+                }
+            }
+        }
+
+        private void IzbaciTermineRenoviranjePocinjeIstiDanKaoTermin(ZauzeceSale zauzece)
+        {
+            pocSati = zauzece.pocetakTermina.Split(':')[0];
+            pocMinuti = zauzece.pocetakTermina.Split(':')[1];
+
+            trajanjeSati = Convert.ToInt32("20") - Convert.ToInt32(pocSati);  // 0 1 2 ... koliko slotova izbacujemo
+            trajanjeMinuti = Convert.ToInt32("00") - Convert.ToInt32(pocMinuti);  // 0 30 -30
+
+            IzracunajBrojSlotovaZaIzbacivanje();
+
+            int indexTermina = sviSlobodniTermini.IndexOf(zauzece.pocetakTermina);
+            if (indexTermina != -1)
+            {
+                BrisiIzabraneSlotoveRenoviranjePocinjeIstiDanKaoTermin(indexTermina);
+            }
+        }
+
+        private void BrisiIzabraneSlotoveRenoviranjeSeZavrsavaIstiDanKaoTermin()
+        {
+            for (int i = 0; i <= izbaceniSlotovi; i++)
+            {
+                if (i != izbaceniSlotovi)
+                {
+                    if (sviSlobodniTermini.Count > 0)  //     ------------------------------------------
+                    {
+                        sviSlobodniTermini.RemoveAt(0);
+                    }
+                }
+                if (sviSlobodniTerminiKraj.Count > 0)
+                {
+                    sviSlobodniTerminiKraj.RemoveAt(0);
+                }
+            }
+        }
+        private void IzbaciTermineRenoviranjeSeZavrsavaIstiDanKaoTermin(ZauzeceSale zauzece)
+        {
+            krajSati = zauzece.krajTermina.Split(':')[0];
+            krajMinuti = zauzece.krajTermina.Split(':')[1];
+
+            // od pocetka dana do kraja renovacije sve izbacujemo
+            trajanjeSati = Convert.ToInt32(krajSati) - Convert.ToInt32("07");  // 0 1 2 ... koliko slotova izbacujemo
+            trajanjeMinuti = Convert.ToInt32(krajMinuti) - Convert.ToInt32("00");  // 0 30 -30
+
+            IzracunajBrojSlotovaZaIzbacivanje();
+
+            BrisiIzabraneSlotoveRenoviranjeSeZavrsavaIstiDanKaoTermin();
+        }
+
+        private void AzurirajDozvoljenaVremenaTermina()
+        {
+            sviSlobodniTermini.Clear();
+            sviSlobodniTerminiKraj.Clear();
+            MessageBox.Show("Prostorija se renovira u to vreme!");
+        }
+        private void IzbaciZauzeteTermineRenoviranjemSale()
         {
             foreach (ZauzeceSale z in Sala.zauzetiTermini)
             {
                 if (z.idTermina == 0) // ako sala ima zakazano renoviranje
                 {
-                    DateTime datumPocetka = DateTime.Parse(z.datumPocetkaTermina);
-                    DateTime datumKraja = DateTime.Parse(z.datumKrajaTermina);
-                    DateTime datumZakazivanja = DateTime.Parse(dat);
+                    NadjiDatumeRenoviranjaSale(z);
 
-                    if (z.datumPocetkaTermina.Equals(dat) && z.datumKrajaTermina.Equals(dat)) // isti dan i pocinje i zavrsava se 
+                    if (RenoviranjeSaleTrajeJedanDan(z)) // isti dan i pocinje i zavrsava se 
                     {
-                        pocSati = z.pocetakTermina.Split(':')[0];
-                        pocMinuti = z.pocetakTermina.Split(':')[1];
-
-                        krajSati = z.krajTermina.Split(':')[0];
-                        krajMinuti = z.krajTermina.Split(':')[1];
-
-                        trajanjeSati = Convert.ToInt32(krajSati) - Convert.ToInt32(pocSati);  // 0 1 2 ... koliko slotova izbacujemo
-                        trajanjeMinuti = Convert.ToInt32(krajMinuti) - Convert.ToInt32(pocMinuti);  // 0 30 -30
-
-                        if (trajanjeMinuti == 0)
-                        {
-                            izbaceniSlotoviMinuti = 0;
-                        }
-                        else if (trajanjeMinuti == 30)
-                        {
-                            izbaceniSlotoviMinuti = 1;
-                        }
-                        else if (trajanjeMinuti == -30)
-                        {
-                            izbaceniSlotoviMinuti = -1;
-                        }
-
-                        izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
-
-                        int index = sviSlobodniTermini.IndexOf(z.pocetakTermina);
-
-                        if (index != -1)
-                        {
-                            for (int i = 0; i < izbaceniSlotovi; i++)
-                            {
-                                sviSlobodniTermini.RemoveAt(index);
-                                sviSlobodniTermini.RemoveAt(index);
-                            }
-                        }
+                        IzbaciTermineRenoviranjeJedanDan(z);
                     }
-                    else if (z.datumPocetkaTermina.Equals(dat) && !z.datumKrajaTermina.Equals(dat))
+                    else if (RenoviranjeSalePocinjeIstiDanKaoTermin(z)) //pocinje isti dan kao termin a zavrsava se neki drugi
                     {
-                        pocSati = z.pocetakTermina.Split(':')[0];
-                        pocMinuti = z.pocetakTermina.Split(':')[1];
-
-                        trajanjeSati = Convert.ToInt32("20") - Convert.ToInt32(pocSati);  // 0 1 2 ... koliko slotova izbacujemo
-                        trajanjeMinuti = Convert.ToInt32("00") - Convert.ToInt32(pocMinuti);  // 0 30 -30
-
-                        if (trajanjeMinuti == 0)
-                        {
-                            izbaceniSlotoviMinuti = 0;
-                        }
-                        else if (trajanjeMinuti == 30)
-                        {
-                            izbaceniSlotoviMinuti = 1;
-                        }
-                        else if (trajanjeMinuti == -30)
-                        {
-                            izbaceniSlotoviMinuti = -1;
-                        }
-
-                        izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
-
-                        int index = sviSlobodniTermini.IndexOf(z.pocetakTermina);
-                        if (index != -1)
-                        {
-                            for (int i = 0; i <= izbaceniSlotovi; i++)
-                            {
-                                sviSlobodniTermini.RemoveAt(index);
-
-                                if (i != 0) // ne brisemo vreme pocetka renovacije iz ove liste jer termin moze da traje do vremena pocetka renovacije
-                                {
-                                    if (sviSlobodniTerminiKraj.Count > 0)
-                                    {
-                                        sviSlobodniTerminiKraj.RemoveAt(index + 1);
-                                    }
-                                }
-                            }
-                        }
+                        IzbaciTermineRenoviranjePocinjeIstiDanKaoTermin(z);
                     }
-                    else if (!z.datumPocetkaTermina.Equals(dat) && z.datumKrajaTermina.Equals(dat))
+                    else if (RenoviranjeSaleSeZavrsavaIstiDanKaoTermin(z))
                     {
-                        krajSati = z.krajTermina.Split(':')[0];
-                        krajMinuti = z.krajTermina.Split(':')[1];
-
-                        // od pocetka dana do kraja renovacije sve izbacujemo
-                        trajanjeSati = Convert.ToInt32(krajSati) - Convert.ToInt32("07");  // 0 1 2 ... koliko slotova izbacujemo
-                        trajanjeMinuti = Convert.ToInt32(krajMinuti) - Convert.ToInt32("00");  // 0 30 -30
-
-                        if (trajanjeMinuti == 0)
-                        {
-                            izbaceniSlotoviMinuti = 0;
-                        }
-                        else if (trajanjeMinuti == 30)
-                        {
-                            izbaceniSlotoviMinuti = 1;
-                        }
-                        else if (trajanjeMinuti == -30)
-                        {
-                            izbaceniSlotoviMinuti = -1;
-                        }
-
-                        izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
-
-                        for (int i = 0; i <= izbaceniSlotovi; i++)
-                        {
-                            if (i != izbaceniSlotovi)
-                            {
-                                if (sviSlobodniTermini.Count > 0)  //     ------------------------------------------
-                                {
-                                    sviSlobodniTermini.RemoveAt(0);
-                                }
-                            }
-                            if (sviSlobodniTerminiKraj.Count > 0)
-                            {
-                                sviSlobodniTerminiKraj.RemoveAt(0);
-                            }
-                        }
+                        IzbaciTermineRenoviranjeSeZavrsavaIstiDanKaoTermin(z);
+       
                     }
-                    else if (datumZakazivanja < datumKraja && datumZakazivanja > datumPocetka) // ako je trenutni datum izmedju vremena pocetka i vremena kraja renovacije
+                    else if (ProstorijaSeRenovira()) // ako je trenutni datum izmedju vremena pocetka i vremena kraja renovacije
                     {
-                        Console.WriteLine("USLO ovde");
-
-                        sviSlobodniTermini.Clear();
-                        sviSlobodniTerminiKraj.Clear();
-
-                        MessageBox.Show("Prostorija se renovira u to vreme!");
+                        AzurirajDozvoljenaVremenaTermina();
                     }
                 }
                 // slobodni termini u selektovanoj sali
@@ -377,16 +415,12 @@ namespace Projekat
 
             if (Sala != null) //ako je sala izabrana
             {
-                IzbaciNedozvoljeneTermine();
+                IzbaciZauzeteTermineRenoviranjemSale();
                 // slobodni termini lekara
                 IzbaciZauzeteTermineLekara();
-
                 // slobodni termini pacijenta - pacijent ne moze biti na istim mestima u isto vreme
                 IzbaciZauzeteTerminePacijenata();
 
-                
-                //  vremePocetka.ItemsSource = SlobodnoVremePocetka;
-                //  vremeKraja.ItemsSource = SlobodnoVremeKraja;
             }
             else
             {
@@ -472,30 +506,13 @@ namespace Projekat
                                 trajanjeSati = Convert.ToInt32(krajSati) - Convert.ToInt32(pocSati);  // 0 1 2 ... koliko slotova izbacujemo
                                 trajanjeMinuti = Convert.ToInt32(krajMinuti) - Convert.ToInt32(pocMinuti);  // 0 30 -30
 
-                                if (trajanjeMinuti == 0)
-                                {
-                                    izbaceniSlotoviMinuti = 0;
-                                }
-                                else if (trajanjeMinuti == 30)
-                                {
-                                    izbaceniSlotoviMinuti = 1;
-                                }
-                                else if (trajanjeMinuti == -30)
-                                {
-                                    izbaceniSlotoviMinuti = -1;
-                                }
+                                IzracunajBrojSlotovaZaIzbacivanje();
 
-                                izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
+                                int indexTermina = sviSlobodniTermini.IndexOf(z.pocetakTermina);
 
-                                int index = sviSlobodniTermini.IndexOf(z.pocetakTermina);
-
-                                if (index != -1)
+                                if (indexTermina != -1)
                                 {
-                                    for (int i = 0; i < izbaceniSlotovi; i++)
-                                    {
-                                        sviSlobodniTermini.RemoveAt(index);
-                                        sviSlobodniTerminiKraj.RemoveAt(index);
-                                    }
+                                    BrisiIzabraneSlotove(indexTermina);
                                 }
                             }
                         }
@@ -526,30 +543,14 @@ namespace Projekat
                                 trajanjeSati = Convert.ToInt32(krajSati) - Convert.ToInt32(pocSati);  // 0 1 2 ... koliko slotova izbacujemo
                                 trajanjeMinuti = Convert.ToInt32(krajMinuti) - Convert.ToInt32(pocMinuti);  // 0 30 -30
 
-                                if (trajanjeMinuti == 0)
-                                {
-                                    izbaceniSlotoviMinuti = 0;
-                                }
-                                else if (trajanjeMinuti == 30)
-                                {
-                                    izbaceniSlotoviMinuti = 1;
-                                }
-                                else if (trajanjeMinuti == -30)
-                                {
-                                    izbaceniSlotoviMinuti = -1;
-                                }
+                                IzracunajBrojSlotovaZaIzbacivanje();
 
-                                izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
+                                int indexTermina = sviSlobodniTermini.IndexOf(z.pocetakTermina);
 
-                                int index = sviSlobodniTermini.IndexOf(z.pocetakTermina);
-
-                                if (index != -1)
+                                if (indexTermina != -1)
                                 {
-                                    for (int i = 0; i < izbaceniSlotovi; i++)
-                                    {
-                                        sviSlobodniTermini.RemoveAt(index);
-                                        sviSlobodniTerminiKraj.RemoveAt(index);
-                                    }
+                                    BrisiIzabraneSlotove(indexTermina);
+
                                 }
                             }
                         }
@@ -587,6 +588,7 @@ namespace Projekat
                 //Lekar = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
                 this.lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek;
                 this.listaLekara.IsEnabled = false;
+                this.hitno.IsEnabled = false;
                 dodajSaleZaPregled();
             }
             else if (tipPregleda.SelectedIndex == 1) // operacija
@@ -594,6 +596,7 @@ namespace Projekat
                 this.dugmeLekari.IsEnabled = true;
                 this.lekar.Text = "";
                 this.listaLekara.IsEnabled = true;
+                this.hitno.IsEnabled = true;
                 dodajSaleZaOperacije();
             }
 
@@ -662,7 +665,13 @@ namespace Projekat
             Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
-            t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
+            bool hitnaOperacija = false;
+            if(this.hitno.IsChecked == true)
+            {
+                hitnaOperacija = true;
+            }
+
+            t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent, hitnaOperacija);
 
             
             if (Sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
@@ -687,7 +696,7 @@ namespace Projekat
             }
             else    // ako ne postoje zauzeti termini
             {
-                TerminMenadzer.ZakaziTerminSekretar(t);
+                TerminMenadzer.ZakaziTerminLekar(t);
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 
