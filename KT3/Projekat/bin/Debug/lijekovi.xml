@@ -2,53 +2,49 @@
 <ArrayOfLek xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Lek>
     <idLeka>1</idLeka>
-    <nazivLeka>brufen</nazivLeka>
-    <sifraLeka>b1</sifraLeka>
+    <nazivLeka>kafetin</nazivLeka>
+    <sifraLeka>k1</sifraLeka>
     <zamenskiLekovi />
     <sastojci />
   </Lek>
   <Lek>
     <idLeka>2</idLeka>
-    <nazivLeka>andol</nazivLeka>
-    <sifraLeka>a1</sifraLeka>
+    <nazivLeka>brufen</nazivLeka>
+    <sifraLeka>b1</sifraLeka>
     <zamenskiLekovi>
       <int>3</int>
-      <int>1</int>
-    </zamenskiLekovi>
-    <sastojci />
-  </Lek>
-  <Lek>
-    <idLeka>3</idLeka>
-    <nazivLeka>paracetamol</nazivLeka>
-    <sifraLeka>p1</sifraLeka>
-    <zamenskiLekovi>
-      <int>4</int>
-      <int>5</int>
-      <int>2</int>
     </zamenskiLekovi>
     <sastojci>
       <Sastojak>
-        <naziv>sastojak1</naziv>
-        <kolicina>2.4</kolicina>
+        <naziv>s1</naziv>
+        <kolicina>1.2</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>s2</naziv>
+        <kolicina>4.2</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>s3</naziv>
+        <kolicina>1</kolicina>
       </Sastojak>
     </sastojci>
   </Lek>
   <Lek>
-    <idLeka>5</idLeka>
-    <nazivLeka>deksomen</nazivLeka>
-    <sifraLeka>d1</sifraLeka>
-    <zamenskiLekovi>
-      <int>3</int>
-      <int>1</int>
-    </zamenskiLekovi>
+    <idLeka>3</idLeka>
+    <nazivLeka>leksilium</nazivLeka>
+    <sifraLeka>l1</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>4</idLeka>
+    <nazivLeka>analgin</nazivLeka>
+    <sifraLeka>a1</sifraLeka>
+    <zamenskiLekovi />
     <sastojci>
       <Sastojak>
-        <naziv>sastojak1</naziv>
-        <kolicina>2.4</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>sastojak2</naziv>
-        <kolicina>4</kolicina>
+        <naziv>s1</naziv>
+        <kolicina>1.4</kolicina>
       </Sastojak>
     </sastojci>
   </Lek>

@@ -28,6 +28,7 @@ namespace Projekat
 
         private void inicijalizujDugmad()
         {
+            uneseniLijek = new Lek();
             this.Potvrdi.IsEnabled = false;
             this.Sastojci.IsEnabled = false;
         }
@@ -43,6 +44,7 @@ namespace Projekat
         {
             uneseniLijek.nazivLeka = this.naziv.Text;
             uneseniLijek.sifraLeka = this.sifra.Text;
+            uneseniLijek.idLeka = LekoviMenadzer.GenerisanjeIdLijeka();
         }
 
         private void dodajZahtjev(Lek lijek)

@@ -29,12 +29,12 @@ namespace Projekat
         public OdbijeniLijekovi()
         {
             InitializeComponent();
+            this.DataContext = this;
             inicijalizujLijekove();
         }
 
         private void inicijalizujLijekove()
         {
-            this.DataContext = this;
             OdbijeniLekovi = new ObservableCollection<Lek>();
             foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
             {
@@ -79,6 +79,81 @@ namespace Projekat
                 {
                     Button_Click(sender, e);
 
+                }else if(e.Key == Key.P)
+                {
+                    Button_Click_2(sender, e);
+                }else if(e.Key == Key.I)
+                {
+                    Button_Click_3(sender, e);
+                }else if(e.Key == Key.O)
+                {
+                    Button_Click_4(sender, e);
+                }
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
+            if(izabraniLijek != null)
+            {
+                PotvrdaSlanjaZahtjeva potvrdaSlanja = new PotvrdaSlanjaZahtjeva(izabraniLijek);
+                potvrdaSlanja.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati lijek!");
+            }
+        }
+
+        public static void azurirajPrikaz()
+        {
+            OdbijeniLekovi.Clear();
+            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            {
+                if (!zahtjev.odobrenZahtev && zahtjev.obradjenZahtev)
+                {
+                    OdbijeniLekovi.Add(zahtjev.lek);
+                }
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
+            if(izabraniLijek != null)
+            {
+                IzmjeniOdbijeniLijek izmjeniOdbijeniLijek = new IzmjeniOdbijeniLijek(izabraniLijek);
+                izmjeniOdbijeniLijek.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati lijek");
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
+            if(izabraniLijek != null)
+            {
+                BrisanjeOdbijenogLijeka brisanjeLijeka = new BrisanjeOdbijenogLijeka(izabraniLijek);
+                brisanjeLijeka.Show();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati lijek!");
+            }
+        }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OdbijeniLekovi.Clear();
+            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            {
+                if (!zahtjev.odobrenZahtev && zahtjev.obradjenZahtev && zahtjev.lek.nazivLeka.StartsWith(this.Pretraga.Text))
+                {
+                    OdbijeniLekovi.Add(zahtjev.lek);
                 }
             }
         }

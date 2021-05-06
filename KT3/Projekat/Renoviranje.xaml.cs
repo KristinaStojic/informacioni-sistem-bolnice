@@ -135,12 +135,13 @@ namespace Projekat
         private void azurirajVrijemeKrajaDrugiDatum()
         {
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             if (terminiKraj != null)
             {
                 terminiKraj.Clear();
                 if (prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka) == 24)//Termini i pregledi ne traju vise dana...
                 {
-                    for (int i = 1; i <= 23; i++)
+                    for (int i = 1; i <= prvoSledeceZauzece("1", datumKraja); i++)
                     {
                         if (!zauzecaZaDatum(datumPocetka).Contains(i))
                         {
