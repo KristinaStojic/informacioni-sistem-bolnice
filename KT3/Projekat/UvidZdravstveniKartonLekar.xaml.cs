@@ -104,8 +104,8 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            TabelaRecepata tp = new TabelaRecepata(pacijent,termin);
-            tp.Show();
+            /*TabelaRecepata tp = new TabelaRecepata(pacijent,termin);
+            tp.Show();*/
             
         }
 

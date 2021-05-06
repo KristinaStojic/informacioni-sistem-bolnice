@@ -16,8 +16,8 @@
                                 SelectionMode="Single" AutoGenerateColumns="False"
                                  Margin="39,56,40,0" VerticalAlignment="Top" Height="417" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13" Visibility="Visible">
                                 <DataGrid.Columns >
-                                    <DataGridTextColumn Header="Šifra leka" Width="150" Binding="{Binding sifraLeka}" x:Name="sifra"/>
-                                    <DataGridTextColumn Header="Naziv leka" Width="150" Binding="{Binding nazivLeka}" x:Name="naziv"/>
+                                    <DataGridTextColumn Header="Šifra leka" Width="150" Binding="{Binding lek.sifraLeka}" x:Name="sifra"/>
+                                    <DataGridTextColumn Header="Naziv leka" Width="150" Binding="{Binding lek.nazivLeka}" x:Name="naziv"/>
                                     <DataGridTextColumn Header="Datum primanja zahteva" Width="170" Binding="{Binding datumSlanjaZahteva}" x:Name="datum"/>
                                     <DataGridTextColumn Header="Obrađeno" Width="130*" Binding="{Binding}" x:Name="obradjeno" />
                                 </DataGrid.Columns>

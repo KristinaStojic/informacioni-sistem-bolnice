@@ -54,6 +54,8 @@ namespace Model
 
         public bool Pomeren { get; set; } = false;
 
+        public bool HitnaOperacija { get; set; } = false;
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
@@ -73,6 +75,19 @@ namespace Model
             this.Lekar = l;
             this.Prostorija = s;
             this.Pacijent = p;
+            //this.Pomeren = false;
+        }
+        public Termin(int broj, String dt, String vp, String vk, TipTermina tp, Lekar l, Sala s, Pacijent p, bool hitan)
+        {
+            this.IdTermin = broj;
+            this.Datum = dt;
+            this.VremePocetka = vp;
+            this.VremeKraja = vk;
+            this.tipTermina = tp;
+            this.Lekar = l;
+            this.Prostorija = s;
+            this.Pacijent = p;
+            this.HitnaOperacija = hitan;
             //this.Pomeren = false;
         }
 
@@ -102,6 +117,14 @@ namespace Model
             //this.Prostorija = s;
             //this.Pacijent = p;
             //this.Pomeren = false;
+        }
+
+        public override string ToString()
+        {
+            if (HitnaOperacija == true)
+                return "DA";
+            else
+                return "NE";
         }
     }
 }

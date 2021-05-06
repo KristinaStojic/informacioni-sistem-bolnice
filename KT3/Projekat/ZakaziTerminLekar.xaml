@@ -65,8 +65,8 @@
             </ListView.View>
         </ListView>
         <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="20.2,10,0,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" Width="167"/>
-        <Button Content="Prostorija" Grid.Column="2" HorizontalAlignment="Left" Margin="18.2,10,0,0" Grid.Row="8" VerticalAlignment="Top" Width="83" Height="30"/>
-        <Button Content="Pacijent" Grid.Column="2" HorizontalAlignment="Left" Margin="101.2,10,0,0" Grid.Row="8" VerticalAlignment="Top" Width="83" Height="30"/>
+        <Button Content="Pacijenti" Grid.Column="2" HorizontalAlignment="Left" Margin="18.2,10,0,0" Grid.Row="8" VerticalAlignment="Top" Width="83" Height="30"/>
+        <Button Content="Lekari" Grid.Column="2" HorizontalAlignment="Left" Margin="101.2,10,0,0" Grid.Row="8" VerticalAlignment="Top" Width="83" Height="30"/>
         <Label Grid.Column="1" Grid.Row="2" Height="30" Width="162" FontSize="16" VerticalContentAlignment="Center" Content="Lekar" Margin="20.2,10,21.8,0"/>
         <ComboBox x:Name="lekar" Grid.Column="2" Grid.Row="2"  Margin="18.2,10,17.8,0" SelectedIndex="0" Height="30" SelectionChanged="lekar_SelectionChanged"/>
     </Grid>
