@@ -47,6 +47,12 @@
         <Image Source="slike/delete.png" Width="39" HorizontalAlignment="Center" Margin="411,607,830,46" RenderTransformOrigin="0.574,0.51"/>
         <Image Source="slike/covek.png" Width="32" HorizontalAlignment="Center" Margin="577,552,671,-6" RenderTransformOrigin="0.574,0.51"/>
         <Image Source="slike/nazadd.png" Width="41" HorizontalAlignment="Center" Margin="745,607,494,51" RenderTransformOrigin="0.568,0.423"/>
+        <TextBlock HorizontalAlignment="Left" Margin="809,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="56" FontSize="16">
+            <Hyperlink Click="Hyperlink_Click">
+Pomoć?
+            </Hyperlink>
+         </TextBlock>
+
 
     </Grid>
 </Window>

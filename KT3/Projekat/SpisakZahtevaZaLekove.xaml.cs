@@ -206,5 +206,23 @@ namespace Projekat
                 zahtevi.IsSelected = true;
             }
         }
+
+        private void Button_Obrisi(object sender, RoutedEventArgs e)
+        {
+            ZahtevZaLekove zaBrisanje = (ZahtevZaLekove)dataGridZahtevi.SelectedItem;
+            
+            ZahtevZaLekove izabraniZahtjev = null;
+            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            {
+                if (zahtjev.lek.sifraLeka.Equals(zaBrisanje.sifraLeka))
+                {
+                    izabraniZahtjev = zahtjev;
+                }
+            }
+
+            LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
+            TabelaZahteva.Remove(zaBrisanje);
+            LekoviMenadzer.sacuvajIzmeneZahteva();
+        }
     }
 }

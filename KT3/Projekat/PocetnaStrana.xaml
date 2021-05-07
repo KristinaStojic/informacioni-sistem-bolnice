@@ -15,19 +15,19 @@
 
         <Menu DockPanel.Dock="Top" Background="LightSkyBlue">
             <MenuItem Header="_Opcije" FontSize="15">
-                <MenuItem Header="Obaveštenja                                 CTRL+O" FontSize="15" Click="Button_Click_2" Background="White"></MenuItem>
-                <MenuItem Header="Pregledi i operacije                       CTRL+P" FontSize="15" Click="Button_Click" Background="White"></MenuItem>
-                <MenuItem Header="Odobravanje lekova                      CTRL+L" FontSize="15" Background="White"></MenuItem>
-                <MenuItem Header="Godišnji odmor                            CTRL+G" FontSize="15" Background="White"></MenuItem>
-                <MenuItem Header="Evidencija utrošenog materijala   CTRL+M" FontSize="15" Background="White"></MenuItem>
-                <MenuItem Header="Zatvori                                           CTRL+X" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
+                <MenuItem Header="Obaveštenja" InputGestureText="Ctrl + O" FontSize="15" Click="Button_Click_2" Background="White"></MenuItem>
+                <MenuItem Header="Pregledi i operacije" InputGestureText="Ctrl + P" FontSize="15" Click="Button_Click" Background="White"></MenuItem>
+                <MenuItem Header="Odobravanje lekova" InputGestureText="Ctrl + L" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Godišnji odmor" InputGestureText="Ctrl + G" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Evidencija utrošenog materijala" InputGestureText="Ctrl + M" FontSize="15" Background="White"></MenuItem>
+                <MenuItem Header="Zatvori" InputGestureText="Ctrl + X" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Uredi" FontSize="15">
-                <MenuItem Header="Lični podaci" FontSize="15"></MenuItem>
+                <MenuItem Header="Lični podaci" InputGestureText="Ctrl + I" FontSize="15"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Pomoć" FontSize="15">
-                <MenuItem Header="Pomoc" FontSize="15"></MenuItem>
-                <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
+                <MenuItem Header="Pomoć" InputGestureText="Ctrl + H" FontSize="15" Click="Pomoc_Click"></MenuItem>
+                <MenuItem Header="O aplikaciji" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
             </MenuItem>
         </Menu>
         <Image Source="slike/odjava.png" Margin="482,16,91.6,610.4" Grid.Column="1" RenderTransformOrigin="0.471,2.109" MouseDown="Image_MouseDown"></Image>

@@ -158,7 +158,7 @@ namespace Projekat.Model
             }
         }
         
-        public static void DodajAnamnezu(Anamneza anamneza)  //OVO RADI
+        public static void DodajAnamnezu(Anamneza anamneza)  
         {
             foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {
@@ -270,37 +270,40 @@ namespace Projekat.Model
         }
 
 
-        public static int GenerisanjeIdUputa(int idPac)
+        public static int GenerisanjeIdUputa(int idPacijenta)
         {
-            bool pomocna = false;
-            int id = 1;
-            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
-            {
-                if (pac.IdPacijenta == idPac)
-                {
-                    for (id = 1; id <= pac.Karton.Uputi.Count; id++)
-                    {
-                        foreach (Uput p in pac.Karton.Uputi)
-                        {
-                            if (p.IdUputa.Equals(id))
-                            {
-                                pomocna = true;
-                                break;
-                            }
-                        }
+            int idUputa = 1;
 
-                        if (!pomocna)
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if (pacijent.IdPacijenta == idPacijenta)
+                {
+                    for (idUputa = 1; idUputa <= pacijent.Karton.Uputi.Count; idUputa++)
+                    {  
+                        if (!PostojiIdUputa(pacijent, idUputa))
                         {
-                            return id;
-                        }
-                        pomocna = false;
+                            return idUputa;
+                        }       
                     }
                 }
             }
 
+            return idUputa;
+        }
 
-            return id;
+        private static bool PostojiIdUputa(Pacijent pacijent, int idUputa)
+        {
+            bool postojiUput = false;
+            foreach (Uput uput in pacijent.Karton.Uputi)
+            {
+                if (uput.IdUputa.Equals(idUputa))
+                {
+                    postojiUput = true;
+                    break;
+                }
+            }
 
+            return postojiUput;
         }
 
         public static void DodajUput(Uput uput)
@@ -311,7 +314,6 @@ namespace Projekat.Model
                 {
                     pacijent.Karton.Uputi.Add(uput);
                     ZdravstveniKartonLekar.TabelaUputa.Add(uput);
-
                 }
             }
         }

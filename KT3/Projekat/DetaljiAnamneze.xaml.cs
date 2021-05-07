@@ -26,11 +26,17 @@ namespace Projekat
         public DetaljiAnamneze(Anamneza izabranaAnamneza, Termin termin)
         {
             InitializeComponent();
+            PopuniPodatke(izabranaAnamneza);
+    
+        }
+
+        private void PopuniPodatke(Anamneza izabranaAnamneza)
+        {
             this.stara = izabranaAnamneza;
             this.termin = termin;
-            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
             {
-                if(pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
+                if (pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
                 {
                     this.datum.SelectedDate = DateTime.Parse(izabranaAnamneza.Datum);
                     this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
@@ -38,19 +44,19 @@ namespace Projekat
                     this.terapija.Text = izabranaAnamneza.Terapija;
                 }
             }
-    
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //sacuvaj
-            string ter = terapija.Text;
-            string bol = bolest.Text;
-            String dat = null;
-            DateTime selectedDate = (DateTime)datum.SelectedDate;
-            dat = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-            Anamneza nova = new Anamneza(stara.IdAnamneze,stara.IdPacijenta, dat,bol, ter,stara.IdLekara);
+            string terapijaPacijenta = terapija.Text;
+            string bolestPacijenta = bolest.Text;
+            String datumPregleda = null;
+            DateTime selectedDate = (DateTime)datum.SelectedDate;
+            datumPregleda = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            Anamneza nova = new Anamneza(stara.IdAnamneze,stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta,stara.IdLekara);
             ZdravstveniKartonMenadzer.IzmeniAnamnezu(stara, nova);
 
             TerminMenadzer.sacuvajIzmene();
