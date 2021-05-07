@@ -37,8 +37,22 @@ namespace Projekat
             this.DataContext = this;
             NadjiUlogovanogLekara();
 
-            
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
+            view.Filter = UserFilter;
         }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(datumFilter.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return ((item as Termin).Datum.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+        }
+
         private void NadjiUlogovanogLekara()
         {
             Termini = new ObservableCollection<Termin>();
@@ -197,6 +211,11 @@ namespace Projekat
         {
             PrikazTerminaLekarPomoc pomoc = new PrikazTerminaLekarPomoc();
             pomoc.Show();
+        }
+
+        private void datumFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dataGridTermini.ItemsSource).Refresh();
         }
     }
 }

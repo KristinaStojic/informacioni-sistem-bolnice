@@ -47,12 +47,35 @@
         <Image Source="slike/delete.png" Width="39" HorizontalAlignment="Center" Margin="411,607,830,46" RenderTransformOrigin="0.574,0.51"/>
         <Image Source="slike/covek.png" Width="32" HorizontalAlignment="Center" Margin="577,552,671,-6" RenderTransformOrigin="0.574,0.51"/>
         <Image Source="slike/nazadd.png" Width="41" HorizontalAlignment="Center" Margin="745,607,494,51" RenderTransformOrigin="0.568,0.423"/>
-        <TextBlock HorizontalAlignment="Left" Margin="809,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="56" FontSize="16">
+        <TextBlock HorizontalAlignment="Left" Margin="1170,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="56" FontSize="16">
             <Hyperlink Click="Hyperlink_Click">
 Pomoć?
             </Hyperlink>
-         </TextBlock>
+        </TextBlock>
 
-
+        <TextBox DockPanel.Dock="Top" Name="datumFilter" TextChanged="datumFilter_TextChanged" TextAlignment="Left" Height="35" Width="206" ToolTip="Pronadjite termin po datumu" HorizontalAlignment="Right" FontSize="17" Margin="0,30,414.6,0" VerticalAlignment="Top">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Filtriranje (MM/dd/yyyy)" FontSize="17" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
     </Grid>
 </Window>
