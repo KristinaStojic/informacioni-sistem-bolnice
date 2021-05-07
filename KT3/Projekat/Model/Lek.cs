@@ -31,6 +31,8 @@ namespace Projekat.Model
             this.sastojci = sastojci;
         }
 
-        public Lek() { }
+        public Lek() {
+            this.sastojci = new List<Sastojak>();
+        }
     }
 }
