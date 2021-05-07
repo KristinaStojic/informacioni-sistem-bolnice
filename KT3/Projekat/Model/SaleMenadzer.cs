@@ -14,10 +14,10 @@ using System.Xml.Serialization;
 
 namespace Model
 {
-   public class SaleMenadzer
-   {
-      public static void DodajSalu(Sala sala)
-      {
+    public class SaleMenadzer
+    {
+        public static void DodajSalu(Sala sala)
+        {
             sale.Add(sala);
             PrikaziSalu.Sale.Add(sala);
             sacuvajIzmjene();
@@ -30,7 +30,7 @@ namespace Model
             obrisiTermineUSali(sala);
             sacuvajIzmjene();
         }
-      
+
         private static void obrisiTermineUSali(Sala sala)
         {
             foreach (Termin t in TerminMenadzer.termini.ToArray())
@@ -43,8 +43,8 @@ namespace Model
             }
         }
 
-      public static void IzmjeniSalu(Sala izSale, Sala sala)
-      {
+        public static void IzmjeniSalu(Sala izSale, Sala sala)
+        {
             foreach (Sala s in sale)
             {
                 if (s.Id == izSale.Id)
@@ -59,9 +59,9 @@ namespace Model
             }
             sacuvajIzmjene();
         }
-      
-      public static List<Sala> NadjiSveSale()
-      {
+
+        public static List<Sala> NadjiSveSale()
+        {
             if (File.ReadAllText("sale.xml").Trim().Equals(""))
             {
                 return sale;
@@ -70,8 +70,8 @@ namespace Model
                 ucitajSaleIzFajla();
                 return sale;
             }
-      }
-      
+        }
+
         private static void ucitajSaleIzFajla()
         {
             FileStream filestream = File.OpenRead("sale.xml");
@@ -80,18 +80,18 @@ namespace Model
             filestream.Close();
         }
 
-      public static Sala NadjiSaluPoId(int id)
-      {
-         foreach(Sala sala in sale)
+        public static Sala NadjiSaluPoId(int id)
+        {
+            foreach (Sala sala in sale)
             {
-                if(sala.Id == id)
+                if (sala.Id == id)
                 {
                     return sala;
                 }
             }
             return null;
-      }
-   
+        }
+
         public static void sacuvajIzmjene()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Sala>));
@@ -177,10 +177,6 @@ namespace Model
             }
             return ukupanBrojSalaZaPregled;
         }
-
-        public static ObservableCollection<string> sviSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
-
 
         public static List<Sala> sale = new List<Sala>();
    }

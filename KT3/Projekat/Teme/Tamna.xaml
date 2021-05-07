@@ -17,6 +17,7 @@
     <Style TargetType="Button" x:Key="ButtonStyle" >
         <Setter Property="Background" Value="#dbe2ef"/>
         <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="#004a7c"/>
     </Style>
     <Style x:Key="CalendarStyle" TargetType="Calendar">
         <Setter Property="Background" Value="#dbe2ef"/>

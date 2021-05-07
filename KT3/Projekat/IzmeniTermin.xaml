@@ -126,7 +126,7 @@
         <GroupBox Header="*2. Izaberite datum termina" Height="204" Margin="20.5,165,321.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494" Grid.Column="1">
             <Calendar HorizontalAlignment="Left" Margin="20,11,0,0" Width="200" FontSize="14" VerticalAlignment="Top" Name="datum" Height="168" SelectedDatesChanged="datum_SelectedDatesChanged" />
         </GroupBox>
-        <ListView x:Name="dgSearch" SelectionMode="Single" Margin="288.5,157,35,258" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1"
+        <ListView x:Name="dgSearch" SelectionMode="Single" Margin="284.5,160,28.5,260" SelectionChanged="dgSearch_SelectionChanged" Grid.Column="1" Height="180" Width="300"
                   BorderBrush="White" Foreground="Black">
             <ListView.View>
                 <GridView>
