@@ -55,7 +55,7 @@
                 <DataGridTextColumn Header="Kraj" Width="60" Binding="{Binding VremeKraja}"/>
                 <DataGridTextColumn Header="Pacijent" Width="150" Binding="{Binding imePrezimePacijenta}" />
                 <DataGridTextColumn Header="Lekar" Width="150" Binding="{Binding imePrezimeLekara}"/>
-                <DataGridTextColumn Header="Sala" Width="65" Binding="{Binding Prostorija.brojSale}"/>
+                <DataGridTextColumn Header="Sala" Width="48" Binding="{Binding Prostorija.brojSale}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="457" Background="#FFE7F6F7" Margin="820,0,-3.4,0" Grid.RowSpan="2" Visibility="Hidden">

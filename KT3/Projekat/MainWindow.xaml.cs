@@ -46,8 +46,9 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
             lekari.Add(new Lekar() {IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista });
             lekari.Add(new Lekar() {IdLekara = 6, ImeLek = "Jagoda", PrezimeLek = "Jagodic", specijalizacija = Specijalizacija.Ortopedija });
-            lekari.Add(new Lekar() {IdLekara = 7, ImeLek = "Jovana", PrezimeLek = "Jovanovic", specijalizacija = Specijalizacija.Ginekologija });
+            lekari.Add(new Lekar() {IdLekara = 7, ImeLek = "Jovana", PrezimeLek = "Jovanovic", specijalizacija = Specijalizacija.Akuserstvo });
             lekari.Add(new Lekar() { IdLekara = 8, ImeLek = "Ivan", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Hirurgija });
+            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });
 
 
             lekovi = new ObservableCollection<Lek>();

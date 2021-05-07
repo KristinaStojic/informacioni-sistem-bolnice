@@ -85,8 +85,8 @@
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="502" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="523" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
         </Canvas>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="427,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="552,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="676,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="449,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="566,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="683,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE"/>
     </Grid>
 </Window>
