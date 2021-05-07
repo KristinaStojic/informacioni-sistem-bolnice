@@ -37,7 +37,7 @@
                 <GridView>
                     <GridViewColumn Header="Naziv" DisplayMemberBinding="{Binding naziv}"
                                     Width="178"/>
-                    <GridViewColumn Header="Šifra" DisplayMemberBinding="{Binding kolicina}"
+                    <GridViewColumn Header="Količina" DisplayMemberBinding="{Binding kolicina}"
                                     Width="186"/>
                 </GridView>
             </ListView.View>

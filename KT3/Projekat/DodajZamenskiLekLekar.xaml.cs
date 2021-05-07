@@ -39,23 +39,47 @@ namespace Projekat
         {
             this.tekst.Text = "Izaberite zamenske lekove za lek: " + lek.nazivLeka;
         }
+        /* private void dodajLijekove()
+         {
+             TabelaZamenskihLekova = new ObservableCollection<Lek>();
+             foreach (Lek lijek in LekoviMenadzer.lijekovi)
+             {
+                 if (lijek.idLeka != lek.idLeka && !postojiZamenski(lijek))
+                 {
+                     TabelaZamenskihLekova.Add(lijek);
+                 }
+             }
+         }
+
+         private bool postojiZamenski(Lek lijek)
+         {
+             foreach (int zamenski in lek.zamenskiLekovi)
+             {
+                 if (zamenski == lijek.idLeka)
+                 {
+                     return true;
+                 }
+             }
+             return false;
+         }*/
+
         private void dodajLijekove()
         {
             TabelaZamenskihLekova = new ObservableCollection<Lek>();
             foreach (Lek lijek in LekoviMenadzer.lijekovi)
             {
-                if (lijek.idLeka != lek.idLeka && !postojiZamenski(lijek))
+                if (lijek.idLeka != lek.idLeka && !postojiZamjenski(lijek))
                 {
                     TabelaZamenskihLekova.Add(lijek);
                 }
             }
         }
 
-        private bool postojiZamenski(Lek lijek)
+        private bool postojiZamjenski(Lek lijek)
         {
-            foreach (int zamenski in lek.zamenskiLekovi)
+            foreach (int zamjenski in lek.zamenskiLekovi)
             {
-                if (zamenski == lijek.idLeka)
+                if (zamjenski == lijek.idLeka)
                 {
                     return true;
                 }

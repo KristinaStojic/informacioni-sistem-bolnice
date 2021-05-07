@@ -22,13 +22,13 @@
                                     <DataGridTextColumn Header="Obrađeno" Width="130*" Binding="{Binding}" x:Name="obradjeno" />
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="Obradi zahtev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Margin="39,498,0,0" Height="36" Click="Button_Obradi" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
-                            <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Margin="523,498,0,0" Height="36" Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+                            <Button Content="Obradi zahtev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="39,498,0,0"  Click="Button_Obradi" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+                            <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="523,498,0,0" Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
                             <Label Content="Zahtevi" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Svi lekovi" Width="130" Height="27" Margin="0,-2,0,2" VerticalAlignment="Bottom" x:Name="sviLekovi">
+                    <TabItem Header="Svi lekovi" Width="130" Height="25" Margin="0,-2,0,2" VerticalAlignment="Bottom" x:Name="sviLekovi">
                         <Grid>
                             <Label Content="Spisak lekova" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
                             <DataGrid x:Name="dataGridLekovi" ItemsSource="{Binding TabelaLekova}" IsReadOnly="True" 
