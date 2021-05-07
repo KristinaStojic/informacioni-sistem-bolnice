@@ -26,37 +26,13 @@
             <ColumnDefinition Width="210"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+      
         <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalContentAlignment="Center" Content="Izaberite pacijenta:" Margin="9,2,173.2,41.4" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-
         <Label Grid.Column="1" Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Trajanje:" Margin="9.2,42.8,63.2,42.8" Grid.RowSpan="3"/>
         <Label Grid.Column="1" Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Tip termina:" Margin="9.2,42.8,63.2,42.8" Grid.RowSpan="3"/>
-
         <Label Grid.Column="1" Grid.Row="3" FontSize="17" VerticalContentAlignment="Center" Content="Pacijent:" Margin="9.2,0,64.2,0.2"/>
         <Label Grid.Column="1" Grid.Row="3" FontSize="17" VerticalContentAlignment="Center" Content="Oblast lekara:" Margin="9.2,43,63.2,0.4" Grid.RowSpan="2"/>
-
-        <ComboBox HorizontalAlignment="Left" Name = "trajanje" Grid.Column="2" Grid.Row="5" Width="197" Margin="6.8,5.6,0,7.6" SelectedIndex="0" FontSize="17" Height="30">
-            <ComboBoxItem HorizontalAlignment="Center">00:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">01:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">01:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">02:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">02:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">03:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">03:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">04:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">04:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">05:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">05:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">06:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">06:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
-            <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
-        </ComboBox>
-
-        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="6" Margin="6.8,6.4,6.6,0" SelectedIndex="0" FontSize="17" Height="30" VerticalAlignment="Top">
-            <ComboBoxItem Content="Pregled"/>
-            <ComboBoxItem Content="Operacija"/>
-        </ComboBox>
+        <Label Grid.Column="1" Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Izaberite termin(e) koje zelite da pomerite:" Margin="9.2,38.2,13.6,9.2" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
         <TextBox x:Name="pretraga" TextChanged="Pretraga_TextChanged" Margin="11,5.8,3.6,0" TextAlignment="Left" ToolTip="Pretrazite listu po imenu, prezimenu ili jmbg" FontSize="15" Grid.Column="1" Height="30" Grid.Row="1" VerticalAlignment="Top">
             <TextBox.Style>
@@ -83,35 +59,13 @@
             </TextBox.Style>
         </TextBox>
 
-        <TextBox Grid.Column="2" Grid.Row="3" Name="pacijenti" Margin="6.8,7,6.6,0" FontSize="15" Height="30" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap"/>
-
-        <ComboBox x:Name="oblast" Grid.Column="2" Grid.Row="4" Margin="6.8,6.4,6.6,6.8" SelectedIndex="0" FontSize="17" Height="30">
-            <ComboBoxItem Content="Opsta praksa"/>
-            <ComboBoxItem Content="Ginekologija"/>
-            <ComboBoxItem Content="Hirurgija"/>
-            <ComboBoxItem Content="Ortopedija"/>
-        </ComboBox>
-
-        <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" SelectionMode="Single" Margin="11.2,4.6,8.6,5" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="ListaPacijenata_GotKeyboardFocus">
+        <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" SelectionMode="Single" Margin="11.2,8.6,8.6,1" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="ListaPacijenata_GotKeyboardFocus">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdPacijenta}"/>
                     <GridViewColumn Header="Ime" Width="105" DisplayMemberBinding="{Binding ImePacijenta}"/>
                     <GridViewColumn Header="Prezime" Width="120" DisplayMemberBinding="{Binding PrezimePacijenta}"/>
                     <GridViewColumn Header="Jmbg" Width="120" DisplayMemberBinding="{Binding Jmbg}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        <Label Grid.Column="1" Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Izaberite termin(e) koje zelite da pomerite:" Margin="9.2,38.2,13.6,9.2" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" x:Name="zauzetiTermini" SelectionMode="Multiple" Margin="10.2,36,7.6,11.8" RenderTransformOrigin="0.492,0.518" IsEnabled="False" Grid.RowSpan="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdTermin}"/>
-                    <GridViewColumn Header="Pocetak" Width="60" DisplayMemberBinding="{Binding VremePocetka}"/>
-                    <GridViewColumn Header="Kraj" Width="60" DisplayMemberBinding="{Binding VremeKraja}"/>
-                    <GridViewColumn Header="Prostorija" Width="110" DisplayMemberBinding="{Binding Prostorija}"/>
-                    <GridViewColumn Header="Lekar" Width="115" DisplayMemberBinding="{Binding imePrezimeLekara}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -123,10 +77,55 @@
             </Grid>
         </Button>
 
-        <Button Name="potvrdi" Grid.Column="1" Grid.Row="10" Click="Potvrdi_Click" Content="Potvrdi" Margin="10.2,6.2,10.2,27.4" Background="#FFA3DADE" FontSize="15" IsEnabled="False"/>
-        <Button Grid.Column="2" Grid.Row="10"  Click="Odustani_Click" Content="Odustani" Margin="9.8,6.2,7.6,27.4" Background="#FFA3DADE" FontSize="17"/>
-        <Button Name="pretrazi" Grid.Column="2" Grid.Row="7" Click="Pretrazi_Click" Content="Pretrazi " Margin="98.8,4.2,6.6,0" Height="37" FontSize="17" VerticalAlignment="Top"/>
-        <Button Name="pomeri" Grid.Column="1" Grid.Row="7" Click="Pomeri_Click" Content="Pomeri " Margin="9.2,4.2,96.2,0" Height="37" FontSize="15" VerticalAlignment="Top" IsEnabled="False"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Name="pacijenti" Margin="6.8,7,6.6,0" FontSize="15" Height="30" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap"/>
 
+        <ComboBox x:Name="oblast" Grid.Column="2" Grid.Row="4" Margin="6.8,6.4,6.6,6.8" SelectedIndex="0" FontSize="17" Height="30">
+            <ComboBoxItem Content="Opsta_praksa"/>
+            <ComboBoxItem Content="Akuserstvo"/>
+            <ComboBoxItem Content="Hirurgija"/>
+            <ComboBoxItem Content="Ortopedija"/>
+        </ComboBox>
+
+        <ComboBox HorizontalAlignment="Left" Name = "trajanje" Grid.Column="2" Grid.Row="5" Width="197" Margin="6.8,5.6,0,7.6" SelectedIndex="0" FontSize="17" Height="30">
+            <ComboBoxItem HorizontalAlignment="Center">00:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">01:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">01:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">02:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">02:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">03:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">03:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">04:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">04:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">05:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">05:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">06:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">06:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">07:00</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">07:30</ComboBoxItem>
+            <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="6" Margin="6.8,6.4,6.6,0" SelectedIndex="0" FontSize="17" Height="30" VerticalAlignment="Top">
+            <ComboBoxItem Content="Pregled"/>
+            <ComboBoxItem Content="Operacija"/>
+        </ComboBox>
+
+        <Button Name="pretrazi" Grid.Column="2" Grid.Row="7" Click="Pretrazi_Click" Content="Pretrazi " Margin="98.8,4.2,6.6,0" Height="37" FontSize="17" VerticalAlignment="Top"/>
+
+        <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" x:Name="zauzetiTermini" SelectionMode="Multiple" Margin="10.2,36,7.6,11.8" RenderTransformOrigin="0.492,0.518" IsEnabled="False" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdTermin}"/>
+                    <GridViewColumn Header="Pocetak" Width="60" DisplayMemberBinding="{Binding VremePocetka}"/>
+                    <GridViewColumn Header="Kraj" Width="60" DisplayMemberBinding="{Binding VremeKraja}"/>
+                    <GridViewColumn Header="Prostorija" Width="110" DisplayMemberBinding="{Binding Prostorija}"/>
+                    <GridViewColumn Header="Lekar" Width="120" DisplayMemberBinding="{Binding imePrezimeLekara}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Name="pomeri" Grid.Column="1" Grid.Row="7" Click="Pomeri_Click" Content="Pomeri " Margin="9.2,4.2,96.2,0" Height="37" FontSize="15" VerticalAlignment="Top" IsEnabled="False"/>
+        <Button Name="potvrdi" Grid.Column="1" Grid.Row="10" Click="Potvrdi_Click" Content="Potvrdi" Margin="10.2,6.2,10.2,27.4" Background="#FFA3DADE" FontSize="15" IsEnabled="False"/>
+        <Button Name="odustani" Grid.Column="2" Grid.Row="10"  Click="Odustani_Click" Content="Odustani" Margin="9.8,6.2,7.6,27.4" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>

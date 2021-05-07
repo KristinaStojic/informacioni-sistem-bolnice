@@ -41,20 +41,6 @@ namespace Model
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
             ObavestenjaMenadzer.sacuvajIzmene();
-
-            /*  if (ObavestenjaLekar.obavestenjaLekar == null) 
-                {   
-                    ObavestenjaLekar.obavestenjaLekar = new ObservableCollection<Obavestenja>();
-                }
-                if (PrikaziTermin.ObavestenjaPacijent == null)
-                {
-                    PrikaziTermin.ObavestenjaPacijent = new ObservableCollection<Obavestenja>();  
-                }
-                ObavestenjaLekar.obavestenjaLekar.Add(o);
-                PrikaziTermin.ObavestenjaPacijent.Add(o);
-
-                ObavestenjaLekar.obavestenjaLekar.Add(o);  
-                PrikaziTermin.Obavestenja.Add(o); */
         }
 
         // isto ovu metodu
@@ -208,7 +194,6 @@ namespace Model
                 }
             }
 
-
             // notifikacija 
             int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
@@ -276,6 +261,7 @@ namespace Model
                     t.Prostorija = SaleMenadzer.NadjiSaluPoId(id);
                 }       
             }
+            TerminMenadzer.sacuvajIzmene();
 
             // notifikacija
             int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
