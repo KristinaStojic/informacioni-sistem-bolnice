@@ -90,17 +90,36 @@
             <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
                    RenderTransformOrigin="0.263,0.577" Margin="335,88,0,0" FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142"/>
             <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
-                   RenderTransformOrigin="0.263,0.577" Margin="325,329,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
-            <Button Style="{DynamicResource ButtonStyle}" BorderBrush="#FF3F72AF" BorderThickness="2" Click="anketa_Click" HorizontalAlignment="Left" Margin="75,84,0,0" VerticalAlignment="Top" Width="90" Height="30" RenderTransformOrigin="0.503,0.508">
-                <TextBlock Text="Anketa" Foreground="{DynamicResource TextColorButton}" FontSize="16"/>
+                   RenderTransformOrigin="0.263,0.577" Margin="325,333,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
+            <Button Style="{DynamicResource ButtonStyle}" 
+                    Click="anketa_Click"
+                    HorizontalAlignment="Left" 
+                    Margin="75,88,0,0" 
+                    VerticalAlignment="Top"
+                    Width="90" Height="30">
+                <TextBlock Text="Anketa"
+                           Foreground="{DynamicResource TextColorButton}"
+                           FontSize="16"/>
             </Button>
-            <Button Style="{DynamicResource ButtonStyle}" Name="ObrisiObavestenje" Height="30" Width="30" Margin="669,87,101,461"
-                    ToolTip="Obrisi selektovano obavestenje" Click="ObrisiObavestenje_Click">
-                <TextBlock Text="🗑" Foreground="{DynamicResource TextColorButton}"  FontSize="16"/>
+            <Button Style="{DynamicResource ButtonStyle}" 
+                    Name="ObrisiObavestenje" 
+                    Height="30" Width="30" 
+                    Margin="669,87,101,461"
+                    ToolTip="Obrisi selektovano obavestenje" 
+                    Click="ObrisiObavestenje_Click">
+                <TextBlock Text="🗑" 
+                           Foreground="{DynamicResource TextColorButton}"  
+                           FontSize="16"/>
             </Button>
-            <Button Style="{DynamicResource ButtonStyle}" Name="UvidObavestenje" Height="30" Width="30" Margin="632,88,138,460"
-                    ToolTip="Uvid u selektovano obavestenje" Click="UvidObavestenje_Click">
-                <TextBlock Text="📄" Foreground="{DynamicResource TextColorButton}"  FontSize="16"/>
+            <Button Style="{DynamicResource ButtonStyle}" 
+                    Name="UvidObavestenje" 
+                    Height="30" Width="30" 
+                    Margin="632,88,138,460"
+                    ToolTip="Uvid u selektovano obavestenje" 
+                    Click="UvidObavestenje_Click">
+                <TextBlock Text="📄" 
+                          Foreground="{DynamicResource TextColorButton}"  
+                           FontSize="16"/>
             </Button>
         </Grid>
     </StackPanel>

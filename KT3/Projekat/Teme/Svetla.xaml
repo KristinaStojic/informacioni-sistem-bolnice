@@ -16,6 +16,7 @@
     <Style TargetType="Button" x:Key="ButtonStyle">
         <Setter Property="Background" Value="#FF112D4E"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="#004a7c"/>
     </Style>
     <SolidColorBrush x:Key="TextColorButton" Color="White"/>
     

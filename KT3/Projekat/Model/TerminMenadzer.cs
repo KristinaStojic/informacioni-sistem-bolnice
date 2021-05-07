@@ -97,7 +97,7 @@ namespace Model
                     termin.IdTermin = noviTermin.IdTermin;
                     termin.VremePocetka = noviTermin.VremePocetka;
                     termin.VremeKraja = noviTermin.VremeKraja;
-                    termin.Lekar = noviTermin.Lekar; 
+                    termin.Lekar = noviTermin.Lekar;
                     termin.Pacijent = noviTermin.Pacijent;
                     termin.tipTermina = noviTermin.tipTermina;
                     termin.Datum = noviTermin.Datum;
@@ -105,16 +105,17 @@ namespace Model
                     int idx = PrikaziTermin.Termini.IndexOf(stariTermin);
                     PrikaziTermin.Termini.RemoveAt(idx);
                     PrikaziTermin.Termini.Insert(idx, noviTermin);
-                }
-                foreach (Sala s in SaleMenadzer.sale)
-                {
-                    foreach (ZauzeceSale zs in s.zauzetiTermini)
+
+                    foreach (Sala sala in SaleMenadzer.sale)
                     {
-                        if (zs.idTermina.Equals(stariTermin.IdTermin))
+                        foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
                         {
-                            MessageBox.Show(stariTermin.IdTermin.ToString());
-                            s.zauzetiTermini.Remove(zs);
-                            return;
+                            if (zauzece.idTermina.Equals(stariTermin.IdTermin))
+                            {
+                                // MessageBox.Show(stariTermin.IdTermin.ToString());
+                                sala.zauzetiTermini.Remove(zauzece);
+                                return;
+                            }
                         }
                     }
                 }
@@ -373,8 +374,21 @@ namespace Model
             return terminiPacijenta;
         }
 
-      //public int AdresaFajla;  // ?
-      public static List<Termin> termini = new List<Termin>();
+        public static List<Termin> PronadjiSveTerminePacijentaZaSelektovaniDatum(int idPacijent, string selektovaniDatum)
+        {
+            List<Termin> terminiZaSelektovaniDatum = new List<Termin>();
+            List<Termin> terminiPacijenta = PronadjiTerminPoIdPacijenta(idPacijent);
+            foreach (Termin termin in terminiPacijenta)
+            {
+                if (termin.Datum.Equals(selektovaniDatum))
+                {
+                    terminiZaSelektovaniDatum.Add(termin);
+                }
+            }
+            return terminiZaSelektovaniDatum;
+        }
+        //public int AdresaFajla;  // ?
+        public static List<Termin> termini = new List<Termin>();
 
 
     }
