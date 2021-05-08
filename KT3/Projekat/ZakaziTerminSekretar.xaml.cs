@@ -130,7 +130,7 @@ namespace Projekat
             Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);  
             t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
        
-        
+            // TODO: premesti u TerminMenadzer
             if (Sala.zauzetiTermini.Count != 0)  // ako postoje zauzeti termini
             { 
                 TerminMenadzer.ZakaziTerminSekretar(t);

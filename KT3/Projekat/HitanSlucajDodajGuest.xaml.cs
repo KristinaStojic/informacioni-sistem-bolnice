@@ -30,7 +30,7 @@ namespace Projekat
         {
             pol pol;
 
-            if (combo2.Text.Equals("M"))
+            if (polPacijenta.Text.Equals("M"))
             {
                 pol = pol.M;
             }
