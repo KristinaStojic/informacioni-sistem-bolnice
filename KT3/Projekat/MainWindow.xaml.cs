@@ -121,5 +121,25 @@ namespace Projekat
         {
             Application.Current.Shutdown();
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl)) //upravnik
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl)) //lekar
+            {
+                Button_Click_1(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl)) //pacijent
+            {
+                Button_Click_2(sender, e);
+            }
+            /*else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //sekretar
+            {
+                Button_Click_3(sender, e);
+            }*/
+        }
     }
 }
