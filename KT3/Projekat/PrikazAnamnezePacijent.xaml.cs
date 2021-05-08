@@ -83,6 +83,11 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
+        }
 
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {

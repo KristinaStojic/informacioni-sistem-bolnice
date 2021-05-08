@@ -29,7 +29,6 @@ namespace Projekat
         public static ObservableCollection<Termin> Termini { get; set; }
         public static ObservableCollection<Obavestenja> ObavestenjaPacijent { get; set; }
         public Thread thread;
-        private static int minBrojTerminaZaAnketu = 2;
         public PrikaziTermin(int idPrijavljeniPacijent)
         {
             InitializeComponent();
@@ -273,6 +272,12 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
+        }
+
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
     }
 }

@@ -56,6 +56,11 @@ namespace Projekat
         {
 
         }
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
+        }
 
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
