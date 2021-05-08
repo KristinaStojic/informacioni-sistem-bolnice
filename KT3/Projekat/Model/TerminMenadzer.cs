@@ -88,6 +88,8 @@ namespace Model
                     termin.tipTermina = noviTermin.tipTermina;
                     termin.Datum = noviTermin.Datum;
                     termin.Prostorija = noviTermin.Prostorija;
+                    termin.Pomeren = noviTermin.Pomeren;
+                    termin.HitnaOperacija = noviTermin.HitnaOperacija;
                     int idx = PrikaziTermin.Termini.IndexOf(stariTermin);
                     PrikaziTermin.Termini.RemoveAt(idx);
                     PrikaziTermin.Termini.Insert(idx, noviTermin);

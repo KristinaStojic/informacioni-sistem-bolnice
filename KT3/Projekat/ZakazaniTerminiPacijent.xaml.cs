@@ -67,31 +67,31 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             // izmeni
-            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
-            if (izabraniTermin == null)
+            Termin terminZaPomeranje = (Termin)dataGridTermini.SelectedItem;
+            if (terminZaPomeranje == null)
             {
                 MessageBox.Show("Selektujte termin koji zelite da izmenite", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            if (!izabraniTermin.Pomeren)
+            if (terminZaPomeranje.Pomeren == true)
             {
                 MessageBox.Show("Nemoguce je pomeriti ovaj termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            Page izmeniTermin = new IzmeniTermin(izabraniTermin);
+            Page izmeniTermin = new IzmeniTermin(terminZaPomeranje);
             this.NavigationService.Navigate(izmeniTermin);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             // brisanje
-            Termin zaBrisanje = (Termin)dataGridTermini.SelectedItem;
-            if (zaBrisanje == null)
+            Termin terminZaBrisanje = (Termin)dataGridTermini.SelectedItem;
+            if (terminZaBrisanje == null)
             {
                 MessageBox.Show("Selektujte termin koji zelite da otkazete", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            Page otkazivanjeTermina = new OtkaziTermin(zaBrisanje);
+            Page otkazivanjeTermina = new OtkaziTermin(terminZaBrisanje);
             this.NavigationService.Navigate(otkazivanjeTermina);
         }
 

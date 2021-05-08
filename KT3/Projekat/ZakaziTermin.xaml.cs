@@ -23,7 +23,7 @@ namespace Projekat
         private static int maksimalniJednocifren = 9;
         private static int oznakaZaRenoviranje = 0;
         private static int idPacijent;
-        public static Lekar izabraniLekar;
+        public static Lekar izabraniLekar { get; set; }
         private List<Sala> SaleZaPreglede;
         private Sala prvaSlobodnaSala;
         private int ukupanBrojSalaZaPregled;
@@ -52,12 +52,16 @@ namespace Projekat
 
         private void InicijalizujPodatkeOLekaru()
         {
-            if (izabraniLekar != null)
+            if (izabraniLekar == null )
             {
-                this.imePrz.Text = izabraniLekar.ToString();
-                return;
+                if (prijavljeniPacijent.IzabraniLekar == null)
+                { 
+                    MessageBox.Show("Dodajte izabranog lekara u zdravstvenom kartonu", "Izabrani lekar", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.imePrz.Text = "";
+                    return;
+                }
+                izabraniLekar = prijavljeniPacijent.IzabraniLekar;
             }
-            izabraniLekar = prijavljeniPacijent.IzabraniLekar;
             this.imePrz.Text = izabraniLekar.ToString();
         }
 

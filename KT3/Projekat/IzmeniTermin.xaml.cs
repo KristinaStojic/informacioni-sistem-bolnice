@@ -126,13 +126,13 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (termin.Pomeren)
+            /*if (termin.Pomeren == true)
             {
                 MessageBox.Show("Nemoguce je pomeriti ovaj termin, dozvoljeni broj pomeranja termina je jedan", "Upozorenje", MessageBoxButton.OK);
                 Page uvidZakazanih = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvidZakazanih);
                 return;
-            }
+            }*/
             IzmeniIzabraniTermin();
         }
 

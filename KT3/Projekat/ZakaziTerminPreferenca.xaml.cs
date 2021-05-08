@@ -229,6 +229,7 @@ namespace Projekat
             {
                 lekar = (Lekar)datagridLekari.SelectedItems[0];
             }
+            MessageBox.Show(lekar.ToString());
             ZakaziTermin.izabraniLekar = lekar;
             Page zt = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zt);
