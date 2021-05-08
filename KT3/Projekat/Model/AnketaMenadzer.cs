@@ -11,7 +11,7 @@ namespace Projekat.Model
     class AnketaMenadzer
     {
         public static List<Anketa> ankete = new List<Anketa>();
-
+        public static int oznakaAnketeZaKliniku = 0;
         public static void sacuvajIzmene()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Anketa>));
@@ -44,7 +44,7 @@ namespace Projekat.Model
             {
                 foreach (Anketa anketa in ankete)
                 {
-                    if (anketa.idAnkete.Equals(idAnkete))
+                    if (anketa.IdAnkete.Equals(idAnkete))
                     {
                         pomocna = true;
                         break;
@@ -63,7 +63,7 @@ namespace Projekat.Model
         {
             foreach (Anketa anketa in ankete)
             {
-                if (anketa.idAnkete == IdAnkete)
+                if (anketa.IdAnkete == IdAnkete)
                 {
                     return anketa;
                 }
@@ -71,11 +71,11 @@ namespace Projekat.Model
             return null;
         }
 
-        public static void ObrisiAnketu(int idTermina)
+        public static void ObrisiAnketu(int idTerminaZaBrisanje)
         {
             foreach(Anketa anketa in ankete)
             {
-                if(anketa.idTermina == idTermina)
+                if(anketa.IdTermina == idTerminaZaBrisanje)
                 {
                     ankete.Remove(anketa);
                     return;
@@ -86,15 +86,48 @@ namespace Projekat.Model
         public static void DodajAnketuZaLekara(Termin termin, int idPacijent) 
         {
             string podaciLekara = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
-            Console.WriteLine(termin.Lekar.ToString());
             Anketa anketaZaLekara = new Anketa(VrstaAnkete.ZaLekare, "Anketa za lekara: " + podaciLekara, idPacijent, termin.IdTermin);
             ankete.Add(anketaZaLekara);
         }
 
         public static void DodajAnketuZaKliniku(int idPacijent)
         {
-            Anketa anketa = new Anketa(VrstaAnkete.ZaKliniku, "Anketa o uslugama bolnice", idPacijent, 0);
+            Anketa anketa = new Anketa(VrstaAnkete.ZaKliniku, "Anketa o uslugama bolnice", idPacijent, oznakaAnketeZaKliniku);
             ankete.Add(anketa);
+        }
+
+        public static void IzmeniAnketuZaLekara(Termin stariTermin, Termin noviTermin)
+        {
+            if (stariTermin.Lekar.IdLekara == noviTermin.Lekar.IdLekara)
+            {
+                return;
+            }
+            IzmeniNazivAnkete(stariTermin, noviTermin);
+        }
+
+        private static void IzmeniNazivAnkete(Termin stariTermin, Termin noviTermin)
+        {
+            foreach (Anketa anketa in ankete)
+            {
+                if (anketa.IdTermina == stariTermin.IdTermin)
+                {
+                    string podaciLekara = noviTermin.Lekar.ImeLek + " " + noviTermin.Lekar.PrezimeLek;
+                    anketa.NazivAnkete = "Anketa za lekara: " + podaciLekara;
+                    return;
+                }
+            }
+        }
+
+        public static Anketa PronadjiAnketuZaKliniku(int idPacijent)
+        {
+            foreach(Anketa anketa in ankete)
+            {
+                if (anketa.IdPacijent == idPacijent && anketa.IdTermina == oznakaAnketeZaKliniku)
+                {
+                    return anketa;
+                }
+            }
+            return null;
         }
     }
 }

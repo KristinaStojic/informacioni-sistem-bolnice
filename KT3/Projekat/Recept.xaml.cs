@@ -68,6 +68,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }

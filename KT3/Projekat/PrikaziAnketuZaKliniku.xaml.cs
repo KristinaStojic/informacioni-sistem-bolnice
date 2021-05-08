@@ -184,6 +184,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -204,8 +209,8 @@ namespace Projekat
         {
             string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
             Anketa anketa = AnketaMenadzer.NadjiAnketuPoId(idAnkete);
-            anketa.odgovori = odgovoriPacijenta;
-            anketa.popunjenaAnketa = true;
+            anketa.Odgovori = odgovoriPacijenta;
+            anketa.PopunjenaAnketa = true;
 
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);

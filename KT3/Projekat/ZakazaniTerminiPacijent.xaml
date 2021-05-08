@@ -53,25 +53,22 @@
                             </Menu>
                         </StackPanel>
                     </StackPanel>
-                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Height="25">
-                            <Hyperlink Name="pocetna" Click="pocetna_Click">
-                            <Run Text="Početna stranica"/>
-                            </Hyperlink>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
-                                <Run Text="Zakažite termin"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text="  "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="uvid" Click="uvid_Click">
-                                <Run Text="Uvid u zakazane termine"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="karton" Click="karton_Click">
-                                <Run Text="Zdravstveni karton"/>
-                            </Hyperlink>
+                    <TextBlock Margin="20, 0, 0, 0" FontSize="14"  Height="25">
+                <Hyperlink Name="pocetna" Click="pocetna_Click">
+                    <Run Text="Početna stranica"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="zakazi" Click="zakazi_Click">
+                    <Run Text="Zakažite termin"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="uvid" Click="uvid_Click">
+                    <Run Text="Uvid u zakazane termine"/>
+                </Hyperlink>
+                <Run Text=" "/>
+                <Hyperlink Name="karton" Click="karton_Click">
+                    <Run Text="Zdravstveni karton"/>
+                </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>

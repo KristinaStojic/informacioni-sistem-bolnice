@@ -204,32 +204,6 @@ namespace Projekat
             
         }
 
-        
-
-        private void ProveriDostupnostAnketeZaKlinku()
-        {
-            int brojacProslihTermina = 0;
-            foreach (Termin termin in TerminMenadzer.termini)
-            {
-                if (termin.Pacijent.IdPacijenta == idPacijent)
-                {
-                    DateTime danasnjiDatum = DateTime.Now.Date;
-                    if (DateTime.Parse(termin.Datum) <= danasnjiDatum)
-                    {
-                        brojacProslihTermina++;
-                        if (brojacProslihTermina >= minBrojTerminaZaAnketu)
-                        {
-                            this.anketa.IsEnabled = true;
-                        }
-                        else
-                        {
-                            this.anketa.IsEnabled = false;
-                        }
-                    }
-                }
-            }
-        } 
-
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             Page odjava = new PrijavaPacijent();
@@ -244,6 +218,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }

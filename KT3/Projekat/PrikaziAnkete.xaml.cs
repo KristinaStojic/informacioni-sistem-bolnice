@@ -26,9 +26,7 @@ namespace Projekat
         private static int idPacijent;
         public static ObservableCollection<Anketa> AnketePacijenta { get; set; }
         //private static System.Timers.Timer aTimer;
-        private int brojacProslihTermina;
         public static int minBrojTerminaZaAnketuKlinika = 3;
-        private static int oznakaAnketeZaKliniku = 0;
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -36,39 +34,50 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             this.potvrdi.IsEnabled = false;
             AnketePacijenta = new ObservableCollection<Anketa>();
-            PrikaziAnketeZaProsleTermine();
+            PrikaziSveAnketeZaProsleTermine();
             listaAnketi.ItemsSource = AnketePacijenta;
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
-        private void PrikaziAnketeZaProsleTermine()
+        private void PrikaziSveAnketeZaProsleTermine()
         {
-            brojacProslihTermina = 0;
             foreach (Anketa anketa in AnketaMenadzer.ankete)
             {
                 foreach (Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent))
                 {
-                    DateTime datumTermina = DateTime.Parse(termin.Datum);
-                    TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);
-                    if ((datumTermina == DateTime.Now.Date && vremeKrajaTermina <= DateTime.Now.TimeOfDay) || datumTermina < DateTime.Now.Date)
-                    {
-                        if (anketa.idTermina == oznakaAnketeZaKliniku) 
-                        {
-                            if (brojacProslihTermina == minBrojTerminaZaAnketuKlinika) /* posle 3. termina - anketa o radu klinike */
-                            {
-                                AnketePacijenta.Add(anketa);
-                                break; 
-                            }
-                        }
-                        if (anketa.idTermina == termin.IdTermin)
-                        {
-                            brojacProslihTermina++;
-                            AnketePacijenta.Add(anketa);
-                        }
-                    }
+                    PrikaziAnketeZaProsleTermine(anketa, termin);
                 }
+            }
+        }
+
+        private void PrikaziAnketeZaProsleTermine(Anketa anketa, Termin termin)
+        {
+            DateTime datumTermina = DateTime.Parse(termin.Datum);
+            TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);
+            if ((datumTermina == DateTime.Now.Date && vremeKrajaTermina <= DateTime.Now.TimeOfDay) || datumTermina < DateTime.Now.Date)
+            {
+                PrikaziAnketuZaLekara(anketa, termin.IdTermin);
+                PrikaziAnketuZaKliniku();
+            }
+        }
+
+        private void PrikaziAnketuZaLekara(Anketa anketa, int IdTermina)
+        {
+            if (anketa.IdTermina == IdTermina)
+            {
+                AnketePacijenta.Add(anketa);
+            }
+        }
+
+        private void PrikaziAnketuZaKliniku()
+        {
+            if (AnketePacijenta.Count() == minBrojTerminaZaAnketuKlinika) /* posle 3. termina - anketa o radu klinike */
+            {
+                Anketa anketa = AnketaMenadzer.PronadjiAnketuZaKliniku(idPacijent);
+                AnketePacijenta.Add(anketa);
+                return;
             }
         }
 
@@ -86,6 +95,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -110,16 +124,16 @@ namespace Projekat
         private void listaAnketi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Anketa anketa = (Anketa)listaAnketi.SelectedItem;
-            if (anketa != null && !anketa.popunjenaAnketa)
+            if (anketa != null && !anketa.PopunjenaAnketa)
             {
-                if (anketa.vrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
+                if (anketa.VrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
                 {
-                    PrikaziAnketuZaKliniku anketaZaKliniku = new PrikaziAnketuZaKliniku(idPacijent, anketa.idAnkete);
+                    PrikaziAnketuZaKliniku anketaZaKliniku = new PrikaziAnketuZaKliniku(idPacijent, anketa.IdAnkete);
                     this.NavigationService.Navigate(anketaZaKliniku);
                 }
                 else
                 {
-                    PrikaziAntekuZaLekare anketaZaLekare = new PrikaziAntekuZaLekare(idPacijent, anketa.idAnkete);
+                    PrikaziAntekuZaLekare anketaZaLekare = new PrikaziAntekuZaLekare(idPacijent, anketa.IdAnkete);
                     this.NavigationService.Navigate(anketaZaLekare);
                 }
             }
