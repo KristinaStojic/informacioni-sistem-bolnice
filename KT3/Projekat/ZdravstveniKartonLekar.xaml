@@ -10,43 +10,43 @@
         <StackPanel>
 
             <Border  Background="LightSkyBlue" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="850" Height="636">
-                <TabControl x:Name="karton" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="5,20,5,5">
-                    <TabItem Header="Lični podaci" Width="100" IsSelected="True" Height="25">
+                <TabControl x:Name="karton" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="5.4,16.4,5,9.4" KeyDown="Tabovi_KeyDown">
+                    <TabItem Header="Lični podaci" Width="100" IsSelected="True" Height="25" x:Name="podaci">
                         <Grid>
-                            <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="489" Margin="19,26,0,0" VerticalAlignment="Top" Width="421" FontSize="14"/>
-                            <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="53,69,634.2,441" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Prezime pacijenta:" Margin="53,109,604.2,401" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="JMBG:" Margin="53,149,640.2,353" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Pol:" Margin="53,189,661.2,307" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Status naloga:" Margin="53,229,624.2,266" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Broj telefona:" Margin="52,269,624.2,220" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Email:" Margin="53,309,640.2,175" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Adresa stanovanja:" Margin="53,349,589.2,136" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Bracno stanje:" Margin="53,389,624.2,93" Height="30"/>
-                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Zanimanje" Margin="53,429,640.2,54" Height="30"/>
-                            <TextBox x:Name="ime" Grid.Row="0" Margin="235,71,382.2,441" IsReadOnly="True"  Height="30" />
-                            <TextBox x:Name="prezime" Margin="235,110,382.2,402" IsReadOnly="True"  Height="30"/>
-                            <TextBox  x:Name="jmbg" Margin="235,152,382.2,360" IsReadOnly="True" Height="30"/>
-                            <ComboBox x:Name="combo2"  Margin="235,189,382.2,323" IsReadOnly="True" IsEnabled="False" Height="30">
+                            <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="424" Margin="26,26,0,0" VerticalAlignment="Top" Width="421" FontSize="14"/>
+                            <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="53,52,634.4,453.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Prezime pacijenta:" Margin="53,91,604.4,414.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="JMBG:" Margin="53,132,640.4,373.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Pol:" Margin="53,173,661.4,331.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Status naloga:" Margin="53,212,624.4,292.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Broj telefona:" Margin="52,254,624.4,251.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Email:" Margin="53,296,640.4,209.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Adresa stanovanja:" Margin="53,334,589.4,171.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Bracno stanje:" Margin="53,375,624.4,130.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Zanimanje" Margin="53,413,640.4,92.4"/>
+                            <TextBox x:Name="ime" Grid.Row="0" Margin="235,52,382.4,453.4" IsReadOnly="True" />
+                            <TextBox x:Name="prezime" Margin="235,91,382.4,414.4" IsReadOnly="True"/>
+                            <TextBox  x:Name="jmbg" Margin="235,132,382.4,373.4" IsReadOnly="True"/>
+                            <ComboBox x:Name="combo2"  Margin="235,173,382.4,332.4" IsReadOnly="True" IsEnabled="False">
                                 <ComboBoxItem Content="M"/>
                                 <ComboBoxItem Content="Z"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo"  Margin="235,229,382.2,283" SelectedIndex="0" IsReadOnly="True"  Height="30">
+                            <ComboBox x:Name="combo"  Margin="235,212,382.4,293.4" SelectedIndex="0" IsReadOnly="True">
                                 <ComboBoxItem Content="STALAN"/>
                                 <ComboBoxItem Content="GUEST"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo3"  Margin="235,403,382.2,109" IsReadOnly="True" IsEnabled="False"  Height="30">
+                            <ComboBox x:Name="combo3"  Margin="235,375,382.4,130.4" IsReadOnly="True" IsEnabled="False">
                                 <ComboBoxItem Content="Neozenjen/Neudata"/>
                                 <ComboBoxItem Content="Ozenjen/Udata"/>
                                 <ComboBoxItem Content="Udovac/Udovica"/>
                                 <ComboBoxItem Content="Razveden/Razvedena"/>
                                 <ComboBoxItem Content="Neodredjeno"/>
                             </ComboBox>
-                            <TextBox x:Name="brojTelefona" Margin="235,280,382.2,232" IsReadOnly="True" Height="30"/>
-                            <TextBox x:Name="email" Margin="235,324,382.2,188" IsReadOnly="True"  Height="30"/>
-                            <TextBox x:Name="adresa" Margin="235,364,382.2,148" IsReadOnly="True" Height="30"/>
-                            <TextBox x:Name="zanimanje" Margin="235,444,382.2,68" IsReadOnly="True"  Height="30"/>
-                            <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="193" Margin="465,240,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
+                            <TextBox x:Name="brojTelefona" Margin="235,254,382.4,251.4" IsReadOnly="True"/>
+                            <TextBox x:Name="email" Margin="235,296,382.4,209.4" IsReadOnly="True"/>
+                            <TextBox x:Name="adresa" Margin="235,334,382.4,171.4" IsReadOnly="True"/>
+                            <TextBox x:Name="zanimanje" Margin="235,413,382.4,92.4" IsReadOnly="True"/>
+                            <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="210" Margin="465,240,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Grid>
                                     <Image Source="slike/doctor.png" Width="87" HorizontalAlignment="Center" Margin="103,10,110,40" RenderTransformOrigin="0.475,0.468"/>
                                     <TextBox x:Name="lekar" HorizontalAlignment="Left" Height="28" Margin="59,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
@@ -56,9 +56,14 @@
                                 <Image Source="slike/covek.png" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
                             </GroupBox>
                             <Button Content="Nazad" Background="#FF6895C5" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click_2"/>
+                            <TextBlock Margin="26,476,708.4,34.4"  Height="24" Width="56" FontSize="16">
+                            <Hyperlink Click="Hyperlink_Click">
+                                Pomoć?
+                            </Hyperlink>
+                            </TextBlock>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Anamneza" Width="100">
+                    <TabItem Header="Anamneza" Width="100" x:Name="anamneze" KeyDown="anamneze_KeyDown">
                         <Grid>
                             <Label Content="Anamneze" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
                             <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True"  
@@ -73,10 +78,15 @@
                             <Button Background="#FF6895C5" Content="Detalji" HorizontalAlignment="Left" Margin="48,470,0,0" VerticalAlignment="Top" Width="147" Height="38" Click="Button_Click_1"/>
                             <Button  Background="#FF6895C5" Content="Izveštaj" HorizontalAlignment="Left" Margin="412,470,0,0" VerticalAlignment="Top"  Width="146" Height="38" RenderTransformOrigin="0.706,4.291"/>
                             <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="594,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="684,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="56" FontSize="16">
+                                <Hyperlink Click="Anamneza_Click">
+                                Pomoć?
+                            </Hyperlink>
+                            </TextBlock>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Recepti" Width="100" Height="25">
-                       
+                    <TabItem Header="Recepti" Width="100" Height="25" x:Name="recepti">
+
                         <Grid>
                             <Label Content="Recepti" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
                             <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
@@ -96,7 +106,7 @@
 
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Uputi" Width="100">
+                    <TabItem Header="Uputi" Width="100" x:Name="uputi">
                         <Grid>
                             <Label Content="Uputi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
 
@@ -117,7 +127,7 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Alergeni" Width="100">
+                    <TabItem Header="Alergeni" Width="100" x:Name="alergeni">
 
                         <Grid>
                             <Label Content="Spisak sastojaka koje pacijent ne sme da koristi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>

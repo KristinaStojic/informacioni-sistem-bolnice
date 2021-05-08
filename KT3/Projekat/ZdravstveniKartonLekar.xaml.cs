@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -262,6 +263,68 @@ namespace Projekat
                 MessageBox.Show("Niste selektovali nijedan alergen!");
             }
            
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            ZdravstveniKartonPomoc pomoc = new ZdravstveniKartonPomoc();
+            pomoc.Show();
+        }
+
+        private void Tabovi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.A && Keyboard.IsKeyDown(Key.LeftCtrl)) //Anamneza
+            {
+                anamneze.IsSelected = true;
+            }
+            else if (e.Key == Key.R && Keyboard.IsKeyDown(Key.LeftCtrl)) //Recepti
+            {
+                recepti.IsSelected = true;
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl)) //Uputi
+            {
+                uputi.IsSelected = true;
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl)) //Podaci
+            {
+                podaci.IsSelected = true;
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
+            {
+                Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) //Pomoc
+            {
+                Hyperlink_Click(sender, e);
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
+            {
+                alergeni.IsSelected = true;
+            }
+        }
+
+        private void anamneze_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl)) //Detalji
+            {
+                Button_Click_1(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nova anamneza
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl)) //Izvestaj
+            {
+                //Izvestaj
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
+            {
+                Button_Click_2(sender, e);
+            }
+        }
+        private void Anamneza_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

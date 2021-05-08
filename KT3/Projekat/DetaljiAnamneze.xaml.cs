@@ -23,17 +23,18 @@ namespace Projekat
         Pacijent pacijent;
         Anamneza stara;
         Termin termin;
-        public DetaljiAnamneze(Anamneza izabranaAnamneza, Termin termin)
+        public DetaljiAnamneze(Anamneza izabranaAnamneza, Termin Izabranitermin)
         {
             InitializeComponent();
+            this.termin = Izabranitermin;
             PopuniPodatke(izabranaAnamneza);
-    
+            
         }
 
         private void PopuniPodatke(Anamneza izabranaAnamneza)
         {
             this.stara = izabranaAnamneza;
-            this.termin = termin;
+        
             foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
             {
                 if (pac.IdPacijenta == izabranaAnamneza.IdPacijenta)

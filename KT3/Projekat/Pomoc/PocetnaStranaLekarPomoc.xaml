@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PocetnaStranaLekarPomoc" Height="320" Width="420" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+        Title="Pomoć" Height="320" Width="420" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -18,7 +18,8 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Button Height="40" Background="#FF6895C5" Margin="127,9.6,126.6,18.4" Click="Odustani_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">Odustani</Button>
-        <TextBlock HorizontalAlignment="Center" Margin="34,30,31.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="157" Width="308" Grid.Column="1"><Run Text="Da biste pristupili funkcionalnostima koje lekar "/><Run Text="izvršava, pritisnite na željeno dugme sa desne strane prozora ili kombinacijom tastera:"/><LineBreak/><Run Text="- CTRL + P -&gt; za pristup rasporedu pregleda i operacija"/><LineBreak/><Run Text="- CTRL + L -&gt; za pristup zahtevima za odobravanje lekova"/><LineBreak/><Run Text="- CTRL + G -&gt; za pristup zahtevima za godišnji odmor"/><LineBreak/><Run Text="- CTRL + M -&gt; za pristup pisanju evidencije utrošenog materijala na pregledu/operaciji"/><LineBreak/><Run Text="- CRTL + O -&gt; za pristup spisku "/><Run Text="pristiglih "/><Run Text="obaveštenja"/></TextBlock>
-        <GroupBox Height="212" Margin="10,0,10.6,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header="&#xA;"/>
+        
+        <TextBlock Margin="43.6,36,42,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="157" Grid.Column="1" ><Run Text="Opšte prečice:"/><LineBreak/><Run Text="CTRL + S - Sačuvaj"/><LineBreak/><Run Text="CTRL + X - Nazad"/><LineBreak/><Run Text="Prečice"/><Run Text=" za glavni prozor"/><Run Text=":"/><LineBreak/><Run Text="CTRL + P - "/><Run Text="P"/><Run Text="ristup rasporedu pregleda i operacija "/><LineBreak/><Run Text="CTRL + L - "/><Run Text="P"/><Run Text="ristup zahtevima za odobravanje lekova"/><LineBreak/><Run Text="CTRL + G - "/><Run Text="P"/><Run Text="ristup zahtevima za godišnji odmor"/><LineBreak/><Run Text="CTRL + M - "/><Run Text="P"/><Run Text="ristup pisanju evidencije utrošenog materijala na pregledu/operaciji"/><LineBreak/><Run Text="C"/><Run Text="TR"/><Run Text="L + O - "/><Run Text="P"/><Run Text="ristup spisku "/><Run Text="pristiglih "/><Run Text="obaveštenja"/></TextBlock>
+        <GroupBox Height="212" Margin="9.6,0,11,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header="&#xA;"/>
     </Grid>
 </Window>
