@@ -49,8 +49,7 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini>
-    </zauzetiTermini>
+    <zauzetiTermini />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
@@ -154,8 +153,7 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini>
-    </zauzetiTermini>
+    <zauzetiTermini />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>

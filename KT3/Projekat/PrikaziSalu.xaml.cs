@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -208,7 +209,8 @@ namespace Projekat
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
-            //pomoc
+            SalePomoc salePomoc = new SalePomoc();
+            salePomoc.Show();
         }
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
@@ -255,7 +257,7 @@ namespace Projekat
                 }else if(e.Key == Key.S)
                 {
                     MenuItem_Click(sender, e);
-                }else if(e.Key == Key.H)
+                }else if(e.Key == Key.T)
                 {
                     MenuItem_Click_1(sender, e);
                 }
@@ -266,6 +268,10 @@ namespace Projekat
                 else if (e.Key == Key.V)
                 {
                     MenuItem_Click_3(sender, e);
+                }
+                else if (e.Key == Key.H)
+                {
+                    MenuItem_Click_4(sender, e);
                 }
             }
         }

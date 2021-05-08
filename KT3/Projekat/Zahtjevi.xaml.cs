@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,8 @@ namespace Projekat
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
-            //Pomoc
+            ZahtjeviPomoc zahtjeviPomoc = new ZahtjeviPomoc();
+            zahtjeviPomoc.Show();
         }
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
@@ -92,6 +94,10 @@ namespace Projekat
                 }else if(e.Key == Key.T)
                 {
                     MenuItem_Click_1(sender, e);
+                }
+                else if (e.Key == Key.H)
+                {
+                    MenuItem_Click_4(sender, e);
                 }
             }
         }

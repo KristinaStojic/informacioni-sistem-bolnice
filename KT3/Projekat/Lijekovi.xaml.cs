@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -149,6 +150,10 @@ namespace Projekat
                 {
                     Button_Click_6(sender, e);
                 }
+                else if (e.Key == Key.H)
+                {
+                    MenuItem_Click_1(sender, e);
+                }
             }
         }
 
@@ -175,6 +180,12 @@ namespace Projekat
         {
             OdbijeniLijekovi odbijeniLijekovi = new OdbijeniLijekovi();
             odbijeniLijekovi.Show();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            LijekoviPomoc lijekoviPomoc = new LijekoviPomoc();
+            lijekoviPomoc.Show();
         }
     }
 }
