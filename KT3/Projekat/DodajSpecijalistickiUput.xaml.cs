@@ -48,7 +48,7 @@ namespace Projekat
             if (nadjiDoktora.SelectedItems.Count > 0)
             {
                 Lekar item = (Lekar)nadjiDoktora.SelectedItems[0];
-                specijalista.Text = item.ImeLek + " " + item.PrezimeLek;
+                specijalista.Text = item.ImeLek + " " + item.PrezimeLek + " " + item.specijalizacija;
             }
         }
 
@@ -73,7 +73,7 @@ namespace Projekat
             {
                 int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
-                int idSpecijaliste = NadjiIDSpecijaliste();
+                int idSpecijaliste = ZdravstveniKartonMenadzer.NadjiIDSpecijaliste(specijalista.Text);
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
@@ -91,21 +91,6 @@ namespace Projekat
             }
         }
        
-        private int NadjiIDSpecijaliste()
-        {
-            String[] imeprz = specijalista.Text.Split(' ');
-            String imeSpecijaliste = imeprz[0];
-            String prezimeSpecijaliste = imeprz[1];
-            int idSpecijaliste = 40;
-            foreach (Lekar lekar in MainWindow.lekari)
-            {
-                if (lekar.ImeLek.Equals(imeSpecijaliste) && lekar.PrezimeLek.Equals(prezimeSpecijaliste))
-                {
-                    idSpecijaliste = lekar.IdLekara;
-                }
-            }
-            return idSpecijaliste;
-        }
         private string NadjiDatum()
         {
             String formatiranDatum = null;

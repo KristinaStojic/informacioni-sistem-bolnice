@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
        Title="ZakaziTerminLekar" Height="640" Width="460">
-    <Grid Margin="0,0,4,-1" Background="#FF9AD8DE">
+    <Grid Margin="0,0,4,-1" Background="LightSkyBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="70"/>
@@ -74,7 +74,7 @@
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="Pretrazi po imenu, prezimenu ili jmbg(specijalizaciji)" Foreground="LightGray" />
+                                <Label Content="Pretrazi po imenu, prezimenu ili jmbg(specijalizaciji)" Foreground="AliceBlue" />
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>

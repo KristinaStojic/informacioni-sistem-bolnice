@@ -59,7 +59,7 @@ Pomoć?
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="Filtriranje (MM/dd/yyyy)" FontSize="17" Foreground="LightGray" />
+                                <Label Content="Filtriranje (MM/dd/yyyy)" FontSize="17" Foreground="AliceBlue" />
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>
