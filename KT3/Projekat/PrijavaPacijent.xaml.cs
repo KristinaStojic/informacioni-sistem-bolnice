@@ -57,34 +57,5 @@ namespace Projekat
             }
         }
 
-        private void AdresaNS_Click(object sender, RoutedEventArgs e)
-        {
-        
-        }
-
-        private void AdresaBG_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AdresaNI_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AdresaZG_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AdresaSA_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AdresaLJU_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

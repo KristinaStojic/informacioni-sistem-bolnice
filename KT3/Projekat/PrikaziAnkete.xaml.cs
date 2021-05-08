@@ -115,10 +115,10 @@ namespace Projekat
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
         }
-
-        private void GridViewColumn_SourceUpdated(object sender, DataTransferEventArgs e)
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
 
         private void listaAnketi_SelectionChanged(object sender, SelectionChangedEventArgs e)

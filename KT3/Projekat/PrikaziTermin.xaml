@@ -22,7 +22,7 @@
                                 <MenuItem.Icon>
                                     <Image Source="/slike/user.png" />
                                 </MenuItem.Icon>
-                                <MenuItem Header="_Vaš profil" />
+                                <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
                                 <Separator/>
                                 <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
@@ -58,7 +58,8 @@
             </StackPanel>
             <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
                   SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="227" Margin="75,360,0,-9" VerticalAlignment="Top" Width="625" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="13" SelectionChanged="dataGridTermini_SelectionChanged" Background="#FFF9F7F7" BorderBrush="#FF3F72AF">
+                  Height="227" Margin="75,360,0,-9" VerticalAlignment="Top" Width="625" GridLinesVisibility="Horizontal"  FontSize="13"
+                      SelectionChanged="dataGridTermini_SelectionChanged" Background="#FFF9F7F7" BorderBrush="#FF3F72AF">
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
                     <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
@@ -87,11 +88,11 @@
                 </-->
                 </DataGrid.Columns>
             </DataGrid>
-            <Label Content="🔔 Obavestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
+            <Label Content="🔔 Obaveštenja" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
                    RenderTransformOrigin="0.263,0.577" Margin="335,88,0,0" FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142"/>
             <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
                    RenderTransformOrigin="0.263,0.577" Margin="325,333,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142"/>
-            <Button Style="{DynamicResource ButtonStyle}" 
+            <!--Button Style="{DynamicResource ButtonStyle2}" 
                     Click="anketa_Click"
                     HorizontalAlignment="Left" 
                     Margin="75,88,0,0" 
@@ -100,27 +101,21 @@
                 <TextBlock Text="Anketa"
                            Foreground="{DynamicResource TextColorButton}"
                            FontSize="16"/>
-            </Button>
-            <Button Style="{DynamicResource ButtonStyle}" 
+            </-->
+            <Button Style="{DynamicResource ButtonStyle2}" 
                     Name="ObrisiObavestenje" 
                     Height="30" Width="30" 
                     Margin="669,87,101,461"
                     ToolTip="Obrisi selektovano obavestenje" 
-                    Click="ObrisiObavestenje_Click">
-                <TextBlock Text="🗑" 
-                           Foreground="{DynamicResource TextColorButton}"  
-                           FontSize="16"/>
-            </Button>
-            <Button Style="{DynamicResource ButtonStyle}" 
+                    Content="🗑" FontSize="16"
+                    Click="ObrisiObavestenje_Click"/>
+            <Button Style="{DynamicResource ButtonStyle2}" 
                     Name="UvidObavestenje" 
                     Height="30" Width="30" 
                     Margin="632,88,138,460"
                     ToolTip="Uvid u selektovano obavestenje" 
-                    Click="UvidObavestenje_Click">
-                <TextBlock Text="📄" 
-                          Foreground="{DynamicResource TextColorButton}"  
-                           FontSize="16"/>
-            </Button>
+                    Click="UvidObavestenje_Click"
+                    Content="📄" FontSize="16"/>
         </Grid>
     </StackPanel>
 </Page>
