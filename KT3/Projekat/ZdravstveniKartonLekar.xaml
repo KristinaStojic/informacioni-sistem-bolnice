@@ -141,7 +141,7 @@
                             </DataGrid>
 
                             <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="322,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Button_Click_5"/>
-                            <Button Content="Novi lek" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="50,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Click_4"/>
+                            <Button Content="Novi sastojak" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="50,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Click_4"/>
                             <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
 
 
