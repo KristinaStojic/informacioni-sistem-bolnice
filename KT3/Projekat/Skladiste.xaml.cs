@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Collections.Concurrent;
 using System.Collections.Specialized;
 using System.Windows.Threading;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -377,7 +378,17 @@ namespace Projekat
                 {
                     MenuItem_Click_3(sender, e);
                 }
+                else if (e.Key == Key.H)
+                {
+                    MenuItem_Click_6(sender, e);
+                }
             }
+        }
+
+        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
+        {
+            SkladistePomoc skladistePomoc = new SkladistePomoc();
+            skladistePomoc.Show();
         }
     }
 

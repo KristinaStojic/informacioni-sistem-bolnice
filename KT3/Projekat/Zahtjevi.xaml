@@ -15,7 +15,7 @@
                 <MenuItem Header="Izvjestaj" FontSize="15" Click="MenuItem_Click_3" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
-                <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_4"></MenuItem>
+                <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_4" InputGestureText="Ctrl + H"></MenuItem>
                 <MenuItem Header="O aplikaciji" FontSize="15" Click="MenuItem_Click_5"></MenuItem>
             </MenuItem>
         </Menu>

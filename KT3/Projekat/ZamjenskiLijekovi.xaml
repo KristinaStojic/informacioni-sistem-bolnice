@@ -8,20 +8,6 @@
         Title="Zamjenski lijekovi" Height="430" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
     <DockPanel Margin="0,0,2,0">
         <StackPanel DockPanel.Dock="Top">
-            <Menu DockPanel.Dock="Top" Background="CadetBlue">
-                <MenuItem Header="Fajl" FontSize="15">
-                    <MenuItem Header="Dodaj" FontSize="15" Click="Button_Click" InputGestureText="Ctrl + D"></MenuItem>
-                    <MenuItem Header="Zatvori" FontSize="15" Click="MenuItem_Click" InputGestureText="Ctrl + Z"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Uredi" FontSize="15">
-                    <MenuItem Header="Izmjeni" FontSize="15" Click="Button_Click_1" InputGestureText="Ctrl + I"></MenuItem>
-                    <MenuItem Header="Obrisi" FontSize="15" Click="Button_Click_2" InputGestureText="Ctrl + O"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Pomoc" FontSize="15">
-                    <MenuItem Header="Pomoc" FontSize="15"></MenuItem>
-                    <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
-                </MenuItem>
-            </Menu>
             <ToolBar Background="CadetBlue">
                 <Button ToolTip="Nazad, Ctrl + N" Click="MenuItem_Click">
                     <Image Source="slike/back.png" Width="30" Height="30"></Image>

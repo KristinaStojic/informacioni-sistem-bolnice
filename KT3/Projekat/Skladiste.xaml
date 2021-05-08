@@ -23,7 +23,7 @@
                 <MenuItem Header="Komunikacija" FontSize="15" Click="MenuItem_Click_2" InputGestureText="Ctrl + K"></MenuItem>
                 <MenuItem Header="Izvjestaj" FontSize="15" Click="MenuItem_Click_3" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Pomoc" FontSize="15">
+            <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_6" InputGestureText="Ctrl + H">
                 <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click"></MenuItem>
                 <MenuItem Header="O aplikaciji" FontSize="15" Click="MenuItem_Click_1"></MenuItem>
             </MenuItem>

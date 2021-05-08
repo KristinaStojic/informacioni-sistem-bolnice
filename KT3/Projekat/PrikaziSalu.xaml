@@ -20,12 +20,12 @@
                 </MenuItem>
                 <MenuItem Header="Navigacija" FontSize="15">
                     <MenuItem Header="Osoblje" FontSize="15" Click="MenuItem_Click" InputGestureText="Ctrl + S"></MenuItem>
-                    <MenuItem Header="Zahtjevi" FontSize="15" Click="MenuItem_Click_1" InputGestureText="Ctrl + H"></MenuItem>
+                    <MenuItem Header="Zahtjevi" FontSize="15" Click="MenuItem_Click_1" InputGestureText="Ctrl + T"></MenuItem>
                     <MenuItem Header="Komunikacija" FontSize="15" Click="MenuItem_Click_2" InputGestureText="Ctrl + K"></MenuItem>
                     <MenuItem Header="Izvjestaj" FontSize="15" Click="MenuItem_Click_3" InputGestureText="Ctrl + V"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Pomoc" FontSize="15">
-                    <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_4"></MenuItem>
+                    <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_4" InputGestureText="Ctrl + H"></MenuItem>
                     <MenuItem Header="O aplikaciji" FontSize="15" Click="MenuItem_Click_5"></MenuItem>
                 </MenuItem>
             </Menu>
