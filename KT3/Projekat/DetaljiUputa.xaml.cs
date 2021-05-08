@@ -21,30 +21,28 @@ namespace Projekat
     public partial class DetaljiUputa : Window
     {
         Uput uput;
-        Termin termin;
-        public DetaljiUputa(Uput izabraniUput, Termin izabraniTermin)
+        public DetaljiUputa(Uput izabraniUput)
         {
             InitializeComponent();
             this.uput = izabraniUput;
-            this.termin = izabraniTermin;
             if(izabraniUput.TipUputa == tipUputa.SpecijallistickiPregled)
             {
                 specijalistickiTab.IsSelected = true;
             }
 
-            popuniPodatke();
+            PopuniPodatkeUputa();
 
             
         }
-        private void popuniPodatke()
+        private void PopuniPodatkeUputa()
         {
-            nadjiPacijenta(uput.idPacijenta);
-            nadjiLekaraKojiIzdajeUput(uput);
-            nadjiLekaraSpecijalistu(uput);
+            NadjiPacijenta(uput.idPacijenta);
+            NadjiLekaraKojiIzdajeUput(uput);
+            NadjiLekaraSpecijalistu(uput);
             this.datum.SelectedDate = DateTime.Parse(uput.datumIzdavanja);
             this.napomena.Text = uput.opisPregleda;
         }
-        private void nadjiPacijenta(int idPacijenta)
+        private void NadjiPacijenta(int idPacijenta)
         {
             foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {
@@ -57,7 +55,7 @@ namespace Projekat
             }
         }
 
-        private void nadjiLekaraKojiIzdajeUput(Uput izabraniUput)
+        private void NadjiLekaraKojiIzdajeUput(Uput izabraniUput)
         {
             foreach(Lekar lekar in MainWindow.lekari)
             {
@@ -67,7 +65,7 @@ namespace Projekat
                 }
             }
         }
-        private void nadjiLekaraSpecijalistu(Uput izabraniUput)
+        private void NadjiLekaraSpecijalistu(Uput izabraniUput)
         {
             foreach(Lekar lekar in MainWindow.lekari)
             {

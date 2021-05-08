@@ -70,12 +70,14 @@ namespace Projekat
             viewLekari.Filter = UserFilterLekari;
 
             
-            vpp.ItemsSource = sviSlobodniTermini;
-            vkk.ItemsSource = sviSlobodniTerminiKraj;
+           
             
             if (izabraniTermin != null)
             {
                 termin.IdTermin = izabraniTermin.IdTermin;
+
+                vpp.ItemsSource = sviSlobodniTermini;
+                vkk.ItemsSource = sviSlobodniTerminiKraj;
 
                 // vreme
                 vpp.SelectedItem = izabraniTermin.VremePocetka; /*NE RADI PRIKAZ*/

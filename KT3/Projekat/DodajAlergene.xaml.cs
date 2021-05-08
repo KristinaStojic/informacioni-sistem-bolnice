@@ -31,14 +31,15 @@ namespace Projekat
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
 
-           
-            this.nadjiAlergen.ItemsSource = LekoviMenadzer.NadjiSveSastojke();
+            PopuniPodatkePacijenta();
+        }
 
+        private void PopuniPodatkePacijenta()
+        {
+            this.nadjiAlergen.ItemsSource = LekoviMenadzer.NadjiSveSastojke();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiAlergen.ItemsSource);
             view.Filter = UserFilter;
         }
-
-        
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Pomoc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -75,6 +76,10 @@ namespace Projekat
             {
                 this.Close();
             }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
             
 
 
@@ -83,6 +88,12 @@ namespace Projekat
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            PocetnaStranaLekarPomoc pomoc = new PocetnaStranaLekarPomoc();
+            pomoc.Show();
         }
     }
 }

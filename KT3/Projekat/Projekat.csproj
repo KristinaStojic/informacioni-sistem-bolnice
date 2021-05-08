@@ -228,6 +228,18 @@
     <Compile Include="PocetnaStrana.xaml.cs">
       <DependentUpon>PocetnaStrana.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\AnamnezaPomoc.xaml.cs">
+      <DependentUpon>AnamnezaPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\PocetnaStranaLekarPomoc.xaml.cs">
+      <DependentUpon>PocetnaStranaLekarPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\PrikazTerminaLekarPomoc.xaml.cs">
+      <DependentUpon>PrikazTerminaLekarPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\ZdravstveniKartonPomoc.xaml.cs">
+      <DependentUpon>ZdravstveniKartonPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PotvrdaSlanjaZahtjeva.xaml.cs">
       <DependentUpon>PotvrdaSlanjaZahtjeva.xaml</DependentUpon>
     </Compile>
@@ -572,6 +584,22 @@
     <Page Include="PocetnaStrana.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pomoc\AnamnezaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\PocetnaStranaLekarPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\PrikazTerminaLekarPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\ZdravstveniKartonPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PotvrdaSlanjaZahtjeva.xaml">
       <SubType>Designer</SubType>

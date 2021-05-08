@@ -27,10 +27,10 @@ namespace Projekat
             InitializeComponent();
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
-            popuniPodatke();
+            PopuniPodatkePacijenta();
            
         }
-        private void popuniPodatke()
+        private void PopuniPodatkePacijenta()
         {
             this.nadjiDoktora.ItemsSource = MainWindow.lekari;
             this.ime.Text = pacijent.ImePacijenta;
@@ -57,7 +57,9 @@ namespace Projekat
             if (String.IsNullOrEmpty(pretraga.Text))
                 return true;
             else
-                return ((item as Lekar).PrezimeLek.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as Lekar).PrezimeLek.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Lekar).ImeLek.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Lekar).specijalizacija.ToString().IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -104,7 +106,6 @@ namespace Projekat
             }
             return idSpecijaliste;
         }
-
         private string NadjiDatum()
         {
             String formatiranDatum = null;
@@ -135,7 +136,6 @@ namespace Projekat
 
             return tipUputa;
         }
-
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

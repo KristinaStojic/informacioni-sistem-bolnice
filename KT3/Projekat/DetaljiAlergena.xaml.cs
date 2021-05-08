@@ -28,6 +28,11 @@ namespace Projekat
             InitializeComponent();
             this.stariAlergen = izabraniAlergen;
             this.termin = termin;
+
+            PopuniPodatkeOAlergenu(izabraniAlergen);
+        }
+        private void PopuniPodatkeOAlergenu(Alergeni izabraniAlergen)
+        {
             foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
             {
                 if (pac.IdPacijenta == izabraniAlergen.IdPacijenta)
@@ -39,7 +44,6 @@ namespace Projekat
                 }
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //sacuvaj
