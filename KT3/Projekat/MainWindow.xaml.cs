@@ -90,7 +90,7 @@ namespace Projekat
         {
             Upravnik w1 = new Upravnik();
             w1.Show();
-            //this.Close();
+            this.Hide();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
