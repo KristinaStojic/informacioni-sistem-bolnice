@@ -77,11 +77,11 @@
                         <GridViewColumn Width="50" Header="Status">
                             <GridViewColumn.CellTemplate >
                                 <DataTemplate>
-                                    <CheckBox Width="30" x:Name="popunjenCheckBox" IsChecked="{Binding popunjenaAnketa}"  IsEnabled="False"/>
+                                    <CheckBox Width="30" x:Name="popunjenCheckBox" IsChecked="{Binding PopunjenaAnketa}"  IsEnabled="False"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Naziv ankete" Width="450" DisplayMemberBinding="{Binding nazivAnkete}"/>
+                        <GridViewColumn Header="Naziv ankete" Width="450" DisplayMemberBinding="{Binding NazivAnkete}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

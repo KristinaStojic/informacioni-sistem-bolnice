@@ -80,6 +80,7 @@ namespace Model
             {
                 if (termin.IdTermin == stariTermin.IdTermin)
                 {
+                    AnketaMenadzer.IzmeniAnketuZaLekara(stariTermin, noviTermin);
                     termin.IdTermin = noviTermin.IdTermin;
                     termin.VremePocetka = noviTermin.VremePocetka;
                     termin.VremeKraja = noviTermin.VremeKraja;
@@ -93,7 +94,6 @@ namespace Model
                     int idx = PrikaziTermin.Termini.IndexOf(stariTermin);
                     PrikaziTermin.Termini.RemoveAt(idx);
                     PrikaziTermin.Termini.Insert(idx, noviTermin);
-
                     foreach (Sala sala in SaleMenadzer.sale)
                     {
                         foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
@@ -106,6 +106,7 @@ namespace Model
                             }
                         }
                     }
+                    
                 }
             }
         }
@@ -206,11 +207,7 @@ namespace Model
         }
 
         public static void OtkaziTermin(Termin termin)
-      {
-            //termini.Remove(termin);
-            //PrikazTerminaLekar.Termini.Remove(termin);
-            //PrikaziTerminSekretar.TerminiSekretar.Remove(termin);
-            //PrikazTerminaLekar.Termini.Remove(termin);
+        {
             for (int i = 0; i < termini.Count; i++)
             {
                 if (termin.IdTermin == termini[i].IdTermin)
@@ -223,13 +220,12 @@ namespace Model
                             SaleMenadzer.sacuvajIzmjene();
                         }
                     }
-                    AnketaMenadzer.ObrisiAnketu(termin.Prostorija.Id);
-                    AnketaMenadzer.sacuvajIzmene();
+                    AnketaMenadzer.ObrisiAnketu(termin.IdTermin);
                     termini.RemoveAt(i);
                 }
             }
             PrikaziTermin.Termini.Remove(termin);
-       }
+        }
 
         
         public static void OtkaziTerminSekretar(Termin termin)

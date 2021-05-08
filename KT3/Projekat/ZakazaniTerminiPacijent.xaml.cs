@@ -82,13 +82,19 @@ namespace Projekat
             this.NavigationService.Navigate(izmeniTermin);
         }
 
+
+        /* Otkazi termin */ 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            // brisanje
             Termin terminZaBrisanje = (Termin)dataGridTermini.SelectedItem;
             if (terminZaBrisanje == null)
             {
                 MessageBox.Show("Selektujte termin koji zelite da otkazete", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno otkazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
             }
             Page otkazivanjeTermina = new OtkaziTermin(terminZaBrisanje);
@@ -109,6 +115,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }

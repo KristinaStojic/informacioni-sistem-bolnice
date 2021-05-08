@@ -43,7 +43,7 @@ namespace Projekat
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)
         {
-            datum.BlackoutDates.AddDatesInPast();
+            //datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
@@ -54,12 +54,12 @@ namespace Projekat
         {
             if (izabraniLekar == null )
             {
-                if (prijavljeniPacijent.IzabraniLekar == null)
+                /*if (prijavljeniPacijent.IzabraniLekar == null)
                 { 
                     MessageBox.Show("Dodajte izabranog lekara u zdravstvenom kartonu", "Izabrani lekar", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.imePrz.Text = "";
                     return;
-                }
+                }*/
                 izabraniLekar = prijavljeniPacijent.IzabraniLekar;
             }
             this.imePrz.Text = izabraniLekar.ToString();
@@ -70,7 +70,8 @@ namespace Projekat
         {
             try
             {
-                DetektujMalicioznoPonasanjePacijenta();
+                //DetektujMalicioznoPonasanjePacijenta();
+                PokupiPodatkeZaZakazivanjeTermina();
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
             }
@@ -84,7 +85,7 @@ namespace Projekat
         {
             if (!MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
             {
-                PokupiPodatkeZaZakazivanjeTermina();
+
             }
             else
             {
@@ -95,7 +96,7 @@ namespace Projekat
         private void PokupiPodatkeZaZakazivanjeTermina()
         {
             int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-            String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            String datumTermina = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             String vremePocetka = vpp.Text;
             String vremeKraja = IzracunajVremeKrajaPregleda(vremePocetka);
             TipTermina tipTermina;
@@ -115,7 +116,6 @@ namespace Projekat
             termin.Prostorija = prvaSlobodnaSala;
             TerminMenadzer.ZakaziTermin(termin);
 
-            MessageBox.Show(izabraniLekar.ToString());
             AnketaMenadzer.DodajAnketuZaLekara(termin, idPacijent);
             ProveriAnketuZaKliniku();
             MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent);
@@ -133,7 +133,7 @@ namespace Projekat
             foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent)) 
             {
                 brojacTermina++;
-                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika)
+                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika && !AnketaMenadzer.ankete.Exists(x => x.IdTermina == AnketaMenadzer.oznakaAnketeZaKliniku))
                 {
                     AnketaMenadzer.DodajAnketuZaKliniku(idPacijent);
                     return;
@@ -363,7 +363,7 @@ namespace Projekat
                         SviZauzetiZaSelektovaniDatum.Add(slot);
                     }
                 }
-                /* provera da se selektovani datum poklapa sa nekim vec zakazanim terminom */
+                /* provera da se selektovani datum poklapa sa nekim zakazanim terminom */
                 else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
                 {
                     SviZauzetiZaSelektovaniDatum.Add(slot);
@@ -458,6 +458,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
