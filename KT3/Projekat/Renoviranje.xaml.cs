@@ -91,13 +91,26 @@ namespace Projekat
                 terminiPocetak.Clear();
                 for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(termin))
-                    {
-                        terminiPocetak.Add(termin + ":00");
-                    }
+                    dodajTerminPocetka(datumPocetka, termin);
                 }
             }
 
+        }
+
+        private void dodajTerminPocetka(string datumPocetka, int termin)
+        {
+            if (!zauzecaZaDatum(datumPocetka).Contains(termin))
+            {
+                terminiPocetak.Add(termin + ":00");
+            }
+        }
+
+        private void dodajTerminKraja(string datumPocetka, int termin)
+        {
+            if (!zauzecaZaDatum(datumPocetka).Contains(termin))
+            {
+                terminiKraj.Add(termin + ":00");
+            }
         }
 
         private void azurirajVrijemePocetkaDrugiDatum()
@@ -108,10 +121,7 @@ namespace Projekat
                 terminiPocetak.Clear();
                 for (int termin = 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(termin))
-                    {
-                        terminiPocetak.Add(termin + ":00");
-                    }
+                    dodajTerminPocetka(datumPocetka, termin);
                 }
             }
         }
@@ -124,10 +134,7 @@ namespace Projekat
                 terminiKraj.Clear();
                 for (int termin = int.Parse(vrijemePocetka.SelectedItem.ToString().Split(':')[0]) + 1; termin <= prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka); termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(termin))
-                    {
-                        terminiKraj.Add(termin + ":00");
-                    }
+                    dodajTerminKraja(datumPocetka, termin);
                 }
             }
         }
@@ -146,10 +153,7 @@ namespace Projekat
                     {
                         for (int termin = 1; termin <= prvoSledeceZauzece("1", datumKraja); termin++)
                         {
-                            if (!zauzecaZaDatum(datumPocetka).Contains(termin))
-                            {
-                                terminiKraj.Add(termin + ":00");
-                            }
+                            dodajTerminKraja(datumPocetka, termin);
                         }
                     }
                 }
@@ -192,10 +196,7 @@ namespace Projekat
                 terminiKraj.Clear();
                 for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumKraja).Contains(termin))
-                    {
-                        terminiKraj.Add(termin + ":00");
-                    }
+                    dodajTerminKraja(datumKraja, termin);
                 }
             }
         }
