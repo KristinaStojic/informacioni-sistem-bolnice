@@ -89,15 +89,20 @@ namespace Projekat
             if (terminiPocetak != null)
             {
                 terminiPocetak.Clear();
-                for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+                for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(i))
-                    {
-                        terminiPocetak.Add(i + ":00");
-                    }
+                    dodajTermin(termin, datumPocetka);
                 }
             }
 
+        }
+
+        private void dodajTermin(int termin, string datumPocetka)
+        {
+            if (!zauzecaZaDatum(datumPocetka).Contains(termin))
+            {
+                terminiPocetak.Add(termin + ":00");
+            }
         }
 
         private void azurirajVrijemePocetkaDrugiDatum()
@@ -106,12 +111,9 @@ namespace Projekat
             if (terminiPocetak != null)
             {
                 terminiPocetak.Clear();
-                for (int i = 1; i <= 23; i++)
+                for (int termin = 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(i))
-                    {
-                        terminiPocetak.Add(i + ":00");
-                    }
+                    dodajTermin(termin, datumPocetka);
                 }
             }
         }
@@ -124,10 +126,7 @@ namespace Projekat
                 terminiKraj.Clear();
                 for (int i = int.Parse(vrijemePocetka.SelectedItem.ToString().Split(':')[0]) + 1; i <= prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka); i++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(i))
-                    {
-                        terminiKraj.Add(i + ":00");
-                    }
+                    dodajTermin(i, datumPocetka);
                 }
             }
         }
@@ -136,21 +135,38 @@ namespace Projekat
         {
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            
             if (terminiKraj != null)
             {
                 terminiKraj.Clear();
-                if (prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka) == 24)//Termini i pregledi ne traju vise dana...
+                if (vrijemePocetka.SelectedItem != null)
                 {
-                    for (int i = 1; i <= prvoSledeceZauzece("1", datumKraja); i++)
+                    if (prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka) == 24 && slobodniTerminiIzmedju(datumPocetka, datumKraja))//Termini i pregledi ne traju vise dana...
                     {
-                        if (!zauzecaZaDatum(datumPocetka).Contains(i))
+                        for (int i = 1; i <= prvoSledeceZauzece("1", datumKraja); i++)
                         {
-                            terminiKraj.Add(i + ":00");
+                            dodajTermin(i, datumPocetka);
                         }
                     }
                 }
             }
         }
+
+        private bool slobodniTerminiIzmedju(string datumPocetka, string datumKraja)
+        {
+            DateTime? pocetakRenoviranja = (DateTime?)DateTime.Parse(datumPocetka);
+            DateTime? krajRenoviranja = (DateTime?)DateTime.Parse(datumKraja);
+            for (var datum = pocetakRenoviranja; datum < krajRenoviranja; datum = datum.Value.AddDays(1))
+            {
+                string datumTrenutni = ((DateTime)datum).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                if (zauzecaZaDatum(datumTrenutni).Count != 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         private int prvoSledeceZauzece(string vrijeme, string datum)
         {
@@ -172,10 +188,7 @@ namespace Projekat
                 terminiKraj.Clear();
                 for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
                 {
-                    if (!zauzecaZaDatum(datumKraja).Contains(i))
-                    {
-                        terminiKraj.Add(i + ":00");
-                    }
+                    dodajTermin(i, datumKraja);
                 }
             }
         }
