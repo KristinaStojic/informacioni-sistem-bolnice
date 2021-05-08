@@ -89,11 +89,11 @@ namespace Projekat
             if (terminiPocetak != null)
             {
                 terminiPocetak.Clear();
-                for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+                for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(i))
+                    if (!zauzecaZaDatum(datumPocetka).Contains(termin))
                     {
-                        terminiPocetak.Add(i + ":00");
+                        terminiPocetak.Add(termin + ":00");
                     }
                 }
             }
@@ -106,11 +106,11 @@ namespace Projekat
             if (terminiPocetak != null)
             {
                 terminiPocetak.Clear();
-                for (int i = 1; i <= 23; i++)
+                for (int termin = 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(i))
+                    if (!zauzecaZaDatum(datumPocetka).Contains(termin))
                     {
-                        terminiPocetak.Add(i + ":00");
+                        terminiPocetak.Add(termin + ":00");
                     }
                 }
             }
@@ -122,11 +122,11 @@ namespace Projekat
             if (terminiKraj != null && vrijemePocetka.SelectedItem != null)
             {
                 terminiKraj.Clear();
-                for (int i = int.Parse(vrijemePocetka.SelectedItem.ToString().Split(':')[0]) + 1; i <= prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka); i++)
+                for (int termin = int.Parse(vrijemePocetka.SelectedItem.ToString().Split(':')[0]) + 1; termin <= prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka); termin++)
                 {
-                    if (!zauzecaZaDatum(datumPocetka).Contains(i))
+                    if (!zauzecaZaDatum(datumPocetka).Contains(termin))
                     {
-                        terminiKraj.Add(i + ":00");
+                        terminiKraj.Add(termin + ":00");
                     }
                 }
             }
@@ -144,11 +144,11 @@ namespace Projekat
                 {
                     if (prvoSledeceZauzece(vrijemePocetka.SelectedItem.ToString().Split(':')[0], datumPocetka) == 24 && slobodniTerminiIzmedju(datumPocetka, datumKraja))//Termini i pregledi ne traju vise dana...
                     {
-                        for (int i = 1; i <= prvoSledeceZauzece("1", datumKraja); i++)
+                        for (int termin = 1; termin <= prvoSledeceZauzece("1", datumKraja); termin++)
                         {
-                            if (!zauzecaZaDatum(datumPocetka).Contains(i))
+                            if (!zauzecaZaDatum(datumPocetka).Contains(termin))
                             {
-                                terminiKraj.Add(i + ":00");
+                                terminiKraj.Add(termin + ":00");
                             }
                         }
                     }
@@ -190,11 +190,11 @@ namespace Projekat
             if (terminiKraj != null)
             {
                 terminiKraj.Clear();
-                for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+                for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
                 {
-                    if (!zauzecaZaDatum(datumKraja).Contains(i))
+                    if (!zauzecaZaDatum(datumKraja).Contains(termin))
                     {
-                        terminiKraj.Add(i + ":00");
+                        terminiKraj.Add(termin + ":00");
                     }
                 }
             }
