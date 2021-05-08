@@ -43,7 +43,7 @@ namespace Projekat
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)
         {
-            //datum.BlackoutDates.AddDatesInPast();
+            datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
@@ -54,12 +54,6 @@ namespace Projekat
         {
             if (izabraniLekar == null )
             {
-                /*if (prijavljeniPacijent.IzabraniLekar == null)
-                { 
-                    MessageBox.Show("Dodajte izabranog lekara u zdravstvenom kartonu", "Izabrani lekar", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.imePrz.Text = "";
-                    return;
-                }*/
                 izabraniLekar = prijavljeniPacijent.IzabraniLekar;
             }
             this.imePrz.Text = izabraniLekar.ToString();
@@ -70,7 +64,6 @@ namespace Projekat
         {
             try
             {
-                //DetektujMalicioznoPonasanjePacijenta();
                 PokupiPodatkeZaZakazivanjeTermina();
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
@@ -78,18 +71,6 @@ namespace Projekat
             catch (System.Exception)
             {
                 MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void DetektujMalicioznoPonasanjePacijenta()
-        {
-            if (!MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili maksimalni broj modifikacije termina u danu.", "Upozorenje", MessageBoxButton.OK);
             }
         }
 
@@ -177,11 +158,12 @@ namespace Projekat
             this.NavigationService.Navigate(ztp);
         }
 
-        /*  -------- ZAKAZIVANJE TERMINA ---------- */
+        /*  ---------------------- ZAKAZIVANJE TERMINA ---------------------- */
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SaleZaPreglede = SaleMenadzer.PronadjiSaleZaPregled();
-            ukupanBrojSalaZaPregled = SaleMenadzer.UkupanBrojSalaZaPregled();
+            ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
+            
         }
 
         private static int ParsirajSateVremenskogSlota(String vreme)
@@ -196,7 +178,7 @@ namespace Projekat
             return Convert.ToInt32(minuti);
         }
 
-        public void UkoloniProsleSlotoveZaDanasnjiDan(ObservableCollection<string> PomocnaSviSlobodniSlotovi)
+        public void UkoloniProsleSlotoveZaDanasnjiDatum(ObservableCollection<string> PomocnaSviSlobodniSlotovi)
         {
             if (datum.SelectedDate != DateTime.Now.Date)
                 return;
@@ -227,7 +209,6 @@ namespace Projekat
             }
         }
 
-
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SaleZaPreglede == null)
@@ -238,7 +219,7 @@ namespace Projekat
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
-            UkoloniProsleSlotoveZaDanasnjiDan(PomocnaSviSlobodniSlotovi);
+            UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);
             UkolniSlotoveZauzeteUSvimSalama(PomocnaSviSlobodniSlotovi);
             vpp.ItemsSource = SviSlobodniSlotovi;
@@ -442,7 +423,7 @@ namespace Projekat
             }
             return false;
         }
-        /*  --------------------------- */
+        /*  ------------------------------------------------------------------ */
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {

@@ -65,14 +65,11 @@ namespace Projekat
                 tp = izabraniTermin.tipTermina;
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                //idLek = izabraniTermin.Lekar;
                 this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
                 InicijalizujSelektovanogLekara(izabraniTermin);
-                //this.vpp.SelectedItem = izabraniTermin.VremePocetka;
             }
         }
 
-        // TODO: ispraviti
         private void InicijalizujSelektovanogLekara(Termin izabraniTermin)
         {
             int brojac = 0;
@@ -90,7 +87,6 @@ namespace Projekat
 
         private void OgraniciIzborNovogDatuma(Termin izabraniTermin)
         {
-            // TODO: provera da li su  ti datumi u proslosti
             CalendarDateRange daniPreTermina = new CalendarDateRange();
             daniPreTermina.Start = DateTime.Parse(izabraniTermin.Datum).AddDays(-1000);//DateTime.Parse(izabraniTermin.Datum).AddDays(3);
             daniPreTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(-3);
@@ -99,7 +95,8 @@ namespace Projekat
             daniPosleTermina.Start = DateTime.Parse(izabraniTermin.Datum).AddDays(3);
             daniPosleTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(1000);
             datum.BlackoutDates.Add(daniPosleTermina);
-            //datum.BlackoutDates.AddDatesInPast();
+            // TODO: ograniciti pomeranje samo za termine koji su u buducnosti
+            //datum.BlackoutDates.AddDatesInPast(); 
         }
 
         private bool UserFilter(object item)
@@ -126,13 +123,6 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            /*if (termin.Pomeren == true)
-            {
-                MessageBox.Show("Nemoguce je pomeriti ovaj termin, dozvoljeni broj pomeranja termina je jedan", "Upozorenje", MessageBoxButton.OK);
-                Page uvidZakazanih = new ZakazaniTerminiPacijent(idPacijent);
-                this.NavigationService.Navigate(uvidZakazanih);
-                return;
-            }*/
             IzmeniIzabraniTermin();
         }
 
@@ -215,7 +205,7 @@ namespace Projekat
             return Convert.ToInt32(minuti);
         }
 
-        public void UkoloniProsleSlotoveZaDanasnjiDan(ObservableCollection<string> PomocnaSviSlobodniSlotovi)
+        public void UkoloniProsleSlotoveZaDanasnjiDatum(ObservableCollection<string> PomocnaSviSlobodniSlotovi)
         {
             if (datum.SelectedDate != DateTime.Now.Date)
                 return;
@@ -256,7 +246,7 @@ namespace Projekat
             string selektovaniDatum = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
-            UkoloniProsleSlotoveZaDanasnjiDan(PomocnaSviSlobodniSlotovi);
+            UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);
             UkolniSlotoveZauzeteUSvimSalama(PomocnaSviSlobodniSlotovi);
             vpp.ItemsSource = SviSlobodniSlotovi;
@@ -381,22 +371,6 @@ namespace Projekat
                 else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
                 {
                     SviZauzetiZaSelektovaniDatum.Add(slot);
-                }
-            }
-        }
-
-        private void IzbaciProsleSlotoveZaDanasnjiDan()
-        {
-            if (datum.SelectedDate == DateTime.Now.Date)
-            {
-                foreach (string slot in PomocnaSviSlobodniSlotovi)
-                {
-                    DateTime dt = DateTime.Parse(slot);
-                    DateTime sada = DateTime.Now;
-                    if (dt.TimeOfDay <= sada.TimeOfDay)
-                    {
-                        SviSlobodniSlotovi.Remove(slot);
-                    }
                 }
             }
         }
