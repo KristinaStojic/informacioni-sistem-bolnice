@@ -189,6 +189,7 @@
     <Compile Include="Model\Premjestaj.cs" />
     <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\Sastojak.cs" />
+    <Compile Include="Model\Specijalizacija.cs" />
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />

@@ -43,6 +43,34 @@ namespace Model
             ObavestenjaMenadzer.sacuvajIzmene();
         }
 
+        // hitan slucaj
+        public static void ZakaziHitanTermin(Termin hitanTermin, string datum)
+        {
+            ZakaziTerminSekretar(hitanTermin);
+
+            // TODO: ovaj deo direktno u ZakaziTerminSekretar
+            ZauzeceSale novoZauzece = new ZauzeceSale(hitanTermin.VremePocetka, hitanTermin.VremeKraja, datum, hitanTermin.IdTermin);
+            Sala sala = SaleMenadzer.NadjiSaluPoId(hitanTermin.Prostorija.Id);
+            sala.zauzetiTermini.Add(novoZauzece);
+            SaleMenadzer.sacuvajIzmjene();
+            // -----------------------------------------------
+
+            DodajZauzeceUSveSalu(sala);
+        }
+
+        public static void DodajZauzeceUSveSalu(Sala Prostorija)
+        {
+            foreach (Termin termin in termini)
+            {
+                if (termin.Prostorija.Id == Prostorija.Id)
+                {
+                    termin.Prostorija = Prostorija;
+                }
+            }
+            sacuvajIzmene();
+            SaleMenadzer.sacuvajIzmjene();
+        }
+
         // isto ovu metodu
         public static void ZakaziTerminLekar(Termin termin)
         {

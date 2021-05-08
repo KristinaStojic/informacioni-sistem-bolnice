@@ -3,9 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:StyleAlias="clr-namespace:Model"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="HitanSlucaj" Height="720" Width="565" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="StyleAlias:Specijalizacija"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="43"/>
@@ -26,7 +37,7 @@
             <ColumnDefinition Width="210"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-      
+
         <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalContentAlignment="Center" Content="Izaberite pacijenta:" Margin="9,2,173.2,41.4" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <Label Grid.Column="1" Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Trajanje:" Margin="9.2,42.8,63.2,42.8" Grid.RowSpan="3"/>
         <Label Grid.Column="1" Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Tip termina:" Margin="9.2,42.8,63.2,42.8" Grid.RowSpan="3"/>
@@ -79,14 +90,10 @@
 
         <TextBox Grid.Column="2" Grid.Row="3" Name="pacijenti" Margin="6.8,7,6.6,0" FontSize="15" Height="30" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap"/>
 
-        <ComboBox x:Name="oblast" Grid.Column="2" Grid.Row="4" Margin="6.8,6.4,6.6,6.8" SelectedIndex="0" FontSize="17" Height="30">
-            <ComboBoxItem Content="Opsta_praksa"/>
-            <ComboBoxItem Content="Akuserstvo"/>
-            <ComboBoxItem Content="Hirurgija"/>
-            <ComboBoxItem Content="Ortopedija"/>
-        </ComboBox>
+        <ComboBox x:Name="oblastLekara" Grid.Column="2" Grid.Row="4"  Width="197" Margin="6.8,5.8,0,7.4" SelectedIndex="0" ItemsSource="{Binding Source={StaticResource dataFromEnum}}" FontSize="17"
+                  SelectedItem="{Binding Path=CurrentEffectStyle}" HorizontalAlignment="Left" />
 
-        <ComboBox HorizontalAlignment="Left" Name = "trajanje" Grid.Column="2" Grid.Row="5" Width="197" Margin="6.8,5.6,0,7.6" SelectedIndex="0" FontSize="17" Height="30">
+        <ComboBox HorizontalAlignment="Left" Name="trajanje" Grid.Column="2" Grid.Row="5" Width="197" Margin="6.8,5.6,0,7.6" SelectedIndex="0" FontSize="17" Height="30">
             <ComboBoxItem HorizontalAlignment="Center">00:30</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">01:00</ComboBoxItem>
             <ComboBoxItem HorizontalAlignment="Center">01:30</ComboBoxItem>
@@ -105,12 +112,12 @@
             <ComboBoxItem HorizontalAlignment="Center">08:00</ComboBoxItem>
         </ComboBox>
 
-        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="6" Margin="6.8,6.4,6.6,0" SelectedIndex="0" FontSize="17" Height="30" VerticalAlignment="Top">
+        <ComboBox x:Name="tipTermina" Grid.Column="2" Grid.Row="6" Margin="6.8,6.4,6.6,0" SelectedIndex="0" FontSize="17" Height="30" VerticalAlignment="Top">
             <ComboBoxItem Content="Pregled"/>
             <ComboBoxItem Content="Operacija"/>
         </ComboBox>
 
-        <Button Name="pretrazi" Grid.Column="2" Grid.Row="7" Click="Pretrazi_Click" Content="Pretrazi " Margin="98.8,4.2,6.6,0" Height="37" FontSize="17" VerticalAlignment="Top"/>
+        <Button Name="pretraziDugme" Grid.Column="2" Grid.Row="7" Click="Pretrazi_Click" Content="Pretrazi " Margin="98.8,4.2,6.6,0" Height="37" FontSize="17" VerticalAlignment="Top"/>
 
         <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" x:Name="zauzetiTermini" SelectionMode="Multiple" Margin="10.2,36,7.6,11.8" RenderTransformOrigin="0.492,0.518" IsEnabled="False" Grid.RowSpan="2">
             <ListView.View>
@@ -124,8 +131,8 @@
             </ListView.View>
         </ListView>
 
-        <Button Name="pomeri" Grid.Column="1" Grid.Row="7" Click="Pomeri_Click" Content="Pomeri " Margin="9.2,4.2,96.2,0" Height="37" FontSize="15" VerticalAlignment="Top" IsEnabled="False"/>
-        <Button Name="potvrdi" Grid.Column="1" Grid.Row="10" Click="Potvrdi_Click" Content="Potvrdi" Margin="10.2,6.2,10.2,27.4" Background="#FFA3DADE" FontSize="15" IsEnabled="False"/>
-        <Button Name="odustani" Grid.Column="2" Grid.Row="10"  Click="Odustani_Click" Content="Odustani" Margin="9.8,6.2,7.6,27.4" Background="#FFA3DADE" FontSize="17"/>
+        <Button Name="pomeriDugme" Grid.Column="1" Grid.Row="7" Click="Pomeri_Click" Content="Pomeri " Margin="9.2,4.2,96.2,0" Height="37" FontSize="15" VerticalAlignment="Top" IsEnabled="False"/>
+        <Button Name="potvrdiDugme" Grid.Column="1" Grid.Row="10" Click="Potvrdi_Click" Content="Potvrdi" Margin="10.2,6.2,10.2,27.4" Background="#FFA3DADE" FontSize="15" IsEnabled="False"/>
+        <Button Name="odustaniDugme" Grid.Column="2" Grid.Row="10"  Click="Odustani_Click" Content="Odustani" Margin="9.8,6.2,7.6,27.4" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>
