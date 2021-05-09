@@ -73,7 +73,7 @@ namespace Projekat
             {
                 int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
-                int idSpecijaliste = ZdravstveniKartonMenadzer.NadjiIDSpecijaliste(specijalista.Text);
+                int idSpecijaliste = NadjiIDSpecijaliste();
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
@@ -90,7 +90,25 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-       
+
+        private int NadjiIDSpecijaliste()
+        {
+            String podaciSpecijaliste = this.specijalista.Text;
+            String[] imeprz = podaciSpecijaliste.Split(' ');
+            String imeSpecijaliste = imeprz[0];
+            String prezimeSpecijaliste = imeprz[1];
+            String specijalizacijaSpecijaliste = imeprz[2];
+            int idSpecijaliste = 40;
+            foreach (Lekar lekar in MainWindow.lekari)
+            {
+                if (lekar.ImeLek.Equals(imeSpecijaliste) && lekar.PrezimeLek.Equals(prezimeSpecijaliste) && lekar.specijalizacija.ToString().Equals(specijalizacijaSpecijaliste))
+                {
+                    idSpecijaliste = lekar.IdLekara;
+                }
+            }
+            return idSpecijaliste;
+        }
+
         private string NadjiDatum()
         {
             String formatiranDatum = null;

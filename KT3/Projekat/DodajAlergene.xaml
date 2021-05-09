@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajAlergene" Height="651" Width="442" Background="LightSkyBlue">
+        Title="DodajAlergene" Height="651" Width="442" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -36,9 +36,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Naziv" DisplayMemberBinding="{Binding naziv}"
-                                    Width="178"/>
-                    <GridViewColumn Header="Količina" DisplayMemberBinding="{Binding kolicina}"
-                                    Width="186"/>
+                                    Width="364"/>
                 </GridView>
             </ListView.View>
         </ListView>

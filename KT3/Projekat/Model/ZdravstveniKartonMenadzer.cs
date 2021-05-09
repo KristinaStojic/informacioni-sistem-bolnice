@@ -197,7 +197,10 @@ namespace Projekat.Model
             List<Lek> dozvoljeniLekovi = new List<Lek>();
 
 
-            dozvoljeniLekovi = LekoviMenadzer.lijekovi;
+            foreach(Lek lek in LekoviMenadzer.lijekovi)
+            {
+                dozvoljeniLekovi.Add(lek);
+            }
 
             foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {
@@ -282,22 +285,7 @@ namespace Projekat.Model
         }
 
 
-        public static int NadjiIDSpecijaliste(string podaciSpecijaliste)
-        {
-            String[] imeprz = podaciSpecijaliste.Split(' ');
-            String imeSpecijaliste = imeprz[0];
-            String prezimeSpecijaliste = imeprz[1];
-            String specijalizacijaSpecijaliste = imeprz[2];
-            int idSpecijaliste = 40;
-            foreach (Lekar lekar in MainWindow.lekari)
-            {
-                if (lekar.ImeLek.Equals(imeSpecijaliste) && lekar.PrezimeLek.Equals(prezimeSpecijaliste) && lekar.specijalizacija.ToString().Equals(specijalizacijaSpecijaliste))
-                {
-                    idSpecijaliste = lekar.IdLekara;
-                }
-            }
-            return idSpecijaliste;
-        }
+       
 
 
     }
