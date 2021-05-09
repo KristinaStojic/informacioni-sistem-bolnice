@@ -55,16 +55,16 @@ namespace Model
             SaleMenadzer.sacuvajIzmjene();
             // -----------------------------------------------
 
-            DodajZauzeceUSveSalu(sala);
+            DodajZauzeceUSveSale(sala);
         }
 
-        public static void DodajZauzeceUSveSalu(Sala Prostorija)
+        public static void DodajZauzeceUSveSale(Sala sala)
         {
             foreach (Termin termin in termini)
             {
-                if (termin.Prostorija.Id == Prostorija.Id)
+                if (termin.Prostorija.Id == sala.Id)
                 {
-                    termin.Prostorija = Prostorija;
+                    termin.Prostorija = sala;
                 }
             }
             sacuvajIzmene();

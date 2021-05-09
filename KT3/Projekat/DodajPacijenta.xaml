@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Model"
         mc:Ignorable="d"
-        Title="DodajPacijenta" Height="660" Width="580" WindowStartupLocation="CenterScreen">
+        Title="DodajPacijenta" Height="660" Width="560" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
@@ -23,10 +23,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="70"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalContentAlignment="Center" Content="Ime pacijenta:"/>
         <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalContentAlignment="Center" Content="Prezime pacijenta:"/>
