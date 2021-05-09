@@ -192,13 +192,12 @@ namespace Projekat
         {
             List<Termin> filtriraniTermini = new List<Termin>();
 
-            // TODO: iskoristi metodu
             foreach (Termin t in TerminiZauzeto)
             {
-                if ((Convert.ToInt32(VremePocetkaSatiKonvertovano) <= Convert.ToInt32(t.VremePocetka.Split(':')[0]) &&
-                 Convert.ToInt32(t.VremePocetka.Split(':')[0]) <= Convert.ToInt32(VremeKrajaSatiKonvertovano)) ||
-                (Convert.ToInt32(t.VremeKraja.Split(':')[0]) > Convert.ToInt32(VremePocetkaSatiKonvertovano) &&
-                 Convert.ToInt32(t.VremePocetka.Split(':')[0]) <= Convert.ToInt32(VremePocetkaSatiKonvertovano)))
+                if ((Convert.ToInt32(VremePocetkaSatiKonvertovano) <= Convert.ToInt32(Sati(t.VremePocetka)) &&
+                 Convert.ToInt32(Sati(t.VremePocetka)) <= Convert.ToInt32(VremeKrajaSatiKonvertovano)) ||
+                (Convert.ToInt32(Sati(t.VremeKraja)) > Convert.ToInt32(VremePocetkaSatiKonvertovano) &&
+                 Convert.ToInt32(Sati(t.VremePocetka)) <= Convert.ToInt32(VremePocetkaSatiKonvertovano)))
                 {
                     filtriraniTermini.Add(t);
                 }
@@ -211,17 +210,16 @@ namespace Projekat
         {
             int[] Trajanje = new int[2];
 
-            // TODO: iskoristi metodu
-            int Sati = Convert.ToInt32(termin.VremeKraja.Split(':')[0]) - Convert.ToInt32(termin.VremePocetka.Split(':')[0]);
-            int Minuti = Convert.ToInt32(termin.VremeKraja.Split(':')[1]) - Convert.ToInt32(termin.VremePocetka.Split(':')[1]);
-            if (Minuti == -30)
+            int TrajanjeSati = Convert.ToInt32(Sati(termin.VremeKraja)) - Convert.ToInt32(Sati(termin.VremePocetka));
+            int TrajanjeMinuti = Convert.ToInt32(Minuti(termin.VremeKraja)) - Convert.ToInt32(Minuti(termin.VremePocetka));
+            if (TrajanjeMinuti == -30)
             {
-                Minuti = 30;
-                Sati -= 1;
+                TrajanjeMinuti = 30;
+                TrajanjeSati -= 1;
             }
 
-            Trajanje[0] = Sati;
-            Trajanje[1] = Minuti;
+            Trajanje[0] = TrajanjeSati;
+            Trajanje[1] = TrajanjeMinuti;
             
             return Trajanje;
         }
@@ -350,8 +348,7 @@ namespace Projekat
                 string pretposlednjiSlot = SlobodnoVremePocetka[pretposlednjiIndeks];
                 OdrediVremeZaPretposlednjiSlot();
 
-                // TODO: iskoristi metodu
-                if (pretposlednjiSlot.Split(':')[0].Equals(noviSati) && pretposlednjiSlot.Split(':')[1].Equals(noviMinuti))
+                if (Sati(pretposlednjiSlot).Equals(noviSati) && Minuti(pretposlednjiSlot).Equals(noviMinuti))
                 {
                     return true;
                 }
@@ -413,9 +410,8 @@ namespace Projekat
 
         private int OdrediBrojSlotovaZaIzbacivanje(string pocetakTermina, string krajTermina)
         {
-            // TODO: iskoristi metodu
-            int trajanjeSati = Convert.ToInt32(krajTermina.Split(':')[0]) - Convert.ToInt32(pocetakTermina.Split(':')[0]);
-            int trajanjeMinuti = Convert.ToInt32(krajTermina.Split(':')[1]) - Convert.ToInt32(pocetakTermina.Split(':')[1]);
+            int trajanjeSati = Convert.ToInt32(Sati(krajTermina)) - Convert.ToInt32(Sati(pocetakTermina));
+            int trajanjeMinuti = Convert.ToInt32(Minuti(krajTermina)) - Convert.ToInt32(Minuti(pocetakTermina));
             int slotoviMinuti = trajanjeMinuti / 30;
 
             return trajanjeSati * 2 + slotoviMinuti;
@@ -476,9 +472,8 @@ namespace Projekat
                     return null;
                 }
 
-                // TODO: iskoristi metodu
-                if (SlobodnoVremePocetka[noviIndex].Split(':')[0].Equals(SlobodnoVremePocetka[poslednji].Split(':')[0]) && 
-                    SlobodnoVremePocetka[noviIndex].Split(':')[1].Equals(SlobodnoVremePocetka[poslednji].Split(':')[1]))
+                if (Sati(SlobodnoVremePocetka[noviIndex]).Equals(Sati(SlobodnoVremePocetka[poslednji])) && 
+                    Minuti(SlobodnoVremePocetka[noviIndex]).Equals(Minuti(SlobodnoVremePocetka[poslednji])) )
                 {
                     if (idLekara != 0)
                     {
@@ -683,9 +678,8 @@ namespace Projekat
 
         private void OdrediVremeKraja(string trajanjeTermina)
         {
-            // TODO: iskoristi metodu
-            VremeKrajaSati = Convert.ToInt32(trajanjeTermina.Split(':')[0]) + VremePocetkaSati;
-            VremeKrajaMinuti = Convert.ToInt32(trajanjeTermina.Split(':')[1]) + VremePocetkaMinuti;
+            VremeKrajaSati = Convert.ToInt32(Sati(trajanjeTermina)) + VremePocetkaSati;
+            VremeKrajaMinuti = Convert.ToInt32(Minuti(trajanjeTermina)) + VremePocetkaMinuti;
             KonvertujVremeKraja();
         }
 
@@ -698,27 +692,27 @@ namespace Projekat
         {
             string trajanjeTermina = trajanje.Text;
             string vreme = KonvertujTrenutnoVreme();
-            string sati = vreme.Split(':')[0];
-            string minuti = vreme.Split(':')[1];
+            // TODO: metoda
+            string sati = Sati(vreme);
+            string minuti = Minuti(vreme);
 
-            OdrediVremePocetka(sati, minuti);
+            OdrediVremePocetka(Sati(vreme), Minuti(vreme));
             OdrediVremeKraja(trajanjeTermina);
             trajanjeHitnogTermina = OdrediTrajanjeTermina(trajanjeTermina);
         }
 
         private int OdrediTrajanjeTermina(string trajanjeTermina)
         {
-            // TODO: iskoristi metodu
-            if (trajanjeTermina.Split(':')[1].Equals("00"))
+            if (Minuti(trajanjeTermina).Equals("00"))
             {
                 slotoviMinuti = 0;
             }
-            else if (trajanjeTermina.Split(':')[1].Equals("30"))
+            else if (Minuti(trajanjeTermina).Equals("30"))
             {
                 slotoviMinuti = 1;
             }
 
-            return Convert.ToInt32(trajanjeTermina.Split(':')[0]) * 2 + slotoviMinuti;
+            return Convert.ToInt32(Sati(trajanjeTermina)) * 2 + slotoviMinuti;
         }
 
         private bool PretragaPacijenta(object item)
