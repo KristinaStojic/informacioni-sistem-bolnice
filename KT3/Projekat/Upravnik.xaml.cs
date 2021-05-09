@@ -82,5 +82,12 @@ namespace Projekat
                 }
             }
         }
+
+        private void Komunikacija_Click(object sender, RoutedEventArgs e)
+        {
+            Komunikacija komunikacija = new Komunikacija();
+            komunikacija.Show();
+            this.Close();
+        }
     }
 }
