@@ -129,5 +129,18 @@ namespace Projekat.Model
             }
             return null;
         }
+
+        public static List<Anketa> SveAnketePacijenta(int idPacijent)
+        {
+            List<Anketa> anketePacijenta = new List<Anketa>();
+            foreach(Anketa anketa in ankete)
+            {
+                if(anketa.IdPacijent == idPacijent)
+                {
+                    anketePacijenta.Add(anketa);
+                }
+            }
+            return anketePacijenta;
+        }
     }
 }
