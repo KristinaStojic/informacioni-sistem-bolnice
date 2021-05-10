@@ -23,7 +23,7 @@ namespace Projekat
     public partial class PrikaziTermin : Page
     {
         public static Pacijent prijavljeniPacijent;
-        public static int idPacijent;
+        private static int idPacijent;
         public static bool pacijentProzor;
         private int colNum = 0;
         public static ObservableCollection<Termin> Termini { get; set; }
@@ -159,7 +159,6 @@ namespace Projekat
             {
                 if (o.ListaIdPacijenata.Contains(idPacijent))
                 {
-                   // MessageBox.Show(o.Datum + " " + datum);
                     if (o.TipObavestenja.Equals("Terapija") && o.Datum.Equals(datum) && !ObavestenjaPacijent.Any(x => x.IdObavestenja == o.IdObavestenja))
                     {
                         return o;

@@ -43,7 +43,7 @@ namespace Projekat
 
         private void PrikaziSveAnketeZaProsleTermine()
         {
-            foreach (Anketa anketa in AnketaMenadzer.ankete)
+            foreach (Anketa anketa in AnketaMenadzer.SveAnketePacijenta(idPacijent))
             {
                 foreach (Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent))
                 {
@@ -73,10 +73,9 @@ namespace Projekat
 
         private void PrikaziAnketuZaKliniku()
         {
-            if (AnketePacijenta.Count() == minBrojTerminaZaAnketuKlinika) /* posle 3. termina - anketa o radu klinike */
+            if (AnketePacijenta.Count() == minBrojTerminaZaAnketuKlinika)  /* posle 3 termina - anketa o radu klinike */
             {
-                Anketa anketa = AnketaMenadzer.PronadjiAnketuZaKliniku(idPacijent);
-                AnketePacijenta.Add(anketa);
+                AnketePacijenta.Add(AnketaMenadzer.PronadjiAnketuZaKliniku(idPacijent));
                 return;
             }
         }

@@ -74,7 +74,9 @@
             </Grid>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBox  BorderThickness="1" DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged" Margin="0,20,40,0" TextAlignment="Left" Height="25" Width="300"  ToolTip="Pretrazite listu termina po datumu" HorizontalAlignment="Right" FontSize="14"
+            <TextBox  BorderThickness="1" DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged"
+                      Margin="0,20,40,0" TextAlignment="Left" Height="25" Width="300"  ToolTip="Pretrazite listu termina po datumu"
+                      HorizontalAlignment="Right" FontSize="14"
                       BorderBrush="White">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
