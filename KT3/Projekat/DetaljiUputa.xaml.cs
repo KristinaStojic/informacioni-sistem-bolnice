@@ -71,7 +71,7 @@ namespace Projekat
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKodKogSeUpucuje)
                 {
-                    this.specijalista.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+                    this.specijalista.Text = lekar.ImeLek + " " + lekar.PrezimeLek + "-" + lekar.specijalizacija;
                 }
             }
         }

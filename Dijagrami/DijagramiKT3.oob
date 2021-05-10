@@ -13998,7 +13998,7 @@ DISPNAME 0 Arial,8,U</a:FontList>
 <a:Modifier>Teodora</a:Modifier>
 <c:InstantiationClass>
 <o:Shortcut Ref="o747"/>
-</c:InstantiationClass>
+ </c:InstantiationClass>
 </o:UMLObject>
 <o:UMLObject Id="o559">
 <a:ObjectID>79A44FDB-C954-46D8-A243-15228E4C5190</a:ObjectID>

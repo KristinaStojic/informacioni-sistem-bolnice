@@ -22,7 +22,7 @@ namespace Projekat
     /// </summary>
     public partial class IzmeniTerminLekara : Window
     {
-        public Termin termin; // ucitani termin
+        public Termin termin; 
 
         public List<Pacijent> AzuriranaLista = new List<Pacijent>();
         public Pacijent Pacijent;
@@ -58,7 +58,7 @@ namespace Projekat
         {
             InitializeComponent();
             this.termin = izabraniTermin;
-            dodajSveSlobodneTermine();
+           
 
 
             this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
@@ -69,19 +69,21 @@ namespace Projekat
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
-            
-           
-            
+            dodajSveSlobodneTermine();
+
+            vpp.ItemsSource = sviSlobodniTermini;
+            vkk.ItemsSource = sviSlobodniTerminiKraj;
+
             if (izabraniTermin != null)
             {
                 termin.IdTermin = izabraniTermin.IdTermin;
 
-                vpp.ItemsSource = sviSlobodniTermini;
-                vkk.ItemsSource = sviSlobodniTerminiKraj;
+
 
                 // vreme
-                vpp.SelectedItem = izabraniTermin.VremePocetka; /*NE RADI PRIKAZ*/
-                PocetnoVreme = vpp.Text;        // ?
+                vpp.Text = izabraniTermin.VremePocetka;
+                //vpp.SelectedItem = izabraniTermin.VremePocetka; /*NE RADI PRIKAZ*/
+                PocetnoVreme = izabraniTermin.VremePocetka; //vpp.Text;        // ?
                 vkk.SelectedItem = izabraniTermin.VremeKraja;
 
                 // lekar

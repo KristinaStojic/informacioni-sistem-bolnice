@@ -41,7 +41,7 @@
 
 
         <Image Source="slike/grafik1.png" Width="205" HorizontalAlignment="Center" Margin="977,121,97.6,233.4" RenderTransformOrigin="0.475,0.468"/>
-        <Label Content="    Grafik 1. Zakazani termini&#xD;&#xA;" HorizontalAlignment="Left" Margin="1001,419,0,0" VerticalAlignment="Top" Width="163"/>
+        <Label Content="  TO DO:&#xD;&#xA;  Grafik 1. Zakazani termini&#xA;" HorizontalAlignment="Left" Margin="1001,419,0,0" VerticalAlignment="Top" Width="163"/>
         <Image Source="slike/dodaj.png" Width="44" HorizontalAlignment="Center" Margin="75,607,1161,45" RenderTransformOrigin="0.467,-0.13"/>
         <Image Source="slike/izmeni.png" Width="38" HorizontalAlignment="Center" Margin="243,606,999,46" RenderTransformOrigin="0.574,0.51"/>
         <Image Source="slike/delete.png" Width="39" HorizontalAlignment="Center" Margin="411,607,830,46" RenderTransformOrigin="0.574,0.51"/>
@@ -59,7 +59,7 @@ Pomoć?
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="Filtriranje (MM/dd/yyyy)" FontSize="17" Foreground="LightGray" />
+                                <Label Content="Filtriranje (MM/dd/yyyy)" FontSize="17" Foreground="AliceBlue" />
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>

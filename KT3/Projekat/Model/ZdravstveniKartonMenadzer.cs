@@ -13,43 +13,6 @@ namespace Projekat.Model
         public static List<ZdravstveniKarton> kartoni = new List<ZdravstveniKarton>();
         public static List<LekarskiRecept> recepti = new List<LekarskiRecept>();
 
-        /*public static List<ZdravstveniKarton> NadjiSveKartone()
-        {
-            if (File.ReadAllText("kartoni.xml").Trim().Equals(""))
-            {
-                return kartoni;
-            }
-            else
-            {
-                FileStream fileStream = File.OpenRead("kartoni.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<ZdravstveniKarton>));
-                kartoni = (List<ZdravstveniKarton>)serializer.Deserialize(fileStream);
-                fileStream.Close();
-                return kartoni;
-            }
-        }*/
-
-        /*
-        public static ZdravstveniKarton NadjiKartonPoId(int id)
-        {
-            foreach (ZdravstveniKarton z in kartoni)
-            {
-                if (z.IdKartona == id)
-                {
-                    return z;
-                }
-            }
-            return null;
-        }*/
-
-        /*public static void SacuvajKartone()
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<ZdravstveniKarton>));
-            TextWriter filestream = new StreamWriter("kartoni.xml");
-            serializer.Serialize(filestream, kartoni);
-            filestream.Close();
-        }*/
-
         public static int GenerisanjeIdRecepta(int idPac)
         {
             bool pomocna = false;
@@ -234,7 +197,10 @@ namespace Projekat.Model
             List<Lek> dozvoljeniLekovi = new List<Lek>();
 
 
-            dozvoljeniLekovi = LekoviMenadzer.lijekovi;
+            foreach(Lek lek in LekoviMenadzer.lijekovi)
+            {
+                dozvoljeniLekovi.Add(lek);
+            }
 
             foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {
@@ -317,6 +283,9 @@ namespace Projekat.Model
                 }
             }
         }
+
+
+       
 
 
     }

@@ -55,7 +55,7 @@
                             <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="193" Margin="465,26,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Image Source="slike/covek.png" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
                             </GroupBox>
-                            <Button Content="Nazad" Background="#FF6895C5" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click_2"/>
+                            <Button Content="Nazad" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click_2"/>
                             <TextBlock Margin="26,476,708.4,34.4"  Height="24" Width="56" FontSize="16">
                             <Hyperlink Click="Hyperlink_Click">
                                 Pomoć?
@@ -74,10 +74,10 @@
                                     <DataGridTextColumn Header="Lekar koji je kreirao anamnezu"  Binding="{Binding ImePrezimeLekara}" Width="300*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button   Background="#FF6895C5" Content="Nova anamneza" HorizontalAlignment="Left" Margin="232,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" Click="Button_Click" RenderTransformOrigin="0.706,4.291"/>
-                            <Button Background="#FF6895C5" Content="Detalji" HorizontalAlignment="Left" Margin="48,470,0,0" VerticalAlignment="Top" Width="147" Height="38" Click="Button_Click_1"/>
-                            <Button  Background="#FF6895C5" Content="Izveštaj" HorizontalAlignment="Left" Margin="412,470,0,0" VerticalAlignment="Top"  Width="146" Height="38" RenderTransformOrigin="0.706,4.291"/>
-                            <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="594,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
+                            <Button   Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Nova anamneza" HorizontalAlignment="Left" Margin="232,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" Click="Button_Click" RenderTransformOrigin="0.706,4.291"/>
+                            <Button Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Detalji" HorizontalAlignment="Left" Margin="48,470,0,0" VerticalAlignment="Top" Width="147" Height="38" Click="Button_Click_1"/>
+                            <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Izveštaj" HorizontalAlignment="Left" Margin="412,470,0,0" VerticalAlignment="Top"  Width="146" Height="38" RenderTransformOrigin="0.706,4.291"/>
+                            <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Nazad" HorizontalAlignment="Left" Margin="594,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
                             <TextBlock HorizontalAlignment="Left" Margin="684,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="56" FontSize="16">
                                 <Hyperlink Click="Anamneza_Click">
                                 Pomoć?
@@ -141,7 +141,7 @@
                             </DataGrid>
 
                             <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="322,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Button_Click_5"/>
-                            <Button Content="Novi lek" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="50,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Click_4"/>
+                            <Button Content="Novi sastojak" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="50,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Click_4"/>
                             <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
 
 
