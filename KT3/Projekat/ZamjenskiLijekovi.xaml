@@ -1,0 +1,42 @@
+﻿<Window x:Class="Projekat.ZamjenskiLijekovi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Zamjenski lijekovi" Height="430" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
+    <DockPanel Margin="0,0,2,0">
+        <StackPanel DockPanel.Dock="Top">
+            <ToolBar Background="CadetBlue">
+                <Button ToolTip="Nazad, Ctrl + N" Click="MenuItem_Click">
+                    <Image Source="slike/back.png" Width="30" Height="30"></Image>
+                </Button>
+                <Button ToolTip="Dodaj, Ctrl + D" Click="Button_Click">
+                    <Image Source="slike/plus.png" Width="30" Height="30"></Image>
+                </Button>
+                <Button ToolTip="Izmjeni, Ctrl + I" Click="Button_Click_1">
+                    <Image Source="slike/pen.png" Width="30" Height="30"></Image>
+                </Button>
+                <Button ToolTip="Obrisi, Ctrl + O" Click="Button_Click_2">
+                    <Image Source="slike/trash.png" Width="30" Height="30"></Image>
+                </Button>
+                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" Width="130" Height="30" Margin="140, 0, 0, 0" ToolTip="Pretraga, Ctrl + P" TextChanged="TextBox_TextChanged"></TextBox>
+                <Button ToolTip="Pretrazi" IsEnabled="False">
+                    <Image Source="slike/search.png" Width="30" Height="30"></Image>
+                </Button>
+            </ToolBar>
+            <TextBlock Name="tekst"  FontWeight="Black" FontSize="15" Margin="0, 20, 0, 0" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,0">
+            <DataGrid x:Name="dataGridLijekovi" ItemsSource="{Binding ZamjenskiLekovi}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="230" Margin="0,20,0,0" VerticalAlignment="Center" Width="410">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Sifra lijeka                                  " Binding="{Binding sifraLeka}"/>
+                    <DataGridTextColumn Header="Naziv lijeka                                                " Binding="{Binding nazivLeka}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </DockPanel>
+</Window>

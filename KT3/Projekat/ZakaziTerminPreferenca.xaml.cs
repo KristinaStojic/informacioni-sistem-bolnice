@@ -16,88 +16,127 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for ZakaziTerminPreferenca.xaml
-    /// </summary>
-    public partial class ZakaziTerminPreferenca : Window
+    public partial class ZakaziTerminPreferenca : Page
     {
-        public static int idPacijent = 1;
-        public static int idLekar = 1;
-        public static int brojPreporucenih = 3;
-        public List<string> sviSlobodni2 { get; set; }
-        public ObservableCollection<Termin> Termini2 { get; set; }
-        public static List<Termin> lista;
-        public Termin t;
-        public ZakaziTerminPreferenca()
+        private static int idPacijent;
+        private static int maxBrojPreporucenihTermina = 3;
+        private Termin preporuceniTermin;
+        private static Pacijent prijavljeniPacijent { get; set; }
+        private static ObservableCollection<string> SviSlobodniSlotovi { get; set; }
+        private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
+        private ObservableCollection<Termin> Termini { get; set; }
+        public ZakaziTerminPreferenca(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
-            Termini2 = new ObservableCollection<Termin>();
-            sviSlobodni2 = new List<string>() { "07:00", "07:30", "08:00", "08:30",
-                                                "09:00", "09:30",  "10:00", "10:30",
-                                                "11:00", "11:30", "12:00", "12:30",
-                                                "13:00", "13:30", "14:00", "14:30",
-                                                "15:00", "15:30", "16:00", "16:30",
-                                                "17:00", "17:30", "18:00", "18:30",
-                                                "19:00", "19:30", "20:00"};
-            // na startu
-            this.preferencaGrid.Visibility = Visibility.Hidden;
-            this.zakazi.Visibility = Visibility.Hidden;
+            idPacijent = idPrijavljenogPacijenta;
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             this.nazad.Visibility = Visibility.Hidden;
-            this.grupa.Visibility = Visibility.Hidden;
-            this.datagridLekari.Visibility = Visibility.Hidden;
-            this.txtFilter.Visibility = Visibility.Hidden;
-            this.zakaziLekar.Visibility = Visibility.Hidden;
+            Termini = new ObservableCollection<Termin>();
+            SviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+            PomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+            InicijalizujVidljivostKomponenti();
 
             this.datagridLekari.ItemsSource = MainWindow.lekari;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource);
             view.Filter = UserFilter;
 
-            int count = 0;
-            lista = new List<Termin>();
+            PronadjiPreporuceneTermine(prijavljeniPacijent);
+            preferencaGrid.ItemsSource = Termini;
+            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+        }
+
+        private void InicijalizujVidljivostKomponenti()
+        {
+            this.preferencaGrid.Visibility = Visibility.Hidden;
+            this.btnZakazi.Visibility = Visibility.Hidden;
+            this.nazad.Visibility = Visibility.Hidden;
+            this.grupa.Visibility = Visibility.Hidden;
+            this.datagridLekari.Visibility = Visibility.Hidden;
+            this.txtFilter.Visibility = Visibility.Hidden;
+            this.zakaziLekar.Visibility = Visibility.Hidden;
+        }
+
+        public void IzbaciProsleSlotoveZaDanasnjiDan()
+        {
+            foreach (string slot in PomocnaSviSlobodniSlotovi)
+            {
+                DateTime vreme = DateTime.Parse(slot);
+                DateTime sada = DateTime.Now;
+                if (vreme.TimeOfDay <= sada.TimeOfDay)
+                {
+                    SviSlobodniSlotovi.Remove(slot);
+                }
+            }
+        }
+
+        private void PronadjiPreporuceneTermine(Pacijent prijavljeniPacijent)
+        {
+            int brojacPreporucenihTermina = 0;
             bool jeTri = false;
             foreach (Sala s in SaleMenadzer.sale)
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled))
                 {
-                    foreach (ZauzeceSale zs in s.zauzetiTermini)
+                    for (int i = 0; i < 3; i++)
                     {
-                        DateTime zsDatum = DateTime.Parse(zs.datumTermina);
-                        DateTime noviDatum = DateTime.Now.AddDays(3); // tri dana unapred
-                       // MessageBox.Show("Novi datum: " + noviDatum.ToString() + " trenutni datum: " + DateTime.Now.ToString() );
-                        if (DateTime.Compare(zsDatum, noviDatum) < 0 && jeTri == false)
+                        DateTime noviDatum = DateTime.Now.Date.AddDays(i); // tri dana unapred
+                        if (i == 0)
                         {
-                            foreach (string slot in sviSlobodni2)
+                            IzbaciProsleSlotoveZaDanasnjiDan();
+                        }
+                        foreach (ZauzeceSale zs in s.zauzetiTermini)
+                        {
+                            DateTime zsDatum = DateTime.Parse(zs.datumPocetkaTermina);
+                            foreach (string slot in SviSlobodniSlotovi)
                             {
-                                if (!s.zauzetiTermini.Exists(x => x.pocetakTermina.Equals(slot)) && jeTri == false)
+                                if (!s.zauzetiTermini.Exists(x => x.datumPocetkaTermina.Equals(noviDatum)) && zs.idTermina != 0)
                                 {
-                                    t = new Termin();
-                                    t.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
-                                    t.Datum = zs.datumTermina;
-                                    t.VremePocetka = slot;
-                                    t.VremeKraja = ZakaziTermin.IzracunajVremeKraja(slot);
-                                    t.Prostorija = s;
-                                    t.tipTermina = TipTermina.Pregled;
+                                    preporuceniTermin = new Termin();
+                                    preporuceniTermin.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
+                                    preporuceniTermin.Datum = noviDatum.ToString("MM/dd/yyyy");
+                                    preporuceniTermin.VremePocetka = slot;
+                                    preporuceniTermin.VremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(slot);
+                                    preporuceniTermin.Prostorija = s;
+                                    preporuceniTermin.tipTermina = TipTermina.Pregled;
                                     // TODO: ispraviti kada dobijemo raspored radnog vremena
-                                    foreach (Lekar l in MainWindow.lekari)
-                                    {
-                                        if (l.IdLekara.Equals(idLekar))
-                                        {
-                                            t.Lekar = l ;
-                                            //MessageBox.Show(l.ToString());
-                                            break;
-                                        }
-                                        break;
-                                    }
+                                    preporuceniTermin.Lekar = prijavljeniPacijent.IzabraniLekar;
+                                    preporuceniTermin.Pacijent = prijavljeniPacijent;
 
-                                    // TODO: isparivi kada uradimo prijavljivanje
-                                    Pacijent p = PacijentiMenadzer.PronadjiPoId(idPacijent);
-                                    t.Pacijent = p;
-                                    count++;
-                                    Termini2.Add(t);
-                                    if (count == brojPreporucenih)
+                                    Termini.Add(preporuceniTermin);
+                                    brojacPreporucenihTermina++;
+                                    if (brojacPreporucenihTermina == maxBrojPreporucenihTermina)
                                     {
                                         jeTri = true;
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    if (!s.zauzetiTermini.Exists(x => x.pocetakTermina.Equals(slot)) && zs.idTermina != 0)
+                                    {
+                                        preporuceniTermin = new Termin();
+                                        preporuceniTermin.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
+                                        preporuceniTermin.Datum = zs.datumPocetkaTermina;
+                                        preporuceniTermin.VremePocetka = slot;
+                                        preporuceniTermin.VremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(slot);
+                                        preporuceniTermin.Prostorija = s;
+                                        preporuceniTermin.tipTermina = TipTermina.Pregled;
+                                        // TODO: ispraviti kada dobijemo raspored radnog vremena
+                                        preporuceniTermin.Lekar = prijavljeniPacijent.IzabraniLekar;
+                                        preporuceniTermin.Pacijent = prijavljeniPacijent;
+
+                                        Termini.Add(preporuceniTermin);
+                                        //DodajNoviPreporuceniTermin(prijavljeniPacijent, s, zs, slot);
+                                        brojacPreporucenihTermina++;
+                                        if (brojacPreporucenihTermina == maxBrojPreporucenihTermina)
+                                        {
+                                            jeTri = true;
+                                            return;
+                                        }
                                     }
                                 }
                             }
@@ -105,27 +144,27 @@ namespace Projekat
                     }
                 }
             }
-       }
+        }
+
+        private void DodajNoviPreporuceniTermin(Pacijent prijavljeniPacijent, Sala s, ZauzeceSale zs, string slot)
+        {
+            preporuceniTermin = new Termin();
+            preporuceniTermin.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
+            preporuceniTermin.Datum = zs.datumPocetkaTermina;
+            preporuceniTermin.VremePocetka = slot;
+            preporuceniTermin.VremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(slot);
+            preporuceniTermin.Prostorija = s;
+            preporuceniTermin.tipTermina = TipTermina.Pregled;
+            // TODO: ispraviti kada dobijemo raspored radnog vremena
+            preporuceniTermin.Lekar = prijavljeniPacijent.IzabraniLekar;
+            preporuceniTermin.Pacijent = prijavljeniPacijent;
+
+            Termini.Add(preporuceniTermin);
+        }
+
         private void preferencaGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-
-        private void zakazi_Click(object sender, RoutedEventArgs e)
-        {
-            Termin t = (Termin)preferencaGrid.SelectedItem;
-            MessageBox.Show(t.Datum);
-            // TODO: sacuvati u listu zauzetih termina, srediti id termina
-            TerminMenadzer.ZakaziTermin(t);
-            
-
-            // TODO: proveriti
-            Sala sala = SaleMenadzer.NadjiSaluPoId(t.Prostorija.Id);
-            ZauzeceSale zsNovo = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, t.IdTermin);
-            sala.zauzetiTermini.Add(zsNovo);
-            SaleMenadzer.sacuvajIzmjene();
-            TerminMenadzer.sacuvajIzmene();
-            this.Close();
         }
 
         private bool UserFilter(object item)
@@ -133,7 +172,8 @@ namespace Projekat
             if (String.IsNullOrEmpty(txtFilter.Text))
                 return true;
             else
-                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0) || ((item as Lekar).ImeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Lekar).specijalizacija.ToString().IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0); ;
         }
 
         private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -143,7 +183,8 @@ namespace Projekat
 
         private void nazad_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Page zakazivanje = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zakazivanje);
         }
 
         private void lekari_Click(object sender, RoutedEventArgs e)
@@ -162,7 +203,7 @@ namespace Projekat
         private void preporuka_Click(object sender, RoutedEventArgs e)
         {
             this.preferencaGrid.Visibility = Visibility.Visible;
-            this.zakazi.Visibility = Visibility.Visible;
+            this.btnZakazi.Visibility = Visibility.Visible;
             this.nazad.Visibility = Visibility.Visible;
 
             this.lekari.Visibility = Visibility.Hidden;
@@ -175,7 +216,7 @@ namespace Projekat
         {
             if (datagridLekari.SelectedItems.Count > 0)
             {
-                Lekar item = (Lekar)datagridLekari.SelectedItems[0];
+                Lekar item = (Lekar)datagridLekari.SelectedItem;
                 //mePrz.Text = item.ToString();
             }
 
@@ -183,25 +224,99 @@ namespace Projekat
 
         private void zakaziLekar_Click(object sender, RoutedEventArgs e)
         {
-            // prosledjuje se lekar
-            Lekar l = null;
+            Lekar lekar = null;
             if (datagridLekari.SelectedItems.Count > 0)
             {
-                l = (Lekar)datagridLekari.SelectedItems[0];
+                lekar = (Lekar)datagridLekari.SelectedItems[0];
             }
-            ZakaziTermin zt = new ZakaziTermin(l);
-            zt.Show();
-            this.Close();
+            MessageBox.Show(lekar.ToString());
+            ZakaziTermin.izabraniLekar = lekar;
+            Page zt = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zt);
         }
 
-        public string imePrz_Changed()
+        private void btnZakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (datagridLekari.SelectedItems.Count > 0)
+            Termin t = (Termin)preferencaGrid.SelectedItem;
+            // TODO: sacuvati u listu zauzetih termina, srediti id termina
+            if (t != null)
             {
-                Lekar l = (Lekar)datagridLekari.SelectedItems[0];
-                return l.ToString();
+                TerminMenadzer.ZakaziTermin(t);
+
+                // TODO: proveriti
+                Sala sala = SaleMenadzer.NadjiSaluPoId(t.Prostorija.Id);
+                ZauzeceSale novoZauzeceSale = new ZauzeceSale(t.VremePocetka, t.VremeKraja, t.Datum, t.IdTermin);
+                sala.zauzetiTermini.Add(novoZauzeceSale);
+                SaleMenadzer.sacuvajIzmjene();
+                TerminMenadzer.sacuvajIzmene();
+
+                Page prikaziTermin = new PrikaziTermin(t.Pacijent.IdPacijenta);
+                this.NavigationService.Navigate(prikaziTermin);
+            } else
+            {
+                MessageBox.Show("Oznacite termin koji zelite da zakazete", "Upozorenje", MessageBoxButton.OK);
             }
-            return null;
+        }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+            Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(idPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
+            this.NavigationService.Navigate(uvid);
+        }
+
+        private void pocetna_Click(object sender, RoutedEventArgs e)
+        {
+            Page pocetna = new PrikaziTermin(idPacijent);
+            this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla"))
+            {
+                mi.Header = "Tamna";
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                mi.Header = "Svetla";
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
+            }
+        }
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
     }
 }

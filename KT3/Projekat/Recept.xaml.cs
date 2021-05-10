@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,27 +16,23 @@ using Projekat.Model;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for Recept.xaml
-    /// </summary>
-    public partial class Recept : Window
+    public partial class Recept : Page
     {
-        public Pacijent pacijent;
+        public Pacijent prijavljeniPacijent;
         public LekarskiRecept lekRec;
-        public Recept(Pacijent izabraniPacijent)
-        {
-            InitializeComponent();
-            this.pacijent = izabraniPacijent;
-
-            ime.Text = izabraniPacijent.ImePacijenta;
-            prezime.Text = izabraniPacijent.PrezimePacijenta;
-            id.Text = izabraniPacijent.IdPacijenta.ToString();
-        }
-
-        // Sanja
+        public static int idPacijent;
         public Recept(LekarskiRecept lp, Pacijent izabraniPacijent)
         {
             InitializeComponent();
+            this.DataContext = this;
+            idPacijent = izabraniPacijent.IdPacijenta;
+            InicijalizujPodatkeRecepta(lp, izabraniPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+        }
+
+        private void InicijalizujPodatkeRecepta(LekarskiRecept lp, Pacijent izabraniPacijent)
+        {
             this.lekRec = lp;
             this.naziv.Text = lp.NazivLeka;
             this.datum.Text = lp.DatumPropisivanjaLeka;
@@ -51,90 +47,72 @@ namespace Projekat
             this.brojUzimanja.IsEnabled = false;
             this.sati.IsEnabled = false;
             this.min.IsEnabled = false;
-            this.sacuvaj.Visibility = Visibility.Hidden;
 
-            this.pacijent = izabraniPacijent;
+            this.prijavljeniPacijent = izabraniPacijent;
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.IdPacijenta.ToString();
-
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void odjava_Click(object sender, RoutedEventArgs e)
         {
-
+            Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void karton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Page karton = new ZdravstveniKartonPacijent(idPacijent);
+            this.NavigationService.Navigate(karton);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
             {
-                int brojRecepta = ZdravstveniKartonMenadzer.GenerisanjeIdRecepta(pacijent.IdPacijenta);
-                String nazivLeka = naziv.Text;
-                String formatirano = null;
-                DateTime? selectedDate = datum.SelectedDate;
-                //Console.WriteLine(selectedDate);
-                if (selectedDate.HasValue)
-                {
-                    formatirano = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-                }
-                int kolicinaNaDan = int.Parse(brojUzimanja.Text);
-                int kolikoDana = int.Parse(dani.Text);
-                String pocetakKoriscenja = sati.Text + ":" + min.Text;
-
-
-                List<DateTime> uzimanjeTerapije = new List<DateTime>();
-                int x = 24 / kolicinaNaDan;
-                int ukupno = kolicinaNaDan * kolikoDana;
-
-                int godina = int.Parse(formatirano.Substring(6));
-                int mesec = int.Parse(formatirano.Substring(0, 2));
-                int dan = int.Parse(formatirano.Substring(3, 2));
-                int sat = int.Parse(sati.Text);
-                int mm = int.Parse(min.Text);
-                DateTime datumVreme = new DateTime(godina, mesec, dan, sat, mm, 00);
-
-                for (int i = 0; i <= ukupno; i++)
-                {
-                    DateTime dt = datumVreme.AddHours(i*x);
-                    Console.WriteLine(dt.ToString()); ;
-                    uzimanjeTerapije.Add(dt);
-                }
-
-
-                LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
-
-                foreach(DateTime dt in recept.UzimanjeTerapije)
-                {
-                    Obavestenja ob = new Obavestenja(dt.ToString(), "Terapija", "Uzmite terapiju: " + recept.NazivLeka);
-                    ObavestenjaMenadzer.obavestenja.Add(ob);
-                }
-                //LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, formatirano, kolikoDana, kolicinaNaDan, pocetakKoriscenja);
-                //pacijent.Karton.LekarskiRecepti.Add(recept);
-                /*foreach(Pacijent p in PacijentiMenadzer.pacijenti)
-                 {
-                     if(pacijent.IdPacijenta == p.IdPacijenta)
-                     {
-                         p.Karton.LekarskiRecepti.Add(recept);
-                     }
-                 }*/
-                ZdravstveniKartonMenadzer.DodajRecept(recept);
-                //TabelaRecepata.PrikazRecepata.Add(recept);
-               // ObavestenjaMenadzer.sacuvajIzmene();
-                this.Close();
-
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
             }
-            catch (System.Exception)
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
+            this.NavigationService.Navigate(uvid);
+        }
+
+        private void pocetna_Click(object sender, RoutedEventArgs e)
+        {
+            Page pocetna = new PrikaziTermin(idPacijent);
+            this.NavigationService.Navigate(pocetna);
+        }
+
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla"))
             {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                mi.Header = "Tamna";
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                mi.Header = "Svetla";
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
-
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
+        }
     }
 }

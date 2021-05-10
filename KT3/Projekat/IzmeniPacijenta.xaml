@@ -5,26 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="IzmeniPacijenta" Height="620" Width="600" WindowStartupLocation="CenterScreen">
+        Title="IzmeniPacijenta" Height="660" Width="560" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="45"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="70"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalContentAlignment="Center" Content="Ime pacijenta:"/>
         <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalContentAlignment="Center" Content="Prezime pacijenta:"/>
@@ -36,28 +38,32 @@
         <Label Grid.Column="1" Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Adresa stanovanja:"/>
         <Label Grid.Column="1" Grid.Row="8" FontSize="17" VerticalContentAlignment="Center" Content="Bracno stanje:"/>
         <Label Grid.Column="1" Grid.Row="9" FontSize="17" VerticalContentAlignment="Center" Content="Zanimanje:"/>
-        <TextBox x:Name="ime" Grid.Column="2" Grid.Row="0" Margin="12"/>
-        <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="1" Margin="12"/>
-        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="2" Margin="12"/>
-        <ComboBox x:Name="combo2" Grid.Column="2" Grid.Row="3"  Margin="12.2,10.8,11.6,11.6">
-        <ComboBoxItem Content="M"/>
-        <ComboBoxItem Content="Z"/>
+        <Label Grid.Column="1" Grid.Row="10" FontSize="17" VerticalContentAlignment="Center" Content="Maloletnik:"/>
+        <Label Grid.Column="1" Grid.Row="11" FontSize="17" VerticalContentAlignment="Center" Content="JMBG staratelja:"/>
+        <TextBox x:Name="ime" Grid.Column="2" Grid.Row="0" Margin="7" FontSize="15"/>
+        <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="1" Margin="7" FontSize="15"/>
+        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="2" Margin="7" FontSize="15"/>
+        <ComboBox x:Name="combo2" Grid.Column="2" Grid.Row="3"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
+            <ComboBoxItem Content="M"/>
+            <ComboBoxItem Content="Z"/>
         </ComboBox>
-        <ComboBox x:Name="combo" Grid.Column="2" Grid.Row="4"  Margin="12.2,10.4,11.6,10" SelectedIndex="0" LostFocus="combo_LostFocus">
+        <ComboBox x:Name="combo" Grid.Column="2" Grid.Row="4"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" LostFocus="combo_LostFocus" FontSize="15">
             <ComboBoxItem Content="STALAN"/>
             <ComboBoxItem Content="GUEST"/>
         </ComboBox>
-        <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="5" Margin="12"/>
-        <TextBox x:Name="email" Grid.Column="2" Grid.Row="6" Margin="12"/>
-        <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="7" Margin="12"/>
-        <ComboBox x:Name="combo3" Grid.Column="2" Grid.Row="8"  Margin="12.2,10.2,11.6,11.4">
+        <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="5" Margin="7" FontSize="15"/>
+        <TextBox x:Name="email" Grid.Column="2" Grid.Row="6" Margin="7" FontSize="15"/>
+        <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="7" Margin="7" FontSize="15"/>
+        <ComboBox x:Name="combo3" Grid.Column="2" Grid.Row="8"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
             <ComboBoxItem Content="Neozenjen/Neudata"/>
             <ComboBoxItem Content="Ozenjen/Udata"/>
             <ComboBoxItem Content="Udovac/Udovica"/>
             <ComboBoxItem Content="Razveden/Razvedena"/>
         </ComboBox>
-        <TextBox x:Name="zanimanje" Grid.Column="2" Grid.Row="9" Margin="12.2,12.6,11.6,11"/>
-        <Button Grid.Column="1" Grid.Row="10" Margin="17" Click="Button_Click" Content="Potvrdi" Background="#FFA3DADE" />
-        <Button Grid.Column="2" Grid.Row="10" Margin="17" Click="Button_Click_1" Content="Odustani" Background="#FFA3DADE" />
+        <TextBox x:Name="zanimanje" Grid.Column="2" Grid.Row="9" Margin="7" FontSize="15"/>
+        <TextBox  x:Name="jmbgStaratelja" Grid.Column="2" Grid.Row="11" Margin="7" FontSize="15"/>
+        <CheckBox x:Name="maloletnik" Grid.Column="2" Grid.Row="10" FontSize="17" HorizontalAlignment="Left" Margin="8.8,13.6,0,0" VerticalAlignment="Top" LostFocus="maloletnik_LostFocus"/>
+        <Button Grid.Column="1" Grid.Row="12" Margin="5,17,9.2,20.4" Click="Button_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="12" Margin="6.8,17,7.6,20.4" Click="Button_Click_1" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>

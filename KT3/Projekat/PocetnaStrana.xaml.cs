@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Pomoc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,16 +31,69 @@ namespace Projekat
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Zahtevi(object sender, RoutedEventArgs e)
         {
-           // DodajRecept dr = new DodajRecept();
-            //dr.Show();
+
+            SpisakZahtevaZaLekove zahtevi = new SpisakZahtevaZaLekove();
+            zahtevi.Show();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             ObavestenjaLekar o = new ObavestenjaLekar();
             o.Show();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //godisnji odmor
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Zahtevi(sender, e);
+            }
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            } 
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                //Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                this.Close();
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+            
+
+
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            PocetnaStranaLekarPomoc pomoc = new PocetnaStranaLekarPomoc();
+            pomoc.Show();
         }
     }
 }

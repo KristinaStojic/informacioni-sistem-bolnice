@@ -5,68 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prostorije" Height="370" Width="550" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Prostorije" Height="490" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Fajl">
-                    <MenuItem Header="Dodaj" Click="Button_Click"></MenuItem>
-                    <MenuItem Header="Zatvori" Click="Button_Click_3"></MenuItem>
+            <Menu DockPanel.Dock="Top" Background="CadetBlue">
+                <MenuItem Header="Fajl" FontSize="15">
+                    <MenuItem Header="Dodaj" FontSize="15" Click="Button_Click" InputGestureText="Ctrl + D"></MenuItem>
+                    <MenuItem Header="Zatvori" FontSize="15" Click="Button_Click_3" InputGestureText="Ctrl + Z"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Uredi">
-                    <MenuItem Header="Izmjeni" Click="Button_Click_2"></MenuItem>
-                    <MenuItem Header="Renoviraj" Click="Button_Click_4"></MenuItem>
-                    <MenuItem Header="Izbrisi" Click="Button_Click_1"></MenuItem>
+                <MenuItem Header="Uredi" FontSize="15">
+                    <MenuItem Header="Izmjeni" FontSize="15" Click="Button_Click_2" InputGestureText="Ctrl + I"></MenuItem>
+                    <MenuItem Header="Renoviraj" FontSize="15" Click="Button_Click_4" InputGestureText="Ctrl + R"></MenuItem>
+                    <MenuItem Header="Obrisi" FontSize="15" Click="Button_Click_1" InputGestureText="Ctrl + O"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Navigacija">
-                    <MenuItem Header="Osoblje" Click="MenuItem_Click"></MenuItem>
-                    <MenuItem Header="Zahtjevi" Click="MenuItem_Click_1"></MenuItem>
-                    <MenuItem Header="Komunikacija" Click="MenuItem_Click_2"></MenuItem>
-                    <MenuItem Header="Izvjestaj" Click="MenuItem_Click_3"></MenuItem>
+                <MenuItem Header="Navigacija" FontSize="15">
+                    <MenuItem Header="Osoblje" FontSize="15" Click="MenuItem_Click" InputGestureText="Ctrl + S"></MenuItem>
+                    <MenuItem Header="Zahtjevi" FontSize="15" Click="MenuItem_Click_1" InputGestureText="Ctrl + T"></MenuItem>
+                    <MenuItem Header="Komunikacija" FontSize="15" Click="MenuItem_Click_2" InputGestureText="Ctrl + K"></MenuItem>
+                    <MenuItem Header="Izvjestaj" FontSize="15" Click="MenuItem_Click_3" InputGestureText="Ctrl + V"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Pomoc">
-                    <MenuItem Header="Pomoc" Click="MenuItem_Click_4"></MenuItem>
-                    <MenuItem Header="O aplikaciji" Click="MenuItem_Click_5"></MenuItem>
+                <MenuItem Header="Pomoc" FontSize="15">
+                    <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_4" InputGestureText="Ctrl + H"></MenuItem>
+                    <MenuItem Header="O aplikaciji" FontSize="15" Click="MenuItem_Click_5"></MenuItem>
                 </MenuItem>
             </Menu>
-            <ToolBar Background="White">
-                <Button Click="Button_Click_3" ToolTip="Nazad">
-                    <Image Source="slike/back.png" Width="25" Height="25"></Image>
+            <ToolBar Background="CadetBlue">
+                <Button Click="Button_Click_3" ToolTip="Nazad, Ctrl + N">
+                    <Image Source="slike/back.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button Click="Button_Click" ToolTip="Dodaj">
-                    <Image Source="slike/plus.png" Width="25" Height="25"></Image>
+                <Button Click="Button_Click" ToolTip="Dodaj, Ctrl + D">
+                    <Image Source="slike/plus.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button Click="Button_Click_2" ToolTip="Izmjeni">
-                    <Image Source="slike/pen.png" Width="25" Height="25"></Image>
+                <Button Click="Button_Click_2" ToolTip="Izmjeni, Ctrl + I">
+                    <Image Source="slike/pen.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button Click="Button_Click_4" ToolTip="Renoviraj">
-                   <Image Source="slike/brush.png" Width="25" Height="25"></Image>
+                <Button Click="Button_Click_4" ToolTip="Renoviraj, Ctrl + R">
+                   <Image Source="slike/brush.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button Click="Button_Click_1" ToolTip="Obrisi">
-                    <Image Source="slike/trash.png" Width="25" Height="25"></Image>
+                <Button Click="Button_Click_1" ToolTip="Obrisi, Ctrl + O">
+                    <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox HorizontalAlignment="Right" Width="100" Height="25" Margin="232, 0, 0, 0"></TextBox>
-                <Button ToolTip="Pretrazi">
-                    <Image Source="slike/search.png" Width="25" Height="25"></Image>
+                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi, Ctrl + P" HorizontalAlignment="Right" Width="130" Height="30" Margin="410, 0, 0, 0" TextChanged="TextBox_TextChanged" Name="Pretraga"></TextBox>
+                <Button ToolTip="Pretrazi, Ctrl + P" IsEnabled="False">
+                    <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>
             </ToolBar>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top">
             <DataGrid x:Name="dataGridSale" ItemsSource="{Binding Sale}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
-                      Height="161" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="401">
+                      Height="225" Margin="10, 50, 10, 20" VerticalAlignment="Center" Width="531">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Broj sale           " Binding="{Binding brojSale}"/>
-                    <DataGridTextColumn Header="Namjena sale         " Binding="{Binding Namjena}" />
-                    <DataGridTextColumn Header="Status sale          " Binding="{Binding Status}" />
-                    <DataGridTextColumn Header="Tip sale             " Binding="{Binding TipSale}" />
+                    <DataGridTextColumn Header="Broj sale                    " Binding="{Binding brojSale}"/>
+                    <DataGridTextColumn Header="Namjena sale                                        " Binding="{Binding Namjena}" />
+                    <DataGridTextColumn Header="Tip sale                                            " Binding="{Binding TipSale}" />
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
-                <Button Height="40" Width="150" Margin="110, 10, 10, 10" Background="LightBlue" Click="Button_Click_5">Pregled staticke opreme</Button>
-                <Button Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightBlue" Click="Button_Click_6">Pregled dinamicke opreme</Button>
+                <Button Height="50" Width="165" Margin="235, 10, 10, 10" Background="CadetBlue" Click="Button_Click_5">Pregled staticke opreme</Button>
+                <Button Height="50" Width="165" Margin="10, 10, 10, 10" Background="CadetBlue" Click="Button_Click_6">Pregled dinamicke opreme</Button>
             </StackPanel>
         </StackPanel>
-        <TextBlock HorizontalAlignment="Right"><Hyperlink>Potrebna vam je pomoc?</Hyperlink></TextBlock>
     </DockPanel>
 </Window>

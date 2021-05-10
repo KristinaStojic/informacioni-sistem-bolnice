@@ -1,0 +1,157 @@
+﻿<Window x:Class="Projekat.ZdravstveniKartonLekar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="ZdravstveniKartonLekar" Height="677" Width="870" WindowStartupLocation="CenterScreen">
+    <Grid  Background="LightSkyBlue">
+        <StackPanel>
+
+            <Border  Background="LightSkyBlue" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="850" Height="636">
+                <TabControl x:Name="karton" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="5.4,16.4,5,9.4" KeyDown="Tabovi_KeyDown">
+                    <TabItem Header="Lični podaci" Width="100" IsSelected="True" Height="25" x:Name="podaci">
+                        <Grid>
+                            <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="424" Margin="26,26,0,0" VerticalAlignment="Top" Width="421" FontSize="14"/>
+                            <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="53,52,634.4,453.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Prezime pacijenta:" Margin="53,91,604.4,414.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="JMBG:" Margin="53,132,640.4,373.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Pol:" Margin="53,173,661.4,331.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Status naloga:" Margin="53,212,624.4,292.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Broj telefona:" Margin="52,254,624.4,251.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Email:" Margin="53,296,640.4,209.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Adresa stanovanja:" Margin="53,334,589.4,171.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Bracno stanje:" Margin="53,375,624.4,130.4"/>
+                            <Label FontSize="15" VerticalContentAlignment="Center" Content="Zanimanje" Margin="53,413,640.4,92.4"/>
+                            <TextBox x:Name="ime" Grid.Row="0" Margin="235,52,382.4,453.4" IsReadOnly="True" />
+                            <TextBox x:Name="prezime" Margin="235,91,382.4,414.4" IsReadOnly="True"/>
+                            <TextBox  x:Name="jmbg" Margin="235,132,382.4,373.4" IsReadOnly="True"/>
+                            <ComboBox x:Name="combo2"  Margin="235,173,382.4,332.4" IsReadOnly="True" IsEnabled="False">
+                                <ComboBoxItem Content="M"/>
+                                <ComboBoxItem Content="Z"/>
+                            </ComboBox>
+                            <ComboBox x:Name="combo"  Margin="235,212,382.4,293.4" SelectedIndex="0" IsReadOnly="True">
+                                <ComboBoxItem Content="STALAN"/>
+                                <ComboBoxItem Content="GUEST"/>
+                            </ComboBox>
+                            <ComboBox x:Name="combo3"  Margin="235,375,382.4,130.4" IsReadOnly="True" IsEnabled="False">
+                                <ComboBoxItem Content="Neozenjen/Neudata"/>
+                                <ComboBoxItem Content="Ozenjen/Udata"/>
+                                <ComboBoxItem Content="Udovac/Udovica"/>
+                                <ComboBoxItem Content="Razveden/Razvedena"/>
+                                <ComboBoxItem Content="Neodredjeno"/>
+                            </ComboBox>
+                            <TextBox x:Name="brojTelefona" Margin="235,254,382.4,251.4" IsReadOnly="True"/>
+                            <TextBox x:Name="email" Margin="235,296,382.4,209.4" IsReadOnly="True"/>
+                            <TextBox x:Name="adresa" Margin="235,334,382.4,171.4" IsReadOnly="True"/>
+                            <TextBox x:Name="zanimanje" Margin="235,413,382.4,92.4" IsReadOnly="True"/>
+                            <GroupBox Header="Izabrani lekar" HorizontalAlignment="Left" Height="210" Margin="465,240,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
+                                <Grid>
+                                    <Image Source="slike/doctor.png" Width="87" HorizontalAlignment="Center" Margin="103,10,110,40" RenderTransformOrigin="0.475,0.468"/>
+                                    <TextBox x:Name="lekar" HorizontalAlignment="Left" Height="28" Margin="59,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="193" Margin="465,26,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
+                                <Image Source="slike/covek.png" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
+                            </GroupBox>
+                            <Button Content="Nazad" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click_2"/>
+                            <TextBlock Margin="26,476,708.4,34.4"  Height="24" Width="56" FontSize="16">
+                            <Hyperlink Click="Hyperlink_Click">
+                                Pomoć?
+                            </Hyperlink>
+                            </TextBlock>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Anamneza" Width="100" x:Name="anamneze" KeyDown="anamneze_KeyDown">
+                        <Grid>
+                            <Label Content="Anamneze" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+                            <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True"  
+                        SelectionMode="Single" AutoGenerateColumns="False" 
+                        Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Datum pregleda" Binding="{Binding Datum}" Width="320" />
+                                    <DataGridTextColumn Header="Lekar koji je kreirao anamnezu"  Binding="{Binding ImePrezimeLekara}" Width="300*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button   Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Nova anamneza" HorizontalAlignment="Left" Margin="232,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" Click="Button_Click" RenderTransformOrigin="0.706,4.291"/>
+                            <Button Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Detalji" HorizontalAlignment="Left" Margin="48,470,0,0" VerticalAlignment="Top" Width="147" Height="38" Click="Button_Click_1"/>
+                            <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Izveštaj" HorizontalAlignment="Left" Margin="412,470,0,0" VerticalAlignment="Top"  Width="146" Height="38" RenderTransformOrigin="0.706,4.291"/>
+                            <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Nazad" HorizontalAlignment="Left" Margin="594,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="684,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="56" FontSize="16">
+                                <Hyperlink Click="Anamneza_Click">
+                                Pomoć?
+                            </Hyperlink>
+                            </TextBlock>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Recepti" Width="100" Height="25" x:Name="recepti">
+
+                        <Grid>
+                            <Label Content="Recepti" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
+                            <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
+                                SelectionMode="Single" AutoGenerateColumns="False" 
+                                 Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13" Visibility="Visible">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Naziv leka" Binding="{Binding NazivLeka}" Width="180"/>
+                                    <DataGridTextColumn Header="Datum" Binding="{Binding DatumPropisivanjaLeka}" Width="130"/>
+                                    <DataGridTextColumn Header="Pocetak koriscenja" Binding="{Binding PocetakKoriscenja}"  Width="130"/>
+                                    <DataGridTextColumn Header="Broj dana" Binding="{Binding BrojDanaKoriscenja}" Width="130"/>
+                                    <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="130*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Click="Button_Click_3" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+                            <Button Content="Izvestaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="321,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+                            <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Uputi" Width="100" x:Name="uputi">
+                        <Grid>
+                            <Label Content="Uputi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+
+                            <DataGrid x:Name="dataGridUputi"  IsReadOnly="True"  ItemsSource="{Binding TabelaUputa}"
+                        SelectionMode="Single" AutoGenerateColumns="False" 
+                        Margin="50,56,339.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Datum izdavanja" Width="170" Binding="{Binding datumIzdavanja}" />
+                                    <DataGridTextColumn Header="Tip uputa" Width="180*" Binding="{Binding}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button Content="Novi uput" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Button_Click_6"/>
+                            <Button Content="Detalji uputa" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="321,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Detalji"/>
+                            <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+
+
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Alergeni" Width="100" x:Name="alergeni">
+
+                        <Grid>
+                            <Label Content="Spisak sastojaka koje pacijent ne sme da koristi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+
+                            <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena}"
+                        SelectionMode="Single" AutoGenerateColumns="False" 
+                        Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Naziv sastojka" Width="20*" Binding="{Binding NazivSastojka}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="322,471,0,0" Height="36" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Button_Click_5"/>
+                            <Button Content="Novi sastojak" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="50,471,0,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" Click="Button_Click_4"/>
+                            <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="131" Margin="610,471,0,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+
+
+                        </Grid>
+                    </TabItem>
+
+                </TabControl>
+            </Border>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

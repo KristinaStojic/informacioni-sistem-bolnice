@@ -21,11 +21,32 @@ namespace Projekat
     public partial class ObrisiOpremu : Window
     {
         public Oprema izabranaOprema;
+        public int dozvoljenaKolicina;
         public ObrisiOpremu(Oprema izabranaOprema)
         {
             InitializeComponent();
             this.izabranaOprema = izabranaOprema;
-            this.maks.Text = "MAX: " + izabranaOprema.Kolicina.ToString();
+            postaviMaksimalnuKolicinu();
+            this.Potvrdi.IsEnabled = false;
+        }
+
+
+        private void postaviMaksimalnuKolicinu()
+        {
+            this.maks.Text = "MAX: " + nadjiDozvoljenuKolicinu();
+        }
+
+        private string nadjiDozvoljenuKolicinu()
+        {
+            dozvoljenaKolicina = izabranaOprema.Kolicina;
+            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                if (pm.izSale.Id == 4 && pm.oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    dozvoljenaKolicina -= pm.kolicina;
+                }
+            }
+            return dozvoljenaKolicina.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,25 +56,57 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            foreach(Sala s in SaleMenadzer.sale)
+            foreach(Sala sala in SaleMenadzer.sale)
             {
-                if (s.Namjena.Equals("Skladiste"))
+                if (sala.Namjena.Equals("Skladiste"))
                 {
-                    foreach(Oprema o in s.Oprema.ToList())
-                    {
-                        if(o.IdOpreme == izabranaOprema.IdOpreme)
-                        {
-                            o.Kolicina -= int.Parse(kolicina.Text);
-                            if(o.Kolicina == 0)
-                            {
-                                s.Oprema.Remove(o);
-                            }
-                        }
-                    }
+                    ukloniOpremuIzSale(sala);
                 }
             }
             Skladiste.azurirajOpremu();
             this.Close();
+        }
+
+        private void ukloniOpremuIzSale(Sala sala)
+        {
+            foreach (Oprema oprema in sala.Oprema.ToList())
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    oprema.Kolicina -= int.Parse(kolicina.Text);
+                    if (oprema.Kolicina == 0)
+                    {
+                        sala.Oprema.Remove(oprema);
+                    }
+                }
+            }
+        }
+
+        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (IsNumeric(this.kolicina.Text)) {
+                postaviDugme();
+            }else{
+                this.Potvrdi.IsEnabled = false;
+            }
+        }
+
+        private void postaviDugme()
+        {
+            if (int.Parse(this.kolicina.Text) > dozvoljenaKolicina || int.Parse(this.kolicina.Text) <= 0 || this.kolicina.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = false;
+            }
+            else if (int.Parse(this.kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.kolicina.Text) > 0 && !this.kolicina.Text.Trim().Equals(""))
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
         }
     }
 }

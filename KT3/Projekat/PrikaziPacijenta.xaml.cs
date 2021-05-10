@@ -23,7 +23,7 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziPacijenta : Window
     {
-        
+        private bool flag = false;
         public static ObservableCollection<Pacijent> PacijentiTabela
         {
             get;
@@ -39,15 +39,33 @@ namespace Projekat
             {
                 PacijentiTabela.Add(p);
             }
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(PacijentiTabela);
+            view.Filter = UserFilterPacijenti;
+        }
+
+        private bool UserFilterPacijenti(object item)
+        {
+            if (String.IsNullOrEmpty(pretraga.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return ((item as Pacijent).ImePacijenta.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Pacijent).PrezimePacijenta.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                       || ((item as Pacijent).Jmbg.ToString().IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
         }
 
         // nazad
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            // dodato
             SaleMenadzer.sacuvajIzmjene();
             this.Close();
+            Sekretar s = new Sekretar();
+            s.Show();
         }
 
         // dodavanje
@@ -76,17 +94,20 @@ namespace Projekat
         // brisanje
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            flag = true;
             var zaBrisanje = TabelaPacijenata.SelectedItem;
+            canvas2.Visibility = Visibility.Hidden;
+
             if (zaBrisanje != null)
             {
                 PacijentiMenadzer.ObrisiNalog((Pacijent)zaBrisanje);
             }
+            flag = false;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            // dodato
             SaleMenadzer.sacuvajIzmjene();
         }
 
@@ -121,7 +142,11 @@ namespace Projekat
 
         private void TabelaPacijenata_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            canvas2.Visibility = Visibility.Visible;
+            if (flag == false)
+            {
+                canvas2.Visibility = Visibility.Visible;
+            }
+
             Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
 
             if (p != null)
@@ -136,6 +161,17 @@ namespace Projekat
                 adresa.Text = p.AdresaStanovanja;
                 stanje.Text = p.BracnoStanje.ToString();
                 zanimanje.Text = p.Zanimanje;
+                
+                if (p.Maloletnik == true)
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelj.Text = p.JmbgStaratelja.ToString();
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelj.Text = "";
+                }
             }
         }
 
@@ -148,6 +184,19 @@ namespace Projekat
             this.Close();
             PrikaziTerminSekretar p = new PrikaziTerminSekretar();
             p.Show();
+        }
+
+        // oglasna tabla
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            OglasnaTabla o = new OglasnaTabla();
+            o.Show();
+        }
+
+        private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(PacijentiTabela).Refresh();
         }
     }
 }

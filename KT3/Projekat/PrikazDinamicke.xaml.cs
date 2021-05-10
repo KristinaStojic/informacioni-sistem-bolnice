@@ -33,23 +33,41 @@ namespace Projekat
             InitializeComponent();
             this.izabranaSala = izabranaSala;
             this.DataContext = this;
+            postaviTekst();
+            dodajDinamickuOpremu();
+        }
+
+        private void dodajDinamickuOpremu()
+        {
+
             OpremaDinamicka = new ObservableCollection<Oprema>();
+            if (izabranaSala.Oprema != null)
+            {
+                foreach (Oprema o in izabranaSala.Oprema)
+                {
+                    if (!o.Staticka)
+                    {
+                        OpremaDinamicka.Add(o);
+                    }
+                }
+            }
+        }
+
+        private void postaviTekst()
+        {
             if (izabranaSala != null)
             {
                 if (izabranaSala.TipSale == tipSale.SalaZaPregled)
                 {
                     this.tekst.Text = "Sala za pregled (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
-                else
+                else if (izabranaSala.TipSale == tipSale.OperacionaSala)
                 {
                     this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
-            }
-            foreach(Oprema o in izabranaSala.Oprema)
-            {
-                if (!o.Staticka)
+                else
                 {
-                    OpremaDinamicka.Add(o);
+                    this.tekst.Text = "Sala za odmor (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
                 }
             }
         }
@@ -76,7 +94,39 @@ namespace Projekat
             Oprema opremaZaSlanje = (Oprema)dataGrid.SelectedItem;
             if (opremaZaSlanje != null) {
                 SlanjeDinamicke sd = new SlanjeDinamicke(izabranaSala, opremaZaSlanje);
+                SlanjeDinamicke.aktivan = true;
                 sd.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati opremu");
+            }
+        }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OpremaDinamicka.Clear();
+            foreach(Oprema oprema in izabranaSala.Oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && !oprema.Staticka)
+                {
+                    OpremaDinamicka.Add(oprema);
+                }
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.N)
+                {
+                    Button_Click(sender, e);
+                }
+                else if (e.Key == Key.P)
+                {
+                    this.Pretraga.Focus();
+                }
             }
         }
     }

@@ -20,20 +20,25 @@ namespace Projekat
     /// </summary>
     public partial class ObavestenjaLekar : Window
     {
-        public static ObservableCollection<Obavestenja> obavestenjaLekar
+        /* public static ObservableCollection<Obavestenja> obavestenjaLekar
         {
             get;
             set;
-        }
+        }  */
 
         public ObavestenjaLekar()
         {
             InitializeComponent();
-            this.DataContext = this;
-            obavestenjaLekar = new ObservableCollection<Obavestenja>();
+            //this.DataContext = this;
+            //obavestenjaLekar = new ObservableCollection<Obavestenja>();
             foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
             {
-                obavestenjaLekar.Add(o);
+                // rucno odradjeno
+                if (o.IdLekara == 1 || o.Oznaka.Equals("svi") || o.Oznaka.Equals("lekari"))
+                {
+                    // obavestenjaLekar.Add(o);
+                    ObavestenjaLekara.Items.Add(o);
+                }
             }
         }
     }

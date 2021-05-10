@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,11 +33,15 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
+            dodajSale();
+        }
+        private void dodajSale()
+        {
             Sale = new ObservableCollection<Sala>();
             foreach (Sala s in SaleMenadzer.sale)
             {
                 if (!s.Namjena.Equals("Skladiste"))
-                { 
+                {
                     Sale.Add(s);
                 }
             }
@@ -56,12 +61,16 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var izabranaSala = dataGridSale.SelectedItem;
-            if (izabranaSala != null)
-            {
-                
-                SaleMenadzer.ObrisiSalu((Sala)izabranaSala);
+            var izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if(izabranaSala != null) {
+                BrisanjeSale brisanjeSale = new BrisanjeSale(izabranaSala);
+                brisanjeSale.Show();
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
+            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -72,11 +81,17 @@ namespace Projekat
                 IzmjeniSalu iss = new IzmjeniSalu(izabranaSala);
                 iss.ShowDialog();
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             SaleMenadzer.sacuvajIzmjene();
+            Upravnik u = new Upravnik();
+            u.Show();
             this.Hide();
             //MainWindow mw = new MainWindow();
             //mw.Show();
@@ -84,12 +99,51 @@ namespace Projekat
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            SaleMenadzer.sacuvajIzmjene();
-            this.Hide();
-            //MainWindow mw = new MainWindow();
-            //mw.Show();
+            Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if(izabranaSala != null && !salaZakazanaZaRenoviranje(izabranaSala))
+            {
+                Renoviranje renoviranje = new Renoviranje(izabranaSala);
+                renoviranje.Show();
+            }
+            else if (izabranaSala != null && salaZakazanaZaRenoviranje(izabranaSala))
+            {
+                MessageBox.Show("Izabrana sala je vec zakazana za renoviranje!");
+            }else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
+        private bool salaZakazanaZaRenoviranje(Sala izabranaSala)
+        {
+            Console.WriteLine(izabranaSala.zauzetiTermini.Count());
+            foreach(ZauzeceSale zauzeceSale in izabranaSala.zauzetiTermini)
+            {
+                if (zauzeceSale.idTermina == 0 && datumProsao(zauzeceSale.datumKrajaTermina) && vrijemeProslo(zauzeceSale.krajTermina))
+                {
+                    izabranaSala.zauzetiTermini.Remove(zauzeceSale);
+                    return false;
+                }else if(zauzeceSale.idTermina == 0 && (!datumProsao(zauzeceSale.datumKrajaTermina) || !vrijemeProslo(zauzeceSale.krajTermina)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool datumProsao(string datum)
+        {
+            datum = datum.Replace('/', '-');
+            DateTime datumKraja = DateTime.Parse(datum);
+            return datumKraja <= DateTime.Now.Date;
+        }
+
+        private bool vrijemeProslo(string vrijeme)
+        {
+            int vrijemeKraja = int.Parse(vrijeme.Split(':')[0]);
+            int sadasnjeVrijeme = int.Parse(DateTime.Now.TimeOfDay.ToString().Split(':')[0]);
+            return vrijemeKraja <= sadasnjeVrijeme;
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             SaleMenadzer.sacuvajIzmjene();
@@ -104,9 +158,13 @@ namespace Projekat
                 {
                     PrikazStaticke.otvoren = true;
                     PrikazStaticke ps = new PrikazStaticke(izabranaSala);
-                    PremjestajMenadzer.odradiZakazano();
+                    PremjestajMenadzer.odradiZakazanePremjestaje();
                     ps.ShowDialog();
                 }catch(Exception ex) { }
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
             }
         }
 
@@ -121,6 +179,10 @@ namespace Projekat
                     pd.ShowDialog();
                 }catch(Exception ex) { }
             }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -132,6 +194,7 @@ namespace Projekat
         {
             Zahtjevi z = new Zahtjevi();
             z.Show();
+            this.Close();
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
@@ -146,12 +209,71 @@ namespace Projekat
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
-            //pomoc
+            SalePomoc salePomoc = new SalePomoc();
+            salePomoc.Show();
         }
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
             //O aplikaciji
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Sale.Clear();
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Namjena.Equals("Skladiste"))
+                {
+                    continue;
+                }
+                if (sala.Namjena.StartsWith(this.Pretraga.Text))
+                {
+                    Sale.Add(sala);
+                }
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))) {
+                if (e.Key == Key.D) {
+                    Button_Click(sender, e);
+                } else if (e.Key == Key.Z || e.Key == Key.N)
+                {
+                    Button_Click_3(sender, e);
+                }else if(e.Key == Key.I)
+                {
+                    Button_Click_2(sender, e);
+                }else if(e.Key == Key.R)
+                {
+                    Button_Click_4(sender, e);
+                }else if(e.Key == Key.O)
+                {
+                    Button_Click_1(sender, e);
+                }else if(e.Key == Key.P)
+                {
+                    this.Pretraga.Focus();
+                }else if(e.Key == Key.S)
+                {
+                    MenuItem_Click(sender, e);
+                }else if(e.Key == Key.T)
+                {
+                    MenuItem_Click_1(sender, e);
+                }
+                else if (e.Key == Key.K)
+                {
+                    MenuItem_Click_2(sender, e);
+                }
+                else if (e.Key == Key.V)
+                {
+                    MenuItem_Click_3(sender, e);
+                }
+                else if (e.Key == Key.H)
+                {
+                    MenuItem_Click_4(sender, e);
+                }
+            }
         }
     }
 }

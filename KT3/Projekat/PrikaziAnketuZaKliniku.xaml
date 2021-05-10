@@ -1,0 +1,177 @@
+﻿<Page x:Class="Projekat.PrikaziAnketuZaKliniku"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekat"
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="PrikaziAnketuZaKliniku" Background="{DynamicResource BackgroundColor}" Height="640">
+    <Grid Margin="0,0,0,-30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="142*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="53*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,87">
+            <Grid  Margin="0,0,0,0" Height="450">
+                <StackPanel Margin="0,0,0,128" >
+                    <StackPanel Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Name="zaglavlje" Orientation="Horizontal">
+                        <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
+                            <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
+                            <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                        </StackPanel>
+                        <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+                            <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
+                                <MenuItem Name="podaci">
+                                    <MenuItem.Icon>
+                                        <Image Source="/slike/user.png" />
+                                    </MenuItem.Icon>
+                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
+                                    <Separator/>
+                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                    <Separator/>
+                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
+                                    <MenuItem Header="_sr" />
+                                    <MenuItem Header="_en"/>
+                                    <Separator />
+                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
+                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
+                                    <Separator />
+                                    <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
+                                </MenuItem>
+                            </Menu>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
+                            <Hyperlink Name="pocetna" Click="pocetna_Click">
+                            <Run Text="Početna stranica"/>
+                            </Hyperlink>
+                            <Run Text=" "/>
+                            <Run Text=" "/>
+                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
+                                <Run Text="Zakažite termin"/>
+                            </Hyperlink><Run Text=" "/>
+                            <Run Text="  "/>
+                            <Run Text=" "/>
+                            <Hyperlink x:Name="uvid" Click="uvid_Click">
+                                <Run Text="Uvid u zakazane termine"/>
+                            </Hyperlink><Run Text=" "/>
+                            <Run Text=" "/>
+                            <Run Text=" "/>
+                            <Hyperlink x:Name="karton" Click="karton_Click">
+                                <Run Text="Zdravstveni karton"/>
+                            </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <!--ListView x:Name="listaAnketi" Height="300" Width="500" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                      SelectionChanged="listaAnketi_SelectionChanged" ItemsSource="{Binding Ankete}" Margin="0,30,0 ,0" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate >
+                                <DataTemplate>
+                                    <CheckBox Width="30" x:Name="popunjenCheckBox"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Naziv ankete" Width="400" DisplayMemberBinding="{Binding NazivAnkete}"/>
+
+                    </GridView>
+                </ListView.View>
+            </-->
+            <StackPanel Margin="179,0,181,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="475" 
+                        Width="350" Background="#e8f1f5">
+                <StackPanel Margin="0,0,0,0"  HorizontalAlignment="Center" Width="350">
+                    <Label HorizontalAlignment="Center" Content="Anketa o uslugama Zdravo korporacije" FontWeight="Bold" FontSize="13" Margin="52,10,50, 0" />
+                    <Label HorizontalAlignment="Center" Content="1️⃣-veoma lose, 2️⃣-lose, 3️⃣-dobro, 4️⃣-vrlo dobro, 5️⃣-odlicno" FontSize="11"/>
+                </StackPanel>
+                <StackPanel Margin ="0, 20, 0, 0">
+                    <StackPanel>
+                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280">
+                            1. Kako biste ocenili kvalitet usluga koje Vam nudi Zdravo korporacija?
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                            <RadioButton GroupName="pitanje1" x:Name="jedan1" Margin="30,0,30,0" Content="1" Click="jedan1_Click" />
+                            <RadioButton GroupName="pitanje1" x:Name="dva1" Margin="0, 0, 30, 0" Content="2" Click="jedan1_Click"/>
+                            <RadioButton GroupName="pitanje1" x:Name="tri1" Margin="0, 0, 30, 0" Content="3" Click="jedan1_Click"/>
+                            <RadioButton GroupName="pitanje1" x:Name="cetiri1" Margin="0, 0, 30, 0" Content="4" Click="jedan1_Click"/>
+                            <RadioButton GroupName="pitanje1" x:Name="pet1" Margin="0, 0, 30, 0" Content="5" Click="jedan1_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin ="0, 20, 0, 0">
+                    <StackPanel>
+                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0">
+                            2. Kako biste ocenili efikasnost online zakazivanja, pomeranja i otkazivanja termina?
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <RadioButton GroupName="pitanje2" x:Name="jedan2" Margin="30,0,30,0" Content="1" Click="jedan2_Click"/>
+                        <RadioButton GroupName="pitanje2" x:Name="dva2" Margin="0, 0, 30, 0" Content="2" Click="jedan2_Click"/>
+                        <RadioButton GroupName="pitanje2" x:Name="tri2" Margin="0, 0, 30, 0" Content="3" Click="jedan2_Click"/>
+                        <RadioButton GroupName="pitanje2" x:Name="cetiri2" Margin="0, 0, 30, 0" Content="4" Click="jedan2_Click"/>
+                        <RadioButton GroupName="pitanje2" x:Name="pet2" Margin="0, 0, 30, 0" Content="5" Click="jedan2_Click"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin ="0, 20, 0, 0">
+                    <StackPanel>
+                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0">
+                            3. Kako biste ocenili odnos cena i usluga u Zdravo korporaciji?
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <RadioButton GroupName="pitanje3" x:Name="jedan3" Margin="30,0,30,0" Content="1" Click="jedan3_Click"/>
+                        <RadioButton GroupName="pitanje3" x:Name="dva3" Margin="0, 0, 30, 0" Content="2" Click="jedan3_Click"/>
+                        <RadioButton GroupName="pitanje3" x:Name="tri3" Margin="0, 0, 30, 0" Content="3" Click="jedan3_Click"/>
+                        <RadioButton GroupName="pitanje3" x:Name="cetiri3" Margin="0, 0, 30, 0" Content="4" Click="jedan3_Click"/>
+                        <RadioButton GroupName="pitanje3" x:Name="pet3" Margin="0, 0, 30, 0" Content="5" Click="jedan3_Click"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin ="0, 20, 0, 0">
+                    <StackPanel>
+                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" >
+                            4. Kako biste ocenili strucnost zaposlenih u Zdravo korporaciji?
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+
+                        <RadioButton GroupName="pitanje4" x:Name="jedan4" Margin="30,0,30,0" Content="1" Click="jedan4_Click" />
+                        <RadioButton GroupName="pitanje4" x:Name="dva4" Margin="0, 0, 30, 0" Content="2" Click="jedan4_Click"/>
+                        <RadioButton GroupName="pitanje4" x:Name="tri4" Margin="0, 0, 30, 0" Content="3" Click="jedan4_Click"/>
+                        <RadioButton GroupName="pitanje4" x:Name="cetiri4" Margin="0, 0, 30, 0" Content="4" Click="jedan4_Click"/>
+                        <RadioButton GroupName="pitanje4" x:Name="pet4" Margin="0, 0, 30, 0" Content="5" Click="jedan4_Click"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="0, 20, 0, 0">
+                    <StackPanel>
+                        <TextBlock x:Name="pitanja5" Margin="30, 0, 0, 0" TextWrapping="Wrap">
+                        5. Kako biste ocenili higijenu u klinikama Zdravo korporacije?
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <RadioButton GroupName="pitanje5" x:Name="jedan5" Margin="30,0,30,0" Content="1" Click="jedan5_Click"/>
+                        <RadioButton GroupName="pitanje5" x:Name="dva5" Margin="0, 0, 30, 0" Content="2" Click="jedan5_Click"/>
+                        <RadioButton GroupName="pitanje5" x:Name="tri5" Margin="0, 0, 30, 0" Content="3" Click="jedan5_Click"/>
+                        <RadioButton GroupName="pitanje5" x:Name="cetiri5" Margin="0, 0, 30, 0" Content="4" Click="jedan5_Click"/>
+                        <RadioButton GroupName="pitanje5" x:Name="pet5" Margin="0, 0, 30, 0" Content="5" Click="jedan5_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel>
+                <Button Content="Potvrdi" Name="potvrdi" Height="30" Width="90" Margin="310,0,310,0" Click="Button_Click"
+                        Style="{DynamicResource ButtonStyle2}"/>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</Page>

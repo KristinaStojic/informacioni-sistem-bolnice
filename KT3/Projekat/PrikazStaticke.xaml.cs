@@ -38,17 +38,14 @@ namespace Projekat
             InitializeComponent();
             PrikazStaticke.izabranaSala = izabranaSala;
             this.DataContext = this;
-            if(izabranaSala != null)
-            {
-                if (izabranaSala.TipSale == tipSale.SalaZaPregled)
-                {
-                    this.tekst.Text = "Sala za pregled (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
-                }
-                else
-                {
-                    this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
-                }
-            }
+            postaviTekst();
+            dodajStatickuOpremu();
+            Thread th = new Thread(izvrsi);
+            th.Start();
+        }
+
+        private void dodajStatickuOpremu()
+        {
             List<Oprema> opremaStaticka1 = new List<Oprema>();
             if (izabranaSala.Oprema != null)
             {
@@ -67,10 +64,26 @@ namespace Projekat
                 }
             }
             OpremaStaticka = new ObservableCollectionEx<Oprema>(opremaStaticka1);
-            Thread th = new Thread(izvrsi);
-            th.Start();
         }
 
+        private void postaviTekst()
+        {
+            if (izabranaSala != null)
+            {
+                if (izabranaSala.TipSale == tipSale.SalaZaPregled)
+                {
+                    this.tekst.Text = "Sala za pregled (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+                else if (izabranaSala.TipSale == tipSale.OperacionaSala)
+                {
+                    this.tekst.Text = "Operaciona sala (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+                else
+                {
+                    this.tekst.Text = "Sala za odmor (" + izabranaSala.Namjena + "), broj " + izabranaSala.brojSale;
+                }
+            }
+        }
         public static void azurirajPrikaz()
         {
             OpremaStaticka.Clear();
@@ -94,7 +107,7 @@ namespace Projekat
             while (otvoren)
             {
                 Thread.Sleep(10);
-                PremjestajMenadzer.odradiZakazano();
+                PremjestajMenadzer.odradiZakazanePremjestaje();
             }
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -122,14 +135,72 @@ namespace Projekat
             Oprema opremaZaSlanje = (Oprema)dataGridStaticka.SelectedItem;
             if(opremaZaSlanje != null)
             {
-                SlanjeStaticke ss = new SlanjeStaticke(izabranaSala, opremaZaSlanje);
-                ss.ShowDialog();
+                if (provjeriPreostalo(opremaZaSlanje))
+                {
+                    SlanjeStaticke ss = new SlanjeStaticke(izabranaSala, opremaZaSlanje);
+                    SlanjeStaticke.aktivan = true;
+                    ss.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Preostala oprema je vec zakazana za transfer");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati opremu");
+            }
+        }
+
+        private bool provjeriPreostalo(Oprema opremaZaSlanje)
+        {
+            int kolicina = opremaZaSlanje.Kolicina;
+            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            {
+                if (pm.izSale.Id == izabranaSala.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+                {
+                    kolicina -= pm.kolicina;
+                }
+            }
+            if(kolicina <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PrikazStaticke.otvoren = false;
+        }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OpremaStaticka.Clear();
+            foreach(Oprema oprema in izabranaSala.Oprema)
+            {
+                if (oprema.NazivOpreme.StartsWith(this.Pretraga.Text) && oprema.Staticka)
+                {
+                    OpremaStaticka.Add(oprema);
+                }
+            }
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.N)
+                {
+                    Button_Click(sender, e);
+                }else if(e.Key == Key.P)
+                {
+                    this.Pretraga.Focus();
+                }
+            }
         }
     }
 

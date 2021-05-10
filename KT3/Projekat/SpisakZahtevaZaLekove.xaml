@@ -1,0 +1,61 @@
+﻿<Window x:Class="Projekat.SpisakZahtevaZaLekove"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="SpisakZahtevaZaLekove" Height="650" Width="700" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+    <Grid DockPanel.Dock="Top" Margin="0,0,4,-1">
+        <StackPanel>
+            <Border  Background="LightSkyBlue" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="690" Height="609">
+                <TabControl x:Name="karton" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="-12" Height="589" VerticalAlignment="Bottom">
+                    <TabItem Header="Zahtevi za validaciju" Width="130" IsSelected="True" Height="25" x:Name="zahtevi">
+                        <Grid>
+                            <DataGrid x:Name="dataGridZahtevi" IsReadOnly="True" ItemsSource="{Binding TabelaZahteva}"
+                                SelectionMode="Single" AutoGenerateColumns="False"
+                                 Margin="39,56,40,0" VerticalAlignment="Top" Height="417" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13" Visibility="Visible">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Šifra leka" Width="150" Binding="{Binding lek.sifraLeka}" x:Name="sifra"/>
+                                    <DataGridTextColumn Header="Naziv leka" Width="150" Binding="{Binding lek.nazivLeka}" x:Name="naziv"/>
+                                    <DataGridTextColumn Header="Datum primanja zahteva" Width="170" Binding="{Binding datumSlanjaZahteva}" x:Name="datum"/>
+                                    <DataGridTextColumn Header="Obrađeno" Width="130*" Binding="{Binding}" x:Name="obradjeno" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Content="Obradi zahtev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="39,498,0,0"  Click="Button_Obradi" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+                            <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="505,498,0,0" Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+                            <Label Content="Zahtevi" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
+                            <Button Content="Obriši zahtev" VerticalAlignment="Top" Height="38" Margin="272,498,272.8,0"  Click="Button_Obrisi" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Svi lekovi" Width="130" Height="25" Margin="0,-2,0,2" VerticalAlignment="Bottom" x:Name="sviLekovi">
+                        <Grid>
+                            <Label Content="Spisak lekova" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+                            <DataGrid x:Name="dataGridLekovi" ItemsSource="{Binding TabelaLekova}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="407" Margin="50,60,50,89" VerticalAlignment="Center" Width="564">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Sifra lijeka" Binding="{Binding sifraLeka}" Width="300"/>
+                                    <DataGridTextColumn Header="Naziv lijeka" Binding="{Binding nazivLeka}" Width="300*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button   Background="#FF6895C5" Content="Sastojci leka" HorizontalAlignment="Left" Margin="198,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click"/>
+                            <Button Background="#FF6895C5" Content="Izmeni lek" HorizontalAlignment="Left" Margin="48,492,0,0" VerticalAlignment="Top" Width="120" Height="38" Click="Button_Izmeni"/>
+                            <Button  Background="#FF6895C5" Content="Zamenski lekovi" HorizontalAlignment="Left" Margin="345,492,0,0" VerticalAlignment="Top"  Width="119" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
+                            <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="494,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_1"/>
+                        </Grid>
+                    </TabItem>
+
+
+                </TabControl>
+            </Border>
+        </StackPanel>
+
+
+
+
+    </Grid>
+
+
+</Window>

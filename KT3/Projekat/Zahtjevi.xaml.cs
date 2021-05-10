@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,14 +31,17 @@ namespace Projekat
                 Skladiste.otvoren = true;
                 Skladiste w1 = new Skladiste();
 
-                PremjestajMenadzer.odradiZakazano();
+                PremjestajMenadzer.odradiZakazanePremjestaje();
+                this.Close();
                 w1.ShowDialog();
             }catch(Exception ex) { }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Upravnik u = new Upravnik();
             this.Close();
+            u.Show();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -48,6 +52,7 @@ namespace Projekat
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             PrikaziSalu ps = new PrikaziSalu();
+            this.Close();
             ps.Show();
         }
 
@@ -63,12 +68,38 @@ namespace Projekat
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
-            //Pomoc
+            ZahtjeviPomoc zahtjeviPomoc = new ZahtjeviPomoc();
+            zahtjeviPomoc.Show();
         }
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
             //O aplikaciji
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Lijekovi lijekoviProzor = new Lijekovi();
+            lijekoviProzor.Show();
+            this.Hide();
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                if (e.Key == Key.N)
+                {
+                    Button_Click_1(sender, e);
+                }else if(e.Key == Key.T)
+                {
+                    MenuItem_Click_1(sender, e);
+                }
+                else if (e.Key == Key.H)
+                {
+                    MenuItem_Click_4(sender, e);
+                }
+            }
         }
     }
 }

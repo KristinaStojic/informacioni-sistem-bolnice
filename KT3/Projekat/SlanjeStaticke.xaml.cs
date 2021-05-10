@@ -3,6 +3,7 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,12 +20,30 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for SlanjeStaticke.xaml
     /// </summary>
-    public partial class SlanjeStaticke : Window
+    public partial class SlanjeStaticke : Window, INotifyPropertyChanged
     {
         public ObservableCollection<Sala> Sale { get; set; }
         public ObservableCollection<string> termini { get; set; }
         Oprema opremaZaSlanje;
         Sala salaIzKojeSaljem;
+        public static int dozvoljenaKolicina;
+        public int validacija;
+        public static bool aktivan;
+        public int Validacija
+        {
+            get
+            {
+                return validacija;
+            }
+            set
+            {
+                if (value != validacija)
+                {
+                    validacija = value;
+                    OnPropertyChanged("Validacija");
+                }
+            }
+        }
         public SlanjeStaticke(Sala izabranaSala, Oprema opremaZaSlanje)
         {
             termini = new ObservableCollection<string>();
@@ -34,18 +53,29 @@ namespace Projekat
             this.oprema.Text = opremaZaSlanje.NazivOpreme;
             this.DataContext = this;
             Sale = new ObservableCollection<Sala>();
-            foreach (Sala s in SaleMenadzer.sale)
+            dodajSale(izabranaSala);
+            dodajTermine();
+            
+            int kolicina = opremaZaSlanje.Kolicina;
+            foreach(Premjestaj pm in PremjestajMenadzer.premjestaji)
             {
-                if (s.Id != izabranaSala.Id)
+                if (pm.izSale.Id == salaIzKojeSaljem.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    Sale.Add(s);
+                    kolicina -= pm.kolicina;
                 }
             }
+            this.maks.Text = "MAX: " + kolicina.ToString();
+
+            dozvoljenaKolicina = kolicina;
+            this.Potvrdi.IsEnabled = false;
+        }
+        private void dodajTermine()
+        {
             int x = 0;
             for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
             {
                 x = 0;
-                foreach(Premjestaj p in PremjestajMenadzer.premjestaji)
+                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
                 {
                     if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
                     {
@@ -57,21 +87,20 @@ namespace Projekat
                     termini.Add(i + ":00");
                 }
             }
-            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            termini.Add("12:30");
-            termini.Add("12:31");
-            termini.Add("12:32");
-            termini.Add("12:33");
-            termini.Add("12:34");
-            termini.Add("12:35");
-            termini.Add("12:36");
-            termini.Add("12:37");
-            termini.Add("12:38");
-            termini.Add("12:39");
         }
-
+        private void dodajSale(Sala izabranaSala)
+        {
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Id != izabranaSala.Id)
+                {
+                    Sale.Add(s);
+                }
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            aktivan = false;
             this.Close();
         }
 
@@ -175,7 +204,7 @@ namespace Projekat
                         }
                     }
                     zakazi.datumIVrijeme = datumIVrijeme;
-                    zakazi.salji = true;
+                   // zakazi.salji = true;
                     PremjestajMenadzer.dodajPremjestaj(zakazi);
                 }
             }
@@ -215,9 +244,10 @@ namespace Projekat
                     }
                 }
                 zakazi.datumIVrijeme = datumIVrijeme;
-                zakazi.salji = true;
+                //zakazi.salji = true;
                 PremjestajMenadzer.dodajPremjestaj(zakazi);
             }
+            aktivan = false;
             this.Close();
         }
 
@@ -267,6 +297,64 @@ namespace Projekat
                     
                 }
             }
+            podesiDugme();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            aktivan = false;
+        }
+        public bool IsNumeric(string input)
+        {
+            int test;
+            return int.TryParse(input, out test);
+        }
+        private void podesiDugme()
+        {
+            if (this.Kolicina != null)
+            {
+                if (IsNumeric(this.Kolicina.Text))
+                {
+                    izvrsiPodesavanje();
+                }
+                else
+                {
+                    this.Potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void izvrsiPodesavanje()
+        {
+            if(int.Parse(this.Kolicina.Text) > dozvoljenaKolicina || int.Parse(this.Kolicina.Text) <= 0 || this.sale.SelectedItem == null || this.vrijeme.SelectedItem == null)
+            {
+                this.Potvrdi.IsEnabled = false;
+            }else if (int.Parse(this.Kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.Kolicina.Text) > 0 && this.sale.SelectedItem != null && this.vrijeme.SelectedItem != null)
+            {
+                this.Potvrdi.IsEnabled = true;
+            }
+        }
+        private void sale_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            podesiDugme();
+        }
+
+        private void vrijeme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            podesiDugme();
+        }
+
+        private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            podesiDugme();
         }
     }
 }

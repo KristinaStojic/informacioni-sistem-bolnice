@@ -33,27 +33,31 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            
-                int brojAnamneze = ZdravstveniKartonMenadzer.GenerisanjeIdAnamneze(pacijent.IdPacijenta);
-                
-                String formatirano = null;
-                DateTime? selectedDate = datum.SelectedDate;
-                Console.WriteLine(selectedDate);
-                if (selectedDate.HasValue)
-                {
-                    formatirano = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-                }
-                //TO DO: DODAJ ZA DOKTORA
+           
+                int brojAnamneze = ZdravstveniKartonMenadzer.GenerisanjeIdAnamneze(pacijent.IdPacijenta);          
+                String datum = NadjiDatumPregleda();
                 string bolest = bol.Text;
                 string terapija = terap.Text;
-                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, formatirano, bolest, terapija,termin.Lekar.IdLekara);
-               
-                ZdravstveniKartonMenadzer.DodajAnamnezu(anamneza);
-                this.Close();
 
-           
+                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, datum, bolest, terapija,termin.Lekar.IdLekara); 
+                ZdravstveniKartonMenadzer.DodajAnamnezu(anamneza);
+
+
+                this.Close();
+        }
+
+        private string NadjiDatumPregleda()
+        {
+            String datumPregleda = null;
+            DateTime? selectedDate = datum.SelectedDate;
+            Console.WriteLine(selectedDate);
+            if (selectedDate.HasValue)
+            {
+                datumPregleda = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            }
+
+            return datumPregleda;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

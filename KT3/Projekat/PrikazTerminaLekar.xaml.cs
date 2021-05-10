@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -34,10 +35,30 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
+            NadjiUlogovanogLekara();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
+            view.Filter = UserFilter;
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(datumFilter.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return ((item as Termin).Datum.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+        }
+
+        private void NadjiUlogovanogLekara()
+        {
             Termini = new ObservableCollection<Termin>();
             foreach (Termin t in TerminMenadzer.termini)
             {
-               
+
 
                 if (t.Lekar.IdLekara == 1) //Petar Nebojsic
                 {
@@ -60,10 +81,9 @@ namespace Projekat
                     Termini.Add(t);
                 }*/
 
-                //Termini.Add(t);
+
             }
         }
-
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
@@ -74,7 +94,7 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //zakazi
-            ZakaziTerminLekar zt = new ZakaziTerminLekar();
+            ZakaziTerminLekar2 zt = new ZakaziTerminLekar2();
             zt.Show();
         }
 
@@ -132,7 +152,8 @@ namespace Projekat
                 else
                 {
                     this.Close();
-                    UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
+                    //UvidZdravstveniKartonLekar karton = new UvidZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
+                    ZdravstveniKartonLekar karton = new ZdravstveniKartonLekar(izabraniTermin.Pacijent, izabraniTermin);
                     karton.Show();
                 }
             }
@@ -156,6 +177,45 @@ namespace Projekat
         {
             ObavestenjaLekar o = new ObavestenjaLekar();
             o.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_1(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            else if (e.Key == Key.K && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_6(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_4(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Hyperlink_Click(sender, e);
+            }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            PrikazTerminaLekarPomoc pomoc = new PrikazTerminaLekarPomoc();
+            pomoc.Show();
+        }
+
+        private void datumFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(dataGridTermini.ItemsSource).Refresh();
         }
     }
 }
