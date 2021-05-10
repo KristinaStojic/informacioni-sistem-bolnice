@@ -607,7 +607,7 @@ namespace Projekat
         {
             foreach (Sala s in SaleMenadzer.sale)
             {
-                if (s.TipSale.Equals(tipSale.SalaZaPregled))
+                if (s.TipSale.Equals(tipSale.SalaZaPregled) && !s.Namjena.Equals("Skladiste"))
                 {
                     if (!prostorije.Items.Contains(s.Id))
                     {
