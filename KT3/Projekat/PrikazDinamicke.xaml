@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Prikaz dinamicke opreme" Height="390" Width="400" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Prikaz dinamicke opreme" Height="390" Width="400" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button Click="Button_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" BorderBrush="LightSteelBlue" Background="LightSteelBlue">

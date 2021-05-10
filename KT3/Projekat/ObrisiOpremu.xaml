@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Brisanje opreme" Height="140" Width="299" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+        Title="Brisanje opreme" Height="140" Width="299" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
     <Grid>
         <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Name="maks" Margin="0, 0, 20, 0"></TextBlock>
         <StackPanel Orientation="Horizontal">

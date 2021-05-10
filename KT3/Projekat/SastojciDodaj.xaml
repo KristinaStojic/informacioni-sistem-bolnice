@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Dodavanje sastojaka" Height="350" Width="400" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
+        Title="Dodavanje sastojaka" Height="350" Width="400" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

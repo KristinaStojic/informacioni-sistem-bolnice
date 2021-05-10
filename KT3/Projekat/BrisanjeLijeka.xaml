@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Brisanje lijeka" Height="150" Width="300" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
+        Title="Brisanje lijeka" Height="150" Width="300" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <StackPanel>
         <TextBlock FontSize="15" Margin="0, 10, 0, 0" HorizontalAlignment="Center">Da li ste sigurni da zelite da obrisete</TextBlock>
         <TextBlock FontSize="15" Margin="10" HorizontalAlignment="Center"> izabrani lijek?</TextBlock>
