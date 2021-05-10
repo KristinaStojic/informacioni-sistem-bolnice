@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-       Title="ZakaziTerminLekar" Height="640" Width="460">
+       Title="ZakaziTerminLekar" Height="640" Width="460" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,4,-1" Background="LightSkyBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajSpecijalistickiUput" Height="700" Width="600" Background="LightSkyBlue">
+        Title="DodajSpecijalistickiUput" Height="700" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
 
@@ -74,7 +74,7 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <ListView x:Name="nadjiDoktora" Grid.Column="1" Height="130" Margin="1.4,14.4,18,0" Grid.Row="9"  VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single">
+                        <ListView x:Name="listaLekara" Grid.Column="1" Height="130" Margin="1.4,14.4,18,0" Grid.Row="9"  VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Ime" DisplayMemberBinding="{Binding ImeLek}"
