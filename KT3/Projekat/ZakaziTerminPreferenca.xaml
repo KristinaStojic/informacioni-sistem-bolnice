@@ -13,8 +13,8 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="19*"/>
+            <RowDefinition/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Grid  Margin="0,0,0,0" Height="578">
@@ -66,70 +66,17 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <DataGrid Height="336" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Termini}" SelectionChanged="preferencaGrid_SelectionChanged" Grid.Column="1" Grid.Row="1"
-                  IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  AutoGenerateColumns="False" Margin="47,33,37,174" BorderBrush="#FF276678" VerticalAlignment="Center" Foreground="Black" Background="#FFF9F7F7" >
-            <DataGrid.Columns >
-                <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" Width="100" />
-                <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}" Width="100" />
-                <DataGridTextColumn x:Name="lekar" Header="Lekar" Binding="{Binding Lekar}" Width="210"/>
-                <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button Content="Zakazi" Name="btnZakazi" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
-                Height="30" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="btnZakazi_Click" 
-                Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="Potvrdi" Name="zakaziLekar" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
-                Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="Nazad"  Name="nazad" HorizontalAlignment="Left" Margin="260,468,0,0" VerticalAlignment="Top" Width="90" 
-            Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="65,136,0,0" 
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Izaberite jednu od ponuđenih preferenci " HorizontalAlignment="Center" Foreground="{DynamicResource TextColor}"
+                   Margin="0, 120, 0 ,20" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0">
+                <Button x:Name="preporuka" Content="Preporučeni termini" HorizontalAlignment="Left" Margin="0,20,0,0" 
+                VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Style="{DynamicResource ButtonStyle2}"/>
+                <Button x:Name="lekari" Content="Izaberite drugog lekara" HorizontalAlignment="Left" Margin="65,20,0,0" 
                 VerticalAlignment="Top" Width="195" Height="95" Click="lekari_Click" 
                 Style="{DynamicResource ButtonStyle2}"  Grid.Row="1" Grid.Column="1"/>
-        <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="335,135,0,0" 
-                VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Style="{DynamicResource ButtonStyle2}"
-                Grid.Column="1" Grid.Row="1"/>
-        <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Left" Height="365" Margin="107,33,0,0"
-                  VerticalAlignment="Top" Width="380" RenderTransformOrigin="0.858,0.494" Grid.Column="1" Grid.Row="1">
-            <ListView x:Name="datagridLekari" SelectionMode="Single" Margin="6,70,22,17"
-                      SelectionChanged="datagridLekari_SelectionChanged" Background="#FFF9F7F7" Grid.Column="1" Grid.Row="1" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="ID" 
-                        Width="33" DisplayMemberBinding="{Binding IdLekara}"/>
-                        <GridViewColumn Header="Ime" 
-                        Width="80" DisplayMemberBinding="{Binding ImeLek}"/>
-                        <GridViewColumn Header="Prezime" 
-                        Width="80" DisplayMemberBinding="{Binding PrezimeLek}"/>
-                        <GridViewColumn Header="Specijalizacija"
-                        Width="140" DisplayMemberBinding="{Binding specijalizacija}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </GroupBox>
-        <TextBox x:Name="txtFilter" Height="25" Width="200" Grid.Column="1" Grid.Row="1" Margin="258,85,126,433">
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Pronađite lekara " Foreground="DarkGray" />
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 
 </Page>
