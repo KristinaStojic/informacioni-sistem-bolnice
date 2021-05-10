@@ -241,14 +241,41 @@ namespace Projekat
             {
                 Button_Click_7(sender, e);
             }
+            // X na detljnom prikazu termina
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            // uvid u zdravstveni karton
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_8(sender, e);
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_8(sender, e);
+            }
             // izadji iz ovog prozora
-            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftAlt))
             {
                 Button_Click(sender, e);
             }
-            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightAlt))
             {
                 Button_Click(sender, e);
+            }
+            // tabela termina
+            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                //terminiSekretarTabela_SelectionChanged(sender, SelectionChangedEventArgs e);
+            }
+            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                //terminiSekretarTabela_SelectionChanged(sender, SelectionChangedEventArgs e);
             }
         }
 

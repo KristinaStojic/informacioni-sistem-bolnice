@@ -65,6 +65,7 @@ namespace Projekat
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            // otvori meni
             if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Click_3(sender, e);
@@ -72,7 +73,8 @@ namespace Projekat
             else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
             {
                 Button_Click_3(sender, e);
-            }
+            } 
+            // zatvori meni
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Click_4(sender, e);
@@ -81,6 +83,7 @@ namespace Projekat
             {
                 Button_Click_4(sender, e);
             }
+            // pomoc i preko alt-a napraviti da radi
             else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Hyperlink_Click(sender, e);

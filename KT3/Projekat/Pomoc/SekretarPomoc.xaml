@@ -27,9 +27,9 @@
             <Run Text="CTRL + L - Izloguj se"/><LineBreak/>
             <LineBreak/>
             <Run Text="Nakon što je meni otvoren, mogu se koristiti"/><Run Text=":"/><LineBreak/>
-            <Run Text="ALT + P - "/><Run Text="Prikaz pacijenata "/><LineBreak/>
+            <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
-            <Run Text="ALt + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
+            <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
         </TextBlock>
     </Grid>
 </Window>

@@ -43,7 +43,7 @@
                     </StackPanel>
                 </Button>
             </MenuItem>
-            <MenuItem InputGestureText="Ctrl + N" Height="106" Width="206" Click="Button_Click_4" RenderTransformOrigin="0.5,0.5">
+            <MenuItem InputGestureText="Alt + N" Height="106" Width="206" Click="Button_Click_4" RenderTransformOrigin="0.5,0.5">
                 <MenuItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -72,8 +72,8 @@
         <Label Content="Klinika Zdravo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,444,0,0" FontSize="40" FontStyle="Italic" FontWeight="DemiBold" Foreground="#FF18A3AC"/>
         <Label Content="07:00-20:00" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="237,492,0,0" FontSize="40" FontStyle="Italic" Foreground="#FF18A3AC"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="1100,31,0,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="49" Width="102" FontSize="25">
-            <Hyperlink Click="Hyperlink_Click"> Pomoć? </Hyperlink>
+        <TextBlock HorizontalAlignment="Left" Margin="994,31,0,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="49" Width="208" FontSize="25">
+            <Hyperlink Click="Hyperlink_Click"> Pomoć? (Ctrl + P) </Hyperlink>
         </TextBlock>
 
     </Grid>

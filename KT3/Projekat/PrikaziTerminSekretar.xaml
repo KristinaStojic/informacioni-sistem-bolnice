@@ -35,10 +35,10 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Content="_Zakazi" HorizontalAlignment="Left" Margin="481,43,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="_Izmeni" HorizontalAlignment="Left" Margin="596,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
-        <Button Content="_Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
-        <Button Content="_Hitan slucaj" HorizontalAlignment="Left" Margin="710,28,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_7" FontSize="17" Background="#FFE7F6F7"/>
+        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="481,43,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="596,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
+        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
+        <Button Content="Hitan slucaj" HorizontalAlignment="Left" Margin="710,28,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_7" FontSize="17" Background="#FFE7F6F7"/>
         <Label Content="Termini" HorizontalAlignment="Left" Margin="217,0,0,0" VerticalAlignment="Center" FontSize="22" FontFamily="Segoe UI Semibold" Foreground="#FF18A3AC" Width="162" HorizontalContentAlignment="Center" Height="88" VerticalContentAlignment="Center"/>
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" Grid.RowSpan="2" StrokeThickness="0" VerticalAlignment="Top" Width="457" Margin="820,0,-3.4,0"/>
         <DataGrid Grid.Column="0" x:Name="terminiSekretarTabela" ItemsSource="{Binding TerminiSekretar}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="499" Margin="212,100,0,0" VerticalAlignment="Top" Width="608" GridLinesVisibility="All" FontSize="14" Grid.Row="1" SelectionChanged="terminiSekretarTabela_SelectionChanged">

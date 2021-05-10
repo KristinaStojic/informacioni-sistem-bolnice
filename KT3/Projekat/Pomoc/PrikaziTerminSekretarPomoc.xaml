@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PrikaziTerminSekretarPomoc" Height="320" Width="420" WindowStartupLocation="CenterScreen">
+        Title="PrikaziTerminSekretarPomoc" Height="420" Width="420" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="37.6"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Button Background="#FF5DBFC5" Margin="126.6,7.2,127,8.4" Click="Button_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="15">Nazad</Button>
+
+        <TextBlock Margin="51.6,7,34,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="330" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
+            <Run Text="Opšte prečice:" FontStyle="Italic" /><LineBreak/>
+            <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
+            <Run Text="CTRL + Z - Zakaži termin"/><LineBreak/>
+            <Run Text="CTRL + I - Izmeni termin"/><LineBreak/>
+            <Run Text="CTRL + O - Otkaži termin"/><LineBreak/>
+            <Run Text="CTRL + H - Zakaži hitan termin"/><LineBreak/>
+            <Run Text="     - Ulaz u tabelu"/><LineBreak/>
+            <Run Text="     - Polje za pretragu termin"/><LineBreak/>
+            <Run Text="CTRL + X - X na detaljnom uvidu termina"/><LineBreak/>
+            <Run Text="CTRL + U - Uvid u zdravstveni karton"/><LineBreak/>
+            <LineBreak/>
+            <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic"/><Run Text=":"/><LineBreak/>
+            <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
+            <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
+            <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
+            <Run Text="ALT + P - Pomoć"/><LineBreak/>
+        </TextBlock>
     </Grid>
 </Window>
