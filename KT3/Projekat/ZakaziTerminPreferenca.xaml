@@ -31,7 +31,7 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" />
+                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
                                     <Separator/>
                                     <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                     <Separator/>
@@ -78,16 +78,16 @@
         </DataGrid>
         <Button Content="Zakazi" Name="btnZakazi" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
                 Height="30" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="btnZakazi_Click" 
-                Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
+                Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
         <Button Content="Potvrdi" Name="zakaziLekar" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
-                Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
+                Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
         <Button Content="Nazad"  Name="nazad" HorizontalAlignment="Left" Margin="260,468,0,0" VerticalAlignment="Top" Width="90" 
-            Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
+            Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
         <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="65,106,0,0" 
                 VerticalAlignment="Top" Width="195" Height="95" Click="lekari_Click" 
-                Style="{DynamicResource ButtonStyle}"  Grid.Row="1" Grid.Column="1"/>
+                Style="{DynamicResource ButtonStyle2}"  Grid.Row="1" Grid.Column="1"/>
         <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="335,105,0,0" 
-                VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Style="{DynamicResource ButtonStyle}"
+                VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Style="{DynamicResource ButtonStyle2}"
                 Grid.Column="1" Grid.Row="1"/>
         <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Left" Height="360" Margin="107,33,0,0" VerticalAlignment="Top" Width="370" RenderTransformOrigin="0.858,0.494" Grid.Column="1" Grid.Row="1">
 

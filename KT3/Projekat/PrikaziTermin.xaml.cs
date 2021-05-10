@@ -29,7 +29,6 @@ namespace Projekat
         public static ObservableCollection<Termin> Termini { get; set; }
         public static ObservableCollection<Obavestenja> ObavestenjaPacijent { get; set; }
         public Thread thread;
-        private static int minBrojTerminaZaAnketu = 2;
         public PrikaziTermin(int idPrijavljeniPacijent)
         {
             InitializeComponent();
@@ -204,32 +203,6 @@ namespace Projekat
             
         }
 
-        
-
-        private void ProveriDostupnostAnketeZaKlinku()
-        {
-            int brojacProslihTermina = 0;
-            foreach (Termin termin in TerminMenadzer.termini)
-            {
-                if (termin.Pacijent.IdPacijenta == idPacijent)
-                {
-                    DateTime danasnjiDatum = DateTime.Now.Date;
-                    if (DateTime.Parse(termin.Datum) <= danasnjiDatum)
-                    {
-                        brojacProslihTermina++;
-                        if (brojacProslihTermina >= minBrojTerminaZaAnketu)
-                        {
-                            this.anketa.IsEnabled = true;
-                        }
-                        else
-                        {
-                            this.anketa.IsEnabled = false;
-                        }
-                    }
-                }
-            }
-        } 
-
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             Page odjava = new PrijavaPacijent();
@@ -244,6 +217,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -294,6 +272,12 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
+        }
+
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Projekat
         private static int maksimalniJednocifren = 9;
         private static int oznakaZaRenoviranje = 0;
         private static int idPacijent;
-        public static Lekar izabraniLekar;
+        public static Lekar izabraniLekar { get; set; }
         private List<Sala> SaleZaPreglede;
         private Sala prvaSlobodnaSala;
         private int ukupanBrojSalaZaPregled;
@@ -52,12 +52,10 @@ namespace Projekat
 
         private void InicijalizujPodatkeOLekaru()
         {
-            if (izabraniLekar != null)
+            if (izabraniLekar == null )
             {
-                this.imePrz.Text = izabraniLekar.ToString();
-                return;
+                izabraniLekar = prijavljeniPacijent.IzabraniLekar;
             }
-            izabraniLekar = prijavljeniPacijent.IzabraniLekar;
             this.imePrz.Text = izabraniLekar.ToString();
         }
 
@@ -66,7 +64,7 @@ namespace Projekat
         {
             try
             {
-                DetektujMalicioznoPonasanjePacijenta();
+                PokupiPodatkeZaZakazivanjeTermina();
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
             }
@@ -76,22 +74,10 @@ namespace Projekat
             }
         }
 
-        private void DetektujMalicioznoPonasanjePacijenta()
-        {
-            if (!MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                PokupiPodatkeZaZakazivanjeTermina();
-            }
-            else
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili maksimalni broj modifikacije termina u danu.", "Upozorenje", MessageBoxButton.OK);
-            }
-        }
-
         private void PokupiPodatkeZaZakazivanjeTermina()
         {
             int brojTermina = TerminMenadzer.GenerisanjeIdTermina();
-            String datumTermina = datum.SelectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            String datumTermina = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             String vremePocetka = vpp.Text;
             String vremeKraja = IzracunajVremeKrajaPregleda(vremePocetka);
             TipTermina tipTermina;
@@ -111,7 +97,6 @@ namespace Projekat
             termin.Prostorija = prvaSlobodnaSala;
             TerminMenadzer.ZakaziTermin(termin);
 
-            MessageBox.Show(izabraniLekar.ToString());
             AnketaMenadzer.DodajAnketuZaLekara(termin, idPacijent);
             ProveriAnketuZaKliniku();
             MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent);
@@ -129,7 +114,7 @@ namespace Projekat
             foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent)) 
             {
                 brojacTermina++;
-                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika)
+                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika && !AnketaMenadzer.ankete.Exists(x => x.IdTermina == AnketaMenadzer.oznakaAnketeZaKliniku))
                 {
                     AnketaMenadzer.DodajAnketuZaKliniku(idPacijent);
                     return;
@@ -173,11 +158,12 @@ namespace Projekat
             this.NavigationService.Navigate(ztp);
         }
 
-        /*  -------- ZAKAZIVANJE TERMINA ---------- */
+        /*  ---------------------- ZAKAZIVANJE TERMINA ---------------------- */
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SaleZaPreglede = SaleMenadzer.PronadjiSaleZaPregled();
-            ukupanBrojSalaZaPregled = SaleMenadzer.UkupanBrojSalaZaPregled();
+            ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
+            
         }
 
         private static int ParsirajSateVremenskogSlota(String vreme)
@@ -192,7 +178,7 @@ namespace Projekat
             return Convert.ToInt32(minuti);
         }
 
-        public void UkoloniProsleSlotoveZaDanasnjiDan(ObservableCollection<string> PomocnaSviSlobodniSlotovi)
+        public void UkoloniProsleSlotoveZaDanasnjiDatum(ObservableCollection<string> PomocnaSviSlobodniSlotovi)
         {
             if (datum.SelectedDate != DateTime.Now.Date)
                 return;
@@ -223,7 +209,6 @@ namespace Projekat
             }
         }
 
-
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SaleZaPreglede == null)
@@ -234,7 +219,7 @@ namespace Projekat
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
-            UkoloniProsleSlotoveZaDanasnjiDan(PomocnaSviSlobodniSlotovi);
+            UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);
             UkolniSlotoveZauzeteUSvimSalama(PomocnaSviSlobodniSlotovi);
             vpp.ItemsSource = SviSlobodniSlotovi;
@@ -359,7 +344,7 @@ namespace Projekat
                         SviZauzetiZaSelektovaniDatum.Add(slot);
                     }
                 }
-                /* provera da se selektovani datum poklapa sa nekim vec zakazanim terminom */
+                /* provera da se selektovani datum poklapa sa nekim zakazanim terminom */
                 else if (satiVreme == satiVremePocetka && minVreme == minVremePocetka)
                 {
                     SviZauzetiZaSelektovaniDatum.Add(slot);
@@ -438,7 +423,7 @@ namespace Projekat
             }
             return false;
         }
-        /*  --------------------------- */
+        /*  ------------------------------------------------------------------ */
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -454,6 +439,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -490,5 +480,11 @@ namespace Projekat
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
+        }
     }
+
 }

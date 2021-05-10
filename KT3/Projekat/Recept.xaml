@@ -18,7 +18,7 @@
                         <MenuItem.Icon>
                             <Image Source="/slike/user.png" />
                         </MenuItem.Icon>
-                        <MenuItem Header="_Vaš profil" />
+                        <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
                         <Separator/>
                         <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                         <Separator/>

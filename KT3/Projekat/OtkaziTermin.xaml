@@ -24,7 +24,7 @@
                             <MenuItem.Icon>
                                 <Image Source="/slike/user.png" />
                             </MenuItem.Icon>
-                            <MenuItem Header="_Vaš profil" />
+                            <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
                             <Separator/>
                             <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                             <Separator/>
@@ -90,9 +90,9 @@
                    Foreground="{DynamicResource TextColor}"/>
             <Separator Height="10" Background="{DynamicResource BackgroundColor}" />
             <StackPanel Orientation="Horizontal" Height="31" HorizontalAlignment="Center">
-                <Button Width="90" Content="Da" Style="{DynamicResource ButtonStyle}" Click="Button_Click_1"/>
-                <Separator Width="60" Background="{DynamicResource BackgroundColor}" />
-                <Button Width="90" Content="Ne" Style="{DynamicResource ButtonStyle}" Click="Button_Click"/>
+                <Button Width="90" Content="Da" Style="{DynamicResource ButtonStyle2}" Click="Button_Click_1"/>
+                <Separator Width="30" Background="{DynamicResource BackgroundColor}" />
+                <Button Width="90" Content="Ne" Style="{DynamicResource ButtonStyle2}" Click="Button_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -43,7 +43,7 @@ namespace Projekat
         private static Lekar pronadjiLekaraZaAnketu(int idAnkete)
         {
             Anketa anketa = AnketaMenadzer.NadjiAnketuPoId(idAnkete);
-            Termin termin = TerminMenadzer.NadjiTerminPoId(anketa.idTermina);
+            Termin termin = TerminMenadzer.NadjiTerminPoId(anketa.IdTermina);
             return termin.Lekar;
         }
 
@@ -167,6 +167,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -187,8 +192,8 @@ namespace Projekat
         {
             string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
             Anketa anketa = AnketaMenadzer.NadjiAnketuPoId(idAnkete);
-            anketa.odgovori = odgovoriPacijenta;
-            anketa.popunjenaAnketa = true;
+            anketa.Odgovori = odgovoriPacijenta;
+            anketa.PopunjenaAnketa = true;
 
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
@@ -221,6 +226,12 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
+        }
+
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
     }
 

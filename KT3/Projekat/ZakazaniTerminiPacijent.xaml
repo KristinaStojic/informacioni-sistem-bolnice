@@ -37,7 +37,7 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" />
+                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
                                     <Separator/>
                                     <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                     <Separator/>
@@ -53,25 +53,22 @@
                             </Menu>
                         </StackPanel>
                     </StackPanel>
-                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Height="25">
-                            <Hyperlink Name="pocetna" Click="pocetna_Click">
-                            <Run Text="Početna stranica"/>
-                            </Hyperlink>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
-                                <Run Text="Zakažite termin"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text="  "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="uvid" Click="uvid_Click">
-                                <Run Text="Uvid u zakazane termine"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="karton" Click="karton_Click">
-                                <Run Text="Zdravstveni karton"/>
-                            </Hyperlink>
+                    <TextBlock Margin="20, 0, 0, 0" FontSize="14"  Height="25">
+                <Hyperlink Name="pocetna" Click="pocetna_Click">
+                    <Run Text="Početna stranica"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="zakazi" Click="zakazi_Click">
+                    <Run Text="Zakažite termin"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="uvid" Click="uvid_Click">
+                    <Run Text="Uvid u zakazane termine"/>
+                </Hyperlink>
+                <Run Text=" "/>
+                <Hyperlink Name="karton" Click="karton_Click">
+                    <Run Text="Zdravstveni karton"/>
+                </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>
@@ -121,14 +118,14 @@
                             Width="90"
                             ToolTip="Ukoliko zelite da pomerite termin, selektujte termin i pritisnite dugme 'Pomeri termin'" Content="Pomeri termin"
                             Click="Button_Click_1"
-                        Style="{DynamicResource ButtonStyle}"/>
+                        Style="{DynamicResource ButtonStyle2}"/>
                 <Button Height="30"
                             Width="90"
                             ToolTip="Ukoliko zelite da otkazete termin, selektujte zeljeni termin i pritisnite dugme 'Otkazi termin'"
                             Content="Otkazi termin"
-                            Margin="20, 0, 0, 0"
+                            Margin="30, 0, 0, 0"
                             Click="Button_Click_2"
-                            Style="{DynamicResource ButtonStyle}"/>
+                            Style="{DynamicResource ButtonStyle2}"/>
             </StackPanel>
 
 

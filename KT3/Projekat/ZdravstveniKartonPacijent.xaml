@@ -13,7 +13,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Margin="0,0,0,-22" >
+                    <StackPanel Margin="0,0,0,0" >
                         <StackPanel Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
                             <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                                 <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
@@ -21,11 +21,11 @@
                             </StackPanel>
                             <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                                 <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
-                                    <MenuItem Name="pacijent">
+                                    <MenuItem Name="podaci">
                                         <MenuItem.Icon>
                                             <Image Source="/slike/user.png" />
                                         </MenuItem.Icon>
-                                        <MenuItem Header="_Vaš profil" />
+                                        <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
                                         <Separator/>
                                         <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                         <Separator/>
@@ -88,122 +88,6 @@
                                 </Style>
                             </TabControl.Resources>
 
-                            <TabItem Header="Lični podaci" x:Name="podaci" FontSize="15" Height="25" Margin="0,0,0.5,0" VerticalAlignment="Top" >
-                                <Grid Background="#FFF9F7F7" Margin="0" RenderTransformOrigin="0.274,0.337">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="71*"/>
-                                        <ColumnDefinition Width="51*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Margin="70,0,69.5,342.5">
-                                        <Label Content="Ime" Margin="0,10" FontSize="15" HorizontalAlignment="Right" Width="35"/>
-                                        <TextBox x:Name="ime" IsEnabled="False"
-                                            HorizontalAlignment="Center" Height="25" Margin="40,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="70,45,69.5,337.5">
-                                        <Label Content="Prezime" Margin="0,0,0,0" FontSize="15" HorizontalAlignment="Right" Width="63" Height="28" VerticalAlignment="Bottom"/>
-                                        <TextBox x:Name="prezime" IsEnabled="False"
-                                            HorizontalAlignment="Center" Height="25" Margin="12,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="76,80,70.5,301.5">
-                                        <Label Content="JMBG" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="54"/>
-                                        <TextBox x:Name="jmbg" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="82,115,69.5,266.5">
-                                        <Label Content="Pol" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="48"/>
-                                        <TextBox x:Name="poltxt" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="35,148,65.5,233.5" Width="254">
-                                        <Label Content="Broj telefona" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="95"/>
-                                        <TextBox x:Name="brojTel" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="78,185,64.5,196.5" Width="212">
-                                        <Label Content="E-mail" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="52"/>
-                                        <TextBox x:Name="email" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="71,224,65.5,157.5" Width="218">
-                                        <Label Content="Adresa" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="59"/>
-                                        <TextBox x:Name="adresa" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <!-- TODO : COMBO BOX OVDE ZA BRACNO STANJE-->
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="29,261,63.5,120.5" Width="262">
-                                        <Label Content="Bracno stanje" FontSize="15" HorizontalAlignment="Center" Width="101"/>
-                                        <TextBox x:Name="bracStanje" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="52,300,64.5,81.5" Width="238">
-                                        <Label Content="Zanimanje" FontSize="15" HorizontalAlignment="Center" Width="78"/>
-                                        <TextBox x:Name="zanimanje" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" />
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="30,340,64.5,41.5" Width="260">
-                                        <Label Content="Izabrani lekar" FontSize="15" HorizontalAlignment="Center" Width="100"/>
-                                        <!--TextBox x:Name="lekar2" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" /-->
-                                        <ComboBox IsEnabled="False" Width="140" Height="25" x:Name="lekar" Margin="15,0,0,0" />
-                                    </StackPanel>
-
-
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="178,0,176.5,0.5"/>
-                                    <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Height="100" Width="100" Margin="51.5,35,70,226.5">
-                                        <Image Grid.Column="1" Margin="5,5,5, 5" Source="slike\menager.jpg" />
-                                    </Border>
-                                    <Label Content="Korisnicko ime" HorizontalAlignment="Left" Height="29" Width="114" VerticalAlignment="Bottom" Margin="41.5,0,0,209.5" FontWeight="Bold" Grid.Column="1"/>
-                                    <Button x:Name="izmeniBtn"
-                                            Content="Izmenite podatke"
-                                            Grid.Column="1" 
-                                            Height="30" 
-                                            Margin="33.5,341,46,39.5" 
-                                            Click="izmeniBtn_Click" 
-                                            Style="{DynamicResource ButtonStyle}"/>
-                                    <Button x:Name="sacuvajIzmene"
-                                            Content="Potvrdi" 
-                                            Grid.Column="1" 
-                                            Height="30" 
-                                            Margin="18.5,341,141,39.5" 
-                                            Click="sacuvajIzmene_Click" 
-                                            Style="{DynamicResource ButtonStyle}"/>
-                                    <Button x:Name="odustani" 
-                                            Content="Odustani"
-                                            Grid.Column="1" 
-                                            Height="30" 
-                                            Margin="121.5,341,36,39.5" 
-                                            Click="odustani_Click" 
-                                            Style="{DynamicResource ButtonStyle}"/>
-                                    <Label Content="Lozinka"
-                                           HorizontalAlignment="Left" 
-                                           Height="28" Width="114" 
-                                           VerticalAlignment="Bottom" 
-                                           Margin="45.5,0,0,153.5"
-                                           FontWeight="Bold" 
-                                           Grid.Column="1"/>
-                                    <PasswordBox x:Name="lozinka" 
-                                                 IsEnabled="False" 
-                                                 HorizontalAlignment="Left"
-                                                 Height="25" Width="146" 
-                                                 Grid.Column="1" 
-                                                 Margin="43.5,257,0,128.5">
-                                        <PasswordBox.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform ScaleX="1"/>
-                                                <SkewTransform/>
-                                                <RotateTransform/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </PasswordBox.RenderTransform>
-                                    </PasswordBox>
-                                    <TextBox x:Name="korisnickoIme"
-                                             IsEnabled="False" 
-                                             HorizontalAlignment="Left" 
-                                             Width="146" Grid.Column="1" 
-                                             Margin="43.5,202,0,183.5"/>
-                                </Grid>
-                            </TabItem>
-
                             <TabItem Header="Lekarski recepti" 
                             ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
                                 <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="16" Margin="0,-2,0,0.5">
@@ -212,7 +96,8 @@
                                             <GridViewColumn Width="35" >
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Background="#112d4e" Foreground="#f9f7f7" HorizontalAlignment="Right" BorderBrush="#3f72af" Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
+                                                        <Button  HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle2}"
+                                                                 Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
@@ -238,7 +123,8 @@
                                             <GridViewColumn Width="35">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Button Background="#112d4e" x:Name="infoAnamneza" HorizontalAlignment="Right" Foreground="#f9f7f7" BorderBrush="#3f72af" Content="ℹ︎" FontSize="14" Click="infoAnamneza_Click"/>
+                                                        <Button  x:Name="infoAnamneza" Style="{DynamicResource ButtonStyle2}"
+                                                                 HorizontalAlignment="Right" Content="ℹ︎" FontSize="14" Click="infoAnamneza_Click"/>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
@@ -262,13 +148,11 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-
                             </TabItem>
                         </TabControl>
                     </StackPanel>
                 </Grid>
             </StackPanel>
-            <!-- TABOVI -->
         </DockPanel>
     </ScrollViewer>
 </Page>

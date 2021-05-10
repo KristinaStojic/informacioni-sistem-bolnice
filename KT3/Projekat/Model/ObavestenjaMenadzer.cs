@@ -71,30 +71,14 @@ namespace Projekat.Model
         }
 
         public static void ObrisiObavestenje(Obavestenja obavestenje)
-        {  
+        {
             for (int i = 0; i < obavestenja.Count; i++)
             {
                 if (obavestenja[i].IdObavestenja == obavestenje.IdObavestenja)
                 {
                     obavestenja.RemoveAt(i);
-                    OglasnaTabla.oglasnaTabla.Remove(obavestenje);                 
+                    OglasnaTabla.oglasnaTabla.Remove(obavestenje);
                 }
-            }
-        }
-
-        public static List<Obavestenja> PronadjiSvaObavestenjaSekretar()
-        {
-            if (File.ReadAllText("obavestenja.xml").Trim().Equals(""))
-            {
-                return obavestenja;
-            }
-            else
-            {
-                FileStream filestream = File.OpenRead("obavestenja.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Obavestenja>));
-                obavestenja = (List<Obavestenja>)serializer.Deserialize(filestream);
-                filestream.Close();
-                return obavestenja;
             }
         }
 
