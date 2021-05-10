@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"  xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Renoviranje" Height="230" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
+        Title="Renoviranje" Height="230" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <TextBlock Margin="20" FontSize="15">Datum i vrijeme pocetka: </TextBlock>

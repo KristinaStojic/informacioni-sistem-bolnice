@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-         Title="Izmjeni sastojke" Height="460" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
+         Title="Izmjeni sastojke" Height="460" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
     <StackPanel DockPanel.Dock="Top" Margin="0,20,0,0">
         <Button ToolTip="Nazad" Width="30" Margin="5, 0, 420, 10" Click="Button_Click" Background="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>

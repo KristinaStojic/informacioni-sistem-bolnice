@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazObavjestenja" Height="260" Width="350" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
+        Title="PrikazObavjestenja" Height="260" Width="350" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <StackPanel>
         <Label Content="Sadrzaj obavjestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="31" Width="156"/>
         <TextBox Margin="10" Height="120" Name="sadrzajObavjestenja"></TextBox>
