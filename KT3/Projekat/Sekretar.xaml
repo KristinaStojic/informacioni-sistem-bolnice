@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+        Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <Image Source="slike/medical-symbol.png" Margin="143,131,732.6,237.4"/>
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="550" StrokeThickness="0" VerticalAlignment="Top" Width="535" Margin="661,69,0,0"/>
@@ -24,10 +24,10 @@
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="1138,669,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFA3DADE"/>
-        <Button HorizontalAlignment="Left" Margin="1185,669,0,4.4" Width="36" Background="#FF5DBFC5"/>
-        <Button HorizontalAlignment="Left" Margin="1094,670,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFE7F6F7"/>
-        <Button HorizontalAlignment="Left" Margin="1231,669,0,0" VerticalAlignment="Top" Width="38" Height="17" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804"/>
+        <Button HorizontalAlignment="Left" Margin="1138,669,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFA3DADE" Visibility="Hidden"/>
+        <Button HorizontalAlignment="Left" Margin="1185,669,0,4.4" Width="36" Background="#FF5DBFC5" Visibility="Hidden"/>
+        <Button HorizontalAlignment="Left" Margin="1094,670,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFE7F6F7" Visibility="Hidden"/>
+        <Button HorizontalAlignment="Left" Margin="1231,669,0,0" VerticalAlignment="Top" Width="38" Height="17" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804" Visibility="Hidden"/>
         <Button Margin="10,7,1179.6,617.4" BorderThickness="0" Background="#00DDDDDD" Click="Button_Click_3">
             <StackPanel>
                 <Image Source="slike/icons8-pull-down-50.png" Height="53" Width="82" />
@@ -35,7 +35,15 @@
             </StackPanel>
         </Button>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="2" Margin="-2,0,0,0" Visibility="Hidden">
-            <MenuItem Height="106" Width="206" Click="Button_Click_4" RenderTransformOrigin="0.5,0.5">
+            <MenuItem InputGestureText="Ctrl + M">
+                <Button Margin="10,7,1179.6,617.4" BorderThickness="0" Background="#00DDDDDD" Click="Button_Click_3">
+                    <StackPanel>
+                        <Image Source="slike/icons8-pull-down-50.png" Height="53" Width="82" />
+                        <TextBlock Height="1"/>
+                    </StackPanel>
+                </Button>
+            </MenuItem>
+            <MenuItem InputGestureText="Ctrl + N" Height="106" Width="206" Click="Button_Click_4" RenderTransformOrigin="0.5,0.5">
                 <MenuItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -52,6 +60,7 @@
             <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Button_Click_1"/>
             <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Button_Click_5"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Hyperlink_Click"/>
         </Menu>
         <Label Content="Osnovni podaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="834,83,0,0" FontSize="30" FontWeight="SemiBold" FontStyle="Italic"/>
         <Label Content="Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,196,0,0" FontSize="20"/>
@@ -62,6 +71,10 @@
         <Label Content="Adresa stanovanja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,471,0,0" FontSize="20"/>
         <Label Content="Klinika Zdravo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,444,0,0" FontSize="40" FontStyle="Italic" FontWeight="DemiBold" Foreground="#FF18A3AC"/>
         <Label Content="07:00-20:00" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="237,492,0,0" FontSize="40" FontStyle="Italic" Foreground="#FF18A3AC"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="1100,31,0,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="49" Width="102" FontSize="25">
+            <Hyperlink Click="Hyperlink_Click"> Pomoć? </Hyperlink>
+        </TextBlock>
 
     </Grid>
 </Window>

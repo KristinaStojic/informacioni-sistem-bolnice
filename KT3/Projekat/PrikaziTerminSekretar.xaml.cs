@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -49,8 +50,12 @@ namespace Projekat
                 return true;
             }
             else
-            {
-                return ((item as Termin).Datum.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            {   // filtriranje po datumu, pacijentu, lekaru i prostoriji
+                return ((item as Termin).Datum.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).imePrezimePacijenta.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).Pacijent.Jmbg.ToString().IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).imePrezimeLekara.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).Prostorija.Id.ToString().IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
         }
 
@@ -196,6 +201,61 @@ namespace Projekat
             {
                 MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {     
+            // zakazi
+            if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_1(sender, e);
+            } 
+            else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_1(sender, e);
+            } 
+            // izmeni
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_2(sender, e);
+            } 
+            // otkazi
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+            // hitan slucaj
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_7(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_7(sender, e);
+            }
+            // izadji iz ovog prozora
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click(sender, e);
+            }
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            PrikaziTerminSekretarPomoc pomoc = new PrikaziTerminSekretarPomoc();
+            pomoc.Show();
         }
     }
 }

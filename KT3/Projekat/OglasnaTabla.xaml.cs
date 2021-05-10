@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -156,6 +157,12 @@ namespace Projekat
             }
 
             flag = false;
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            OglasnaTablaPomoc pomoc = new OglasnaTablaPomoc();
+            pomoc.Show();
         }
     }
 }

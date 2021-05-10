@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikaziTerminSekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="PrikaziTerminSekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown">
     <Grid Margin="-2,0,1.6,0.4">
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
-        <TextBox DockPanel.Dock="Top" Name="datumFilter" TextChanged="datumFilter_TextChanged" TextAlignment="Left" Height="30" Width="206" ToolTip="Pronadjite termin po datumu" HorizontalAlignment="Right" FontSize="14" Grid.Row="1" Margin="0,56,837,0" VerticalAlignment="Top">
+        <TextBox DockPanel.Dock="Top" Name="datumFilter" TextChanged="datumFilter_TextChanged" TextAlignment="Left" Height="30" Width="206" ToolTip="Pretrazite listu po datumu, pacijentu, lekaru i prostoriji" HorizontalAlignment="Right" FontSize="14" Grid.Row="1" Margin="0,56,837,0" VerticalAlignment="Top">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="(MM/dd/yyyy)" FontSize="14" Foreground="LightGray" />
+                                <Label Content="Pretraga po datumu, pacijentu, lekaru i prostoriji" FontSize="14" Foreground="LightGray" />
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>
@@ -35,10 +35,10 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="481,43,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="596,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
-        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
-        <Button HorizontalAlignment="Left" Margin="710,28,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_7" FontSize="17" Background="#FFE7F6F7" Content="Hitan slucaj"/>
+        <Button Content="_Zakazi" HorizontalAlignment="Left" Margin="481,43,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="_Izmeni" HorizontalAlignment="Left" Margin="596,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
+        <Button Content="_Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
+        <Button Content="_Hitan slucaj" HorizontalAlignment="Left" Margin="710,28,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_7" FontSize="17" Background="#FFE7F6F7"/>
         <Label Content="Termini" HorizontalAlignment="Left" Margin="217,0,0,0" VerticalAlignment="Center" FontSize="22" FontFamily="Segoe UI Semibold" Foreground="#FF18A3AC" Width="162" HorizontalContentAlignment="Center" Height="88" VerticalContentAlignment="Center"/>
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" Grid.RowSpan="2" StrokeThickness="0" VerticalAlignment="Top" Width="457" Margin="820,0,-3.4,0"/>
         <DataGrid Grid.Column="0" x:Name="terminiSekretarTabela" ItemsSource="{Binding TerminiSekretar}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="499" Margin="212,100,0,0" VerticalAlignment="Top" Width="608" GridLinesVisibility="All" FontSize="14" Grid.Row="1" SelectionChanged="terminiSekretarTabela_SelectionChanged">
@@ -149,6 +149,7 @@
             <MenuItem Header="  Termini" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Button_Click_6"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
     </Grid>
 </Window>

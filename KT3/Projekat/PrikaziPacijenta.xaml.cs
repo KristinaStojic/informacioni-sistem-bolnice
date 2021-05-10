@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -197,6 +198,12 @@ namespace Projekat
         private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(PacijentiTabela).Refresh();
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            PrikaziPacijentaPomoc pomoc = new PrikaziPacijentaPomoc();
+            pomoc.Show();
         }
     }
 }

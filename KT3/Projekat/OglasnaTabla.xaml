@@ -26,6 +26,7 @@
             <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="MenuItem_Click_1"/>
             <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
         <ListView x:Name="listView" SelectionChanged="obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,189,0,0.4" MinHeight="20" HorizontalAlignment="Left" Width="585">
             <ListView.ItemContainerStyle>
@@ -85,8 +86,8 @@
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="502" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="523" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
         </Canvas>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="449,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="566,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="683,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="_Dodaj" HorizontalAlignment="Left" Margin="449,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="_Izmeni" HorizontalAlignment="Left" Margin="566,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="_Obrisi" HorizontalAlignment="Left" Margin="683,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE"/>
     </Grid>
 </Window>
