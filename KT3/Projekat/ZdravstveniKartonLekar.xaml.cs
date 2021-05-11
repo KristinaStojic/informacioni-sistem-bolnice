@@ -295,11 +295,15 @@ namespace Projekat
             }
             else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) //Pomoc
             {
-                Hyperlink_Click(sender, e);
+                //Hyperlink_Click(sender, e);
             }
             else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
             {
                 alergeni.IsSelected = true;
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
+            {
+                this.Close();
             }
         }
 
@@ -319,12 +323,37 @@ namespace Projekat
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
-                Button_Click_2(sender, e);
+                //Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                Anamneza_Click(sender, e);
             }
         }
         private void Anamneza_Click(object sender, RoutedEventArgs e)
         {
-            
+            AnamnezaPomoc ap = new AnamnezaPomoc();
+            ap.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
+            {
+                this.Close();
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                //Hyperlink_Click(sender, e);
+            }
+        }
+
+        private void podaci_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) //Pomoc
+            {
+                Hyperlink_Click(sender, e);
+            }
         }
     }
 }
