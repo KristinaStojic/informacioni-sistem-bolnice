@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PrikaziPacijentaPomoc" Height="320" Width="420" WindowStartupLocation="CenterScreen">
+        Title="PrikaziPacijentaPomoc" Height="430" Width="390" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="37.6"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Button Margin="333.6,2.8,-28,-39.8" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
+            </Button.Background>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="179.947"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Grid>
+                <Image Source="/slike/right-arrow2.png" RenderTransformOrigin="0.415,1.073" Margin="-7,0,-6,-0.4" />
+                <TextBlock Height="0"/>
+            </Grid>
+        </Button>
+        <TextBlock Margin="49.6,8,36.4,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="316" Grid.Column="1" FontSize="15">
+            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
+            <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
+            <Run Text="CTRL + D - Dodaj pacijenta"/><LineBreak/>
+            <Run Text="CTRL + I - Izmeni pacijenta"/><LineBreak/>
+            <Run Text="CTRL + O - Obriši pacijenta"/><LineBreak/>
+            <Run Text="     - Ulaz u tabelu"/><LineBreak/>
+            <Run Text="     - Polje za pretragu pacijenata"/><LineBreak/>
+            <Run Text="CTRL + X - X na detaljnom uvidu termina"/><LineBreak/>
+            <Run Text="CTRL + U - Uvid u zdravstveni karton"/><LineBreak/>
+            <LineBreak/>
+            <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
+            <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
+            <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
+            <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
+            <Run Text="ALT + P - Pomoć"/><LineBreak/>
+        </TextBlock>
     </Grid>
 </Window>

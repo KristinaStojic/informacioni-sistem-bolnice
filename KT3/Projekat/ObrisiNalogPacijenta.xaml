@@ -1,0 +1,21 @@
+﻿<Window x:Class="Projekat.ObrisiNalogPacijenta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="ObrisiNalogPacijenta" Height="200" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="34*"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="17" Margin="55,24,0,15.8" HorizontalAlignment="Left" Width="283">Da li ste sigurni da zelite da obrisete</TextBlock>
+        <TextBlock FontSize="17" Margin="115,56,0,81.4" HorizontalAlignment="Left" Width="156" Grid.RowSpan="2"> selektovani nalog?</TextBlock>
+        <Grid Margin="0,0,-0.4,0.4" Grid.RowSpan="2">
+            <Button Margin="0,108,225.6,0" Background="#FFA3DADE" Click="Button_Click" Content="Potvrdi" FontSize="15" Height="41" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108"/>
+            <Button Margin="225,108,0,0" Background="#FFA3DADE" Click="Button_Click_1" Content="Odustani" FontSize="15" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108"/>
+        </Grid>
+    </Grid>
+</Window>

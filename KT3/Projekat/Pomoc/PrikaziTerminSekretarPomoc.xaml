@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PrikaziTerminSekretarPomoc" Height="420" Width="420" WindowStartupLocation="CenterScreen">
+        Title="PrikaziTerminSekretarPomoc" Height="455" Width="390" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -17,10 +17,26 @@
             <RowDefinition Height="37.6"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Background="#FF5DBFC5" Margin="126.6,7.2,127,8.4" Click="Button_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="15">Nazad</Button>
+        <Button Margin="339.6,5.4,-34,-42.4" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
+            </Button.Background>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="179.947"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Grid>
+                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-7,0,-6,-0.4" />
+                <TextBlock Height="0"/>
+            </Grid>
+        </Button>
 
-        <TextBlock Margin="51.6,7,34,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="330" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
-            <Run Text="Opšte prečice:" FontStyle="Italic" /><LineBreak/>
+        <TextBlock Margin="54.6,11,41.4,10" TextWrapping="Wrap" Grid.Column="1" FontSize="15">
+            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
             <Run Text="CTRL + Z - Zakaži termin"/><LineBreak/>
             <Run Text="CTRL + I - Izmeni termin"/><LineBreak/>
@@ -31,7 +47,7 @@
             <Run Text="CTRL + X - X na detaljnom uvidu termina"/><LineBreak/>
             <Run Text="CTRL + U - Uvid u zdravstveni karton"/><LineBreak/>
             <LineBreak/>
-            <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic"/><Run Text=":"/><LineBreak/>
+            <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>

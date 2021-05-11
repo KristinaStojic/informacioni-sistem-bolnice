@@ -10,20 +10,30 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Model;
 
-namespace Projekat.Pomoc
+namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for PrikaziPacijentaPomoc.xaml
+    /// Interaction logic for OtkaziTerminSekretar.xaml
     /// </summary>
-    public partial class PrikaziPacijentaPomoc : Window
+    public partial class OtkaziTerminSekretar : Window
     {
-        public PrikaziPacijentaPomoc()
+        Termin terminZaOtkazivanje;
+        public OtkaziTerminSekretar(Termin zaBrisanje)
         {
             InitializeComponent();
+            terminZaOtkazivanje = zaBrisanje;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TerminMenadzer.OtkaziTerminSekretar(terminZaOtkazivanje);
+            TerminMenadzer.sacuvajIzmene();
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -101,8 +101,8 @@ namespace Projekat
 
             if (zaBrisanje != null)
             {
-                TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);
-                TerminMenadzer.sacuvajIzmene();
+                OtkaziTerminSekretar otkazivanje = new OtkaziTerminSekretar(zaBrisanje);
+                otkazivanje.Show();
             }
             else
             {
@@ -185,16 +185,23 @@ namespace Projekat
         {
             Termin t = (Termin)terminiSekretarTabela.SelectedItem;
 
-            if (t.Pacijent != null)
+            if (t != null)
             {
-                if (t.Pacijent.StatusNaloga.Equals(statusNaloga.Guest))
+                if (t.Pacijent != null)
                 {
-                    MessageBox.Show("Guest nalozi nemaju zdravstveni karton.");
+                    if (t.Pacijent.StatusNaloga.Equals(statusNaloga.Guest))
+                    {
+                        MessageBox.Show("Guest nalozi nemaju zdravstveni karton.");
+                    }
+                    else
+                    {
+                        UvidZdravstveniKarton karton = new UvidZdravstveniKarton(t.Pacijent);
+                        karton.Show();
+                    }
                 }
                 else
                 {
-                    UvidZdravstveniKarton karton = new UvidZdravstveniKarton(t.Pacijent);
-                    karton.Show();
+                    MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
                 }
             }
             else
@@ -241,7 +248,7 @@ namespace Projekat
             {
                 Button_Click_7(sender, e);
             }
-            // X na detljnom prikazu termina
+            // X na detaljnom prikazu termina
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Click_5(sender, e);
@@ -260,11 +267,11 @@ namespace Projekat
                 Button_Click_8(sender, e);
             }
             // izadji iz ovog prozora
-            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftAlt))
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Click(sender, e);
             }
-            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightAlt))
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
             {
                 Button_Click(sender, e);
             }

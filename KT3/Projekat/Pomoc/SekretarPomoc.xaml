@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="Pomoc" Height="320" Width="420" WindowStartupLocation="CenterScreen">
+        Title="Pomoc" Height="340" Width="390" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -17,16 +17,31 @@
             <RowDefinition Height="48"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Height="40" Background="#FF5DBFC5" Margin="126.6,12.6,127,15.4" Click="Nazad_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="15">Nazad</Button>
-
-        <TextBlock Margin="43.6,17,42,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="207" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
-            <Run Text="Opšte prečice:"/><LineBreak/>
+        <Button Margin="340.6,2.6,-35,-39.6" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
+            </Button.Background>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="179.947"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Grid>
+                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-7,0,-6,-0.4" />
+                <TextBlock Height="0"/>
+            </Grid>
+        </Button>
+        <TextBlock Margin="33.6,18,26.4,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="233" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
+            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
             <Run Text="CTRL + M - Otvori menu"/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
             <Run Text="CTRL + P - Pomoć"/><LineBreak/>
             <Run Text="CTRL + L - Izloguj se"/><LineBreak/>
             <LineBreak/>
-            <Run Text="Nakon što je meni otvoren, mogu se koristiti"/><Run Text=":"/><LineBreak/>
+            <Run Text="Nakon što je meni otvoren, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>

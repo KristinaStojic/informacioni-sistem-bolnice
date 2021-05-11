@@ -23,7 +23,7 @@ namespace Projekat.Pomoc
             InitializeComponent();
         }
 
-        private void Nazad_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -152,11 +152,6 @@ namespace Projekat
                 noviLekar = stariTermin.Lekar;
 
                 Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);
-                /*if (pomereniTermin == null) // TODO: ne treba nam?- uvek ce naci termin
-                {
-                    return;
-                }*/
-
                 TerminMenadzer.OtkaziTerminSekretar(stariTermin);
                 TerminMenadzer.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
                 potvrdiDugme.IsEnabled = true;               
@@ -339,11 +334,6 @@ namespace Projekat
             {
                 int indeksPocetkaTermina = SlobodnoVremePocetka.IndexOf(VremePocetka());
                 int pretposlednjiIndeks = indeksPocetkaTermina + trajanjePomerenogTermina - 1;
-
-                //if (SlobodnoVremePocetka[pretposlednjiIndeks] == null) // TODO: obrisi??
-                //{
-                //    return false;
-                //}
 
                 string pretposlednjiSlot = SlobodnoVremePocetka[pretposlednjiIndeks];
                 OdrediVremeZaPretposlednjiSlot();
@@ -692,10 +682,6 @@ namespace Projekat
         {
             string trajanjeTermina = trajanje.Text;
             string vreme = KonvertujTrenutnoVreme();
-            // TODO: metoda
-            string sati = Sati(vreme);
-            string minuti = Minuti(vreme);
-
             OdrediVremePocetka(Sati(vreme), Minuti(vreme));
             OdrediVremeKraja(trajanjeTermina);
             trajanjeHitnogTermina = OdrediTrajanjeTermina(trajanjeTermina);

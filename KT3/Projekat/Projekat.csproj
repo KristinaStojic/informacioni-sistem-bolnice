@@ -195,6 +195,7 @@
     <Compile Include="Model\Specijalizacija.cs" />
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
+    <Compile Include="Model\ValidacijaSekretar.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
@@ -207,6 +208,12 @@
     </Compile>
     <Compile Include="Obrazlozenje.xaml.cs">
       <DependentUpon>Obrazlozenje.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObrisiNalogPacijenta.xaml.cs">
+      <DependentUpon>ObrisiNalogPacijenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObrisiObavestenjeSekretar.xaml.cs">
+      <DependentUpon>ObrisiObavestenjeSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
@@ -228,6 +235,9 @@
     </Compile>
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtkaziTerminSekretar.xaml.cs">
+      <DependentUpon>OtkaziTerminSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="PocetnaStrana.xaml.cs">
       <DependentUpon>PocetnaStrana.xaml</DependentUpon>
@@ -588,6 +598,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ObrisiNalogPacijenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObrisiObavestenjeSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObrisiOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -613,6 +631,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OtkaziTermin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtkaziTerminSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

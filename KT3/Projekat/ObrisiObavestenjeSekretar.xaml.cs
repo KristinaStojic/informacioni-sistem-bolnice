@@ -10,20 +10,29 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Projekat.Model;
 
-namespace Projekat.Pomoc
+namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for PrikaziPacijentaPomoc.xaml
+    /// Interaction logic for ObrisiObavestenjeSekretar.xaml
     /// </summary>
-    public partial class PrikaziPacijentaPomoc : Window
+    public partial class ObrisiObavestenjeSekretar : Window
     {
-        public PrikaziPacijentaPomoc()
+        Obavestenja obavestenje;
+        public ObrisiObavestenjeSekretar(Obavestenja selektovanoObavestenje)
         {
             InitializeComponent();
+            obavestenje = selektovanoObavestenje;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ObavestenjaMenadzer.ObrisiObavestenje(obavestenje);
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
