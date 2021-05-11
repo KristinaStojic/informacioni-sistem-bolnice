@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -95,12 +96,17 @@ namespace Projekat
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             flag = true;
-            var zaBrisanje = TabelaPacijenata.SelectedItem;
+            Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
             canvas2.Visibility = Visibility.Hidden;
 
             if (zaBrisanje != null)
             {
-                PacijentiMenadzer.ObrisiNalog((Pacijent)zaBrisanje);
+                ObrisiNalogPacijenta brisanje = new ObrisiNalogPacijenta(zaBrisanje);
+                brisanje.Show();
+            }
+            else 
+            {
+                MessageBox.Show("Niste selektovali pacijenta kojeg zelite da obrisete!");
             }
             flag = false;
         }
@@ -197,6 +203,72 @@ namespace Projekat
         private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(PacijentiTabela).Refresh();
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            PrikaziPacijentaPomoc pomoc = new PrikaziPacijentaPomoc();
+            pomoc.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            // zakazi
+            if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_1(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_1(sender, e);
+            }
+            // izmeni
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
+            // otkazi
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+            // X na detaljnom prikazu termina
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            // uvid u zdravstveni karton
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_4(sender, e);
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_4(sender, e);
+            }
+            // izadji iz ovog prozora
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            // tabela termina
+           
         }
     }
 }

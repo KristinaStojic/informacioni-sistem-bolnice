@@ -19,13 +19,43 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for DodajPacijenta.xaml
     /// </summary>
-  
-    public partial class DodajPacijenta : Window
+
+    public partial class DodajPacijenta : Window, INotifyPropertyChanged
     {
+        bracnoStanje brStanje;
         public DodajPacijenta()
         {
             InitializeComponent();
             this.DataContext = this;
+
+            jmbgStaratelja.IsEnabled = false;
+        }
+
+        public int validacija;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public int ValidacijaSekretar
+        {
+            get
+            {
+                return validacija;
+            }
+            set
+            {
+                if (value != validacija)
+                {
+                    validacija = value;
+                    OnPropertyChanged("ValidacijaSekretar");
+                }
+            }
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -35,6 +65,7 @@ namespace Projekat
             bool maloletnoLice;
             int staratelj;
 
+            // tip naloga
             if (combo.Text.Equals("STALAN"))
             {
                 status = statusNaloga.Stalni;
@@ -44,6 +75,7 @@ namespace Projekat
                 status = statusNaloga.Guest;
             }
 
+            // pol pacijenta
             if (combo2.Text.Equals("M"))
             {
                 pol = pol.M;
@@ -53,6 +85,41 @@ namespace Projekat
                 pol = pol.Z;
             }
 
+            // bracno stanje
+            if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("Z"))
+            {
+                brStanje = bracnoStanje.Neudata;
+            }
+            else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
+            {
+                brStanje = bracnoStanje.Udata;
+            }
+            else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
+            {
+                brStanje = bracnoStanje.Udovica;
+            }
+            else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("Z"))
+            {
+                brStanje = bracnoStanje.Razvedena;
+            }
+            else if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("M"))
+            {
+                brStanje = bracnoStanje.Neozenjen;
+            }
+            else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
+            {
+                brStanje = bracnoStanje.Ozenjen;
+            }
+            else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
+            {
+                brStanje = bracnoStanje.Udovac;
+            }
+            else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
+            {
+                brStanje = bracnoStanje.Razveden;
+            }
+
+            // maloletnik
             if ((bool)maloletnik.IsChecked)
             {
                 Console.WriteLine("cekirano");
@@ -63,6 +130,7 @@ namespace Projekat
                 maloletnoLice = false;
             }
 
+            // jmbg staratelja za maloletnika
             if (jmbgStaratelja.Text.Equals(""))
             {
                 staratelj = 0;
@@ -70,10 +138,9 @@ namespace Projekat
             else
             {
                 staratelj = Convert.ToInt32(jmbgStaratelja.Text);
-            }
+            }        
 
-            // ukoliko je guest nalog
-            if (brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals(""))  // bice izmene ?
+            if (status.Equals(statusNaloga.Guest) /*brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals("")*/)
             {
                 int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
                 Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
@@ -81,140 +148,20 @@ namespace Projekat
             }
             else  // ukoliko je stalan nalog
             {
-                bracnoStanje brStanje;
                 int idP = PacijentiMenadzer.GenerisanjeIdPacijenta();
-
-                if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Neudata;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an; 
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);     
-                }
-                else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Udata;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an;
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);
-                }
-                else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Udovica;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an;
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);
-
-                }
-                else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Razvedena;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an;
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);
-                }
-
-                if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Neozenjen;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an;
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);
-                }
-                else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Ozenjen;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an;
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);
-                }
-                else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Udovac;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an;
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);
-                }
-                else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Razveden;
-                    Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                    p.Karton = karton;
-                    List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                    p.Karton.LekarskiRecepti = lr;
-                    List<Anamneza> an = new List<Anamneza>();
-                    p.Karton.Anamneze = an;
-                    List<Alergeni> ale = new List<Alergeni>();
-                    p.Karton.Alergeni = ale;
-                    List<Uput> uput = new List<Uput>();
-                    p.Karton.Uputi = uput;
-                    PacijentiMenadzer.DodajNalog(p);
-                }
-            }
+                Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                ZdravstveniKarton karton = new ZdravstveniKarton(idP);
+                p.Karton = karton;
+                List<LekarskiRecept> lr = new List<LekarskiRecept>();
+                p.Karton.LekarskiRecepti = lr;
+                List<Anamneza> an = new List<Anamneza>();
+                p.Karton.Anamneze = an;
+                List<Alergeni> ale = new List<Alergeni>();
+                p.Karton.Alergeni = ale;
+                List<Uput> uput = new List<Uput>();
+                p.Karton.Uputi = uput;
+                PacijentiMenadzer.DodajNalog(p);
+            }    
 
             this.Close();
         }
@@ -265,6 +212,10 @@ namespace Projekat
                     jmbg.Text = "";
                 }
             }
+            else
+            { 
+                // TODO: da javi na polju value can not be converted il itako nesto - da validira podatke
+            }
         }
 
         private void maloletnik_LostFocus(object sender, RoutedEventArgs e)
@@ -272,6 +223,8 @@ namespace Projekat
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
+                jmbgStaratelja.Focusable = true;
+                
             }
             else 
             {
@@ -279,17 +232,23 @@ namespace Projekat
             }
         }
 
-        private void ime_LostFocus(object sender, RoutedEventArgs e)
+        public bool IsNumeric(string input)
         {
-            if ((bool)maloletnik.IsChecked)
-            {
-                jmbgStaratelja.IsEnabled = true;
-            }
-            else
-            {
-                jmbgStaratelja.IsEnabled = false;
-            }
+            int test;
+            return int.TryParse(input, out test);
         }
+
+        private void jmbg_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+           /* if (this.jmbg != null)
+            {
+                if (IsNumeric(this.jmbg.Text))
+                {
+                    int.Parse(this.jmbg.Text);
+                }
+            }*/
+        }
+
     }
 }
 

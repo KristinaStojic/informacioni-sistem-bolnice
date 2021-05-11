@@ -198,6 +198,7 @@
     <Compile Include="Model\Specijalizacija.cs" />
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
+    <Compile Include="Model\ValidacijaSekretar.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
@@ -210,6 +211,12 @@
     </Compile>
     <Compile Include="Obrazlozenje.xaml.cs">
       <DependentUpon>Obrazlozenje.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObrisiNalogPacijenta.xaml.cs">
+      <DependentUpon>ObrisiNalogPacijenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ObrisiObavestenjeSekretar.xaml.cs">
+      <DependentUpon>ObrisiObavestenjeSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="ObrisiOpremu.xaml.cs">
       <DependentUpon>ObrisiOpremu.xaml</DependentUpon>
@@ -232,6 +239,9 @@
     <Compile Include="OtkaziTermin.xaml.cs">
       <DependentUpon>OtkaziTermin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OtkaziTerminSekretar.xaml.cs">
+      <DependentUpon>OtkaziTerminSekretar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PocetnaStrana.xaml.cs">
       <DependentUpon>PocetnaStrana.xaml</DependentUpon>
     </Compile>
@@ -241,8 +251,17 @@
     <Compile Include="Pomoc\LijekoviPomoc.xaml.cs">
       <DependentUpon>LijekoviPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\OglasnaTablaPomoc.xaml.cs">
+      <DependentUpon>OglasnaTablaPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\PocetnaStranaLekarPomoc.xaml.cs">
       <DependentUpon>PocetnaStranaLekarPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\PrikaziPacijentaPomoc.xaml.cs">
+      <DependentUpon>PrikaziPacijentaPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\PrikaziTerminSekretarPomoc.xaml.cs">
+      <DependentUpon>PrikaziTerminSekretarPomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\PrikazTerminaLekarPomoc.xaml.cs">
       <DependentUpon>PrikazTerminaLekarPomoc.xaml</DependentUpon>
@@ -252,6 +271,9 @@
     </Compile>
     <Compile Include="Pomoc\SastojciPomoc.xaml.cs">
       <DependentUpon>SastojciPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\SekretarPomoc.xaml.cs">
+      <DependentUpon>SekretarPomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\SkladistePomoc.xaml.cs">
       <DependentUpon>SkladistePomoc.xaml</DependentUpon>
@@ -586,6 +608,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ObrisiNalogPacijenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ObrisiObavestenjeSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObrisiOpremu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -614,6 +644,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OtkaziTerminSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PocetnaStrana.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -626,7 +660,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\OglasnaTablaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\PocetnaStranaLekarPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\PrikaziPacijentaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\PrikaziTerminSekretarPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -639,6 +685,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\SastojciPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\SekretarPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

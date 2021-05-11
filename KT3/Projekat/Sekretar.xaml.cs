@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -43,11 +44,13 @@ namespace Projekat
             this.Hide();
         }
 
+        // otvori meni
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             menu.Visibility = Visibility.Visible;
         }
 
+        // zatvori meni
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             menu.Visibility = Visibility.Hidden;
@@ -58,6 +61,51 @@ namespace Projekat
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
             this.Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            // otvori meni
+            if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_3(sender, e);
+            } 
+            // zatvori meni
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_4(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_4(sender, e);
+            }
+            // pomoc i preko alt-a napraviti da radi
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Hyperlink_Click(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Hyperlink_Click(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                this.Close();
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                this.Close();
+            }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            SekretarPomoc pomoc = new SekretarPomoc();
+            pomoc.Show();
         }
     }
 }

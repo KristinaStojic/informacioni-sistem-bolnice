@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -49,8 +50,12 @@ namespace Projekat
                 return true;
             }
             else
-            {
-                return ((item as Termin).Datum.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            {   // filtriranje po datumu, pacijentu, lekaru i prostoriji
+                return ((item as Termin).Datum.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).imePrezimePacijenta.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).Pacijent.Jmbg.ToString().IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).imePrezimeLekara.IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Termin).Prostorija.Id.ToString().IndexOf(datumFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
         }
 
@@ -96,8 +101,8 @@ namespace Projekat
 
             if (zaBrisanje != null)
             {
-                TerminMenadzer.OtkaziTerminSekretar(zaBrisanje);
-                TerminMenadzer.sacuvajIzmene();
+                OtkaziTerminSekretar otkazivanje = new OtkaziTerminSekretar(zaBrisanje);
+                otkazivanje.Show();
             }
             else
             {
@@ -180,22 +185,111 @@ namespace Projekat
         {
             Termin t = (Termin)terminiSekretarTabela.SelectedItem;
 
-            if (t.Pacijent != null)
+            if (t != null)
             {
-                if (t.Pacijent.StatusNaloga.Equals(statusNaloga.Guest))
+                if (t.Pacijent != null)
                 {
-                    MessageBox.Show("Guest nalozi nemaju zdravstveni karton.");
+                    if (t.Pacijent.StatusNaloga.Equals(statusNaloga.Guest))
+                    {
+                        MessageBox.Show("Guest nalozi nemaju zdravstveni karton.");
+                    }
+                    else
+                    {
+                        UvidZdravstveniKarton karton = new UvidZdravstveniKarton(t.Pacijent);
+                        karton.Show();
+                    }
                 }
                 else
                 {
-                    UvidZdravstveniKarton karton = new UvidZdravstveniKarton(t.Pacijent);
-                    karton.Show();
+                    MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
                 }
             }
             else
             {
                 MessageBox.Show("Niste selektovali pacijenta ciji karton zelite da vidite!");
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {     
+            // zakazi
+            if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_1(sender, e);
+            } 
+            else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_1(sender, e);
+            } 
+            // izmeni
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_2(sender, e);
+            } 
+            // otkazi
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+            // hitan slucaj
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_7(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_7(sender, e);
+            }
+            // X na detaljnom prikazu termina
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            // uvid u zdravstveni karton
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_8(sender, e);
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click_8(sender, e);
+            }
+            // izadji iz ovog prozora
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            // tabela termina
+            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                //terminiSekretarTabela_SelectionChanged(sender, SelectionChangedEventArgs e);
+            }
+            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                //terminiSekretarTabela_SelectionChanged(sender, SelectionChangedEventArgs e);
+            }
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            PrikaziTerminSekretarPomoc pomoc = new PrikaziTerminSekretarPomoc();
+            pomoc.Show();
         }
     }
 }

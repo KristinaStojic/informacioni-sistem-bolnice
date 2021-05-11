@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Xml.Serialization;
 using Projekat;
@@ -88,7 +89,22 @@ namespace Model
         }
 
         public static void ObrisiNalog(Pacijent nalog)
-        {  
+        {
+            // obrisi iz obavestenja
+            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja.ToList())
+            {
+                if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count == 1)
+                {
+                    ObavestenjaMenadzer.ObrisiObavestenje(o);
+                    ObavestenjaMenadzer.sacuvajIzmene();
+                }
+                else if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count > 1)
+                {
+                    o.ListaIdPacijenata.Remove(nalog.IdPacijenta);
+                    ObavestenjaMenadzer.sacuvajIzmene();
+                }
+            }
+
             for (int i = 0; i < pacijenti.Count; i++)
             {
                 if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
