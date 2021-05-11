@@ -77,6 +77,9 @@
     <Compile Include="DetaljiUputa.xaml.cs">
       <DependentUpon>DetaljiUputa.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetaljiUputaPacijent.xaml.cs">
+      <DependentUpon>DetaljiUputaPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajAlergene.xaml.cs">
       <DependentUpon>DodajAlergene.xaml</DependentUpon>
     </Compile>
@@ -409,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetaljiUputa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetaljiUputaPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -129,7 +129,9 @@ namespace Projekat
 
         private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Uput uput = (Uput)prikazUputa.SelectedItem;
+            Page detaljiUputa = new DetaljiUputaPacijent(idPacijent, uput);
+            this.NavigationService.Navigate(detaljiUputa);
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
