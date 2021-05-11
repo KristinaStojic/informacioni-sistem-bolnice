@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Recept" Height="625" Width="800" >
-    <Grid Margin="-14,0,-6,3"  Background="{DynamicResource BackgroundColor}">
-        <StackPanel Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Name="zaglavlje" Orientation="Horizontal" VerticalAlignment="Top">
+        Title="Recept" Height="625" Width="800"  Background="{DynamicResource BackgroundColor}">
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="145*"/>
+            <ColumnDefinition Width="389*"/>
+            <ColumnDefinition Width="267*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="112*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Grid.Row="0" Grid.ColumnSpan="3"
+                    Name="zaglavlje" Orientation="Horizontal" VerticalAlignment="Top">
             <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                 <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
                 <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
             </StackPanel>
-            <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+            <StackPanel Height="40" Width="600" HorizontalAlignment="Right" Grid.ColumnSpan="3" Grid.Row="0">
                 <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
                     <MenuItem Name="podaci">
                         <MenuItem.Icon>
@@ -34,7 +44,7 @@
                 </Menu>
             </StackPanel>
         </StackPanel>
-        <TextBlock Margin="20,42,0,555" FontSize="14" Foreground="#004a7c" Height="25" >
+        <TextBlock Margin="20,42,0,558" FontSize="14" Foreground="#004a7c" Grid.RowSpan="2" Grid.ColumnSpan="3">
                 <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
@@ -51,31 +61,82 @@
                     <Run Text="Zdravstveni karton"/>
                 </Hyperlink>
         </TextBlock>
-            <Image Source="slike/barkod.png" Height="60" Width="60" Margin="332,82,428,480" />
-            <Image Source="slike/barkod.png" Height="60" Width="60" Margin="382,82,378,480" />
-            <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" Margin="406,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
-            <Label Content="Ime pacijenta" FontSize="15" HorizontalAlignment="Left" Margin="231,154,0,0" VerticalAlignment="Top"/>
-            <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" Margin="406,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
-            <Label FontSize="15" Content="Prezime pacijenta" HorizontalAlignment="Left" Margin="231,196,0,0" VerticalAlignment="Top"/>
-            <TextBox Name ="id" HorizontalAlignment="Left" Height="24" Margin="406,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" IsEnabled="False"/>
-            <Label FontSize="15" Content="ID pacijenta" HorizontalAlignment="Left" Margin="231,244,0,0" VerticalAlignment="Top"/>
-            <TextBox IsEnabled="False" Name ="idLekara" HorizontalAlignment="Left" Height="24" Margin="406,302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
-            <Label  FontSize="15" Content="ID lekara koji izdaje lek" HorizontalAlignment="Left" Margin="231,300,0,0" VerticalAlignment="Top"/>
-            <TextBox Name ="naziv" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="406,348,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" />
-            <Label FontSize="15" Content="Naziv leka" HorizontalAlignment="Left" Margin="231,346,0,0" VerticalAlignment="Top"/>
-            <Label FontSize="15" Content="Datum propisivanja leka" HorizontalAlignment="Left" Margin="231,390,0,0" VerticalAlignment="Top"/>
-            <TextBox Name ="dani" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="406,435,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" />
-            <Label FontSize="15" Content="Koliko dana se koristi" HorizontalAlignment="Left" Margin="231,435,0,0" VerticalAlignment="Top"/>
-            <TextBox Name ="brojUzimanja" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="406,484,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" />
-            <Label FontSize="15" Content="Koliko puta na dan" HorizontalAlignment="Left" Margin="231,484,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name ="sati" HorizontalAlignment="Left" IsEnabled="False" Height="24" Margin="406,535,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55"/>
-            <Label FontSize="15" Content="Pocetak terapije" HorizontalAlignment="Left" Margin="231,532,0,0" VerticalAlignment="Top"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,20,266,0" Grid.ColumnSpan="2">
+            <Label Content="    Lekarski recept" Margin="0, 0, 0, 10" Background="{DynamicResource StackPanelBackgroundColor}"
+                    Foreground="{DynamicResource TextColor}"/>
+            <StackPanel Orientation="Vertical" Height="494" Margin="0, -10, 0, 0" Background="AliceBlue">
+                <GroupBox Header="  Pacijent  " HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0" Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0, 05, 0, 0">
+                            <Label Content="Ime pacijenta" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource TextColor}"/>
+                            <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="27,0, 0, 0"
+                                 VerticalAlignment="Top" Width="175" IsEnabled="False"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 05, 0, 5">
+                            <Label Content="Prezime pacijenta"  Foreground="{DynamicResource TextColor}"/>
+                            <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="5, 0, 0, 0"
+                                 VerticalAlignment="Top" Width="175" IsEnabled="False" Grid.Column="1" Grid.Row="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 5">
+                            <Label Content="JMBG pacijenta"  Foreground="{DynamicResource TextColor}" />
+                            <TextBox x:Name="id" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Width="175"
+                                 Margin="17,0, 0, 0" IsEnabled="False"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="recept" Header="  Recept  " HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
+                            <Label Content="Naziv leka"  Foreground="{DynamicResource TextColor}"/>
+                            <TextBox Name ="naziv" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="75, 0, 0, 0"
+                                 TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
+                            <Label Content="Datum propisivanja leka"   Foreground="{DynamicResource TextColor}"/>
+                            <TextBox Name ="datum" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Width="175" Height="22" Grid.Column="1" Grid.Row="1"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
+                            <Label Content="Koliko dana uzimati lek"  Foreground="{DynamicResource TextColor}" />
+                            <TextBox Name ="dani" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="5, 0, 0, 0"
+                                 TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 5">
+                            <Label Content="Dnevno uzimanje leka"   Foreground="{DynamicResource TextColor}"/>
+                            <TextBox Name ="brojUzimanja" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="10, 0, 0, 0"
+                                 TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 5">
+                            <Label Content="Početak terapije"   Foreground="{DynamicResource TextColor}"/>
+                            <TextBox x:Name ="sati" HorizontalAlignment="Left" IsEnabled="False" Height="22" TextWrapping="Wrap" 
+                                     VerticalAlignment="Top" Width="55" Margin="30, 0, 0, 0"/>
+                            <Label Content="h" Foreground="{DynamicResource TextColor}" />
+                            <TextBox x:Name ="min" HorizontalAlignment="Left" Height="22" IsEnabled="False" Margin="10, 0, 0, 0"
+                                     TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Grid.Column="1" Grid.Row="1" />
+                            <Label Content="min" Foreground="{DynamicResource TextColor}" />
+                            
+
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="lekar" Header="  Lekar  " HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" Margin="5, 10, 10, 5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Label Content="Potpis lekara"  Foreground="{DynamicResource TextColor}"/>
+                            <TextBox IsEnabled="False" Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="5,0, 0, 0"
+                                 TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" FontFamily="Segoe Script"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 10, 0, 0">
+                    <Image Source="slike/barkod3.png" Width="300" Height="50" />
+                </StackPanel>
+            </StackPanel>
+            
+            <Label FontSize="15" Content="Pocetak terapije" HorizontalAlignment="Left" Margin="36,467,0,0" VerticalAlignment="Top" Height="0" Grid.Row="1" Width="35" Grid.Column="1"/>
             <!--Button Background="#FF6895C5"  Content="Odustani" HorizontalAlignment="Left" Margin="105,537,0,0" VerticalAlignment="Top" Width="91" Height="29"  Click="Button_Click"/>
         <Button Background="#FF6895C5" Content="Sacuvaj" HorizontalAlignment="Left" Margin="258,537,0,0" VerticalAlignment="Top" Width="91" Height="29" Click="Button_Click_1"/-->
-            <TextBox Name ="datum" HorizontalAlignment="Left" IsEnabled="False" Margin="406,390,0,0" VerticalAlignment="Top" Width="175" Height="24"/>
-            <Label Content="h" HorizontalAlignment="Left" Margin="466,533,0,0" VerticalAlignment="Top" Width="24"/>
-            <TextBox x:Name ="min" HorizontalAlignment="Left" Height="24" IsEnabled="False" Margin="493,535,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" />
-            <Label Content="min" HorizontalAlignment="Left" Margin="548,533,0,0" VerticalAlignment="Top" Width="33" Height="24" RenderTransformOrigin="0.318,0.615"/>
-            <Image Source="slike/barkod.png" Height="60" Width="60" Margin="432,82,328,480" />
+            <Label Content="h" HorizontalAlignment="Left" Margin="199,468,0,0" VerticalAlignment="Top" Width="24" Grid.Column="1" Height="0" Grid.Row="1"/>
+            
+        </StackPanel>
     </Grid>
 </Page>

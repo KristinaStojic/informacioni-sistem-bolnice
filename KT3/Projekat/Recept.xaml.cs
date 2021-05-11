@@ -51,7 +51,15 @@ namespace Projekat
             this.prijavljeniPacijent = izabraniPacijent;
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
-            id.Text = izabraniPacijent.IdPacijenta.ToString();
+            id.Text = izabraniPacijent.Jmbg.ToString();
+            // TODO: dodati u Lekarskim receptima id lekara koji je izdao recept
+            foreach(Lekar lekar in MainWindow.lekari)
+            {
+                if(lekar.IdLekara == lp.IdLekara)
+                {
+                    podaciLekara.Text = lekar.ToString();
+                }
+            }
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)

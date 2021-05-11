@@ -965,9 +965,6 @@
     <Resource Include="slike\medical-symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="slike\barkod.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="slike\signout.png" />
   </ItemGroup>
   <ItemGroup>
@@ -981,6 +978,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\barkod3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
