@@ -81,7 +81,7 @@ namespace Projekat
         {
             Lijekovi lijekoviProzor = new Lijekovi();
             lijekoviProzor.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)

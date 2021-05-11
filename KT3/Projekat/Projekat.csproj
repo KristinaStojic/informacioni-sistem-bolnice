@@ -167,6 +167,9 @@
     <Compile Include="IzmjeniZamjenskiLijek.xaml.cs">
       <DependentUpon>IzmjeniZamjenskiLijek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Komunikacija.xaml.cs">
+      <DependentUpon>Komunikacija.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LicniPodaciPacijenta.xaml.cs">
       <DependentUpon>LicniPodaciPacijenta.xaml</DependentUpon>
     </Compile>
@@ -358,6 +361,9 @@
     <Compile Include="Zahtjevi.xaml.cs">
       <DependentUpon>Zahtjevi.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZahtjeviZaKomunikaciju.xaml.cs">
+      <DependentUpon>ZahtjeviZaKomunikaciju.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakazaniTerminiPacijent.xaml.cs">
       <DependentUpon>ZakazaniTerminiPacijent.xaml</DependentUpon>
     </Compile>
@@ -527,6 +533,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="IzmjeniZamjenskiLijek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Komunikacija.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -789,6 +799,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Zahtjevi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZahtjeviZaKomunikaciju.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
