@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="Pomoć" Height="320" Width="420" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Pomoć" Height="430" Width="435" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+    <Grid Margin="0,0,-6,2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -17,9 +17,8 @@
             <RowDefinition Height="48"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Height="40" Background="#FF6895C5" Margin="127,9.6,126.6,18.4" Click="Odustani_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">Odustani</Button>
-
-        <TextBlock Margin="43.6,36,42,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="157" Grid.Column="1" ><Run Text="Opšte prečice:"/><LineBreak/><Run Text="CTRL + S - Sačuvaj"/><LineBreak/><Run Text="CTRL + X - Nazad"/><LineBreak/><Run Text="Prečice"/><Run Text=" za glavni prozor"/><Run Text=":"/><LineBreak/><Run Text="CTRL + P - "/><Run Text="P"/><Run Text="ristup rasporedu pregleda i operacija "/><LineBreak/><Run Text="CTRL + L - "/><Run Text="P"/><Run Text="ristup zahtevima za odobravanje lekova"/><LineBreak/><Run Text="CTRL + G - "/><Run Text="P"/><Run Text="ristup zahtevima za godišnji odmor"/><LineBreak/><Run Text="CTRL + M - "/><Run Text="P"/><Run Text="ristup pisanju evidencije utrošenog materijala na pregledu/operaciji"/><LineBreak/><Run Text="C"/><Run Text="TR"/><Run Text="L + O - "/><Run Text="P"/><Run Text="ristup spisku "/><Run Text="pristiglih "/><Run Text="obaveštenja"/></TextBlock>
-        <GroupBox Height="212" Margin="9.6,0,11,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header="&#xA;"/>
+        <Button Height="40" Background="#FF6895C5" Margin="137,10,136,18" Click="Odustani_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">Odustani</Button>
+        <TextBlock Margin="44,36,42,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="271" Grid.Column="1" ><Run FontWeight="Bold" FontStyle="Italic" Text="Opšte prečice:"/><LineBreak/><Run Text="CTRL + S - Sačuvaj"/><LineBreak/><Run Text="CTRL + X - Nazad"/><LineBreak/><Run Text="CTRL + H - Pomoć"/><LineBreak/><Run Text="Tab - kretanje kroz polja u formama za popunjavanje"/><LineBreak/><Run Text="Strelice - odabir vrijednosti polja koja su predstavljena pomoću checkbox-a"/><LineBreak/><Run/><LineBreak/><Run FontWeight="Bold" FontStyle="Italic" Text="Prečice za glavni prozor:"/><LineBreak/><Run Text="CTRL + P - "/><Run Text="P"/><Run Text="ristup rasporedu pregleda i operacija "/><LineBreak/><Run Text="CTRL + L - "/><Run Text="P"/><Run Text="ristup zahtevima za odobravanje lekova"/><LineBreak/><Run Text="CTRL + G - "/><Run Text="P"/><Run Text="ristup zahtevima za godišnji odmor"/><LineBreak/><Run Text="CTRL + M - "/><Run Text="P"/><Run Text="ristup pisanju evidencije utrošenog materijala na pregledu/operaciji"/><LineBreak/><Run Text="C"/><Run Text="TR"/><Run Text="L + O - "/><Run Text="P"/><Run Text="ristup spisku "/><Run Text="pristiglih "/><Run Text="obaveštenja"/></TextBlock>
+        <GroupBox Height="311" Margin="10,10,11,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header="&#xA;"/>
     </Grid>
 </Window>

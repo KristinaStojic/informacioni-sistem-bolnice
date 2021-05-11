@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="Pomoć" Height="320" Width="420" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+        Title="Pomoć" Height="320" Width="420" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -19,6 +19,6 @@
         </Grid.RowDefinitions>
         <Button Height="40" Background="#FF6895C5" Margin="127,9.6,126.6,18.4" Click="Odustani_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">Odustani</Button>
         <GroupBox Height="212" Margin="10,0,10.6,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header="&#xA;"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="37.6,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="145" Width="321"><Run Text="Prečice:"/><LineBreak/><Run Text="Tab - ulazak u tabelu"/><LineBreak/><Run Text="Strelice - kretanje kroz tabelu"/><LineBreak/><Run Text="CTRL + Z - zakaži termin"/><LineBreak/><Run Text="CTRL + I - izmeni termin"/><LineBreak/><Run Text="CTRL + O - obriši termin"/><LineBreak/><Run Text="CTRL + X - nazad"/></TextBlock>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="37.6,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="145" Width="321"><Run FontWeight="Bold" FontStyle="Italic" Text="Prečice"/><Run FontWeight="Bold" Text=":"/><LineBreak/><Run Text="Tab - ulazak u polje za filtriranje datuma"/><LineBreak/><Run Text="2x Tab - ulazak tabelu"/><LineBreak/><Run Text="Strelice - kretanje kroz tabelu"/><LineBreak/><Run Text="CTRL + Z - zakaži termin"/><LineBreak/><Run Text="CTRL + I - izmeni termin"/><LineBreak/><Run Text="CTRL + O - obriši termin"/><LineBreak/><Run Text="CTRL + X - nazad"/></TextBlock>
     </Grid>
 </Window>

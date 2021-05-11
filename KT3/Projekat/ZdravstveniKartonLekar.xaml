@@ -58,7 +58,7 @@
                             <Button Content="Nazad" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" HorizontalAlignment="Left" Margin="647,477,0,0" VerticalAlignment="Top" Width="130" Height="38" Click="Button_Click_2"/>
                             <TextBlock Margin="26,476,708.4,34.4"  Height="24" Width="56" FontSize="16">
                             <Hyperlink Click="Hyperlink_Click">
-                                Pomoć?
+                                Pomoć?(CTRL+H)
                             </Hyperlink>
                             </TextBlock>
                         </Grid>
@@ -80,7 +80,7 @@
                             <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Nazad" HorizontalAlignment="Left" Margin="594,470,0,0" VerticalAlignment="Top"  Width="147" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
                             <TextBlock HorizontalAlignment="Left" Margin="684,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="56" FontSize="16">
                                 <Hyperlink Click="Anamneza_Click">
-                                Pomoć?
+                                Pomoć?(CTRL+H)
                             </Hyperlink>
                             </TextBlock>
                         </Grid>

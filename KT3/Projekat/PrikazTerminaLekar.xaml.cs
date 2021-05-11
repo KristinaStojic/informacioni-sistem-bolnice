@@ -94,6 +94,7 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //zakazi
+
             ZakaziTerminLekar2 zt = new ZakaziTerminLekar2();
             zt.Show();
         }
@@ -127,16 +128,17 @@ namespace Projekat
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             //obrisi
-            Termin zaBrisanje = (Termin)dataGridTermini.SelectedItem;
-            if (zaBrisanje != null)
+            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
+            if (izabraniTermin == null)
             {
-
-                TerminMenadzer.OtkaziTerminLekar(zaBrisanje);
+                MessageBox.Show("Niste selektovali termin koji zelite da obrišete!");
             }
             else
             {
-                MessageBox.Show("Niste selektovali termin koji zelite da otkazete!");
+                ObrisiTerminLekar ot = new ObrisiTerminLekar(izabraniTermin);
+                ot.Show();
             }
+               
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
