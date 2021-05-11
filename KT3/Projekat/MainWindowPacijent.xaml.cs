@@ -33,7 +33,6 @@ namespace Projekat
             AnketaMenadzer.sacuvajIzmene();
             ObavestenjaMenadzer.sacuvajIzmene();
             MalicioznoPonasanjeMenadzer.sacuvajIzmene();
-
             PrikaziTermin.pacijentProzor = false;  // nit
         }
     }

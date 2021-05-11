@@ -67,31 +67,37 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             // izmeni
-            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
-            if (izabraniTermin == null)
+            Termin terminZaPomeranje = (Termin)dataGridTermini.SelectedItem;
+            if (terminZaPomeranje == null)
             {
                 MessageBox.Show("Selektujte termin koji zelite da izmenite", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            if (!izabraniTermin.Pomeren)
+            if (terminZaPomeranje.Pomeren == true)
             {
                 MessageBox.Show("Nemoguce je pomeriti ovaj termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            Page izmeniTermin = new IzmeniTermin(izabraniTermin);
+            Page izmeniTermin = new IzmeniTermin(terminZaPomeranje);
             this.NavigationService.Navigate(izmeniTermin);
         }
 
+
+        /* Otkazi termin */ 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            // brisanje
-            Termin zaBrisanje = (Termin)dataGridTermini.SelectedItem;
-            if (zaBrisanje == null)
+            Termin terminZaBrisanje = (Termin)dataGridTermini.SelectedItem;
+            if (terminZaBrisanje == null)
             {
                 MessageBox.Show("Selektujte termin koji zelite da otkazete", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            Page otkazivanjeTermina = new OtkaziTermin(zaBrisanje);
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno otkazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
+            Page otkazivanjeTermina = new OtkaziTermin(terminZaBrisanje);
             this.NavigationService.Navigate(otkazivanjeTermina);
         }
 
@@ -109,6 +115,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -149,6 +160,12 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
+        }
+
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
     }
 }

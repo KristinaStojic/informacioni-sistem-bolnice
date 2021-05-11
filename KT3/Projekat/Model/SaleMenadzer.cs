@@ -157,12 +157,25 @@ namespace Model
             List<Sala> slobodneSaleZaPregled = new List<Sala>();
             foreach (Sala sala in sale)
             {
-                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
+                if (sala.TipSale.Equals(tipSale.SalaZaPregled) && !sala.Namjena.Equals("Skladiste"))
                 {
                     slobodneSaleZaPregled.Add(sala);
                 }
             }
             return slobodneSaleZaPregled;
+        }
+
+        public static List<Sala> PronadjiSaleZaOperaciju() 
+        {
+            List<Sala> slobodneSaleZaOperaciju = new List<Sala>();
+            foreach (Sala sala in sale)
+            {
+                if (sala.TipSale.Equals(tipSale.OperacionaSala) && !sala.Namjena.Equals("Skladiste"))
+                {
+                    slobodneSaleZaOperaciju.Add(sala);
+                }
+            }
+            return slobodneSaleZaOperaciju;
         }
 
         public static int UkupanBrojSalaZaPregled()

@@ -170,6 +170,9 @@
     <Compile Include="Komunikacija.xaml.cs">
       <DependentUpon>Komunikacija.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LicniPodaciPacijenta.xaml.cs">
+      <DependentUpon>LicniPodaciPacijenta.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Lijekovi.xaml.cs">
       <DependentUpon>Lijekovi.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,7 @@
     <Compile Include="Model\Premjestaj.cs" />
     <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\Sastojak.cs" />
+    <Compile Include="Model\Specijalizacija.cs" />
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
@@ -533,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Komunikacija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicniPodaciPacijenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

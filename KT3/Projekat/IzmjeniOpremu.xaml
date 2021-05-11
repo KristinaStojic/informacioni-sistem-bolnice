@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Izmjeni opremu" Height="227" Width="334" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+        Title="Izmjeni opremu" Height="227" Width="334" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

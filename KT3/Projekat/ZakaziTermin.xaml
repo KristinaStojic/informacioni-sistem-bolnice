@@ -48,7 +48,7 @@
                                 <MenuItem.Icon>
                                     <Image Source="/slike/user.png" />
                                 </MenuItem.Icon>
-                                <MenuItem Header="_Vaš profil" />
+                                <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
                                 <Separator/>
                                 <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
@@ -103,7 +103,7 @@
         </GroupBox>
         <Button Content="Potvrdi" ToolTip="Potvrdite zakazivanje termina bez elektronskog placanja"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="360,760,0,0" Height="30" Click="Button_Click_1" 
-                Style="{DynamicResource ButtonStyle}"/>
+                Style="{DynamicResource ButtonStyle2}"/>
         <TextBlock HorizontalAlignment="Center" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara ili da Vam sistem predlozi 3 slobodna termina"
                    VerticalAlignment="Bottom"  FontSize="15" Foreground="#004a7c" Height="30" Margin="371,0,359,179">
             <Hyperlink Name="preferenca" Click="preferenca_Click" ToolTip="Preporuceni termini i izbor drugog lekara">

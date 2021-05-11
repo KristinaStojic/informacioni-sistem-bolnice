@@ -71,8 +71,8 @@ namespace Projekat
             zahtevi.Add(new ZahtevZaLekove(3, "Panklav", "PKL", "12/04/2021", false));
 
         }
-    
-        // dok nemamo lekari menazder
+
+        //ovo ce biti u LekariMenadzer-u
         public static Lekar PronadjiPoId(int id)
         {
             foreach (Lekar p in lekari)
@@ -86,11 +86,26 @@ namespace Projekat
 
         }
 
+        public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija oblastSpecijalizacije)
+        {
+            List<Lekar> specijalizovaniLekari = new List<Lekar>();
+
+            foreach (Lekar lekar in lekari)
+            {
+                if (lekar.specijalizacija.Equals(oblastSpecijalizacije))
+                {
+                    specijalizovaniLekari.Add(lekar);
+                }
+            }
+            return specijalizovaniLekari;
+        }
+        //------------------------------------------------------------------------------------
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Upravnik w1 = new Upravnik();
             w1.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

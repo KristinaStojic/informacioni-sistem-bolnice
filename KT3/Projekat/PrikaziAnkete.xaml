@@ -26,11 +26,11 @@
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
                             <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
-                                <MenuItem Name="podaci">
+                                <MenuItem Name="podaci" >
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" />
+                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
                                     <Separator/>
                                     <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click"/>
                                     <Separator/>
@@ -77,11 +77,11 @@
                         <GridViewColumn Width="50" Header="Status">
                             <GridViewColumn.CellTemplate >
                                 <DataTemplate>
-                                    <CheckBox Width="30" x:Name="popunjenCheckBox" IsChecked="{Binding popunjenaAnketa}"  IsEnabled="False"/>
+                                    <CheckBox Width="30" x:Name="popunjenCheckBox" IsChecked="{Binding PopunjenaAnketa}"  IsEnabled="False"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Naziv ankete" Width="450" DisplayMemberBinding="{Binding nazivAnkete}"/>
+                        <GridViewColumn Header="Naziv ankete" Width="450" DisplayMemberBinding="{Binding NazivAnkete}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

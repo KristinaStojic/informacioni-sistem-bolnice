@@ -32,23 +32,23 @@ namespace Projekat
         }
         private void PopuniPodatkePacijenta()
         {
-            this.nadjiDoktora.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = MainWindow.lekari;
             this.ime.Text = pacijent.ImePacijenta;
             this.prezime.Text = pacijent.PrezimePacijenta;
             this.jmbg.Text = pacijent.Jmbg.ToString();
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             datum.SelectedDate = DateTime.Parse(termin.Datum);
             specijalistickiTab.IsSelected = true;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiDoktora.ItemsSource);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             view.Filter = UserFilter;
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (nadjiDoktora.SelectedItems.Count > 0)
+            if (listaLekara.SelectedItems.Count > 0)
             {
-                Lekar item = (Lekar)nadjiDoktora.SelectedItems[0];
-                specijalista.Text = item.ImeLek + " " + item.PrezimeLek;
+                Lekar item = (Lekar)listaLekara.SelectedItems[0];
+                specijalista.Text = item.ImeLek + " " + item.PrezimeLek + " " + item.specijalizacija;
             }
         }
 
@@ -64,7 +64,7 @@ namespace Projekat
 
         private void pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(nadjiDoktora.ItemsSource).Refresh();
+            CollectionViewSource.GetDefaultView(listaLekara.ItemsSource).Refresh();
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -90,22 +90,13 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-       
+
         private int NadjiIDSpecijaliste()
         {
-            String[] imeprz = specijalista.Text.Split(' ');
-            String imeSpecijaliste = imeprz[0];
-            String prezimeSpecijaliste = imeprz[1];
-            int idSpecijaliste = 40;
-            foreach (Lekar lekar in MainWindow.lekari)
-            {
-                if (lekar.ImeLek.Equals(imeSpecijaliste) && lekar.PrezimeLek.Equals(prezimeSpecijaliste))
-                {
-                    idSpecijaliste = lekar.IdLekara;
-                }
-            }
-            return idSpecijaliste;
+            Lekar lekar = (Lekar)listaLekara.SelectedItem;
+            return lekar.IdLekara;
         }
+
         private string NadjiDatum()
         {
             String formatiranDatum = null;

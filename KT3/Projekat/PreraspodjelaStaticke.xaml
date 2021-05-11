@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:local1="clr-namespace:Projekat.Model"
         mc:Ignorable="d"
-        Title="Zahtjev za preraspodjelu staticke opreme" Height="340" Width="380" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue">
+        Title="Zahtjev za preraspodjelu staticke opreme" Height="340" Width="380" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Background="LightSteelBlue" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

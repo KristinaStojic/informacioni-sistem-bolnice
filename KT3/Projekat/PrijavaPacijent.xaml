@@ -20,17 +20,108 @@
                 </StackPanel>
                 <StackPanel Width="415" Orientation="Horizontal" Margin="190, 0, 0, 0">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Height="46" Margin="0,-5,0,-1">
-                        <Label Content="Korisnicko ime" FontSize="8" Height="20" Foreground="{DynamicResource TextColor}" />
-                        <TextBox x:Name="korisnickoIme" Width="150" Height="20" Margin="0,0,0,0" Foreground="{DynamicResource TextColor}"/>
+                        <Label Content="Korisničko ime" FontSize="8" Height="20" Foreground="{DynamicResource TextColor}" />
+                        <TextBox x:Name="korisnickoIme" Width="150" Height="20" Margin="0,0,0,0" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,-6,0,-4">
-                        <Label Content="Lozinka" Margin="10, 0, 0, 0" FontSize="8"/>
+                        <Label Content="Lozinka" Margin="10, 0, 0, 0" FontSize="8" Foreground="{DynamicResource TextColor}"/>
                         <PasswordBox x:Name="lozinka" Width="150" Height="20" Margin="10,0,0,10"/>
 
                     </StackPanel>
                     <Button x:Name="prijava" Content="Prijavi se" Width="90" Height="22" Margin="10,13,0,5" Click="prijava_Click"
-                            Style="{DynamicResource ButtonStyle}"/>
+                            Style="{DynamicResource ButtonStyle2}" FontSize="10"/>
                 </StackPanel>
+
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <StackPanel Margin="0, 30, 0, 0" >
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Width="500" Foreground="{DynamicResource TextColor}">
+                    Zdravo korporacija je privatni zdravstveni sistem koji nudi najviši kvalitet usluge, 
+                    najefikasniji oporavak zdravlja i podstiče na zdrav život svakog pacijenta.
+                    Registujte se u najbližem kliničkom centru i iskoristite mogućnosti koje Vam nudi Zdravo korporacija.
+                    
+                </TextBlock>
+            </StackPanel>
+            <StackPanel  Margin="0, 20, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center" Width="510">
+                <GroupBox x:Name="NoviSad" Header="Novi Sad" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 10, 0,0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="30">
+                            🏥
+                        </TextBlock>
+                        <TextBlock Margin="0,10, 0, 10">
+                        <Hyperlink Name="AdresaNS" NavigateUri="https://www.google.rs/maps/place/Novi+Sad/@45.27143,19.7794009,12z/data=!3m1!4b1!4m5!3m4!1s0x475b10613de93455:0xb6f7d683724fe28!8m2!3d45.2396085!4d19.8227056">
+                            Ulica broj, NOVI SAD
+                        </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="Beograd" Header="Beograd" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 10, 0,0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="30">
+                          🏥
+                        </TextBlock>
+                        <TextBlock Margin="0,10, 0, 10">
+                        <Hyperlink Name="AdresaBG" NavigateUri="https://www.google.rs/maps/place/Belgrade/@44.8151597,20.282512,11z/data=!3m1!4b1!4m5!3m4!1s0x475a7aa3d7b53fbd:0x1db8645cf2177ee4!8m2!3d44.8125449!4d20.4612299">
+                            Ulica broj, BEOGRAD
+                        </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox x:Name="Niš" Header="Nis" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 10, 0,0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="30">
+                            🏥
+                        </TextBlock>
+                        <TextBlock Margin="0,10, 0, 10">
+                        <Hyperlink Name="AdresaNI" NavigateUri="https://www.google.rs/maps/place/Ni%C5%A1/@43.3161595,21.8233191,12z/data=!3m1!4b1!4m5!3m4!1s0x4755b0c240c81f65:0x56319fe3122ac3cd!8m2!3d43.320926!4d21.8954069">
+                            Ulica broj, NIS     
+                        </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+            <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <GroupBox x:Name="Zagreb" Header="Zagreb" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 10, 0,0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="30">
+                            🏥
+                        </TextBlock>
+                        <TextBlock Margin="0,10, 0, 10">
+                        <Hyperlink Name="AdresaZg" NavigateUri="https://www.google.rs/maps/place/Zagreb,+Croatia/@45.8401104,15.8242467,11z/data=!3m1!4b1!4m5!3m4!1s0x4765d692c902cc39:0x3a45249628fbc28a!8m2!3d45.8150108!4d15.9819189">
+                            Ulica broj, ZAGREB
+                        </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="Sarajevo" Header="Sarajevo" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 10, 0,0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="30">
+                            🏥
+                        </TextBlock>
+                        <TextBlock Margin="0,10, 0, 10">
+                        <Hyperlink Name="AdresaSA" NavigateUri="https://www.google.rs/maps/place/Sarajevo,+Bosnia+and+Herzegovina/@43.8936377,18.2429063,11z/data=!3m1!4b1!4m5!3m4!1s0x4758cbb1ed719bd1:0x562ecda6de87b33e!8m2!3d43.8562586!4d18.4130763">
+                            Ulica broj, SARAJEVO
+                        </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox x:Name="Ljubljana" Header="Ljubljana" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 10, 0,0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="30">
+                            🏥
+                        </TextBlock>
+                        <TextBlock Margin="0,10, 0, 10">
+                        <Hyperlink Name="AdresaLJU" NavigateUri="https://www.google.rs/maps/place/Ljubljana,+Slovenia/@46.0660318,14.3920143,11z/data=!3m1!4b1!4m5!3m4!1s0x476531f5969886d1:0x400f81c823fec20!8m2!3d46.0569465!4d14.5057515">
+                            Ulica broj, LJUBLJANA
+                        </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </GroupBox>
 
             </StackPanel>
         </StackPanel>

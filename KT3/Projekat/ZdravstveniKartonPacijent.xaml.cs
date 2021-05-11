@@ -26,50 +26,12 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            this.sacuvajIzmene.Visibility = Visibility.Hidden;
-            this.odustani.Visibility = Visibility.Hidden;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
-            /* LEKARI OPSTE PRAKSE */
-            InicijalizujIzborLekaraOpstePrakse();
             this.tabelaRecepata.ItemsSource = DodajLekarskeReceptePacijenta();
             this.prikazAnamnezi.ItemsSource = DodajAnamnezePacijenta();
             this.prikazUputa.ItemsSource = DodajUputePacijenta();
-            InicijalizujLicnePodatke();
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
-        }
-
-        private void InicijalizujIzborLekaraOpstePrakse()
-        {
-            List<Lekar> opstaPraksa = new List<Lekar>();
-            foreach (Lekar l in MainWindow.lekari)
-            {
-                if (l.specijalizacija.Equals(Specijalizacija.Opsta_praksa))
-                {
-                    opstaPraksa.Add(l);
-                }
-            }
-            this.lekar.ItemsSource = opstaPraksa;
-        }
-
-        private void InicijalizujLicnePodatke()
-        {
-            this.ime.Text = prijavljeniPacijent.ImePacijenta;
-            this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
-            this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
-            if (prijavljeniPacijent.Pol.Equals("M"))
-                this.poltxt.Text = "M";
-            else
-                this.poltxt.Text = "Z";
-            this.brojTel.Text = prijavljeniPacijent.BrojTelefona.ToString();
-            this.email.Text = prijavljeniPacijent.Email;
-            this.adresa.Text = prijavljeniPacijent.AdresaStanovanja;
-            this.bracStanje.Text = prijavljeniPacijent.BracnoStanje.ToString();
-            this.zanimanje.Text = prijavljeniPacijent.Zanimanje;
-            if (prijavljeniPacijent.IzabraniLekar != null)
-            {
-                this.lekar.Text = prijavljeniPacijent.IzabraniLekar.ToString();
-            }
-            this.pacijent.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private static List<Uput> DodajUputePacijenta()
@@ -140,136 +102,6 @@ namespace Projekat
         }
         // **********
 
-        private void izmeniBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.izmeniBtn.Visibility = Visibility.Hidden;
-            this.sacuvajIzmene.Visibility = Visibility.Visible;
-            this.odustani.Visibility = Visibility.Visible;
-
-            this.ime.IsEnabled = true;
-            this.prezime.IsEnabled = true;
-            this.jmbg.IsEnabled = true;
-            this.poltxt.IsEnabled = true;
-            this.brojTel.IsEnabled = true;
-            this.email.IsEnabled = true;
-            this.adresa.IsEnabled = true;
-            this.bracStanje.IsEnabled = true;
-            this.zanimanje.IsEnabled = true;
-            this.lekar.IsEnabled = true;
-        }
-
-        private void odustani_Click(object sender, RoutedEventArgs e)
-        {
-            this.sacuvajIzmene.Visibility = Visibility.Hidden;
-            this.odustani.Visibility = Visibility.Hidden;
-            this.izmeniBtn.Visibility = Visibility.Visible;
-
-            this.ime.IsEnabled = false;
-            this.prezime.IsEnabled = false;
-            this.jmbg.IsEnabled = false;
-            this.poltxt.IsEnabled = false;
-            this.brojTel.IsEnabled = false;
-            this.email.IsEnabled = false;
-            this.adresa.IsEnabled = false;
-            this.bracStanje.IsEnabled = false;
-            this.zanimanje.IsEnabled = false;
-            this.lekar.IsEnabled = false;
-        }
-
-        private void sacuvajIzmene_Click(object sender, RoutedEventArgs e)
-        {
-
-            string ime = this.ime.Text;
-            string prezime = this.prezime.Text;
-            int jmbg = int.Parse(this.jmbg.Text);
-            pol poll;
-            if (this.poltxt.Equals(pol.M))
-            {
-                poll = pol.M;
-            } else
-            {
-                poll = pol.Z;
-            }
-            long brTel = long.Parse(this.brojTel.Text);
-            string eMail = this.email.Text;
-            string adresa = this.adresa.Text;
-            bracnoStanje brStanje = bracnoStanje.Neodredjeno;
-            if (this.poltxt.Text.Equals("M"))
-            {
-                poll = pol.M;
-                if (this.bracStanje.Text.Equals("Ozenjen"))
-                {
-                    brStanje = bracnoStanje.Ozenjen;
-                }
-                else if (this.bracStanje.Text.Equals("Neoznjen"))
-                {
-                    brStanje = bracnoStanje.Neozenjen;
-                }
-                else if (this.bracStanje.Text.Equals("Udovac"))
-                {
-                    brStanje = bracnoStanje.Udovac;
-                }
-                else if (this.bracStanje.Text.Equals("Razveden"))
-                {
-                    brStanje = bracnoStanje.Razveden;
-                }
-                else if (this.bracStanje.Text.Equals("Neodredjeno"))
-                {
-                    brStanje = bracnoStanje.Neodredjeno;
-                }
-            }
-            else
-            {
-                poll = pol.Z;
-                if (this.bracStanje.Text.Equals("Udata"))
-                {
-                    brStanje = bracnoStanje.Udata;
-                }
-                else if (this.bracStanje.Text.Equals("Neudata"))
-                {
-                    brStanje = bracnoStanje.Neudata;
-                }
-                else if (this.bracStanje.Text.Equals("Udovica"))
-                {
-                    brStanje = bracnoStanje.Udovica;
-                }
-                else if (this.bracStanje.Text.Equals("Razvedena"))
-                {
-                    brStanje = bracnoStanje.Razvedena;
-                }
-                else if (this.bracStanje.Text.Equals("Neodredjeno"))
-                {
-                    brStanje = bracnoStanje.Neodredjeno;
-                }
-            }
-
-            string zanimanje = this.zanimanje.Text;
-            Lekar l = null;
-            if (this.lekar != null )
-            {
-                l = (Lekar)this.lekar.SelectedItem;
-            }
-          
-            Pacijent novi = new Pacijent(prijavljeniPacijent.IdPacijenta, ime, prezime, jmbg, poll, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
-            novi.IzabraniLekar = l; 
-            PacijentiMenadzer.IzmeniNalogPacijent(prijavljeniPacijent, novi);
-            PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
-
-            this.ime.IsEnabled = false;
-            this.prezime.IsEnabled = false;
-            this.jmbg.IsEnabled = false;
-            this.poltxt.IsEnabled = false;
-            this.brojTel.IsEnabled = false;
-            this.email.IsEnabled = false;
-            this.adresa.IsEnabled = false;
-            this.bracStanje.IsEnabled = false;
-            this.zanimanje.IsEnabled = false;
-            this.lekar.IsEnabled = false;
-
-            this.sacuvajIzmene.Visibility = Visibility.Hidden;
-            this.odustani.Visibility = Visibility.Hidden;
-            this.izmeniBtn.Visibility = Visibility.Visible;
-        }
 
         /* ANAMNEZE */
         private void infoAnamneza_Click(object sender, RoutedEventArgs e)
@@ -314,6 +146,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -349,6 +186,11 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
+        }
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
     }
 }

@@ -229,6 +229,7 @@ namespace Projekat
             {
                 lekar = (Lekar)datagridLekari.SelectedItems[0];
             }
+            MessageBox.Show(lekar.ToString());
             ZakaziTermin.izabraniLekar = lekar;
             Page zt = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zt);
@@ -271,6 +272,11 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
@@ -306,6 +312,11 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
+        }
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            Page podaci = new LicniPodaciPacijenta(idPacijent);
+            this.NavigationService.Navigate(podaci);
         }
     }
 }

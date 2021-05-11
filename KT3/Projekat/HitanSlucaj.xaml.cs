@@ -21,6 +21,8 @@ namespace Projekat
     /// </summary>
     public partial class HitanSlucaj : Window
     {
+        public const int oznakaZaRenovaciju = 0;
+        public const int polaSata = 1;
         public List<Pacijent> AzuriranaLista = new List<Pacijent>();
         public Pacijent Pacijent;
         public TipTermina Tip;
@@ -32,8 +34,7 @@ namespace Projekat
         int VremePocetkaSati;
         int VremePocetkaMinuti;
         int VremeKrajaSati;
-        int VremeKrajaMinuti; 
-
+        int VremeKrajaMinuti;
         string VremePocetkaMinutiKonvertovano;
         string VremeKrajaMinutiKonvertovano;
         string VremePocetkaSatiKonvertovano;
@@ -44,60 +45,35 @@ namespace Projekat
 
         int trajanjeHitnogTermina;
         int trajanjePomerenogTermina;
-        int izbaceniSlotoviMinuti;
-        int slotoviMinutiT;
+        int slotoviMinuti;
 
         ObservableCollection<Termin> TerminiZauzeto = new ObservableCollection<Termin>();
-        //ObservableCollection<Termin> PotencijaloPomereniTermini = new ObservableCollection<Termin>();
+        ObservableCollection<string> VremenskiSlotovi = new ObservableCollection<string>();
 
-        string PomocnaVremePocetkaSati = "06";
-        string PomocnaVremePocetkaMinuta = "30";
+        string GeneratorSati = "06";
+        string GenratorMinuta = "30";
         Sala novaSala;
         Lekar noviLekar;
-
         Termin hitanTermin;
 
-        string noviMinuti;  // koristeno kao pomocna polja
+        string noviMinuti;
         string noviSati;
-        string pomocna;
-
 
         public HitanSlucaj()
         {
             InitializeComponent();
 
-            this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
-            view.Filter = UserFilter;
+            listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            CollectionView prikazPacijenata = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
+            prikazPacijenata.Filter = PretragaPacijenta;
+
+            oblastLekara.ItemsSource = Enum.GetValues(typeof(Specijalizacija)).Cast<Specijalizacija>();
         }
 
-        // dodavanje novog termina kao hitan slucaj
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            if (hitanTermin.Lekar == null)
-            {
-                hitanTermin.Lekar = noviLekar;
-            }
-
-            TerminMenadzer.ZakaziTerminSekretar(hitanTermin);
-            ZauzeceSale z = new ZauzeceSale(hitanTermin.VremePocetka, hitanTermin.VremeKraja, datum, hitanTermin.IdTermin);
-
-            Sala s = SaleMenadzer.NadjiSaluPoId(hitanTermin.Prostorija.Id);
-            s.zauzetiTermini.Add(z);
-
-            TerminMenadzer.sacuvajIzmene();
-            SaleMenadzer.sacuvajIzmjene();
-
-            // za svaki termin koji je zakazan u istoj prostoriji s, dodati to novo zauzece u zauzeca te prostorije
-            foreach (Termin t1 in TerminMenadzer.termini)
-            {
-                if (t1.Prostorija.Id == s.Id)
-                {
-                    t1.Prostorija = s;
-                }
-            }
-            TerminMenadzer.sacuvajIzmene();
-
+            DodeliLekaraZaHitanTermin();
+            TerminMenadzer.ZakaziHitanTermin(hitanTermin, datum);
             this.Close();
         }
 
@@ -106,694 +82,549 @@ namespace Projekat
             this.Close();
         }
 
-        // dodavanje guest pacijenta
         private void Guest_Pacijent(object sender, RoutedEventArgs e)
         {
-            HitanSlucajDodajGuest dodavanje = new HitanSlucajDodajGuest(this);
-            dodavanje.Show();
+            HitanSlucajDodajGuest dodavanjeGuestPacijenta = new HitanSlucajDodajGuest(this);
+            dodavanjeGuestPacijenta.Show();
         }
 
-        private void NadjiLekara()
+        private void DodeliLekaraZaHitanTermin()
         {
-            PronadjiAdekvatneLekare();
-            foreach (Lekar l in slobodniLekari)
+            if (hitanTermin.Lekar == null)
             {
-                if (SlobodanLekar(l.IdLekara) != null)
+                hitanTermin.Lekar = noviLekar;
+            }
+        }
+
+        private void OdrediLekara()
+        {
+            OdrediOblastLekara();
+            foreach (Lekar selektovaniLekar in slobodniLekari)
+            {
+                if (SlobodanLekar(selektovaniLekar.IdLekara) != null)
                 {
-                    Lekar = l;
+                    Lekar = selektovaniLekar;
                     break;
                 }
             }
         }
 
-        private void NadjiSalu()
+        private void OdrediSalu()
         {
             PronadjiAdekvatneSale();
-            foreach (Sala s in slobodneSale)
+            foreach (Sala selektovanaSala in slobodneSale)
             {
-                if (SlobodnaSala(s.Id) != null)
+                if (SlobodnaSala(selektovanaSala.Id) != null)
                 {
-                    Sala = s;
+                    Sala = selektovanaSala;
                     break;
                 }
             }
         }
 
-        // pretrazi 
+        private Termin KreirajHitanTermin()
+        {
+            return new Termin(TerminMenadzer.GenerisanjeIdTermina(), datum, VremePocetka(), VremeKraja(), Tip, Lekar, Sala, Pacijent);
+        }
+
         private void Pretrazi_Click(object sender, RoutedEventArgs e)
         {
-            ZakaziUNarednihPolaSata();
-            NadjiLekara();
-            NadjiSalu();
-
-            hitanTermin = new Termin(TerminMenadzer.GenerisanjeIdTermina(), datum, VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano, VremeKrajaSatiKonvertovano + ":" + VremeKrajaMinutiKonvertovano, Tip, Lekar, Sala, Pacijent) ;
+            PronadjiTerminUNarednihPolaSata();
+            OdrediLekara();
+            OdrediSalu();
+            hitanTermin = KreirajHitanTermin();
 
             if (Pacijent == null || Sala == null || Lekar == null)
             {
-                if (hitanTermin.Lekar == null)
-                {
-                    Console.WriteLine("lekar je null");
-                }
-                if (hitanTermin.Prostorija == null)
-                {
-                    Console.WriteLine("sala je null");
-                }
                 PrikaziZauzeteTermine();
             }
             else
             {
-                potvrdi.IsEnabled = true;
+                potvrdiDugme.IsEnabled = true;
+            }
+        }
+
+        private void PomeriZakazaniTermin()
+        {
+            foreach (Termin stariTermin in zauzetiTermini.SelectedItems)
+            {
+                hitanTermin.Prostorija = stariTermin.Prostorija;
+                noviLekar = stariTermin.Lekar;
+
+                Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);
+                /*if (pomereniTermin == null) // TODO: ne treba nam?- uvek ce naci termin
+                {
+                    return;
+                }*/
+
+                TerminMenadzer.OtkaziTerminSekretar(stariTermin);
+                TerminMenadzer.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
+                potvrdiDugme.IsEnabled = true;               
             }
         }
 
         private void Pomeri_Click(object sender, RoutedEventArgs e)
         {
-            pretrazi.IsEnabled = false;
-            //zauzetiTermini.IsEnabled = false;
-
-            foreach (Termin stariTermin in zauzetiTermini.SelectedItems)
-            {
-                if (stariTermin == null)
-                {
-                    Console.WriteLine("stari termin je null");
-                }
-
-                hitanTermin.Prostorija = stariTermin.Prostorija;
-                
-                if (hitanTermin.Lekar == null)
-                {
-                    noviLekar = stariTermin.Lekar;
-                }
-
-                Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);  // ne nadje pomereniTermin !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-                if (pomereniTermin != null)
-                {
-                    potvrdi.IsEnabled = true;
-
-                    TerminMenadzer.OtkaziTerminSekretar(stariTermin);
-                    TerminMenadzer.ZakaziTerminSekretar(pomereniTermin);
-
-                    ZauzeceSale z = new ZauzeceSale(pomereniTermin.VremePocetka, pomereniTermin.VremeKraja, pomereniTermin.Datum, pomereniTermin.IdTermin);
-                    Sala s = SaleMenadzer.NadjiSaluPoId(pomereniTermin.Prostorija.Id);
-                    s.zauzetiTermini.Add(z);
-
-                    // za svaki termin koji je zakazan u istoj prostoriji s, dodati to novo zauzece u zauzeca te prostorije
-                    foreach (Termin t1 in TerminMenadzer.termini)
-                    {
-                        if (t1.Prostorija.Id == s.Id)
-                        {
-                            t1.Prostorija = s;
-                        }
-                    }
-
-                    TerminMenadzer.sacuvajIzmene();
-                    SaleMenadzer.sacuvajIzmjene();
-                }
-                else
-                {
-                    Console.WriteLine("pomereni termin je null");
-                }
-            }
+            pretraziDugme.IsEnabled = false;
+            PomeriZakazaniTermin();
         }
 
-        private void PrikaziZauzeteTermine() 
+        private void PrikaziZauzeteTermine()
         {
-            pomeri.IsEnabled = true;
+            pomeriDugme.IsEnabled = true;
             zauzetiTermini.IsEnabled = true;
 
-            List<Termin> terminiZaPomeranje = new List<Termin>();
-
-            // filtriranje koje zauzete termine prikazujemo
-            foreach (Termin t in TerminiZauzeto)
-            {
-                if ( (Convert.ToInt32(VremePocetkaSatiKonvertovano) <= Convert.ToInt32(t.VremePocetka.Split(':')[0]) &&
-                      Convert.ToInt32(t.VremePocetka.Split(':')[0]) <= Convert.ToInt32(VremeKrajaSatiKonvertovano))   ||
-                     (Convert.ToInt32(t.VremeKraja.Split(':')[0]) > Convert.ToInt32(VremePocetkaSatiKonvertovano) && 
-                      Convert.ToInt32(t.VremePocetka.Split(':')[0]) <= Convert.ToInt32(VremePocetkaSatiKonvertovano)) )
-                {
-                    terminiZaPomeranje.Add(t);
-                }
-            }
-
+            List<Termin> terminiZaPomeranje = FiltrirajPrikazaneTermine();
             zauzetiTermini.ItemsSource = terminiZaPomeranje;
         }
 
-        private Termin PronadjiSledeceSlobodnoZauzece(Termin termin)
+        private string Sati(string Vreme)
         {
-            int TrajanjeSati = Convert.ToInt32(termin.VremeKraja.Split(':')[0]) - Convert.ToInt32(termin.VremePocetka.Split(':')[0]);  
-            int TrajanjeMinuti = Convert.ToInt32(termin.VremeKraja.Split(':')[1]) - Convert.ToInt32(termin.VremePocetka.Split(':')[1]);
+            return Vreme.Split(':')[0];
+        }
 
-            // u slucaju 1:-30
+        private string Minuti(string Vreme)
+        {
+            return Vreme.Split(':')[1];
+        }
+
+        private List<Termin> FiltrirajPrikazaneTermine()
+        {
+            List<Termin> filtriraniTermini = new List<Termin>();
+
+            foreach (Termin t in TerminiZauzeto)
+            {
+                if ((Convert.ToInt32(VremePocetkaSatiKonvertovano) <= Convert.ToInt32(Sati(t.VremePocetka)) &&
+                 Convert.ToInt32(Sati(t.VremePocetka)) <= Convert.ToInt32(VremeKrajaSatiKonvertovano)) ||
+                (Convert.ToInt32(Sati(t.VremeKraja)) > Convert.ToInt32(VremePocetkaSatiKonvertovano) &&
+                 Convert.ToInt32(Sati(t.VremePocetka)) <= Convert.ToInt32(VremePocetkaSatiKonvertovano)))
+                {
+                    filtriraniTermini.Add(t);
+                }
+            }
+
+            return filtriraniTermini;
+        }
+
+        private int[] TrajanjeUSatimaIMinutima(Termin termin)
+        {
+            int[] Trajanje = new int[2];
+
+            int TrajanjeSati = Convert.ToInt32(Sati(termin.VremeKraja)) - Convert.ToInt32(Sati(termin.VremePocetka));
+            int TrajanjeMinuti = Convert.ToInt32(Minuti(termin.VremeKraja)) - Convert.ToInt32(Minuti(termin.VremePocetka));
             if (TrajanjeMinuti == -30)
             {
                 TrajanjeMinuti = 30;
-                TrajanjeSati -= 1; 
+                TrajanjeSati -= 1;
             }
 
-            ObservableCollection<string> SlobodnoVremePocetka;
-            Termin t;
+            Trajanje[0] = TrajanjeSati;
+            Trajanje[1] = TrajanjeMinuti;
+            
+            return Trajanje;
+        }
 
-            // TODO: lista vremena pocetaka i kraja
-            for (int i = 0; i < 27; i++)
+        private Termin PronadjiSledeceSlobodnoZauzece(Termin terminKojiPomeramo)
+        {
+            ObservableCollection<string> SlobodnoVremePocetka = new ObservableCollection<string>();
+
+            int[] Trajanje = TrajanjeUSatimaIMinutima(terminKojiPomeramo);
+            int TrajanjeSati = Trajanje[0];
+            int TrajanjeMinuti = Trajanje[1]; 
+            Termin pronadjeniTermin = PronadjiSlobodanTermin(terminKojiPomeramo, SlobodnoVremePocetka, TrajanjeSati, TrajanjeMinuti);
+
+            return pronadjeniTermin;
+        }
+
+        private Termin PronadjiSlobodanTermin(Termin termin, ObservableCollection<string> SlobodnoVremePocetka, int TrajanjeSati, int TrajanjeMinuti)
+        {
+            VremenskiSlotovi = InicijalizujVremenskeSlotove();
+            foreach (string vremeskiSlot in VremenskiSlotovi)
             {
-                OdrediVremePocetkaIKraja(TrajanjeSati, TrajanjeMinuti);
+                GenerisiVremePocetkaIKraja(TrajanjeSati, TrajanjeMinuti);
 
-                // TODO: posebna fja
-                foreach (Sala s in slobodneSale)
+                foreach (Sala sala in slobodneSale)
                 {
-                    SlobodnoVremePocetka = new ObservableCollection<string>()
-                                                             { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30",
-                                                               "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
-                                                               "19:00", "19:30", "20:00" };
+                    SlobodnoVremePocetka = InicijalizujListuTermina();
+                    IzbaciZauzeteTermineSale(sala, SlobodnoVremePocetka);
 
-                    IzbaciZauzeteTermineSale(s, SlobodnoVremePocetka);
-
-                    if (SlobodnaSalaNaOsnovuVremena(SlobodnoVremePocetka)) // ako je slobodna, nasli smo salu, ako ne idi na sledecu salu
-                    { 
-                        novaSala = s;
-                        t = new Termin(termin.IdTermin, sledeciDan.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture), VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano, VremeKrajaSatiKonvertovano + ":" + VremeKrajaMinutiKonvertovano, termin.tipTermina, termin.Lekar, novaSala, termin.Pacijent);
-                        return t;
+                    if (SlobodnaSalaNaOsnovuVremena(SlobodnoVremePocetka))
+                    {
+                        novaSala = sala ;
+                        Termin noviTermin = new Termin(termin.IdTermin, KonvertovaniDatum(), VremePocetka(), VremeKraja(), termin.tipTermina, termin.Lekar, novaSala, termin.Pacijent);
+                        return noviTermin;
                     }
                 }
-            }
-
+            }            
             return null;
         }
 
+        private string KonvertovaniDatum() 
+        {
+            return sledeciDan.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
         private void IzbaciZauzeteTermineSale(Sala s, ObservableCollection<string> SlobodnoVremePocetka)
-        {            
-            foreach (ZauzeceSale z in s.zauzetiTermini)
+        {
+            foreach (ZauzeceSale zauzece in s.zauzetiTermini)
             {
-                RenovacijaSale(z, SlobodnoVremePocetka, sledeciDan.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture));
-
-                if (z.datumPocetkaTermina.Equals(sledeciDan.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture))) // za selektovani datum gledamo zauzetost sale
-                {
-                    if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
-                    {
-                        int TrajanjeSati1 = Convert.ToInt32(z.krajTermina.Split(':')[0]) - Convert.ToInt32(z.pocetakTermina.Split(':')[0]);
-                        int TrajanjeMinuti1 = Convert.ToInt32(z.krajTermina.Split(':')[1]) - Convert.ToInt32(z.pocetakTermina.Split(':')[1]);
-
-                        //  TODO - trajanje:30
-                        if (TrajanjeMinuti1 == 0)
-                        {
-                            izbaceniSlotoviMinuti = 0;
-                        }
-                        else if (TrajanjeMinuti1 == 30)
-                        {
-                            izbaceniSlotoviMinuti = 1;
-                        }
-                        else if (TrajanjeMinuti1 == -30)
-                        {
-                            izbaceniSlotoviMinuti = -1;
-                        }
-
-                        int IzbaceniSlotovi = TrajanjeSati1 * 2 + izbaceniSlotoviMinuti;
-                        int index = SlobodnoVremePocetka.IndexOf(z.pocetakTermina);
-
-                        if (index != -1)
-                        {
-                            for (int i = 0; i < IzbaceniSlotovi; i++)
-                            {
-                                SlobodnoVremePocetka.RemoveAt(index);
-                            }
-                        }
-                    }
-                }
+                RenovacijaSale(zauzece, SlobodnoVremePocetka, KonvertovaniDatum());   
+                IzbaciZauzeteTerminaZaDatum(zauzece, SlobodnoVremePocetka);
             }
         }
 
-        // imamo sredjenu listu slobodnih vremena, na osnovu toga biramo salu
-        private bool SlobodnaSalaNaOsnovuVremena(ObservableCollection<string> SlobodnoVremePocetka) 
-        {            
-            if (SlobodnoVremePocetka.Contains(VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano))
+        private void IzbaciZauzeteTerminaZaDatum(ZauzeceSale zauzece, ObservableCollection<string> SlobodnoVremePocetka)
+        {
+            if (zauzece.datumPocetkaTermina.Equals(KonvertovaniDatum()))
             {
-                int prviIndex = SlobodnoVremePocetka.IndexOf(VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano);
-         
-                if (trajanjePomerenogTermina > 1) // opcija kad termin traje vise od pola sata
+                if (zauzece.idTermina == oznakaZaRenovaciju)
                 {
-                    int pretposlednjiIndex = prviIndex + trajanjePomerenogTermina - 1;
-
-                    /*
-                    if (SlobodnoVremePocetka.Count <= pretposlednjiIndex)
-                    {
-                        Console.WriteLine("prvi ulaz u return false");
-                        return false;
-                    }*/
-
-                    if (SlobodnoVremePocetka[pretposlednjiIndex] == null)
-                    {
-                        return false;
-                    }
-                       
-                    string pretposlednjiSlot = SlobodnoVremePocetka[pretposlednjiIndex];
-                    
-                    if (Convert.ToInt32(VremeKrajaMinutiKonvertovano) - 30 == 0)
-                    {
-                        noviMinuti = "00";
-                        noviSati = VremePocetkaSatiKonvertovano; // sati ostaju isti ->  30 - 30 = 0
-                    }
-                    else if (Convert.ToInt32(VremeKrajaMinutiKonvertovano) - 30 == -30)
-                    {
-                        noviMinuti = "30";
-                        int pomocna = Convert.ToInt32(VremeKrajaSatiKonvertovano) - 1; // sat ide 1 unazad
-
-                        // TODOD: metoda - jednocifren broj sati
-                        if (pomocna >= 0 && pomocna <= 9)
-                        {
-                            noviSati = "0" + pomocna.ToString();
-                        }
-                        else
-                        {
-                            noviSati = pomocna.ToString();
-                        }
-                    }
-
-                    if (pretposlednjiSlot.Split(':')[0].Equals(noviSati) && pretposlednjiSlot.Split(':')[1].Equals(noviMinuti))
-                    {
-                        return true;
-                    }
+                    return;
                 }
-                else // ako termin traje pola sata
+
+                Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                if (pomocna == null)
+                {
+                    return;
+                }
+                
+                int IzbaceniSlotovi = OdrediBrojSlotovaZaIzbacivanje(zauzece.pocetakTermina, zauzece.krajTermina);
+                int indeksPocetkaTermina = SlobodnoVremePocetka.IndexOf(zauzece.pocetakTermina);
+                if (indeksPocetkaTermina == -1)
+                {
+                    return;
+                }
+                
+                SlobodnoVremePocetka = AzurirajListuSlobodnihTermina(IzbaceniSlotovi, indeksPocetkaTermina, SlobodnoVremePocetka);
+            }
+        }
+
+        private ObservableCollection<string> AzurirajListuSlobodnihTermina(int izbaceniSlotovi, int indeksPocetkaTermina, ObservableCollection<string> SlobodnoVremePocetka)
+        {
+            for (int i = 0; i < izbaceniSlotovi; i++)
+            {
+                SlobodnoVremePocetka.RemoveAt(indeksPocetkaTermina);
+            }
+            return SlobodnoVremePocetka;
+        }
+
+        private void OdrediVremeZaPretposlednjiSlot()
+        {
+            if (Convert.ToInt32(VremeKrajaMinutiKonvertovano) - 30 == 0)
+            {
+                noviMinuti = "00";
+                noviSati = VremePocetkaSatiKonvertovano;
+            }
+            else if (Convert.ToInt32(VremeKrajaMinutiKonvertovano) - 30 == -30)
+            {
+                noviMinuti = "30";
+                int Sati = Convert.ToInt32(VremeKrajaSatiKonvertovano) - 1;
+                noviSati = JednocifreniSati(Sati);
+            }
+        }
+
+        private string VremePocetka()
+        {
+            return VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano;
+        }
+
+        private string VremeKraja()
+        {
+            return VremeKrajaSatiKonvertovano + ":" + VremeKrajaMinutiKonvertovano; 
+        }
+
+        private bool SlobodnaSalaNaOsnovuVremena(ObservableCollection<string> SlobodnoVremePocetka)
+        {
+            if (SlobodnoVremePocetka.Contains(VremePocetka()) && trajanjePomerenogTermina > polaSata)
+            {
+                int indeksPocetkaTermina = SlobodnoVremePocetka.IndexOf(VremePocetka());
+                int pretposlednjiIndeks = indeksPocetkaTermina + trajanjePomerenogTermina - 1;
+
+                //if (SlobodnoVremePocetka[pretposlednjiIndeks] == null) // TODO: obrisi??
+                //{
+                //    return false;
+                //}
+
+                string pretposlednjiSlot = SlobodnoVremePocetka[pretposlednjiIndeks];
+                OdrediVremeZaPretposlednjiSlot();
+
+                if (Sati(pretposlednjiSlot).Equals(noviSati) && Minuti(pretposlednjiSlot).Equals(noviMinuti))
                 {
                     return true;
                 }
-
-                return false;
             }
-            
+            else if (SlobodnoVremePocetka.Contains(VremePocetka()) && trajanjePomerenogTermina == polaSata)
+            {
+                return true;
+            }
+
             return false;
         }
 
-        // svaki put trazi termin, za 1 slot kasnije
-        private void OdrediVremePocetkaIKraja(int TrajanjeSati, int TrajanjeMinuti) // 1 0 
+        private void PredjiNaSledeciDan()
         {
-            if (PomocnaVremePocetkaSati.Equals("20")/* || VremeKrajaSatiKonvertovano.Equals("20")*/)
+            if (GeneratorSati.Equals("20"))
             {
                 sledeciDan = sledeciDan.AddDays(1);
-                PomocnaVremePocetkaSati = "06";
-                PomocnaVremePocetkaMinuta = "30";
+                GeneratorSati = "06";
+                GenratorMinuta = "30";
             }
+        }
 
-            if (TrajanjeMinuti == 0)
-            {
-                pomocna = "00";
-            }
-            else
-            {
-                pomocna = TrajanjeMinuti.ToString();
-            } 
+        private void GenerisiVremePocetkaIKraja(int TrajanjeSati, int TrajanjeMinuti)
+        {
+            PredjiNaSledeciDan();
+            trajanjePomerenogTermina = OdrediTrajanjeTermina(TrajanjeSati.ToString() + ":" + JednocifreniMinuti(TrajanjeMinuti));
 
-            trajanjePomerenogTermina = OdrediTrajanjeTermina(TrajanjeSati.ToString() + ":" + pomocna);
-          
-            VremePocetkaSati = Convert.ToInt32(PomocnaVremePocetkaSati) + 0;
-            VremePocetkaMinuti = Convert.ToInt32(PomocnaVremePocetkaMinuta) + 30;
+            VremePocetkaSati = Convert.ToInt32(GeneratorSati) + 0;
+            VremePocetkaMinuti = Convert.ToInt32(GenratorMinuta) + 30;
             KonvertujVremePocetka();
-
-            PomocnaVremePocetkaSati = VremePocetkaSatiKonvertovano;
-            PomocnaVremePocetkaMinuta = VremePocetkaMinutiKonvertovano;
 
             VremeKrajaSati = TrajanjeSati + Convert.ToInt32(VremePocetkaSatiKonvertovano);
             VremeKrajaMinuti = TrajanjeMinuti + Convert.ToInt32(VremePocetkaMinutiKonvertovano);
             KonvertujVremeKraja();
 
+            GeneratorSati = VremePocetkaSatiKonvertovano;
+            GenratorMinuta = VremePocetkaMinutiKonvertovano;
         }
 
         private void PronadjiAdekvatneSale()
         {
-            if (tip.Text.Equals("Pregled"))
+            if (tipTermina.Text.Equals("Pregled"))
             {
                 Tip = TipTermina.Pregled;
-
-                foreach (Sala sal in SaleMenadzer.sale)
-                {
-                    if (sal.TipSale.Equals(tipSale.SalaZaPregled) && !sal.Namjena.Equals("Skladiste"))
-                    {
-                        slobodneSale.Add(sal);
-                    }
-                }
+                slobodneSale = SaleMenadzer.PronadjiSaleZaPregled();
             }
-            else if(tip.Text.Equals("Operacija"))
+            else if (tipTermina.Text.Equals("Operacija"))
             {
                 Tip = TipTermina.Operacija;
-
-                foreach (Sala sal in SaleMenadzer.sale)
-                {
-                    if (sal.TipSale.Equals(tipSale.OperacionaSala) && !sal.Namjena.Equals("Skladiste"))
-                    {
-                        slobodneSale.Add(sal);
-                    }
-                }
+                slobodneSale = SaleMenadzer.PronadjiSaleZaOperaciju();
             }
         }
 
-        private void PronadjiAdekvatneLekare()
+        private void OdrediOblastLekara()
         {
-            if (oblast.Text.Equals("Opsta_praksa"))
-            {
-                foreach (Lekar l in MainWindow.lekari)
-                {
-                    if (l.specijalizacija.Equals(Specijalizacija.Opsta_praksa))
-                    {
-                        slobodniLekari.Add(l);
-                    }
-                }
-            }
-            else if (oblast.Text.Equals("Akuserstvo"))
-            {
-                foreach (Lekar l in MainWindow.lekari)
-                {
-                    if (l.specijalizacija.Equals(Specijalizacija.Akuserstvo))
-                    {
-                        slobodniLekari.Add(l);
-                    }
-                }
-            }
-            else if (oblast.Text.Equals("Hirurgija"))
-            {
-                foreach (Lekar l in MainWindow.lekari)
-                {
-                    if (l.specijalizacija.Equals(Specijalizacija.Hirurgija))
-                    {
-                        slobodniLekari.Add(l);
-                    }
-                }
-            }
-            else if (oblast.Text.Equals("Ortopedija"))
-            {
-                foreach (Lekar l in MainWindow.lekari)
-                {
-                    if (l.specijalizacija.Equals(Specijalizacija.Ortopedija))
-                    {
-                        slobodniLekari.Add(l);
-                    }
-                }
-            }
+            Specijalizacija oblastSpecijalizacije = (Specijalizacija)oblastLekara.SelectedItem;
+            slobodniLekari = MainWindow.PronadjiLekarePoSpecijalizaciji(oblastSpecijalizacije);
         }
 
-        private Lekar SlobodanLekar(int idLekara)
+        private int OdrediBrojSlotovaZaIzbacivanje(string pocetakTermina, string krajTermina)
+        {
+            int trajanjeSati = Convert.ToInt32(Sati(krajTermina)) - Convert.ToInt32(Sati(pocetakTermina));
+            int trajanjeMinuti = Convert.ToInt32(Minuti(krajTermina)) - Convert.ToInt32(Minuti(pocetakTermina));
+            int slotoviMinuti = trajanjeMinuti / 30;
+
+            return trajanjeSati * 2 + slotoviMinuti;
+        }
+
+        private void IzbaciZauzeteTermine(ZauzeceSale z, Termin pomocna, ObservableCollection<string> SlobodnoVremePocetka)
+        { 
+            int IzbaceniSlotovi = OdrediBrojSlotovaZaIzbacivanje(z.pocetakTermina, z.krajTermina);
+            int indeksPocetkaTermina = SlobodnoVremePocetka.IndexOf(z.pocetakTermina);
+
+            if (indeksPocetkaTermina == -1)
+            {
+                return;
+            }
+
+            SlobodnoVremePocetka = AzurirajListuSlobodnihTermina(IzbaceniSlotovi, indeksPocetkaTermina, SlobodnoVremePocetka);
+            TerminiZauzeto = AzurirajListuZauzetihTermina(pomocna);
+        }
+
+        private ObservableCollection<Termin> AzurirajListuZauzetihTermina(Termin pomocna)
+        {
+            if (!TerminiZauzeto.Contains(pomocna))
+            {
+                TerminiZauzeto.Add(pomocna);
+            }
+            return TerminiZauzeto;
+        }
+
+        private ObservableCollection<string> InicijalizujListuTermina()
         {
             ObservableCollection<string> SlobodnoVremePocetka = new ObservableCollection<string>()
                                                              { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30",
                                                                "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
                                                                "19:00", "19:30", "20:00" };
- 
-            foreach (Sala s in SaleMenadzer.sale)
+            return SlobodnoVremePocetka;
+        }
+
+        private ObservableCollection<string> InicijalizujVremenskeSlotove()
+        {
+            VremenskiSlotovi = new ObservableCollection<string>()
+                                                             { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30",
+                                                               "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
+                                                               "19:00", "19:30", "20:00" };
+            return VremenskiSlotovi;
+        }
+
+        private Object PronadjiOdgovarajuciObjekat(ObservableCollection<string> SlobodnoVremePocetka, int idLekara, int idSale)
+        {
+            if (SlobodnoVremePocetka.Contains(VremePocetka()))
             {
-                foreach (ZauzeceSale z in s.zauzetiTermini)
-                {
-                    if (z.datumPocetkaTermina.Equals(datum)) // za selektovani datum gledamo zauzetost selektovanog lekara
-                    {
-                        if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
-                        {
-                            Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
-
-                            if (pomocna.Lekar.IdLekara == idLekara)
-                            {
-                                int TrajanjeSati = Convert.ToInt32(z.krajTermina.Split(':')[0]) - Convert.ToInt32(z.pocetakTermina.Split(':')[0]);  // 0 1 2 ... koliko slotova izbacujemo
-                                int TrajanjeMinuti = Convert.ToInt32(z.krajTermina.Split(':')[1]) - Convert.ToInt32(z.pocetakTermina.Split(':')[1]);  // 0 30 -30
-
-                                if (TrajanjeMinuti == 0)
-                                {
-                                    izbaceniSlotoviMinuti = 0;
-                                }
-                                else if (TrajanjeMinuti == 30)
-                                {
-                                    izbaceniSlotoviMinuti = 1;
-                                }
-                                else if (TrajanjeMinuti == -30)
-                                {
-                                    izbaceniSlotoviMinuti = -1;
-                                }
-
-                                int IzbaceniSlotovi = TrajanjeSati * 2 + izbaceniSlotoviMinuti;
-                                int index = SlobodnoVremePocetka.IndexOf(z.pocetakTermina);
-
-                                if (index != -1)
-                                {
-                                    for (int i = 0; i < IzbaceniSlotovi; i++)
-                                    {
-                                        SlobodnoVremePocetka.RemoveAt(index);
-                                    }
-
-                                    if (!TerminiZauzeto.Contains(pomocna))
-                                    {
-                                        TerminiZauzeto.Add(pomocna);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // za zeljenog lekara imamo listu slobodnih termina za izabrani dan
-            if (SlobodnoVremePocetka.Contains(VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano))
-            {
-                int prvi = SlobodnoVremePocetka.IndexOf(VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano);               
-                int noviIndex = prvi + trajanjeHitnogTermina;
-                int poslednji = SlobodnoVremePocetka.IndexOf(VremeKrajaSatiKonvertovano + ":" + VremeKrajaMinutiKonvertovano);
-
+                int indeksPocetkaTermina = SlobodnoVremePocetka.IndexOf(VremePocetka());
+                int noviIndex = indeksPocetkaTermina + trajanjeHitnogTermina;
+                int poslednji = SlobodnoVremePocetka.IndexOf(VremeKraja()); 
                 if (poslednji == -1)
                 {
                     return null;
                 }
 
-                if(SlobodnoVremePocetka[noviIndex].Split(':')[0].Equals(SlobodnoVremePocetka[poslednji].Split(':')[0]) && SlobodnoVremePocetka[noviIndex].Split(':')[1].Equals(SlobodnoVremePocetka[poslednji].Split(':')[1]))
+                if (Sati(SlobodnoVremePocetka[noviIndex]).Equals(Sati(SlobodnoVremePocetka[poslednji])) && 
+                    Minuti(SlobodnoVremePocetka[noviIndex]).Equals(Minuti(SlobodnoVremePocetka[poslednji])) )
                 {
-                   return MainWindow.PronadjiPoId(idLekara);
+                    if (idLekara != 0)
+                    {
+                        return MainWindow.PronadjiPoId(idLekara);
+                    }
+                    else if (idSale != 0)
+                    { 
+                        return SaleMenadzer.NadjiSaluPoId(idSale);
+                    }
                 }
-                else
-                {
-                    return null;
-                }
-            }
-            else
-            {
                 return null;
             }
+
+            return null;
         }
 
-        private void RenovacijaSale(ZauzeceSale z, ObservableCollection<string> SlobodnoVremePocetka, string datum)
+        private Lekar SlobodanLekar(int idLekara)
         {
-            if (z.idTermina == 0) // ako sala ima zakazano renoviranje - TODO: oznakaZaRenovaciju == 0 
+            ObservableCollection<string> SlobodnoVremePocetka = InicijalizujListuTermina();
+
+            foreach (Sala sala in SaleMenadzer.sale)
             {
-                DateTime datumPocetka = DateTime.Parse(z.datumPocetkaTermina);
-                DateTime datumKraja = DateTime.Parse(z.datumKrajaTermina);
-                DateTime datumZakazivanja = DateTime.Parse(datum);
-
-                if (z.datumPocetkaTermina.Equals(datum) && z.datumKrajaTermina.Equals(datum)) // isti dan i pocinje i zavrsava se
+                foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
                 {
-                    int trajanjeSati = Convert.ToInt32(z.krajTermina.Split(':')[0]) - Convert.ToInt32(z.pocetakTermina.Split(':')[0]);
-                    int trajanjeMinuti = Convert.ToInt32(z.krajTermina.Split(':')[1]) - Convert.ToInt32(z.pocetakTermina.Split(':')[1]);
-
-                    if (trajanjeMinuti == 0)
+                    if (zauzece.datumPocetkaTermina.Equals(datum))
                     {
-                        izbaceniSlotoviMinuti = 0;
-                    }
-                    else if (trajanjeMinuti == 30)
-                    {
-                        izbaceniSlotoviMinuti = 1;
-                    }
-                    else if (trajanjeMinuti == -30)
-                    {
-                        izbaceniSlotoviMinuti = -1;
-                    }
-
-                    int izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
-                    int index = SlobodnoVremePocetka.IndexOf(z.pocetakTermina);
-
-                    if (index != -1)
-                    {
-                        for (int i = 0; i < izbaceniSlotovi; i++)
+                        if (zauzece.idTermina == oznakaZaRenovaciju)
                         {
-                            SlobodnoVremePocetka.RemoveAt(index + 1);
+                            continue;                            
+                        }
+
+                        Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                        if (pomocna == null)
+                        {
+                            return null;
+                        }
+
+                        if (pomocna.Lekar.IdLekara == idLekara)
+                        {
+                            IzbaciZauzeteTermine(zauzece, pomocna, SlobodnoVremePocetka);
                         }
                     }
-                }
-                else if (z.datumPocetkaTermina.Equals(datum) && !z.datumKrajaTermina.Equals(datum))
-                {
-                    int trajanjeSati = Convert.ToInt32("20") - Convert.ToInt32(z.pocetakTermina.Split(':')[0]);
-                    int trajanjeMinuti = Convert.ToInt32("00") - Convert.ToInt32(z.pocetakTermina.Split(':')[1]);
-
-                    if (trajanjeMinuti == 0)
-                    {
-                        izbaceniSlotoviMinuti = 0;
-                    }
-                    else if (trajanjeMinuti == 30)
-                    {
-                        izbaceniSlotoviMinuti = 1;
-                    }
-                    else if (trajanjeMinuti == -30)
-                    {
-                        izbaceniSlotoviMinuti = -1;
-                    }
-
-                    int izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
-                    int index = SlobodnoVremePocetka.IndexOf(z.pocetakTermina);
-
-                    if (index != -1)
-                    {
-                        for (int i = 0; i <= izbaceniSlotovi; i++)
-                        {
-                            SlobodnoVremePocetka.RemoveAt(index);
-                        }
-                    }
-                }
-                else if (!z.datumPocetkaTermina.Equals(datum) && z.datumKrajaTermina.Equals(datum))
-                {
-                    // od pocetka dana do kraja renovacije sve izbacujemo
-                    int trajanjeSati = Convert.ToInt32(z.krajTermina.Split(':')[0]) - Convert.ToInt32("07");
-                    int trajanjeMinuti = Convert.ToInt32(z.krajTermina.Split(':')[1]) - Convert.ToInt32("00");
-
-                    if (trajanjeMinuti == 0)
-                    {
-                        izbaceniSlotoviMinuti = 0;
-                    }
-                    else if (trajanjeMinuti == 30)
-                    {
-                        izbaceniSlotoviMinuti = 1;
-                    }
-                    else if (trajanjeMinuti == -30)
-                    {
-                        izbaceniSlotoviMinuti = -1;
-                    }
-
-                    int izbaceniSlotovi = trajanjeSati * 2 + izbaceniSlotoviMinuti;
-
-                    for (int i = 0; i <= izbaceniSlotovi; i++)
-                    {
-                        if (i != izbaceniSlotovi)
-                        {
-                            if (SlobodnoVremePocetka.Count > 0)
-                            {
-                                SlobodnoVremePocetka.RemoveAt(0);
-                            }
-                        }
-                    }
-                }
-                else if (datumZakazivanja < datumKraja && datumZakazivanja > datumPocetka) // ako je trenutni datum izmedju vremena pocetka i vremena kraja renovacije
-                {
-                    SlobodnoVremePocetka.Clear();
-                    MessageBox.Show("Prostorija se renovira u to vreme!");
                 }
             }
+
+            return (Lekar)PronadjiOdgovarajuciObjekat(SlobodnoVremePocetka, idLekara, 0);
         }
 
         private Sala SlobodnaSala(int idSale)
         {
-            ObservableCollection<string> SlobodnoVremePocetka = new ObservableCollection<string>()
-                                                             { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30",
-                                                               "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
-                                                               "19:00", "19:30", "20:00" };
+            ObservableCollection<string> SlobodnoVremePocetka = InicijalizujListuTermina();
 
-            Sala s = SaleMenadzer.NadjiSaluPoId(idSale);
-
-            foreach (ZauzeceSale z in s.zauzetiTermini)
+            Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
+            foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
-                RenovacijaSale(z, SlobodnoVremePocetka, datum);
+                RenovacijaSale(zauzece, SlobodnoVremePocetka, datum);
 
-                if (z.datumPocetkaTermina.Equals(datum)) // za selektovani datum gledamo zauzetost selektovanog lekara
+                if (zauzece.datumPocetkaTermina.Equals(datum))
                 {
-                    if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                    if (zauzece.idTermina == oznakaZaRenovaciju)
                     {
-                        Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                        continue;
+                    }
 
-                        int TrajanjeSati = Convert.ToInt32(z.krajTermina.Split(':')[0]) - Convert.ToInt32(z.pocetakTermina.Split(':')[0]);  // 0 1 2 ... koliko slotova izbacujemo
-                        int TrajanjeMinuti = Convert.ToInt32(z.krajTermina.Split(':')[1]) - Convert.ToInt32(z.pocetakTermina.Split(':')[1]);  // 0 30 -30
+                    Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                    if (pomocna == null)
+                    {
+                        return null;
+                    }
 
-                        if (TrajanjeMinuti == 0)
-                        {
-                            izbaceniSlotoviMinuti = 0;
-                        }
-                        else if (TrajanjeMinuti == 30)
-                        {
-                            izbaceniSlotoviMinuti = 1;
-                        }
-                        else if (TrajanjeMinuti == -30)
-                        {
-                            izbaceniSlotoviMinuti = -1;
-                        }
+                    IzbaciZauzeteTermine(zauzece, pomocna, SlobodnoVremePocetka);
+                }
+            }
 
-                        int IzbaceniSlotovi = TrajanjeSati * 2 + izbaceniSlotoviMinuti;
-                        int index = SlobodnoVremePocetka.IndexOf(z.pocetakTermina);
+            return (Sala)PronadjiOdgovarajuciObjekat(SlobodnoVremePocetka, 0, idSale);
+        }
 
-                        if (index != -1)
-                        {
-                            for (int i = 0; i < IzbaceniSlotovi; i++)
-                            {
-                                SlobodnoVremePocetka.RemoveAt(index);
-                            }
-
-                            if (!TerminiZauzeto.Contains(pomocna))
-                            {
-                                TerminiZauzeto.Add(pomocna);
-                            }
-                        }
+        private void IzbaciTermineTokomRenovacije(int izbaceniSlotovi, int indeksPocetkaTermina, int indeksPocetkaTerminaPomocna ,ObservableCollection<string> SlobodnoVremePocetka)
+        {
+            if (indeksPocetkaTermina != -1)
+            {
+                for (int i = 0; i < izbaceniSlotovi; i++)
+                {
+                    if (SlobodnoVremePocetka.Count > 0)
+                    {
+                        SlobodnoVremePocetka.RemoveAt(indeksPocetkaTerminaPomocna);
                     }
                 }
             }
+        }
 
-            // za zeljenu prostoriju imamo listu slobodnih termina za izabrani dan
-            if (SlobodnoVremePocetka.Contains(VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano))
+        private void RenovacijaSale(ZauzeceSale zauzece, ObservableCollection<string> SlobodnoVremePocetka, string trenutniDatum)
+        {
+            if (zauzece.idTermina == oznakaZaRenovaciju) 
             {
-                int index = SlobodnoVremePocetka.IndexOf(VremePocetkaSatiKonvertovano + ":" + VremePocetkaMinutiKonvertovano);
-                int noviIndex = index + trajanjeHitnogTermina;
-                int index1 = SlobodnoVremePocetka.IndexOf(VremeKrajaSatiKonvertovano + ":" + VremeKrajaMinutiKonvertovano);
+                DateTime datumPocetka = DateTime.Parse(zauzece.datumPocetkaTermina);
+                DateTime datumKraja = DateTime.Parse(zauzece.datumKrajaTermina);
+                DateTime datumZakazivanja = DateTime.Parse(trenutniDatum);
 
-                if (index1 == -1)
+                if (zauzece.datumPocetkaTermina.Equals(trenutniDatum) && zauzece.datumKrajaTermina.Equals(trenutniDatum))  
                 {
-                    return null;
+                    int izbaceniSlotovi = OdrediBrojSlotovaZaIzbacivanje(zauzece.pocetakTermina, zauzece.krajTermina);   
+                    int indeksPocetkaTermina = SlobodnoVremePocetka.IndexOf(zauzece.pocetakTermina);
+                    IzbaciTermineTokomRenovacije(izbaceniSlotovi, indeksPocetkaTermina, indeksPocetkaTermina + 1, SlobodnoVremePocetka);
                 }
-
-                string drugi = SlobodnoVremePocetka[noviIndex];
-                string treci = SlobodnoVremePocetka[index1];
-
-                string[] drugiSplitovan = drugi.Split(':');
-                string[] treciSplitovan = treci.Split(':');
-
-                if (drugiSplitovan[0].Equals(treciSplitovan[0]) && drugiSplitovan[1].Equals(treciSplitovan[1]))
+                else if (zauzece.datumPocetkaTermina.Equals(trenutniDatum) && !zauzece.datumKrajaTermina.Equals(trenutniDatum))
+                {   
+                    int izbaceniSlotovi = OdrediBrojSlotovaZaIzbacivanje(zauzece.pocetakTermina, "20:00");      
+                    int indeksPocetkaTermina = SlobodnoVremePocetka.IndexOf(zauzece.pocetakTermina);
+                    IzbaciTermineTokomRenovacije(izbaceniSlotovi + 1, indeksPocetkaTermina, indeksPocetkaTermina, SlobodnoVremePocetka);
+                }
+                else if (!zauzece.datumPocetkaTermina.Equals(trenutniDatum) && zauzece.datumKrajaTermina.Equals(trenutniDatum))  
                 {
-                    return SaleMenadzer.NadjiSaluPoId(idSale);
+                    int izbaceniSlotovi = OdrediBrojSlotovaZaIzbacivanje("07:00", zauzece.krajTermina);  
+                    IzbaciTermineTokomRenovacije(izbaceniSlotovi, 0, 0, SlobodnoVremePocetka);
                 }
-                else
+                else if (datumZakazivanja < datumKraja && datumZakazivanja > datumPocetka) 
                 {
-                    return null;
+                    SlobodnoVremePocetka.Clear();
                 }
-            }
-            else
-            {
-                return null;
             }
         }
 
-        // ukoliko je vreme pocetka jednocifren broj, dodaj 0 ispred
-        private void JednocifrenoVremePocetkaSati()
+        private string JednocifreniSati(int Sati)
         {
-            if (VremePocetkaSati >= 0 && VremePocetkaSati <= 9)
+            string SatiKonvertovano;
+            if (Sati >= 0 && Sati <= 9)
             {
-                VremePocetkaSatiKonvertovano = "0" + VremePocetkaSati.ToString();
+                SatiKonvertovano = "0" + Sati.ToString();
             }
             else
             {
-                VremePocetkaSatiKonvertovano = VremePocetkaSati.ToString();
+                SatiKonvertovano = Sati.ToString();
             }
+
+            return SatiKonvertovano;
         }
 
-        private void JednocifrenoVremeKrajaSati()
+        private string JednocifreniMinuti(int Minuti)
         {
-            // ukoliko je vreme kraja jednocifren broj, dodaj 0 ispred
-            if (VremeKrajaSati >= 0 && VremeKrajaSati <= 9)
+            string MinutiKonvertovano;
+            if (Minuti == 0)
             {
-                VremeKrajaSatiKonvertovano = "0" + VremeKrajaSati.ToString();
+                MinutiKonvertovano = Minuti.ToString() + "0";
             }
             else
             {
-                VremeKrajaSatiKonvertovano = VremeKrajaSati.ToString();
+                MinutiKonvertovano = Minuti.ToString();
             }
+
+            return MinutiKonvertovano;
         }
 
         private void KonvertujVremePocetka()
@@ -803,18 +634,9 @@ namespace Projekat
                 VremePocetkaSati += 1;
                 VremePocetkaMinuti -= 60;
             }
-
-            // ukoliko je vreme pocetka u minutima 0, dodaj 0
-            if (VremePocetkaMinuti == 0)
-            {
-                VremePocetkaMinutiKonvertovano = VremePocetkaMinuti.ToString() + "0";
-            }
-            else
-            {
-                VremePocetkaMinutiKonvertovano = VremePocetkaMinuti.ToString();
-            }
-
-            JednocifrenoVremePocetkaSati();
+          
+            VremePocetkaMinutiKonvertovano = JednocifreniMinuti(VremePocetkaMinuti);
+            VremePocetkaSatiKonvertovano = JednocifreniSati(VremePocetkaSati);
         }
 
         private void KonvertujVremeKraja()
@@ -824,137 +646,76 @@ namespace Projekat
                 VremeKrajaSati += 1;
                 VremeKrajaMinuti -= 60;
             }
-
-            if (VremeKrajaMinuti == -30)
+            else if (VremeKrajaMinuti == -30)
             {
                 VremeKrajaSati -= 1;
                 VremeKrajaMinuti = 30;
             }
 
-            // ukoliko je vreme kraja u minutima 0, dodaj 0
-            if (VremeKrajaMinuti == 0)
-            {
-                VremeKrajaMinutiKonvertovano = VremeKrajaMinuti.ToString() + "0";
-            }
-            else
-            {
-                VremeKrajaMinutiKonvertovano = VremeKrajaMinuti.ToString();
-            }
-
-            JednocifrenoVremeKrajaSati();
+            VremeKrajaMinutiKonvertovano = JednocifreniMinuti(VremeKrajaMinuti);
+            VremeKrajaSatiKonvertovano = JednocifreniSati(VremeKrajaSati);
         }
 
         private void OdrediVremePocetka(string sati, string minuti)
         {
-            if (!minuti.Equals("00"))
-            {
-                if (Convert.ToInt32(minuti) >= 30)
-                {
-                    VremePocetkaSati = Convert.ToInt32(sati) + 1;
-                    VremePocetkaMinuti = 0;
-                }
-                else
-                {
-                    VremePocetkaSati = Convert.ToInt32(sati);
-                    VremePocetkaMinuti = 30;
-                }
-            }
-            else
+            if (minuti.Equals("00"))
             {
                 VremePocetkaSati = Convert.ToInt32(sati);
                 VremePocetkaMinuti = Convert.ToInt32(minuti);
             }
+            else if (Convert.ToInt32(minuti) >= 30)
+            {
+                VremePocetkaSati = Convert.ToInt32(sati) + 1;
+                VremePocetkaMinuti = 0;
+            }
+            else 
+            {
+                VremePocetkaSati = Convert.ToInt32(sati);
+                VremePocetkaMinuti = 30;
+            }
+            KonvertujVremePocetka();
         }
 
-        private void OdrediVremeKraja(string trajanjeTermina) 
+        private void OdrediVremeKraja(string trajanjeTermina)
         {
-            VremeKrajaSati = Convert.ToInt32(trajanjeTermina.Split(':')[0]) + VremePocetkaSati;
-            VremeKrajaMinuti = Convert.ToInt32(trajanjeTermina.Split(':')[1]) + VremePocetkaMinuti;
+            VremeKrajaSati = Convert.ToInt32(Sati(trajanjeTermina)) + VremePocetkaSati;
+            VremeKrajaMinuti = Convert.ToInt32(Minuti(trajanjeTermina)) + VremePocetkaMinuti;
+            KonvertujVremeKraja();
         }
 
-        // odredjuje vreme pocetka i kraja termina ukoliko u prvih pola sata zakazujemo
-        private void ZakaziUNarednihPolaSata() 
+        private string KonvertujTrenutnoVreme()
+        {
+            return DateTime.Now.ToString("HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        private void PronadjiTerminUNarednihPolaSata()
         {
             string trajanjeTermina = trajanje.Text;
+            string vreme = KonvertujTrenutnoVreme();
+            // TODO: metoda
+            string sati = Sati(vreme);
+            string minuti = Minuti(vreme);
 
-            string datumVreme = DateTime.Now.ToString("MM/dd/yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-            string[] nizDatumVreme = datumVreme.Split(' ');
-            string vreme = nizDatumVreme[1];
-
-            string[] SatiMinuti = vreme.Split(':');
-            string sati = SatiMinuti[0];
-            string minuti = SatiMinuti[1];
-
-            OdrediVremePocetka(sati, minuti);
+            OdrediVremePocetka(Sati(vreme), Minuti(vreme));
             OdrediVremeKraja(trajanjeTermina);
-
-            KonvertujVremePocetka();
-            KonvertujVremeKraja();
-
             trajanjeHitnogTermina = OdrediTrajanjeTermina(trajanjeTermina);
-            //TrajanjeHitnogTermina(trajanjeTermina);
         }
-
-        // koliko slotova zauzima termin
-        private void TrajanjeHitnogTermina(string trajanjeTermina) 
-        {
-            int slotoviMinuti;
-
-            if (trajanjeTermina.Split(':')[1].Equals("00"))
-            {
-                slotoviMinuti = 0;
-                trajanjeHitnogTermina = Convert.ToInt32(trajanjeTermina.Split(':')[0]) * 2 + slotoviMinuti;
-            }
-            else if (trajanjeTermina.Split(':')[1].Equals("30"))
-            {
-                slotoviMinuti = 1;
-                trajanjeHitnogTermina = Convert.ToInt32(trajanjeTermina.Split(':')[0]) * 2 + slotoviMinuti;
-            }
-        }
-
-        private void TrajanjePomerenogTermina(string trajanjeTermina)
-        {
-            int slotoviMinuti;
-
-            if (trajanjeTermina.Split(':')[1].Equals("00"))
-            {
-                slotoviMinuti = 0;
-                trajanjePomerenogTermina = Convert.ToInt32(trajanjeTermina.Split(':')[0]) * 2 + slotoviMinuti;
-                Console.WriteLine("ooooooooooooooooooooooo");
-            }
-            else if (trajanjeTermina.Split(':')[1].Equals("30"))
-            {
-                Console.WriteLine("mmmmmmmmmmmmmmmmm");
-                slotoviMinuti = 1;
-                trajanjePomerenogTermina = Convert.ToInt32(trajanjeTermina.Split(':')[0]) * 2 + slotoviMinuti;
-            }
-        } 
 
         private int OdrediTrajanjeTermina(string trajanjeTermina)
         {
-            //int slotoviMinutiT;
-
-            if (trajanjeTermina.Split(':')[1].Equals("00"))
+            if (Minuti(trajanjeTermina).Equals("00"))
             {
-                Console.WriteLine("mmmmmmmmmmmmmmmmm");
-                slotoviMinutiT = 0;
+                slotoviMinuti = 0;
             }
-            else if (trajanjeTermina.Split(':')[1].Equals("0"))
+            else if (Minuti(trajanjeTermina).Equals("30"))
             {
-                Console.WriteLine("Ovdeee udjeeeeeeeeeeeeeee");
-                slotoviMinutiT = 0;
-            }
-            else if (trajanjeTermina.Split(':')[1].Equals("30"))
-            {
-                slotoviMinutiT = 1;
+                slotoviMinuti = 1;
             }
 
-            int trajanje = Convert.ToInt32(trajanjeTermina.Split(':')[0]) * 2 + slotoviMinutiT;
-
-            return trajanje;
+            return Convert.ToInt32(Sati(trajanjeTermina)) * 2 + slotoviMinuti;
         }
 
-        private bool UserFilter(object item)
+        private bool PretragaPacijenta(object item)
         {
             if (String.IsNullOrEmpty(pretraga.Text))
             {
@@ -973,7 +734,6 @@ namespace Projekat
             CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource).Refresh();
         }
 
-        // azuriranje nakon dodavanja guest pacijenta
         public void AzurirajListuPacijenata()
         {
             foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)

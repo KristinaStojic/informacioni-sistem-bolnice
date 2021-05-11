@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="Ponudjeni termini" Height="600" Width="800" Background="{DynamicResource BackgroundColor}">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
@@ -19,8 +18,8 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Grid  Margin="0,0,0,0" Height="578">
-                <StackPanel >
-                    <StackPanel Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal" Margin="2,0,-2,0">
+                <StackPanel Height="578" VerticalAlignment="Top" >
+                    <StackPanel Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
                             <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
@@ -31,7 +30,7 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" />
+                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
                                     <Separator/>
                                     <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                     <Separator/>
@@ -78,20 +77,21 @@
         </DataGrid>
         <Button Content="Zakazi" Name="btnZakazi" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
                 Height="30" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="btnZakazi_Click" 
-                Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
+                Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
         <Button Content="Potvrdi" Name="zakaziLekar" HorizontalAlignment="Left" Margin="260,418,0,0" VerticalAlignment="Top" Width="90" 
-                Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
+                Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
         <Button Content="Nazad"  Name="nazad" HorizontalAlignment="Left" Margin="260,468,0,0" VerticalAlignment="Top" Width="90" 
-            Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="65,106,0,0" 
+            Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
+        <Button x:Name="lekari" Content="Zakazite termin kod drugog lekara" HorizontalAlignment="Left" Margin="65,136,0,0" 
                 VerticalAlignment="Top" Width="195" Height="95" Click="lekari_Click" 
-                Style="{DynamicResource ButtonStyle}"  Grid.Row="1" Grid.Column="1"/>
-        <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="335,105,0,0" 
-                VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Style="{DynamicResource ButtonStyle}"
+                Style="{DynamicResource ButtonStyle2}"  Grid.Row="1" Grid.Column="1"/>
+        <Button Name="preporuka" Content="Prva tri slobodna termina" HorizontalAlignment="Left" Margin="335,135,0,0" 
+                VerticalAlignment="Top" Width="195" Height="95" Click="preporuka_Click" Style="{DynamicResource ButtonStyle2}"
                 Grid.Column="1" Grid.Row="1"/>
-        <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Left" Height="360" Margin="107,33,0,0" VerticalAlignment="Top" Width="370" RenderTransformOrigin="0.858,0.494" Grid.Column="1" Grid.Row="1">
-
-            <ListView x:Name="datagridLekari" SelectionMode="Single" Margin="14,70,14,17" SelectionChanged="datagridLekari_SelectionChanged" Background="#FFF9F7F7" Grid.Column="1" Grid.Row="1" >
+        <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Left" Height="365" Margin="107,33,0,0"
+                  VerticalAlignment="Top" Width="380" RenderTransformOrigin="0.858,0.494" Grid.Column="1" Grid.Row="1">
+            <ListView x:Name="datagridLekari" SelectionMode="Single" Margin="6,70,22,17"
+                      SelectionChanged="datagridLekari_SelectionChanged" Background="#FFF9F7F7" Grid.Column="1" Grid.Row="1" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" 
@@ -101,12 +101,35 @@
                         <GridViewColumn Header="Prezime" 
                         Width="80" DisplayMemberBinding="{Binding PrezimeLek}"/>
                         <GridViewColumn Header="Specijalizacija"
-                        Width="130" DisplayMemberBinding="{Binding specijalizacija}"/>
+                        Width="140" DisplayMemberBinding="{Binding specijalizacija}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </GroupBox>
-        <TextBox x:Name="txtFilter" Height="25" Width="200" Grid.Column="1" Grid.Row="1" Margin="232,83,152,435"  />
+        <TextBox x:Name="txtFilter" Height="25" Width="200" Grid.Column="1" Grid.Row="1" Margin="258,85,126,433">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Pronađite lekara " Foreground="DarkGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
     </Grid>
 
 </Page>

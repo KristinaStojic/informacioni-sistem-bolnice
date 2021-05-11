@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Pocetna stranica" Height="505" Width="800" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Pocetna stranica" Height="505" Width="800" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="CadetBlue" Width="200">
             <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10"/>

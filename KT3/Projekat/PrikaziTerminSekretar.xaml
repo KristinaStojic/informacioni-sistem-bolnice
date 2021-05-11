@@ -11,13 +11,13 @@
             <RowDefinition Height="6*"/>
             <RowDefinition Height="41*"/>
         </Grid.RowDefinitions>
-        <TextBox DockPanel.Dock="Top" Name="datumFilter" TextChanged="datumFilter_TextChanged" TextAlignment="Left" Height="35" Width="206" ToolTip="Pronadjite termin po datumu" HorizontalAlignment="Right" FontSize="17" Grid.Row="1" Margin="0,51,837,0" VerticalAlignment="Top">
+        <TextBox DockPanel.Dock="Top" Name="datumFilter" TextChanged="datumFilter_TextChanged" TextAlignment="Left" Height="30" Width="206" ToolTip="Pronadjite termin po datumu" HorizontalAlignment="Right" FontSize="14" Grid.Row="1" Margin="0,56,837,0" VerticalAlignment="Top">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="Filtriranje (MM/dd/yyyy)" FontSize="17" Foreground="LightGray" />
+                                <Label Content="(MM/dd/yyyy)" FontSize="14" Foreground="LightGray" />
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>
@@ -35,10 +35,10 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="481,42,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="596,42,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
-        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,42,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
-        <Button HorizontalAlignment="Left" Margin="708,28,0,0" VerticalAlignment="Top" Width="102" Height="43" Click="Button_Click_7" FontSize="17" Background="#FFE7F6F7" Content="Hitan slucaj"/>
+        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="481,43,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="596,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
+        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
+        <Button HorizontalAlignment="Left" Margin="710,28,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Button_Click_7" FontSize="17" Background="#FFE7F6F7" Content="Hitan slucaj"/>
         <Label Content="Termini" HorizontalAlignment="Left" Margin="217,0,0,0" VerticalAlignment="Center" FontSize="22" FontFamily="Segoe UI Semibold" Foreground="#FF18A3AC" Width="162" HorizontalContentAlignment="Center" Height="88" VerticalContentAlignment="Center"/>
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" Grid.RowSpan="2" StrokeThickness="0" VerticalAlignment="Top" Width="457" Margin="820,0,-3.4,0"/>
         <DataGrid Grid.Column="0" x:Name="terminiSekretarTabela" ItemsSource="{Binding TerminiSekretar}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="499" Margin="212,100,0,0" VerticalAlignment="Top" Width="608" GridLinesVisibility="All" FontSize="14" Grid.Row="1" SelectionChanged="terminiSekretarTabela_SelectionChanged">
