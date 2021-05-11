@@ -183,7 +183,7 @@ namespace Model
             int ukupanBrojSalaZaPregled = 0;
             foreach (Sala sala in sale)
             {
-                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
+                if (sala.TipSale.Equals(tipSale.SalaZaPregled) && !sala.Namjena.Equals("Skladiste"))
                 {
                     ukupanBrojSalaZaPregled++;
                 }

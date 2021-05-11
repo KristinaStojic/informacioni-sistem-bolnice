@@ -2,7 +2,6 @@
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -12,34 +11,63 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Projekat
 {
-    public partial class ZakaziTerminPreferenca : Page
+    /// <summary>
+    /// Interaction logic for PreferencaLekari.xaml
+    /// </summary>
+    public partial class PreferencaLekari : Page
     {
         private static int idPacijent;
-        private static Pacijent prijavljeniPacijent { get; set; }
-        public ZakaziTerminPreferenca(int idPrijavljenogPacijenta)
+        private static Pacijent prijavljeniPacijent;
+        public PreferencaLekari(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
+            this.datagridLekari.ItemsSource = MainWindow.lekari;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource);
+            view.Filter = UserFilter;
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
-
-        private void lekari_Click(object sender, RoutedEventArgs e)
+        private bool UserFilter(object item)
         {
-            Page PreferencaLekari = new PreferencaLekari(idPacijent);
-            this.NavigationService.Navigate(PreferencaLekari);
+            if (String.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+                return ((item as Lekar).PrezimeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0) || ((item as Lekar).ImeLek.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || ((item as Lekar).specijalizacija.ToString().IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0); ;
         }
 
-        private void preporuka_Click(object sender, RoutedEventArgs e)
+        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            Page PreferencaTermini = new PreferencaTermini(idPacijent);
-            this.NavigationService.Navigate(PreferencaTermini);
+            CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource).Refresh();
+        }
+
+        private void datagridLekari_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (datagridLekari.SelectedItems.Count > 0)
+            {
+                Lekar item = (Lekar)datagridLekari.SelectedItem;
+            }
+        }
+
+        private void zakaziLekar_Click(object sender, RoutedEventArgs e)
+        {
+            Lekar lekar = null;
+            if (datagridLekari.SelectedItems.Count > 0)
+            {
+                lekar = (Lekar)datagridLekari.SelectedItems[0];
+            }
+            MessageBox.Show(lekar.ToString());
+            ZakaziTermin.izabraniLekar = lekar;
+            Page zt = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zt);
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -52,17 +80,6 @@ namespace Projekat
         {
             Page karton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(karton);
-        }
-
-        public void zakazi_Click(object sender, RoutedEventArgs e)
-        {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
         }
 
         public void uvid_Click(object sender, RoutedEventArgs e)
@@ -102,5 +119,23 @@ namespace Projekat
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
         }
+
+        private void nazad_Click(object sender, RoutedEventArgs e)
+        {
+            Page zakazivanje = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zakazivanje);
+        }
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
     }
+
+    
 }

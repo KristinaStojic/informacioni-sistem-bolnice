@@ -77,6 +77,9 @@
     <Compile Include="DetaljiUputa.xaml.cs">
       <DependentUpon>DetaljiUputa.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetaljiUputaPacijent.xaml.cs">
+      <DependentUpon>DetaljiUputaPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajAlergene.xaml.cs">
       <DependentUpon>DodajAlergene.xaml</DependentUpon>
     </Compile>
@@ -293,6 +296,12 @@
     <Compile Include="PrebaciStaticku.xaml.cs">
       <DependentUpon>PrebaciStaticku.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PreferencaLekari.xaml.cs">
+      <DependentUpon>PreferencaLekari.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PreferencaTermini.xaml.cs">
+      <DependentUpon>PreferencaTermini.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PreraspodjelaDinamicke.xaml.cs">
       <DependentUpon>PreraspodjelaDinamicke.xaml</DependentUpon>
     </Compile>
@@ -431,6 +440,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetaljiUputa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetaljiUputaPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -713,6 +726,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrebaciStaticku.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreferencaLekari.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreferencaTermini.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1015,9 +1036,6 @@
     <Resource Include="slike\medical-symbol.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="slike\barkod.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="slike\signout.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1031,6 +1049,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="slike\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\barkod3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

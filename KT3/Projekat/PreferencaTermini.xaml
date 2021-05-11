@@ -1,0 +1,100 @@
+﻿<Page x:Class="Projekat.PreferencaTermini"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekat"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="PreferencaTermini" Background="{DynamicResource BackgroundColor}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="142*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="53*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,87">
+            <Grid  Margin="0,0,0,0" Height="450">
+                <StackPanel Margin="0,0,0,-150" >
+                    <StackPanel  Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
+                        <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
+                            <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
+                            <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                        </StackPanel>
+                        <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+                            <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
+                                <MenuItem Name="podaci" >
+                                    <MenuItem.Icon>
+                                        <Image Source="/slike/user.png" />
+                                    </MenuItem.Icon>
+                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
+                                    <Separator/>
+                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click"/>
+                                    <Separator/>
+                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
+                                    <MenuItem Header="_sr" />
+                                    <MenuItem Header="_en"/>
+                                    <Separator />
+                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
+                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
+                                    <Separator />
+                                    <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
+                                </MenuItem>
+                            </Menu>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
+                            <Hyperlink Name="pocetna" Click="pocetna_Click">
+                            <Run Text="Početna stranica"/>
+                            </Hyperlink>
+                            <Run Text=" "/>
+                            <Run Text=" "/>
+                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
+                                <Run Text="Zakažite termin"/>
+                            </Hyperlink><Run Text=" "/>
+                            <Run Text="  "/>
+                            <Run Text=" "/>
+                            <Hyperlink x:Name="uvid" Click="uvid_Click">
+                                <Run Text="Uvid u zakazane termine"/>
+                            </Hyperlink><Run Text=" "/>
+                            <Run Text=" "/>
+                            <Run Text=" "/>
+                            <Hyperlink x:Name="karton" Click="karton_Click">
+                                <Run Text="Zdravstveni karton"/>
+                            </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"  Grid.Row="1" Margin="0, 20, 0, 0" >
+            <Label Content="📆 Preporučeni termini" HorizontalAlignment="Center" Foreground="{DynamicResource TextColor}"
+                   Margin="0, 20, 0, 10" FontWeight="Bold"/>
+            <DataGrid Height="336" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Termini}" 
+                      SelectionChanged="preferencaGrid_SelectionChanged" Grid.Column="1" Grid.Row="1"
+                  IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  Margin="0, 0, 0, 20"
+                      AutoGenerateColumns="False"  BorderBrush="#FF276678" VerticalAlignment="Center" Foreground="Black" Background="#FFF9F7F7" >
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" Width="100" />
+                    <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}" Width="100" />
+                    <DataGridTextColumn x:Name="lekar" Header="Lekar" Binding="{Binding Lekar}" Width="210"/>
+                    <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="Zakazi" Name="btnZakazi" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" 
+                Height="30" ToolTip="Selektujte jedan od ponudjenih termina koji zelite da zakazete" Click="btnZakazi_Click" 
+                Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
+
+                <Button Content="Nazad"  Name="nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90"  Margin="10, 0, 0, 0"
+            Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

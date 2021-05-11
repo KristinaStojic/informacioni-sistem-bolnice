@@ -142,9 +142,11 @@
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Header="Datum" DisplayMemberBinding="{Binding datumIzdavanja}"
-                                                            Width="200"/>
+                                                            Width="100"/>
                                             <GridViewColumn Header="Tip uputa" DisplayMemberBinding="{Binding TipUputa}"
-                                                            Width="400"/>
+                                                            Width="200"/>
+                                            <GridViewColumn Header="Opis uputa" DisplayMemberBinding="{Binding opisPregleda}"
+                                                            Width="300"/>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>

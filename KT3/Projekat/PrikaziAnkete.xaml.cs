@@ -27,6 +27,7 @@ namespace Projekat
         public static ObservableCollection<Anketa> AnketePacijenta { get; set; }
         //private static System.Timers.Timer aTimer;
         public static int minBrojTerminaZaAnketuKlinika = 3;
+        private static int brojacProslihTermina;
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -43,6 +44,7 @@ namespace Projekat
 
         private void PrikaziSveAnketeZaProsleTermine()
         {
+            brojacProslihTermina = 0;
             foreach (Anketa anketa in AnketaMenadzer.SveAnketePacijenta(idPacijent))
             {
                 foreach (Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent))
@@ -75,8 +77,9 @@ namespace Projekat
         {
             if (AnketePacijenta.Count() == minBrojTerminaZaAnketuKlinika)  /* posle 3 termina - anketa o radu klinike */
             {
-                AnketePacijenta.Add(AnketaMenadzer.PronadjiAnketuZaKliniku(idPacijent));
-                return;
+                Anketa anketa = AnketaMenadzer.PronadjiAnketuZaKliniku(idPacijent);
+                if (anketa == null) return;
+                AnketePacijenta.Add(anketa);
             }
         }
 

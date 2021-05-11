@@ -114,7 +114,7 @@ namespace Projekat
             foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent)) 
             {
                 brojacTermina++;
-                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika && !AnketaMenadzer.ankete.Exists(x => x.IdTermina == AnketaMenadzer.oznakaAnketeZaKliniku))
+                if (brojacTermina == PrikaziAnkete.minBrojTerminaZaAnketuKlinika && !AnketaMenadzer.SveAnketePacijenta(idPacijent).Exists(x => x.IdTermina == AnketaMenadzer.oznakaAnketeZaKliniku))
                 {
                     AnketaMenadzer.DodajAnketuZaKliniku(idPacijent);
                     return;

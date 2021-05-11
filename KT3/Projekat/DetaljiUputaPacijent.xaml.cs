@@ -1,8 +1,9 @@
+﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,56 +11,48 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Model;
-using Projekat.Model;
 
 namespace Projekat
 {
-    public partial class Recept : Page
+    /// <summary>
+    /// Interaction logic for DetaljiUputaPacijent.xaml
+    /// </summary>
+    public partial class DetaljiUputaPacijent : Page
     {
-        public Pacijent prijavljeniPacijent;
-        public LekarskiRecept lekRec;
-        public static int idPacijent;
-        public Recept(LekarskiRecept lp, Pacijent izabraniPacijent)
+        private static int idPacijent;
+        public DetaljiUputaPacijent(int idPrijavljenogPacijenta, Uput izabraniUput)
         {
             InitializeComponent();
             this.DataContext = this;
-            idPacijent = izabraniPacijent.IdPacijenta;
-            InicijalizujPodatkeRecepta(lp, izabraniPacijent);
+            idPacijent = idPrijavljenogPacijenta;
+            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.ime.Text = prijavljeniPacijent.ImePacijenta;
+            this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
+            this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
+
+            this.datum.Text = izabraniUput.datumIzdavanja;
+            Lekar lekarKodKogSeUpucuje =  PronadjiLekaraPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
+            this.LekarKodKogSeUpucuje.Text = lekarKodKogSeUpucuje.ToString();
+            Lekar lekarKojiIzdajeUput = PronadjiLekaraPoId(izabraniUput.IdLekaraKojiIzdajeUput);
+            this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
+            this.Napomena.Text = izabraniUput.opisPregleda;
+
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
-        private void InicijalizujPodatkeRecepta(LekarskiRecept lp, Pacijent izabraniPacijent)
+        private static Lekar PronadjiLekaraPoId(int idLekara)
         {
-            this.lekRec = lp;
-            this.naziv.Text = lp.NazivLeka;
-            this.datum.Text = lp.DatumPropisivanjaLeka;
-            this.dani.Text = lp.BrojDanaKoriscenja.ToString();
-            this.brojUzimanja.Text = lp.BrojDanaKoriscenja.ToString();
-            this.sati.Text = lp.PocetakKoriscenja.Substring(0, 2);
-            this.min.Text = lp.PocetakKoriscenja.Substring(3);
-
-            this.naziv.IsEnabled = false;
-            this.datum.IsEnabled = false;
-            this.dani.IsEnabled = false;
-            this.brojUzimanja.IsEnabled = false;
-            this.sati.IsEnabled = false;
-            this.min.IsEnabled = false;
-
-            this.prijavljeniPacijent = izabraniPacijent;
-            ime.Text = izabraniPacijent.ImePacijenta;
-            prezime.Text = izabraniPacijent.PrezimePacijenta;
-            id.Text = izabraniPacijent.Jmbg.ToString();
-            // TODO: dodati u Lekarskim receptima id lekara koji je izdao recept
-            foreach(Lekar lekar in MainWindow.lekari)
+            foreach (Lekar lekar in MainWindow.lekari)
             {
-                if(lekar.IdLekara == lp.IdLekara)
+                if (lekar.IdLekara == idLekara)
                 {
-                    podaciLekara.Text = lekar.ToString();
+                    return lekar;
                 }
             }
+            return null;
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
