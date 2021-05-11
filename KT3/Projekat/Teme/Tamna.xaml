@@ -3,6 +3,7 @@
 
     <SolidColorBrush x:Key="BackgroundColor" Color="#3f72af" />
     <SolidColorBrush x:Key="StackPanelBackgroundColor" Color="#FF112D4E" />
+    <SolidColorBrush x:Key="BackgroundUputi" Color="#004a7c" />
     <Style TargetType="Hyperlink">
         <Setter Property="Foreground" Value="Beige" />
         <Style.Triggers>
