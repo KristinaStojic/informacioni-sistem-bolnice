@@ -33,6 +33,9 @@ namespace Projekat
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.ime.Text = prijavljeniPacijent.ImePacijenta;
+            this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
+            this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }

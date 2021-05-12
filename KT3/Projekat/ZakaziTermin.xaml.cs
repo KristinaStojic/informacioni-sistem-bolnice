@@ -31,14 +31,18 @@ namespace Projekat
         private static ObservableCollection<string> SviSlobodniSlotovi { get; set; }
         private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
         private static List<string> SviZauzetiZaSelektovaniDatum { get; set; }
+        private static ObservableCollection<Uput> UputiPacijenta { get; set; }
+        private static bool selektovanUput;
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
+            // TODO:
             PomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            this.combo.SelectedIndex = 0;
         }
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)
@@ -48,6 +52,19 @@ namespace Projekat
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodatkeOLekaru();
+            UputiPacijenta = new ObservableCollection<Uput>();
+            DodajUputePacijenta(UputiPacijenta, idPacijent);
+            // TODO: dodati naziv uputa u klasu!
+            comboUputi.ItemsSource = UputiPacijenta;
+            selektovanUput = false;
+        }
+
+        private static void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
+        {
+            foreach (Uput uput in ZdravstveniKartonMenadzer.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
+            {
+                uputiPacijenta.Add(uput);
+            }
         }
 
         private void InicijalizujPodatkeOLekaru()
@@ -64,6 +81,11 @@ namespace Projekat
         {
             try
             {
+                if (comboUputi.Text.Equals("Specijalistički pregled") && !selektovanUput)
+                {
+                    MessageBox.Show("Izaberite uput za koji želite da zakažene specijalistički pregled", "Uput", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
                 PokupiPodatkeZaZakazivanjeTermina();
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
@@ -80,15 +102,15 @@ namespace Projekat
             String datumTermina = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             String vremePocetka = vpp.Text;
             String vremeKraja = IzracunajVremeKrajaPregleda(vremePocetka);
-            TipTermina tipTermina;
-            if (combo.Text.Equals("Pregled"))
+            TipTermina tipTermina = TipTermina.Pregled;
+            /*if (combo.Text.Equals("Pregled"))
             {
                 tipTermina = TipTermina.Pregled;
             }
             else
             {
                 tipTermina = TipTermina.Operacija;
-            }
+            }*/
             Termin termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
@@ -163,7 +185,18 @@ namespace Projekat
         {
             SaleZaPreglede = SaleMenadzer.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
-            
+            if (combo.Text.Equals("Pregled"))
+            {
+                this.comboUputi.IsEnabled = true;
+                this.preferenca.IsEnabled = false;
+                selektovanUput = true;
+            }
+            else if (combo.Text.Equals("Specijalistički pregled"))
+            {
+                this.comboUputi.IsEnabled = false;
+                this.preferenca.IsEnabled = true;
+                selektovanUput = false;
+            }
         }
 
         private static int ParsirajSateVremenskogSlota(String vreme)
@@ -484,6 +517,18 @@ namespace Projekat
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
+        }
+
+        private void comboUputi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(combo.Text.Equals("Pregled"))
+            {
+                comboUputi.IsEnabled = false;
+                return;
+            }
+            Uput izabraniUput = (Uput)comboUputi.SelectedItem;
+            izabraniLekar = MainWindow.PronadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
+            this.imePrz.Text = izabraniLekar.ToString();
         }
     }
 
