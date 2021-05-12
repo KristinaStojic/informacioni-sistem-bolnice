@@ -9,7 +9,7 @@
     <Grid>
         <Label FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,0,849.6,608.4" Content="Oglasna tabla" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold"/>
         <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="2" Margin="-2,0,0,0" >
-            <MenuItem Height="106" Width="206" Click="Button_Click" RenderTransformOrigin="0.5,0.5">
+            <MenuItem Height="106" Width="206" Click="Nazad_Click" RenderTransformOrigin="0.5,0.5">
                 <MenuItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -22,13 +22,14 @@
                     <Image Source="slike/right-arrow1.png" Margin="-10,-20,-56,-22"/>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="MenuItem_Click" FontSize="17"/>
-            <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="MenuItem_Click_1"/>
+            <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="Pacijenti_Click" FontSize="17"/>
+            <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Termini_Click"/>
+            <MenuItem Header="  _Lekari" Height="60" Width="209" FontSize="17" Click="Lekari_Click"/>
             <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
-        <ListView x:Name="listView" SelectionChanged="obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,189,0,0.4" MinHeight="20" HorizontalAlignment="Left" Width="585">
+        <ListView x:Name="listView" SelectionChanged="Obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,189,0,0.4" MinHeight="20" HorizontalAlignment="Left" Width="585">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Height" Value="80"/>
@@ -50,7 +51,7 @@
 
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" StrokeThickness="0" VerticalAlignment="Top" Width="478" Margin="799,0,-3.4,0" />
         <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="475" Background="#FFE7F6F7" Margin="799,0,-0.4,-0.6" Visibility="Hidden">
-            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Button_Click_4">
+            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Napusti_uvid_Click">
                 <StackPanel>
                     <Image Source="slike/cancel.png" Height="25" Width="27" RenderTransformOrigin="0.254,0.462" />
                     <TextBlock Height="1"/>
@@ -85,21 +86,21 @@
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="502" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="523" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
         </Canvas>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="449,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" FontSize="17" Background="#FFA3DADE">
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="449,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Dodaj_Click" FontSize="17" Background="#FFA3DADE">
            <!-- <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Button.Resources> -->
         </Button>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="566,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" FontSize="17" Background="#FFA3DADE">
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="566,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Izmeni_Click" FontSize="17" Background="#FFA3DADE">
           <!--  <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Button.Resources> -->
         </Button>
-        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="683,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" FontSize="17" Background="#FFA3DADE">
+        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="683,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Obrisi_Click" FontSize="17" Background="#FFA3DADE">
           <!--  <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />

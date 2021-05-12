@@ -38,6 +38,7 @@ namespace Projekat
             PacijentiMenadzer.PronadjiSve();
             ObavestenjaMenadzer.NadjiSvaObavestenja();
             LekoviMenadzer.NadjiSveZahteve();
+            LekariMenadzer.NadjiSveLekare();
 
             lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
@@ -72,7 +73,7 @@ namespace Projekat
 
         }
 
-        //ovo ce biti u LekariMenadzer-u
+        //TODO: prebaaci u LekariMenadzer-u
         public static Lekar PronadjiPoId(int id)
         {
             foreach (Lekar p in lekari)

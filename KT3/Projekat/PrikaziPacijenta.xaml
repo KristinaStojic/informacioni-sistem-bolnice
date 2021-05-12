@@ -23,7 +23,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Margin="11.2,65,170.6,0" TextAlignment="Left" ToolTip="Pretrazite listu po imenu, prezimenu ili jmbg" FontSize="14" Grid.Column="1" Height="30" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <TextBox x:Name="pretraga" TextChanged="Pretraga_TextChanged" Margin="11.2,65,170.6,0" TextAlignment="Left" ToolTip="Pretrazite listu po imenu, prezimenu ili jmbg" FontSize="14" Grid.Column="1" Height="30" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
@@ -50,12 +50,12 @@
 
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="691" Grid.RowSpan="5" StrokeThickness="0" VerticalAlignment="Top" Width="424" Margin="0.4,0,-0.4,0" Grid.Column="4" Grid.ColumnSpan="2"/>
         <Label Grid.Row="0" FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="4.2,0,167.6,150.8" Content="Nalozi pacijenata" Grid.ColumnSpan="2" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold" Grid.RowSpan="2" Grid.Column="1"/>
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="82.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_1" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="197.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_2" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="101.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Button_Click_3" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="3"/>
+        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="82.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Dodaj_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="197.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Izmeni_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="101.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Obrisi_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="3"/>
 
         <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="5" Margin="-2,0,0,0" >
-            <MenuItem Height="106" Width="206" Click="Button_Click" RenderTransformOrigin="0.5,0.5">
+            <MenuItem Height="106" Width="206" Click="Nazad_Click" RenderTransformOrigin="0.5,0.5">
                 <MenuItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -69,48 +69,50 @@
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="  Nalozi pacijenata" Height="60" Width="209" FontSize="17"/>
-            <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Button_Click_6"/>
-            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Button_Click_7"/>
+            <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Termini_Click"/>
+            <MenuItem Header="  _Lekari" Height="60" Width="209" FontSize="17" Click="Lekari_Click"/>
+            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Oglasna_tabla_Click"/>
             <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
-        <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="424" Background="#FFE7F6F7" Grid.Column="4" Margin="0.4,0,-0.4,0" Grid.RowSpan="5" Grid.ColumnSpan="2" Visibility="Hidden">
+        <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="424" Background="#FFE7F6F7" Grid.Column="4" Margin="0.4,2,-0.4,-2" Grid.RowSpan="5" Grid.ColumnSpan="2" Visibility="Hidden">
             <!-- Visibility="Hidden"> -->
-            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Button_Click_5">
+            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Napusti_uvid_Click">
                 <StackPanel>
                     <Image Source="slike/cancel.png" Height="25" Width="27" RenderTransformOrigin="0.254,0.462" />
                     <TextBlock Height="1"/>
                 </StackPanel>
             </Button>
-            <Label Content="Nalog pacijenta" Canvas.Left="61" Canvas.Top="58" Height="42" Width="157" FontSize="20"/>
-            <Label Canvas.Left="60" Canvas.Top="115">IME:</Label>
-            <Label Canvas.Left="60" Canvas.Top="145">PREZIME:</Label>
-            <Label Canvas.Left="60" Canvas.Top="175">JMBG:</Label>
-            <Label Canvas.Left="60" Canvas.Top="205">POL:</Label>
-            <Label Canvas.Left="60" Canvas.Top="235">STATUS:</Label>
-            <Label Canvas.Left="60" Canvas.Top="265">BROJ TELEFONA:</Label>
-            <Label Canvas.Left="60" Canvas.Top="295">EMAIL:</Label>
-            <Label Canvas.Left="60" Canvas.Top="325">ADRESA:</Label>
-            <Label Canvas.Left="60" Canvas.Top="355">BRACNO STANJE:</Label>
-            <Label Canvas.Left="60" Canvas.Top="385">ZANIMANJE:</Label>
-            <Label Canvas.Left="60" Canvas.Top="415">MALOLETNIK:</Label>
-            <Label Canvas.Left="60" Canvas.Top="445">JMBG STARATELJA:</Label>
-            <TextBox Name="ime" Canvas.Left="187" Canvas.Top="115" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"></TextBox>
-            <TextBox x:Name="prezime" Canvas.Left="187" Canvas.Top="145" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="jmbg" Canvas.Left="187" Canvas.Top="175" Width="145"  Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="pol" Canvas.Left="187" Canvas.Top="205" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="status" Canvas.Left="187" Canvas.Top="235" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="telefon" Canvas.Left="187" Canvas.Top="265" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="email" Canvas.Left="187" Canvas.Top="295" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="adresa" Canvas.Left="187" Canvas.Top="325" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="stanje" Canvas.Left="187" Canvas.Top="355" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="zanimanje" Canvas.Left="187" Canvas.Top="385" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <TextBox x:Name="jmbgStaratelj" Canvas.Left="187" Canvas.Top="443" Width="145" Height="20"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
-            <CheckBox x:Name="maloletnik"  Canvas.Left="187" Canvas.Top="422" IsEnabled="False"/>
-            <Button Click="Button_Click_4" RenderTransformOrigin="1.63,0.404" Background="Transparent" BorderBrush="Transparent" FontSize="17" Grid.Column="1" Grid.Row="1" Canvas.Left="272" Canvas.Top="536" Height="111" Width="103">
+            <Label Content="Nalog pacijenta" Canvas.Left="57" Canvas.Top="66" Height="42" Width="157" FontSize="20"/>
+            <Label Canvas.Left="58" Canvas.Top="120" Height="35" FontSize="15">IME:</Label>
+            <Label Canvas.Left="58" Canvas.Top="155" Height="35" FontSize="15">PREZIME:</Label>
+            <Label Canvas.Left="58" Canvas.Top="191" Height="35" FontSize="15">JMBG:</Label>
+            <Label Canvas.Left="58" Canvas.Top="227" Height="35" FontSize="15">POL:</Label>
+            <Label Canvas.Left="58" Canvas.Top="263" Height="35" FontSize="15">STATUS:</Label>
+            <Label Canvas.Left="58" Canvas.Top="299" Height="35" FontSize="15">BROJ TELEFONA:</Label>
+            <Label Canvas.Left="58" Canvas.Top="334" Height="35" FontSize="15">EMAIL:</Label>
+            <Label Canvas.Left="58" Canvas.Top="370" Height="35" FontSize="15">ADRESA:</Label>
+            <Label Canvas.Left="58" Canvas.Top="406" Height="35" FontSize="15">BRACNO STANJE:</Label>
+            <Label Canvas.Left="58" Canvas.Top="442" Height="35" FontSize="15">ZANIMANJE:</Label>
+            <Label Canvas.Left="58" Canvas.Top="478" Height="35" FontSize="15">MALOLETNIK:</Label>
+            <Label Canvas.Left="58" Canvas.Top="514" Height="35" FontSize="15">JMBG STARATELJA:</Label>
+
+            <TextBox Name="ime" Canvas.Left="201" Canvas.Top="121" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"></TextBox>
+            <TextBox x:Name="prezime" Canvas.Left="201" Canvas.Top="156" Width="165" Height="35" FontSize="15"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="jmbg" Canvas.Left="201" Canvas.Top="191" Width="165"  Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="pol" Canvas.Left="201" Canvas.Top="226" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="status" Canvas.Left="201" Canvas.Top="261" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="telefon" Canvas.Left="201" Canvas.Top="297" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="email" Canvas.Left="201" Canvas.Top="333" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="adresa" Canvas.Left="201" Canvas.Top="368" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="stanje" Canvas.Left="201" Canvas.Top="404" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="zanimanje" Canvas.Left="201" Canvas.Top="440" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <TextBox x:Name="jmbgStaratelj" Canvas.Left="201" Canvas.Top="512" Width="165" Height="34" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True"/>
+            <CheckBox x:Name="maloletnik"  Canvas.Left="201" Canvas.Top="490" Height="19" FontSize="15" IsEnabled="False"/>
+            <Button Click="Zdravstveni_karton_Click" RenderTransformOrigin="1.63,0.404" Background="Transparent" BorderBrush="Transparent" FontSize="17" Grid.Column="1" Grid.Row="1" Canvas.Left="268" Canvas.Top="557" Height="100" Width="93">
                 <Image Source="slike/health-report.png" />
             </Button>
-            <Label FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Zdravstveni karton" Foreground="#FF18A3AC" FontFamily="Segoe UI Italic" Grid.Row="4" Grid.Column="5" Canvas.Left="266" Canvas.Top="641"/>
+            <Label FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Zdravstveni karton" Foreground="#FF18A3AC" FontFamily="Segoe UI Italic" Grid.Row="4" Grid.Column="5" Canvas.Left="251" Canvas.Top="648"/>
         </Canvas>
 
         <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,109,211.6,2" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaPacijenata_SelectionChanged" >

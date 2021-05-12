@@ -41,21 +41,28 @@ namespace Projekat
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Pacijenti_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             PrikaziPacijenta p = new PrikaziPacijenta();
             p.Show();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void Termini_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             PrikaziTerminSekretar p = new PrikaziTerminSekretar();
             p.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Lekari_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PrikaziLekare prikaz = new PrikaziLekare();
+            prikaz.Show();
+        }
+
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             Sekretar s = new Sekretar();
@@ -67,13 +74,12 @@ namespace Projekat
             ObavestenjaMenadzer.sacuvajIzmene();
         }
 
-        // X na detaljnom uvid u selektovano obavestenje
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
         {
             canvas2.Visibility = Visibility.Hidden;
         }
 
-        private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (flag == false)
             {
@@ -116,15 +122,13 @@ namespace Projekat
             }
         }
 
-        // dodaj
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             DodajObavestenje dodavanje = new DodajObavestenje();
             dodavanje.Show();
         }
 
-        // izmeni
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Izmeni_Click(object sender, RoutedEventArgs e)
         {
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
 
@@ -139,8 +143,7 @@ namespace Projekat
             }
         }
 
-        // obrisi
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             flag = true;
             canvas2.Visibility = Visibility.Hidden;
@@ -171,48 +174,49 @@ namespace Projekat
             // dodaj
             if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_1(sender, e);
+                Dodaj_Click(sender, e);
             }
             else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_1(sender, e);
+                Dodaj_Click(sender, e);
             }
             // izmeni
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_2(sender, e);
+                Izmeni_Click(sender, e);
             }
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_2(sender, e);
+                Izmeni_Click(sender, e);
             }
             // otkazi
             else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_3(sender, e);
+                Obrisi_Click(sender, e);
             }
             else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_3(sender, e);
+                Obrisi_Click(sender, e);
             }
             // X na detaljnom prikazu termina
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_4(sender, e);
+                Napusti_uvid_Click(sender, e);
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_4(sender, e);
+                Napusti_uvid_Click(sender, e);
             }
             // izadji iz ovog prozora
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click(sender, e);
+                Nazad_Click(sender, e);
             }
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click(sender, e);
+                Nazad_Click(sender, e);
             }
         }
+
     }
 }
