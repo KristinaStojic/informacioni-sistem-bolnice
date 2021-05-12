@@ -1,19 +1,9 @@
 ﻿using Model;
 using Projekat.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -28,12 +18,10 @@ namespace Projekat
         public static bool aktivan;
         public static int dozvoljenaKolicina;
         public int validacija;
+
         public int Validacija
         {
-            get
-            {
-                return validacija;
-            }
+            get{return validacija;}
             set
             {
                 if (value != validacija)
@@ -43,15 +31,21 @@ namespace Projekat
                 }
             }
         }
+
         public SlanjeDinamicke(Sala izabranaSala, Oprema kojuSaljem)
         {
             InitializeComponent();
+            inicijalizujElemente(izabranaSala, kojuSaljem);
+            dodajSale(izabranaSala);
+        }
+
+        private void inicijalizujElemente(Sala izabranaSala, Oprema kojuSaljem) 
+        {
             this.opremaZaSlanje = kojuSaljem;
             this.salaIzKojeSaljem = izabranaSala;
             this.tekst.Text = kojuSaljem.NazivOpreme;
             this.DataContext = this;
             sale = new ObservableCollection<Sala>();
-            dodajSale(izabranaSala);
             this.maks.Text = "MAX: " + kojuSaljem.Kolicina.ToString();
             dozvoljenaKolicina = kojuSaljem.Kolicina;
             this.Potvrdi.IsEnabled = false;
@@ -68,69 +62,102 @@ namespace Projekat
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             aktivan = false;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            Sala salaUKojuSaljem = (Sala)kombo.SelectedItem;
-            int kolicina = int.Parse(KOlicina.Text);
-            int x = 0;
-            foreach(Sala s in SaleMenadzer.sale)
+            foreach(Sala sala in SaleMenadzer.sale)
             {
-                if(s.Id == salaIzKojeSaljem.Id)
-                {
-                    foreach(Oprema o in s.Oprema)
-                    {
-                        if(o.IdOpreme == opremaZaSlanje.IdOpreme)
-                        {   
-                            if (o.Kolicina - kolicina == 0)
-                            {
-                                s.Oprema.Remove(o);
-                                PrikazDinamicke.OpremaDinamicka.Remove(o);
-                                break;
-                            }
-                            else
-                            {
-                                o.Kolicina -= kolicina;
-                                int idx = PrikazDinamicke.OpremaDinamicka.IndexOf(o);
-                                PrikazDinamicke.OpremaDinamicka.RemoveAt(idx);
-                                PrikazDinamicke.OpremaDinamicka.Insert(idx, o);
-                            }
-                        
-                        }
-                    }
-                }
-                if(s.Id == salaUKojuSaljem.Id)
-                {
-                    foreach(Oprema o in s.Oprema)
-                    {
-                        if(o.IdOpreme == opremaZaSlanje.IdOpreme)
-                        {
-                            o.Kolicina += kolicina;
-                            x += 1;
-                        }
-                    }
-                    if(x == 0)
-                    {
-                        Oprema op = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, false);
-                        op.IdOpreme = opremaZaSlanje.IdOpreme;
-                        s.Oprema.Add(op);
-                    }
-                }
+                posaljiIzSale(sala);
+                dodajUSalu(sala, (Sala)kombo.SelectedItem);
             }
             this.Close();
             aktivan = false;
         }
 
+        private void dodajUSalu(Sala sala, Sala salaUKojuSaljem)
+        {
+            if (sala.Id == salaUKojuSaljem.Id)
+            {
+                dodajOpremuUSalu(sala, int.Parse(KOlicina.Text));
+            }
+        }
+
+        private void posaljiIzSale(Sala sala)
+        {
+            if (sala.Id == salaIzKojeSaljem.Id)
+            {
+                foreach (Oprema o in sala.Oprema.ToArray())
+                {
+                    prebaciOpremuIzSale(o, int.Parse(KOlicina.Text), sala);
+                }
+            }
+        }
+
+        private void dodajOpremuUSalu(Sala sala, int kolicina)
+        {
+            if (!postojiOprema(sala, kolicina))
+            {
+                Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, false);
+                oprema.IdOpreme = opremaZaSlanje.IdOpreme;
+                sala.Oprema.Add(oprema);
+            }
+        }
+
+        private bool postojiOprema(Sala sala, int kolicina)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+                {
+                    oprema.Kolicina += kolicina;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void prebaciOpremuIzSale(Oprema oprema, int kolicina, Sala sala)
+        {
+            if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+            {
+                if (oprema.Kolicina - kolicina == 0)
+                {
+                    ukloniOpremu(sala, oprema);
+                }
+                else
+                {
+                    prebaciOpremu(oprema, kolicina);
+                }
+
+            }
+        }
+
+        private void prebaciOpremu(Oprema oprema, int kolicina)
+        {
+            oprema.Kolicina -= kolicina;
+            int idx = PrikazDinamicke.OpremaDinamicka.IndexOf(oprema);
+            PrikazDinamicke.OpremaDinamicka.RemoveAt(idx);
+            PrikazDinamicke.OpremaDinamicka.Insert(idx, oprema);
+        }
+
+        private void ukloniOpremu(Sala sala, Oprema oprema)
+        {
+            sala.Oprema.Remove(oprema);
+            PrikazDinamicke.OpremaDinamicka.Remove(oprema);
+        }
+            
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             aktivan = false;
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
+        
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -138,14 +165,16 @@ namespace Projekat
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-        public bool IsNumeric(string input)
+
+        public bool jeBroj(string tekst)
         {
             int test;
-            return int.TryParse(input, out test);
+            return int.TryParse(tekst, out test);
         }
+
         private void podesiDugme()
         {
-            if (IsNumeric(this.KOlicina.Text))
+            if (jeBroj(this.KOlicina.Text))
             {
                 izvrsiPodesavanje();
             }
@@ -154,6 +183,7 @@ namespace Projekat
                 this.Potvrdi.IsEnabled = false;
             }
         }
+
         private void izvrsiPodesavanje()
         {
             if (int.Parse(this.KOlicina.Text) > dozvoljenaKolicina || int.Parse(this.KOlicina.Text) <= 0 || this.kombo.SelectedItem == null)
@@ -164,6 +194,7 @@ namespace Projekat
                 this.Potvrdi.IsEnabled = true;
             }
         }
+
         private void kombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             podesiDugme();

@@ -1,17 +1,8 @@
 ﻿using Projekat.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -22,18 +13,22 @@ namespace Projekat
     {
         Lek uneseniLijek;
         private int colNum = 0;
-        public static ObservableCollection<Sastojak> SastojciLijeka
-        {
-            get;
-            set;
-        }
+
+        public static ObservableCollection<Sastojak> SastojciLijeka {get; set;}
+
         public SastojciDodavanje(Lek uneseniLijek)
         {
             InitializeComponent();
-            this.DataContext = this;
-            this.uneseniLijek = uneseniLijek;
+            inicijalizujElemente(uneseniLijek);
             dodajSastojke();
         }
+
+        private void inicijalizujElemente(Lek uneseniLijek)
+        {
+            this.DataContext = this;
+            this.uneseniLijek = uneseniLijek;
+        }
+
         private void dodajSastojke()
         {
             SastojciLijeka = new ObservableCollection<Sastojak>();
@@ -50,12 +45,13 @@ namespace Projekat
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void DodajSastojak_Click(object sender, RoutedEventArgs e)
         {
             SastojciDodaj dodajSastojak = new SastojciDodaj(uneseniLijek);
             dodajSastojak.Show();
@@ -67,7 +63,7 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Button_Click(sender, e);
+                    Odustani_Click(sender, e);
                 }
             }
         }

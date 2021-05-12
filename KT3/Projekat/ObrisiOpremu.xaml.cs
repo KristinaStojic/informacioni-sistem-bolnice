@@ -1,17 +1,8 @@
 ﻿using Model;
 using Projekat.Model;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -22,14 +13,19 @@ namespace Projekat
     {
         public Oprema izabranaOprema;
         public int dozvoljenaKolicina;
+
         public ObrisiOpremu(Oprema izabranaOprema)
         {
             InitializeComponent();
-            this.izabranaOprema = izabranaOprema;
+            inicijalizujElemente(izabranaOprema);
             postaviMaksimalnuKolicinu();
-            this.Potvrdi.IsEnabled = false;
         }
 
+        private void inicijalizujElemente(Oprema izabranaOprema)
+        {
+            this.izabranaOprema = izabranaOprema;
+            this.Potvrdi.IsEnabled = false;
+        }
 
         private void postaviMaksimalnuKolicinu()
         {
@@ -49,12 +45,12 @@ namespace Projekat
             return dozvoljenaKolicina.ToString();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             foreach(Sala sala in SaleMenadzer.sale)
             {
@@ -84,7 +80,7 @@ namespace Projekat
 
         private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (IsNumeric(this.kolicina.Text)) {
+            if (jeBroj(this.kolicina.Text)) {
                 postaviDugme();
             }else{
                 this.Potvrdi.IsEnabled = false;
@@ -103,10 +99,10 @@ namespace Projekat
             }
         }
 
-        public bool IsNumeric(string input)
+        public bool jeBroj(string tekst)
         {
             int test;
-            return int.TryParse(input, out test);
+            return int.TryParse(tekst, out test);
         }
     }
 }

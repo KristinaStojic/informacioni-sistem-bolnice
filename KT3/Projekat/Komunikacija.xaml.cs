@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -23,7 +13,7 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             Upravnik upravnik = new Upravnik();
             upravnik.Show();
@@ -36,15 +26,42 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Button_Click(sender, e);
+                    Nazad_Click(sender, e);
+                }
+                else if(e.Key == Key.T)
+                {
+                    Prostorije_Click(sender, e);
+                }
+                else if (e.Key == Key.E)
+                {
+                    Zahtjevi_Click(sender, e);
                 }
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void UvidUZahtjev_Click(object sender, RoutedEventArgs e)
         {
             ZahtjeviZaKomunikaciju zahtjeviZaKomunikaciju = new ZahtjeviZaKomunikaciju();
             zahtjeviZaKomunikaciju.Show();
+        }
+
+        private void Osoblje_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Zahtjevi_Click(object sender, RoutedEventArgs e)
+        {
+            Zahtjevi zahtjevi = new Zahtjevi();
+            zahtjevi.Show();
+            this.Close();
+        }
+
+        private void Prostorije_Click(object sender, RoutedEventArgs e)
+        {
+            PrikaziSalu prikaziSalu = new PrikaziSalu();
+            prikaziSalu.Show();
+            this.Close();
         }
     }
 }

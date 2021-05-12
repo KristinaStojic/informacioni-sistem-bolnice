@@ -1,16 +1,6 @@
 ﻿using Projekat.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -23,9 +13,14 @@ namespace Projekat
         public IzmjeniOdbijeniLijek(Lek izabraniLijek)
         {
             InitializeComponent();
+            inicijalizujElemente(izabraniLijek);
+            postaviElementeProzora();
+        }
+
+        private void inicijalizujElemente(Lek izabraniLijek)
+        {
             this.izabraniLijek = izabraniLijek;
             this.Potvrdi.IsEnabled = false;
-            postaviElementeProzora();
         }
 
         private void postaviElementeProzora()
@@ -37,12 +32,8 @@ namespace Projekat
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
-            string sifraLijeka = this.sifra.Text;
-            string nazivLijeka = this.naziv.Text;
-            Lek lijek = new Lek(izabraniLijek.idLeka, nazivLijeka, sifraLijeka);
-            //LekoviMenadzer.izmjeniZahtjev(izabraniLijek, lijek);
             this.Close();
         }
 

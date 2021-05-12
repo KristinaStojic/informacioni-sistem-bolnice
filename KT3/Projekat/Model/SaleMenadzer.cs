@@ -8,7 +8,6 @@ using Projekat;
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -43,18 +42,18 @@ namespace Model
             }
         }
 
-        public static void IzmjeniSalu(Sala izSale, Sala sala)
+        public static void IzmjeniSalu(Sala izSale, Sala uSalu)
         {
-            foreach (Sala s in sale)
+            foreach (Sala sala in sale)
             {
-                if (s.Id == izSale.Id)
+                if (sala.Id == izSale.Id)
                 {
-                    s.brojSale = sala.brojSale;
-                    s.Namjena = sala.Namjena;
-                    s.TipSale = sala.TipSale;
+                    sala.brojSale = uSalu.brojSale;
+                    sala.Namjena = uSalu.Namjena;
+                    sala.TipSale = uSalu.TipSale;
                     int idx = PrikaziSalu.Sale.IndexOf(izSale);
                     PrikaziSalu.Sale.RemoveAt(idx);
-                    PrikaziSalu.Sale.Insert(idx, s);
+                    PrikaziSalu.Sale.Insert(idx, sala);
                 }
             }
             sacuvajIzmjene();
@@ -125,12 +124,12 @@ namespace Model
             return false;
         }
 
-        public static ZauzeceSale NadjiZauzece(int idProstorije, int idTermin, string datum, string poc, string kraj)
+        public static ZauzeceSale NadjiZauzece(int idProstorije, int idTermin, string datum, string pocetak, string kraj)
         {
             Sala sala = NadjiSaluPoId(idProstorije);
             foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
-                if (idTermin == zauzece.idTermina && datum.Equals(zauzece.datumPocetkaTermina) && poc.Equals(zauzece.pocetakTermina) && kraj.Equals(zauzece.krajTermina))
+                if (idTermin == zauzece.idTermina && datum.Equals(zauzece.datumPocetkaTermina) && pocetak.Equals(zauzece.pocetakTermina) && kraj.Equals(zauzece.krajTermina))
                 {
                     return zauzece;
                 }

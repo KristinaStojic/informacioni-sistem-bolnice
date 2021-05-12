@@ -1,18 +1,8 @@
 ﻿using Model;
 using Projekat.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -27,22 +17,25 @@ namespace Projekat
             this.Potvrdi.IsEnabled = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
-            Sala sala = napraviSalu();
-            SaleMenadzer.DodajSalu(sala);
+            this.Close();
+        }
+
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        { 
+            SaleMenadzer.DodajSalu(napraviSalu());
             this.Close();
         }
 
         private Sala napraviSalu()
         {
-            int brojSale = int.Parse(text1.Text);
-            string namjenaSale = text2.Text;
+            int brojSale = int.Parse(this.brojSale.Text);
+            string namjenaSale = this.namjenaSale.Text;
             tipSale TipSale = nadjiTipSale();
-
-            Sala s = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
-            s.Oprema = new List<Oprema>();
-            return s;
+            Sala sala = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
+            sala.Oprema = new List<Oprema>();
+            return sala;
         }
 
         private tipSale nadjiTipSale()
@@ -61,55 +54,47 @@ namespace Projekat
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        public bool IsNumeric(string input)
+        public bool jeBroj(string tekst)
         {
             int test;
-            return int.TryParse(input, out test);
+            return int.TryParse(tekst, out test);
         }
 
-        private void text1_TextChanged(object sender, TextChangedEventArgs e)
+        private void brojSale_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
 
-        private void text2_TextChanged(object sender, TextChangedEventArgs e)
+        private void namjenaSale_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
 
         private void postaviDugme()
         {
-            if(this.text1.Text.Trim().Equals("") || this.text2.Text.Trim().Equals("") || !IsNumeric(this.text1.Text) || IsNumeric(this.text2.Text) || postojiBrojSale())
+            if(this.brojSale.Text.Trim().Equals("") || this.namjenaSale.Text.Trim().Equals("") || !jeBroj(this.brojSale.Text) || jeBroj(this.namjenaSale.Text) || postojiBrojSale())
             {
                 this.Potvrdi.IsEnabled = false;
             }
-            else if (!this.text1.Text.Trim().Equals("") && !this.text2.Text.Trim().Equals("") && IsNumeric(this.text1.Text) && !IsNumeric(this.text2.Text) && !postojiBrojSale())
+            else if (!this.brojSale.Text.Trim().Equals("") && !this.namjenaSale.Text.Trim().Equals("") && jeBroj(this.brojSale.Text) && !jeBroj(this.namjenaSale.Text) && !postojiBrojSale())
             {
                 this.Potvrdi.IsEnabled = true;
             }
         }
+
         private bool postojiBrojSale()
         {
-            if (IsNumeric(this.text1.Text))
+            if (jeBroj(this.brojSale.Text))
             {
                 foreach (Sala sala in SaleMenadzer.sale)
                 {
-                    if (sala.brojSale == int.Parse(this.text1.Text))
+                    if (sala.brojSale == int.Parse(this.brojSale.Text))
                     {
                         return true;
                     }
                 }
-                return false;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

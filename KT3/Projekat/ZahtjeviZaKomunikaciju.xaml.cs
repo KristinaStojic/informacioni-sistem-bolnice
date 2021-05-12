@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -20,16 +11,14 @@ namespace Projekat
     public partial class ZahtjeviZaKomunikaciju : Window
     {
         private int colNum = 0;
-        public static ObservableCollection<ZahtjevZaKomunikaciju> Zahtjevi
-        {
-            get;
-            set;
-        }
+        public static ObservableCollection<ZahtjevZaKomunikaciju> Zahtjevi{get; set;}
+
         public ZahtjeviZaKomunikaciju()
         {
             InitializeComponent();
             inicijalizujZahtjeve();
         }
+
         private void inicijalizujZahtjeve()
         {
             this.DataContext = this;
@@ -38,13 +27,15 @@ namespace Projekat
             Zahtjevi.Add(new ZahtjevZaKomunikaciju("ZDRAVO", "Beograd", "Transfer osoblja"));
             Zahtjevi.Add(new ZahtjevZaKomunikaciju("ZDRAVO", "Sarajevo", "Transfer materijala"));
         }
+
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -55,7 +46,7 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Button_Click(sender, e);
+                    Odustani_Click(sender, e);
                 }
             }
         }

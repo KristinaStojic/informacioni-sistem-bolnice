@@ -13,8 +13,8 @@
             <TextBox HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20, 20, 0, 0" Width="139" Height="27" Name="kolicina" TextChanged="kolicina_TextChanged"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Width="80" Height="27" Margin="55, 50, 20, 0" Click="Button_Click_1" Background="CadetBlue" Name="Potvrdi">Potvrdi</Button>
-            <Button Width="80" Height="27"  Margin="0, 50, 20, 0" Click="Button_Click" Background="CadetBlue">Odustani</Button>
+            <Button Width="80" Height="27" Margin="55, 50, 20, 0" Click="Potvrdi_Click" Background="CadetBlue" Name="Potvrdi">Potvrdi</Button>
+            <Button Width="80" Height="27"  Margin="0, 50, 20, 0" Click="Odustani_Click" Background="CadetBlue">Odustani</Button>
         </StackPanel>
     </Grid>
 </Window>

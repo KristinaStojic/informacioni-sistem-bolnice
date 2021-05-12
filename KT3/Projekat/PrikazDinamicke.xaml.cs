@@ -1,18 +1,9 @@
 ﻿using Model;
 using Projekat.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -23,31 +14,37 @@ namespace Projekat
     {
         Sala izabranaSala;
         private int colNum = 0;
+
         public static ObservableCollection<Oprema> OpremaDinamicka
         {
             get;
             set;
         }
+
         public PrikazDinamicke(Sala izabranaSala)
         {
             InitializeComponent();
-            this.izabranaSala = izabranaSala;
-            this.DataContext = this;
+            inicijalizujElemente(izabranaSala);
             postaviTekst();
             dodajDinamickuOpremu();
         }
 
+        private void inicijalizujElemente(Sala izabranaSala)
+        {
+            this.izabranaSala = izabranaSala;
+            this.DataContext = this;
+        }
+
         private void dodajDinamickuOpremu()
         {
-
             OpremaDinamicka = new ObservableCollection<Oprema>();
             if (izabranaSala.Oprema != null)
             {
-                foreach (Oprema o in izabranaSala.Oprema)
+                foreach (Oprema oprema in izabranaSala.Oprema)
                 {
-                    if (!o.Staticka)
+                    if (!oprema.Staticka)
                     {
-                        OpremaDinamicka.Add(o);
+                        OpremaDinamicka.Add(oprema);
                     }
                 }
             }
@@ -71,25 +68,27 @@ namespace Projekat
                 }
             }
         }
+
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SlanjeDinamicke_Click(object sender, RoutedEventArgs e)
         {
             PreraspodjelaDinamicke.aktivna = true;
-            PreraspodjelaDinamicke pd = new PreraspodjelaDinamicke(izabranaSala);
-            pd.ShowDialog();
+            PreraspodjelaDinamicke preraspodjelaDinamicke = new PreraspodjelaDinamicke(izabranaSala);
+            preraspodjelaDinamicke.ShowDialog();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void SlanjeStaticke_Click(object sender, RoutedEventArgs e)
         {
             Oprema opremaZaSlanje = (Oprema)dataGrid.SelectedItem;
             if (opremaZaSlanje != null) {
@@ -121,7 +120,7 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Button_Click(sender, e);
+                    Odustani_Click(sender, e);
                 }
                 else if (e.Key == Key.P)
                 {

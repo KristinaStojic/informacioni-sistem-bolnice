@@ -1,20 +1,10 @@
 ﻿using Model;
 using Projekat.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -33,10 +23,7 @@ namespace Projekat
 
         public int Validacija
         {
-            get
-            {
-                return validacija;
-            }
+            get{return validacija;}
             set
             {
                 if(value != validacija)
@@ -46,17 +33,22 @@ namespace Projekat
                 }
             }
         }
+
         public PrebaciStaticku(Oprema oprema)
         {
-
-            termini = new ObservableCollection<string>();
             InitializeComponent();
-            this.opremaZaSlanje = oprema;
-            this.oprema.Text = opremaZaSlanje.NazivOpreme;
-            this.DataContext = this;
+            inicijalizujElemente(oprema);
             dodajSale();
             dodajTerminePocetak();
             postaviMax();
+        }
+
+        private void inicijalizujElemente(Oprema oprema)
+        {
+            termini = new ObservableCollection<string>();
+            this.opremaZaSlanje = oprema;
+            this.oprema.Text = opremaZaSlanje.NazivOpreme;
+            this.DataContext = this;
         }
 
         private void dodajSale()
@@ -73,21 +65,20 @@ namespace Projekat
 
         private void dodajTerminePocetak()
         {
-            for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+            for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
             {
-                if (!zauzetTermin(i))
+                if (!zauzetTermin(termin))
                 {
-                    termini.Add(i + ":00");
+                    termini.Add(termin + ":00");
                 }
             }
-            termini.Add("12:45");
         }
 
         private bool zauzetTermin(int termin)
         {
-            foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
             {
-                if (p.datumIVrijeme.Hour.ToString().Equals(termin.ToString()))
+                if (premjestaj.datumIVrijeme.Hour.ToString().Equals(termin.ToString()))
                 {
                     return true;
                 }
@@ -104,45 +95,53 @@ namespace Projekat
         private int nadjidozvoljenuKolicinu()
         {
             int kolicina = opremaZaSlanje.Kolicina;
-            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
             {
-                if (pm.izSale.Id == 4 && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+                if (premjestaj.izSale.Id == 4 && premjestaj.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    kolicina -= pm.kolicina;
+                    kolicina -= premjestaj.kolicina;
                 }
             }
             return kolicina;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             aktivan = false;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Sala salaUKojuSaljem = (Sala)sale.SelectedItem;
             int kolicina = int.Parse(Kolicina.Text);
-
             DateTime datumIVrijeme = napraviTerminPremjestaja();
-          
+            odradiPremjestaj(datumIVrijeme, salaUKojuSaljem, kolicina);
+        }
+
+        private void odradiPremjestaj(DateTime datumIVrijeme, Sala salaUKojuSaljem, int kolicina)
+        {
             if (datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
             {
-                if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
-                {
-                    odradiPremjestaj(salaUKojuSaljem, kolicina);
-                }
-                else
-                {
-                    zakaziPremjestaj(salaUKojuSaljem, datumIVrijeme, kolicina);
-                }
+                odradiPremjestajSada(datumIVrijeme, salaUKojuSaljem, kolicina);
             }
             else
             {
                 zakaziPremjestaj(salaUKojuSaljem, datumIVrijeme, kolicina);
             }
             zavrsiPremjestaj();
+        }
+
+        private void odradiPremjestajSada(DateTime datumIVrijeme, Sala salaUKojuSaljem, int kolicina)
+        {
+            if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
+            {
+                odradiPremjestaj(salaUKojuSaljem, kolicina);
+            }
+            else
+            {
+                zakaziPremjestaj(salaUKojuSaljem, datumIVrijeme, kolicina);
+            }
         }
 
         private DateTime napraviTerminPremjestaja()
@@ -172,19 +171,24 @@ namespace Projekat
         {
             Premjestaj zakazi = new Premjestaj();
             zakazi.kolicina = kolicina;
-            foreach (Sala s in SaleMenadzer.sale)
-            {
-                definisiSale(zakazi, s, salaUKojuSaljem);
-            }
-            foreach (Oprema o in OpremaMenadzer.oprema)
-            {
-                definisiOpremu(zakazi, o);
-            }
+            definisiElemente(zakazi, salaUKojuSaljem);
             if (zakazi.oprema == null)
             {
                 nadjiOpremuUSalama(zakazi);
             }
             dodajPremjestaj(zakazi, datumIVrijeme);
+        }
+
+        private void definisiElemente(Premjestaj zakazi, Sala salaUKojuSaljem)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                definisiSale(zakazi, sala, salaUKojuSaljem);
+            }
+            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            {
+                definisiOpremu(zakazi, oprema);
+            }
         }
 
         private void dodajPremjestaj(Premjestaj zakazi, DateTime datumIVrijeme)
@@ -244,50 +248,72 @@ namespace Projekat
 
         private void ukloniOpremuIzSale(Sala sala, int kolicina)
         {
-            foreach (Oprema oprema in sala.Oprema)
+            foreach (Oprema oprema in sala.Oprema.ToArray())
             {
                 if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    if (oprema.Kolicina - kolicina == 0)
-                    {
-                        sala.Oprema.Remove(oprema);
-                        Skladiste.OpremaStaticka.Remove(oprema);
-                        break;
-                    }
-                    else
-                    {
-                        oprema.Kolicina -= kolicina;
-                        int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
-                        Skladiste.OpremaStaticka.RemoveAt(idx);
-                        Skladiste.OpremaStaticka.Insert(idx, oprema);
-                    }
-
+                    smanjiKolicinuOpreme(kolicina, oprema, sala);
                 }
             }
+        }
+
+        private void smanjiKolicinuOpreme(int kolicina, Oprema oprema, Sala sala)
+        {
+            if (oprema.Kolicina - kolicina == 0)
+            {
+                ukloniOpremu(sala, oprema);
+            }
+            else
+            {
+                smanjiKolicinu(oprema, kolicina);
+            }
+        }
+
+        private void smanjiKolicinu(Oprema oprema, int kolicina)
+        {
+            oprema.Kolicina -= kolicina;
+            int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
+            Skladiste.OpremaStaticka.RemoveAt(idx);
+            Skladiste.OpremaStaticka.Insert(idx, oprema);
+        }
+
+        private void ukloniOpremu(Sala sala, Oprema oprema)
+        {
+            sala.Oprema.Remove(oprema);
+            Skladiste.OpremaStaticka.Remove(oprema);
         }
 
         private void dodajOpremuUSalu(Sala s, int kolicina)
         {
-            int x = 0;
-            foreach (Oprema o in s.Oprema)
+            napraviNovuOpremu(dodajOpremu(s, kolicina), kolicina, s);
+        }
+
+        private bool dodajOpremu(Sala sala, int kolicina)
+        {
+            foreach (Oprema oprema in sala.Oprema)
             {
-                if (o.IdOpreme == opremaZaSlanje.IdOpreme)
+                if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    o.Kolicina += kolicina;
-                    x += 1;
+                    oprema.Kolicina += kolicina;
+                    return true;
                 }
             }
-            if (x == 0)
+            return false;
+        }
+
+        private void napraviNovuOpremu(bool postojiOprema, int kolicina, Sala sala)
+        {
+            if (!postojiOprema)
             {
-                Oprema op = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, true);
-                op.IdOpreme = opremaZaSlanje.IdOpreme;
-                s.Oprema.Add(op);
+                Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, true);
+                oprema.IdOpreme = opremaZaSlanje.IdOpreme;
+                sala.Oprema.Add(oprema);
             }
         }
 
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void datumPremjestaja_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (termini.Count != 0)
+            if (termini != null)
             {
                 if (DatePicker.SelectedDate == DateTime.Now.Date)
                 {
@@ -303,21 +329,25 @@ namespace Projekat
         private void dodajTermineDanas()
         {
             termini.Clear();
-            for (int i = (int)DateTime.Now.Hour + 1; i <= 23; i++)
+            for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
             {
-                int x = 0;
-                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                if (!postojiTermin(termin))
                 {
-                    if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
-                    {
-                        x += 1;
-                    }
-                }
-                if (x == 0)
-                {
-                    termini.Add(i + ":00");
+                    termini.Add(termin + ":00");
                 }
             }
+        }
+
+        private bool postojiTermin(int termin)
+        {
+            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            {
+                if (premjestaj.datumIVrijeme.Hour.ToString().Equals(termin.ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void dodajTermine()
@@ -325,19 +355,11 @@ namespace Projekat
             int x = 0;
             string[] t = termini[0].Split(':');
             string prvi = t[0];
-            for (int i = int.Parse(prvi) - 1; i > 0; i--)
+            for (int termin = int.Parse(prvi) - 1; termin > 0; termin--)
             {
-                x = 0;
-                foreach (Premjestaj p in PremjestajMenadzer.premjestaji)
+                if (!postojiTermin(termin))
                 {
-                    if (p.datumIVrijeme.Hour.ToString().Equals(i.ToString()))
-                    {
-                        x += 1;
-                    }
-                }
-                if (x == 0)
-                {
-                    termini.Insert(0, i + ":00");
+                    termini.Insert(0, termin + ":00");
                 }
             }
         }
@@ -347,7 +369,9 @@ namespace Projekat
             PremjestajMenadzer.sacuvajIzmjene();
             aktivan = false;
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -356,10 +380,10 @@ namespace Projekat
             }
         }
 
-        public bool IsNumeric(string input)
+        public bool jeBroj(string tekst)
         {
             int test;
-            return int.TryParse(input, out test);
+            return int.TryParse(tekst, out test);
         }
 
         private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
@@ -374,7 +398,7 @@ namespace Projekat
 
         private void postaviDugme()
         {
-            if (IsNumeric(this.Kolicina.Text))
+            if (jeBroj(this.Kolicina.Text))
             {
                 izvrsiPostavljanje();
             }

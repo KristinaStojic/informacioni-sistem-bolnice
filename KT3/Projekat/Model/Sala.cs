@@ -6,35 +6,21 @@
 
 using Projekat;
 using Projekat.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Model
 {
-   
+
 
     public enum tipSale
     {
         OperacionaSala, SalaZaPregled, SalaZaOdmor
     }
 
-    public class Sala: INotifyPropertyChanged
+    public class Sala : INotifyPropertyChanged
     {
-        public Sala(int id, int brojSale, string namjena, tipSale tip)
-        {
-            this.Id = id;
-            this.brojSale = brojSale;
-            this.TipSale = tip;
-            this.Namjena = namjena;
-            //Sanja
-            this.zauzetiTermini = new List<ZauzeceSale>();
-
-            this.Oprema = new List<Oprema>();
-        }
-
         public Sala() { }
-        
         public tipSale TipSale { get; set; }
         public int Id { get; set; }
         public int brojSale { get; set; }
@@ -43,6 +29,17 @@ namespace Model
         public List<ZauzeceSale> zauzetiTermini { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Sala(int id, int brojSale, string namjena, tipSale tip)
+        {
+            this.Id = id;
+            this.brojSale = brojSale;
+            this.TipSale = tip;
+            this.Namjena = namjena;
+            this.zauzetiTermini = new List<ZauzeceSale>();
+            this.Oprema = new List<Oprema>();
+        }
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -50,66 +47,60 @@ namespace Model
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-        
+
         public override string ToString()
         {
-            string val = brojSale + " - " + Namjena;
+            string stringSale = brojSale + " - " + Namjena;
             if (statickaAktivna())
             {
-                val = stringZaStaticku();
-            }else if (dinamickaAktivna())
-            {
-                val = stringZaDinamicku();
+                stringSale = stringZaStaticku();
             }
-            return val;
+            else if (dinamickaAktivna())
+            {
+                stringSale = stringZaDinamicku();
+            }
+            return stringSale;
         }
 
         private string stringZaStaticku()
         {
-            bool postojiPremjestajIzSale = false;
-            int kolicinaPreostaleOpreme;
             string stringStaticka = "";
-            foreach (Oprema o in Oprema)
+            foreach (Oprema oprema in Oprema)
             {
-                if (o.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme)
+                if (oprema.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme)
                 {
-                    kolicinaPreostaleOpreme = o.Kolicina;
-                    foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
-                    {
-                        if (pm.izSale.Id == this.Id)
-                        {
-                            kolicinaPreostaleOpreme -= pm.kolicina;
-
-                            postojiPremjestajIzSale = true;
-                        }
-                    }
-
-                    stringStaticka = napraviStringStaticke(postojiPremjestajIzSale, o.Kolicina, kolicinaPreostaleOpreme);
+                    stringStaticka = napraviStringStaticke(smanjiKolicinuPreostaleOpreme(oprema));
                 }
             }
             return stringStaticka;
         }
 
-        private string napraviStringStaticke(bool postojiPremjestajIzSale, int kolicinaOpreme, int kolicinaPreostaleOpreme)
+        private int smanjiKolicinuPreostaleOpreme(Oprema oprema)
         {
-            if (!postojiPremjestajIzSale)
+            int kolicinaPreostaleOpreme = oprema.Kolicina;
+            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
             {
-                return brojSale + " - " + Namjena + " (" + kolicinaOpreme + ")";
+                if (premjestaj.izSale.Id == this.Id && premjestaj.oprema.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme)
+                {
+                    kolicinaPreostaleOpreme -= premjestaj.kolicina;
+                }
             }
-            else
-            {
-                return  brojSale + " - " + Namjena + " (" + kolicinaPreostaleOpreme + ")";
-            }
+            return kolicinaPreostaleOpreme;
+        }
+
+        private string napraviStringStaticke(int kolicinaPreostaleOpreme)
+        {
+            return brojSale + " - " + Namjena + " (" + kolicinaPreostaleOpreme + ")";    
         }
 
         private string stringZaDinamicku()
         {
             string stringDinamicka = "";
-            foreach (Oprema o in Oprema)
+            foreach (Oprema oprema in Oprema)
             {
-                if (o.IdOpreme == PreraspodjelaDinamicke.izabranaOprema.IdOpreme)
+                if (oprema.IdOpreme == PreraspodjelaDinamicke.izabranaOprema.IdOpreme)
                 {
-                    stringDinamicka = brojSale + " - " + Namjena + " (" + o.Kolicina + ")";
+                    stringDinamicka = brojSale + " - " + Namjena + " (" + oprema.Kolicina + ")";
                 }
             }
             return stringDinamicka;

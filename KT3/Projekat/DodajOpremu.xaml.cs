@@ -61,17 +61,17 @@ namespace Projekat
 
         private void postaviDugme()
         {
-            if (!IsNumeric(this.kolicina.Text) || this.kolicina.Text.Trim().Equals("") || IsNumeric(this.naziv.Text) || this.naziv.Text.Trim().Equals(""))
+            if (!jeBroj(this.kolicina.Text) || this.kolicina.Text.Trim().Equals("") || jeBroj(this.naziv.Text) || this.naziv.Text.Trim().Equals(""))
             {
                 this.Potvrdi.IsEnabled = false;
             }
-            else if (IsNumeric(this.kolicina.Text) && !this.kolicina.Text.Trim().Equals("") && !IsNumeric(this.naziv.Text) && !this.naziv.Text.Trim().Equals(""))
+            else if (jeBroj(this.kolicina.Text) && !this.kolicina.Text.Trim().Equals("") && !jeBroj(this.naziv.Text) && !this.naziv.Text.Trim().Equals(""))
             {
                 this.Potvrdi.IsEnabled = true;
             }
         }
 
-        public bool IsNumeric(string input)
+        public bool jeBroj(string input)
         {
             int test;
             return int.TryParse(input, out test);

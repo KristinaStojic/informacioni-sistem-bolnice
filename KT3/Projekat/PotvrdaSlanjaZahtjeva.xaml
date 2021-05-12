@@ -10,8 +10,8 @@
         <TextBlock FontSize="15" Margin="0, 10, 0, 0" HorizontalAlignment="Center">Da li ste sigurni da zelite da ponovo posaljete</TextBlock>
         <TextBlock FontSize="15" Margin="10" HorizontalAlignment="Center"> izabrani lijek?</TextBlock>
         <StackPanel Orientation="Horizontal">
-            <Button Width="70" Height="30" Margin="86, 5, 10, 0" Background="CadetBlue" Click="Button_Click_1">Potvrdi</Button>
-            <Button Width="70" Height="30" Margin="10, 5, 0, 0" Background="CadetBlue" Click="Button_Click_2">Odustani</Button>
+            <Button Width="70" Height="30" Margin="86, 5, 10, 0" Background="CadetBlue" Click="Potvrdi_Click">Potvrdi</Button>
+            <Button Width="70" Height="30" Margin="10, 5, 0, 0" Background="CadetBlue" Click="Odustani_Click">Odustani</Button>
         </StackPanel>
     </StackPanel>
 </Window>

@@ -1,16 +1,6 @@
 ﻿using Projekat.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -21,12 +11,18 @@ namespace Projekat
     {
         public Sastojak izabraniSastojak;
         public Lek izabraniLijek;
+
         public IzmjeniSastojakOdbijenog(Lek izabraniLijek, Sastojak izabraniSastojak)
         {
             InitializeComponent();
+            inicijalizujElemente(izabraniLijek, izabraniSastojak);
+            postaviElemente();
+        }
+
+        private void inicijalizujElemente(Lek izabraniLijek, Sastojak izabraniSastojak)
+        {
             this.izabraniSastojak = izabraniSastojak;
             this.izabraniLijek = izabraniLijek;
-            postaviElemente();
         }
 
         private void postaviElemente()
@@ -47,7 +43,7 @@ namespace Projekat
 
         private void postaviDugme()
         {
-            if (IsNumeric(this.kolicina.Text))
+            if (jeBroj(this.kolicina.Text))
             {
                 izvrsiPostavljanje();
             }
@@ -56,6 +52,7 @@ namespace Projekat
                 this.Potvrdi.IsEnabled = false;
             }
         }
+
         private void izvrsiPostavljanje()
         {
             if (this.kolicina.Text.Trim().Equals("") || this.naziv.Text.Trim().Equals(""))
@@ -67,13 +64,14 @@ namespace Projekat
                 this.Potvrdi.IsEnabled = true;
             }
         }
-        public bool IsNumeric(string input)
+
+        public bool jeBroj(string tekst)
         {
             double test;
-            return double.TryParse(input, out test);
+            return double.TryParse(tekst, out test);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

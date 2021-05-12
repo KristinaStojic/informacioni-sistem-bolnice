@@ -1,17 +1,8 @@
 ﻿using Projekat.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -21,6 +12,7 @@ namespace Projekat
     public partial class OdbijeniLijekovi : Window
     {
         private int colNum = 0;
+
         public static ObservableCollection<Lek> OdbijeniLekovi
         {
             get;
@@ -29,13 +21,18 @@ namespace Projekat
         public OdbijeniLijekovi()
         {
             InitializeComponent();
-            this.DataContext = this;
+            inicijalizujElemente();
             inicijalizujLijekove();
+        }
+
+        private void inicijalizujElemente()
+        {
+            OdbijeniLekovi = new ObservableCollection<Lek>();
+            this.DataContext = this;
         }
 
         private void inicijalizujLijekove()
         {
-            OdbijeniLekovi = new ObservableCollection<Lek>();
             foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
             {
                 if (!zahtjev.odobrenZahtev && zahtjev.obradjenZahtev)
@@ -52,12 +49,12 @@ namespace Projekat
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Obrazlozenje_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)this.dataGridOdbijeniLijekovi.SelectedItem;
             if (izabraniLijek != null)
@@ -77,22 +74,22 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Button_Click(sender, e);
+                    Odustani_Click(sender, e);
 
                 }else if(e.Key == Key.P)
                 {
-                    Button_Click_2(sender, e);
+                    Potvrdi_Click(sender, e);
                 }else if(e.Key == Key.I)
                 {
-                    Button_Click_3(sender, e);
+                    Izmjeni_Click(sender, e);
                 }else if(e.Key == Key.O)
                 {
-                    Button_Click_4(sender, e);
+                    Obrisi_Click(sender, e);
                 }
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
             if(izabraniLijek != null)
@@ -118,7 +115,7 @@ namespace Projekat
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Izmjeni_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
             if(izabraniLijek != null)
@@ -132,7 +129,7 @@ namespace Projekat
             }
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
             if(izabraniLijek != null)

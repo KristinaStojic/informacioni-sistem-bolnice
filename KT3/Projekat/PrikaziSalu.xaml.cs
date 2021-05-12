@@ -2,19 +2,11 @@
 using Projekat.Model;
 using Projekat.Pomoc;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -24,17 +16,20 @@ namespace Projekat
     public partial class PrikaziSalu : Window
     {
         private int colNum = 0;
+
         public static ObservableCollection<Sala> Sale
         {
             get;
             set;
         }
+        
         public PrikaziSalu()
         {
             InitializeComponent();
             this.DataContext = this;
             dodajSale();
         }
+
         private void dodajSale()
         {
             Sale = new ObservableCollection<Sala>();
@@ -46,6 +41,7 @@ namespace Projekat
                 }
             }
         }
+
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
@@ -53,13 +49,13 @@ namespace Projekat
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DodajSalu_Click(object sender, RoutedEventArgs e)
         {
-            DodajSalu ds = new DodajSalu();
-            ds.ShowDialog();
+            DodajSalu dodajSalu = new DodajSalu();
+            dodajSalu.ShowDialog();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ObrisiSalu_Click(object sender, RoutedEventArgs e)
         {
             var izabranaSala = (Sala)dataGridSale.SelectedItem;
             if(izabranaSala != null) {
@@ -73,13 +69,13 @@ namespace Projekat
             
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void IzmjeniSalu_Click(object sender, RoutedEventArgs e)
         {
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
             if (izabranaSala != null)
             {
-                IzmjeniSalu iss = new IzmjeniSalu(izabranaSala);
-                iss.ShowDialog();
+                IzmjeniSalu izmjeniSalu = new IzmjeniSalu(izabranaSala);
+                izmjeniSalu.ShowDialog();
             }
             else
             {
@@ -87,17 +83,15 @@ namespace Projekat
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Upravnik_Click(object sender, RoutedEventArgs e)
         {
             SaleMenadzer.sacuvajIzmjene();
             Upravnik u = new Upravnik();
             u.Show();
             this.Hide();
-            //MainWindow mw = new MainWindow();
-            //mw.Show();
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Renoviranje_Click(object sender, RoutedEventArgs e)
         {
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
             if(izabranaSala != null && !salaZakazanaZaRenoviranje(izabranaSala))
@@ -116,14 +110,14 @@ namespace Projekat
 
         private bool salaZakazanaZaRenoviranje(Sala izabranaSala)
         {
-            Console.WriteLine(izabranaSala.zauzetiTermini.Count());
             foreach(ZauzeceSale zauzeceSale in izabranaSala.zauzetiTermini)
             {
                 if (zauzeceSale.idTermina == 0 && datumProsao(zauzeceSale.datumKrajaTermina) && vrijemeProslo(zauzeceSale.krajTermina))
                 {
                     izabranaSala.zauzetiTermini.Remove(zauzeceSale);
                     return false;
-                }else if(zauzeceSale.idTermina == 0 && (!datumProsao(zauzeceSale.datumKrajaTermina) || !vrijemeProslo(zauzeceSale.krajTermina)))
+                }
+                else if(zauzeceSale.idTermina == 0 && (!datumProsao(zauzeceSale.datumKrajaTermina) || !vrijemeProslo(zauzeceSale.krajTermina)))
                 {
                     return true;
                 }
@@ -144,6 +138,7 @@ namespace Projekat
             int sadasnjeVrijeme = int.Parse(DateTime.Now.TimeOfDay.ToString().Split(':')[0]);
             return vrijemeKraja <= sadasnjeVrijeme;
         }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             SaleMenadzer.sacuvajIzmjene();
@@ -154,13 +149,7 @@ namespace Projekat
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
             if (izabranaSala != null)
             {
-                try
-                {
-                    PrikazStaticke.otvoren = true;
-                    PrikazStaticke ps = new PrikazStaticke(izabranaSala);
-                    PremjestajMenadzer.odradiZakazanePremjestaje();
-                    ps.ShowDialog();
-                }catch(Exception ex) { }
+                prikaziStaticku(izabranaSala);
             }
             else
             {
@@ -168,16 +157,24 @@ namespace Projekat
             }
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void prikaziStaticku(Sala izabranaSala)
+        {
+            try
+            {
+                PrikazStaticke.otvoren = true;
+                PrikazStaticke ps = new PrikazStaticke(izabranaSala);
+                PremjestajMenadzer.odradiZakazanePremjestaje();
+                ps.ShowDialog();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Data); }
+        }
+
+        private void PrikazDinamicke_Click(object sender, RoutedEventArgs e)
         {
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
             if (izabranaSala != null)
             {
-                try
-                {
-                    PrikazDinamicke pd = new PrikazDinamicke(izabranaSala);
-                    pd.ShowDialog();
-                }catch(Exception ex) { }
+                prikaziDinamicku(izabranaSala);
             }
             else
             {
@@ -185,40 +182,52 @@ namespace Projekat
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void prikaziDinamicku(Sala izabranaSala)
+        {
+            try
+            {
+                PrikazDinamicke pd = new PrikazDinamicke(izabranaSala);
+                pd.ShowDialog();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Data); }
+        }
+
+        private void Osoblje_Click(object sender, RoutedEventArgs e)
         {
             //prikazi osoblje
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void Zahtjevi_Click(object sender, RoutedEventArgs e)
         {
-            Zahtjevi z = new Zahtjevi();
-            z.Show();
+            Zahtjevi zahtjev = new Zahtjevi();
+            zahtjev.Show();
             this.Close();
         }
 
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        private void Komunikacija_Click(object sender, RoutedEventArgs e)
         {
-            //prikazi komunikaciju
+            Komunikacija komunikacija = new Komunikacija();
+            komunikacija.Show();
+            this.Close();
         }
 
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        private void Izvjestaj_Click(object sender, RoutedEventArgs e)
         {
             //prikazi izvjestaj
         }
 
-        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
             SalePomoc salePomoc = new SalePomoc();
             salePomoc.Show();
         }
 
-        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        private void OAplikaciji_Click(object sender, RoutedEventArgs e)
         {
             //O aplikaciji
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Pretraga_Click(object sender, TextChangedEventArgs e)
         {
             Sale.Clear();
             foreach (Sala sala in SaleMenadzer.sale)
@@ -238,40 +247,40 @@ namespace Projekat
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))) {
                 if (e.Key == Key.D) {
-                    Button_Click(sender, e);
+                    DodajSalu_Click(sender, e);
                 } else if (e.Key == Key.Z || e.Key == Key.N)
                 {
-                    Button_Click_3(sender, e);
+                    Upravnik_Click(sender, e);
                 }else if(e.Key == Key.I)
                 {
-                    Button_Click_2(sender, e);
+                    IzmjeniSalu_Click(sender, e);
                 }else if(e.Key == Key.R)
                 {
-                    Button_Click_4(sender, e);
+                    Renoviranje_Click(sender, e);
                 }else if(e.Key == Key.O)
                 {
-                    Button_Click_1(sender, e);
+                    ObrisiSalu_Click(sender, e);
                 }else if(e.Key == Key.P)
                 {
                     this.Pretraga.Focus();
                 }else if(e.Key == Key.S)
                 {
-                    MenuItem_Click(sender, e);
-                }else if(e.Key == Key.T)
+                    Osoblje_Click(sender, e);
+                }else if(e.Key == Key.E)
                 {
-                    MenuItem_Click_1(sender, e);
+                    Zahtjevi_Click(sender, e);
                 }
                 else if (e.Key == Key.K)
                 {
-                    MenuItem_Click_2(sender, e);
+                    Komunikacija_Click(sender, e);
                 }
                 else if (e.Key == Key.V)
                 {
-                    MenuItem_Click_3(sender, e);
+                    Izvjestaj_Click(sender, e);
                 }
                 else if (e.Key == Key.H)
                 {
-                    MenuItem_Click_4(sender, e);
+                    Pomoc_Click(sender, e);
                 }
             }
         }

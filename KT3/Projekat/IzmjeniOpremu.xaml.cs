@@ -1,16 +1,6 @@
 ﻿using Projekat.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -20,15 +10,16 @@ namespace Projekat
     public partial class IzmjeniOpremu : Window
     {
         public Oprema izabranaOprema;
+
         public IzmjeniOpremu(Oprema izabranaOprema)
         {
             InitializeComponent();
-            this.izabranaOprema = izabranaOprema;
-            postaviElemente();
+            inicijalizujElemente(izabranaOprema);
         }
 
-        private void postaviElemente()
+        private void inicijalizujElemente(Oprema izabranaOprema)
         {
+            this.izabranaOprema = izabranaOprema;
             if (izabranaOprema != null)
             {
                 this.naziv.Text = izabranaOprema.NazivOpreme;
@@ -68,20 +59,20 @@ namespace Projekat
 
         private void postaviDugme()
         {
-            if (this.naziv.Text.Trim().Equals("") || IsNumeric(this.naziv.Text) || !IsNumeric(this.kolicina.Text) || this.kolicina.Text.Trim().Equals(""))
+            if (this.naziv.Text.Trim().Equals("") || jeBroj(this.naziv.Text) || !jeBroj(this.kolicina.Text) || this.kolicina.Text.Trim().Equals(""))
             {
                 this.Potvrdi.IsEnabled = false;
             }
-            else if(!this.naziv.Text.Trim().Equals("") && !IsNumeric(this.naziv.Text) && IsNumeric(this.kolicina.Text) && !this.kolicina.Text.Trim().Equals(""))
+            else if(!this.naziv.Text.Trim().Equals("") && !jeBroj(this.naziv.Text) && jeBroj(this.kolicina.Text) && !this.kolicina.Text.Trim().Equals(""))
             {
                 this.Potvrdi.IsEnabled = true;
             }
         }
 
-        public bool IsNumeric(string input)
+        public bool jeBroj(string tekst)
         {
             int test;
-            return int.TryParse(input, out test);
+            return int.TryParse(tekst, out test);
         }
     }
 }

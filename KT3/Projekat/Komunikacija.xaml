@@ -9,9 +9,9 @@
     <StackPanel>
         <Menu Background="CadetBlue">
             <MenuItem Header="Navigacija" FontSize="15">
-                <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
-                <MenuItem Header="Prostorije" FontSize="15" InputGestureText="Ctrl + T"></MenuItem>
-                <MenuItem Header="Zahtjevi" FontSize="15" InputGestureText="Ctrl + T"></MenuItem>
+                <MenuItem Header="Osoblje" FontSize="15" Click="Osoblje_Click" InputGestureText="Ctrl + S"></MenuItem>
+                <MenuItem Header="Prostorije" FontSize="15" Click="Prostorije_Click" InputGestureText="Ctrl + T"></MenuItem>
+                <MenuItem Header="Zahtjevi" FontSize="15" Click="Zahtjevi_Click" InputGestureText="Ctrl + E"></MenuItem>
                 <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
@@ -19,7 +19,7 @@
                 <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
             </MenuItem>
         </Menu>
-        <Button Click="Button_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+        <Button Click="Nazad_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
         <TextBlock FontSize="20" FontFamily="Arial" Margin="40, 10, 10, 10">Izaberite ustanovu kojoj zelite da posaljete zahtjev:</TextBlock>
@@ -34,7 +34,7 @@
         </TextBox>
         <StackPanel Orientation="Horizontal">
             <Button Background="CadetBlue" Margin="140, 10, 10, 10" Width="190" Height="50">Posalji zahtjev</Button>
-            <Button Background="CadetBlue" Margin="10, 10, 10, 10" Width="190" Height="50" Click="Button_Click_1">Uvid u zahtjeve</Button>
+            <Button Background="CadetBlue" Margin="10, 10, 10, 10" Width="190" Height="50" Click="UvidUZahtjev_Click">Uvid u zahtjeve</Button>
         </StackPanel>
     </StackPanel>
 </Window>

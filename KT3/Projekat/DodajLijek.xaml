@@ -24,6 +24,6 @@
         
         <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Width="200" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="90, 0, 0, 0" Name="Sastojci" Click="Sastojci_Click">Dodaj sastojke</Button>
         <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10" Click="Potvrdi_Click" Name="Potvrdi">Posalji ljekaru</Button>
-        <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Click="Button_Click">Odustani</Button>
+        <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Click="Odustani_Click">Odustani</Button>
     </Grid>
 </Window>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Uvid u zahtjeve za komunikaciju" Height="430" Width="630" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown">
     <StackPanel>
-        <Button Click="Button_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+        <Button Click="Odustani_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
         <TextBlock FontSize="20" Margin="40, 10, 10, 10">Zahtjevi drugih ustanova:</TextBlock>
