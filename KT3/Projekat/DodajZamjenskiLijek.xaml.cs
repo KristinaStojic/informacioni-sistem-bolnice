@@ -1,17 +1,9 @@
 ﻿using Projekat.Model;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -21,24 +13,34 @@ namespace Projekat
     public partial class DodajZamjenskiLijek : Window
     {
         Lek izabraniLijek;
+
         private int colNum = 0;
+
         public static ObservableCollection<Lek> ZamjenskiLekovi
         {
             get;
             set;
         }
+        
         public DodajZamjenskiLijek(Lek izabraniLijek)
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
-            this.DataContext = this;
+            inicijalizujElemente(izabraniLijek);
             postaviTekst();
             dodajLijekove();
         }
+        
+        private void inicijalizujElemente(Lek izabraniLijek)
+        {
+            this.izabraniLijek = izabraniLijek;
+            this.DataContext = this;
+        }
+        
         private void postaviTekst()
         {
             this.tekst.Text = izabraniLijek.nazivLeka;
         }
+        
         private void dodajLijekove()
         {
             ZamjenskiLekovi = new ObservableCollection<Lek>();
@@ -62,6 +64,7 @@ namespace Projekat
             }
             return false;
         }
+
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
@@ -69,18 +72,17 @@ namespace Projekat
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            List<Lek> izabraniLijekovi = nadjiIzabraneLijekove();
-            if(izabraniLijekovi != null)
+            if(nadjiIzabraneLijekove().Count != 0)
             {
-                LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, izabraniLijekovi);
+                LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, nadjiIzabraneLijekove());
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Morate izabrati lijekove!");
             }
-            this.Close();
         }
 
         private List<Lek> nadjiIzabraneLijekove()
@@ -94,7 +96,7 @@ namespace Projekat
             return izabraniLijekovi;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -105,7 +107,7 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Button_Click_1(sender, e);
+                    Odustani_Click(sender, e);
                 }
             }
         }

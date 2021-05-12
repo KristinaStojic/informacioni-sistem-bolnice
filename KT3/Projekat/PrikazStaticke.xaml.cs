@@ -1,19 +1,10 @@
 ﻿using Model;
 using Projekat.Model;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -36,15 +27,20 @@ namespace Projekat
         public PrikazStaticke(Sala izabranaSala)
         {
             InitializeComponent();
-            PrikazStaticke.izabranaSala = izabranaSala;
-            this.DataContext = this;
+            inicijalizujElemente(izabranaSala);
             postaviTekst();
             dodajStatickuOpremu();
             Thread th = new Thread(izvrsi);
             th.Start();
         }
 
-        private void dodajStatickuOpremu()
+        private void inicijalizujElemente(Sala izabranaSala)
+        {
+            PrikazStaticke.izabranaSala = izabranaSala;
+            this.DataContext = this;
+        }
+
+        public static void dodajStatickuOpremu()
         {
             List<Oprema> opremaStaticka1 = new List<Oprema>();
             if (izabranaSala.Oprema != null)
@@ -53,17 +49,22 @@ namespace Projekat
                 {
                     if (s.Id == izabranaSala.Id)
                     {
-                        foreach (Oprema o in s.Oprema)
-                        {
-                            if (o.Staticka)
-                            {
-                                opremaStaticka1.Add(o);
-                            }
-                        }
+                        dodajOpremu(s, opremaStaticka1);
                     }
                 }
             }
             OpremaStaticka = new ObservableCollectionEx<Oprema>(opremaStaticka1);
+        }
+
+        private static void dodajOpremu(Sala sala, List<Oprema> opremaStaticka1)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.Staticka)
+                {
+                    opremaStaticka1.Add(oprema);
+                }
+            }
         }
 
         private void postaviTekst()
@@ -117,20 +118,20 @@ namespace Projekat
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             PrikazStaticke.otvoren = false;
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void PreraspodjelaStaticke_Click(object sender, RoutedEventArgs e)
         {
             PreraspodjelaStaticke.aktivna = true;
             PreraspodjelaStaticke ps = new PreraspodjelaStaticke(izabranaSala);
             ps.ShowDialog();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void SlanjeStaticke_Click(object sender, RoutedEventArgs e)
         {
             Oprema opremaZaSlanje = (Oprema)dataGridStaticka.SelectedItem;
             if(opremaZaSlanje != null)
@@ -195,7 +196,7 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Button_Click(sender, e);
+                    Odustani_Click(sender, e);
                 }else if(e.Key == Key.P)
                 {
                     this.Pretraga.Focus();

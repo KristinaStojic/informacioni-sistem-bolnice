@@ -3,16 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
     class PremjestajMenadzer
     {
-        public static void dodajPremjestaj(Premjestaj p)
+        public static void dodajPremjestaj(Premjestaj premjestaj)
         {
-            premjestaji.Add(p);
+            premjestaji.Add(premjestaj);
             sacuvajIzmjene();
         }
 
@@ -66,123 +65,159 @@ namespace Projekat.Model
                 {
                     continue;
                 }
-                Sala izabranaSala = premjestaj.izSale;
-                Sala salaDodavanje = premjestaj.uSalu;
-                int kolicina = premjestaj.kolicina;
-                int x = 0;
-                Oprema izabranaOprema = premjestaj.oprema;
-                foreach (Sala sala in SaleMenadzer.sale)
-                {
-                    if (sala.Id == izabranaSala.Id)
-                    {
-                        foreach (Oprema o in sala.Oprema)
-                        {
-                            if (o.IdOpreme == izabranaOprema.IdOpreme)
-                            {
-                                o.Kolicina -= kolicina;
-                                if (sala.Namjena.Equals("Skladiste"))
-                                {
-                                    if (o.Kolicina == 0)
-                                    {
-                                        if (Skladiste.OpremaStaticka != null)
-                                        {
-                                            sala.Oprema.Remove(o);
-                                            Skladiste.OpremaStaticka.Remove(o);
-                                            break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Skladiste.OpremaStaticka != null)
-                                        {
-                                            int idx = Skladiste.OpremaStaticka.IndexOf(o);
-                                            Skladiste.OpremaStaticka.RemoveAt(idx);
-                                            Skladiste.OpremaStaticka.Insert(idx, o);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (o.Kolicina == 0)
-                                    {
 
-                                        sala.Oprema.Remove(o);
-                                        if (PrikazStaticke.otvoren)
-                                        {
-                                            PrikazStaticke.azurirajPrikaz();
-                                        }
-                                        break;
-                                    }
-                                    if (PrikazStaticke.otvoren)
-                                    {
-                                        PrikazStaticke.azurirajPrikaz();
-                                    }
-                                }
-
-                            }
-                        }
-                    }
-                    if (sala.Id == salaDodavanje.Id)
-                    {
-                        foreach (Oprema o in sala.Oprema)
-                        {
-                            if (o.IdOpreme == izabranaOprema.IdOpreme)
-                            {
-                                o.Kolicina += kolicina;
-                                x += 1;
-                                if (sala.Namjena.Equals("Skladiste"))
-                                {
-                                    if (Skladiste.OpremaStaticka != null)
-                                    {
-                                        int idx = Skladiste.OpremaStaticka.IndexOf(o);
-                                        Skladiste.OpremaStaticka.RemoveAt(idx);
-                                        Skladiste.OpremaStaticka.Insert(idx, o);
-                                    }
-                                }
-                                else
-                                {
-
-                                    if (PrikazStaticke.otvoren)
-                                    {
-                                        PrikazStaticke.azurirajPrikaz();
-                                    }
-                                }
-                            }
-
-
-                        }
-                        if (x == 0)
-                        {
-                            Oprema op = new Oprema(izabranaOprema.NazivOpreme, kolicina, true);
-                            op.IdOpreme = izabranaOprema.IdOpreme;
-                            sala.Oprema.Add(op);
-                            if (salaDodavanje.Namjena.Equals("Skladiste"))
-                            {
-                                if (Skladiste.OpremaStaticka != null)
-                                {
-                                    Skladiste.OpremaStaticka.Add(op);
-                                }
-                            }
-                            else
-                            {
-                                if (PrikazStaticke.otvoren)
-                                {
-                                    PrikazStaticke.azurirajPrikaz();
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            x = 0;
-                        }
-
-                    }
-                }
+                izvrsiPremjestaj(premjestaj);
                 premjestaji.Remove(premjestaj);
                 sacuvajIzmjene();
             
+            }
         }
+
+        private static void izvrsiPremjestaj(Premjestaj premjestaj)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == premjestaj.izSale.Id)
+                {
+                    prebaciOpremuIzSale(sala, premjestaj.oprema, premjestaj.kolicina);
+                }
+                if (sala.Id == premjestaj.uSalu.Id)
+                {
+                    dodajOpremuUSalu(sala, premjestaj.oprema, premjestaj.kolicina, premjestaj.uSalu);
+                }
+            }
+        }
+
+        private static void dodajOpremuUSalu(Sala sala, Oprema izabranaOprema, int kolicina, Sala salaDodavanje)
+        {
+            if (!postojiOprema(sala, izabranaOprema, kolicina))
+            {
+                dodajNovuOpremu(izabranaOprema, sala, kolicina, salaDodavanje);
+
+            }
+        }
+
+        private static bool postojiOprema(Sala sala, Oprema izabranaOprema, int kolicina)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    prebaciOpremu(oprema, kolicina, sala);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static void prebaciOpremu(Oprema oprema, int kolicina, Sala sala)
+        {
+            oprema.Kolicina += kolicina;
+            if (sala.Namjena.Equals("Skladiste"))
+            {
+                zamjeniOpremuUSkladistu(oprema);
+            }
+            else
+            {
+                azurirajPrikazStaticke();
+            }
+        }
+
+        private static void dodajNovuOpremu(Oprema izabranaOprema, Sala sala, int kolicina, Sala salaDodavanje)
+        {
+            Oprema oprema = new Oprema(izabranaOprema.NazivOpreme, kolicina, true);
+            oprema.IdOpreme = izabranaOprema.IdOpreme;
+            sala.Oprema.Add(oprema);
+            if (salaDodavanje.Namjena.Equals("Skladiste"))
+            {
+                dodajOpremuUSkladiste(oprema);
+            }
+            else
+            {
+                azurirajPrikazStaticke();
+            }
+        }
+
+        private static void dodajOpremuUSkladiste(Oprema oprema)
+        {
+            if (Skladiste.OpremaStaticka != null)
+            {
+                Skladiste.OpremaStaticka.Add(oprema);
+            }
+        }
+
+        private static void azurirajPrikazStaticke()
+        {
+
+            if (PrikazStaticke.otvoren)
+            {
+                PrikazStaticke.azurirajPrikaz();
+            }
+        }
+
+        private static void prebaciOpremuIzSale(Sala sala, Oprema izabranaOprema, int kolicina)
+        {
+            foreach (Oprema oprema in sala.Oprema.ToArray())
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    smanjiKolicinuOpreme(oprema, kolicina, sala);
+                }
+            }
+        }
+
+        private static void smanjiKolicinuOpreme(Oprema oprema, int kolicina, Sala sala)
+        {
+            oprema.Kolicina -= kolicina;
+            if (sala.Namjena.Equals("Skladiste"))
+            {
+                izvrsiPremjestajUSkladistu(sala, oprema);
+            }
+            else
+            {
+                ukloniOpremuIzSale(oprema, sala);
+            }
+        }
+
+        private static void ukloniOpremuIzSale(Oprema oprema, Sala sala)
+        {
+            if (oprema.Kolicina == 0)
+            {
+                sala.Oprema.Remove(oprema);
+                azurirajPrikazStaticke();
+            }
+            azurirajPrikazStaticke();
+        }
+
+        private static void izvrsiPremjestajUSkladistu(Sala sala, Oprema oprema)
+        {
+            if (oprema.Kolicina == 0)
+            {
+                ukloniOpremuIzSkladista(sala, oprema);
+            }
+            else
+            {
+                zamjeniOpremuUSkladistu(oprema);
+            }
+        }
+
+        private static void ukloniOpremuIzSkladista(Sala sala, Oprema oprema)
+        {
+            if (Skladiste.OpremaStaticka != null)
+            {
+                sala.Oprema.Remove(oprema);
+                Skladiste.OpremaStaticka.Remove(oprema);
+            }
+        }
+
+        private static void zamjeniOpremuUSkladistu(Oprema oprema)
+        {
+            if (Skladiste.OpremaStaticka != null)
+            {
+                int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
+                Skladiste.OpremaStaticka.RemoveAt(idx);
+                Skladiste.OpremaStaticka.Insert(idx, oprema);
+            }
         }
        
         public static int GenerisanjeIdPremjestaja()
@@ -202,9 +237,9 @@ namespace Projekat.Model
 
         private static bool postojiIdPremjestaja(int id)
         {
-            foreach (Premjestaj s in premjestaji)
+            foreach (Premjestaj premjestaj in premjestaji)
             {
-                if (s.id.Equals(id))
+                if (premjestaj.id.Equals(id))
                 {
                     return true;
                 }

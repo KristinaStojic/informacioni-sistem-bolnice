@@ -1,17 +1,8 @@
 ﻿using Projekat.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -22,23 +13,27 @@ namespace Projekat
     {
         public Lek izabraniLijek;
         private int colNum = 0;
-        public static ObservableCollection<Lek> ZamjenskiLekovi
-        {
-            get;
-            set;
-        }
+        public static ObservableCollection<Lek> ZamjenskiLekovi {get; set;}
+
         public ZamjenskiLijekovi(Lek izabraniLijek)
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
-            this.DataContext = this;
+            inicijalizujElemente(izabraniLijek);
             postaviTekst();
             dodajLijekove();
         }
+
+        private void inicijalizujElemente(Lek izabraniLijek)
+        {
+            this.izabraniLijek = izabraniLijek;
+            this.DataContext = this;
+        }
+
         private void postaviTekst()
         {
             this.tekst.Text = "Zamjenski lijekovi za lijek: " + izabraniLijek.nazivLeka;
         }
+
         private void dodajLijekove()
         {
             ZamjenskiLekovi = new ObservableCollection<Lek>();
@@ -46,11 +41,16 @@ namespace Projekat
             {
                 if(izabraniLijek.idLeka == lijek.idLeka)
                 {
-                    if (lijek.zamenskiLekovi != null)
-                    {
-                        dodajZamjenski(lijek);
-                    }
+                    dodajZamjenskiLijek(lijek);
                 }
+            }
+        }
+
+        private void dodajZamjenskiLijek(Lek lijek)
+        {
+            if (lijek.zamenskiLekovi != null)
+            {
+                dodajZamjenski(lijek);
             }
         }
 
@@ -75,18 +75,18 @@ namespace Projekat
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             DodajZamjenskiLijek dodajZamjenskiLijek = new DodajZamjenskiLijek(izabraniLijek);
             dodajZamjenskiLijek.Show();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Izmjeni_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridLijekovi.SelectedItem;
             if(izabraniLijek != null)
@@ -100,7 +100,7 @@ namespace Projekat
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             Lek zamjenskiLijek = (Lek)dataGridLijekovi.SelectedItem;
             if(zamjenskiLijek != null)
@@ -119,18 +119,18 @@ namespace Projekat
             {
                 if (e.Key == Key.D)
                 {
-                    Button_Click(sender, e);
+                    Dodaj_Click(sender, e);
                 }else if(e.Key == Key.D || e.Key == Key.N)
                 {
-                    MenuItem_Click(sender, e);
+                    Odustani_Click(sender, e);
                 }
                 else if (e.Key == Key.I)
                 {
-                    Button_Click_1(sender, e);
+                    Izmjeni_Click(sender, e);
                 }
                 else if (e.Key == Key.O)
                 {
-                    Button_Click_2(sender, e);
+                    Obrisi_Click(sender, e);
                 }
                 else if (e.Key == Key.P)
                 {
@@ -140,23 +140,27 @@ namespace Projekat
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             ZamjenskiLekovi.Clear();
-
             if (izabraniLijek.zamenskiLekovi != null)
             {
                 foreach (int zamjenskiLijek in izabraniLijek.zamenskiLekovi)
                 {
-                    foreach (Lek zamjenski in LekoviMenadzer.lijekovi)
-                    {
-                        if(zamjenski.idLeka == zamjenskiLijek && zamjenski.nazivLeka.StartsWith(this.Pretraga.Text))
-                        {
-                            ZamjenskiLekovi.Add(zamjenski);
-                        }
-                    }
+                    pretraziZamjenskeLijekove(zamjenskiLijek);
                 }
             }            
+        }
+
+        private void pretraziZamjenskeLijekove(int zamjenskiLijek)
+        {
+            foreach (Lek zamjenski in LekoviMenadzer.lijekovi)
+            {
+                if (zamjenski.idLeka == zamjenskiLijek && zamjenski.nazivLeka.StartsWith(this.Pretraga.Text))
+                {
+                    ZamjenskiLekovi.Add(zamjenski);
+                }
+            }
         }
     }
 }

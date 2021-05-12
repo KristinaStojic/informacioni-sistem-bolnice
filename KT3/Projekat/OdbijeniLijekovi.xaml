@@ -10,16 +10,16 @@
     <StackPanel>
         <StackPanel>
             <ToolBar Background="CadetBlue" Margin="0, 0, 0, 30">
-                <Button ToolTip="Nazad, Ctrl + N" Click="Button_Click">
+                <Button ToolTip="Nazad, Ctrl + N" Click="Odustani_Click">
                     <Image Source="slike/back.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button ToolTip="Izmjeni, Ctrl + I" Click="Button_Click_3">
+                <Button ToolTip="Izmjeni, Ctrl + I" Click="Izmjeni_Click">
                     <Image Source="slike/pen.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button ToolTip="Posalji zahtjev ponovo, Ctrl + P" Click="Button_Click_2">
+                <Button ToolTip="Posalji zahtjev ponovo, Ctrl + P" Click="Potvrdi_Click">
                     <Image Source="slike/send.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button ToolTip="Nazad, Ctrl + O" Click="Button_Click_4">
+                <Button ToolTip="Obrisi, Ctrl + O" Click="Obrisi_Click">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
                     <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="145, 0, 0, 0" TextChanged="Pretraga_TextChanged"></TextBox>
@@ -39,6 +39,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button Width="150" Height="50" Margin="190,30,0,0" Content="Obrazlozenje" Background="CadetBlue" Click="Button_Click_1"/>
+        <Button Width="150" Height="50" Margin="190,30,0,0" Content="Obrazlozenje" Background="CadetBlue" Click="Obrazlozenje_Click"/>
     </StackPanel>
 </Window>

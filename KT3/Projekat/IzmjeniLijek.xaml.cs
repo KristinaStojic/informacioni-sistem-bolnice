@@ -1,16 +1,6 @@
 ﻿using Projekat.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -20,13 +10,20 @@ namespace Projekat
     public partial class IzmjeniLijek : Window
     {
         public Lek izabraniLijek;
+
         public IzmjeniLijek(Lek izabraniLijek)
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
-            this.Potvrdi.IsEnabled = false;
+            inicijalizujElemente(izabraniLijek);
             postaviElementeProzora();
         }
+
+        private void inicijalizujElemente(Lek izabraniLijek)
+        {
+            this.izabraniLijek = izabraniLijek;
+            this.Potvrdi.IsEnabled = false;
+        }
+
         private void postaviElementeProzora()
         {
             if(izabraniLijek != null)
@@ -45,7 +42,7 @@ namespace Projekat
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -59,12 +56,14 @@ namespace Projekat
         {
             postaviDugme();
         }
+
         private void postaviDugme()
         {
             if(this.sifra.Text.Trim().Equals("") || this.naziv.Text.Trim().Equals("") || postojiSifraLijeka())
             {
                 this.Potvrdi.IsEnabled = false;
-            }else if (!this.sifra.Text.Trim().Equals("") && !this.naziv.Text.Trim().Equals("") && !postojiSifraLijeka())
+            }
+            else if (!this.sifra.Text.Trim().Equals("") && !this.naziv.Text.Trim().Equals("") && !postojiSifraLijeka())
             {
                 this.Potvrdi.IsEnabled = true;
             }

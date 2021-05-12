@@ -1,9 +1,6 @@
 ﻿using Model;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Projekat.Model
@@ -26,20 +23,35 @@ namespace Projekat.Model
                 {
                     oprema.NazivOpreme = uOpremu.NazivOpreme;
                     oprema.Kolicina = uOpremu.Kolicina;
-                    if (uOpremu.Staticka)
-                    {
-                        int idx = Skladiste.OpremaStaticka.IndexOf(izOpreme);
-                        Skladiste.OpremaStaticka.RemoveAt(idx);
-                        Skladiste.OpremaStaticka.Insert(idx, oprema);
-                    }
-                    else
-                    {
-                        int idx = Skladiste.OpremaDinamicka.IndexOf(izOpreme);
-                        Skladiste.OpremaDinamicka.RemoveAt(idx);
-                        Skladiste.OpremaDinamicka.Insert(idx, oprema);
-                    }
+                    zamjeniOpremu(uOpremu, izOpreme, oprema);
                 }
             }
+        }
+
+        private static void zamjeniOpremu(Oprema uOpremu, Oprema izOpreme, Oprema oprema)
+        {
+            if (uOpremu.Staticka)
+            {
+                zamjeniStatickuOpremuUSkladistu(izOpreme, oprema);
+            }
+            else
+            {
+                zamjeniDinamickuOpremuUSkladistu(izOpreme, oprema);
+            }
+        }
+
+        private static void zamjeniDinamickuOpremuUSkladistu(Oprema izOpreme, Oprema oprema)
+        {
+            int idx = Skladiste.OpremaDinamicka.IndexOf(izOpreme);
+            Skladiste.OpremaDinamicka.RemoveAt(idx);
+            Skladiste.OpremaDinamicka.Insert(idx, oprema);
+        }
+
+        private static void zamjeniStatickuOpremuUSkladistu(Oprema izOpreme, Oprema oprema)
+        {
+            int idx = Skladiste.OpremaStaticka.IndexOf(izOpreme);
+            Skladiste.OpremaStaticka.RemoveAt(idx);
+            Skladiste.OpremaStaticka.Insert(idx, oprema);
         }
 
         private static void azurirajOpremuUSkladistu()
