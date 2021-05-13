@@ -55,7 +55,38 @@
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
-      <Alergeni />
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>1</IdPacijenta>
+          <NazivSastojka>s2</NazivSastojka>
+          <SifraSastojka>4.2</SifraSastojka>
+          <NuspojavaNaNastojak>Vrtoglavica</NuspojavaNaNastojak>
+          <VremeReakcije>7 dana</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi>
+        <Uput>
+          <IdUputa>1</IdUputa>
+          <idPacijenta>1</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>7</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>06/04/2021</datumIzdavanja>
+          <opisPregleda>Hitno</opisPregleda>
+          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
+          <TipUputa>SpecijallistickiPregled</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>2</IdUputa>
+          <idPacijenta>1</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>8</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>06/04/2021</datumIzdavanja>
+          <opisPregleda>Hitno</opisPregleda>
+          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
+          <TipUputa>SpecijallistickiPregled</TipUputa>
+        </Uput>
+      </Uputi>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -64,14 +95,20 @@
     <IdPacijenta>2</IdPacijenta>
     <ImePacijenta>Dimitrije</ImePacijenta>
     <PrezimePacijenta>Jovanovic</PrezimePacijenta>
-    <Pol>M</Pol>
+    <Pol>Z</Pol>
     <Jmbg>123456789</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
     <BrojTelefona>45651321</BrojTelefona>
     <Email>dim@gmail.com</Email>
     <AdresaStanovanja>NS</AdresaStanovanja>
     <Zanimanje>student</Zanimanje>
-    <BracnoStanje>Ozenjen</BracnoStanje>
+    <BracnoStanje>Neodredjeno</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Petar</ImeLek>
+      <PrezimeLek>Nebojsic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>2</IdPacijenta>
       <LekarskiRecepti>
@@ -136,6 +173,7 @@
         </Anamneza>
       </Anamneze>
       <Alergeni />
+      <Uputi />
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -152,6 +190,12 @@
     <AdresaStanovanja>NS</AdresaStanovanja>
     <Zanimanje>prof</Zanimanje>
     <BracnoStanje>Neudata</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>9</IdLekara>
+      <ImeLek>Igor</ImeLek>
+      <PrezimeLek>Ivanovic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>4</IdPacijenta>
       <LekarskiRecepti>
@@ -193,12 +237,10 @@
         <Alergeni>
           <IdAlergena>1</IdAlergena>
           <IdPacijenta>4</IdPacijenta>
-          <NazivLeka>Brufen</NazivLeka>
-          <SifraLeka>B1E</SifraLeka>
-          <NuspojavaNaLek>osip, crvenilo</NuspojavaNaLek>
           <VremeReakcije>24 sata</VremeReakcije>
         </Alergeni>
       </Alergeni>
+      <Uputi />
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -215,6 +257,12 @@
     <AdresaStanovanja>ns</AdresaStanovanja>
     <Zanimanje>prof</Zanimanje>
     <BracnoStanje>Neudata</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Milos</ImeLek>
+      <PrezimeLek>Dragojevic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>5</IdPacijenta>
       <LekarskiRecepti>
@@ -269,8 +317,38 @@
           <Datum>08/18/2021</Datum>
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>xfxfvxfvx</OpisBolesti>
+          <Terapija>cxvxcvcx</Terapija>
+          <Datum>06/09/2021</Datum>
+          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
+        </Anamneza>
       </Anamneze>
-      <Alergeni />
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>5</IdPacijenta>
+          <NazivSastojka>s1</NazivSastojka>
+          <SifraSastojka>1.2</SifraSastojka>
+          <NuspojavaNaNastojak>Glavobolja</NuspojavaNaNastojak>
+          <VremeReakcije>3 dana</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi>
+        <Uput>
+          <IdUputa>1</IdUputa>
+          <idPacijenta>5</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>7</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>06/09/2021</datumIzdavanja>
+          <opisPregleda>Hitno</opisPregleda>
+          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
+          <TipUputa>SpecijallistickiPregled</TipUputa>
+        </Uput>
+      </Uputi>
     </Karton>
     <Maloletnik>true</Maloletnik>
     <JmbgStaratelja>99</JmbgStaratelja>
@@ -287,6 +365,12 @@
     <AdresaStanovanja>mmm</AdresaStanovanja>
     <Zanimanje>mmm</Zanimanje>
     <BracnoStanje>Neudata</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Milos</ImeLek>
+      <PrezimeLek>Dragojevic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>6</IdPacijenta>
       <LekarskiRecepti>
@@ -326,6 +410,99 @@
       </LekarskiRecepti>
       <Anamneze />
       <Alergeni />
+      <Uputi />
+    </Karton>
+    <Maloletnik>false</Maloletnik>
+    <JmbgStaratelja>0</JmbgStaratelja>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>3</IdPacijenta>
+    <ImePacijenta>Marko</ImePacijenta>
+    <PrezimePacijenta>Markovic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>1254540</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>545650</BrojTelefona>
+    <Email>marko</Email>
+    <AdresaStanovanja>NS</AdresaStanovanja>
+    <Zanimanje>student</Zanimanje>
+    <BracnoStanje>Neodredjeno</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Milos</ImeLek>
+      <PrezimeLek>Dragojevic</PrezimeLek>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+    </IzabraniLekar>
+    <Karton>
+      <IdPacijenta>3</IdPacijenta>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>3</idPacijenta>
+          <IdLekara>1</IdLekara>
+          <NazivLeka>brufen</NazivLeka>
+          <DatumPropisivanjaLeka>05/21/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>15:00</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2021-05-21T15:00:00</dateTime>
+            <dateTime>2021-05-21T17:00:00</dateTime>
+            <dateTime>2021-05-21T19:00:00</dateTime>
+            <dateTime>2021-05-21T21:00:00</dateTime>
+            <dateTime>2021-05-21T23:00:00</dateTime>
+            <dateTime>2021-05-22T01:00:00</dateTime>
+            <dateTime>2021-05-22T03:00:00</dateTime>
+            <dateTime>2021-05-22T05:00:00</dateTime>
+            <dateTime>2021-05-22T07:00:00</dateTime>
+            <dateTime>2021-05-22T09:00:00</dateTime>
+            <dateTime>2021-05-22T11:00:00</dateTime>
+            <dateTime>2021-05-22T13:00:00</dateTime>
+            <dateTime>2021-05-22T15:00:00</dateTime>
+            <dateTime>2021-05-22T17:00:00</dateTime>
+            <dateTime>2021-05-22T19:00:00</dateTime>
+            <dateTime>2021-05-22T21:00:00</dateTime>
+            <dateTime>2021-05-22T23:00:00</dateTime>
+            <dateTime>2021-05-23T01:00:00</dateTime>
+            <dateTime>2021-05-23T03:00:00</dateTime>
+            <dateTime>2021-05-23T05:00:00</dateTime>
+            <dateTime>2021-05-23T07:00:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>3</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>Glavobolja</OpisBolesti>
+          <Terapija>Brufen</Terapija>
+          <Datum>05/21/2021</Datum>
+          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
+        </Anamneza>
+      </Anamneze>
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>3</IdPacijenta>
+          <NazivSastojka>S1</NazivSastojka>
+          <SifraSastojka>100</SifraSastojka>
+          <NuspojavaNaNastojak>Povracanje</NuspojavaNaNastojak>
+          <VremeReakcije>mesec dana</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi>
+        <Uput>
+          <IdUputa>1</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>7</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>05/21/2021</datumIzdavanja>
+          <opisPregleda>Hitno</opisPregleda>
+          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
+          <TipUputa>SpecijallistickiPregled</TipUputa>
+        </Uput>
+      </Uputi>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>

@@ -48,4 +48,19 @@
       </Sastojak>
     </sastojci>
   </Lek>
+  <Lek>
+    <idLeka>5</idLeka>
+    <nazivLeka>Brufen</nazivLeka>
+    <sifraLeka>BNG</sifraLeka>
+    <sastojci>
+      <Sastojak>
+        <naziv>S1</naziv>
+        <kolicina>100</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>S2</naziv>
+        <kolicina>150</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
 </ArrayOfLek>
