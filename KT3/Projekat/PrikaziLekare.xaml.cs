@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Pomoc;
 
 namespace Projekat
 {
@@ -120,7 +121,8 @@ namespace Projekat
 
         private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: pomoc za lekare
+            PrikaziLekarePomoc pomoc = new PrikaziLekarePomoc();
+            pomoc.Show();
         }
 
         private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
@@ -140,11 +142,6 @@ namespace Projekat
         {
             // sacuvati sve
             LekariMenadzer.SacuvajIzmeneLekara();
-        }
-
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            // akceleratori i mnemonici
         }
 
         private void TabelaLekara_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -175,12 +172,82 @@ namespace Projekat
 
         private void Radno_vreme_Click(object sender, RoutedEventArgs e)
         {
-
+            OdrediRadnoVreme radnoVreme = new OdrediRadnoVreme();
+            radnoVreme.Show();
         }
 
         private void Godisnji_odmor_Click(object sender, RoutedEventArgs e)
         {
+            OdobravanjeGodisnjegOdmora odobravanje = new OdobravanjeGodisnjegOdmora();
+            odobravanje.Show();
+        }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Dodaj_Click(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Dodaj_Click(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Izmeni_Click(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Izmeni_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Obrisi_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Obrisi_Click(sender, e);
+            }
+            else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Godisnji_odmor_Click(sender, e);
+            }
+            else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Godisnji_odmor_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Napusti_uvid_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Napusti_uvid_Click(sender, e);
+            }
+            else if (e.Key == Key.R && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Radno_vreme_Click(sender, e);
+            }
+            else if (e.Key == Key.R && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Radno_vreme_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            // TODO: tabela termina 
+            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+            }
+            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+            }
+            // TODO: polje za pretragu
         }
     }
 }

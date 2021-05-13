@@ -1,0 +1,31 @@
+﻿<Window x:Class="Projekat.OdobravanjeGodisnjegOdmora"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="OdobravanjeGodisnjegOdmora" Height="500" Width="750" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Izberite lekara kome zelite da odobrite godisnji odmor:" FontSize="17" HorizontalAlignment="Left" Margin="34,28,0,0" VerticalAlignment="Top"/>
+
+        <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding Lekari}" SelectionMode="Single" IsReadOnly="True" Margin="33,70,32,98.4" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaLekara_SelectionChanged">
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE7F6F7" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="25" Binding="{Binding IdLekara}"/>
+                <DataGridTextColumn Header="       Ime lekara" Width="130" Binding="{Binding ImeLek}"/>
+                <DataGridTextColumn Header="     Prezime lekara" Width="140" Binding="{Binding PrezimeLek}"/>
+                <DataGridTextColumn Header="            JMBG" Width="135" Binding="{Binding Jmbg}"/>
+                <DataGridTextColumn Header="     Raspolozivo &#x0a;  slobodnih dana" Width="120" Binding="{Binding SlobodniiDaniGodisnjegOdmora}"/>
+                <DataGridTextColumn Header="      Zahtevano &#x0a;  slobodnih dana" Width="120" Binding="{Binding ZahtevaniDaniGodisnjegOdmora}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Potvrdi" HorizontalAlignment="Left" Margin="180,391,0,0" VerticalAlignment="Top" Width="165" Height="51" Click="Potvrdi_Click" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Odustani" Margin="399,391,180,0" VerticalAlignment="Top" Height="51" Click="Odustani_Click" FontSize="17" Background="#FFA3DADE"/>
+    </Grid>
+</Window>

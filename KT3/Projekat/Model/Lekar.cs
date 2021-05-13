@@ -21,7 +21,9 @@ namespace Model
         public string Email { get; set; }
         public string AdresaStanovanja { get; set; }
         public Specijalizacija specijalizacija { get; set; }
-        public int DaniGodisnjegOdmora { get; set; }
+        public int SlobodniDaniGodisnjegOdmora { get; set; }
+        public int ZahtevaniiDaniGodisnjegOdmora { get; set; } // prilikom slanja zahteva od strane lekara 
+
         // radno vreme?
 
         public Lekar(int IdLekara, string Ime, string Prezime, int Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija)
@@ -34,7 +36,8 @@ namespace Model
             this.Email = Email;
             this.AdresaStanovanja = AdresaStanovanja;
             this.specijalizacija = Specijalizacija;
-            this.DaniGodisnjegOdmora = MAX_DANA_GODISNJEG_ODMORA;
+            this.SlobodniDaniGodisnjegOdmora = MAX_DANA_GODISNJEG_ODMORA;
+            this.ZahtevaniiDaniGodisnjegOdmora = 0;
         }
 
         public Lekar(int id)

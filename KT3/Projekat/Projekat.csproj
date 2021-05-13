@@ -246,6 +246,12 @@
     <Compile Include="OdbijZahtevZaLek.xaml.cs">
       <DependentUpon>OdbijZahtevZaLek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OdobravanjeGodisnjegOdmora.xaml.cs">
+      <DependentUpon>OdobravanjeGodisnjegOdmora.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OdrediRadnoVreme.xaml.cs">
+      <DependentUpon>OdrediRadnoVreme.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OglasnaTabla.xaml.cs">
       <DependentUpon>OglasnaTabla.xaml</DependentUpon>
     </Compile>
@@ -269,6 +275,9 @@
     </Compile>
     <Compile Include="Pomoc\PocetnaStranaLekarPomoc.xaml.cs">
       <DependentUpon>PocetnaStranaLekarPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\PrikaziLekarePomoc.xaml.cs">
+      <DependentUpon>PrikaziLekarePomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\PrikaziPacijentaPomoc.xaml.cs">
       <DependentUpon>PrikaziPacijentaPomoc.xaml</DependentUpon>
@@ -674,6 +683,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OdobravanjeGodisnjegOdmora.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OdrediRadnoVreme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OglasnaTabla.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -703,6 +720,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\PocetnaStranaLekarPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\PrikaziLekarePomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
