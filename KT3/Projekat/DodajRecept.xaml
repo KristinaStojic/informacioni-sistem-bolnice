@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajRecept" Height="687" Width="460" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+        Title="DodajRecept" Height="687" Width="460" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Grid_KeyDown">
     <Grid Margin="0,0,4,-1">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -37,8 +37,10 @@
         <Label Content="Lekar" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>
         <Label Content="Datum propisivanja leka" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="30" Width="183" FontSize="16"/>
         <Label Content="Naziv leka" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>
+        <!--pretraga-->
+        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
-        <!--Dodaj binding-->
+        <!--lista lekova-->
         <ListView x:Name="nadjiLek" Grid.Column="1" Height="130" Margin="21,10,18,0" Grid.Row="7" VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single">
             <ListView.View>
                 <GridView>
@@ -49,7 +51,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="dani"  TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="kolicina"  TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name ="sati" HorizontalAlignment="Left" Height="24" Margin="17,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Grid.Column="2" Grid.Row="12"/>
+        <TextBox x:Name ="min" HorizontalAlignment="Left" Height="24" Margin="106,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Grid.Column="2" Grid.Row="12"/>
+
         <TextBox x:Name="nazivSifra" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" />
         <TextBox x:Name="lekar" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="18,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" IsEnabled="False"/>
         <TextBox x:Name="jmbg" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
@@ -61,11 +67,8 @@
         <Label Content="Koliko dana se koristi lek" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="10" VerticalAlignment="Top" Height="30" Width="183" FontSize="16"/>
         <Label Content="Koliko puta na dan" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="11" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>
         <Label Content="Početak terapije" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="12" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>
-        <TextBox x:Name="dani"  TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="kolicina"  TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name ="sati" HorizontalAlignment="Left" Height="24" Margin="17,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Grid.Column="2" Grid.Row="12"/>
+        
         <Label Content="h" HorizontalAlignment="Left" Margin="73,10,0,0" VerticalAlignment="Top" Width="22" Grid.Column="2" Grid.Row="12"/>
-        <TextBox x:Name ="min" HorizontalAlignment="Left" Height="24" Margin="106,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Grid.Column="2" Grid.Row="12"/>
         <Label Content="min" HorizontalAlignment="Left" Margin="156,10,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="0.318,0.615" Grid.Column="2" Grid.Row="12"/>
 
 

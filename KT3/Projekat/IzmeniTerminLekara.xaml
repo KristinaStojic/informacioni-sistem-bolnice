@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="IzmeniTerminLekara" Height="640" Width="460" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
-    <Grid Margin="0,0,4,-1" Background="#FF9AD8DE">
+    <Grid Margin="0,0,4,-1" Background="LightSkyBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="70"/>

@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Projekat.Pomoc
 {
     /// <summary>
-    /// Interaction logic for AnamnezaPomoc.xaml
+    /// Interaction logic for UputiPomoc.xaml
     /// </summary>
-    public partial class AnamnezaPomoc : Window
+    public partial class UputiPomoc : Window
     {
-        public AnamnezaPomoc()
+        public UputiPomoc()
         {
             InitializeComponent();
         }
@@ -28,12 +28,11 @@ namespace Projekat.Pomoc
             if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
                 Odustani_Click(sender, e);
-            }
+            } 
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
-
             this.Close();
         }
     }

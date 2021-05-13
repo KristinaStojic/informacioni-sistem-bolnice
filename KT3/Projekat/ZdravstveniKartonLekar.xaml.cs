@@ -355,5 +355,48 @@ namespace Projekat
                 Hyperlink_Click(sender, e);
             }
         }
+
+        private void recepti_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            {
+                Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                //Izvestaj
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Recepti_Pomoc(sender, e);
+            }
+        }
+
+        private void Recepti_Pomoc(object sender, RoutedEventArgs e)
+        {
+            ReceptiPomoc rp = new ReceptiPomoc();
+            rp.Show();
+        }
+        private void Uputi_Pomoc(object sender, RoutedEventArgs e)
+        {
+            UputiPomoc rp = new UputiPomoc();
+            rp.Show();
+        }
+
+        private void uputi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            {
+                Button_Click_6(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Detalji(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Uputi_Pomoc(sender, e);
+            }
+        }
     }
 }
