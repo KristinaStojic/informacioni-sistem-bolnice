@@ -2,6 +2,7 @@
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -34,17 +35,18 @@ namespace Projekat
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
-        private static List<Uput> DodajUputePacijenta()
+        private static ObservableCollection<Uput> DodajUputePacijenta()
         {
-            List<Uput> tempUputi = new List<Uput>();
+            ObservableCollection<Uput> uputiPacijenta = new ObservableCollection<Uput>();
             if (prijavljeniPacijent.Karton.Uputi.Count != 0)
             {
                 foreach (Uput uput in prijavljeniPacijent.Karton.Uputi)
                 {
-                    tempUputi.Add(uput);
+                    uputiPacijenta.Add(uput);
+                    
                 }
             }
-            return tempUputi;
+            return uputiPacijenta;
         }
 
         private List<LekarskiRecept> DodajLekarskeReceptePacijenta()

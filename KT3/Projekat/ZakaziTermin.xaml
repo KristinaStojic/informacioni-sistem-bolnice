@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Zakazi termin" Height="845" Width="800" Background="{DynamicResource BackgroundColor}">
+        Title="Zakazi termin" Height="880" Width="800" Background="{DynamicResource BackgroundColor}">
     <Page.Resources>
         <Style TargetType="{x:Type DatePicker}" x:Key="datePickerGeneralStyle" BasedOn="{StaticResource {x:Type DatePicker}}">
             <Setter Property="TextElement.FontSize" Value="24" />
@@ -33,9 +33,15 @@
     </Page.Resources>
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Width="800">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3">
             <StackPanel >
                 <StackPanel Height="40" Name="zaglavlje" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
                     <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
@@ -84,39 +90,50 @@
             </TextBlock>
         </StackPanel>
 
-        <GroupBox Header="4. Izabrani lekar" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara pritisnite na dugme Preference" HorizontalAlignment="Left" Height="98" Margin="265,487,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
-            <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" Text ="{Binding}" HorizontalAlignment="Left" Height="30" Margin="45,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        </GroupBox>
-        <GroupBox Header="*2. Izaberite datum" HorizontalAlignment="Left" Height="215" Margin="265,178,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.517,0.878">
-            <Calendar x:Name="datum" Style="{DynamicResource CalendarStyle}" RenderTransformOrigin="-0.356,0.389" SelectedDatesChanged="datum_SelectedDatesChanged"
-                      Margin="50,10,0,12" FontSize="20" FontStyle="Italic" HorizontalAlignment="Left" Width="185"/>
-        </GroupBox>
-        <GroupBox Header=" 1. Tip termina" HorizontalAlignment="Left" Height="89" Margin="265,84,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
-            <ComboBox HorizontalAlignment="Center" Name="combo" IsEnabled="False" VerticalAlignment="Center" Width="200" Margin="45,16,43,23" Height="27" SelectionChanged="combo_SelectionChanged" RenderTransformOrigin="0.47,0.574" >
-                <!--" ComboBoxItem>Operacija</-->
-                <ComboBoxItem IsSelected="True">Pregled</ComboBoxItem>
-            </ComboBox>
-        </GroupBox>
-        <GroupBox Header="*3 .Izaberite vreme termina" Height="89" Margin="265,393,235,0" VerticalAlignment="Top" RenderTransformOrigin="0.858,0.494">
-            <ComboBox HorizontalAlignment="Center" x:Name="vpp" Height="27" Width="200" VerticalAlignment="Center" Margin="43,21,45,18" SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.724,0.565">
-            </ComboBox>
-        </GroupBox>
-        <Button Content="Potvrdi" ToolTip="Potvrdite zakazivanje termina bez elektronskog placanja"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="360,760,0,0" Height="30" Click="Button_Click_1" 
-                Style="{DynamicResource ButtonStyle2}"/>
-        <TextBlock HorizontalAlignment="Center" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara ili da Vam sistem predlozi 3 slobodna termina"
-                   VerticalAlignment="Bottom"  FontSize="15" Foreground="#004a7c" Height="30" Margin="371,0,359,179">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="300" Grid.Column="1" Grid.Row="1" Margin="110,0,85,0">
+            <GroupBox Header=" *1. Tip pregleda" HorizontalAlignment="Left" Height="90" Margin="0,20, 0, 0"
+                      VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
+                <ComboBox HorizontalAlignment="Center" Name="combo" VerticalAlignment="Center"
+                          Width="200" Margin="0,5,0,5" Height="27" SelectionChanged="combo_SelectionChanged" RenderTransformOrigin="0.47,0.574" >
+                    <ComboBoxItem IsSelected="True">Pregled</ComboBoxItem>
+                    <ComboBoxItem >Specijalistički pregled</ComboBoxItem>
+                </ComboBox>
+            </GroupBox>
+            <GroupBox Header="*1.1. Izaberite uput" Margin="0, 10, 0, 0" Height="90" ToolTip="Ukoliko zakazujete specijalisticki pregled, izaberite uput">
+                <ComboBox Name="comboUputi" Height="27" Width="200" HorizontalAlignment="Center" Margin="0, 5, 0, 5"
+                          SelectionChanged="comboUputi_SelectionChanged" ItemsSource="{Binding uputiPacijenta}" IsEnabled="False" ></ComboBox>
+            </GroupBox>
+            <GroupBox Header="*2. Izaberite datum" HorizontalAlignment="Left" Height="220"  VerticalAlignment="Top" Width="300"
+                      RenderTransformOrigin="0.517,0.878" Margin="0,10, 0,0 ">
+                <Calendar x:Name="datum" Style="{DynamicResource CalendarStyle}" SelectedDatesChanged="datum_SelectedDatesChanged"
+                      Margin="56,10,0,12" FontSize="20" FontStyle="Italic" HorizontalAlignment="Left" Width="185"/>
+            </GroupBox>
+
+            <GroupBox Header="*3 .Izaberite vreme termina" VerticalAlignment="Top" Height="90" Margin="0, 10, 0, 0">
+                <ComboBox HorizontalAlignment="Center" x:Name="vpp" Height="27" Width="200" VerticalAlignment="Center" 
+                          SelectionChanged="vpp_SelectionChanged" RenderTransformOrigin="0.724,0.565">
+                </ComboBox>
+            </GroupBox>
+            <GroupBox Header="4. Izabrani lekar" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara pritisnite na dugme Preference" Margin="0, 10, 0, 10"
+                      HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
+                <TextBlock x:Name="imePrz" Background="White" IsEnabled="False" Text ="{Binding}" HorizontalAlignment="Left" Height="30" Margin="45,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+            </GroupBox>
+            
+            <TextBlock HorizontalAlignment="Center" ToolTip="Ukoliko zelite da zakazete termin kod drugog lekara ili da Vam sistem predlozi 3 slobodna termina"
+                   VerticalAlignment="Bottom"  FontSize="15" Foreground="#004a7c" Height="30">
             <Hyperlink Name="preferenca" Click="preferenca_Click" ToolTip="Preporuceni termini i izbor drugog lekara">
                 <Run Text="Preference"/>
             </Hyperlink>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="338,0,326,140" FontSize="15">
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15">
             <Hyperlink Name="elektronskoPlacanje" Click="ElektronskoPlacanje" ToolTip="Elektornsko placanje">
             <Run Text="Elektronsko placanje"/>
         </Hyperlink>
-        </TextBlock>
-
-
+            </TextBlock>
+            <Button Content="Potvrdi" ToolTip="Potvrdite zakazivanje termina bez elektronskog placanja" HorizontalAlignment="Center"
+                 VerticalAlignment="Top" Width="100"  Height="30" Click="Button_Click_1" Margin="0, 30, 0, 20"
+                Style="{DynamicResource ButtonStyle2}"/>
+        </StackPanel>
 
     </Grid>
 </Page>

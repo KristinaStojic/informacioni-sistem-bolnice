@@ -284,8 +284,22 @@ namespace Projekat.Model
             }
         }
 
+        public static List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
+        {
+            List<Uput> specijalistickiUputiPacijenta = new List<Uput>();
+            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijenta);
+            foreach(Uput uput in pacijent.Karton.Uputi)
+            {
+                // TODO: moze i labr upute
+                if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+                {
+                    specijalistickiUputiPacijenta.Add(uput);
+                }
+            }
+            return specijalistickiUputiPacijenta;
+        }
 
-       
+
 
 
     }
