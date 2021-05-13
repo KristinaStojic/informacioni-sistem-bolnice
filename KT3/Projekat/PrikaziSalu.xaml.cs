@@ -22,7 +22,7 @@ namespace Projekat
             get;
             set;
         }
-        
+
         public PrikaziSalu()
         {
             InitializeComponent();
@@ -33,11 +33,11 @@ namespace Projekat
         private void dodajSale()
         {
             Sale = new ObservableCollection<Sala>();
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala sala in SaleMenadzer.sale)
             {
-                if (!s.Namjena.Equals("Skladiste"))
+                if (!sala.Namjena.Equals("Skladiste"))
                 {
-                    Sale.Add(s);
+                    Sale.Add(sala);
                 }
             }
         }

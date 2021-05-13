@@ -206,6 +206,9 @@
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
     <Compile Include="Model\ZdravstveniKartonMenadzer.cs" />
+    <Compile Include="NovaSala.xaml.cs">
+      <DependentUpon>NovaSala.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,9 @@
     </Compile>
     <Compile Include="PocetnaStrana.xaml.cs">
       <DependentUpon>PocetnaStrana.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PodjelaSale.xaml.cs">
+      <DependentUpon>PodjelaSale.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\AnamnezaPomoc.xaml.cs">
       <DependentUpon>AnamnezaPomoc.xaml</DependentUpon>
@@ -385,6 +391,9 @@
     </Compile>
     <Compile Include="SlanjeStaticke.xaml.cs">
       <DependentUpon>SlanjeStaticke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpajanjeSala.xaml.cs">
+      <DependentUpon>SpajanjeSala.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpisakZahtevaZaLekove.xaml.cs">
       <DependentUpon>SpisakZahtevaZaLekove.xaml</DependentUpon>
@@ -618,6 +627,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NovaSala.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObavestenjaLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -677,6 +690,10 @@
     <Page Include="PocetnaStrana.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PodjelaSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\AnamnezaPomoc.xaml">
       <SubType>Designer</SubType>
@@ -863,6 +880,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SlanjeStaticke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpajanjeSala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

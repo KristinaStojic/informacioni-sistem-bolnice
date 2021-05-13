@@ -1,0 +1,48 @@
+﻿<Window x:Class="Projekat.PodjelaSale"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="PodjelaSale" Height="550" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="staraSalaTekst" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" x:Name="novaSalaTekst" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <DataGrid x:Name="dataGridStara" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding OpremaStaraSala}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="290" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="291">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv opreme                     " Binding="{Binding NazivOpreme}"/>
+                <DataGridTextColumn Header="Kolicina                         " Binding="{Binding Kolicina}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="dataGridNova" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OpremaNovaSala}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="290" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="291">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv opreme                     " Binding="{Binding NazivOpreme}"/>
+
+                <DataGridTemplateColumn Width="130">
+                    <DataGridTemplateColumn.Header>Kolicina</DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox x:Name="kolicina" TextChanged="TextBox_TextChanged"></TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Column="0" Grid.Row="2" Width="190" Height="55" Background="CadetBlue" Margin="120, 0, 0, 0" Click="Potvrdi_Click" Name="Potvrdi">Potvrdi</Button>
+        <Button Grid.Column="1" Grid.Row="2" Width="190" Height="55" Background="CadetBlue" Margin="10, 0, 120, 0" Click="Odustani_Click">Odustani</Button>
+    </Grid>
+</Window>
