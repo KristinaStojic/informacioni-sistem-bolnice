@@ -227,6 +227,9 @@
     <Compile Include="ObrisiSastojakLekar.xaml.cs">
       <DependentUpon>ObrisiSastojakLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ObrisiTerminLekar.xaml.cs">
+      <DependentUpon>ObrisiTerminLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObrisiZamenskiLekLekar.xaml.cs">
       <DependentUpon>ObrisiZamenskiLekLekar.xaml</DependentUpon>
     </Compile>
@@ -269,6 +272,9 @@
     <Compile Include="Pomoc\PrikazTerminaLekarPomoc.xaml.cs">
       <DependentUpon>PrikazTerminaLekarPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\ReceptiPomoc.xaml.cs">
+      <DependentUpon>ReceptiPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\SalePomoc.xaml.cs">
       <DependentUpon>SalePomoc.xaml</DependentUpon>
     </Compile>
@@ -280,6 +286,9 @@
     </Compile>
     <Compile Include="Pomoc\SkladistePomoc.xaml.cs">
       <DependentUpon>SkladistePomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\UputiPomoc.xaml.cs">
+      <DependentUpon>UputiPomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\ZahtjeviPomoc.xaml.cs">
       <DependentUpon>ZahtjeviPomoc.xaml</DependentUpon>
@@ -637,6 +646,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ObrisiTerminLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObrisiZamenskiLekLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -693,6 +706,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\ReceptiPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\SalePomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -706,6 +723,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\SkladistePomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\UputiPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

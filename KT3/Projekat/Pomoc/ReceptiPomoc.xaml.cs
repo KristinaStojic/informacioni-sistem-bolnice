@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Projekat.Pomoc
 {
     /// <summary>
-    /// Interaction logic for AnamnezaPomoc.xaml
+    /// Interaction logic for ReceptiPomoc.xaml
     /// </summary>
-    public partial class AnamnezaPomoc : Window
+    public partial class ReceptiPomoc : Window
     {
-        public AnamnezaPomoc()
+        public ReceptiPomoc()
         {
             InitializeComponent();
         }
@@ -33,7 +33,6 @@ namespace Projekat.Pomoc
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
-
             this.Close();
         }
     }

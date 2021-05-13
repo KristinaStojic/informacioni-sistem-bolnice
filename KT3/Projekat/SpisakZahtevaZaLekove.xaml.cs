@@ -151,7 +151,7 @@ namespace Projekat
             if (zahtevi.IsSelected == true)
             {
 
-                if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+                if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
                 {
                     Button_Obradi(sender, e);
                 }
@@ -159,11 +159,10 @@ namespace Projekat
                 {
                     Button_Click_1(sender, e);
                 }
-                /*else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+                else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
                 {
-                    dataGridZahtevi.SelectedIndex = 0;
-                    fokus na tabelu
-                }*/
+                    Button_Obrisi(sender, e);
+                }
             }
         }
 

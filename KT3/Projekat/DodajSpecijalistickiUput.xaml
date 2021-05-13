@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajSpecijalistickiUput" Height="700" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+        Title="DodajSpecijalistickiUput" Height="700" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
     <Grid>
         <StackPanel>
 
@@ -50,6 +50,8 @@
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="lekar"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.4,19,43.2" Grid.Row="6" IsEnabled="False" Grid.RowSpan="2" x:Name="specijalista"/>
                         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,0" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Height="35" Width="192" IsEnabled="False" Name="datum"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="7" IsEnabled="True" Grid.RowSpan="2" x:Name="napomena"/>
+
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,9.2,19,0.6" Grid.Row="8" IsEnabled="True" x:Name="pretraga" TextChanged="pretraga_TextChanged">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -89,7 +91,6 @@
                         <Button Content="Sačuvaj" Grid.Column="1" Margin="89.4,31.6,50,0" Grid.Row="10" VerticalAlignment="Top" Height="29" Background="#FF6895C5" Click="Potvrdi_Click"/>
                         <Button Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,27.6,0,0" Grid.Row="10" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" Click="Odustani_Click"/>
                         <Label Content="Napomena za pregled" Grid.Column="1" Margin="1.4,10,9,43.6" Grid.Row="7" FontSize="16" Grid.RowSpan="2"/>
-                        <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="7" IsEnabled="True" Grid.RowSpan="2" x:Name="napomena"/>
                     </Grid>
                 </TabItem>
 

@@ -295,11 +295,15 @@ namespace Projekat
             }
             else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) //Pomoc
             {
-                Hyperlink_Click(sender, e);
+                //Hyperlink_Click(sender, e);
             }
             else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
             {
                 alergeni.IsSelected = true;
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
+            {
+                this.Close();
             }
         }
 
@@ -319,12 +323,80 @@ namespace Projekat
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
-                Button_Click_2(sender, e);
+                //Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                Anamneza_Click(sender, e);
             }
         }
         private void Anamneza_Click(object sender, RoutedEventArgs e)
         {
-            
+            AnamnezaPomoc ap = new AnamnezaPomoc();
+            ap.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
+            {
+                this.Close();
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                //Hyperlink_Click(sender, e);
+            }
+        }
+
+        private void podaci_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl)) //Pomoc
+            {
+                Hyperlink_Click(sender, e);
+            }
+        }
+
+        private void recepti_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            {
+                Button_Click_3(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                //Izvestaj
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Recepti_Pomoc(sender, e);
+            }
+        }
+
+        private void Recepti_Pomoc(object sender, RoutedEventArgs e)
+        {
+            ReceptiPomoc rp = new ReceptiPomoc();
+            rp.Show();
+        }
+        private void Uputi_Pomoc(object sender, RoutedEventArgs e)
+        {
+            UputiPomoc rp = new UputiPomoc();
+            rp.Show();
+        }
+
+        private void uputi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            {
+                Button_Click_6(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Detalji(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Uputi_Pomoc(sender, e);
+            }
         }
     }
 }

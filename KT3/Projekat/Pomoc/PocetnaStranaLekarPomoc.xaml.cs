@@ -27,5 +27,13 @@ namespace Projekat.Pomoc
         {
             this.Close();
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
+            {
+                Odustani_Click(sender, e);
+            }
+        }
     }
 }

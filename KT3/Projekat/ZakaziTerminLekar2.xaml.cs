@@ -53,6 +53,8 @@ namespace Projekat
             popuniTabelePodacima();
             dodajSveSlobodneTermine();
             popuniSale();
+            listaPacijenata.Visibility = Visibility.Visible;
+            listaLekara.Visibility = Visibility.Hidden;
 
         }
         private void dodajSveSlobodneTermine()
@@ -632,80 +634,87 @@ namespace Projekat
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
-            string vp = vpp.Text;
-            string vk = vkk.Text;
-
-            string[] pocetak = vp.Split(':');
-            string pocetakSati = pocetak[0];
-            string pocetakMinuti = pocetak[1];
-
-            string[] kraj = vk.Split(':');
-            string krajSati = kraj[0];
-            string krajMinuti = kraj[1];
-
-            // datum
-            DateTime? selectedDate = datum.SelectedDate;
-            if (selectedDate.HasValue)
+            try
             {
-                dat = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            }
+                string vp = vpp.Text;
+                string vk = vkk.Text;
 
-            // tip termina
-            TipTermina tp;
-            if (tipPregleda.Text.Equals("Pregled"))
-            {
-                tp = TipTermina.Pregled;
-            }
-            else
-            {
-                tp = TipTermina.Operacija;
-            }
+                string[] pocetak = vp.Split(':');
+                string pocetakSati = pocetak[0];
+                string pocetakMinuti = pocetak[1];
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
-            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
-            Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
-            bool hitnaOperacija = false;
-            if(this.hitno.IsChecked == true)
-            {
-                hitnaOperacija = true;
-            }
+                string[] kraj = vk.Split(':');
+                string krajSati = kraj[0];
+                string krajMinuti = kraj[1];
 
-            t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent, hitnaOperacija);
-
-            
-            if (Sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
-            {
-                TerminMenadzer.ZakaziTerminLekar(t);
-                ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
-                Sala.zauzetiTermini.Add(z);
-
-                // za svaki termin koji je zakazan u istoj prostoriji s, dodati to novo zauzece u zauzeca te prostorije
-                foreach (Termin t1 in TerminMenadzer.termini)
+                // datum
+                DateTime? selectedDate = datum.SelectedDate;
+                if (selectedDate.HasValue)
                 {
-                    if (t1.Prostorija.Id == Sala.Id)
-                    {
-                        t1.Prostorija = Sala;
-                    }
+                    dat = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 }
 
-                TerminMenadzer.sacuvajIzmene();
-                SaleMenadzer.sacuvajIzmjene();
+                // tip termina
+                TipTermina tp;
+                if (tipPregleda.Text.Equals("Pregled"))
+                {
+                    tp = TipTermina.Pregled;
+                }
+                else
+                {
+                    tp = TipTermina.Operacija;
+                }
 
-                this.Close();
+                Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+                Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
+                Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+                bool hitnaOperacija = false;
+                if (this.hitno.IsChecked == true)
+                {
+                    hitnaOperacija = true;
+                }
+
+                t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent, hitnaOperacija);
+
+
+                if (Sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
+                {
+                    TerminMenadzer.ZakaziTerminLekar(t);
+                    ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
+                    Sala.zauzetiTermini.Add(z);
+
+                    // za svaki termin koji je zakazan u istoj prostoriji s, dodati to novo zauzece u zauzeca te prostorije
+                    foreach (Termin t1 in TerminMenadzer.termini)
+                    {
+                        if (t1.Prostorija.Id == Sala.Id)
+                        {
+                            t1.Prostorija = Sala;
+                        }
+                    }
+
+                    TerminMenadzer.sacuvajIzmene();
+                    SaleMenadzer.sacuvajIzmjene();
+
+                    this.Close();
+                }
+                else    // ako ne postoje zauzeti termini
+                {
+                    TerminMenadzer.ZakaziTerminLekar(t);
+                    ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
+                    Sala.zauzetiTermini.Add(z);
+
+                    TerminMenadzer.sacuvajIzmene();
+                    SaleMenadzer.sacuvajIzmjene();
+
+                    this.Close();
+                }
             }
-            else    // ako ne postoje zauzeti termini
+
+            catch
             {
-                TerminMenadzer.ZakaziTerminLekar(t);
-                ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
-                Sala.zauzetiTermini.Add(z);
+                MessageBox.Show("Unesite sve podatke!");
 
-                TerminMenadzer.sacuvajIzmene();
-                SaleMenadzer.sacuvajIzmjene();
-
-                this.Close();
             }
-            
             
         }
 
@@ -717,7 +726,9 @@ namespace Projekat
 
         private void vkk_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            nadjiDozvoljeneTermineKraja();
+            
+                nadjiDozvoljeneTermineKraja();
+            
         }
 
         private void vpp_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -728,98 +739,106 @@ namespace Projekat
 
         private void nadjiDozvoljeneTermineKraja()
         {
-            string[] pocetak = PocetnoVreme.Split(':');
-            string pocetakSati = pocetak[0];
-            string pocetakMinuti = pocetak[1];
-            /*Izbaci neodgovarajuce termine za kraj*/
-            foreach (string s in pomocnaSviSlobodniTerminiKraj.ToList())
-            {
-                string[] kraj = s.Split(':');
-                string krajTerminaSati = kraj[0];
-                string krajTerminaMinuti = kraj[1];
-               
-                if (Convert.ToInt32(pocetakSati) >= Convert.ToInt32(krajTerminaSati) && Convert.ToInt32(pocetakMinuti) == 30)
+            /*try
+            {*/
+                string[] pocetak = PocetnoVreme.Split(':');
+                string pocetakSati = pocetak[0];
+                string pocetakMinuti = pocetak[1];
+                /*Izbaci neodgovarajuce termine za kraj*/
+                foreach (string s in pomocnaSviSlobodniTerminiKraj.ToList())
                 {
-                    sviSlobodniTerminiKraj.Remove(s);
-                }
-                else if (Convert.ToInt32(pocetakSati) > Convert.ToInt32(krajTerminaSati))
-                {
-                    sviSlobodniTerminiKraj.Remove(s);
-                }
-            }
-
-           // izbaciKrajTermina();
-
-            sviSlobodniTerminiKraj.Remove(vpp.Text);
-            vkk.ItemsSource = sviSlobodniTerminiKraj;
-
-            //DORADITI-----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-            foreach (string s in pomocnaSviSlobodniTerminiKraj)
-            {
-
-                foreach (ZauzeceSale zauzece in Sala.zauzetiTermini)
-                {
-                    string[] pocetakZauzeca = zauzece.pocetakTermina.Split(':');
-                    string pocetakSatiZauzeca = pocetakZauzeca[0];
-                    string pocetakMinutiZauzeca = pocetakZauzeca[1];
-
-                    string[] krajZauzeca = zauzece.krajTermina.Split(':');
-                    string krajSatiZauzeca = krajZauzeca[0];
-                    string krajMinutiZauzeca = krajZauzeca[1];
-
-
                     string[] kraj = s.Split(':');
                     string krajTerminaSati = kraj[0];
                     string krajTerminaMinuti = kraj[1];
 
-                    if (Convert.ToInt32(pocetakSatiZauzeca) > Convert.ToInt32(pocetakSati) && dat == zauzece.datumPocetkaTermina) //dodati i ako je isto
+                    if (Convert.ToInt32(pocetakSati) >= Convert.ToInt32(krajTerminaSati) && Convert.ToInt32(pocetakMinuti) == 30)
                     {
-                        if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) <= Convert.ToInt32(krajSatiZauzeca))))
-                        {
-                            sviSlobodniTerminiKraj.Add(s);
-                            sviSlobodniTerminiKraj.Remove(vpp.Text);
-
-                        }
+                        sviSlobodniTerminiKraj.Remove(s);
                     }
-                    /*else if (Convert.ToInt32(pocetakSatiZauzeca) == Convert.ToInt32(pocetakSati) && dat == zauzece.datumPocetkaTermina && Convert.ToInt32(pocetakMinutiZauzeca) > Convert.ToInt32(pocetakMinuti)) //dodati i ako je isto
+                    else if (Convert.ToInt32(pocetakSati) > Convert.ToInt32(krajTerminaSati))
                     {
-                        if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) <= Convert.ToInt32(krajSatiZauzeca))))
-                        {
-                            sviSlobodniTerminiKraj.Add(s);
-                            sviSlobodniTerminiKraj.Remove(vpp.Text);
-
-                        }
-                    }*/
-                    else if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) < Convert.ToInt32(krajTerminaSati))))
-                    {
-                        sviSlobodniTerminiKraj.Add(s);
-                        sviSlobodniTerminiKraj.Remove(vpp.Text);
-
-                    }
-                    else if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) == Convert.ToInt32(krajTerminaSati)) && ((Convert.ToInt32(pocetakMinuti) < Convert.ToInt32(krajTerminaMinuti)))))
-                    {
-                        sviSlobodniTerminiKraj.Add(s);
-                        sviSlobodniTerminiKraj.Remove(vpp.Text);
-
+                        sviSlobodniTerminiKraj.Remove(s);
                     }
                 }
 
-            }
-            sviSlobodniTerminiKraj.Add(pocetakSati + ":" + "30");
-            foreach (string s in pomocnaSviSlobodniTerminiKraj.ToList())
-            {
-                string[] kraj = s.Split(':');
-                string krajTerminaSati = kraj[0];
-                string krajTerminaMinuti = kraj[1];
-                if (sviSlobodniTerminiKraj.Contains(s) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(krajTerminaSati)) //provjeri kad je isti sat a razliciti minuti
+                // izbaciKrajTermina();
+
+                sviSlobodniTerminiKraj.Remove(vpp.Text);
+                vkk.ItemsSource = sviSlobodniTerminiKraj;
+
+                //DORADITI-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                foreach (string s in pomocnaSviSlobodniTerminiKraj)
                 {
-                    sviSlobodniTerminiKraj.Remove(s);
+
+                    foreach (ZauzeceSale zauzece in Sala.zauzetiTermini)
+                    {
+                        string[] pocetakZauzeca = zauzece.pocetakTermina.Split(':');
+                        string pocetakSatiZauzeca = pocetakZauzeca[0];
+                        string pocetakMinutiZauzeca = pocetakZauzeca[1];
+
+                        string[] krajZauzeca = zauzece.krajTermina.Split(':');
+                        string krajSatiZauzeca = krajZauzeca[0];
+                        string krajMinutiZauzeca = krajZauzeca[1];
+
+
+                        string[] kraj = s.Split(':');
+                        string krajTerminaSati = kraj[0];
+                        string krajTerminaMinuti = kraj[1];
+
+                        if (Convert.ToInt32(pocetakSatiZauzeca) > Convert.ToInt32(pocetakSati) && dat == zauzece.datumPocetkaTermina) //dodati i ako je isto
+                        {
+                            if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) <= Convert.ToInt32(krajSatiZauzeca))))
+                            {
+                                sviSlobodniTerminiKraj.Add(s);
+                                sviSlobodniTerminiKraj.Remove(vpp.Text);
+
+                            }
+                        }
+                        /*else if (Convert.ToInt32(pocetakSatiZauzeca) == Convert.ToInt32(pocetakSati) && dat == zauzece.datumPocetkaTermina && Convert.ToInt32(pocetakMinutiZauzeca) > Convert.ToInt32(pocetakMinuti)) //dodati i ako je isto
+                        {
+                            if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) <= Convert.ToInt32(krajSatiZauzeca))))
+                            {
+                                sviSlobodniTerminiKraj.Add(s);
+                                sviSlobodniTerminiKraj.Remove(vpp.Text);
+
+                            }
+                        }*/
+                        else if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) < Convert.ToInt32(krajTerminaSati))))
+                        {
+                            sviSlobodniTerminiKraj.Add(s);
+                            sviSlobodniTerminiKraj.Remove(vpp.Text);
+
+                        }
+                        else if (!sviSlobodniTerminiKraj.Contains(s) && ((Convert.ToInt32(pocetakSati) == Convert.ToInt32(krajTerminaSati)) && ((Convert.ToInt32(pocetakMinuti) < Convert.ToInt32(krajTerminaMinuti)))))
+                        {
+                            sviSlobodniTerminiKraj.Add(s);
+                            sviSlobodniTerminiKraj.Remove(vpp.Text);
+
+                        }
+                    }
+
                 }
-            }
+                sviSlobodniTerminiKraj.Add(pocetakSati + ":" + "30");
+                foreach (string s in pomocnaSviSlobodniTerminiKraj.ToList())
+                {
+                    string[] kraj = s.Split(':');
+                    string krajTerminaSati = kraj[0];
+                    string krajTerminaMinuti = kraj[1];
+                    if (sviSlobodniTerminiKraj.Contains(s) && Convert.ToInt32(pocetakSati) >= Convert.ToInt32(krajTerminaSati)) //provjeri kad je isti sat a razliciti minuti
+                    {
+                        sviSlobodniTerminiKraj.Remove(s);
+                    }
+                }
 
 
-            izbaciKrajTermina();
+                izbaciKrajTermina();
+            //}
+           /* catch
+            {
+                MessageBox.Show("Izaberite vreme pocetka");
+            }*/
+            
         }
 
         private void izbaciKrajTermina()
@@ -881,6 +900,18 @@ namespace Projekat
         {
             //nadjiDozvoljeneTermineKraja();
 
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_2(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
         }
     }
 }
