@@ -1,0 +1,28 @@
+﻿<Window x:Class="Projekat.NovaSala"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Nova sala" Height="390" Width="500" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Unesite naziv i broj nove sale: </TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Naziv nove sale:</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Broj nove sale:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Height="35" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Name="brojSale" TextChanged="brojSale_TextChanged"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Height="35" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Name="namjenaSale" TextChanged="namjenaSale_TextChanged"></TextBox>
+        <Button Grid.Row="3" Grid.Column="0" Background="CadetBlue" Width="130" Height="50" Margin="90, 0, 0, 0" Click="Potvrdi_Click" Name="Potvrdi">Potvrdi</Button>
+        <Button Grid.Row="3" Grid.Column="1" Background="CadetBlue" Width="130" Height="50" Margin="10, 0, 100, 0" Click="Odustani_Click">Odustani</Button>
+    </Grid>
+</Window>

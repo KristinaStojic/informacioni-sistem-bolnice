@@ -19,6 +19,10 @@ namespace Projekat
         public ObservableCollection<string> terminiKraj { get; set; }
         
         public Sala izabranaSala;
+        public static Sala novaSala;
+        public static Sala salaZaSpajanje;
+        public static bool spajanje;
+        public static List<Oprema> opremaZaPrebacivanje;
         
         public Renoviranje(Sala izabranaSala)
         {
@@ -213,10 +217,106 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            ZauzeceSale zauzeceSale = napraviZauzece();
-            zauzmiSalu(zauzeceSale);
-            SaleMenadzer.sacuvajIzmjene();
+            if (salaZaSpajanje != null)
+            {
+                spojiSale();
+                ZauzeceSale zauzeceSale = napraviZauzece();
+                zauzmiSalu(zauzeceSale);
+                zauzmiSaluZaSpajanje(zauzeceSale);
+                SaleMenadzer.sacuvajIzmjene();
+            }
+            else if (opremaZaPrebacivanje != null)
+            {
+                ZauzeceSale zauzeceSale = napraviZauzece();
+                prebaciOpremuIzStareSale();
+                napraviNovuSalu();
+                zauzmiSalu(zauzeceSale);
+                zauzmiNovuSalu(zauzeceSale);
+                SaleMenadzer.sacuvajIzmjene();
+            }
+            else
+            {
+                ZauzeceSale zauzeceSale = napraviZauzece();
+                zauzmiSalu(zauzeceSale);
+                SaleMenadzer.sacuvajIzmjene();
+            }
             this.Close();
+        }
+
+        private void prebaciOpremuIzStareSale()
+        {
+            foreach (Oprema oprema in izabranaSala.Oprema.ToArray())
+            {
+                prebaciOpremu(oprema);
+            }
+        }
+
+        private void prebaciOpremu(Oprema oprema)
+        {
+            foreach (Oprema opremaPrebacivanje in opremaZaPrebacivanje)
+            {
+                if (opremaPrebacivanje.IdOpreme == oprema.IdOpreme)
+                {
+                    ukloniOpremuIzSale(oprema, opremaPrebacivanje);
+                }
+            }
+        }
+
+        private void ukloniOpremuIzSale(Oprema oprema, Oprema opremaPrebacivanje)
+        {
+            oprema.Kolicina -= opremaPrebacivanje.Kolicina;
+            if (oprema.Kolicina == 0)
+            {
+                izabranaSala.Oprema.Remove(oprema);
+            }
+        }
+
+        private void napraviNovuSalu()
+        {
+            novaSala.Oprema = opremaZaPrebacivanje;
+            SaleMenadzer.DodajSalu(novaSala);
+        }
+
+        private void spojiSale()
+        {
+            dodajOpremuIzSaleZaDodavanje();
+            SaleMenadzer.ObrisiSalu(salaZaSpajanje);
+            SaleMenadzer.sacuvajIzmjene();
+        }
+
+        private void dodajOpremuIzSaleZaDodavanje()
+        {
+            foreach(Sala sala in SaleMenadzer.sale)
+            {
+                if(sala.Id == izabranaSala.Id)
+                {
+                   dodajOpremu(sala);
+                }
+            }
+        }
+
+        private void dodajOpremu(Sala sala)
+        {
+            foreach(Oprema oprema in salaZaSpajanje.Oprema)
+            {
+                if(!postojiOprema(sala, oprema))
+                {
+                    sala.Oprema.Add(oprema);
+                }
+            }
+        }
+
+        private bool postojiOprema(Sala sala, Oprema oprema)
+        {
+            foreach (Oprema opremaSale in sala.Oprema)
+            {
+                if (opremaSale.IdOpreme == oprema.IdOpreme)
+                {
+                    opremaSale.Kolicina += oprema.Kolicina;
+                    return true;
+                }
+            }
+            return false;
         }
 
         private ZauzeceSale napraviZauzece()
@@ -231,6 +331,28 @@ namespace Projekat
             foreach (Sala sala in SaleMenadzer.sale)
             {
                 if (sala.Id == izabranaSala.Id)
+                {
+                    sala.zauzetiTermini.Add(zauzeceSale);
+                }
+            }
+        }
+
+        private void zauzmiSaluZaSpajanje(ZauzeceSale zauzeceSale)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == salaZaSpajanje.Id)
+                {
+                    sala.zauzetiTermini.Add(zauzeceSale);
+                }
+            }
+        }
+
+        private void zauzmiNovuSalu(ZauzeceSale zauzeceSale)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == novaSala.Id)
                 {
                     sala.zauzetiTermini.Add(zauzeceSale);
                 }
@@ -265,6 +387,34 @@ namespace Projekat
             }else
             {
                 this.Potvrdi.IsEnabled = false;
+            }
+        }
+
+        private void Spoji_Click(object sender, RoutedEventArgs e)
+        {
+            SpajanjeSala spajanjeSala = new SpajanjeSala(izabranaSala);
+            spajanjeSala.Show();
+        }
+
+        private void Podijeli_Click(object sender, RoutedEventArgs e)
+        {
+            NovaSala novaSala = new NovaSala(izabranaSala);
+            novaSala.Show();
+        }
+
+        private void Window_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (salaZaSpajanje != null)
+            {
+                this.tekst.Text = "Spajanje sa salom: " + salaZaSpajanje.Namjena + ", br. " + salaZaSpajanje.brojSale;
+            }
+            else if (opremaZaPrebacivanje != null)
+            {
+                this.tekst.Text = "Podjela sale na 2";
+            }
+            else
+            {
+                this.tekst.Text = "";
             }
         }
     }
