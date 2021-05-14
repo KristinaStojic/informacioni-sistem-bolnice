@@ -27,10 +27,11 @@ namespace Projekat
             InitializeComponent();
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
-            PopuniPodatkePacijenta();
+            PopuniPodatkePacijentaZaSpecijalistickiUput();
+            PopuniPodatkePacijentaZaBolnickoLecenje();
            
         }
-        private void PopuniPodatkePacijenta()
+        private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
             this.listaLekara.ItemsSource = MainWindow.lekari;
             this.ime.Text = pacijent.ImePacijenta;
@@ -43,6 +44,14 @@ namespace Projekat
             view.Filter = UserFilter;
         }
 
+        private void PopuniPodatkePacijentaZaBolnickoLecenje()
+        {
+            this.imePacijenta.Text = pacijent.ImePacijenta;
+            this.prezimePacijenta.Text = pacijent.PrezimePacijenta;
+            this.jmbgPacijenta.Text = pacijent.Jmbg.ToString();
+            this.Lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+
+        }
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (listaLekara.SelectedItems.Count > 0)
