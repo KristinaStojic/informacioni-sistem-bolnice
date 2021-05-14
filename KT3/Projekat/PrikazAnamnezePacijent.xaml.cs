@@ -20,6 +20,7 @@ namespace Projekat
 
         public Anamneza anamneza;
         public static int idPacijent;
+        private static int brojacBeleski;
         public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
             InitializeComponent();
@@ -33,6 +34,10 @@ namespace Projekat
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
             this.beleska.Text = anamneza.Beleska;
+            if (!anamneza.Beleska.Equals(""))
+            {
+                this.DodajBelesku.Content = "Izmeni";
+            }
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
@@ -41,12 +46,6 @@ namespace Projekat
             this.sala.Text = termin.Prostorija.brojSale.ToString();
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // nazad
-            //this.Close();
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -120,6 +119,7 @@ namespace Projekat
 
         private void DodajBelesku_Click(object sender, RoutedEventArgs e)
         {
+            this.DodajBelesku.Content = "Izmeni";
             this.beleska.IsEnabled = true;
         }
     }

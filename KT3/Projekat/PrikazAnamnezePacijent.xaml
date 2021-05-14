@@ -72,7 +72,7 @@
                 <Label Content="      Anamneza" HorizontalAlignment="Left" Width="165"  Foreground="{DynamicResource TextColor}"/>
             </StackPanel>
 
-            <GroupBox Header="  Pacijent  " HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 10" Foreground="{DynamicResource TextColor}">
+            <GroupBox Header="  Pacijent  " HorizontalAlignment="Stretch" Width="350" Margin="10, 10, 10, 0" Foreground="{DynamicResource TextColor}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0, 10, 0, 0">
                         <Label Content="Ime pacijenta" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource TextColor}"/>
@@ -91,7 +91,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Podaci o terminu" Width="350" Margin="10,0, 0, 0"  Foreground="{DynamicResource TextColor}">
+            <GroupBox Header="Podaci o terminu" Width="350" Margin="10,10, 10, 0"  Foreground="{DynamicResource TextColor}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,10,10,5" Width="306" >
                         <Label Margin="0, 0, 0, 0" Content="Datum" Width="50"  Foreground="{DynamicResource TextColor}"/>
@@ -111,7 +111,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Podaci o anamnezi" Width="350" Margin="10, 0, 0,10"  Foreground="{DynamicResource TextColor}">
+            <GroupBox Header="Podaci o anamnezi" Width="350" Margin="10, 10, 10, 0"  Foreground="{DynamicResource TextColor}">
                 <StackPanel Orientation="Vertical">
                     <!--StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,10,10,10" Width="306" >
                         <Label Margin="0, 0, 0, 0" Content="Datum" Width="50"  Foreground="{DynamicResource TextColor}"/>
@@ -141,8 +141,8 @@
                                 TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel Margin="16,0,0,10" Orientation="Horizontal" HorizontalAlignment="Center" Width="322">
-                        <Label Margin="0, 0, 0,0"  Foreground="{DynamicResource TextColor}">Potpis lekara</Label>
-                        <TextBox Margin="59, 0, 0, 0"
+                        <Label Margin="05, 0, 0,0"  Foreground="{DynamicResource TextColor}">Potpis lekara</Label>
+                        <TextBox Margin="53, 0, 0, 0"
                                  Name="podaciLekar"
                                  Width="175"
                                  Height="22"
@@ -150,12 +150,12 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Beleške" Width="350" Margin="30,0,20,0"  Foreground="{DynamicResource TextColor}" Height="115">
+            <GroupBox Header="Beleške" Width="350" Margin="10,10,10,10"  Foreground="{DynamicResource TextColor}" Height="115">
                 <StackPanel Orientation="Vertical" Margin="0, 10, 0, 10">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="306" Margin="0, 10, 0, 10">
                         <StackPanel Orientation="Vertical" Margin="0, 0, 0, 0">
                             <Button x:Name="DodajBelesku" 
-                                    Margin="0, 0, 0,0"
+                                    Margin="10, 0, 0,0"
                                     Height="25"
                                     Width="80"
                                     Content="Dodaj"
@@ -165,13 +165,14 @@
                                     Width="80"
                                     Content="Sačuvaj"
                                     Style="{DynamicResource ButtonStyle}"
-                                    Margin="0,5, 0, 0" Click="SacuvajBelesku_Click"/>
+                                    Margin="10,5, 0, 0" Click="SacuvajBelesku_Click"/>
                         </StackPanel>
-                        <TextBox Margin="53,0,0,0"
+                        <TextBox Margin="43,0,0,0"
                                  Name="beleska"
                                     Width="173"
                                     Height="56"
-                                    IsEnabled="False"/>
+                                    IsEnabled="False"
+                                    TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,0,10,10" Width="306" >
 
