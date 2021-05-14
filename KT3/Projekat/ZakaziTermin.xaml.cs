@@ -38,9 +38,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
-            // TODO:
-            PomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+            PomocnaSviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
             this.combo.SelectedIndex = 0;
         }
@@ -175,7 +173,6 @@ namespace Projekat
 
         private void preferenca_Click(object sender, RoutedEventArgs e)
         {
-            // prozor za odabir lekara po preferenci
             Page ztp = new ZakaziTerminPreferenca(idPacijent);
             this.NavigationService.Navigate(ztp);
         }
@@ -250,8 +247,7 @@ namespace Projekat
                 return;
             }
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
-            SviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
             UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);
             UkolniSlotoveZauzeteUSvimSalama(PomocnaSviSlobodniSlotovi);
@@ -463,13 +459,11 @@ namespace Projekat
             Page odjava = new PrijavaPacijent();
             this.NavigationService.Navigate(odjava);
         }
-
         public void karton_Click(object sender, RoutedEventArgs e)
         {
             Page karton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(karton);
         }
-
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
             if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
@@ -480,19 +474,16 @@ namespace Projekat
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
         }
-
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
         }
-
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
@@ -518,7 +509,6 @@ namespace Projekat
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
         }
-
         private void comboUputi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(combo.Text.Equals("Pregled"))

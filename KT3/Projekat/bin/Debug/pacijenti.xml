@@ -49,9 +49,11 @@
           <IdAnamneze>1</IdAnamneze>
           <IdPacijenta>1</IdPacijenta>
           <IdLekara>1</IdLekara>
-          <OpisBolesti>ASDAD</OpisBolesti>
-          <Terapija>SDSDSD</Terapija>
-          <Datum>04/28/2021</Datum>
+          <OpisBolesti>Bronhitis</OpisBolesti>
+          <Terapija>Inhalacija fizioloskim rastvorom</Terapija>
+          <Datum>06/04/2021</Datum>
+          <IdTermina>2</IdTermina>
+          <Beleska>Otici na pregled za 7 dana</Beleska>
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
@@ -146,32 +148,7 @@
           <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>2</IdPacijenta>
-          <IdLekara>0</IdLekara>
-          <OpisBolesti>Anamneza </OpisBolesti>
-          <Terapija>Terapija</Terapija>
-          <Datum>04/07/2021</Datum>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>2</IdAnamneze>
-          <IdPacijenta>2</IdPacijenta>
-          <IdLekara>0</IdLekara>
-          <OpisBolesti>Anamneza 2</OpisBolesti>
-          <Terapija>Terapija 2</Terapija>
-          <Datum>04/10/2021</Datum>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>3</IdAnamneze>
-          <IdPacijenta>2</IdPacijenta>
-          <IdLekara>5</IdLekara>
-          <OpisBolesti>45sdsd</OpisBolesti>
-          <Terapija>sdsds</Terapija>
-          <Datum>04/15/2021</Datum>
-        </Anamneza>
-      </Anamneze>
+      <Anamneze />
       <Alergeni />
       <Uputi />
     </Karton>
@@ -222,17 +199,7 @@
           <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>2</IdAnamneze>
-          <IdPacijenta>4</IdPacijenta>
-          <IdLekara>1</IdLekara>
-          <OpisBolesti>sadsd</OpisBolesti>
-          <Terapija>dsdsds</Terapija>
-          <Datum>06/02/2021</Datum>
-          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
-        </Anamneza>
-      </Anamneze>
+      <Anamneze />
       <Alergeni>
         <Alergeni>
           <IdAlergena>1</IdAlergena>
@@ -289,44 +256,7 @@
           <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>3</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>5</IdLekara>
-          <OpisBolesti>dsdsds</OpisBolesti>
-          <Terapija>sdsds</Terapija>
-          <Datum>05/01/2021</Datum>
-          <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>4</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>5</IdLekara>
-          <OpisBolesti>dffdfdsf</OpisBolesti>
-          <Terapija>dfddfdfd</Terapija>
-          <Datum>05/01/2021</Datum>
-          <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>1</IdLekara>
-          <OpisBolesti>EFEFAAAA</OpisBolesti>
-          <Terapija>DFDFDFD</Terapija>
-          <Datum>08/18/2021</Datum>
-          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>2</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>1</IdLekara>
-          <OpisBolesti>xfxfvxfvx</OpisBolesti>
-          <Terapija>cxvxcvcx</Terapija>
-          <Datum>06/09/2021</Datum>
-          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
-        </Anamneza>
-      </Anamneze>
+      <Anamneze />
       <Alergeni>
         <Alergeni>
           <IdAlergena>1</IdAlergena>
@@ -470,17 +400,7 @@
           </UzimanjeTerapije>
         </LekarskiRecept>
       </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>3</IdPacijenta>
-          <IdLekara>1</IdLekara>
-          <OpisBolesti>Glavobolja</OpisBolesti>
-          <Terapija>Brufen</Terapija>
-          <Datum>05/21/2021</Datum>
-          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
-        </Anamneza>
-      </Anamneze>
+      <Anamneze />
       <Alergeni>
         <Alergeni>
           <IdAlergena>1</IdAlergena>

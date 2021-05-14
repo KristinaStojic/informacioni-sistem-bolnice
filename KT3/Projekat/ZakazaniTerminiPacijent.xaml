@@ -106,12 +106,12 @@
                   Height="350" Width="635" GridLinesVisibility="Horizontal" BorderThickness="2" FontSize="14" SelectionChanged="dataGridTermini_SelectionChanged"
                           Background="#FFF9F7F7" BorderBrush="White" Margin="0,20,0,0">
                 <DataGrid.Columns >
-                    <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
+                    <!--DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" /-->
                     <DataGridTextColumn Header="Datum" Width="90" Binding="{Binding Datum}" />
                     <DataGridTextColumn Header="Vreme pocetka" Width="110" Binding="{Binding VremePocetka}"/>
                     <DataGridTextColumn Header="Vreme kraja"  Width="110" Binding="{Binding VremeKraja}"/>
                     <DataGridTextColumn Header="Lekar" Binding="{Binding Lekar}" Width="120" />
-                    <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.Id}" Width="65" />
+                    <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.brojSale}" Width="65" />
                     <DataGridTextColumn Header="Tip usluge" Width="*" Binding="{Binding tipTermina}"/>
                 </DataGrid.Columns>
             </DataGrid>
