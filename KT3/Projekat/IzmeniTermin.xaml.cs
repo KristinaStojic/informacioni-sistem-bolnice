@@ -38,8 +38,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             this.termin = izabraniTermin;
-            PomocnaSviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+            PomocnaSviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
             idPacijent = izabraniTermin.Pacijent.IdPacijenta;
             OgraniciIzborNovogDatuma(izabraniTermin);
             InicijalizujPodatkeZaIzabraniTermin(izabraniTermin);
@@ -190,7 +189,7 @@ namespace Projekat
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SaleZaPregled = SaleMenadzer.PronadjiSaleZaPregled();
-            ukupanBrojSalaZaPregled = SaleMenadzer.UkupanBrojSalaZaPregled();
+            ukupanBrojSalaZaPregled = SaleZaPregled.Count();
         }
 
         private static int ParsirajSateVremenskogSlota(string vreme)
@@ -244,8 +243,7 @@ namespace Projekat
                 return;
             }
             string selektovaniDatum = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
-            SviSlobodniSlotovi = new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"};
+            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
             UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);
             UkolniSlotoveZauzeteUSvimSalama(PomocnaSviSlobodniSlotovi);

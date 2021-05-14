@@ -32,10 +32,13 @@ namespace Projekat
             this.podaciLekar.Text = anamneza.ImePrezimeLekara;
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
+            this.beleska.Text = anamneza.Beleska;
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
+            Termin termin = TerminMenadzer.NadjiTerminPoId(anamneza.IdTermina);
+            this.sala.Text = termin.Prostorija.brojSale.ToString();
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
@@ -106,6 +109,18 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
+        }
+
+        private void SacuvajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            anamneza.Beleska = this.beleska.Text;
+            this.beleska.IsEnabled = false;
+            PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
+        }
+
+        private void DodajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            this.beleska.IsEnabled = true;
         }
     }
 }
