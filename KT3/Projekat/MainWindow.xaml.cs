@@ -124,9 +124,9 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-           
-            PocetnaStrana w1 = new PocetnaStrana();
-           // PrikazTerminaLekar w1 = new PrikazTerminaLekar();
+
+            //PocetnaStrana w1 = new PocetnaStrana();
+            PrijavaLekar w1 = new PrijavaLekar();
             w1.Show();
             //this.Close();
         }

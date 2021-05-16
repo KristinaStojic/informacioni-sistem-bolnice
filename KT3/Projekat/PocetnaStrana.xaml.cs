@@ -19,14 +19,16 @@ namespace Projekat
     /// </summary>
     public partial class PocetnaStrana : Window
     {
-        public PocetnaStrana()
+        int IDLekara;
+        public PocetnaStrana(int idLekara)
         {
             InitializeComponent();
+            this.IDLekara = idLekara;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PrikazTerminaLekar pl = new PrikazTerminaLekar();
+            PrikazTerminaLekar pl = new PrikazTerminaLekar(IDLekara);
             pl.Show();
             this.Close();
         }
@@ -47,7 +49,7 @@ namespace Projekat
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             //godisnji odmor
-            ZahteviZaGodisnjiLekar zahtev = new ZahteviZaGodisnjiLekar();
+            ZahteviZaGodisnjiLekar zahtev = new ZahteviZaGodisnjiLekar(IDLekara);
             zahtev.Show();
         }
 

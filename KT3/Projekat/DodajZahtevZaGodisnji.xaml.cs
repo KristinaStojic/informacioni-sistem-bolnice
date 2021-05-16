@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,25 @@ namespace Projekat
     /// </summary>
     public partial class DodajZahtevZaGodisnji : Window
     {
-        public DodajZahtevZaGodisnji()
+        int idLekara;
+        public DodajZahtevZaGodisnji(int id)
         {
             InitializeComponent();
+            this.idLekara = id;
+            popuniPodatke();
         }
 
+        private void popuniPodatke()
+        {
+            foreach(Lekar lekar in LekariMenadzer.lekari)
+            {
+                if(lekar.IdLekara == idLekara)
+                {
+                    this.ime.Text = lekar.ImeLek;
+                    this.prezime.Text = lekar.PrezimeLek; 
+                }
+            }
+        }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
 

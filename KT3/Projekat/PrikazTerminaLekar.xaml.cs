@@ -31,9 +31,10 @@ namespace Projekat
             set;
         }
        
-        public PrikazTerminaLekar()
+        public PrikazTerminaLekar(int id)
         {
             InitializeComponent();
+            this.idLekara = id;
             this.DataContext = this;
             NadjiUlogovanogLekara();
 
@@ -60,7 +61,7 @@ namespace Projekat
             {
 
 
-                if (t.Lekar.IdLekara == 1) //Petar Nebojsic
+                if (t.Lekar.IdLekara == idLekara) //Petar Nebojsic
                 {
                     Termini.Add(t);
                 }
@@ -83,6 +84,9 @@ namespace Projekat
 
 
             }
+
+
+
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -95,7 +99,7 @@ namespace Projekat
         {
             //zakazi
 
-            ZakaziTerminLekar2 zt = new ZakaziTerminLekar2();
+            ZakaziTerminLekar2 zt = new ZakaziTerminLekar2(idLekara);
             zt.Show();
         }
 
@@ -121,8 +125,8 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             this.Close();
-            PocetnaStrana ps = new PocetnaStrana();
-            ps.Show();
+            //PocetnaStrana ps = new PocetnaStrana();
+            //ps.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -170,7 +174,7 @@ namespace Projekat
             TerminMenadzer.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             SaleMenadzer.sacuvajIzmjene();
-            PocetnaStrana ps = new PocetnaStrana();
+            //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/
         }
 

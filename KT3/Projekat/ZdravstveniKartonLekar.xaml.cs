@@ -209,7 +209,7 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PrikazTerminaLekar pt = new PrikazTerminaLekar();
+            PrikazTerminaLekar pt = new PrikazTerminaLekar(termin.Lekar.IdLekara);
             pt.Show();
             this.Close();
         }

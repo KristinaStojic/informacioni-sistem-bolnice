@@ -18,9 +18,11 @@ namespace Projekat
     /// </summary>
     public partial class ZahteviZaGodisnjiLekar : Window
     {
-        public ZahteviZaGodisnjiLekar()
+        int IdLekara;
+        public ZahteviZaGodisnjiLekar(int id)
         {
             InitializeComponent();
+            this.IdLekara = id;
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -30,7 +32,7 @@ namespace Projekat
 
         private void Button_Zahtev(object sender, RoutedEventArgs e)
         {
-            DodajZahtevZaGodisnji zahtev = new DodajZahtevZaGodisnji();
+            DodajZahtevZaGodisnji zahtev = new DodajZahtevZaGodisnji(IdLekara);
             zahtev.Show();
         }
 

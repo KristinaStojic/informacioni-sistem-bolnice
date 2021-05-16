@@ -358,6 +358,9 @@
     <Compile Include="PreraspodjelaStaticke.xaml.cs">
       <DependentUpon>PreraspodjelaStaticke.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrijavaLekar.xaml.cs">
+      <DependentUpon>PrijavaLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrijavaPacijent.xaml.cs">
       <DependentUpon>PrijavaPacijent.xaml</DependentUpon>
     </Compile>
@@ -868,6 +871,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PreraspodjelaStaticke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrijavaLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
