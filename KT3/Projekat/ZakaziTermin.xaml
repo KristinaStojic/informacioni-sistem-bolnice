@@ -131,7 +131,7 @@
         </Hyperlink>
             </TextBlock>
             <Button Content="Potvrdi" ToolTip="Potvrdite zakazivanje termina bez elektronskog placanja" HorizontalAlignment="Center"
-                 VerticalAlignment="Top" Width="100"  Height="30" Click="Button_Click_1" Margin="0, 30, 0, 20"
+                 VerticalAlignment="Top" Width="90"  Height="30" Click="Button_Click_1" Margin="0, 30, 0, 20"
                 Style="{DynamicResource ButtonStyle2}"/>
         </StackPanel>
 

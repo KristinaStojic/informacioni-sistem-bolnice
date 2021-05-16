@@ -18,15 +18,14 @@ namespace Projekat
     public partial class PrikazAnamnezePacijent : Page
     {
 
-        public Anamneza anamneza;
-        public static int idPacijent;
+        private Anamneza anamneza;
+        private static int idPacijent;
         public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = izabraniPacijent.IdPacijenta;
             anamneza = izabranaAnamneza;
-
 
             this.datumTermina.Text = anamneza.Datum;
             this.podaciLekar.Text = anamneza.ImePrezimeLekara;
@@ -47,19 +46,16 @@ namespace Projekat
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
-
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             Page odjava = new PrijavaPacijent();
             this.NavigationService.Navigate(odjava);
         }
-
         public void karton_Click(object sender, RoutedEventArgs e)
         {
             Page karton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(karton);
         }
-
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
             if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
@@ -70,19 +66,16 @@ namespace Projekat
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
         }
-
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
         }
-
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
@@ -93,7 +86,6 @@ namespace Projekat
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
         }
-
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
@@ -114,6 +106,7 @@ namespace Projekat
         {
             anamneza.Beleska = this.beleska.Text;
             this.beleska.IsEnabled = false;
+            this.SacuvajBelesku.IsEnabled = false;
             PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
         }
 
@@ -121,6 +114,7 @@ namespace Projekat
         {
             this.DodajBelesku.Content = "Izmeni";
             this.beleska.IsEnabled = true;
+            this.SacuvajBelesku.IsEnabled = true;
         }
     }
 }

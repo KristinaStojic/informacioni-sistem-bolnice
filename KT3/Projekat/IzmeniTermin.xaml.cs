@@ -72,8 +72,8 @@ namespace Projekat
         private void InicijalizujSelektovanogLekara(Termin izabraniTermin)
         {
             int brojac = 0;
-            this.dgSearch.ItemsSource = MainWindow.lekari;
-            foreach (Lekar lekar in MainWindow.lekari)
+            this.dgSearch.ItemsSource = LekariMenadzer.lekari;
+            foreach (Lekar lekar in LekariMenadzer.lekari)
             {
                 brojac++;
                 if (lekar.IdLekara.Equals(izabraniTermin.Lekar.IdLekara))
@@ -95,7 +95,7 @@ namespace Projekat
             daniPosleTermina.End = DateTime.Parse(izabraniTermin.Datum).AddDays(1000);
             datum.BlackoutDates.Add(daniPosleTermina);
             // TODO: ograniciti pomeranje samo za termine koji su u buducnosti
-            //datum.BlackoutDates.AddDatesInPast(); 
+            datum.BlackoutDates.AddDatesInPast(); 
         }
 
         private bool UserFilter(object item)

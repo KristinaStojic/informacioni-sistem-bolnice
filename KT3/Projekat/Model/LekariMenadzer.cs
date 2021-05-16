@@ -149,5 +149,19 @@ namespace Model
             }
             return true;
         }
+
+        // Sanja
+        public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
+        {
+            List<Lekar> lekariOpstePrakse = new List<Lekar>();
+            foreach (Lekar lekar in lekari)
+            {
+                if (lekar.specijalizacija.Equals(tipSpecijalizacije))
+                {
+                    lekariOpstePrakse.Add(lekar);
+                }
+            }
+            return lekariOpstePrakse;
+        }
     }
 }

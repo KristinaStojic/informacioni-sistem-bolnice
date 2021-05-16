@@ -34,6 +34,8 @@ namespace Projekat
             ObavestenjaMenadzer.sacuvajIzmene();
             MalicioznoPonasanjeMenadzer.sacuvajIzmene();
             PrikaziTermin.pacijentProzor = false;  // nit
+
+            LekariMenadzer.SacuvajIzmeneLekara();
         }
     }
 }

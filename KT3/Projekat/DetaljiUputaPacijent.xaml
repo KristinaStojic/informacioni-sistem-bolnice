@@ -110,7 +110,7 @@
                     <StackPanel Orientation="Vertical" Margin="5, 10, 05, 5">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label Content="Potpis lekara"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox IsEnabled="False" x:Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="3,0, 0, 0"
+                            <TextBox IsEnabled="False" x:Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="55,0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" FontFamily="Segoe Script"/>
                         </StackPanel>
                     </StackPanel>

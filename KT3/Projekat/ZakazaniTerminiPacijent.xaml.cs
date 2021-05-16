@@ -30,6 +30,16 @@ namespace Projekat
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             Termini = new ObservableCollection<Termin>();
+            DodajTerminePacijenta(idPacijent, Termini);
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
+            view.Filter = UserFilter;
+            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+        }
+
+        private static void DodajTerminePacijenta(int idPacijenta, ObservableCollection<Termin> Termini)
+        {
             foreach (Termin t in TerminMenadzer.termini)
             {
                 if (t.Pacijent.IdPacijenta == idPacijent)
@@ -37,11 +47,6 @@ namespace Projekat
                     Termini.Add(t);
                 }
             }
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
-            view.Filter = UserFilter;
-            PrikaziTermin.AktivnaTema(this.zaglavlje , this.svetlaTema);
         }
 
         private bool UserFilter(object item)
