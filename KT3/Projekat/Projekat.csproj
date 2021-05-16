@@ -71,14 +71,23 @@
     <Compile Include="DetaljiAlergena.xaml.cs">
       <DependentUpon>DetaljiAlergena.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetaljiAlergenaSekretar.xaml.cs">
+      <DependentUpon>DetaljiAlergenaSekretar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetaljiAnamneze.xaml.cs">
       <DependentUpon>DetaljiAnamneze.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetaljiAnamnezeSekretar.xaml.cs">
+      <DependentUpon>DetaljiAnamnezeSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetaljiUputa.xaml.cs">
       <DependentUpon>DetaljiUputa.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetaljiUputaPacijent.xaml.cs">
       <DependentUpon>DetaljiUputaPacijent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetaljiUputaSekretar.xaml.cs">
+      <DependentUpon>DetaljiUputaSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajAlergene.xaml.cs">
       <DependentUpon>DodajAlergene.xaml</DependentUpon>
@@ -357,6 +366,9 @@
     <Compile Include="PrikazDinamicke.xaml.cs">
       <DependentUpon>PrikazDinamicke.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrikazeUputeSekretar.xaml.cs">
+      <DependentUpon>PrikazeUputeSekretar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrikaziAnkete.xaml.cs">
       <DependentUpon>PrikaziAnkete.xaml</DependentUpon>
     </Compile>
@@ -478,7 +490,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DetaljiAlergenaSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DetaljiAnamneze.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetaljiAnamnezeSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -487,6 +507,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetaljiUputaPacijent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetaljiUputaSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -849,6 +873,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PrikazDinamicke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrikazeUputeSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

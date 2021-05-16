@@ -60,9 +60,9 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-       
+
         <Button Content="Pacijenti" HorizontalAlignment="Left" Margin="7.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Pacijenata"/>
-  
+
         <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="7.2,4,8.8,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="listaPacijenata_GotKeyboardFocus">
             <ListView.View>
                 <GridView>
@@ -80,6 +80,12 @@
                 <Label Content="Napravite GUEST nalog" Margin="14,0,-14.2,0.2"/>
             </Grid>
         </Button>
+        <Button Grid.Column="1" Grid.Row="5" Click="Uputi_Click" Margin="7.2,6.6,12.2,6.2" Background="#FFE7F6F7" Height="32">
+            <Grid>
+                <Label Content="Zakazi pregled sa uputom" Margin="0,0,0.2,0.6"/>
+            </Grid>
+        </Button>
+
         <Button Content="Lekari" HorizontalAlignment="Left" Margin="104.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Lekara"/>
 
         <ListView x:Name="listaLekara" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="6.8,8,8.6,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="listaLekara_GotKeyboardFocus" Visibility="Hidden">
@@ -96,8 +102,9 @@
         <TextBox Grid.Column="2" Grid.Row="4" Name="pacijenti" Margin="8.8,6.2,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap"/>
         <TextBox Grid.Column="2" Grid.Row="6" Name="lekari" Margin="8.8,6.8,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" />
 
-        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="7" Height="32" Margin="8.8,6,9.6,6.8" FontSize="15" IsKeyboardFocusedChanged="tip_IsKeyboardFocusedChanged" >
+        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="7" Height="32" Margin="8.8,6,9.6,6.8" FontSize="15" IsKeyboardFocusedChanged="tip_IsKeyboardFocusedChanged">
             <ComboBoxItem Content="Pregled"/>
+            <ComboBoxItem Content="Pregled sa uputom"/>
             <ComboBoxItem Content="Operacija"/>
         </ComboBox>
 

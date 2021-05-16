@@ -40,6 +40,12 @@ namespace Projekat
             set;
         }
 
+        public static ObservableCollection<Uput> TabelaUputa
+        {
+            get;
+            set;
+        }
+
         public UvidZdravstveniKarton(Pacijent izabraniNalog)
         {
             InitializeComponent();
@@ -149,38 +155,75 @@ namespace Projekat
                 }
             }
 
-            // izabrani lekar
+            TabelaUputa = new ObservableCollection<Uput>();
+            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            {
+                if (p.IdPacijenta == pacijent.IdPacijenta)
+                {
+                    foreach (Uput uput in p.Karton.Uputi)
+                    {
+                        TabelaUputa.Add(uput);
+                    }
+                }
+            }
+
             if (izabraniNalog.IzabraniLekar != null)
             {
                 lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Detalji_alergena_Click(object sender, RoutedEventArgs e)
         {
+            Alergeni izabraniAlergen = (Alergeni)dataGridAlergeni.SelectedItem;
 
+            if (izabraniAlergen != null)
+            {
+
+                DetaljiAlergenaSekretar detaljiAlergena = new DetaljiAlergenaSekretar(izabraniAlergen, pacijent);
+                detaljiAlergena.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan alergen!");
+            }
         }
 
-        // detalji anamneze
-        /*private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Detalji_anamneze_Click(object sender, RoutedEventArgs e)
         {
             Anamneza izabranaAnamneza = (Anamneza)dataGridAnamneze.SelectedItem;
 
             if (izabranaAnamneza != null)
             {
 
-                DetaljiAnamneze da = new DetaljiAnamneze(izabranaAnamneza, termin);
-                da.Show();
+                DetaljiAnamnezeSekretar detaljiAnamneze = new DetaljiAnamnezeSekretar(izabranaAnamneza, pacijent);
+                detaljiAnamneze.Show();
             }
             else
             {
                 MessageBox.Show("Niste selektovali nijednu anamnezu!");
             }
-        }*/
+        }
+
+        private void Detalji_uputa_Click(object sender, RoutedEventArgs e)
+        {
+            Uput izabraniUput = (Uput)dataGridUputi.SelectedItem;
+
+            if (izabraniUput != null)
+            {
+                DetaljiUputaSekretar detaljiUputa = new DetaljiUputaSekretar(izabraniUput);
+                detaljiUputa.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan uput!");
+            }
+        }
+
     }
 }
