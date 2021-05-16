@@ -89,9 +89,9 @@ namespace Projekat
                 // lekar
                 lekar.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 Lekar = izabraniTermin.Lekar;
-                for (int i = 0; i < MainWindow.lekari.Count; i++)
+                for (int i = 0; i < LekariMenadzer.lekari.Count; i++)
                 {
-                    if (MainWindow.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
+                    if (LekariMenadzer.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
                     {
                         listaLekara.SelectedIndex = i;
                     }
@@ -668,12 +668,21 @@ namespace Projekat
             if (tipPregleda.SelectedIndex == 0) // pregled
             {
                 this.dugmeLekari.IsEnabled = false;
-                Lekar = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
+                //Lekar = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
                 //Lekar = new Lekar() { IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa };
                 //Lekar = new Lekar() { IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
                 //Lekar = new Lekar() { IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
                 //Lekar = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
-                this.lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek;
+                //this.lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek;
+                foreach (Lekar lekar in LekariMenadzer.lekari)
+                {
+                    if (lekar.IdLekara == termin.Lekar.IdLekara)
+                    {
+                        this.lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+                        this.listaLekara.IsEnabled = false;
+                        this.Lekar = lekar;
+                    }
+                }
                 this.listaLekara.IsEnabled = false;
                 this.hitno.IsEnabled = false;
                 dodajSaleZaPregled();

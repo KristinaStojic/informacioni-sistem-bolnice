@@ -1,0 +1,28 @@
+﻿<Window x:Class="Projekat.ZahteviZaGodisnjiLekar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="ZahteviZaGodisnjiLekar" Height="600" Width="700" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid ItemsSource="{Binding TabelaZahteva}" x:Name="dataGridZahtevi" IsReadOnly="True"
+                                SelectionMode="Single" AutoGenerateColumns="False"
+                                 Margin="39,56,40,0" VerticalAlignment="Top" Height="417" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13" Visibility="Visible">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Datum početka odmora" Width="240" Binding="{Binding pocetakOdmora}" x:Name="sifra"/>
+                <DataGridTextColumn Header="Datum kraja odmora" Width="240" Binding="{Binding krajOdmora}" x:Name="naziv"/>
+                <DataGridTextColumn Header="Odobren" Width="130*" Binding="{Binding}" x:Name="obradjeno" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Novi zahtev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="39,498,0,0"  Click="Button_Zahtev" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="534,498,0,0" Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+        <Label Content="Spisak zahteva" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
+        <TextBlock Margin="597,19,40,578"  Height="24" FontSize="16">
+                            <Hyperlink Click="Hyperlink_Click">
+                                Pomoć?
+                            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</Window>

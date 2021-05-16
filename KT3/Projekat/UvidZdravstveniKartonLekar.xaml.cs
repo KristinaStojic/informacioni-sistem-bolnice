@@ -98,7 +98,7 @@ namespace Projekat
         {
            
             this.Close();
-            PrikazTerminaLekar pt = new PrikazTerminaLekar();
+            PrikazTerminaLekar pt = new PrikazTerminaLekar(termin.Lekar.IdLekara);
             pt.Show();
         }
 

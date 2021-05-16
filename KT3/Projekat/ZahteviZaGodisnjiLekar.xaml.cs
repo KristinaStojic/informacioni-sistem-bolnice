@@ -17,55 +17,56 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for OdobravanjeGodisnjegOdmora.xaml
+    /// Interaction logic for ZahteviZaGodisnjiLekar.xaml
     /// </summary>
-    public partial class OdobravanjeGodisnjegOdmora : Window
+    public partial class ZahteviZaGodisnjiLekar : Window
     {
+        int IdLekara;
         public static ObservableCollection<ZahtevZaGodisnji> TabelaZahteva
         {
             get;
             set;
         }
-        public OdobravanjeGodisnjegOdmora()
+        public ZahteviZaGodisnjiLekar(int id)
         {
             InitializeComponent();
             this.DataContext = this;
+            this.IdLekara = id;
             dodajZahteveUTabelu();
-        }
 
+        }
         private void dodajZahteveUTabelu()
         {
             TabelaZahteva = new ObservableCollection<ZahtevZaGodisnji>();
-            /*foreach (Lekar lekar in LekariMenadzer.lekari)
+            foreach (Lekar lekar in LekariMenadzer.lekari)
             {
-                
-                    foreach (ZahtevZaGodisnji zahtev in lekar.zahteviZaOdmor)
+                if(lekar.IdLekara == IdLekara)
+                {
+                    foreach(ZahtevZaGodisnji zahtev in LekariMenadzer.zahtevi)
                     {
-                        TabelaZahteva.Add(zahtev);
-
+                        if(zahtev.lekar.IdLekara == IdLekara)
+                        {
+                            TabelaZahteva.Add(zahtev);
+                        }
                     }
-                
-            }*/
-
-            foreach(ZahtevZaGodisnji zahtev in LekariMenadzer.zahtevi)
-            {
-                TabelaZahteva.Add(zahtev);
+                }
             }
         }
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            
-            this.Close();
+
         }
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        private void Button_Zahtev(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DodajZahtevZaGodisnji zahtev = new DodajZahtevZaGodisnji(IdLekara);
+            zahtev.Show();
         }
 
-        private void TabelaLekara_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Nazad(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }
