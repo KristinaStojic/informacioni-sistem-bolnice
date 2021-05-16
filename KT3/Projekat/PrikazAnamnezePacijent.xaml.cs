@@ -20,7 +20,6 @@ namespace Projekat
 
         public Anamneza anamneza;
         public static int idPacijent;
-        private static int brojacBeleski;
         public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
             InitializeComponent();
@@ -29,7 +28,7 @@ namespace Projekat
             anamneza = izabranaAnamneza;
 
 
-            this.datumAnamneze.Text = anamneza.Datum;
+            this.datumTermina.Text = anamneza.Datum;
             this.podaciLekar.Text = anamneza.ImePrezimeLekara;
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
@@ -44,6 +43,7 @@ namespace Projekat
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
             Termin termin = TerminMenadzer.NadjiTerminPoId(anamneza.IdTermina);
             this.sala.Text = termin.Prostorija.brojSale.ToString();
+            this.vremeTermina.Text = termin.VremePocetka + "-" + termin.VremeKraja;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }

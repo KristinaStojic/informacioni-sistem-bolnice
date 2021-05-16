@@ -67,7 +67,7 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Margin="99.5,20,99.5,40" Background="{DynamicResource BackgroundUputi}" Grid.Column="1" Grid.Row="1">
+        <StackPanel Margin="99.5,20,99.5,25" Background="{DynamicResource BackgroundUputi}" Grid.Column="1" Grid.Row="1">
             <StackPanel Background="{DynamicResource StackPanelBackgroundColor}">
                 <Label Content="      Anamneza" HorizontalAlignment="Left" Width="165"  Foreground="{DynamicResource TextColor}"/>
             </StackPanel>
@@ -96,7 +96,15 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,10,10,5" Width="306" >
                         <Label Margin="0, 0, 0, 0" Content="Datum" Width="50"  Foreground="{DynamicResource TextColor}"/>
                         <TextBox Margin="77,0,0,0"
-                            x:Name="datumAnamneze"
+                            x:Name="datumTermina"
+                            Width="175"
+                            Height="22"
+                            IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,0,10,5" Width="306" >
+                        <Label Margin="0, 0, 0, 0" Content="Vreme" Width="50"  Foreground="{DynamicResource TextColor}"/>
+                        <TextBox Margin="77,0,0,0"
+                            x:Name="vremeTermina"
                             Width="175"
                             Height="22"
                             IsEnabled="False"/>

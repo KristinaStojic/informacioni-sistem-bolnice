@@ -131,5 +131,21 @@ namespace Projekat.Model
                 }
             }
         }
+
+        public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)
+        {
+            List<Obavestenja> retObavestenja = new List<Obavestenja>();
+            foreach ( Obavestenja obavestenje in obavestenja)
+            {
+                foreach(int idPacijenta in obavestenje.ListaIdPacijenata)
+                {
+                    if(idPacijenta == idPacijent)
+                    {
+                        retObavestenja.Add(obavestenje);
+                    }
+                }
+            }
+            return retObavestenja;
+        }
     }
 }

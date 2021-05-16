@@ -9,8 +9,18 @@
         Title="Prikaz termina" Background= "{DynamicResource BackgroundColor}">
     <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
         <Grid  Margin="0,0,0,0" Height="578">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="58*"/>
+                <ColumnDefinition Width="11*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="513*"/>
+            </Grid.RowDefinitions>
             <StackPanel >
-                <StackPanel x:Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
+                <StackPanel x:Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" 
+                            Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="0" Margin="0,0,-690,0">
                     <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                         <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
                         <TextBlock Text="ZDRAVO" Name="zdravo" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic"
@@ -38,7 +48,7 @@
                         </Menu>
                     </StackPanel>
                 </StackPanel>
-                <TextBlock Margin="20, 0, 0, 0" FontSize="14"  Height="25">
+                <TextBlock Margin="20,0,-533,0" FontSize="14"  Height="25">
                 <Hyperlink Name="pocetna" Click="pocetna_Click">
                     <Run Text="Početna stranica"/>
                 </Hyperlink>
@@ -56,42 +66,55 @@
                 </Hyperlink>
                 </TextBlock>
             </StackPanel>
-            <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding Termini}" IsReadOnly="True"
-                  SelectionMode="Single" AutoGenerateColumns="False" AutoGeneratingColumn="generateColumns" HorizontalAlignment="Left" 
-                  Height="227" Margin="75,360,0,-9" VerticalAlignment="Top" Width="625" GridLinesVisibility="Horizontal"  FontSize="13"
-                      SelectionChanged="dataGridTermini_SelectionChanged" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" Visibility="Hidden">
-                <DataGrid.Columns >
-                    <DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" />
-                    <DataGridTextColumn Header="Datum" Binding="{Binding Datum}" />
-                    <DataGridTextColumn Header="Vreme pocetka" Binding="{Binding VremePocetka}"/>
-                    <DataGridTextColumn Header="Vreme kraja" Binding="{Binding VremeKraja}"/>
-                    <DataGridTextColumn Header="Ime lekara" Binding="{Binding Lekar.ImeLek}" />
-                    <DataGridTextColumn Header="Prezime lekara" Binding="{Binding Lekar.PrezimeLek}"/>
-                    <DataGridTextColumn Header="Prostorija" Binding="{Binding Prostorija.Id}" />
-                    <DataGridTextColumn Header="Tip usluge " Binding="{Binding tipTermina}"/>
-                </DataGrid.Columns>
-
-            </DataGrid>
-            <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" Height="205" Margin="75,119,0,0" VerticalAlignment="Top" Width="625" ItemsSource="{Binding ObavestenjaPacijent}"
-                  SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Datum" Width="100" Binding="{Binding Datum}"/>
-                    <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
-                    <DataGridTextColumn Header="Sadrzaj" Width="*" Binding="{Binding SadrzajObavestenja}"/>
-                    <!-- staviti button  -->
-                    <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,05">
+                    <Label Content="🔔 Obaveštenja" HorizontalAlignment="Center" Margin="50, 0, 0, 0"
+                           VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
+                        RenderTransformOrigin="0.263,0.577"  FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142" Grid.Column="1" Grid.Row="1"/>
+                    <StackPanel Orientation="Horizontal" Margin="180, 0, 0, 0">
+                        <Button Style="{DynamicResource ButtonStyle2}" 
+                        Name="ObrisiObavestenje" 
+                        ToolTip="Obrisi selektovano obavestenje" 
+                        Content="🗑" FontSize="16"
+                            HorizontalAlignment="Right"
+                        Click="ObrisiObavestenje_Click" Grid.Column="2" Grid.Row="1"/>
+                        <Button Style="{DynamicResource ButtonStyle2}" 
+                        Name="UvidObavestenje" 
+                            HorizontalAlignment="Right"
+                        ToolTip="Uvid u selektovano obavestenje" 
+                        Click="UvidObavestenje_Click"
+                        Content="📄" FontSize="16" Grid.Column="2" Grid.Row="1"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <DataGrid x:Name="obavestenja" IsReadOnly="True" HorizontalAlignment="Left" HorizontalContentAlignment="Center" 
+                      Height="205" Margin="0,0,0,0" VerticalAlignment="Top"  ItemsSource="{Binding ObavestenjaPacijent}"
+                  SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" Grid.ColumnSpan="3" Grid.Row="1" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Datum" Width="100" Binding="{Binding Datum}"/>
+                            <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
+                            <DataGridTextColumn Header="Sadrzaj" Width="*" Binding="{Binding SadrzajObavestenja}"/>
+                            <!-- staviti button  -->
+                            <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
                     <DataGridCheckBoxColumn.CellStyle>
                         <Style>
                             <EventSetter Event="CheckBox.Checked" Handler="OnChecked"/>
                         </Style>
                     </>
                 </-->
-                </DataGrid.Columns>
-            </DataGrid>
-            <Label Content="🔔 Obaveštenja" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
-                   RenderTransformOrigin="0.263,0.577" Margin="335,88,0,0" FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142"/>
-            <Label Content="📆 Zakazani termini" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
-                   RenderTransformOrigin="0.263,0.577" Margin="325,333,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="26" Width="142" Visibility="Hidden"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 10"
+                            HorizontalAlignment="Center">
+                    <Button x:Name="Podsetnik"
+                            Height="30"
+                            Width="92"
+                            Content="Dodaj podsetnik"
+                            Style="{DynamicResource ButtonStyle2}" Click="Podsetnik_Click"/>
+                </StackPanel>
+
+                </StackPanel>
             <!--Button Style="{DynamicResource ButtonStyle2}" 
                     Click="anketa_Click"
                     HorizontalAlignment="Left" 
@@ -102,20 +125,7 @@
                            Foreground="{DynamicResource TextColorButton}"
                            FontSize="16"/>
             </-->
-            <Button Style="{DynamicResource ButtonStyle2}" 
-                    Name="ObrisiObavestenje" 
-                    Height="30" Width="30" 
-                    Margin="669,87,101,461"
-                    ToolTip="Obrisi selektovano obavestenje" 
-                    Content="🗑" FontSize="16"
-                    Click="ObrisiObavestenje_Click"/>
-            <Button Style="{DynamicResource ButtonStyle2}" 
-                    Name="UvidObavestenje" 
-                    Height="30" Width="30" 
-                    Margin="632,88,138,460"
-                    ToolTip="Uvid u selektovano obavestenje" 
-                    Click="UvidObavestenje_Click"
-                    Content="📄" FontSize="16"/>
+            
         </Grid>
     </StackPanel>
 </Page>
