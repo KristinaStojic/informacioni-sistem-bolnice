@@ -37,10 +37,10 @@
         <Button Grid.Row="10" Margin="58,9,55,0" Click="Button_Click_2" Content="Potvrdi" Width="91" Grid.Column="1"/>
         <!--odustani-->
         <Button Grid.Row="10"  Margin="56,9,57,0" Click="Button_Click_3" Content="Odustani" Width="91" Grid.Column="2"/>
-        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="ime"/>
-        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime"/>
+        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="ime" IsEnabled="False"/>
+        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime" IsEnabled="False"/>
         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="16,11,0,0" Grid.Row="5" VerticalAlignment="Top" Width="170" Name="pocetak"/>
         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="16,10,0,0" Grid.Row="7" VerticalAlignment="Top" Width="170" x:Name="kraj" Height="30"/>
-        <TextBox Grid.Column="2" Height="113" Margin="16,10,18,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime_Copy"/>
+        <TextBox Grid.Column="2" Height="113" Margin="16,10,18,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="napomena"/>
     </Grid>
 </Window>

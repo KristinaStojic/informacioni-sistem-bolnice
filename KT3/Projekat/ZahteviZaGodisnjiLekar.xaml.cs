@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Model;
+using Projekat.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -19,10 +22,35 @@ namespace Projekat
     public partial class ZahteviZaGodisnjiLekar : Window
     {
         int IdLekara;
+        public static ObservableCollection<ZahtevZaGodisnji> TabelaZahteva
+        {
+            get;
+            set;
+        }
         public ZahteviZaGodisnjiLekar(int id)
         {
             InitializeComponent();
+            this.DataContext = this;
             this.IdLekara = id;
+            dodajZahteveUTabelu();
+
+        }
+        private void dodajZahteveUTabelu()
+        {
+            TabelaZahteva = new ObservableCollection<ZahtevZaGodisnji>();
+            foreach (Lekar lekar in LekariMenadzer.lekari)
+            {
+                if(lekar.IdLekara == IdLekara)
+                {
+                    foreach(ZahtevZaGodisnji zahtev in LekariMenadzer.zahtevi)
+                    {
+                        if(zahtev.lekar.IdLekara == IdLekara)
+                        {
+                            TabelaZahteva.Add(zahtev);
+                        }
+                    }
+                }
+            }
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

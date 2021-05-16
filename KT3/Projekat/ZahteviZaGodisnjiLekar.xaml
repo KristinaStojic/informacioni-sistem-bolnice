@@ -11,8 +11,8 @@
                                 SelectionMode="Single" AutoGenerateColumns="False"
                                  Margin="39,56,40,0" VerticalAlignment="Top" Height="417" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13" Visibility="Visible">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Datum početka odmora" Width="240" Binding="{Binding lek.sifraLeka}" x:Name="sifra"/>
-                <DataGridTextColumn Header="Datum kraja odmora" Width="240" Binding="{Binding lek.nazivLeka}" x:Name="naziv"/>
+                <DataGridTextColumn Header="Datum početka odmora" Width="240" Binding="{Binding pocetakOdmora}" x:Name="sifra"/>
+                <DataGridTextColumn Header="Datum kraja odmora" Width="240" Binding="{Binding krajOdmora}" x:Name="naziv"/>
                 <DataGridTextColumn Header="Odobren" Width="130*" Binding="{Binding}" x:Name="obradjeno" />
             </DataGrid.Columns>
         </DataGrid>

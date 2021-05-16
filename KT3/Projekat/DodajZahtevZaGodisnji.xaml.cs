@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,44 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            int idZahteva = LekariMenadzer.GenerisanjeIdZahtevaZaOdmor(idLekara);
+            string napomena = this.napomena.Text;
+            /*pocetak*/
+            string pocetakOdmora = null;
+            DateTime? datumPocetka = this.pocetak.SelectedDate;
+            if (datumPocetka.HasValue)
+            {
+                pocetakOdmora = datumPocetka.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            
+            /*kraj*/
+            string krajOdmora = null;
+            DateTime? datumKraja = this.kraj.SelectedDate;
+            if (datumKraja.HasValue)
+            {
+                krajOdmora = datumKraja.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
 
+            /*broj dana*/
+            DateTime kraj = (DateTime)this.kraj.SelectedDate;
+            DateTime pocetak = (DateTime)this.pocetak.SelectedDate;
+
+            TimeSpan brojDana = kraj.Subtract (pocetak);
+            int brojDanaOdmora = brojDana.Days;
+
+            /*lekar*/
+            Lekar lekar = null;
+            foreach(Lekar l in LekariMenadzer.lekari)
+            {
+                if (l.IdLekara == idLekara)
+                {
+                    lekar = l;
+                }
+            }
+
+            ZahtevZaGodisnji zahtev = new ZahtevZaGodisnji(idZahteva,lekar,pocetakOdmora,krajOdmora,brojDanaOdmora,napomena);
+            LekariMenadzer.DodajZahtev(zahtev);
+            this.Close();
         }
     }
 }
