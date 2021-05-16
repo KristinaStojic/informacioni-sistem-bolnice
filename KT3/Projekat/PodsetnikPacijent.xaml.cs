@@ -61,8 +61,9 @@ namespace Projekat
             ObavestenjaMenadzer.obavestenja.Add(obavestenjeZaPodsetnik);
             obavestenjaPodsetnici.Add(obavestenjeZaPodsetnik);
 
-            //Page pocetna = new PrikaziTermin(idPacijent);
-            //this.NavigationService.Navigate(pocetna);
+            Vreme.Text = null;
+            Datum.Text = null;
+            SadrzajPodsetnika.Text = null;
         }
 
         public void uvid_Click(object sender, RoutedEventArgs e)
