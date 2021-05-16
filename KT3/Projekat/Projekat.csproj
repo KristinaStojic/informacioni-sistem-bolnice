@@ -201,6 +201,7 @@
     <Compile Include="Model\Anamneza.cs" />
     <Compile Include="Model\Anketa.cs" />
     <Compile Include="Model\AnketaMenadzer.cs" />
+    <Compile Include="Model\Krevet.cs" />
     <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekariMenadzer.cs" />
     <Compile Include="Model\LekarskiRecept.cs" />

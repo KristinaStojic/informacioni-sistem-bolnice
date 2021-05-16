@@ -27,6 +27,8 @@ namespace Model
         public string Namjena { get; set; }
         public List<Oprema> Oprema { get; set; }
         public List<ZauzeceSale> zauzetiTermini { get; set; }
+
+        public List<Krevet> Kreveti { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
 

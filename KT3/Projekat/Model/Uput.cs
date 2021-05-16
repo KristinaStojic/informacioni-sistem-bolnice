@@ -20,8 +20,14 @@ namespace Projekat.Model
         public int IdLekaraKodKogSeUpucuje { get; set; }
         public string datumIzdavanja { get; set; }
         public string opisPregleda { get; set; }
-        public int brojDanaZadrzavanja { get; set; }
+        public int brojSobe { get; set; }
+        public int brojKreveta { get; set; }
+
         public tipUputa TipUputa { get; set; }
+
+        public string datumPocetkaLecenja { get; set; }
+        public string datumKrajaLecenja { get; set; }
+
 
         public Uput() { }
 
@@ -34,6 +40,22 @@ namespace Projekat.Model
             this.opisPregleda = opis;
             this.datumIzdavanja = datum;
             this.TipUputa = tip;
+        }
+
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, int brojSobe, int brojKreveta, string krajLecenja, string datumPocetkaLecenja,string datumIzdavanja, string napomena, tipUputa tip)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;
+            this.opisPregleda = napomena;
+            this.datumKrajaLecenja = krajLecenja;
+            this.brojSobe = brojSobe;
+            this.brojKreveta = brojKreveta;
+            this.datumPocetkaLecenja = datumPocetkaLecenja;
+            this.datumIzdavanja = datumIzdavanja;
+            this.TipUputa = tip;
+
+
         }
 
         public override string ToString()

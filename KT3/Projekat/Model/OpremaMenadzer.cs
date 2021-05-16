@@ -94,6 +94,14 @@ namespace Projekat.Model
             dodajOpremuUPrikaz(oprema);
             sacuvajIzmjene();
         }
+        
+        public static void DodajKrevet(Krevet krevet)
+        {
+            OpremaMenadzer.kreveti.Add(krevet);
+            azurirajOpremuUSkladistu();
+            //dodajOpremuUPrikaz(oprema);
+            sacuvajIzmjene();
+        }
 
         private static void dodajOpremuUPrikaz(Oprema oprema)
         {
@@ -160,6 +168,19 @@ namespace Projekat.Model
             return id;
         }
 
+        public static int GenerisanjeIdKreveta()
+        {
+            int id;
+            for (id = 1; id <= kreveti.Count; id++)
+            {
+                if (!postojiIdKreveta(id))
+                {
+                    return id;
+                }
+            }
+            return id;
+        }
+
         private static bool postojiIdOpreme(int id)
         {
             foreach (Oprema o in oprema)
@@ -171,7 +192,22 @@ namespace Projekat.Model
             }
             return false;
         }
+        private static bool postojiIdKreveta(int id)
+        {
+            foreach (Krevet o in kreveti)
+            {
+                if (o.IdKreveta.Equals(id))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public static List<Oprema> oprema = new List<Oprema>();
+        /*Kristina*/
+        public static List<Krevet> kreveti = new List<Krevet>();
+
+      
     }
 }

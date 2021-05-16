@@ -28,11 +28,29 @@ namespace Projekat
             if(izabraniUput.TipUputa == tipUputa.SpecijallistickiPregled)
             {
                 specijalistickiTab.IsSelected = true;
+                PopuniPodatkeUputa();
+            }
+            else if(izabraniUput.TipUputa == tipUputa.StacionarnoLecenje)
+            {
+                stacinarnoTab.IsSelected = true;
+                PopuniPodatkeBolnickoLecenje();
             }
 
-            PopuniPodatkeUputa();
-
             
+            
+            
+        }
+
+        private void PopuniPodatkeBolnickoLecenje()
+        {
+            NadjiPacijentaBolnickoLecenje(uput.idPacijenta);
+            NadjiLekaraKojiIzdajeBolnickoLecenje(uput);
+            this.datumPocetka.SelectedDate = DateTime.Parse(uput.datumPocetkaLecenja);
+            this.datumKraja.SelectedDate = DateTime.Parse(uput.datumKrajaLecenja);
+            this.napomenaPregelda.Text = uput.opisPregleda;
+            this.brojKreveta.Text = uput.brojKreveta.ToString();
+            this.brojSobe.Text = uput.brojSobe.ToString();
+
         }
         private void PopuniPodatkeUputa()
         {
@@ -53,6 +71,17 @@ namespace Projekat
                     this.jmbg.Text = pacijent.Jmbg.ToString();
                 }
             }
+        }private void NadjiPacijentaBolnickoLecenje(int idPacijenta)
+        {
+            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if(pacijent.IdPacijenta == idPacijenta)
+                {
+                    this.imePacijenta.Text = pacijent.ImePacijenta;
+                    this.prezimePacijenta.Text = pacijent.PrezimePacijenta;
+                    this.jmbgPacijenta.Text = pacijent.Jmbg.ToString();
+                }
+            }
         }
 
         private void NadjiLekaraKojiIzdajeUput(Uput izabraniUput)
@@ -62,6 +91,16 @@ namespace Projekat
                 if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
                     this.lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+                }
+            }
+        }
+        private void NadjiLekaraKojiIzdajeBolnickoLecenje(Uput izabraniUput)
+        {
+            foreach(Lekar lekar in MainWindow.lekari)
+            {
+                if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
+                {
+                    this.Lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
                 }
             }
         }
@@ -79,6 +118,24 @@ namespace Projekat
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void PotvrdiLecenje_Click(object sender, RoutedEventArgs e)
+        {
+            uput.datumKrajaLecenja = NadjiNoviDatumKraja();
+            this.Close();
+        }
+
+        private string NadjiNoviDatumKraja()
+        {
+            String formatiranDatum = null;
+            DateTime? selectedDate = datumKraja.SelectedDate;
+            if (selectedDate.HasValue)
+            {
+                formatiranDatum = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            }
+            return formatiranDatum;
         }
     }
 }
