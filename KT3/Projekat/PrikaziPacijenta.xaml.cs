@@ -30,6 +30,7 @@ namespace Projekat
             get;
             set;
         }
+
         public PrikaziPacijenta()
         {
             InitializeComponent();
@@ -59,8 +60,7 @@ namespace Projekat
             }
         }
 
-        // nazad
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             SaleMenadzer.sacuvajIzmjene();
@@ -69,15 +69,13 @@ namespace Projekat
             s.Show();
         }
 
-        // dodavanje
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             DodajPacijenta dodavanje = new DodajPacijenta();
             dodavanje.Show();
         }
 
-        // izmena
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Izmeni_Click(object sender, RoutedEventArgs e)
         {
             Pacijent zaIzmenu = (Pacijent)TabelaPacijenata.SelectedItem;
 
@@ -92,8 +90,7 @@ namespace Projekat
             }
         }
         
-        // brisanje
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             flag = true;
             Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
@@ -117,8 +114,7 @@ namespace Projekat
             SaleMenadzer.sacuvajIzmjene();
         }
 
-        // otvaranje zdravstvenog kartona pacijenta (uvid u zdravstveni karton)
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Zdravstveni_karton_Click(object sender, RoutedEventArgs e)
         {
             Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
 
@@ -140,8 +136,7 @@ namespace Projekat
             }
         }
 
-        // X na prikazu naloga pacijenta
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
         {
             canvas2.Visibility = Visibility.Hidden;
         }
@@ -181,8 +176,7 @@ namespace Projekat
             }
         }
 
-        // button termini
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void Termini_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             SaleMenadzer.sacuvajIzmjene();
@@ -192,17 +186,18 @@ namespace Projekat
             p.Show();
         }
 
-        // oglasna tabla
-        private void Button_Click_7(object sender, RoutedEventArgs e)
+        private void Oglasna_tabla_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
         }
 
-        private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        private void Lekari_Click(object sender, RoutedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(PacijentiTabela).Refresh();
+            this.Close();
+            PrikaziLekare prikaz = new PrikaziLekare();
+            prikaz.Show();
         }
 
         private void Pomoc_Click(object sender, RoutedEventArgs e)
@@ -211,64 +206,62 @@ namespace Projekat
             pomoc.Show();
         }
 
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(PacijentiTabela).Refresh();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            // zakazi
             if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_1(sender, e);
+                Dodaj_Click(sender, e);
             }
             else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_1(sender, e);
+                Dodaj_Click(sender, e);
             }
-            // izmeni
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_2(sender, e);
+                Izmeni_Click(sender, e);
             }
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_2(sender, e);
+                Izmeni_Click(sender, e);
             }
-            // otkazi
             else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_3(sender, e);
+                Obrisi_Click(sender, e);
             }
             else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_3(sender, e);
+                Obrisi_Click(sender, e);
             }
-            // X na detaljnom prikazu termina
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_5(sender, e);
+                Napusti_uvid_Click(sender, e);
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_5(sender, e);
+                Napusti_uvid_Click(sender, e);
             }
-            // uvid u zdravstveni karton
             else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_4(sender, e);
+                Zdravstveni_karton_Click(sender, e);
             }
             else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_4(sender, e);
+                Zdravstveni_karton_Click(sender, e);
             }
-            // izadji iz ovog prozora
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click(sender, e);
+                Nazad_Click(sender, e);
             }
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click(sender, e);
-            }
-            // tabela termina
-           
+                Nazad_Click(sender, e);
+            }           
         }
+
     }
 }

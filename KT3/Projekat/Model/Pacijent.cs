@@ -81,7 +81,6 @@ namespace Model
         public bracnoStanje BracnoStanje { get; set; }
         public Lekar IzabraniLekar { get; set; }
         public ZdravstveniKarton Karton { get; set; }
-        // ukoliko je maloletno lice
         public bool Maloletnik { get; set; }
         public int JmbgStaratelja { get; set; } 
 

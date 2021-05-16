@@ -24,73 +24,80 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Pacijenti_Click(object sender, RoutedEventArgs e)
         {
             PrikaziPacijenta p = new PrikaziPacijenta();
             p.Show();
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Termini_Click(object sender, RoutedEventArgs e)
         {
             PrikaziTerminSekretar s = new PrikaziTerminSekretar();
             s.Show();
             this.Close();
         }
 
-        // nazad
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Lekari_Click(object sender, RoutedEventArgs e)
+        {
+            PrikaziLekare lekari = new PrikaziLekare();
+            lekari.Show();
+            this.Close();
+        }
+
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
         }
 
-        // otvori meni
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Otvori_meni_Click(object sender, RoutedEventArgs e)
         {
             menu.Visibility = Visibility.Visible;
         }
 
-        // zatvori meni
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Zatvori_meni_Click(object sender, RoutedEventArgs e)
         {
             menu.Visibility = Visibility.Hidden;
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void Oglasna_tabla_Click(object sender, RoutedEventArgs e)
         {
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
             this.Close();
         }
 
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            SekretarPomoc pomoc = new SekretarPomoc();
+            pomoc.Show();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            // otvori meni
             if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_3(sender, e);
+                Otvori_meni_Click(sender, e);
             }
             else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_3(sender, e);
+                Otvori_meni_Click(sender, e);
             } 
-            // zatvori meni
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_4(sender, e);
+                Zatvori_meni_Click(sender, e);
             }
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click_4(sender, e);
+                Zatvori_meni_Click(sender, e);
             }
-            // pomoc i preko alt-a napraviti da radi
             else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Hyperlink_Click(sender, e);
+                Pomoc_Click(sender, e);
             }
             else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Hyperlink_Click(sender, e);
+                Pomoc_Click(sender, e);
             }
             else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
@@ -102,10 +109,5 @@ namespace Projekat
             }
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            SekretarPomoc pomoc = new SekretarPomoc();
-            pomoc.Show();
-        }
     }
 }

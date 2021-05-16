@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PrikaziPacijentaPomoc" Height="430" Width="390" WindowStartupLocation="CenterScreen">
+        Title="PrikaziPacijentaPomoc" Height="440" Width="390" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -34,7 +34,7 @@
                 <TextBlock Height="0"/>
             </Grid>
         </Button>
-        <TextBlock Margin="49.6,8,36.4,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="316" Grid.Column="1" FontSize="15">
+        <TextBlock Margin="49.6,8,36.4,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Height="335" VerticalAlignment="Top" Grid.RowSpan="2">
             <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
             <Run Text="CTRL + D - Dodaj pacijenta"/><LineBreak/>
@@ -48,6 +48,7 @@
             <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
+            <Run Text="ALT + L - "/><Run Text="Lekari"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
             <Run Text="ALT + P - Pomoć"/><LineBreak/>
         </TextBlock>

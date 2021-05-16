@@ -197,7 +197,7 @@ namespace Model
 
         public static bool JedinstvenJmbg(int jmbg)
         {
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.Jmbg == jmbg)
                 {

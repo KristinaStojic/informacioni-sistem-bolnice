@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="Pomoc" Height="340" Width="390" WindowStartupLocation="CenterScreen">
+        Title="Pomoc" Height="360" Width="390" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -13,11 +13,11 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="180*"/>
-            <RowDefinition Height="48"/>
+            <RowDefinition/>
+            <RowDefinition Height="43.2"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Margin="340.6,2.6,-35,-39.6" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+        <Button Margin="340.6,6.2,-35,-43.2" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
             <Button.Background>
                 <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
             </Button.Background>
@@ -34,7 +34,7 @@
                 <TextBlock Height="0"/>
             </Grid>
         </Button>
-        <TextBlock Margin="33.6,18,26.4,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="233" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
+        <TextBlock Margin="33.6,19,26.4,22.4" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
             <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
             <Run Text="CTRL + M - Otvori menu"/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
@@ -44,6 +44,7 @@
             <Run Text="Nakon što je meni otvoren, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
+            <Run Text="ALT + L - "/><Run Text="Lekari"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
         </TextBlock>
     </Grid>
