@@ -22,6 +22,9 @@ namespace Projekat
     {
         Pacijent pacijent;
         Termin termin;
+        public string formatiranDatum;
+        public Sala Soba;
+        public Krevet Krevet;
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -29,7 +32,7 @@ namespace Projekat
             this.termin = izabraniTermin;
             PopuniPodatkePacijentaZaSpecijalistickiUput();
             PopuniPodatkePacijentaZaBolnickoLecenje();
-           
+
         }
         private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
@@ -86,7 +89,7 @@ namespace Projekat
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
-                Uput noviUput= new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);
 
                 TerminMenadzer.sacuvajIzmene();
@@ -152,5 +155,112 @@ namespace Projekat
                 Odustani_Click(sender, e);
             }
         }
+
+        private void brojSobe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (slobodneSobe.SelectedItem != null)
+            {
+                Soba = SaleMenadzer.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
+            }
+            NadjiSlobodneKrevete(Soba);
+        }
+
+        private void NadjiSlobodneKrevete(Sala Soba)
+        {
+            slobodniKreveti.Items.Clear();
+            foreach (Krevet k in Soba.Kreveti)
+            {
+                if (!k.Zauzet)
+                {
+                    slobodniKreveti.Items.Add(k.IdKreveta);
+                }
+            }
+        }
+
+        private void datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime? selectedDate = datumPocetka.SelectedDate;
+            if (selectedDate.HasValue)
+            {
+                formatiranDatum = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
+
+            nadjiSlobodneSobe();
+        }
+
+        private void nadjiSlobodneSobe()
+        {
+
+            foreach(Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.TipSale.Equals(tipSale.SalaZaOdmor))  
+                {
+                    /*DODATI PROVJERU DA NADJE SLOBODNE KREVETE*/
+                    slobodneSobe.Items.Add(sala.Id);
+                    
+                }
+            }
+
+        }
+
+        private void PotvrdiLecenje_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                String detaljiOPregledu = napomenaPregelda.Text;
+                string datumPocetka = NadjiDatumPocetkaLecenja();
+                string datumKraja = NadjiDatumKrajaLecenja();
+                tipUputa tipUputa = NadjiTipUputa();
+                Soba = SaleMenadzer.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
+                Krevet = SaleMenadzer.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem);
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
+                zauzmiKrevet(Soba, Krevet);
+                ZdravstveniKartonMenadzer.DodajUput(noviUput);
+
+                TerminMenadzer.sacuvajIzmene();
+                PacijentiMenadzer.SacuvajIzmenePacijenta();
+                SaleMenadzer.sacuvajIzmjene();
+                this.Close();
+            }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void zauzmiKrevet(Sala soba,Krevet krevet)
+        {
+            foreach(Krevet k in soba.Kreveti)
+            {
+                if(k.IdKreveta == krevet.IdKreveta)
+                {
+                    k.Zauzet = true;
+                }
+            }
+        }
+        private string NadjiDatumPocetkaLecenja()
+        {
+            String formatiranDatum = null;
+            DateTime? selectedDate = datumPocetka.SelectedDate;
+            if (selectedDate.HasValue)
+            {
+                formatiranDatum = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            }
+            return formatiranDatum;
+        }
+        private string NadjiDatumKrajaLecenja()
+        {
+            String formatiranDatum = null;
+            DateTime? selectedDate = datumKraja.SelectedDate;
+            if (selectedDate.HasValue)
+            {
+                formatiranDatum = selectedDate.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            }
+            return formatiranDatum;
+        }
+        
     }
 }

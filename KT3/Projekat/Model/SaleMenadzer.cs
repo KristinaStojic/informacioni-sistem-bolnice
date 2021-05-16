@@ -91,6 +91,18 @@ namespace Model
             }
             return null;
         }
+        
+        public static Krevet NadjiKrevetPoId(int id)
+        {
+            foreach (Krevet krevet in MainWindow.kreveti) //OpremaMenadzer.kreveti
+            {
+                if (krevet.IdKreveta == id)
+                {
+                    return krevet;
+                }
+            }
+            return null;
+        }
 
         public static void sacuvajIzmjene()
         {
