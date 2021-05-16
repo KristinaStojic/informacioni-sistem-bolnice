@@ -257,6 +257,9 @@
     <Compile Include="PodjelaSale.xaml.cs">
       <DependentUpon>PodjelaSale.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PodsetnikPacijent.xaml.cs">
+      <DependentUpon>PodsetnikPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\AnamnezaPomoc.xaml.cs">
       <DependentUpon>AnamnezaPomoc.xaml</DependentUpon>
     </Compile>
@@ -692,6 +695,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PodjelaSale.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PodsetnikPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

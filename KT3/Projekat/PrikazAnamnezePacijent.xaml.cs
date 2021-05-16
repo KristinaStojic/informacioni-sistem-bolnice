@@ -28,25 +28,24 @@ namespace Projekat
             anamneza = izabranaAnamneza;
 
 
-            this.datumAnamneze.Text = anamneza.Datum;
+            this.datumTermina.Text = anamneza.Datum;
             this.podaciLekar.Text = anamneza.ImePrezimeLekara;
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
             this.beleska.Text = anamneza.Beleska;
+            if (!anamneza.Beleska.Equals(""))
+            {
+                this.DodajBelesku.Content = "Izmeni";
+            }
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
             Termin termin = TerminMenadzer.NadjiTerminPoId(anamneza.IdTermina);
             this.sala.Text = termin.Prostorija.brojSale.ToString();
+            this.vremeTermina.Text = termin.VremePocetka + "-" + termin.VremeKraja;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            // nazad
-            //this.Close();
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -120,6 +119,7 @@ namespace Projekat
 
         private void DodajBelesku_Click(object sender, RoutedEventArgs e)
         {
+            this.DodajBelesku.Content = "Izmeni";
             this.beleska.IsEnabled = true;
         }
     }
