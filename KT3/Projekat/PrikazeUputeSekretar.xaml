@@ -1,0 +1,24 @@
+﻿<Window x:Class="Projekat.PrikazeUputeSekretar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="PrikazeUputeSekretar" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid x:Name="dataGridUputi" ItemsSource="{Binding TabelaUputa}" IsReadOnly="True" 
+                                SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
+                                 Margin="45,63,0,0" VerticalAlignment="Top" Height="286" Width="398" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Visibility="Visible">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Datum izdavanja" Width="120" Binding="{Binding datumIzdavanja}" />
+                <DataGridTextColumn Header="Tip uputa" Width="150" Binding="{Binding}"/>
+                <DataGridTextColumn Header="Napomena" Width="120" Binding="{Binding opisPregleda}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Izaberite uput koji zelite da iskoristite:" HorizontalAlignment="Left" Margin="44,32,0,0" VerticalAlignment="Top"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" Margin="338,363,0,0" VerticalAlignment="Top" Width="105" Height="29" Click="Nazad_Click"/>
+        <Button Content="Uput je odabran" HorizontalAlignment="Left" Margin="44,363,0,0" VerticalAlignment="Top" Width="105" Height="29" Click="Izaberi_uput_Click"/>
+
+    </Grid>
+</Window>

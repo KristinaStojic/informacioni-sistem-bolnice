@@ -82,7 +82,7 @@
                             <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="193" Margin="465,26,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Image Source="slike/osoba.jpg" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
                             </GroupBox>
-                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="711,466,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Button_Click">
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="711,466,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Nazad_Click">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -113,7 +113,8 @@
                                     <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Binding="{Binding ImePrezimeLekara}" Width="375"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="447.2,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click" Grid.Column="1">
+                            <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="52,471,0,0" Height="36" Background="#FFA3DADE" Click="Detalji_anamneze_Click" FontSize="15"/>
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="447.2,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click" Grid.Column="1">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -137,11 +138,10 @@
                             <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena}"
                                 SelectionMode="Single" AutoGenerateColumns="False" Margin="52,64,48.2,0" VerticalAlignment="Top"  Height="387" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Grid.ColumnSpan="2">
                                 <DataGrid.Columns >
-                                    <DataGridTextColumn Header="Šifra leka" Width="320"  Binding="{Binding SifraLeka}" />
-                                    <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding NazivLeka}"/>
+                                    <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding NazivSastojka}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Background="Transparent" HorizontalAlignment="Right" BorderBrush="Transparent" Margin="0,466,48.2,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click" Grid.Column="1">
+                            <Button Background="Transparent" HorizontalAlignment="Right" BorderBrush="Transparent" Margin="0,466,48.2,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click" Grid.Column="1">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -153,6 +153,7 @@
                                     </Image.RenderTransform>
                                 </Image>
                             </Button>
+                            <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="52,479,0,0" Height="36" Background="#FFA3DADE" Click="Detalji_alergena_Click" Grid.ColumnSpan="2" FontSize="15"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Recepti" Width="100" Height="25">
@@ -170,7 +171,7 @@
                                     <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="120"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="689,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click">
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="689,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -185,6 +186,32 @@
                         </Grid>
                     </TabItem>
                     <TabItem Header="Uputi" Width="100">
+                        <Grid>
+                            <Label Content="Uputi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+
+                            <DataGrid x:Name="dataGridUputi" ItemsSource="{Binding TabelaUputa}" IsReadOnly="True" 
+                                SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
+                                 Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="691" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Visibility="Visible">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Datum izdavanja" Width="170" Binding="{Binding datumIzdavanja}" />
+                                    <DataGridTextColumn Header="Tip uputa" Width="180*" Binding="{Binding}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button Content="Detalji" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="52,479,0,0" Height="36" Background="#FFA3DADE" Click="Detalji_uputa_Click" Grid.ColumnSpan="2" FontSize="15"/>
+                            <Button Background="Transparent" HorizontalAlignment="Right" BorderBrush="Transparent" Margin="0,466,48.2,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click" Grid.Column="1">
+                                <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="180.232"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Button>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Border>

@@ -27,6 +27,7 @@ namespace Projekat
         public Lekar Lekar;
         public Sala Sala;
         public Termin t;
+        public Uput uputZaPregled;
         public string dat;
         public string PocetnoVreme;
         int izbaceniSlotoviMinuti;
@@ -555,7 +556,7 @@ namespace Projekat
         {
             prostorije.Items.Clear();
 
-            if (tip.SelectedIndex == 0) // pregled
+            if (tip.SelectedIndex == 0 || tip.SelectedIndex == 1) // pregled
             {
                 foreach (Sala s in SaleMenadzer.sale)
                 {
@@ -568,7 +569,7 @@ namespace Projekat
                     }
                 }
             }
-            else if (tip.SelectedIndex == 1) // operacija
+            else if (tip.SelectedIndex == 2) // operacija
             {
                 foreach (Sala s in SaleMenadzer.sale)
                 {
@@ -755,6 +756,18 @@ namespace Projekat
             PocetnoVreme = vremePocetka.Text;
         }
 
+        private void Uputi_Click(object sender, RoutedEventArgs e)
+        {
+            if (pacijenti.Text.Equals(""))
+            {
+                MessageBox.Show("Izaberite pacijenta!");
+            }
+            else
+            {
+                PrikazeUputeSekretar uputi = new PrikazeUputeSekretar(Pacijent, this);
+                uputi.Show();
+            }
+        }
 
     }
 }
