@@ -37,8 +37,7 @@
                                 <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
                                 <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                <MenuItem Header="_sr" />
-                                <MenuItem Header="_en"/>
+                                <MenuItem Header="_sr-LATIN" x:Name="Jezik" Click="Jezik_Click"/>
                                 <Separator />
                                 <MenuItem Header="_Izaberite temu" IsEnabled="False" />
                                 <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>

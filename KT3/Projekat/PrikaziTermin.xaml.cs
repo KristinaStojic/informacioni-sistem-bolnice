@@ -17,6 +17,7 @@ using System.Globalization;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
+using Projekat.Lokalizacija;
 
 namespace Projekat
 {
@@ -327,6 +328,21 @@ namespace Projekat
         {
             Page dodajPodsetnik = new PodsetnikPacijent(idPacijent);
             this.NavigationService.Navigate(dodajPodsetnik);
+        }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            if (Jezik.Equals("en-US"))
+            {
+                this.Jezik.Header = "sr-LATN";
+            }
+            else
+            {
+                this.Jezik.Header = "en-US";
+            }
+            MessageBox.Show(Jezik.Header.ToString());
+           //app.ChangeLanguage(Jezik.Header.ToString());
         }
     }
 }

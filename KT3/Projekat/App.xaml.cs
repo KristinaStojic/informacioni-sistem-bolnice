@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Lokalizacija;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,7 +13,7 @@ namespace Projekat
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
-    { 
+    {
         public ResourceDictionary ThemeDictionary
         {
             // You could probably get it via its name with some query logic as well.
@@ -23,6 +24,19 @@ namespace Projekat
         {
             ThemeDictionary.MergedDictionaries.Clear();
             ThemeDictionary.MergedDictionaries.Add(new ResourceDictionary() { Source = uri });
+        }
+
+        public void ChangeLanguage(string currLang)
+        {
+            if (currLang.Equals("en-US"))
+            {
+                IzvorPrevoda.Instance.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            }
+            else
+            {
+                IzvorPrevoda.Instance.CurrentCulture = new System.Globalization.CultureInfo("sr-LATN");
+            }
+
         }
     }
 }
