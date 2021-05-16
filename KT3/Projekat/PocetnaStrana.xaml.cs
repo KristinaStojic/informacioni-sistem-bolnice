@@ -47,6 +47,8 @@ namespace Projekat
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             //godisnji odmor
+            ZahteviZaGodisnjiLekar zahtev = new ZahteviZaGodisnjiLekar();
+            zahtev.Show();
         }
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
@@ -66,7 +68,7 @@ namespace Projekat
             } 
             else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                //Button_Click_3(sender, e);
+                Button_Click_3(sender, e);
             }
             else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
             {

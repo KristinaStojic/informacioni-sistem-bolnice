@@ -122,6 +122,9 @@
     <Compile Include="DodajSpecijalistickiUput.xaml.cs">
       <DependentUpon>DodajSpecijalistickiUput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajZahtevZaGodisnji.xaml.cs">
+      <DependentUpon>DodajZahtevZaGodisnji.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajZamenskiLekLekar.xaml.cs">
       <DependentUpon>DodajZamenskiLekLekar.xaml</DependentUpon>
     </Compile>
@@ -445,6 +448,9 @@
     <Compile Include="UvidZdravstveniKartonLekar.xaml.cs">
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZahteviZaGodisnjiLekar.xaml.cs">
+      <DependentUpon>ZahteviZaGodisnjiLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Zahtjevi.xaml.cs">
       <DependentUpon>Zahtjevi.xaml</DependentUpon>
     </Compile>
@@ -560,6 +566,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajSpecijalistickiUput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajZahtevZaGodisnji.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -994,6 +1004,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UvidZdravstveniKartonLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZahteviZaGodisnjiLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
