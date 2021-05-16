@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DodajPodsetnik" xml:space="preserve">
-    <value>Dodaj podsetnik</value>
+    <value>Add reminder</value>
   </data>
   <data name="IzaberiteJezik" xml:space="preserve">
-    <value>Promeni jezik</value>
+    <value>Change language</value>
   </data>
   <data name="IzberiteTemu" xml:space="preserve">
-    <value>Promeni temu</value>
+    <value>Change theme</value>
   </data>
   <data name="Karton" xml:space="preserve">
-    <value>Zdravstveni karton</value>
+    <value>Medical record</value>
   </data>
   <data name="Obavestenja" xml:space="preserve">
-    <value>🔔 Obaveštenja</value>
+    <value>🔔 Notifications</value>
   </data>
   <data name="Odjava" xml:space="preserve">
-    <value>Odjavi se</value>
+    <value>Log out</value>
   </data>
   <data name="Pocetna" xml:space="preserve">
-    <value>Početna stranica</value>
+    <value>Home page</value>
   </data>
   <data name="PopuniAnketu" xml:space="preserve">
-    <value>Popuni anketu</value>
+    <value>Fill out the survey</value>
   </data>
   <data name="Profil" xml:space="preserve">
-    <value>Vaš profil</value>
+    <value>Your profile</value>
   </data>
   <data name="Svetla" xml:space="preserve">
-    <value>Svetla</value>
+    <value>Light</value>
   </data>
   <data name="Tamna" xml:space="preserve">
-    <value>Tamna</value>
+    <value>Dark</value>
   </data>
   <data name="UvidUZakazaneTermine" xml:space="preserve">
-    <value>Uvid u zakazane termine</value>
+    <value>Scheduled appointments</value>
   </data>
   <data name="ZakaziTermin" xml:space="preserve">
-    <value>Zakaži termin</value>
+    <value>Make an appointment</value>
   </data>
 </root>

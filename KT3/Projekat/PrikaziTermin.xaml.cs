@@ -333,7 +333,7 @@ namespace Projekat
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
-            if (Jezik.Equals("en-US"))
+            if (Jezik.Header.Equals("en-US"))
             {
                 this.Jezik.Header = "sr-LATN";
             }
@@ -341,8 +341,7 @@ namespace Projekat
             {
                 this.Jezik.Header = "en-US";
             }
-            MessageBox.Show(Jezik.Header.ToString());
-           //app.ChangeLanguage(Jezik.Header.ToString());
+            app.ChangeLanguage(Jezik.Header.ToString());
         }
     }
 }

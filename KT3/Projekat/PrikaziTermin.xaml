@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
+        xmlns:ns="clr-namespace:Projekat.Lokalizacija"
         mc:Ignorable="d"
         d:DesignHeight="600" d:DesignWidth="800"
         Title="Prikaz termina" Background= "{DynamicResource BackgroundColor}">
@@ -32,42 +33,43 @@
                                 <MenuItem.Icon>
                                     <Image Source="/slike/user.png" />
                                 </MenuItem.Icon>
-                                <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
+                                <MenuItem Header="{ns:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                 <Separator/>
-                                <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                <MenuItem Header="{ns:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
-                                <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                <MenuItem Header="_sr-LATIN" x:Name="Jezik" Click="Jezik_Click"/>
+                                <MenuItem Header="{ns:Loc IzaberiteJezik}" IsEnabled="False" />
+                                <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                 <Separator />
-                                <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{ns:Loc IzberiteTemu}" IsEnabled="False" />
+                                <MenuItem Header="{ns:Loc Svetla}" Name="svetlaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{ns:Loc Tamna}" Name="tamnaTema"/>
                                 <Separator />
-                                <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                                <MenuItem Header="{ns:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                             </MenuItem>
                         </Menu>
                     </StackPanel>
                 </StackPanel>
                 <TextBlock Margin="20,0,-533,0" FontSize="14"  Height="25">
-                <Hyperlink Name="pocetna" Click="pocetna_Click">
-                    <Run Text="Početna stranica"/>
+                <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                    <Run Text="{ns:Loc Pocetna}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="zakazi" Click="zakazi_Click">
-                    <Run Text="Zakažite termin"/>
+                    <Run Text="{ns:Loc ZakaziTermin}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="uvid" Click="uvid_Click">
-                    <Run Text="Uvid u zakazane termine"/>
+                    <Run Text="{ns:Loc UvidUZakazaneTermine}"/>
                 </Hyperlink>
                 <Run Text=" "/>
                 <Hyperlink Name="karton" Click="karton_Click">
-                    <Run Text="Zdravstveni karton"/>
+                    <Run Text="{ns:Loc Karton}"/>
                 </Hyperlink>
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,05">
-                    <Label Content="🔔 Obaveštenja" HorizontalAlignment="Center" Margin="50, 0, 0, 0"
+                    <Label Content="{ns:Loc Obavestenja}" HorizontalAlignment="Center" Margin="50, 0, 0, 0"
                            VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
                         RenderTransformOrigin="0.263,0.577"  FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142" Grid.Column="1" Grid.Row="1"/>
                     <StackPanel Orientation="Horizontal" Margin="180, 0, 0, 0">
@@ -109,7 +111,7 @@
                     <Button x:Name="Podsetnik"
                             Height="30"
                             Width="92"
-                            Content="Dodaj podsetnik"
+                            Content="{ns:Loc DodajPodsetnik}"
                             Style="{DynamicResource ButtonStyle2}" Click="Podsetnik_Click"/>
                 </StackPanel>
 
