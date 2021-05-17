@@ -40,6 +40,7 @@ namespace Model
             this.Namjena = namjena;
             this.zauzetiTermini = new List<ZauzeceSale>();
             this.Oprema = new List<Oprema>();
+            this.Kreveti = new List<Krevet>();
         }
 
         protected virtual void OnPropertyChanged(string name)

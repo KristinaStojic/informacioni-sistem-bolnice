@@ -1230,5 +1230,8 @@
   <ItemGroup>
     <Resource Include="slike\barkod3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="slike\bed.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

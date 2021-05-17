@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,9 @@ namespace Projekat.Model
             this.IdKreveta = idKreveta;
         }
 
-        public Krevet(int idKreveta, int idSobe, bool zauzet)
+        public Krevet(int idSobe, bool zauzet)
         {
-            this.IdKreveta = idKreveta;
+            this.IdKreveta = SaleMenadzer.GenerisanjeIdKreveta();
             this.IdSobe = idSobe;
             this.Zauzet = zauzet;
         }

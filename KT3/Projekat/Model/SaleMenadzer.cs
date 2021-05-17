@@ -189,7 +189,46 @@ namespace Model
             }
             return slobodneSaleZaOperaciju;
         }
-        
+
+        public static int GenerisanjeIdKreveta()
+        {
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= nadjiSveKrevete().Count; id++)
+            {
+                foreach (Lek lijek in LekoviMenadzer.lijekovi)
+                {
+                    if (lijek.idLeka.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
+        }
+
+        private static List<Krevet> nadjiSveKrevete()
+        {
+            List<Krevet> kreveti = new List<Krevet>();
+            foreach(Sala sala in sale)
+            {
+                foreach(Krevet krevet in sala.Kreveti)
+                {
+                    kreveti.Add(krevet);
+                }
+            }
+            return kreveti;
+        }
+
         public static ObservableCollection<string> InicijalizujSveSlotove()
         {
             return new ObservableCollection<string>() { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30","11:00", "11:30",

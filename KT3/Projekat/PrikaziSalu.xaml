@@ -11,6 +11,7 @@
             <Menu DockPanel.Dock="Top" Background="CadetBlue">
                 <MenuItem Header="Fajl" FontSize="15">
                     <MenuItem Header="Dodaj" FontSize="15" Click="DodajSalu_Click" InputGestureText="Ctrl + D"></MenuItem>
+                    <MenuItem Header="Dodaj krevet" FontSize="15" Click="Kreveti_Click" InputGestureText="Ctrl + T"></MenuItem>
                     <MenuItem Header="Zatvori" FontSize="15" Click="Upravnik_Click" InputGestureText="Ctrl + Z"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Uredi" FontSize="15">
@@ -41,6 +42,9 @@
                 </Button>
                 <Button Click="Renoviranje_Click" ToolTip="Renoviraj, Ctrl + R">
                    <Image Source="slike/brush.png" Width="30" Height="30"></Image>
+                </Button>
+                <Button Click="Kreveti_Click" ToolTip="Dodaj krevet, Ctrl + T">
+                    <Image Source="slike/bed.png" Width="30" Height="30"></Image>
                 </Button>
                 <Button Click="ObrisiSalu_Click" ToolTip="Obrisi, Ctrl + O">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
