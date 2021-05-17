@@ -46,7 +46,7 @@ namespace Projekat
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
@@ -140,7 +140,7 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+            Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
             t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);

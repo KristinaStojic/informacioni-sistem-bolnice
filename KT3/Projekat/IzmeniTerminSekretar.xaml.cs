@@ -43,7 +43,7 @@ namespace Projekat
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
@@ -72,9 +72,9 @@ namespace Projekat
                 lekari.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 Lekar = izabraniTermin.Lekar;
 
-                for (int i = 0; i < MainWindow.lekari.Count; i++)
+                for (int i = 0; i < LekariMenadzer.lekari.Count; i++)
                 {
-                    if (MainWindow.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
+                    if (LekariMenadzer.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
                     {
                         listaLekara.SelectedIndex = i;
                     }
@@ -529,7 +529,7 @@ namespace Projekat
             Pacijent = (Pacijent)listaPacijenata.SelectedItem;
             Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+            Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 

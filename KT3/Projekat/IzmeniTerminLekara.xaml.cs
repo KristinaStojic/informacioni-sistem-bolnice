@@ -933,7 +933,7 @@ namespace Projekat
             Pacijent = (Pacijent)listaPacijenata.SelectedItem;
             Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+            Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 

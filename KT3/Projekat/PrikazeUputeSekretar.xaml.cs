@@ -62,7 +62,7 @@ namespace Projekat
 
             // popunjavanje polja na formi za zakazivanje
             zakazivanje.uputZaPregled = uput;
-            Lekar l = MainWindow.PronadjiPoId(uput.IdLekaraKodKogSeUpucuje);
+            Lekar l = LekariMenadzer.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
             zakazivanje.Lekar = l;
             zakazivanje.lekari.Text = l.ImeLek + " " + l.PrezimeLek;
             zakazivanje.tip.SelectedIndex = 1;

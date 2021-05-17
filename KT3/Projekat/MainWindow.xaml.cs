@@ -42,7 +42,7 @@ namespace Projekat
             LekariMenadzer.NadjiSveZahteve();
             LekariMenadzer.NadjiSveLekare();
 
-            lekari = new ObservableCollection<Lekar>();
+            /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
             lekari.Add(new Lekar() {IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa });
             lekari.Add(new Lekar() {IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
@@ -51,7 +51,7 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 6, ImeLek = "Jagoda", PrezimeLek = "Jagodic", specijalizacija = Specijalizacija.Ortopedija });
             lekari.Add(new Lekar() {IdLekara = 7, ImeLek = "Jovana", PrezimeLek = "Jovanovic", specijalizacija = Specijalizacija.Akuserstvo });
             lekari.Add(new Lekar() { IdLekara = 8, ImeLek = "Ivan", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Hirurgija });
-            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });
+            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });*/
 
 
             lekovi = new ObservableCollection<Lek>();
@@ -98,35 +98,6 @@ namespace Projekat
             
 
         }
-
-        //TODO: prebaaci u LekariMenadzer-u
-        public static Lekar PronadjiPoId(int id)
-        {
-            foreach (Lekar p in lekari)
-            {
-                if (p.IdLekara == id)
-                {
-                    return p;
-                }
-            }
-            return null;
-
-        }
-
-        public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija oblastSpecijalizacije)
-        {
-            List<Lekar> specijalizovaniLekari = new List<Lekar>();
-
-            foreach (Lekar lekar in lekari)
-            {
-                if (lekar.specijalizacija.Equals(oblastSpecijalizacije))
-                {
-                    specijalizovaniLekari.Add(lekar);
-                }
-            }
-            return specijalizovaniLekari;
-        }
-        //------------------------------------------------------------------------------------
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -178,10 +149,10 @@ namespace Projekat
             {
                 Button_Click_2(sender, e);
             }
-            /*else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //sekretar
+            else if ( (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) || (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl)) ) //sekretar
             {
                 Button_Click_3(sender, e);
-            }*/
+            }
         }
     }
 }

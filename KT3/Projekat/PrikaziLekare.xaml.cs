@@ -172,8 +172,17 @@ namespace Projekat
 
         private void Radno_vreme_Click(object sender, RoutedEventArgs e)
         {
-            OdrediRadnoVreme radnoVreme = new OdrediRadnoVreme();
-            radnoVreme.Show();
+            Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;
+
+            if (selektovaniLekar == null)
+            {
+                MessageBox.Show("Izaberite lekara cije radno vreme zelite da odredite.");
+            }
+            else
+            {
+                OdrediRadnoVreme radnoVreme = new OdrediRadnoVreme(selektovaniLekar);
+                radnoVreme.Show();
+            }        
         }
 
         private void Godisnji_odmor_Click(object sender, RoutedEventArgs e)

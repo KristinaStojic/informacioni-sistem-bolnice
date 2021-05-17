@@ -395,7 +395,7 @@ namespace Projekat
         private void OdrediOblastLekara()
         {
             Specijalizacija oblastSpecijalizacije = (Specijalizacija)oblastLekara.SelectedItem;
-            slobodniLekari = MainWindow.PronadjiLekarePoSpecijalizaciji(oblastSpecijalizacije);
+            slobodniLekari = LekariMenadzer.PronadjiLekarePoSpecijalizaciji(oblastSpecijalizacije);
         }
 
         private int OdrediBrojSlotovaZaIzbacivanje(string pocetakTermina, string krajTermina)
@@ -467,7 +467,7 @@ namespace Projekat
                 {
                     if (idLekara != 0)
                     {
-                        return MainWindow.PronadjiPoId(idLekara);
+                        return LekariMenadzer.NadjiPoId(idLekara);
                     }
                     else if (idSale != 0)
                     { 

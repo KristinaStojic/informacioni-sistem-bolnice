@@ -218,6 +218,7 @@
     <Compile Include="Model\OpremaMenadzer.cs" />
     <Compile Include="Model\Premjestaj.cs" />
     <Compile Include="Model\PremjestajMenadzer.cs" />
+    <Compile Include="Model\RadniDan.cs" />
     <Compile Include="Model\Sastojak.cs" />
     <Compile Include="Model\Specijalizacija.cs" />
     <Compile Include="Model\Uput.cs" />
