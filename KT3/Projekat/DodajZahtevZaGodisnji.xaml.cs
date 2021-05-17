@@ -54,14 +54,38 @@ namespace Projekat
             int idZahteva = LekariMenadzer.GenerisanjeIdZahtevaZaOdmor(idLekara);
             string napomena = this.napomena.Text;
             /*pocetak*/
+            string pocetakOdmora = NadjiDatumPocetkaOdmora();
+            
+            /*kraj*/
+            string krajOdmora = NadjiDatumKrajaOdmora();
+            
+
+            /*broj dana*/
+            int brojDanaOdmora = OdrediBrojDanaOdmora();
+
+            /*lekar*/
+            Lekar lekar = NadjiLekara();
+
+            ZahtevZaGodisnji zahtev = new ZahtevZaGodisnji(idZahteva,lekar,pocetakOdmora,krajOdmora,brojDanaOdmora,napomena);
+            LekariMenadzer.DodajZahtev(zahtev);
+            this.Close();
+        }
+
+        private string NadjiDatumPocetkaOdmora()
+        {
             string pocetakOdmora = null;
             DateTime? datumPocetka = this.pocetak.SelectedDate;
             if (datumPocetka.HasValue)
             {
                 pocetakOdmora = datumPocetka.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             }
-            
-            /*kraj*/
+
+            return pocetakOdmora;
+        }
+
+
+        private string NadjiDatumKrajaOdmora()
+        {
             string krajOdmora = null;
             DateTime? datumKraja = this.kraj.SelectedDate;
             if (datumKraja.HasValue)
@@ -69,26 +93,31 @@ namespace Projekat
                 krajOdmora = datumKraja.Value.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             }
 
-            /*broj dana*/
+            return krajOdmora;
+        }
+
+        private int OdrediBrojDanaOdmora()
+        {
             DateTime kraj = (DateTime)this.kraj.SelectedDate;
             DateTime pocetak = (DateTime)this.pocetak.SelectedDate;
 
-            TimeSpan brojDana = kraj.Subtract (pocetak);
+            TimeSpan brojDana = kraj.Subtract(pocetak);
             int brojDanaOdmora = brojDana.Days;
 
-            /*lekar*/
+            return brojDanaOdmora;
+        }
+
+        private Lekar NadjiLekara()
+        {
             Lekar lekar = null;
-            foreach(Lekar l in LekariMenadzer.lekari)
+            foreach (Lekar l in LekariMenadzer.lekari)
             {
                 if (l.IdLekara == idLekara)
                 {
                     lekar = l;
                 }
             }
-
-            ZahtevZaGodisnji zahtev = new ZahtevZaGodisnji(idZahteva,lekar,pocetakOdmora,krajOdmora,brojDanaOdmora,napomena);
-            LekariMenadzer.DodajZahtev(zahtev);
-            this.Close();
+            return lekar;
         }
     }
 }

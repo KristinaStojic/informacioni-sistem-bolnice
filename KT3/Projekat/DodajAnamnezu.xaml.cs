@@ -25,12 +25,16 @@ namespace Projekat
         public DodajAnamnezu(Pacijent izabraniPacijent, Termin termin)
         {
             InitializeComponent();
+            PopuniPodatkePacijenta();
+        }
+
+        private void PopuniPodatkePacijenta()
+        {
             this.pacijent = izabraniPacijent;
             this.termin = termin;
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             this.datum.SelectedDate = DateTime.Parse(termin.Datum);
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
            

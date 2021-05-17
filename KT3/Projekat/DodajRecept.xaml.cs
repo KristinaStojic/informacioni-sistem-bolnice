@@ -96,11 +96,7 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajRecept(recept);
 
                 PosaljiObavestenjeOTerapiji(recept);
-
-                TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
-                SaleMenadzer.sacuvajIzmjene();
-                ObavestenjaMenadzer.sacuvajIzmene();
+                SacuvajIzmene();
 
                 this.Close();
             }
@@ -109,6 +105,15 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void SacuvajIzmene()
+        {
+            TerminMenadzer.sacuvajIzmene();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            SaleMenadzer.sacuvajIzmjene();
+            ObavestenjaMenadzer.sacuvajIzmene();
+        }
+
         private List<DateTime> GenerisiUzimanjeTerapije(string datumPregleda,int kolicinaNaDan, int kolikoDana)
         {
             List<DateTime> uzimanjeTerapije = new List<DateTime>();
