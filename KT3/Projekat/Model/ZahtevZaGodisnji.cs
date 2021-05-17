@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Projekat.Model
 {
+    public enum StatusZahteva { NA_CEKANJU, ODOBREN, ODBIJEN }
     public class ZahtevZaGodisnji
     {
         public int idZahteva { get; set; }
@@ -17,7 +18,7 @@ namespace Projekat.Model
 
         public string napomena { get; set;}
 
-        public bool odobren { get; set; }
+        public StatusZahteva odobren { get; set; }
 
         public ZahtevZaGodisnji() { }
 
@@ -29,14 +30,17 @@ namespace Projekat.Model
             this.krajOdmora = kraj;
             this.brojDanaOdmora = dani;
             this.napomena = napomena;
+            this.odobren = StatusZahteva.NA_CEKANJU;
         }
 
         public override string ToString()
         {
-            if (odobren == true)
+            if (odobren.Equals(StatusZahteva.ODOBREN))
                 return "DA";
-            else
+            else if (odobren.Equals(StatusZahteva.ODBIJEN))
                 return "NE";
+            else
+                return "PROCESIRANJE_ZAHTEVA";
         }
     }
 }

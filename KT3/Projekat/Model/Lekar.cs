@@ -24,7 +24,6 @@ namespace Model
         public Specijalizacija specijalizacija { get; set; }
         public int SlobodniDaniGodisnjegOdmora { get; set; }
         public int ZahtevaniiDaniGodisnjegOdmora { get; set; } // prilikom slanja zahteva od strane lekara 
-
         public List<int> zahteviZaOdmor { get; set; }
 
         // radno vreme?
