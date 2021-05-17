@@ -45,18 +45,40 @@ namespace Projekat
             thread.Start();
             DodajTerminePacijenta();
             DodajObavestenja();
-            AktivnaTema(this.zaglavlje, this.svetlaTema);
+            this.SvetlaTema.IsEnabled = false;
+            AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            this.Jezik.Header = "en-US";
+            var app = (App)Application.Current;
+            app.ChangeLanguage("sr-LATN");
+
         }
 
+
+        // TODO: ispraviti na svim Page-vima
         public static void AktivnaTema(StackPanel PanelZaglavlja, MenuItem AktivnaTema)
         {
             if (PanelZaglavlja.Background.ToString().Equals("#FF112D4E"))
             {
                 AktivnaTema.Header = "Svetla";
+                
             }
             else if(PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
             {
                 AktivnaTema.Header = "Tamna";
+            }
+        }
+        public static void AktivnaTemaPagea(StackPanel PanelZaglavlja, MenuItem SvetlaTema, MenuItem TamnaTema)
+        {
+            if (PanelZaglavlja.Background.ToString().Equals("#FF112D4E"))
+            {
+                //AktivnaTema.Header = "Svetla";
+                TamnaTema.IsEnabled = false;
+
+            }
+            else if (PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
+            {
+                //AktivnaTema.Header = "Tamna";
+                SvetlaTema.IsEnabled = false;
             }
         }
 
@@ -302,21 +324,7 @@ namespace Projekat
             }
         }
 
-        private void PromeniTemu(object sender, RoutedEventArgs e)
-        {
-            var app = (App)Application.Current;
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
-            {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-            }
-            else
-            {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
-        }
+      
 
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
@@ -330,18 +338,44 @@ namespace Projekat
             this.NavigationService.Navigate(dodajPodsetnik);
         }
 
-        private void Jezik_Click(object sender, RoutedEventArgs e)
+        private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
-            if (Jezik.Header.Equals("en-US"))
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla") || mi.Header.Equals("Light"))
             {
-                this.Jezik.Header = "sr-LATN";
+                //mi.Header = "Tamna";
+                SvetlaTema.IsEnabled = false;
+                tamnaTema.IsEnabled = true;
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
             }
             else
             {
-                this.Jezik.Header = "en-US";
+                //mi.Header = "Svetla";
+                tamnaTema.IsEnabled = false;
+                SvetlaTema.IsEnabled = true;
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
-            app.ChangeLanguage(Jezik.Header.ToString());
+        }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+            
         }
     }
 }

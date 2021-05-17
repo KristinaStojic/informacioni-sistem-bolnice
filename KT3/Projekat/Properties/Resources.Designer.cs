@@ -61,6 +61,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string Datum {
+            get {
+                return ResourceManager.GetString("Datum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dodaj podsetnik.
         /// </summary>
         internal static string DodajPodsetnik {
@@ -106,6 +115,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obrisi selektovano obavestenje.
+        /// </summary>
+        internal static string ObrisiObavestenje {
+            get {
+                return ResourceManager.GetString("ObrisiObavestenje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odjavi se.
         /// </summary>
         internal static string Odjava {
@@ -142,6 +160,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sadržaj.
+        /// </summary>
+        internal static string SadrzajObavestenja {
+            get {
+                return ResourceManager.GetString("SadrzajObavestenja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Svetla.
         /// </summary>
         internal static string Svetla {
@@ -156,6 +183,24 @@ namespace Projekat.Properties {
         internal static string Tamna {
             get {
                 return ResourceManager.GetString("Tamna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tip.
+        /// </summary>
+        internal static string TipObavestenja {
+            get {
+                return ResourceManager.GetString("TipObavestenja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uvid u selektovano obavestenje.
+        /// </summary>
+        internal static string UvidObavestenje {
+            get {
+                return ResourceManager.GetString("UvidObavestenje", resourceCulture);
             }
         }
         

@@ -41,8 +41,8 @@
                                 <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                 <Separator />
                                 <MenuItem Header="{ns:Loc IzberiteTemu}" IsEnabled="False" />
-                                <MenuItem Header="{ns:Loc Svetla}" Name="svetlaTema" Click="PromeniTemu"/>
-                                <MenuItem Header="{ns:Loc Tamna}" Name="tamnaTema"/>
+                                <MenuItem Header="{ns:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{ns:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                 <Separator />
                                 <MenuItem Header="{ns:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                             </MenuItem>
@@ -75,14 +75,14 @@
                     <StackPanel Orientation="Horizontal" Margin="180, 0, 0, 0">
                         <Button Style="{DynamicResource ButtonStyle2}" 
                         Name="ObrisiObavestenje" 
-                        ToolTip="Obrisi selektovano obavestenje" 
+                        ToolTip="{ns:Loc ObrisiObavestenje}" 
                         Content="🗑" FontSize="16"
                             HorizontalAlignment="Right"
                         Click="ObrisiObavestenje_Click" Grid.Column="2" Grid.Row="1"/>
                         <Button Style="{DynamicResource ButtonStyle2}" 
                         Name="UvidObavestenje" 
                             HorizontalAlignment="Right"
-                        ToolTip="Uvid u selektovano obavestenje" 
+                        ToolTip="{ns:Loc UvidObavestenje}" 
                         Click="UvidObavestenje_Click"
                         Content="📄" FontSize="16" Grid.Column="2" Grid.Row="1"/>
                     </StackPanel>
@@ -92,9 +92,9 @@
                       Height="205" Margin="0,0,0,0" VerticalAlignment="Top"  ItemsSource="{Binding ObavestenjaPacijent}"
                   SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" Grid.ColumnSpan="3" Grid.Row="1" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Datum" Width="100" Binding="{Binding Datum}"/>
-                            <DataGridTextColumn Header="Podsetnik za" Width="100" Binding="{Binding TipObavestenja}"/>
-                            <DataGridTextColumn Header="Sadrzaj" Width="*" Binding="{Binding SadrzajObavestenja}"/>
+                            <DataGridTextColumn Header="{ns:Loc Datum}" Width="100" Binding="{Binding Datum}"/>
+                            <DataGridTextColumn Header="{ns:Loc TipObavestenja}" Width="100" Binding="{Binding TipObavestenja}"/>
+                            <DataGridTextColumn Header="{ns:Loc SadrzajObavestenja}" Width="*" Binding="{Binding SadrzajObavestenja}"/>
                             <!-- staviti button  -->
                             <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
                     <DataGridCheckBoxColumn.CellStyle>

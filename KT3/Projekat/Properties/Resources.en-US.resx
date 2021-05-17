@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Datum" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="DodajPodsetnik" xml:space="preserve">
     <value>Add reminder</value>
   </data>
@@ -132,6 +135,9 @@
   <data name="Obavestenja" xml:space="preserve">
     <value>🔔 Notifications</value>
   </data>
+  <data name="ObrisiObavestenje" xml:space="preserve">
+    <value>Delete the selected notification</value>
+  </data>
   <data name="Odjava" xml:space="preserve">
     <value>Log out</value>
   </data>
@@ -144,11 +150,20 @@
   <data name="Profil" xml:space="preserve">
     <value>Your profile</value>
   </data>
+  <data name="SadrzajObavestenja" xml:space="preserve">
+    <value>Content</value>
+  </data>
   <data name="Svetla" xml:space="preserve">
     <value>Light</value>
   </data>
   <data name="Tamna" xml:space="preserve">
     <value>Dark</value>
+  </data>
+  <data name="TipObavestenja" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UvidObavestenje" xml:space="preserve">
+    <value>Insight into the selected notification</value>
   </data>
   <data name="UvidUZakazaneTermine" xml:space="preserve">
     <value>Scheduled appointments</value>
