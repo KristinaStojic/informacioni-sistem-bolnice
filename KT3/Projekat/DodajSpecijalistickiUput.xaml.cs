@@ -36,7 +36,7 @@ namespace Projekat
         }
         private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             this.ime.Text = pacijent.ImePacijenta;
             this.prezime.Text = pacijent.PrezimePacijenta;
             this.jmbg.Text = pacijent.Jmbg.ToString();
@@ -213,7 +213,7 @@ namespace Projekat
                 string datumKraja = NadjiDatumKrajaLecenja();
                 tipUputa tipUputa = NadjiTipUputa();
                 Soba = SaleMenadzer.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
-                Krevet = SaleMenadzer.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem);
+                Krevet = SaleMenadzer.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);

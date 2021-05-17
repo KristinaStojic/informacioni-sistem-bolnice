@@ -92,9 +92,9 @@ namespace Model
             return null;
         }
         
-        public static Krevet NadjiKrevetPoId(int id)
+        public static Krevet NadjiKrevetPoId(int id, Sala soba)
         {
-            foreach (Krevet krevet in MainWindow.kreveti) //OpremaMenadzer.kreveti
+            foreach (Krevet krevet in soba.Kreveti) //OpremaMenadzer.kreveti
             {
                 if (krevet.IdKreveta == id)
                 {

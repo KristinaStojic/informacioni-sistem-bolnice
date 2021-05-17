@@ -86,7 +86,7 @@ namespace Projekat
 
         private void NadjiLekaraKojiIzdajeUput(Uput izabraniUput)
         {
-            foreach(Lekar lekar in MainWindow.lekari)
+            foreach(Lekar lekar in LekariMenadzer.lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -96,7 +96,7 @@ namespace Projekat
         }
         private void NadjiLekaraKojiIzdajeBolnickoLecenje(Uput izabraniUput)
         {
-            foreach(Lekar lekar in MainWindow.lekari)
+            foreach(Lekar lekar in LekariMenadzer.lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -106,7 +106,7 @@ namespace Projekat
         }
         private void NadjiLekaraSpecijalistu(Uput izabraniUput)
         {
-            foreach(Lekar lekar in MainWindow.lekari)
+            foreach(Lekar lekar in LekariMenadzer.lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKodKogSeUpucuje)
                 {

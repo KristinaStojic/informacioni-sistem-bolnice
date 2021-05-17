@@ -160,17 +160,39 @@ namespace Projekat.Model
             return id;
         }
 
-        public static int GenerisanjeIdKreveta()
+        public static int GenerisanjeIdKreveta(int idSobe)
         {
-            int id;
-            for (id = 1; id <= kreveti.Count; id++)
+            bool pomocna = false;
+            int id = 1;
+            foreach (Sala sala in SaleMenadzer.sale)
             {
-                if (!postojiIdKreveta(id))
+                if (sala.Id == idSobe)
                 {
-                    return id;
+                    for (id = 1; id <= sala.Kreveti.Count; id++)
+                    {
+                        foreach (Krevet k in sala.Kreveti)
+                        {
+                            if (k.IdKreveta == id)
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
                 }
             }
+
+
             return id;
+
+
+           
         }
 
         private static bool postojiIdOpreme(int id)
@@ -184,17 +206,7 @@ namespace Projekat.Model
             }
             return false;
         }
-        private static bool postojiIdKreveta(int id)
-        {
-            foreach (Krevet o in kreveti)
-            {
-                if (o.IdKreveta.Equals(id))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
 
         public static List<Oprema> oprema = new List<Oprema>();
         /*Kristina*/
