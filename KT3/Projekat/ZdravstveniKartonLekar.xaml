@@ -10,8 +10,8 @@
     <Grid  Background="LightSkyBlue">
         <StackPanel>
 
-            <Border  Background="LightSkyBlue" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="850" Height="636">
-                <TabControl x:Name="karton" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="5.4,16.4,5,9.4" KeyDown="Tabovi_KeyDown">
+            <Border  Background="LightSkyBlue" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="864" Height="636">
+                <TabControl x:Name="karton" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="9,20,1,5" KeyDown="Tabovi_KeyDown">
                     <TabItem Header="Lični podaci" Width="100" IsSelected="True" Height="25" x:Name="podaci" KeyDown="podaci_KeyDown">
                         <Grid>
                             <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="424" Margin="26,26,0,0" VerticalAlignment="Top" Width="421" FontSize="14"/>
@@ -117,7 +117,7 @@
 
                             <DataGrid x:Name="dataGridUputi"  IsReadOnly="True"  ItemsSource="{Binding TabelaUputa}"
                         SelectionMode="Single" AutoGenerateColumns="False" 
-                        Margin="50,56,339.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
+                        Margin="50,56,352,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
                                 <DataGrid.Columns >
                                     <DataGridTextColumn Header="Datum izdavanja" Width="170" Binding="{Binding datumIzdavanja}" />
                                     <DataGridTextColumn Header="Tip uputa" Width="180*" Binding="{Binding}"/>
@@ -132,6 +132,29 @@
                                 Pomoć?(CTRL+H)
                             </Hyperlink>
                             </TextBlock>
+
+                            <!-- Grafikon -->
+                            <Wpf:PieChart 
+                            HorizontalAlignment="Center" 
+                            Height="254"
+                            Width="200"
+                            Margin="536,99,54,0"
+                            VerticalAlignment="Top" 
+                            LegendLocation="Bottom"
+                            >
+
+                                <!-- Parcad u grafikonu.-->
+                                <Wpf:PieChart.Series>
+                                    <Wpf:PieSeries Title="Laboratorija" DataLabels="True" Values="{Binding ukupnoLaboratorija }" LabelPoint="{Binding LabelPoint}"/>
+                                    <Wpf:PieSeries Title="Specijalistički pregled" DataLabels="True" Values="{Binding ukupnoSpecijalisticki }" LabelPoint="{Binding LabelPoint}"/>
+                                    <Wpf:PieSeries Title="Bolničko lečenje" DataLabels="True" Values="{Binding ukupnoStacionarno }" LabelPoint="{Binding LabelPoint}"/>
+                                </Wpf:PieChart.Series>
+                                <!-- Kraj parcadi u grafikonu -->
+
+                            </Wpf:PieChart>
+                            <!-- Kraj grafikona.-->
+
+                            <Label Content="Grafikon 2. Tipovi uputa" Margin="568,379,69,121" FontSize="14"/>
 
                         </Grid>
                     </TabItem>

@@ -112,17 +112,7 @@ namespace Projekat
             Termin termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
-            termin.Lekar = izabraniLekar;
-            /*Kristina*/
-            if (tipTermina.Equals(TipTermina.Pregled))
-            {
-                termin.Lekar.BrojPregleda++;
-            }
-            else if (tipTermina.Equals(TipTermina.Operacija))
-            {
-                termin.Lekar.BrojOperacija++;
-            }
-            /**/
+            termin.Lekar = izabraniLekar;         
             DodajZauzeceSale(termin);
             termin.Prostorija = prvaSlobodnaSala;
             TerminMenadzer.ZakaziTermin(termin);
