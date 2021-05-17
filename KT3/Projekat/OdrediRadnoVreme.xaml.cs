@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -22,13 +23,25 @@ namespace Projekat
     {
         public const int BROJ_NEDELJA_ZA_TRI_MESECA = 12;
         public Lekar lekar;
+        public ObservableCollection<string> PocetakRadnogVremena = new ObservableCollection<string>()
+                                                             { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30",
+                                                               "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
+                                                               "19:00", "19:30" };
+        public ObservableCollection<string> KrajRadnogVremena = new ObservableCollection<string>()
+                                                             { "07:30", "08:00", "08:30", "09:00", "09:30",  "10:00", "10:30",
+                                                               "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+                                                               "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
+                                                               "19:00", "19:30", "20:00" };
+
         public OdrediRadnoVreme(Lekar selektovaniLekar)
         {
             InitializeComponent();
             this.lekar = selektovaniLekar;
-
             kalendar.DisplayDateStart = DateTime.Now;
             kalendar.DisplayDateEnd = DateTime.Now.AddDays(7);
+            pocetak.ItemsSource = PocetakRadnogVremena;
+            kraj.ItemsSource = KrajRadnogVremena;
         }
 
         private string KonvertujDatum(DateTime datum)
@@ -74,6 +87,23 @@ namespace Projekat
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        // TODO: ispraviti da je vreme kraja vece od vremena pocetka - nije dobra promena fokusa
+        private void Vreme_kraja_LostFocus(object sender, RoutedEventArgs e)
+        {
+            foreach (string slot in PocetakRadnogVremena)
+            {
+                if (DateTime.Parse((string)pocetak.SelectedItem) >= DateTime.Parse(slot))
+                {
+                    KrajRadnogVremena.Remove(slot);
+                }
+            }
+        }
+
+        private void Vreme_pocetka_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            kraj.Text = "";
         }
     }
 }

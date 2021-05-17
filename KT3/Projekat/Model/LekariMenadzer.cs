@@ -184,6 +184,7 @@ namespace Model
             return true;
         }
 
+        // TODO: promeniti naziv - specijalizovaniLekari , a ne lekariOpstePrakse?
         public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
         {
             List<Lekar> lekariOpstePrakse = new List<Lekar>();
@@ -196,7 +197,6 @@ namespace Model
             }
             return lekariOpstePrakse;
         }
-      
 
         public static void DodajZahtev(ZahtevZaGodisnji zahtev)
         {
