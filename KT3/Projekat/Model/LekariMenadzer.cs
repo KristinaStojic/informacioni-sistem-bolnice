@@ -139,9 +139,9 @@ namespace Model
             {
                 if (lekar.IdLekara == idLekara)
                 {
-                    for (id = 1; id <= lekar.zahteviZaOdmor.Count; id++)
+                    for (id = 1; id <= lekar.ZahteviZaOdmor.Count; id++)
                     {
-                        foreach (int z in lekar.zahteviZaOdmor)
+                        foreach (int z in lekar.ZahteviZaOdmor)
                         {
                             if (z == id)
                             {
@@ -184,6 +184,7 @@ namespace Model
             return true;
         }
 
+        // TODO: promeniti naziv - specijalizovaniLekari , a ne lekariOpstePrakse?
         public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
         {
             List<Lekar> lekariOpstePrakse = new List<Lekar>();
@@ -196,7 +197,6 @@ namespace Model
             }
             return lekariOpstePrakse;
         }
-      
 
         public static void DodajZahtev(ZahtevZaGodisnji zahtev)
         {
@@ -204,7 +204,7 @@ namespace Model
             {
                 if (lekar.IdLekara == zahtev.lekar.IdLekara)
                 {
-                    lekar.zahteviZaOdmor.Add(zahtev.idZahteva);
+                    lekar.ZahteviZaOdmor.Add(zahtev.idZahteva);
                     zahtevi.Add(zahtev);
                     ZahteviZaGodisnjiLekar.TabelaZahteva.Add(zahtev);
                     sacuvajIzmjeneZahteva();

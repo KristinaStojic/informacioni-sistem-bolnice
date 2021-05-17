@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -157,7 +158,7 @@ namespace Projekat
             definisiOpremuIzSkladista(zakazi);
             definisiOpremuIzSala(zakazi);
             zakazi.datumIVrijeme = datumIVrijeme;
-            PremjestajMenadzer.dodajPremjestaj(zakazi);
+            PremjestajServis.dodajPremjestaj(zakazi);
         }
 
         private void premjestiOpremu(Sala salaUKojuSaljem, int kolicina)

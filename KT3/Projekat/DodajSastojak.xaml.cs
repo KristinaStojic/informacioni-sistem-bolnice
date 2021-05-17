@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,8 +29,10 @@ namespace Projekat
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {   
-            LekoviMenadzer.dodajSastojak(napraviSastojak(), izabraniLijek);
+        {
+            Sastojak sastojak = napraviSastojak();
+            LekoviServis.dodajSastojak(sastojak, izabraniLijek);
+            Sastojci.SastojciLijeka.Add(sastojak);
             this.Close();
         }
 

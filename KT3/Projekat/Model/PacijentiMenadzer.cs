@@ -12,6 +12,7 @@ using System.Windows;
 using System.Xml.Serialization;
 using Projekat;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Model
 {
@@ -120,7 +121,7 @@ namespace Model
                             {
                                 if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
                                 {
-                                    s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
+                                    s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
                                     //SaleMenadzer.sacuvajIzmjene();
                                 }
                             }

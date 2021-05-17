@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Windows;
 
 namespace Projekat
@@ -26,7 +27,7 @@ namespace Projekat
         private void sacuvajIzmjene()
         {
             LekoviMenadzer.sacuvajIzmeneZahteva();
-            LekoviMenadzer.sacuvajIzmjene();
+            LekoviServis.sacuvajIzmjene();
             OdbijeniLijekovi.azurirajPrikaz();
         }
 

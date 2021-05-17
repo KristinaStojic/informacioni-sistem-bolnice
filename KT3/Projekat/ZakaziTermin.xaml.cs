@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using static Model.Termin;
 
 namespace Projekat
@@ -38,7 +39,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
-            PomocnaSviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
+            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
             this.combo.SelectedIndex = 0;
         }
@@ -180,7 +181,7 @@ namespace Projekat
         /*  ---------------------- ZAKAZIVANJE TERMINA ---------------------- */
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SaleZaPreglede = SaleMenadzer.PronadjiSaleZaPregled();
+            SaleZaPreglede = SaleServis.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
             if (combo.Text.Equals("Pregled"))
             {
@@ -247,7 +248,7 @@ namespace Projekat
                 return;
             }
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
-            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
+            SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);
             UkolniSlotoveZauzeteUSvimSalama(PomocnaSviSlobodniSlotovi);

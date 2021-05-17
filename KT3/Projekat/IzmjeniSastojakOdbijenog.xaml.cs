@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -78,7 +79,11 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            LekoviMenadzer.izmjeniSastojakOdbijenogLijeka(izabraniLijek, izabraniSastojak, napraviSastojak());
+            Sastojak sastojak = napraviSastojak();
+            LekoviServis.izmjeniSastojakOdbijenogLijeka(izabraniLijek, izabraniSastojak, sastojak);
+            int idx = IzmjeniSastojkeOdbijenog.SastojciLijeka.IndexOf(izabraniSastojak);
+            IzmjeniSastojkeOdbijenog.SastojciLijeka.RemoveAt(idx);
+            IzmjeniSastojkeOdbijenog.SastojciLijeka.Insert(idx, sastojak);
             this.Close();
         }
 

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System.Windows;
 
 namespace Projekat
@@ -19,7 +20,8 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            SaleMenadzer.ObrisiSalu((Sala)izabranaSala);
+            SaleServis.ObrisiSalu((Sala)izabranaSala);
+            PrikaziSalu.Sale.Remove((Sala)izabranaSala);
             this.Close();
         }
 

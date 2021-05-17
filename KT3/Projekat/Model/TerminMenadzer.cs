@@ -6,6 +6,7 @@
 
 using Projekat;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,9 +51,9 @@ namespace Model
 
             // TODO: ovaj deo direktno u ZakaziTerminSekretar
             ZauzeceSale novoZauzece = new ZauzeceSale(hitanTermin.VremePocetka, hitanTermin.VremeKraja, datum, hitanTermin.IdTermin);
-            Sala sala = SaleMenadzer.NadjiSaluPoId(hitanTermin.Prostorija.Id);
+            Sala sala = SaleServis.NadjiSaluPoId(hitanTermin.Prostorija.Id);
             sala.zauzetiTermini.Add(novoZauzece);
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
             // -----------------------------------------------
 
             DodajZauzeceUSveSale(sala);
@@ -68,7 +69,7 @@ namespace Model
                 }
             }
             sacuvajIzmene();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
         }
 
         // isto ovu metodu
@@ -194,8 +195,8 @@ namespace Model
                     {
                         if (s.Id == stariTermin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, stariTermin.IdTermin, stariTermin.Datum, stariTermin.VremePocetka, stariTermin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, stariTermin.IdTermin, stariTermin.Datum, stariTermin.VremePocetka, stariTermin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
                     termini.RemoveAt(i);
@@ -207,8 +208,8 @@ namespace Model
             {
                 if (t.Prostorija.Id == stariTermin.Prostorija.Id)
                 {
-                    t.Prostorija = SaleMenadzer.NadjiSaluPoId(stariTermin.Prostorija.Id);
-                    SaleMenadzer.sacuvajIzmjene();
+                    t.Prostorija = SaleServis.NadjiSaluPoId(stariTermin.Prostorija.Id);
+                    SaleServis.sacuvajIzmjene();
                 }
             }
 
@@ -244,8 +245,8 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
                     AnketaMenadzer.ObrisiAnketu(termin.IdTermin);
@@ -269,8 +270,8 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
                     termini.RemoveAt(i);
@@ -284,7 +285,7 @@ namespace Model
             {
                 if (t.Prostorija.Id == id)
                 {
-                    t.Prostorija = SaleMenadzer.NadjiSaluPoId(id);
+                    t.Prostorija = SaleServis.NadjiSaluPoId(id);
                 }       
             }
             TerminMenadzer.sacuvajIzmene();
@@ -311,8 +312,8 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
 

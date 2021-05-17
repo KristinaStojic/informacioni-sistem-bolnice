@@ -17,6 +17,7 @@ using Projekat.Model;
 using Projekat.Pomoc;
 using LiveCharts;
 using LiveCharts.Wpf;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -194,7 +195,7 @@ namespace Projekat
         {
             TerminMenadzer.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
             //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/
         }

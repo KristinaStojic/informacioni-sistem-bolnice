@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -63,7 +64,7 @@ namespace Projekat
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
             this.Close();
             Sekretar s = new Sekretar();
             s.Show();
@@ -111,7 +112,7 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
         }
 
         private void Zdravstveni_karton_Click(object sender, RoutedEventArgs e)
@@ -179,7 +180,7 @@ namespace Projekat
         private void Termini_Click(object sender, RoutedEventArgs e)
         {
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
 
             this.Close();
             PrikaziTerminSekretar p = new PrikaziTerminSekretar();

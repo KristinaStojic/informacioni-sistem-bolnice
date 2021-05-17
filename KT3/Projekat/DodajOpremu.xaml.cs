@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,16 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            Oprema o = napraviOpremu();
-            OpremaMenadzer.DodajOpremu(o);
+            Oprema oprema = napraviOpremu();
+            OpremaServis.DodajOpremu(oprema);
+            if (oprema.Staticka)
+            {
+                Skladiste.OpremaStaticka.Add(oprema);
+            }
+            else
+            {
+                Skladiste.OpremaDinamicka.Add(oprema);
+            }
             this.Close();
         }
 
@@ -38,10 +47,10 @@ namespace Projekat
         {
             string nazivOpreme = naziv.Text;
             int Kolicina = int.Parse(kolicina.Text);
-            int idOpreme = OpremaMenadzer.GenerisanjeIdOpreme();
-            Oprema o = new Oprema(nazivOpreme, Kolicina, staticka);
-            o.IdOpreme = idOpreme;
-            return o;
+            int idOpreme = OpremaServis.GenerisanjeIdOpreme();
+            Oprema oprema = new Oprema(nazivOpreme, Kolicina, staticka);
+            oprema.IdOpreme = idOpreme;
+            return oprema;
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)

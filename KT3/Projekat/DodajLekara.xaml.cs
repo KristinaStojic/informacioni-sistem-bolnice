@@ -48,7 +48,7 @@ namespace Projekat
             Specijalizacija specijalizacija = (Specijalizacija)oblastLekara.SelectedItem;
             Lekar lekar = new Lekar(LekariMenadzer.GenerisanjeIdLekara(), ime.Text, prezime.Text, Int32.Parse(jmbg.Text), Int32.Parse(brojTelefona.Text), email.Text, adresa.Text, specijalizacija);
             List<int> zahtevi = new List<int>();
-            lekar.zahteviZaOdmor = zahtevi;
+            lekar.ZahteviZaOdmor = zahtevi;
             LekariMenadzer.DodajLekara(lekar);
             this.Close();
         }

@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Projekat.Model
 
         public Premjestaj(Sala izSale, Sala uSalu, Oprema oprema, int kolicina, DateTime datumIVrijeme)
         {
-            this.id = PremjestajMenadzer.GenerisanjeIdPremjestaja();
+            this.id = PremjestajServis.GenerisanjeIdPremjestaja();
             this.izSale = izSale;
             this.uSalu = uSalu;
             this.oprema = oprema;

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Projekat.Servis;
+using System.ComponentModel;
 
 
 namespace Projekat.Model
@@ -21,7 +22,7 @@ namespace Projekat.Model
 
         public Oprema(string naziv, int kolicina, bool staticka)
         {
-            this.IdOpreme = OpremaMenadzer.GenerisanjeIdOpreme();
+            this.IdOpreme = OpremaServis.GenerisanjeIdOpreme();
             this.NazivOpreme = naziv;
             this.Kolicina = kolicina;
             this.Staticka = staticka;

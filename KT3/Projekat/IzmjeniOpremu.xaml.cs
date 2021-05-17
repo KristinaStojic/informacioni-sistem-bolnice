@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,9 +29,50 @@ namespace Projekat
         }
 
         public void Potvrdi_Click(object sender, RoutedEventArgs e)
-        { 
-            OpremaMenadzer.izmjeniOpremu(izabranaOprema, napraviOpremu());
+        {
+            Oprema oprema = napraviOpremu();
+            OpremaServis.izmjeniOpremu(izabranaOprema, oprema);
+            izmjeniPrikazOpreme(izabranaOprema, oprema);
             this.Close();
+        }
+
+        private static void izmjeniPrikazOpreme(Oprema izOpreme, Oprema uOpremu)
+        {
+            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            {
+                if (oprema.IdOpreme == izOpreme.IdOpreme)
+                {
+                    oprema.NazivOpreme = uOpremu.NazivOpreme;
+                    oprema.Kolicina = uOpremu.Kolicina;
+                    zamjeniOpremu(uOpremu, izOpreme, oprema);
+                }
+            }
+        }
+
+        private static void zamjeniOpremu(Oprema uOpremu, Oprema izOpreme, Oprema oprema)
+        {
+            if (uOpremu.Staticka)
+            {
+                zamjeniStatickuOpremuUSkladistu(izOpreme, oprema);
+            }
+            else
+            {
+                zamjeniDinamickuOpremuUSkladistu(izOpreme, oprema);
+            }
+        }
+
+        private static void zamjeniDinamickuOpremuUSkladistu(Oprema izOpreme, Oprema oprema)
+        {
+            int idx = Skladiste.OpremaDinamicka.IndexOf(izOpreme);
+            Skladiste.OpremaDinamicka.RemoveAt(idx);
+            Skladiste.OpremaDinamicka.Insert(idx, oprema);
+        }
+
+        private static void zamjeniStatickuOpremuUSkladistu(Oprema izOpreme, Oprema oprema)
+        {
+            int idx = Skladiste.OpremaStaticka.IndexOf(izOpreme);
+            Skladiste.OpremaStaticka.RemoveAt(idx);
+            Skladiste.OpremaStaticka.Insert(idx, oprema);
         }
 
         private Oprema napraviOpremu()

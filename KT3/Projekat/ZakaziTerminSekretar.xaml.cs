@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -46,7 +47,7 @@ namespace Projekat
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
@@ -140,9 +141,10 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);          
+
+            Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
-            Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+            Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
 
             // TODO: premesti u TerminMenadzer
@@ -162,7 +164,7 @@ namespace Projekat
                 }
 
                 TerminMenadzer.sacuvajIzmene();
-                SaleMenadzer.sacuvajIzmjene();
+                SaleServis.sacuvajIzmjene();
 
                 this.Close();
             }
@@ -173,7 +175,7 @@ namespace Projekat
                 Sala.zauzetiTermini.Add(z);
 
                 TerminMenadzer.sacuvajIzmene();
-                SaleMenadzer.sacuvajIzmjene();
+                SaleServis.sacuvajIzmjene();
 
                 this.Close();
             }
@@ -524,7 +526,7 @@ namespace Projekat
         {
             if (prostorije.SelectedItem != null)
             {
-                Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+                Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
 
                 SlobodanTerminSale();
                 SlobodanTerminLekara();

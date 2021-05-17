@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -43,7 +44,7 @@ namespace Projekat
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
@@ -72,9 +73,9 @@ namespace Projekat
                 lekari.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 Lekar = izabraniTermin.Lekar;
 
-                for (int i = 0; i < MainWindow.lekari.Count; i++)
+                for (int i = 0; i < LekariMenadzer.lekari.Count; i++)
                 {
-                    if (MainWindow.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
+                    if (LekariMenadzer.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
                     {
                         listaLekara.SelectedIndex = i;
                     }
@@ -235,7 +236,7 @@ namespace Projekat
 
             if (prostorije.SelectedItem != null)
             {
-                Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+                Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             }
 
             if (Sala != null)
@@ -527,9 +528,9 @@ namespace Projekat
 
             Lekar = (Lekar)listaLekara.SelectedItem;
             Pacijent = (Pacijent)listaPacijenata.SelectedItem;
-            Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+            Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+            Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 
@@ -555,7 +556,7 @@ namespace Projekat
                                 if (zauzece1.datumPocetkaTermina.Equals(termin.Datum) && zauzece1.idTermina == termin.IdTermin && zauzecePocetak1[0].Equals(vpt[0]) && zauzecePocetak1[1].Equals(vpt[1]) && zauzeceKraj1[0].Equals(vkt[0]) && zauzeceKraj1[1].Equals(vkt[1]))
                                 {
                                     sala.zauzetiTermini.Remove(zauzece1);
-                                    SaleMenadzer.sacuvajIzmjene();
+                                    SaleServis.sacuvajIzmjene();
                                 }
                             }
                         }
@@ -570,7 +571,7 @@ namespace Projekat
                 {
                     if (t.Prostorija.Id == termin.Prostorija.Id)
                     {
-                        t.Prostorija = SaleMenadzer.NadjiSaluPoId(termin.Prostorija.Id);
+                        t.Prostorija = SaleServis.NadjiSaluPoId(termin.Prostorija.Id);
                     }
                 }
             }
@@ -580,7 +581,7 @@ namespace Projekat
             Sala.zauzetiTermini.Add(z);
 
             TerminMenadzer.sacuvajIzmene();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
 
             this.Close();
         }

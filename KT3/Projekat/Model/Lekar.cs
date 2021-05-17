@@ -25,10 +25,12 @@ namespace Model
         public int SlobodniDaniGodisnjegOdmora { get; set; }
         public int ZahtevaniiDaniGodisnjegOdmora { get; set; } // prilikom slanja zahteva od strane lekara 
         public List<int> zahteviZaOdmor { get; set; }
-
+         public List<RadniDan> RadniDani { get; set; }
         public int BrojPregleda { get; set; }
         public int BrojOperacija { get; set; }
         // radno vreme?
+
+        
 
         public Lekar(int IdLekara, string Ime, string Prezime, int Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija)
         {
@@ -44,6 +46,9 @@ namespace Model
             this.ZahtevaniiDaniGodisnjegOdmora = 0;
             this.BrojOperacija = 0;
             this.BrojPregleda = 0;
+            this.ZahteviZaOdmor = new List<int>();
+            this.RadniDani = new List<RadniDan>();
+
         }
 
         public Lekar(int id)
@@ -74,7 +79,5 @@ namespace Model
             return this.ImeLek + " " + this.PrezimeLek;
         }
 
-
     }
-
 }
