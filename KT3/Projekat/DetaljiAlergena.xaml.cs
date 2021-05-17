@@ -57,7 +57,7 @@ namespace Projekat
             ZdravstveniKartonMenadzer.IzmeniAlergen(stariAlergen, noviAlergen);
 
             TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
 
 

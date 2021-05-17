@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -28,7 +29,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ObavestenjaMenadzer.ObrisiObavestenje(obavestenje);
+            ObavestenjaServis.ObrisiObavestenje(obavestenje);
             this.Close();
         }
 

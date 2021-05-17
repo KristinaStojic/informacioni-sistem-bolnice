@@ -171,19 +171,6 @@ namespace Model
             filestream.Close();
         }
 
-        // TODO: problem - moguce je da neki pacijent i neki lekar imaju isti jmbg a nisu ista osoba
-        public static bool JedinstvenJmbg(int jmbg)
-        {
-            foreach (Lekar lekar in lekari)
-            {
-                if (lekar.Jmbg == jmbg)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
         // TODO: promeniti naziv - specijalizovaniLekari , a ne lekariOpstePrakse?
         public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
         {

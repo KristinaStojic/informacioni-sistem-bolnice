@@ -18,6 +18,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
 using Projekat.Lokalizacija;
+using Projekat.Servis;
 
 namespace Projekat
 {

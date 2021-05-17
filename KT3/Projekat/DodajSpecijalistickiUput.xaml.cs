@@ -94,7 +94,7 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);
 
                 TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
+                PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
             }
@@ -220,7 +220,7 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);
 
                 TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
+                PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }

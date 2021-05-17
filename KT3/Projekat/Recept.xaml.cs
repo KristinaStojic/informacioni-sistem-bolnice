@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -54,7 +55,7 @@ namespace Projekat
             id.Text = izabraniPacijent.Jmbg.ToString();
             // TODO: dodati u Lekarskim receptima id lekara koji je izdao recept
             
-            Lekar lekar = LekariMenadzer.NadjiPoId(recept.IdLekara);
+            Lekar lekar = LekariServis.NadjiPoId(recept.IdLekara);
             podaciLekara.Text = lekar.ToString();
         }
 

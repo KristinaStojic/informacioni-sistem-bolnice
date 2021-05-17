@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -40,9 +41,9 @@ namespace Projekat
                 pol = pol.Z;
             }
 
-            Pacijent guestPacijent = new Pacijent(PacijentiMenadzer.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
+            Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
             PacijentiMenadzer.pacijenti.Add(guestPacijent);
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PacijentiServis.SacuvajIzmenePacijenta();
 
             z.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
             z.AzurirajListuPacijenata();
@@ -58,7 +59,7 @@ namespace Projekat
 
         private void jmbg_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!PacijentiMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            if (!PacijentiServis.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
             {
                 MessageBox.Show("JMBG vec postoji");
                 jmbg.Text = "";

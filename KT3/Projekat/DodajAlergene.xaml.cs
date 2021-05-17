@@ -80,7 +80,7 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajAlergen(alergen);
 
                 TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
+                PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
 
                 this.Close();

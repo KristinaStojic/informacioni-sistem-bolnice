@@ -62,7 +62,7 @@ namespace Projekat
             ZdravstveniKartonMenadzer.IzmeniAnamnezu(stara, nova);
 
             TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
 
             this.Close();

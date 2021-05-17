@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -62,7 +63,7 @@ namespace Projekat
 
             // popunjavanje polja na formi za zakazivanje
             zakazivanje.uputZaPregled = uput;
-            Lekar l = LekariMenadzer.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
+            Lekar l = LekariServis.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
             zakazivanje.Lekar = l;
             zakazivanje.lekari.Text = l.ImeLek + " " + l.PrezimeLek;
             zakazivanje.tip.SelectedIndex = 1;

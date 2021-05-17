@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            int idZahteva = LekariMenadzer.GenerisanjeIdZahtevaZaOdmor(idLekara);
+            int idZahteva = LekariServis.GenerisanjeIdZahtevaZaOdmor(idLekara);
             string napomena = this.napomena.Text;
             /*pocetak*/
             string pocetakOdmora = NadjiDatumPocetkaOdmora();
@@ -67,7 +68,7 @@ namespace Projekat
             Lekar lekar = NadjiLekara();
 
             ZahtevZaGodisnji zahtev = new ZahtevZaGodisnji(idZahteva,lekar,pocetakOdmora,krajOdmora,brojDanaOdmora,napomena);
-            LekariMenadzer.DodajZahtev(zahtev);
+            LekariServis.DodajZahtev(zahtev);
             this.Close();
         }
 

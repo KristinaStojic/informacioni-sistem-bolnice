@@ -677,7 +677,7 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Lekar l = LekariMenadzer.NadjiPoId(idLekara);
+                Lekar l = LekariServis.NadjiPoId(idLekara);
                 if (tp.Equals(TipTermina.Pregled))
                 {
                     l.BrojPregleda++;
@@ -687,7 +687,7 @@ namespace Projekat
                     l.BrojOperacija++;
                 }
 
-                Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
+                Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
                 Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;
                 if (this.hitno.IsChecked == true)
