@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Komunikacija" Height="470" Width="670" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Button_PreviewKeyDown">
+        Title="Komunikacija" Height="470" Width="670" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Button_PreviewKeyDown" ResizeMode="NoResize">
     <StackPanel>
         <Menu Background="CadetBlue">
             <MenuItem Header="Navigacija" FontSize="15">
@@ -29,11 +29,11 @@
             <ComboBoxItem Content="Zdravo korporacija, Ljubljana"/>
             <ComboBoxItem Content="Zdravo korporacija, Zagreb"/>
         </ComboBox>
-        <TextBox Margin="10" Width="500" Height="200" Text="Napisite zahtjev...">
+        <TextBox Margin="10" Width="500" Height="200" Text="Napisite zahtjev..." AcceptsReturn="True">
             
         </TextBox>
         <StackPanel Orientation="Horizontal">
-            <Button Background="CadetBlue" Margin="140, 10, 10, 10" Width="190" Height="50">Posalji zahtjev</Button>
+            <Button Background="CadetBlue" Margin="140, 10, 10, 10" Width="190" Height="50" Click="Button_Click">Posalji zahtjev</Button>
             <Button Background="CadetBlue" Margin="10, 10, 10, 10" Width="190" Height="50" Click="UvidUZahtjev_Click">Uvid u zahtjeve</Button>
         </StackPanel>
     </StackPanel>
