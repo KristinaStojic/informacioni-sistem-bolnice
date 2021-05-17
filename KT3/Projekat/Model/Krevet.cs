@@ -11,8 +11,8 @@ namespace Projekat.Model
         public int IdKreveta { get; set; }
         public int IdSobe { get; set; }
         public bool Zauzet { get; set; }
-        public string PocetakZauzeca { get; set; }
-        public string KrajZauzeca { get; set; }
+        public DateTime PocetakZauzeca { get; set; }
+        public DateTime KrajZauzeca { get; set; }
         public Krevet() { }
 
         public Krevet(int idKreveta)

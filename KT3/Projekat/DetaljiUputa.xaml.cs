@@ -36,15 +36,17 @@ namespace Projekat
                 PopuniPodatkeBolnickoLecenje();
             }
 
-            
-            
-            
-        }
+           
 
+
+        }
+        
         private void PopuniPodatkeBolnickoLecenje()
         {
             NadjiPacijentaBolnickoLecenje(uput.idPacijenta);
             NadjiLekaraKojiIzdajeBolnickoLecenje(uput);
+           // this.datumKraja.DisplayDateStart = datumPocetka.SelectedDate;
+
             this.datumPocetka.SelectedDate = DateTime.Parse(uput.datumPocetkaLecenja);
             this.datumKraja.SelectedDate = DateTime.Parse(uput.datumKrajaLecenja);
             this.napomenaPregelda.Text = uput.opisPregleda;

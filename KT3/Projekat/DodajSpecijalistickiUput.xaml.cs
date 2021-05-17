@@ -236,6 +236,8 @@ namespace Projekat
                 if(k.IdKreveta == krevet.IdKreveta)
                 {
                     k.Zauzet = true;
+                    k.PocetakZauzeca = (DateTime)datumPocetka.SelectedDate;
+                    k.KrajZauzeca = (DateTime) datumKraja.SelectedDate;
                 }
             }
         }
