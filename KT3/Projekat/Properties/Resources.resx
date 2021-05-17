@@ -120,8 +120,17 @@
   <data name="Datum" xml:space="preserve">
     <value>Datum</value>
   </data>
+  <data name="DatumIzdavanjaUputa" xml:space="preserve">
+    <value>Datum izdavanja uputa</value>
+  </data>
   <data name="DodajPodsetnik" xml:space="preserve">
     <value>Dodaj podsetnik</value>
+  </data>
+  <data name="GboxSpecijalistickiPregled" xml:space="preserve">
+    <value>Specijalistički pregled</value>
+  </data>
+  <data name="ImePacijenta" xml:space="preserve">
+    <value>Ime pacijenta</value>
   </data>
   <data name="IzaberiteJezik" xml:space="preserve">
     <value>Promeni jezik</value>
@@ -129,8 +138,23 @@
   <data name="IzberiteTemu" xml:space="preserve">
     <value>Promeni temu</value>
   </data>
+  <data name="JmbgPacijenta" xml:space="preserve">
+    <value>JMBG pacijenta</value>
+  </data>
   <data name="Karton" xml:space="preserve">
     <value>Zdravstveni karton</value>
+  </data>
+  <data name="LekarKodKogSeUpucuje" xml:space="preserve">
+    <value>Lekar kod kog se upućuje</value>
+  </data>
+  <data name="LekarPodaci" xml:space="preserve">
+    <value>Lekar</value>
+  </data>
+  <data name="Napomena" xml:space="preserve">
+    <value>Napomena</value>
+  </data>
+  <data name="NaslovUputa" xml:space="preserve">
+    <value>Lekarski uput za specijalistički pregled</value>
   </data>
   <data name="Obavestenja" xml:space="preserve">
     <value>🔔 Obaveštenja</value>
@@ -141,11 +165,20 @@
   <data name="Odjava" xml:space="preserve">
     <value>Odjavi se</value>
   </data>
+  <data name="PacijentPodaci" xml:space="preserve">
+    <value>Pacijent</value>
+  </data>
   <data name="Pocetna" xml:space="preserve">
     <value>Početna stranica</value>
   </data>
   <data name="PopuniAnketu" xml:space="preserve">
     <value>Popuni anketu</value>
+  </data>
+  <data name="PotpisLekara" xml:space="preserve">
+    <value>Potpis</value>
+  </data>
+  <data name="PrezimePacijenta" xml:space="preserve">
+    <value>Prezime pacijenta</value>
   </data>
   <data name="Profil" xml:space="preserve">
     <value>Vaš profil</value>

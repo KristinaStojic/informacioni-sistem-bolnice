@@ -120,8 +120,17 @@
   <data name="Datum" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="DatumIzdavanjaUputa" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="DodajPodsetnik" xml:space="preserve">
     <value>Add reminder</value>
+  </data>
+  <data name="GboxSpecijalistickiPregled" xml:space="preserve">
+    <value>Specialist examination</value>
+  </data>
+  <data name="ImePacijenta" xml:space="preserve">
+    <value>Patient name</value>
   </data>
   <data name="IzaberiteJezik" xml:space="preserve">
     <value>Change language</value>
@@ -129,8 +138,23 @@
   <data name="IzberiteTemu" xml:space="preserve">
     <value>Change theme</value>
   </data>
+  <data name="JmbgPacijenta" xml:space="preserve">
+    <value>Patient ID</value>
+  </data>
   <data name="Karton" xml:space="preserve">
     <value>Medical record</value>
+  </data>
+  <data name="LekarKodKogSeUpucuje" xml:space="preserve">
+    <value>Recommended doctor</value>
+  </data>
+  <data name="LekarPodaci" xml:space="preserve">
+    <value>Doctor</value>
+  </data>
+  <data name="Napomena" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="NaslovUputa" xml:space="preserve">
+    <value>Medical instruction for specialist examination</value>
   </data>
   <data name="Obavestenja" xml:space="preserve">
     <value>🔔 Notifications</value>
@@ -141,11 +165,20 @@
   <data name="Odjava" xml:space="preserve">
     <value>Log out</value>
   </data>
+  <data name="PacijentPodaci" xml:space="preserve">
+    <value>Patient</value>
+  </data>
   <data name="Pocetna" xml:space="preserve">
     <value>Home page</value>
   </data>
   <data name="PopuniAnketu" xml:space="preserve">
     <value>Fill out the survey</value>
+  </data>
+  <data name="PotpisLekara" xml:space="preserve">
+    <value>Signature</value>
+  </data>
+  <data name="PrezimePacijenta" xml:space="preserve">
+    <value>Patient lastname</value>
   </data>
   <data name="Profil" xml:space="preserve">
     <value>Your profile</value>
