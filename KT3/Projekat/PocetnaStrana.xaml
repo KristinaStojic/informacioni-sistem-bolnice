@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Menu DockPanel.Dock="Top" Background="LightSkyBlue">
+        <Menu DockPanel.Dock="Top" Background="{x:Null}">
             <MenuItem Header="_Opcije" FontSize="15">
                 <MenuItem Header="Obaveštenja" InputGestureText="Ctrl + O" FontSize="15" Click="Button_Click_2" Background="White"></MenuItem>
                 <MenuItem Header="Pregledi i operacije" InputGestureText="Ctrl + P" FontSize="15" Click="Button_Click" Background="White"></MenuItem>

@@ -74,14 +74,26 @@ namespace Projekat
             zahtevi.Add(new ZahtevZaLekove(3, "Panklav", "PKL", "12/04/2021", false));
 
             kreveti = new ObservableCollection<Krevet>();
-            kreveti.Add(new Krevet(1, 8, false));
-            kreveti.Add(new Krevet(2, 8, true));
-            kreveti.Add(new Krevet(3, 8, false));
-            kreveti.Add(new Krevet(4, 8, false));
-            kreveti.Add(new Krevet(5, 7, true));
-            kreveti.Add(new Krevet(6, 7, true));
-            kreveti.Add(new Krevet(7, 7, false));
-            kreveti.Add(new Krevet(8, 6, false));
+            kreveti.Add(new Krevet(1, 6, false));
+            kreveti.Add(new Krevet(2, 6, true));
+            kreveti.Add(new Krevet(3, 6, false));
+            kreveti.Add(new Krevet(4, 6, false));
+            kreveti.Add(new Krevet(5, 5, true));
+            kreveti.Add(new Krevet(6, 5, true));
+            kreveti.Add(new Krevet(7, 5, false));
+            kreveti.Add(new Krevet(8, 5, false));
+
+            foreach(Krevet k in kreveti)
+            {
+                Console.WriteLine(k.IdKreveta + " " + k.IdSobe + " " + k.Zauzet);
+                foreach(Sala s in SaleMenadzer.sale)
+                {
+                    if(k.IdSobe == s.Id)
+                    {
+                        s.Kreveti.Add(k);
+                    }
+                }
+            }
 
             
 
