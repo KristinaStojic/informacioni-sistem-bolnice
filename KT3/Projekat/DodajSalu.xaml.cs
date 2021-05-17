@@ -50,7 +50,7 @@ namespace Projekat
             }
             else
             {
-                return tipSale.SalaZaOdmor;
+                return tipSale.SalaZaLezanje;
             }
         }
 
