@@ -40,9 +40,9 @@ namespace Projekat.Servis
             return SaleMenadzer.NadjiSaluPoId(id);
         }
 
-        public static Krevet NadjiKrevetPoId(int id)
+        public static Krevet NadjiKrevetPoId(int id, Sala soba)
         {
-            return SaleMenadzer.NadjiKrevetPoId(id);
+            return SaleMenadzer.NadjiKrevetPoId(id, soba);
         }
 
         public static void sacuvajIzmjene()

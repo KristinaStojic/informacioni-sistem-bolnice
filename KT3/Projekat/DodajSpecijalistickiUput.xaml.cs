@@ -214,7 +214,7 @@ namespace Projekat
                 string datumKraja = NadjiDatumKrajaLecenja();
                 tipUputa tipUputa = NadjiTipUputa();
                 Soba = SaleServis.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
-                Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem);
+                Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);

@@ -36,10 +36,10 @@ namespace Projekat.Servis
             return OpremaMenadzer.GenerisanjeIdOpreme();
         }
 
-        public static int GenerisanjeIdKreveta()
+        /*public static int GenerisanjeIdKreveta()
         {
             return OpremaMenadzer.GenerisanjeIdKreveta();
-        }
+        }*/
 
         public static bool postojiOprema(Oprema oprema, List<Oprema> opremaZaPrebacivanje)
         {
