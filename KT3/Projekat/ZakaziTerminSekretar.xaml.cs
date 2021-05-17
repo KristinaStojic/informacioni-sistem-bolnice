@@ -142,7 +142,7 @@ namespace Projekat
             }
 
 
-            Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
+            Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);

@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -30,7 +31,7 @@ namespace Projekat
         {
             if (!(jmbg.Text.Equals("")))
             {
-                if ((!LekariMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text))))
+                if ((!LekariServis.JedinstvenJmbg(Convert.ToInt32(jmbg.Text))))
                 {
                     MessageBox.Show("JMBG vec postoji");
                     jmbg.Text = "";
@@ -46,10 +47,10 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Specijalizacija specijalizacija = (Specijalizacija)oblastLekara.SelectedItem;
-            Lekar lekar = new Lekar(LekariMenadzer.GenerisanjeIdLekara(), ime.Text, prezime.Text, Int32.Parse(jmbg.Text), Int32.Parse(brojTelefona.Text), email.Text, adresa.Text, specijalizacija);
+            Lekar lekar = new Lekar(LekariServis.GenerisanjeIdLekara(), ime.Text, prezime.Text, Int32.Parse(jmbg.Text), Int32.Parse(brojTelefona.Text), email.Text, adresa.Text, specijalizacija);
             List<int> zahtevi = new List<int>();
             lekar.ZahteviZaOdmor = zahtevi;
-            LekariMenadzer.DodajLekara(lekar);
+            LekariServis.DodajLekara(lekar);
             this.Close();
         }
 

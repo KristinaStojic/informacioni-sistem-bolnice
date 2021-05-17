@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -42,7 +43,7 @@ namespace Projekat
         {
             Specijalizacija specijalizacija = (Specijalizacija)oblastLekara.SelectedItem;
             Lekar izmenjeniLekar = new Lekar(lekar.IdLekara, ime.Text, prezime.Text, Int32.Parse(jmbg.Text), Int32.Parse(brojTelefona.Text), email.Text, adresa.Text, specijalizacija);
-            LekariMenadzer.IzmeniLekara(lekar, izmenjeniLekar);
+            LekariServis.IzmeniLekara(lekar, izmenjeniLekar);
             this.Close();
         }
 

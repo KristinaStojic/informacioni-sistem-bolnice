@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -58,7 +59,7 @@ namespace Projekat
                 if (l.IdLekara == lekar.IdLekara)
                 {
                     l.RadniDani = radniDani;
-                    LekariMenadzer.SacuvajIzmeneLekara();
+                    LekariServis.SacuvajIzmeneLekara();
                 }
             }
 

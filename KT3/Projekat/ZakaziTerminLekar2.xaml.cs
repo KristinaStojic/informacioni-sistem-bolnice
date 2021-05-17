@@ -677,7 +677,7 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Lekar l = LekariMenadzer.NadjiPoId(idLekara);
+                Lekar l = LekariServis.NadjiPoId(idLekara);
                 if (tp.Equals(TipTermina.Pregled))
                 {
                     l.BrojPregleda++;

@@ -40,8 +40,8 @@ namespace Projekat
             PacijentiMenadzer.PronadjiSve();
             ObavestenjaMenadzer.NadjiSvaObavestenja();
             LekoviMenadzer.NadjiSveZahteve();
-            LekariMenadzer.NadjiSveZahteve();
-            LekariMenadzer.NadjiSveLekare();
+            LekariServis.NadjiSveZahteve();
+            LekariServis.NadjiSveLekare();
 
             /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;

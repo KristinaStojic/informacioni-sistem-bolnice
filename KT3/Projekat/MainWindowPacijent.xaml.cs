@@ -36,7 +36,7 @@ namespace Projekat
             MalicioznoPonasanjeMenadzer.sacuvajIzmene();
             PrikaziTermin.pacijentProzor = false;  // nit
 
-            LekariMenadzer.SacuvajIzmeneLekara();
+            LekariServis.SacuvajIzmeneLekara();
         }
     }
 }
