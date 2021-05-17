@@ -94,14 +94,6 @@ namespace Projekat.Model
             dodajOpremuUPrikaz(oprema);
             sacuvajIzmjene();
         }
-        
-        public static void DodajKrevet(Krevet krevet)
-        {
-            OpremaMenadzer.kreveti.Add(krevet);
-            azurirajOpremuUSkladistu();
-            //dodajOpremuUPrikaz(oprema);
-            sacuvajIzmjene();
-        }
 
         private static void dodajOpremuUPrikaz(Oprema oprema)
         {
