@@ -139,9 +139,9 @@ namespace Model
             {
                 if (lekar.IdLekara == idLekara)
                 {
-                    for (id = 1; id <= lekar.zahteviZaOdmor.Count; id++)
+                    for (id = 1; id <= lekar.ZahteviZaOdmor.Count; id++)
                     {
-                        foreach (int z in lekar.zahteviZaOdmor)
+                        foreach (int z in lekar.ZahteviZaOdmor)
                         {
                             if (z == id)
                             {
@@ -204,7 +204,7 @@ namespace Model
             {
                 if (lekar.IdLekara == zahtev.lekar.IdLekara)
                 {
-                    lekar.zahteviZaOdmor.Add(zahtev.idZahteva);
+                    lekar.ZahteviZaOdmor.Add(zahtev.idZahteva);
                     zahtevi.Add(zahtev);
                     ZahteviZaGodisnjiLekar.TabelaZahteva.Add(zahtev);
                     sacuvajIzmjeneZahteva();
