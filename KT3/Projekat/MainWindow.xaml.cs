@@ -74,7 +74,7 @@ namespace Projekat
             zahtevi.Add(new ZahtevZaLekove(3, "Panklav", "PKL", "12/04/2021", false));
 
             kreveti = new ObservableCollection<Krevet>();
-            kreveti.Add(new Krevet(1, 6, false));
+            /*kreveti.Add(new Krevet(1., 6, false));
             kreveti.Add(new Krevet(2, 6, true));
             kreveti.Add(new Krevet(3, 6, false));
             kreveti.Add(new Krevet(4, 6, false));
@@ -93,7 +93,7 @@ namespace Projekat
                         s.Kreveti.Add(k);
                     }
                 }
-            }
+            }*/
 
             
 

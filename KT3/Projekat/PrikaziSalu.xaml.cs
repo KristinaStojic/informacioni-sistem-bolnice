@@ -284,5 +284,20 @@ namespace Projekat
                 }
             }
         }
+
+        private void Kreveti_Click(object sender, RoutedEventArgs e)
+        {
+            Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if(izabranaSala != null)
+            {
+                Krevet krevet = new Krevet(izabranaSala.Id, false);
+                izabranaSala.Kreveti.Add(krevet);
+                SaleMenadzer.sacuvajIzmjene();
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
+            }
+        }
     }
 }
