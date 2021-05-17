@@ -687,7 +687,7 @@ namespace Projekat
                     l.BrojOperacija++;
                 }
 
-                Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
+                Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
                 Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;
                 if (this.hitno.IsChecked == true)

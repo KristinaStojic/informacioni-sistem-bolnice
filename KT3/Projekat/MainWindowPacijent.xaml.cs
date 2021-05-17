@@ -30,7 +30,7 @@ namespace Projekat
         {
             TerminMenadzer.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PacijentiServis.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
             ObavestenjaMenadzer.sacuvajIzmene();
             MalicioznoPonasanjeMenadzer.sacuvajIzmene();

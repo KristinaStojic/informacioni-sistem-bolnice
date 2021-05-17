@@ -531,7 +531,7 @@ namespace Projekat
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
 
             Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
-            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
+            Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
             Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 
             //

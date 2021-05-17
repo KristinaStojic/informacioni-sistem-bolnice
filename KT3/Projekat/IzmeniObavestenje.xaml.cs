@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -72,7 +73,7 @@ namespace Projekat
 
                     foreach (int id in obavestenje.ListaIdPacijenata)
                     {
-                        listaPacijenata.SelectedItem = PacijentiMenadzer.PronadjiPoId(id);
+                        listaPacijenata.SelectedItem = PacijentiServis.PronadjiPoId(id);
                     }
                 }
             }

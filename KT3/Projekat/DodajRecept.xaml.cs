@@ -111,7 +111,7 @@ namespace Projekat
         private void SacuvajIzmene()
         {
             TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
             ObavestenjaMenadzer.sacuvajIzmene();
         }

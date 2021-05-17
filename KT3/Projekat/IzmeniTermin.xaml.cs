@@ -64,7 +64,7 @@ namespace Projekat
                 }
                 tp = izabraniTermin.tipTermina;
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
-                prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+                prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
                 this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
                 InicijalizujSelektovanogLekara(izabraniTermin);
             }

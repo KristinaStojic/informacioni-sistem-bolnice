@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Projekat
             {
                 this.DodajBelesku.Content = "Izmeni";
             }
-            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -107,7 +108,7 @@ namespace Projekat
             anamneza.Beleska = this.beleska.Text;
             this.beleska.IsEnabled = false;
             this.SacuvajBelesku.IsEnabled = false;
-            PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
+            PacijentiServis.SacuvajIzmenePacijenta(); // ?
         }
 
         private void DodajBelesku_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,7 +32,7 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             Termini = new ObservableCollection<Termin>();
             DodajTerminePacijenta(idPacijent, Termini);
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
             view.Filter = UserFilter;

@@ -18,6 +18,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows;
 using Projekat.Lokalizacija;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -35,7 +36,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljeniPacijent;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Termini = new ObservableCollection<Termin>();
             ObavestenjaPacijent = new ObservableCollection<Obavestenja>();

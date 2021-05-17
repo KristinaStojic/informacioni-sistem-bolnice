@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -142,13 +143,13 @@ namespace Projekat
 
             if (status.Equals(statusNaloga.Guest) /*brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals("")*/)
             {
-                int idP1 = PacijentiMenadzer.GenerisanjeIdPacijenta();
+                int idP1 = PacijentiServis.GenerisanjeIdPacijenta();
                 Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
-                PacijentiMenadzer.DodajNalog(p1);
+                PacijentiServis.DodajNalog(p1);
             }
             else  // ukoliko je stalan nalog
             {
-                int idP = PacijentiMenadzer.GenerisanjeIdPacijenta();
+                int idP = PacijentiServis.GenerisanjeIdPacijenta();
                 Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                 ZdravstveniKarton karton = new ZdravstveniKarton(idP);
                 p.Karton = karton;
@@ -160,7 +161,7 @@ namespace Projekat
                 p.Karton.Alergeni = ale;
                 List<Uput> uput = new List<Uput>();
                 p.Karton.Uputi = uput;
-                PacijentiMenadzer.DodajNalog(p);
+                PacijentiServis.DodajNalog(p);
             }    
 
             this.Close();
@@ -206,7 +207,7 @@ namespace Projekat
         {
             if (!(jmbg.Text.Equals("")))
             {
-                if ((!PacijentiMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text))))
+                if ((!PacijentiServis.JedinstvenJmbg(Convert.ToInt32(jmbg.Text))))
                 {
                     MessageBox.Show("JMBG vec postoji");
                     jmbg.Text = "";

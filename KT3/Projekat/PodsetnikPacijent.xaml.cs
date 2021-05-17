@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,7 +33,7 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             obavestenjaPodsetnici = new ObservableCollection<Obavestenja>();
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodsetnikePacijenta(obavestenjaPodsetnici);
             Podsetnici.ItemsSource = obavestenjaPodsetnici;

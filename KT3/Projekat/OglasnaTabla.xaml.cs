@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -115,7 +116,7 @@ namespace Projekat
                     namena.Text = "";
                     foreach (int id in selektovanoObavestenje.ListaIdPacijenata)
                     {
-                        Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(id);
+                        Pacijent pacijent = PacijentiServis.PronadjiPoId(id);
                         namena.Text += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta + " \n";
                     }
                 }
