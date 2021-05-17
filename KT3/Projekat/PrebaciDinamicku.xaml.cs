@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -67,85 +68,10 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Sala sala in SaleMenadzer.sale)
-            {
-                izvrsiPremjestanje(sala, (Sala)kombo.SelectedItem);
-            }
+            PremjestajServis.izvrsiPremjestanje((Sala)kombo.SelectedItem, int.Parse(Kolicina.Text), opremaZaSlanje);    
+            Skladiste.azurirajOpremu();
             this.Close();
             aktivan = false;
-        }
-
-        private void izvrsiPremjestanje(Sala sala, Sala salaUKojuSaljem)
-        {
-            if (sala.Namjena.Equals("Skladiste"))
-            {
-                ukloniOpremuIzSale(sala, int.Parse(Kolicina.Text));
-            }
-            if (sala.Id == salaUKojuSaljem.Id)
-            {
-                dodajOpremuUSalu(sala, int.Parse(Kolicina.Text));
-            }
-        }
-
-        private void dodajOpremuUSalu(Sala sala, int kolicina)
-        {
-            bool postojiOprema = false;
-            foreach (Oprema oprema in sala.Oprema)
-            {
-                if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
-                {
-                    oprema.Kolicina += kolicina;
-                    postojiOprema = true;
-                }
-            }
-            dodajNovuOpremu(postojiOprema, kolicina, sala);
-        }
-
-        private void dodajNovuOpremu(bool postojiOprema, int kolicina, Sala sala)
-        {
-            if (!postojiOprema)
-            {
-                Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, false);
-                oprema.IdOpreme = opremaZaSlanje.IdOpreme;
-                sala.Oprema.Add(oprema);
-            }
-        }
-
-        public void ukloniOpremuIzSale(Sala sala, int kolicina)
-        {
-            foreach (Oprema oprema in sala.Oprema.ToArray())
-            {
-                if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
-                {
-                    prebaciOpremu(oprema, kolicina, sala);
-                }
-            }
-        }
-
-        private void prebaciOpremu(Oprema oprema, int kolicina, Sala sala)
-        {
-            if (oprema.Kolicina - kolicina == 0)
-            {
-                ukloniSvuOpremu(oprema, sala);
-            }
-            else
-            {
-                smanjiKolicinuOpreme(oprema, kolicina);
-            }
-        }
-
-        private void smanjiKolicinuOpreme(Oprema oprema, int kolicina)
-        {
-            oprema.Kolicina -= kolicina;
-            int idx = Skladiste.OpremaDinamicka.IndexOf(oprema);
-            Skladiste.OpremaDinamicka.RemoveAt(idx);
-            Skladiste.OpremaDinamicka.Insert(idx, oprema);
-        }
-
-        private void ukloniSvuOpremu(Oprema oprema, Sala sala)
-        {
-            sala.Oprema.Remove(oprema);
-            Skladiste.OpremaDinamicka.Remove(oprema);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -34,7 +34,7 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             definisiLijek();
-            dodajZahtjev(uneseniLijek);
+            LekoviServis.dodajZahtjev(uneseniLijek);
             this.Close();
         }
 
@@ -42,14 +42,7 @@ namespace Projekat
         {
             uneseniLijek.nazivLeka = this.naziv.Text;
             uneseniLijek.sifraLeka = this.sifra.Text;
-            uneseniLijek.idLeka = LekoviMenadzer.GenerisanjeIdLijeka();
-        }
-
-        private void dodajZahtjev(Lek lijek)
-        {
-            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString("d"), false);
-            LekoviMenadzer.zahteviZaLekove.Add(zahtjev);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            uneseniLijek.idLeka = LekoviServis.GenerisanjeIdLijeka();
         }
 
         private void sifra_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,7 +75,7 @@ namespace Projekat
 
         private bool postojiSifraLijeka()
         {
-            foreach(Lek lijek in LekoviMenadzer.lijekovi)
+            foreach(Lek lijek in LekoviServis.Lijekovi())
             {
                 if(lijek.sifraLeka == this.sifra.Text)
                 {
@@ -97,7 +90,7 @@ namespace Projekat
         {
             if (uneseniLijek == null)
             {
-                uneseniLijek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), this.naziv.Text, this.sifra.Text);
+                uneseniLijek = new Lek(LekoviServis.GenerisanjeIdLijeka(), this.naziv.Text, this.sifra.Text);
             }
             SastojciDodavanje sastojciDodavanje = new SastojciDodavanje(uneseniLijek);
             sastojciDodavanje.Show();

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,10 +32,10 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
-            SaleMenadzer.NadjiSveSale();
-            OpremaMenadzer.NadjiSvuOpremu();
-            LekoviMenadzer.NadjiSveLijekove();
-            PremjestajMenadzer.NadjiSvePremjestaje();
+            SaleServis.NadjiSveSale();
+            OpremaServis.NadjiSvuOpremu();
+            LekoviServis.NadjiSveLijekove();
+            PremjestajServis.NadjiSvePremjestaje();
             TerminMenadzer.NadjiSveTermine();
             PacijentiMenadzer.PronadjiSve();
             ObavestenjaMenadzer.NadjiSvaObavestenja();

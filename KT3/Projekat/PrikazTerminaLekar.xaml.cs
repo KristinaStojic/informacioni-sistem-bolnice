@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -173,7 +174,7 @@ namespace Projekat
         {
             TerminMenadzer.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
             //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/
         }

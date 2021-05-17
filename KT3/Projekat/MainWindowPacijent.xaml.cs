@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
             ObavestenjaMenadzer.sacuvajIzmene();

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -232,7 +233,7 @@ namespace Projekat
         {
             if (prostorije.SelectedItem != null)
             {
-                Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+                Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             }
         }
 
@@ -678,7 +679,7 @@ namespace Projekat
 
                 Lekar l = LekariMenadzer.NadjiPoId(idLekara);
                 Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
-                Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+                Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;
                 if (this.hitno.IsChecked == true)
                 {
@@ -704,7 +705,7 @@ namespace Projekat
                     }
 
                     TerminMenadzer.sacuvajIzmene();
-                    SaleMenadzer.sacuvajIzmjene();
+                    SaleServis.sacuvajIzmjene();
 
                     this.Close();
                 }
@@ -715,7 +716,7 @@ namespace Projekat
                     Sala.zauzetiTermini.Add(z);
 
                     TerminMenadzer.sacuvajIzmene();
-                    SaleMenadzer.sacuvajIzmjene();
+                    SaleServis.sacuvajIzmjene();
 
                     this.Close();
                 }

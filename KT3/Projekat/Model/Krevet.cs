@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Projekat.Model
 
         public Krevet(int idSobe, bool zauzet)
         {
-            this.IdKreveta = OpremaMenadzer.GenerisanjeIdKreveta();
+            this.IdKreveta = OpremaServis.GenerisanjeIdKreveta();
             this.IdSobe = idSobe;
             this.Zauzet = zauzet;
         }

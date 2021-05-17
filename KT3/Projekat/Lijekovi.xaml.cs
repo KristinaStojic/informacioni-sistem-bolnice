@@ -1,5 +1,6 @@
 ﻿using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,7 +37,7 @@ namespace Projekat
 
         private void dodajLijekove()
         {
-            foreach(Lek lijek in LekoviMenadzer.lijekovi)
+            foreach(Lek lijek in LekoviServis.Lijekovi())
             {
                 Lekovi.Add(lijek);
             }

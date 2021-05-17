@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,7 +39,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             this.termin = izabraniTermin;
-            PomocnaSviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
+            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             idPacijent = izabraniTermin.Pacijent.IdPacijenta;
             OgraniciIzborNovogDatuma(izabraniTermin);
             InicijalizujPodatkeZaIzabraniTermin(izabraniTermin);
@@ -145,7 +146,7 @@ namespace Projekat
                 noviTermin.Pacijent = prijavljeniPacijent;
                 noviTermin.Pomeren = true;
 
-                SaleMenadzer.ObrisiZauzeceSale(termin.Prostorija.Id, termin.IdTermin);
+                SaleServis.ObrisiZauzeceSale(termin.Prostorija.Id, termin.IdTermin);
                 ZauzeceSale zs = new ZauzeceSale(vremePocetka, vremeKraja, datumTermina, noviTermin.IdTermin);
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
                 noviTermin.Prostorija = prvaSlobodnaSala;
@@ -188,7 +189,7 @@ namespace Projekat
         /*  IZMENI TERMIN */
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SaleZaPregled = SaleMenadzer.PronadjiSaleZaPregled();
+            SaleZaPregled = SaleServis.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPregled.Count();
         }
 
@@ -243,7 +244,7 @@ namespace Projekat
                 return;
             }
             string selektovaniDatum = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
-            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
+            SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);
             UkolniSlotoveZauzeteUSvimSalama(PomocnaSviSlobodniSlotovi);

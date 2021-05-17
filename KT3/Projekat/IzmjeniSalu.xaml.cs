@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -46,7 +47,11 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            SaleMenadzer.IzmjeniSalu(izabranaSala, napraviSalu());
+            Sala sala = napraviSalu();
+            SaleServis.IzmjeniSalu(izabranaSala, sala);
+            int idx = PrikaziSalu.Sale.IndexOf(izabranaSala);
+            PrikaziSalu.Sale.RemoveAt(idx);
+            PrikaziSalu.Sale.Insert(idx, sala);
             this.Close();
         }
 
@@ -111,7 +116,7 @@ namespace Projekat
         {
             if (jeBroj(this.brojSale.Text))
             {
-                foreach (Sala sala in SaleMenadzer.sale)
+                foreach (Sala sala in SaleServis.Sale())
                 {
                     if (sala.brojSale == int.Parse(this.brojSale.Text) && sala.Id != this.izabranaSala.Id)
                     {

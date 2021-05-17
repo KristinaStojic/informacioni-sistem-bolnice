@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -223,7 +224,7 @@ namespace Projekat
                 ZauzeceSale zauzeceSale = napraviZauzece();
                 zauzmiSalu(zauzeceSale);
                 zauzmiSaluZaSpajanje(zauzeceSale);
-                SaleMenadzer.sacuvajIzmjene();
+                SaleServis.sacuvajIzmjene();
             }
             else if (opremaZaPrebacivanje != null)
             {
@@ -232,13 +233,13 @@ namespace Projekat
                 napraviNovuSalu();
                 zauzmiSalu(zauzeceSale);
                 zauzmiNovuSalu(zauzeceSale);
-                SaleMenadzer.sacuvajIzmjene();
+                SaleServis.sacuvajIzmjene();
             }
             else
             {
                 ZauzeceSale zauzeceSale = napraviZauzece();
                 zauzmiSalu(zauzeceSale);
-                SaleMenadzer.sacuvajIzmjene();
+                SaleServis.sacuvajIzmjene();
             }
             this.Close();
         }
@@ -274,14 +275,16 @@ namespace Projekat
         private void napraviNovuSalu()
         {
             novaSala.Oprema = opremaZaPrebacivanje;
-            SaleMenadzer.DodajSalu(novaSala);
+            SaleServis.DodajSalu(novaSala);
+            PrikaziSalu.Sale.Add(novaSala);
         }
 
         private void spojiSale()
         {
             dodajOpremuIzSaleZaDodavanje();
-            SaleMenadzer.ObrisiSalu(salaZaSpajanje);
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.ObrisiSalu(salaZaSpajanje);
+            PrikaziSalu.Sale.Remove(salaZaSpajanje);
+            SaleServis.sacuvajIzmjene();
         }
 
         private void dodajOpremuIzSaleZaDodavanje()
