@@ -14,6 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace Projekat
 {
@@ -46,10 +48,26 @@ namespace Projekat
             get;
             set;
         }
+        public ChartValues<int> ukupnoLaboratorija
+        {
+            get; set;
+        }
 
+        public ChartValues<int> ukupnoSpecijalisticki
+        {
+            get; set;
+        }
+        public ChartValues<int> ukupnoStacionarno
+        {
+            get; set;
+        }
+
+        public Func<ChartPoint, string> LabelPoint { get; set; }
         public ZdravstveniKartonLekar(Pacijent izabraniNalog, Termin termin)
         {
             InitializeComponent();
+            LabelPoint = chartPoint =>
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
             this.pacijent = izabraniNalog;
             this.termin = termin;
             this.DataContext = this;

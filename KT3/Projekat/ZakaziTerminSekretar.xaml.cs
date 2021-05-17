@@ -140,7 +140,16 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+            //Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+            Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
+            if (tp.Equals(TipTermina.Pregled))
+            {
+                l.BrojPregleda++;              
+            }
+            else if (tp.Equals(TipTermina.Operacija))
+            {
+                l.BrojOperacija++;
+            }
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
             t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);

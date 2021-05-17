@@ -1,8 +1,10 @@
 ﻿<Window x:Class="Projekat.PrikazTerminaLekar"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="Pregledi i operacije" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown">
@@ -61,10 +63,6 @@
 
         <Border  BorderBrush="DarkRed"  BorderThickness="1" HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="301" Margin="925,97,0,0">
         </Border>
-
-
-        <Image Source="slike/grafik1.png" Width="205" HorizontalAlignment="Center" Margin="977,121,97.6,233.4" RenderTransformOrigin="0.475,0.468"/>
-        <Label Content="  TO DO:&#xD;&#xA;  Grafik 1. Zakazani termini&#xA;" HorizontalAlignment="Left" Margin="1001,419,0,0" VerticalAlignment="Top" Width="163"/>
         <Image Source="slike/dodaj.png" Width="44" HorizontalAlignment="Center" Margin="75,607,1161,45" RenderTransformOrigin="0.467,-0.13"/>
         <Image Source="slike/izmeni.png" Width="38" HorizontalAlignment="Center" Margin="243,606,999,46" RenderTransformOrigin="0.574,0.51"/>
         <Image Source="slike/delete.png" Width="39" HorizontalAlignment="Center" Margin="411,607,830,46" RenderTransformOrigin="0.574,0.51"/>
@@ -76,6 +74,26 @@ Pomoć?(CTRL+H)
             </Hyperlink>
         </TextBlock>
 
+        
+            <!-- Grafikon -->
+            <Wpf:PieChart 
+                    HorizontalAlignment="Center" 
+                    Height="254"
+                    Width="200"
+                    Margin="981,150,99,0"
+                    VerticalAlignment="Top" 
+                    LegendLocation="Bottom"
+                    >
+
+                <!-- Parcad u grafikonu.-->
+                <Wpf:PieChart.Series>
+                <Wpf:PieSeries Title="Pregledi" DataLabels="True" Values="{Binding ukupnoPregleda }" LabelPoint="{Binding LabelPoint}"/>
+                <Wpf:PieSeries Title="Operacije" DataLabels="True" Values="{Binding ukupnoOperacija }" LabelPoint="{Binding LabelPoint}"/>
+            </Wpf:PieChart.Series>
+                <!-- Kraj parcadi u grafikonu -->
+
+            </Wpf:PieChart>
+            <!-- Kraj grafikona.-->
 
     </Grid>
 </Window>
