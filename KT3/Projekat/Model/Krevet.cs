@@ -22,7 +22,7 @@ namespace Projekat.Model
 
         public Krevet(int idSobe, bool zauzet)
         {
-            this.IdKreveta = SaleMenadzer.GenerisanjeIdKreveta();
+            this.IdKreveta = OpremaMenadzer.GenerisanjeIdKreveta();
             this.IdSobe = idSobe;
             this.Zauzet = zauzet;
         }
