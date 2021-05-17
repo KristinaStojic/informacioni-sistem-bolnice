@@ -122,6 +122,9 @@
     <Compile Include="DodajSpecijalistickiUput.xaml.cs">
       <DependentUpon>DodajSpecijalistickiUput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajZahtevZaGodisnji.xaml.cs">
+      <DependentUpon>DodajZahtevZaGodisnji.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajZamenskiLekLekar.xaml.cs">
       <DependentUpon>DodajZamenskiLekLekar.xaml</DependentUpon>
     </Compile>
@@ -220,6 +223,7 @@
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ValidacijaSekretar.cs" />
+    <Compile Include="Model\ZahtevZaGodisnji.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
     <Compile Include="Model\ZdravstveniKarton.cs" />
@@ -356,6 +360,9 @@
     <Compile Include="PreraspodjelaStaticke.xaml.cs">
       <DependentUpon>PreraspodjelaStaticke.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrijavaLekar.xaml.cs">
+      <DependentUpon>PrijavaLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrijavaPacijent.xaml.cs">
       <DependentUpon>PrijavaPacijent.xaml</DependentUpon>
     </Compile>
@@ -440,11 +447,20 @@
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UvidUZahtjevKomunikacija.xaml.cs">
+      <DependentUpon>UvidUZahtjevKomunikacija.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UvidUZahtjevOsoblje.xaml.cs">
+      <DependentUpon>UvidUZahtjevOsoblje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UvidZdravstveniKarton.xaml.cs">
       <DependentUpon>UvidZdravstveniKarton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UvidZdravstveniKartonLekar.xaml.cs">
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ZahteviZaGodisnjiLekar.xaml.cs">
+      <DependentUpon>ZahteviZaGodisnjiLekar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Zahtjevi.xaml.cs">
       <DependentUpon>Zahtjevi.xaml</DependentUpon>
@@ -561,6 +577,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DodajSpecijalistickiUput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajZahtevZaGodisnji.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -862,6 +882,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrijavaLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrijavaPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -990,11 +1014,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UvidUZahtjevKomunikacija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UvidUZahtjevOsoblje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UvidZdravstveniKarton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UvidZdravstveniKartonLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ZahteviZaGodisnjiLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

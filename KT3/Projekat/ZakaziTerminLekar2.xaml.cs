@@ -36,7 +36,7 @@ namespace Projekat
         int trajanjeSati;
         int trajanjeMinuti;
         int izbaceniSlotovi;
-
+        int idLekara;
 
         DateTime datumPocetkaRenoviranja;
         DateTime datumKrajaRenoviranja;
@@ -45,9 +45,10 @@ namespace Projekat
         public static ObservableCollection<string> sviSlobodniTerminiKraj { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTermini { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTerminiKraj { get; set; }
-        public ZakaziTerminLekar2()
+        public ZakaziTerminLekar2(int id)
         {
             InitializeComponent();
+            this.idLekara = id;
             this.hitno.IsEnabled = false;
             datum.BlackoutDates.AddDatesInPast();
             popuniTabelePodacima();
@@ -97,7 +98,7 @@ namespace Projekat
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
         }
@@ -583,13 +584,23 @@ namespace Projekat
             if (tipPregleda.SelectedIndex == 0) // pregled
             {
                 this.dugmeLekari.IsEnabled = false;
-                 Lekar = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
+                 //Lekar = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
                 //Lekar = new Lekar() { IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa };
                 //Lekar = new Lekar() { IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
                 //Lekar = new Lekar() { IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
                 //Lekar = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
-                this.lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek;
-                this.listaLekara.IsEnabled = false;
+                
+
+                foreach(Lekar lekar in LekariMenadzer.lekari)
+                {
+                    if(lekar.IdLekara == idLekara)
+                    {
+                        this.lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+                        this.listaLekara.IsEnabled = false;
+                        this.Lekar = lekar;
+                    }
+                }
+
                 this.hitno.IsEnabled = false;
                 dodajSaleZaPregled();
             }
@@ -665,7 +676,7 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
+                Lekar l = LekariMenadzer.NadjiPoId(idLekara);
                 Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
                 Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;

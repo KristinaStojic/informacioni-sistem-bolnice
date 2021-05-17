@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using Projekat;
+using Projekat.Model;
 
 namespace Model
 {
     class LekariMenadzer
     {
         public static List<Lekar> lekari = new List<Lekar>();
+        public static List<ZahtevZaGodisnji> zahtevi = new List<ZahtevZaGodisnji>();
 
         public static void DodajLekara(Lekar noviLekar)
         {
@@ -128,6 +130,38 @@ namespace Model
 
             return id;
         }
+        
+        public static int GenerisanjeIdZahtevaZaOdmor(int idLekara)
+        {
+            bool pomocna = false;
+            int id = 1;
+            foreach (Lekar lekar in lekari)
+            {
+                if (lekar.IdLekara == idLekara)
+                {
+                    for (id = 1; id <= lekar.zahteviZaOdmor.Count; id++)
+                    {
+                        foreach (int z in lekar.zahteviZaOdmor)
+                        {
+                            if (z == id)
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
+                }
+            }
+
+
+            return id;
+        }
 
         public static void SacuvajIzmeneLekara()
         {
@@ -150,7 +184,6 @@ namespace Model
             return true;
         }
 
-        // Sanja
         public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
         {
             List<Lekar> lekariOpstePrakse = new List<Lekar>();
@@ -163,5 +196,58 @@ namespace Model
             }
             return lekariOpstePrakse;
         }
+      
+
+        public static void DodajZahtev(ZahtevZaGodisnji zahtev)
+        {
+            foreach (Lekar lekar in lekari)
+            {
+                if (lekar.IdLekara == zahtev.lekar.IdLekara)
+                {
+                    lekar.zahteviZaOdmor.Add(zahtev.idZahteva);
+                    zahtevi.Add(zahtev);
+                    ZahteviZaGodisnjiLekar.TabelaZahteva.Add(zahtev);
+                    sacuvajIzmjeneZahteva();
+                }
+            }
+        }
+
+
+        public static List<ZahtevZaGodisnji> NadjiSveZahteve()
+        {
+            if (File.ReadAllText("zahteviZaOdmor.xml").Trim().Equals(""))
+            {
+                return zahtevi;
+            }
+            else
+            {
+                FileStream filestream = File.OpenRead("zahteviZaOdmor.xml");
+                XmlSerializer serializer = new XmlSerializer(typeof(List<ZahtevZaGodisnji>));
+                zahtevi = (List<ZahtevZaGodisnji>)serializer.Deserialize(filestream);
+                filestream.Close();
+                return zahtevi;
+            }
+        }
+
+        public static ZahtevZaGodisnji NadjiZahtevPoId(int id)
+        {
+            foreach (ZahtevZaGodisnji zahtev in zahtevi)
+            {
+                if (zahtev.idZahteva == id)
+                {
+                    return zahtev;
+                }
+            }
+            return null;
+        }
+
+        public static void sacuvajIzmjeneZahteva()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<ZahtevZaGodisnji>));
+            TextWriter filestream = new StreamWriter("zahteviZaOdmor.xml");
+            serializer.Serialize(filestream, zahtevi);
+            filestream.Close();
+        }
+
     }
 }

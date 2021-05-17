@@ -58,6 +58,7 @@
         <idTermina>3</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
+    <Kreveti />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
@@ -131,6 +132,7 @@
         <idTermina>4</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
+    <Kreveti />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
@@ -184,6 +186,7 @@
         <idTermina>2</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
+    <Kreveti />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
@@ -253,9 +256,10 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
+    <Kreveti />
   </Sala>
   <Sala>
-    <TipSale>SalaZaOdmor</TipSale>
+    <TipSale>SalaZaLezanje</TipSale>
     <Id>5</Id>
     <brojSale>4</brojSale>
     <Namjena>cekaonica</Namjena>
@@ -268,5 +272,6 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
+    <Kreveti />
   </Sala>
 </ArrayOfSala>

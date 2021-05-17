@@ -63,5 +63,12 @@ namespace Projekat
             prikaziSalu.Show();
             this.Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Upravnik upravnik = new Upravnik();
+            upravnik.Show();
+            this.Close();
+        }
     }
 }

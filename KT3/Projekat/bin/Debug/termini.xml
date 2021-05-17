@@ -8,7 +8,12 @@
       <IdLekara>1</IdLekara>
       <ImeLek>Petar</ImeLek>
       <PrezimeLek>Nebojsic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
+      <zahteviZaOdmor />
     </Lekar>
     <Pacijent>
       <IdPacijenta>3</IdPacijenta>
@@ -105,6 +110,7 @@
           <idTermina>4</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
+      <Kreveti />
     </Prostorija>
     <tipTermina>Pregled</tipTermina>
     <Pomeren>false</Pomeren>
@@ -118,7 +124,12 @@
       <IdLekara>1</IdLekara>
       <ImeLek>Petar</ImeLek>
       <PrezimeLek>Nebojsic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
+      <zahteviZaOdmor />
     </Lekar>
     <Pacijent>
       <IdPacijenta>1</IdPacijenta>
@@ -136,7 +147,12 @@
         <IdLekara>1</IdLekara>
         <ImeLek>Petar</ImeLek>
         <PrezimeLek>Nebojsic</PrezimeLek>
+        <Jmbg>0</Jmbg>
+        <BrojTelefona>0</BrojTelefona>
         <specijalizacija>Opsta_praksa</specijalizacija>
+        <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+        <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
+        <zahteviZaOdmor />
       </IzabraniLekar>
       <Karton>
         <IdPacijenta>1</IdPacijenta>
@@ -172,6 +188,7 @@
             <OpisBolesti>ASDAD</OpisBolesti>
             <Terapija>SDSDSD</Terapija>
             <Datum>04/28/2021</Datum>
+            <IdTermina>0</IdTermina>
             <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
           </Anamneza>
         </Anamneze>
@@ -234,6 +251,7 @@
           <idTermina>2</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
+      <Kreveti />
     </Prostorija>
     <tipTermina>Pregled</tipTermina>
     <Pomeren>false</Pomeren>
@@ -247,7 +265,12 @@
       <IdLekara>1</IdLekara>
       <ImeLek>Petar</ImeLek>
       <PrezimeLek>Nebojsic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
+      <zahteviZaOdmor />
     </Lekar>
     <Pacijent>
       <IdPacijenta>5</IdPacijenta>
@@ -295,6 +318,7 @@
             <OpisBolesti>dsdsds</OpisBolesti>
             <Terapija>sdsds</Terapija>
             <Datum>05/01/2021</Datum>
+            <IdTermina>0</IdTermina>
             <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
           </Anamneza>
           <Anamneza>
@@ -304,6 +328,7 @@
             <OpisBolesti>dffdfdsf</OpisBolesti>
             <Terapija>dfddfdfd</Terapija>
             <Datum>05/01/2021</Datum>
+            <IdTermina>0</IdTermina>
             <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
           </Anamneza>
           <Anamneza>
@@ -313,6 +338,7 @@
             <OpisBolesti>EFEFAAAA</OpisBolesti>
             <Terapija>DFDFDFD</Terapija>
             <Datum>08/18/2021</Datum>
+            <IdTermina>0</IdTermina>
             <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
           </Anamneza>
         </Anamneze>
@@ -381,6 +407,7 @@
           <idTermina>3</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
+      <Kreveti />
     </Prostorija>
     <tipTermina>Operacija</tipTermina>
     <Pomeren>false</Pomeren>
@@ -394,7 +421,12 @@
       <IdLekara>1</IdLekara>
       <ImeLek>Petar</ImeLek>
       <PrezimeLek>Nebojsic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
+      <zahteviZaOdmor />
     </Lekar>
     <Pacijent>
       <IdPacijenta>4</IdPacijenta>
@@ -442,6 +474,7 @@
             <OpisBolesti>sadsd</OpisBolesti>
             <Terapija>dsdsds</Terapija>
             <Datum>06/02/2021</Datum>
+            <IdTermina>0</IdTermina>
             <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
           </Anamneza>
         </Anamneze>
@@ -530,6 +563,7 @@
           <idTermina>4</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
+      <Kreveti />
     </Prostorija>
     <tipTermina>Pregled</tipTermina>
     <Pomeren>false</Pomeren>

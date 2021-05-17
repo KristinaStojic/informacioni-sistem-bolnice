@@ -70,7 +70,7 @@ namespace Projekat
             }
             else
             {
-                return global::Model.tipSale.SalaZaOdmor;
+                return global::Model.tipSale.SalaZaLezanje;
             }
         }
 

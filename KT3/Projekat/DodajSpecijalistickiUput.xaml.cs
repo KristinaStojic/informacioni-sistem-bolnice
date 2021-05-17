@@ -193,7 +193,7 @@ namespace Projekat
 
             foreach(Sala sala in SaleMenadzer.sale)
             {
-                if (sala.TipSale.Equals(tipSale.SalaZaOdmor))  
+                if (sala.TipSale.Equals(tipSale.SalaZaLezanje))  
                 {
                     /*DODATI PROVJERU DA NADJE SLOBODNE KREVETE*/
                     slobodneSobe.Items.Add(sala.Id);

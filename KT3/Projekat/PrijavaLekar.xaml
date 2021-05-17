@@ -1,0 +1,26 @@
+﻿<Window x:Class="Projekat.PrijavaLekar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="Dodavanje sastojka" Height="350" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Korisnicko ime&#x9;"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Lozinka"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="ime" Background="AliceBlue" TextChanged="ime_TextChanged"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue"></TextBox>
+
+        <Button Grid.Column="0" Grid.Row="2" Width="180" Height="40"  HorizontalAlignment="Right" Margin="0,36,107,31" x:Name="Potvrdi" Click="Potvrdi_Click" Grid.ColumnSpan="2" Content="Potvrda"/>
+    </Grid>
+</Window>
