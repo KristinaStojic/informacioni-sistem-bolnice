@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
@@ -88,11 +89,11 @@ namespace Projekat
         public static void azurirajPrikaz()
         {
             OpremaStaticka.Clear();
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala sala in SaleMenadzer.sale)
             {
-                if (s.Id == PrikazStaticke.izabranaSala.Id)
+                if (sala.Id == PrikazStaticke.izabranaSala.Id)
                 {
-                    foreach (Oprema o in s.Oprema)
+                    foreach (Oprema o in sala.Oprema)
                     {
                         if (o.Staticka)
                         {
@@ -108,7 +109,7 @@ namespace Projekat
             while (otvoren)
             {
                 Thread.Sleep(10);
-                PremjestajMenadzer.odradiZakazanePremjestaje();
+                PremjestajServis.odradiZakazanePremjestaje();
             }
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)

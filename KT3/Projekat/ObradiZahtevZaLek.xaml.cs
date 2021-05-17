@@ -44,8 +44,8 @@ namespace Projekat
         {
             zahtev.odobrenZahtev = true;
             zahtev.obradjenZahtev = true;
-            Lek lek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), zahtev.nazivLeka,zahtev.sifraLeka, zahtev.lek.zamenskiLekovi, zahtev.lek.sastojci);
-            LekoviMenadzer.DodajLijek(lek);
+            Lek lek = new Lek(LekoviServis.GenerisanjeIdLijeka(), zahtev.nazivLeka,zahtev.sifraLeka, zahtev.lek.zamenskiLekovi, zahtev.lek.sastojci);
+            LekoviServis.DodajLijek(lek);
             LekoviMenadzer.izmeniZahtev(zahtev);
             LekoviMenadzer.sacuvajIzmeneZahteva();
             this.Close();

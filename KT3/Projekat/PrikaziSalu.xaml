@@ -49,7 +49,7 @@
                 <Button Click="ObrisiSalu_Click" ToolTip="Obrisi, Ctrl + O">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi, Ctrl + P" HorizontalAlignment="Right" Width="130" Height="30" Margin="410, 0, 0, 0" TextChanged="Pretraga_Click" Name="Pretraga"></TextBox>
+                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi, Ctrl + P" HorizontalAlignment="Right" Width="130" Height="30" Margin="375, 0, 0, 0" TextChanged="Pretraga_Click" Name="Pretraga"></TextBox>
                 <Button ToolTip="Pretrazi, Ctrl + P" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>

@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -105,7 +106,7 @@ namespace Projekat
             Lek zamjenskiLijek = (Lek)dataGridLijekovi.SelectedItem;
             if(zamjenskiLijek != null)
             {
-                LekoviMenadzer.obrisiZamjenski(izabraniLijek, zamjenskiLijek);
+                LekoviServis.obrisiZamjenski(izabraniLijek, zamjenskiLijek);
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -22,7 +23,7 @@ namespace Projekat
             {
                 Skladiste.otvoren = true;
                 Skladiste skladiste = new Skladiste();
-                PremjestajMenadzer.odradiZakazanePremjestaje();
+                PremjestajServis.odradiZakazanePremjestaje();
                 this.Close();
                 skladiste.ShowDialog();
             }

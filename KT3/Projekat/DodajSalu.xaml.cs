@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +24,10 @@ namespace Projekat
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        { 
-            SaleMenadzer.DodajSalu(napraviSalu());
+        {
+            Sala sala = napraviSalu();
+            SaleServis.DodajSalu(sala);
+            PrikaziSalu.Sale.Add(sala);
             this.Close();
         }
 
@@ -33,7 +36,7 @@ namespace Projekat
             int brojSale = int.Parse(this.brojSale.Text);
             string namjenaSale = this.namjenaSale.Text;
             tipSale TipSale = nadjiTipSale();
-            Sala sala = new Sala(SaleMenadzer.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
+            Sala sala = new Sala(SaleServis.GenerisanjeIdSale(), brojSale, namjenaSale, TipSale);
             sala.Oprema = new List<Oprema>();
             return sala;
         }

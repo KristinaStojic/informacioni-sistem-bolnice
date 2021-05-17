@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -44,7 +45,7 @@ namespace Projekat
         private void dodajLijekove()
         {
             ZamjenskiLekovi = new ObservableCollection<Lek>();
-            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            foreach (Lek lijek in LekoviServis.Lijekovi())
             {
                 if (lijek.idLeka != izabraniLijek.idLeka && !postojiZamjenski(lijek))
                 {
@@ -76,7 +77,7 @@ namespace Projekat
         {
             if(nadjiIzabraneLijekove().Count != 0)
             {
-                LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, nadjiIzabraneLijekove());
+                LekoviServis.dodajZamjenskeLijekove(izabraniLijek, nadjiIzabraneLijekove());
                 this.Close();
             }
             else

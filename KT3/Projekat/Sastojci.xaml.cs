@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -92,7 +93,7 @@ namespace Projekat
             Sastojak izabraniSastojak = (Sastojak)dataGridSastojci.SelectedItem;
             if (izabraniSastojak != null)
             {
-                LekoviMenadzer.obrisiSastojakLijeka(izabraniLijek, izabraniSastojak);
+                LekoviServis.obrisiSastojakLijeka(izabraniLijek, izabraniSastojak);
             }
             else
             {
