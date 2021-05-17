@@ -26,11 +26,12 @@ namespace Projekat
         {
             InitializeComponent();
             PopuniPodatkePacijenta();
+            this.pacijent = izabraniPacijent;
         }
 
         private void PopuniPodatkePacijenta()
         {
-            this.pacijent = izabraniPacijent;
+            this.pacijent = pacijent;
             this.termin = termin;
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             this.datum.SelectedDate = DateTime.Parse(termin.Datum);

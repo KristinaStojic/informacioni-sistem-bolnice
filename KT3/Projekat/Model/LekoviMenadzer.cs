@@ -315,31 +315,6 @@ namespace Projekat.Model
 
 
 
-        public static int GenerisanjeIdLijeka()
-        {
-            bool pomocna = false;
-            int id = 1;
-
-            for (id = 1; id <= lijekovi.Count; id++)
-            {
-                foreach (Lek lijek in lijekovi)
-                {
-                    if (lijek.idLeka.Equals(id))
-                    {
-                        pomocna = true;
-                        break;
-                    }
-                }
-
-                if (!pomocna)
-                {
-                    return id;
-                }
-                pomocna = false;
-            }
-
-            return id;
-        }
         public static List<Sastojak> nadjiSastojke(ZahtevZaLekove izabraniZahtev)
         {
             sastojci.Clear();
@@ -357,31 +332,7 @@ namespace Projekat.Model
             Console.WriteLine(sastojci.Count);
             return sastojci;
         }
-        public static int GenerisanjeIdZahtjeva()
-        {
-            bool pomocna = false;
-            int id = 1;
-
-            for (id = 1; id <= zahteviZaLekove.Count; id++)
-            {
-                foreach (ZahtevZaLekove zahtjev in zahteviZaLekove)
-                {
-                    if (zahtjev.idZahteva.Equals(id))
-                    {
-                        pomocna = true;
-                        break;
-                    }
-                }
-
-                if (!pomocna)
-                {
-                    return id;
-                }
-                pomocna = false;
-            }
-
-            return id;
-        }
+        
 
 
         public static List<ZahtevZaLekove> NadjiSveZahteve()
@@ -476,7 +427,58 @@ namespace Projekat.Model
             return postoji;
         }
 
-        
+        public static int GenerisanjeIdLijeka()
+        {
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= LekoviMenadzer.lijekovi.Count; id++)
+            {
+                foreach (Lek lijek in LekoviMenadzer.lijekovi)
+                {
+                    if (lijek.idLeka.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
+        }
+
+        public static int GenerisanjeIdZahtjeva()
+        {
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= LekoviMenadzer.zahteviZaLekove.Count; id++)
+            {
+                foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+                {
+                    if (zahtjev.idZahteva.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
+        }
+
         public static List<Sastojak> sastojci = new List<Sastojak>();
         public static List<Lek> lijekovi = new List<Lek>();
         public static List<ZahtevZaLekove> zahteviZaLekove = new List<ZahtevZaLekove>();

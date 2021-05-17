@@ -429,6 +429,17 @@
     <Compile Include="Sekretar.xaml.cs">
       <DependentUpon>Sekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Servis\AnketaServis.cs" />
+    <Compile Include="Servis\LekariServis.cs" />
+    <Compile Include="Servis\LekoviServis.cs" />
+    <Compile Include="Servis\MalicioznoPonasanjeServis.cs" />
+    <Compile Include="Servis\ObavestenjaServis.cs" />
+    <Compile Include="Servis\OpremaServis.cs" />
+    <Compile Include="Servis\PacijentiServis.cs" />
+    <Compile Include="Servis\PremjestajServis.cs" />
+    <Compile Include="Servis\SaleServis.cs" />
+    <Compile Include="Servis\TerminServis.cs" />
+    <Compile Include="Servis\ZdravstveniKartonServis.cs" />
     <Compile Include="Skladiste.xaml.cs">
       <DependentUpon>Skladiste.xaml</DependentUpon>
     </Compile>
