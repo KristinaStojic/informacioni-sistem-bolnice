@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -87,19 +88,19 @@ namespace Projekat
                 }
             }
 
-            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
 
             if (selektovaniPacijentiId.Count > 0)
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.DodajObavestenje(novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
             else
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.DodajObavestenje(novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
             
             this.Close();

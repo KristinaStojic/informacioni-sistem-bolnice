@@ -96,13 +96,13 @@ namespace Model
             {
                 if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count == 1)
                 {
-                    ObavestenjaMenadzer.ObrisiObavestenje(o);
-                    ObavestenjaMenadzer.sacuvajIzmene();
+                    ObavestenjaServis.ObrisiObavestenje(o);
+                    ObavestenjaServis.sacuvajIzmene();
                 }
                 else if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count > 1)
                 {
                     o.ListaIdPacijenata.Remove(nalog.IdPacijenta);
-                    ObavestenjaMenadzer.sacuvajIzmene();
+                    ObavestenjaServis.sacuvajIzmene();
                 }
             }
 

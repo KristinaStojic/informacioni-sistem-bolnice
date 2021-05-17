@@ -33,7 +33,7 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             obavestenjaPodsetnici = new ObservableCollection<Obavestenja>();
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodsetnikePacijenta(obavestenjaPodsetnici);
             Podsetnici.ItemsSource = obavestenjaPodsetnici;

@@ -38,7 +38,7 @@ namespace Projekat
             PremjestajServis.NadjiSvePremjestaje();
             TerminMenadzer.NadjiSveTermine();
             PacijentiServis.PronadjiSve();
-            ObavestenjaMenadzer.NadjiSvaObavestenja();
+            ObavestenjaServis.NadjiSvaObavestenja();
             LekoviMenadzer.NadjiSveZahteve();
             LekariServis.NadjiSveZahteve();
             LekariServis.NadjiSveLekare();

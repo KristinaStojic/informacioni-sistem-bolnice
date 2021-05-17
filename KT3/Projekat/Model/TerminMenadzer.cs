@@ -36,12 +36,12 @@ namespace Model
             PrikaziTerminSekretar.TerminiSekretar.Add(termin);
             
             // notifikacije 
-            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         // hitan slucaj
@@ -227,12 +227,12 @@ namespace Model
             }
 
             // notifikacija 
-            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(stariTermin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, stariTermin.Datum, stariTermin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + stariTermin.Prostorija.brojSale + ", " + stariTermin.VremePocetka + "- " + stariTermin.VremeKraja, ListaIdPacijenata, stariTermin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         public static void OtkaziTermin(Termin termin)
@@ -291,12 +291,12 @@ namespace Model
             TerminMenadzer.sacuvajIzmene();
 
             // notifikacija
-            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         // samo izmeni u svojoj klasi iz OtkaziTermin ---> OtkaziTerminLekar

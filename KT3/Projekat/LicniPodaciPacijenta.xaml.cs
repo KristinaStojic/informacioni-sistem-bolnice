@@ -31,9 +31,9 @@ namespace Projekat
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
             /* LEKARI OPSTE PRAKSE */
-            this.lekar.ItemsSource = LekariServis.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
+            this.lekar.ItemsSource = LekariMenadzer.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
             InicijalizujLicnePodatke();
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
 
@@ -174,8 +174,8 @@ namespace Projekat
 
             Pacijent novi = new Pacijent(prijavljeniPacijent.IdPacijenta, ime, prezime, jmbg, polPacijenta, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
             novi.IzabraniLekar = l;
-            PacijentiServis.IzmeniNalogPacijent(prijavljeniPacijent, novi);
-            PacijentiServis.SacuvajIzmenePacijenta(); // ?
+            PacijentiMenadzer.IzmeniNalogPacijent(prijavljeniPacijent, novi);
+            PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
 
             this.ime.IsEnabled = false;
             this.prezime.IsEnabled = false;

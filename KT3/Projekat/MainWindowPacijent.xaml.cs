@@ -30,13 +30,13 @@ namespace Projekat
         {
             TerminMenadzer.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
-            PacijentiServis.SacuvajIzmenePacijenta();
+            PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
             ObavestenjaMenadzer.sacuvajIzmene();
             MalicioznoPonasanjeMenadzer.sacuvajIzmene();
             PrikaziTermin.pacijentProzor = false;  // nit
 
-            LekariServis.SacuvajIzmeneLekara();
+            LekariMenadzer.SacuvajIzmeneLekara();
         }
     }
 }

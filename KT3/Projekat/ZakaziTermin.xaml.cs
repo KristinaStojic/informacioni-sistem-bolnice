@@ -48,7 +48,7 @@ namespace Projekat
         {
             //datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodatkeOLekaru();
             UputiPacijenta = new ObservableCollection<Uput>();
@@ -111,7 +111,7 @@ namespace Projekat
                 tipTermina = TipTermina.Operacija;
             }*/
             Termin termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;         
             DodajZauzeceSale(termin);
@@ -518,7 +518,7 @@ namespace Projekat
                 return;
             }
             Uput izabraniUput = (Uput)comboUputi.SelectedItem;
-            izabraniLekar = LekariServis.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje); 
+            izabraniLekar = LekariMenadzer.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje); 
             this.imePrz.Text = izabraniLekar.ToString();
         }
     }

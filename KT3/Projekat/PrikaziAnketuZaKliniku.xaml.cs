@@ -36,7 +36,7 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             idAnkete = idSelektovaneAnkete;
             this.potvrdi.IsEnabled = false;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }

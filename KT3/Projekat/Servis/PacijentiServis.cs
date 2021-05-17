@@ -33,7 +33,7 @@ namespace Projekat.Servis
         {
             return PacijentiMenadzer.PronadjiSve();
         }
-
+        
         public static Pacijent PronadjiPoId(int id)
         {
             return PacijentiMenadzer.PronadjiPoId(id);

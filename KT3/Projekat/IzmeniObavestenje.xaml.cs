@@ -146,19 +146,19 @@ namespace Projekat
                 }
             }
 
-            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
 
             if (selektovaniPacijentiId.Count > 0)
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.IzmeniObavestenje(obavestenje, novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
             else
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.IzmeniObavestenje(obavestenje, novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
 
             this.Close();

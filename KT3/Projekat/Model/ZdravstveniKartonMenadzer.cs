@@ -300,7 +300,7 @@ namespace Projekat.Model
         public static List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
         {
             List<Uput> specijalistickiUputiPacijenta = new List<Uput>();
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijenta);
+            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijenta);
             foreach(Uput uput in pacijent.Karton.Uputi)
             {
                 // TODO: moze i labr upute
