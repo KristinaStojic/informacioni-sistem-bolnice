@@ -262,8 +262,10 @@ namespace Projekat
             if(izabranaSala != null)
             {
                 Krevet krevet = new Krevet(izabranaSala.Id, false);
+
                 izabranaSala.Kreveti.Add(krevet);
                 SaleServis.sacuvajIzmjene();
+
             }
             else
             {

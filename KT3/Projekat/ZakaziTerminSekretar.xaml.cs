@@ -141,6 +141,7 @@ namespace Projekat
                 tp = TipTermina.Operacija;
             }
 
+
             Lekar l = LekariMenadzer.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);

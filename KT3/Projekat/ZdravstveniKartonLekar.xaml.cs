@@ -14,6 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace Projekat
 {
@@ -46,10 +48,27 @@ namespace Projekat
             get;
             set;
         }
+        public  ChartValues<int> ukupnoLaboratorija
+        {
+            get; set;
+        }
 
+        public  ChartValues<int> ukupnoSpecijalisticki
+        {
+            get; set;
+        }
+        public  ChartValues<int> ukupnoStacionarno
+        {
+            get; set;
+        }
+
+        public Func<ChartPoint, string> LabelPoint { get; set; }
         public ZdravstveniKartonLekar(Pacijent izabraniNalog, Termin termin)
         {
             InitializeComponent();
+            LabelPoint = chartPoint =>
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+            
             this.pacijent = izabraniNalog;
             this.termin = termin;
             this.DataContext = this;
@@ -64,6 +83,17 @@ namespace Projekat
         }
         private void PopuniLicnePodatkePacijenta(Pacijent izabraniNalog)
         {
+            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            {
+                if(pacijent.IdPacijenta == izabraniNalog.IdPacijenta)
+                {
+                    this.ukupnoLaboratorija = new ChartValues<int>() { pacijent.Karton.brojLaboratorijskihUputa};
+                    this.ukupnoSpecijalisticki = new ChartValues<int>() { pacijent.Karton.brojSpecijalistickihUputa};
+                    this.ukupnoStacionarno = new ChartValues<int>() { pacijent.Karton.brojBolnickihUputa};
+                }
+            }
+            
+
             ime.Text = izabraniNalog.ImePacijenta;
             prezime.Text = izabraniNalog.PrezimePacijenta;
             jmbg.Text = izabraniNalog.Jmbg.ToString();
@@ -130,6 +160,8 @@ namespace Projekat
             {
                 lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
             }
+
+            
         }
 
         private void PopuniTabelePodacima()

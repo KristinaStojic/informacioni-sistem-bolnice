@@ -678,6 +678,15 @@ namespace Projekat
                 }
 
                 Lekar l = LekariMenadzer.NadjiPoId(idLekara);
+                if (tp.Equals(TipTermina.Pregled))
+                {
+                    l.BrojPregleda++;
+                }
+                else if (tp.Equals(TipTermina.Operacija))
+                {
+                    l.BrojOperacija++;
+                }
+
                 Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
                 Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;

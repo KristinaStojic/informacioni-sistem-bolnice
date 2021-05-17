@@ -12,8 +12,8 @@ namespace Projekat.Model
         public int IdKreveta { get; set; }
         public int IdSobe { get; set; }
         public bool Zauzet { get; set; }
-        public string PocetakZauzeca { get; set; }
-        public string KrajZauzeca { get; set; }
+        public DateTime PocetakZauzeca { get; set; }
+        public DateTime KrajZauzeca { get; set; }
         public Krevet() { }
 
         public Krevet(int idKreveta)
@@ -23,7 +23,7 @@ namespace Projekat.Model
 
         public Krevet(int idSobe, bool zauzet)
         {
-            this.IdKreveta = OpremaServis.GenerisanjeIdKreveta();
+            this.IdKreveta = OpremaMenadzer.GenerisanjeIdKreveta(idSobe);
             this.IdSobe = idSobe;
             this.Zauzet = zauzet;
         }

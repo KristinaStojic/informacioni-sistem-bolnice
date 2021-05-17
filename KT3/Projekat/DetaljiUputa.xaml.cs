@@ -36,15 +36,17 @@ namespace Projekat
                 PopuniPodatkeBolnickoLecenje();
             }
 
-            
-            
-            
-        }
+           
 
+
+        }
+        
         private void PopuniPodatkeBolnickoLecenje()
         {
             NadjiPacijentaBolnickoLecenje(uput.idPacijenta);
             NadjiLekaraKojiIzdajeBolnickoLecenje(uput);
+           // this.datumKraja.DisplayDateStart = datumPocetka.SelectedDate;
+
             this.datumPocetka.SelectedDate = DateTime.Parse(uput.datumPocetkaLecenja);
             this.datumKraja.SelectedDate = DateTime.Parse(uput.datumKrajaLecenja);
             this.napomenaPregelda.Text = uput.opisPregleda;
@@ -86,7 +88,7 @@ namespace Projekat
 
         private void NadjiLekaraKojiIzdajeUput(Uput izabraniUput)
         {
-            foreach(Lekar lekar in MainWindow.lekari)
+            foreach(Lekar lekar in LekariMenadzer.lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -96,7 +98,7 @@ namespace Projekat
         }
         private void NadjiLekaraKojiIzdajeBolnickoLecenje(Uput izabraniUput)
         {
-            foreach(Lekar lekar in MainWindow.lekari)
+            foreach(Lekar lekar in LekariMenadzer.lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -106,7 +108,7 @@ namespace Projekat
         }
         private void NadjiLekaraSpecijalistu(Uput izabraniUput)
         {
-            foreach(Lekar lekar in MainWindow.lekari)
+            foreach(Lekar lekar in LekariMenadzer.lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKodKogSeUpucuje)
                 {

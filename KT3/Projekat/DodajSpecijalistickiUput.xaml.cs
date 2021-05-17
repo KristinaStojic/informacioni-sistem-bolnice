@@ -37,7 +37,7 @@ namespace Projekat
         }
         private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             this.ime.Text = pacijent.ImePacijenta;
             this.prezime.Text = pacijent.PrezimePacijenta;
             this.jmbg.Text = pacijent.Jmbg.ToString();
@@ -237,6 +237,8 @@ namespace Projekat
                 if(k.IdKreveta == krevet.IdKreveta)
                 {
                     k.Zauzet = true;
+                    k.PocetakZauzeca = (DateTime)datumPocetka.SelectedDate;
+                    k.KrajZauzeca = (DateTime) datumKraja.SelectedDate;
                 }
             }
         }

@@ -279,6 +279,18 @@ namespace Projekat.Model
                 if (pacijent.IdPacijenta == uput.idPacijenta)
                 {
                     pacijent.Karton.Uputi.Add(uput);
+                    if (uput.TipUputa.Equals(tipUputa.Laboratorija))
+                    {
+                        pacijent.Karton.brojLaboratorijskihUputa++;                     
+                    } 
+                    else if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+                    {
+                        pacijent.Karton.brojSpecijalistickihUputa++;
+                    } 
+                    else if (uput.TipUputa.Equals(tipUputa.StacionarnoLecenje))
+                    {
+                        pacijent.Karton.brojBolnickihUputa++;
+                    }
                     ZdravstveniKartonLekar.TabelaUputa.Add(uput);
                 }
             }

@@ -23,6 +23,7 @@ namespace Model
         public Lekar Lekar { get; set; }
         public Pacijent Pacijent { get; set; }
 
+        
         public String imePrezimePacijenta 
         {
             get
