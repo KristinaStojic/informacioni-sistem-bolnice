@@ -12,6 +12,7 @@ namespace Model
     class LekariMenadzer
     {
         public static List<Lekar> lekari = new List<Lekar>();
+        public static List<ZahtevZaGodisnji> zahtevi = new List<ZahtevZaGodisnji>();
 
         public static void DodajLekara(Lekar noviLekar)
         {
@@ -193,7 +194,7 @@ namespace Model
                     lekar.zahteviZaOdmor.Add(zahtev.idZahteva);
                     zahtevi.Add(zahtev);
                     ZahteviZaGodisnjiLekar.TabelaZahteva.Add(zahtev);
-                    sacuvajIzmjene();
+                    sacuvajIzmjeneZahteva();
                 }
             }
         }
@@ -201,7 +202,6 @@ namespace Model
 
         public static List<ZahtevZaGodisnji> NadjiSveZahteve()
         {
-
             if (File.ReadAllText("zahteviZaOdmor.xml").Trim().Equals(""))
             {
                 return zahtevi;
@@ -215,7 +215,20 @@ namespace Model
                 return zahtevi;
             }
         }
-        public static void sacuvajIzmjene()
+
+        public static ZahtevZaGodisnji NadjiZahtevPoId(int id)
+        {
+            foreach (ZahtevZaGodisnji zahtev in zahtevi)
+            {
+                if (zahtev.idZahteva == id)
+                {
+                    return zahtev;
+                }
+            }
+            return null;
+        }
+
+        public static void sacuvajIzmjeneZahteva()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<ZahtevZaGodisnji>));
             TextWriter filestream = new StreamWriter("zahteviZaOdmor.xml");
@@ -223,6 +236,5 @@ namespace Model
             filestream.Close();
         }
 
-        public static List<ZahtevZaGodisnji> zahtevi = new List<ZahtevZaGodisnji>();
     }
 }
