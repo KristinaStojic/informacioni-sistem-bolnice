@@ -32,23 +32,12 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
             /* LEKARI OPSTE PRAKSE */
-            InicijalizujIzborLekaraOpstePrakse();
+            this.lekar.ItemsSource = LekariMenadzer.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
             InicijalizujLicnePodatke();
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
 
         }
-        private void InicijalizujIzborLekaraOpstePrakse()
-        {
-            List<Lekar> opstaPraksa = new List<Lekar>();
-            foreach (Lekar l in MainWindow.lekari)
-            {
-                if (l.specijalizacija.Equals(Specijalizacija.Opsta_praksa))
-                {
-                    opstaPraksa.Add(l);
-                }
-            }
-            this.lekar.ItemsSource = opstaPraksa;
-        }
+
         private void InicijalizujLicnePodatke()
         {
             this.ime.Text = prijavljeniPacijent.ImePacijenta;

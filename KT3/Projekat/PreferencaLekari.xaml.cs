@@ -27,7 +27,7 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
-            this.datagridLekari.ItemsSource = MainWindow.lekari;
+            this.datagridLekari.ItemsSource = LekariMenadzer.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource);
             view.Filter = UserFilter;
             idPacijent = idPrijavljenogPacijenta;
@@ -35,6 +35,9 @@ namespace Projekat
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
+
+        
+
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(txtFilter.Text))

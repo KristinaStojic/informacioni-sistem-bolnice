@@ -58,8 +58,6 @@ namespace Projekat.Model
         public int BrojDanaKoriscenja { get; set; }
         public int DnevnaKolicina { get; set; }
         public String PocetakKoriscenja { get; set; }
-        // Sanja
-       // public bool Obavestenje { get; set;}
         public List<DateTime> UzimanjeTerapije { get; set; }
     }
 }

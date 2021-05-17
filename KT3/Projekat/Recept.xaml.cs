@@ -21,25 +21,25 @@ namespace Projekat
         public Pacijent prijavljeniPacijent;
         public LekarskiRecept lekRec;
         public static int idPacijent;
-        public Recept(LekarskiRecept lp, Pacijent izabraniPacijent)
+        public Recept(LekarskiRecept recept, Pacijent izabraniPacijent)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = izabraniPacijent.IdPacijenta;
-            InicijalizujPodatkeRecepta(lp, izabraniPacijent);
+            InicijalizujPodatkeRecepta(recept, izabraniPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
-        private void InicijalizujPodatkeRecepta(LekarskiRecept lp, Pacijent izabraniPacijent)
+        private void InicijalizujPodatkeRecepta(LekarskiRecept recept, Pacijent izabraniPacijent)
         {
-            this.lekRec = lp;
-            this.naziv.Text = lp.NazivLeka;
-            this.datum.Text = lp.DatumPropisivanjaLeka;
-            this.dani.Text = lp.BrojDanaKoriscenja.ToString();
-            this.brojUzimanja.Text = lp.BrojDanaKoriscenja.ToString();
-            this.sati.Text = lp.PocetakKoriscenja.Substring(0, 2);
-            this.min.Text = lp.PocetakKoriscenja.Substring(3);
+            this.lekRec = recept;
+            this.naziv.Text = recept.NazivLeka;
+            this.datum.Text = recept.DatumPropisivanjaLeka;
+            this.dani.Text = recept.BrojDanaKoriscenja.ToString();
+            this.brojUzimanja.Text = recept.BrojDanaKoriscenja.ToString();
+            this.sati.Text = recept.PocetakKoriscenja.Substring(0, 2);
+            this.min.Text = recept.PocetakKoriscenja.Substring(3);
 
             this.naziv.IsEnabled = false;
             this.datum.IsEnabled = false;
@@ -53,13 +53,9 @@ namespace Projekat
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.Jmbg.ToString();
             // TODO: dodati u Lekarskim receptima id lekara koji je izdao recept
-            foreach(Lekar lekar in MainWindow.lekari)
-            {
-                if(lekar.IdLekara == lp.IdLekara)
-                {
-                    podaciLekara.Text = lekar.ToString();
-                }
-            }
+            
+            Lekar lekar = LekariMenadzer.NadjiPoId(recept.IdLekara);
+            podaciLekara.Text = lekar.ToString();
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)

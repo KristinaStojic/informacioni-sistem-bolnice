@@ -517,7 +517,7 @@ namespace Projekat
                 return;
             }
             Uput izabraniUput = (Uput)comboUputi.SelectedItem;
-            izabraniLekar = MainWindow.PronadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
+            izabraniLekar = LekariMenadzer.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje); 
             this.imePrz.Text = izabraniLekar.ToString();
         }
     }

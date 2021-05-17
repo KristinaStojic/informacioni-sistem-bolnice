@@ -118,90 +118,90 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Datum" xml:space="preserve">
-    <value>Datum</value>
+    <value>Date</value>
   </data>
   <data name="DatumIzdavanjaUputa" xml:space="preserve">
-    <value>Datum izdavanja uputa</value>
+    <value>Date</value>
   </data>
   <data name="DodajPodsetnik" xml:space="preserve">
-    <value>Dodaj podsetnik</value>
+    <value>Add reminder</value>
   </data>
   <data name="GboxSpecijalistickiPregled" xml:space="preserve">
-    <value>Specijalistički pregled</value>
+    <value>Specialist examination</value>
   </data>
   <data name="ImePacijenta" xml:space="preserve">
-    <value>Ime pacijenta</value>
+    <value>Patient name</value>
   </data>
   <data name="IzaberiteJezik" xml:space="preserve">
-    <value>Promeni jezik</value>
+    <value>Change language</value>
   </data>
   <data name="IzberiteTemu" xml:space="preserve">
-    <value>Promeni temu</value>
+    <value>Change theme</value>
   </data>
   <data name="JmbgPacijenta" xml:space="preserve">
-    <value>JMBG pacijenta</value>
+    <value>Patient ID</value>
   </data>
   <data name="Karton" xml:space="preserve">
-    <value>Zdravstveni karton</value>
+    <value>Medical record</value>
   </data>
   <data name="LekarKodKogSeUpucuje" xml:space="preserve">
-    <value>Lekar kod kog se upućuje</value>
+    <value>Recommended doctor</value>
   </data>
   <data name="LekarPodaci" xml:space="preserve">
-    <value>Lekar</value>
+    <value>Doctor</value>
   </data>
   <data name="Napomena" xml:space="preserve">
-    <value>Napomena</value>
+    <value>Note</value>
   </data>
   <data name="NaslovUputa" xml:space="preserve">
-    <value>Lekarski uput za specijalistički pregled</value>
+    <value>Medical instruction for specialist examination</value>
   </data>
   <data name="Obavestenja" xml:space="preserve">
-    <value>🔔 Obaveštenja</value>
+    <value>🔔 Notifications</value>
   </data>
   <data name="ObrisiObavestenje" xml:space="preserve">
-    <value>Obrisi selektovano obavestenje</value>
+    <value>Delete the selected notification</value>
   </data>
   <data name="Odjava" xml:space="preserve">
-    <value>Odjavi se</value>
+    <value>Log out</value>
   </data>
   <data name="PacijentPodaci" xml:space="preserve">
-    <value>Pacijent</value>
+    <value>Patient</value>
   </data>
   <data name="Pocetna" xml:space="preserve">
-    <value>Početna stranica</value>
+    <value>Home page</value>
   </data>
   <data name="PopuniAnketu" xml:space="preserve">
-    <value>Popuni anketu</value>
+    <value>Fill out the survey</value>
   </data>
   <data name="PotpisLekara" xml:space="preserve">
-    <value>Potpis</value>
+    <value>Signature</value>
   </data>
   <data name="PrezimePacijenta" xml:space="preserve">
-    <value>Prezime pacijenta</value>
+    <value>Patient lastname</value>
   </data>
   <data name="Profil" xml:space="preserve">
-    <value>Vaš profil</value>
+    <value>Your profile</value>
   </data>
   <data name="SadrzajObavestenja" xml:space="preserve">
-    <value>Sadržaj</value>
+    <value>Content</value>
   </data>
   <data name="Svetla" xml:space="preserve">
-    <value>Svetla</value>
+    <value>Light</value>
   </data>
   <data name="Tamna" xml:space="preserve">
-    <value>Tamna</value>
+    <value>Dark</value>
   </data>
   <data name="TipObavestenja" xml:space="preserve">
-    <value>Tip</value>
+    <value>Type</value>
   </data>
   <data name="UvidObavestenje" xml:space="preserve">
-    <value>Uvid u selektovano obavestenje</value>
+    <value>Insight into the selected notification</value>
   </data>
   <data name="UvidUZakazaneTermine" xml:space="preserve">
-    <value>Uvid u zakazane termine</value>
+    <value>Scheduled appointments</value>
   </data>
   <data name="ZakaziTermin" xml:space="preserve">
-    <value>Zakaži termin</value>
+    <value>Make an appointment</value>
   </data>
 </root>

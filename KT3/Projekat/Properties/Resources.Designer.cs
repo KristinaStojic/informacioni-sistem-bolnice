@@ -59,5 +59,266 @@ namespace Projekat.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum.
+        /// </summary>
+        internal static string Datum {
+            get {
+                return ResourceManager.GetString("Datum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum izdavanja uputa.
+        /// </summary>
+        internal static string DatumIzdavanjaUputa {
+            get {
+                return ResourceManager.GetString("DatumIzdavanjaUputa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dodaj podsetnik.
+        /// </summary>
+        internal static string DodajPodsetnik {
+            get {
+                return ResourceManager.GetString("DodajPodsetnik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specijalistički pregled.
+        /// </summary>
+        internal static string GboxSpecijalistickiPregled {
+            get {
+                return ResourceManager.GetString("GboxSpecijalistickiPregled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ime pacijenta.
+        /// </summary>
+        internal static string ImePacijenta {
+            get {
+                return ResourceManager.GetString("ImePacijenta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promeni jezik.
+        /// </summary>
+        internal static string IzaberiteJezik {
+            get {
+                return ResourceManager.GetString("IzaberiteJezik", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promeni temu.
+        /// </summary>
+        internal static string IzberiteTemu {
+            get {
+                return ResourceManager.GetString("IzberiteTemu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JMBG pacijenta.
+        /// </summary>
+        internal static string JmbgPacijenta {
+            get {
+                return ResourceManager.GetString("JmbgPacijenta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zdravstveni karton.
+        /// </summary>
+        internal static string Karton {
+            get {
+                return ResourceManager.GetString("Karton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lekar kod kog se upućuje.
+        /// </summary>
+        internal static string LekarKodKogSeUpucuje {
+            get {
+                return ResourceManager.GetString("LekarKodKogSeUpucuje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lekar.
+        /// </summary>
+        internal static string LekarPodaci {
+            get {
+                return ResourceManager.GetString("LekarPodaci", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Napomena.
+        /// </summary>
+        internal static string Napomena {
+            get {
+                return ResourceManager.GetString("Napomena", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lekarski uput za specijalistički pregled.
+        /// </summary>
+        internal static string NaslovUputa {
+            get {
+                return ResourceManager.GetString("NaslovUputa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔔 Obaveštenja.
+        /// </summary>
+        internal static string Obavestenja {
+            get {
+                return ResourceManager.GetString("Obavestenja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obrisi selektovano obavestenje.
+        /// </summary>
+        internal static string ObrisiObavestenje {
+            get {
+                return ResourceManager.GetString("ObrisiObavestenje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odjavi se.
+        /// </summary>
+        internal static string Odjava {
+            get {
+                return ResourceManager.GetString("Odjava", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pacijent.
+        /// </summary>
+        internal static string PacijentPodaci {
+            get {
+                return ResourceManager.GetString("PacijentPodaci", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Početna stranica.
+        /// </summary>
+        internal static string Pocetna {
+            get {
+                return ResourceManager.GetString("Pocetna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Popuni anketu.
+        /// </summary>
+        internal static string PopuniAnketu {
+            get {
+                return ResourceManager.GetString("PopuniAnketu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potpis.
+        /// </summary>
+        internal static string PotpisLekara {
+            get {
+                return ResourceManager.GetString("PotpisLekara", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prezime pacijenta.
+        /// </summary>
+        internal static string PrezimePacijenta {
+            get {
+                return ResourceManager.GetString("PrezimePacijenta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vaš profil.
+        /// </summary>
+        internal static string Profil {
+            get {
+                return ResourceManager.GetString("Profil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sadržaj.
+        /// </summary>
+        internal static string SadrzajObavestenja {
+            get {
+                return ResourceManager.GetString("SadrzajObavestenja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Svetla.
+        /// </summary>
+        internal static string Svetla {
+            get {
+                return ResourceManager.GetString("Svetla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tamna.
+        /// </summary>
+        internal static string Tamna {
+            get {
+                return ResourceManager.GetString("Tamna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tip.
+        /// </summary>
+        internal static string TipObavestenja {
+            get {
+                return ResourceManager.GetString("TipObavestenja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uvid u selektovano obavestenje.
+        /// </summary>
+        internal static string UvidObavestenje {
+            get {
+                return ResourceManager.GetString("UvidObavestenje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uvid u zakazane termine.
+        /// </summary>
+        internal static string UvidUZakazaneTermine {
+            get {
+                return ResourceManager.GetString("UvidUZakazaneTermine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zakaži termin.
+        /// </summary>
+        internal static string ZakaziTermin {
+            get {
+                return ResourceManager.GetString("ZakaziTermin", resourceCulture);
+            }
+        }
     }
 }
