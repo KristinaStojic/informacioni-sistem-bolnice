@@ -73,10 +73,6 @@ namespace Projekat
                     termini.Add(termin + ":00");
                 }
             }
-            termini.Add("22:05");
-            termini.Add("22:06");
-            termini.Add("22:07");
-            termini.Add("22:10");
         }
 
         private bool zauzetTermin(int termin)
@@ -89,6 +85,33 @@ namespace Projekat
                 }
             }
             return false;
+        }
+
+        public static void ukloniOpremuIzSkladista(Sala sala, Oprema oprema)
+        {
+            if (Skladiste.OpremaStaticka != null)
+            {
+                sala.Oprema.Remove(oprema);
+                Skladiste.OpremaStaticka.Remove(oprema);
+            }
+        }
+
+        public static void zamjeniOpremuUSkladistu(Oprema oprema)
+        {
+            if (Skladiste.OpremaStaticka != null)
+            {
+                int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
+                Skladiste.OpremaStaticka.RemoveAt(idx);
+                Skladiste.OpremaStaticka.Insert(idx, oprema);
+            }
+        }
+
+        public static void dodajOpremuUSkladiste(Oprema oprema)
+        {
+            if (Skladiste.OpremaStaticka != null)
+            {
+                Skladiste.OpremaStaticka.Add(oprema);
+            }
         }
 
         private void postaviMax()

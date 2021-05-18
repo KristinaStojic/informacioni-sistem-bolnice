@@ -219,26 +219,25 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             PreraspodjelaStaticke.izabranaOprema = (Oprema)kombo.SelectedItem;
-            if (napraviTerminPremjestaja().Date.ToString().Equals(DateTime.Now.Date.ToString()))
-            {
-                provjeriPremjestaj();
-            }
-            else
-            {
-                zakaziPremjestaj((Sala)komboSale.SelectedItem, int.Parse(Kolicina.Text), napraviTerminPremjestaja());
-            }
+            PremjestajServis.dodajStatickuOpremu((Sala)komboSale.SelectedItem, int.Parse(Kolicina.Text), napraviTerminPremjestaja(), salaDodavanje, izabranaOprema);
             zavrsiPremjestaj();
         }
 
-        private void provjeriPremjestaj()
+        public static void prebaciOpremuIzSkladista(Oprema oprema)
         {
-            if (napraviTerminPremjestaja().TimeOfDay <= DateTime.Now.TimeOfDay)
+            if (oprema.Kolicina == 0)
             {
-                premjestiOpremu((Sala)komboSale.SelectedItem, int.Parse(Kolicina.Text));
+                if (Skladiste.OpremaStaticka != null)
+                {
+                    Skladiste.OpremaStaticka.Remove(oprema);
+                }
             }
             else
             {
-                zakaziPremjestaj((Sala)komboSale.SelectedItem, int.Parse(Kolicina.Text), napraviTerminPremjestaja());
+                if (Skladiste.OpremaStaticka != null)
+                {
+                    PreraspodjelaStaticke.prebaciUSkladiste(oprema);
+                }
             }
         }
 
@@ -246,24 +245,6 @@ namespace Projekat
         {
             this.Close();
             aktivna = false;
-            PremjestajServis.sacuvajIzmjene();
-            SaleServis.sacuvajIzmjene();
-        }
-
-        private void premjestiOpremu(Sala izabranaSala, int kolicina)
-        {
-            foreach (Sala s in SaleMenadzer.sale)
-            {
-                if (s.Id == izabranaSala.Id)
-                {
-                    ukloniOpremuIzSale(s, kolicina);
-                }
-                if (s.Id == salaDodavanje.Id)
-                {
-                    dodajOpremuUSalu(s, kolicina);
-
-                }
-            }
         }
 
         private DateTime napraviTerminPremjestaja()
@@ -281,94 +262,7 @@ namespace Projekat
             return  new DateTime(int.Parse(godina), int.Parse(mjesec), int.Parse(dan), int.Parse(sat), int.Parse(minuti), 0);
         }
 
-        private void zakaziPremjestaj(Sala izabranaSala, int kolicina, DateTime datumIVrijeme)
-        {
-            Premjestaj zakazi = new Premjestaj();
-            zakazi.kolicina = kolicina;
-            definisiSale(izabranaSala, zakazi);
-            definisiOpremu(zakazi);
-            dodajOpremuIzSala(zakazi);
-            dodajPremjestaj(zakazi, datumIVrijeme);
-        }
-
-        private void dodajPremjestaj(Premjestaj zakazi, DateTime datumIVrijeme)
-        {
-            zakazi.datumIVrijeme = datumIVrijeme;
-            PremjestajServis.dodajPremjestaj(zakazi);
-        }
-
-        private void dodajOpremuIzSala(Premjestaj zakazi)
-        {
-            if (zakazi.oprema == null)
-            {
-                foreach (Sala sala in SaleMenadzer.sale)
-                {
-                    dodajOpremu(sala, zakazi);
-                }
-            }
-        }
-
-        private void dodajOpremu(Sala sala, Premjestaj zakazi)
-        {
-            foreach (Oprema oprema in sala.Oprema)
-            {
-                if (izabranaOprema.IdOpreme == oprema.IdOpreme)
-                {
-                    zakazi.oprema = oprema;
-                }
-            }
-        }
-
-        private void definisiOpremu(Premjestaj zakazi)
-        {
-            foreach (Oprema o in OpremaMenadzer.oprema)
-            {
-                if (izabranaOprema.IdOpreme == o.IdOpreme)
-                {
-                    zakazi.oprema = o;
-                }
-            }
-        }
-
-        private void definisiSale(Sala izabranaSala, Premjestaj zakazi)
-        {
-            foreach (Sala s in SaleMenadzer.sale)
-            {
-                if (s.Id == izabranaSala.Id)
-                {
-                    zakazi.izSale = s;
-                }
-                if (s.Id == salaDodavanje.Id)
-                {
-                    zakazi.uSalu = s;
-                }
-            }
-        }
-    
-        private void dodajOpremuUSalu(Sala s, int kolicina)
-        {
-            if (prebaciOpremu(s, kolicina) == 0)
-            {
-                dodajOpremu(s, kolicina);
-            }
-        }
-
-        private void dodajOpremu(Sala sala, int kolicina)
-        {
-            Oprema oprema = new Oprema(izabranaOprema.NazivOpreme, kolicina, true);
-            oprema.IdOpreme = izabranaOprema.IdOpreme;
-            sala.Oprema.Add(oprema);
-            if (salaDodavanje.Namjena.Equals("Skladiste"))
-            {
-                dodajStaticku(oprema);
-            }
-            else
-            {
-                azurirajPrikaz();
-            }
-        }
-
-        private void dodajStaticku(Oprema oprema)
+        public static void dodajStaticku(Oprema oprema)
         {
             if (Skladiste.OpremaStaticka != null)
             {
@@ -376,7 +270,7 @@ namespace Projekat
             }
         }
 
-        private void azurirajPrikaz()
+        public static void azurirajPrikaz()
         {
             if (PrikazStaticke.otvoren)
             {
@@ -384,63 +278,15 @@ namespace Projekat
             }
         }
 
-        private int prebaciOpremu(Sala s, int kolicina)
-        {
-            int x = 0;
-            foreach (Oprema o in s.Oprema)
-            {
-                if (o.IdOpreme == izabranaOprema.IdOpreme)
-                {
-                    o.Kolicina += kolicina;
-                    x += 1;
-                    ukloniOpremu(s, o);
-                }
-            }
-            return x;
-        }
 
-        private void prebaciUSkladiste(Oprema oprema)
+        public static void prebaciUSkladiste(Oprema oprema)
         {
             int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
             Skladiste.OpremaStaticka.RemoveAt(idx);
             Skladiste.OpremaStaticka.Insert(idx, oprema);
         }
 
-        private void ukloniOpremu(Sala sala, Oprema oprema)
-        {
-            if (sala.Namjena.Equals("Skladiste"))
-            {
-                if (Skladiste.OpremaStaticka != null)
-                {
-                    prebaciUSkladiste(oprema);
-                }
-            }
-            else
-            {
-                azurirajPrikaz();
-            }
-        }
-
-        private void ukloniOpremuIzSale(Sala s, int kolicina)
-        {
-            foreach (Oprema oprema in s.Oprema.ToArray())
-            {
-                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
-                {
-                    oprema.Kolicina -= kolicina;
-                    if (s.Namjena.Equals("Skladiste"))
-                    {
-                        prebaciOpremuIzSkladista(oprema, s);
-                    }
-                    else
-                    {
-                        azurirajPrikazStaticke(oprema, s);
-                    }
-                }
-            }
-        }
-
-        private void azurirajPrikazStaticke(Oprema o, Sala s)
+        public static void azurirajPrikazStaticke(Oprema o, Sala s)
         {
             if (o.Kolicina == 0)
             {
@@ -453,25 +299,6 @@ namespace Projekat
             if (PrikazStaticke.otvoren)
             {
                 PrikazStaticke.azurirajPrikaz();
-            }
-        }
-
-        private void prebaciOpremuIzSkladista(Oprema oprema, Sala sala)
-        {
-            if (oprema.Kolicina == 0)
-            {
-                if (Skladiste.OpremaStaticka != null)
-                {
-                    sala.Oprema.Remove(oprema);
-                    Skladiste.OpremaStaticka.Remove(oprema);
-                }
-            }
-            else
-            {
-                if (Skladiste.OpremaStaticka != null)
-                {
-                    prebaciUSkladiste(oprema);
-                }
             }
         }
 

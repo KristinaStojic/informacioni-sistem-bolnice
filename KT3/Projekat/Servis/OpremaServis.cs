@@ -1,4 +1,5 @@
-﻿using Projekat.Model;
+﻿using Model;
+using Projekat.Model;
 using System.Collections.Generic;
 
 namespace Projekat.Servis
@@ -41,7 +42,7 @@ namespace Projekat.Servis
             return OpremaMenadzer.GenerisanjeIdKreveta();
         }*/
 
-        public static bool postojiOprema(Oprema oprema, List<Oprema> opremaZaPrebacivanje)
+        public static bool portojiOpremaZaPrebacivanje(Oprema oprema, List<Oprema> opremaZaPrebacivanje)
         {
             foreach (Oprema opremaPrebacivanje in opremaZaPrebacivanje)
             {
@@ -53,5 +54,41 @@ namespace Projekat.Servis
             return false;
         }
 
+        private static bool postojiOpremaUSali(Sala sala, Oprema oprema)
+        {
+            foreach (Oprema opremaSale in sala.Oprema)
+            {
+                if (opremaSale.IdOpreme == oprema.IdOpreme)
+                {
+                    opremaSale.Kolicina += oprema.Kolicina;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static void dodajOpremuIzSaleZaDodavanje(Sala izabranaSala, Sala salaZaSpajanje)
+        {
+            foreach (Sala sala in SaleServis.Sale())
+            {
+                if (sala.Id == izabranaSala.Id)
+                {
+                    dodajOpremu(sala, salaZaSpajanje);
+                }
+            }
+        }
+
+        private static void dodajOpremu(Sala sala, Sala salaZaSpajanje)
+        {
+            foreach (Oprema oprema in salaZaSpajanje.Oprema)
+            {
+                if (!postojiOpremaUSali(sala, oprema))
+                {
+                    sala.Oprema.Add(oprema);
+                }
+            }
+        }
+
+        
     }
 }

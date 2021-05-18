@@ -126,161 +126,21 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            if (nadjiTerminPremjestaja().Date.ToString().Equals(DateTime.Now.Date.ToString()))
-            {
-                provjeriPremjestaj();
-            }
-            else
-            {
-                zakaziPremjestaj(int.Parse(Kolicina.Text), (Sala)sale.SelectedItem, nadjiTerminPremjestaja());
-            }
+            PremjestajServis.prebaciStatickuOpremu(nadjiTerminPremjestaja(), int.Parse(Kolicina.Text), (Sala)sale.SelectedItem, salaIzKojeSaljem, opremaZaSlanje);
             aktivan = false;
             this.Close();
         }
 
-        private void provjeriPremjestaj()
+        public static void smanjiKolicinuOpreme(Oprema oprema, int kolicina)
         {
-            if (nadjiTerminPremjestaja().TimeOfDay <= DateTime.Now.TimeOfDay)
-            {
-                premjestiOpremu((Sala)sale.SelectedItem, int.Parse(Kolicina.Text));
-            }
-            else
-            {
-                zakaziPremjestaj(int.Parse(Kolicina.Text), (Sala)sale.SelectedItem, nadjiTerminPremjestaja());
-            }
-        }
-
-        private void zakaziPremjestaj(int kolicina, Sala salaUKojuSaljem, DateTime datumIVrijeme)
-        {
-            Premjestaj zakazi = new Premjestaj();
-            zakazi.kolicina = kolicina;
-            definisiSale(zakazi, salaUKojuSaljem);
-            definisiOpremuIzSkladista(zakazi);
-            definisiOpremuIzSala(zakazi);
-            zakazi.datumIVrijeme = datumIVrijeme;
-            PremjestajServis.dodajPremjestaj(zakazi);
-        }
-
-        private void premjestiOpremu(Sala salaUKojuSaljem, int kolicina)
-        {
-            foreach (Sala sala in SaleMenadzer.sale)
-            {
-                if (sala.Id == salaIzKojeSaljem.Id)
-                {
-                    prebaciOpremuIzSale(sala, kolicina);
-                }
-                if (sala.Id == salaUKojuSaljem.Id)
-                {
-                    dodajOpremuUSalu(sala, kolicina);
-                }
-            }
-        }
-
-        private void definisiOpremuIzSala(Premjestaj zakazi)
-        {
-            if (zakazi.oprema == null)
-            {
-                foreach (Sala sala in SaleMenadzer.sale)
-                {
-                    nadjiOpremuSale(sala, zakazi);
-                }
-            }
-        }
-
-        private void nadjiOpremuSale(Sala sala, Premjestaj zakazi)
-        {
-            foreach (Oprema oprema in sala.Oprema)
-            {
-                if (opremaZaSlanje.IdOpreme == oprema.IdOpreme)
-                {
-                    zakazi.oprema = oprema;
-                }
-            }
-        }
-
-        private void definisiOpremuIzSkladista(Premjestaj zakazi)
-        {
-            foreach (Oprema o in OpremaMenadzer.oprema)
-            {
-                if (opremaZaSlanje.IdOpreme == o.IdOpreme)
-                {
-                    zakazi.oprema = o;
-                }
-            }
-        }
-
-        private void definisiSale(Premjestaj zakazi, Sala salaUKojuSaljem)
-        {
-            foreach (Sala s in SaleMenadzer.sale)
-            {
-                if (s.Id == salaIzKojeSaljem.Id)
-                {
-                    zakazi.izSale = s;
-                }
-                if (s.Id == salaUKojuSaljem.Id)
-                {
-                    zakazi.uSalu = s;
-                }
-            }
-        }
-
-        private void dodajOpremuUSalu(Sala sala, int kolicina)
-        {
-            if (!postojiOprema(sala, kolicina))
-            {
-                Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, true);
-                oprema.IdOpreme = opremaZaSlanje.IdOpreme;
-                sala.Oprema.Add(oprema);
-            }
-        }
-
-        private bool postojiOprema(Sala s, int kolicina)
-        {
-            foreach (Oprema o in s.Oprema)
-            {
-                if (o.IdOpreme == opremaZaSlanje.IdOpreme)
-                {
-                    o.Kolicina += kolicina;
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void prebaciOpremuIzSale(Sala sala, int kolicina)
-        {
-            foreach (Oprema oprema in sala.Oprema.ToArray())
-            {
-                prebaciOpremu(oprema, sala, kolicina);
-            }
-        }
-
-        private void prebaciOpremu(Oprema oprema, Sala sala, int kolicina)
-        {
-            if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
-            {
-                if (oprema.Kolicina - kolicina == 0)
-                {
-                    ukloniOpremu(sala, oprema);
-                }
-                else
-                {
-                    smanjiKolicinuOpreme(oprema, kolicina);
-                }
-            }
-        }
-
-        private void smanjiKolicinuOpreme(Oprema oprema, int kolicina)
-        {
-            oprema.Kolicina -= kolicina;
+            
             int idx = PrikazStaticke.OpremaStaticka.IndexOf(oprema);
             PrikazStaticke.OpremaStaticka.RemoveAt(idx);
             PrikazStaticke.OpremaStaticka.Insert(idx, oprema);
         }
 
-        private void ukloniOpremu(Sala sala, Oprema oprema)
+        public static void ukloniOpremu(Sala sala, Oprema oprema)
         {
-            sala.Oprema.Remove(oprema);
             PrikazStaticke.OpremaStaticka.Remove(oprema);
         }
 
