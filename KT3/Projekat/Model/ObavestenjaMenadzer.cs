@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Projekat.Model
@@ -45,8 +41,7 @@ namespace Projekat.Model
                 OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
             }
             OglasnaTabla.oglasnaTabla.Insert(0, novoObavestenje);  
-
-            ObavestenjaMenadzer.sacuvajIzmene();
+            sacuvajIzmene();
         }
 
         public static void IzmeniObavestenje(Obavestenja staroObavestenje, Obavestenja novoObavestenje)

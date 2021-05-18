@@ -58,18 +58,6 @@ namespace Projekat.Model
             }
             return idMalicioznog;
         }
-      
-        public static void ObrisiMalicioznoPonasanje(int idMalicioznog)
-        {
-            foreach (MalicioznoPonasanje mp in malicioznaPonasanja)
-            {
-                if (mp.IdMalicioznogPonasanja == idMalicioznog)
-                {
-                    malicioznaPonasanja.Remove(mp);
-                    return;
-                }
-            }
-        }
 
         public static bool DetektujMalicioznoPonasanje(int idPacijenta)
         {

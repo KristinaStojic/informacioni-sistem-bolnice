@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -129,9 +130,9 @@ namespace Projekat
         {
            try
             {
-                string datumTermina = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
+                string datumTermina = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
                 string vremePocetka = vpp.Text;
-                string vremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(vremePocetka);
+                string vremeKraja = TerminServis.IzracunajVremeKrajaPregleda(vremePocetka);
                 TipTermina tipTermina;
                 if (combo.Text.Equals("Pregled"))
                 {
@@ -150,7 +151,7 @@ namespace Projekat
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
                 noviTermin.Prostorija = prvaSlobodnaSala;
                 PostaviLekaraZaNoviTermin(noviTermin);
-                TerminMenadzer.IzmeniTermin(termin, noviTermin);
+                TerminServis.IzmeniTermin(termin, noviTermin);
                 Page uvidZakazaniTermini = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvidZakazaniTermini);
             }
@@ -222,7 +223,7 @@ namespace Projekat
         /* pacijent ne moze imati dva ili vise termina u isto vreme */
         private void UkloniZauzecaPacijentaZaSelektovaniDatum(string selektovaniDatum, ObservableCollection<string> PomocnaSviSlobodniSlotovi)
         {
-            List<Termin> termini = TerminMenadzer.PronadjiSveTerminePacijentaZaSelektovaniDatum(idPacijent, selektovaniDatum);
+            List<Termin> termini = TerminServis.PronadjiSveTerminePacijentaZaSelektovaniDatum(idPacijent, selektovaniDatum);
             foreach (Termin termin in termini)
             {
                 foreach (string slot in PomocnaSviSlobodniSlotovi)
@@ -242,7 +243,7 @@ namespace Projekat
                 MessageBox.Show("Izaberite tip termina", "Upozorenje", MessageBoxButton.OK);
                 return;
             }
-            string selektovaniDatum = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
+            string selektovaniDatum = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
             UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);

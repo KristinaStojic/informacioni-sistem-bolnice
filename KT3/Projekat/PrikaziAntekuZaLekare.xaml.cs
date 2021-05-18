@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Projekat
         private static Lekar pronadjiLekaraZaAnketu(int idAnkete)
         {
             Anketa anketa = AnketaMenadzer.NadjiAnketuPoId(idAnkete);
-            Termin termin = TerminMenadzer.NadjiTerminPoId(anketa.IdTermina);
+            Termin termin = TerminServis.NadjiTerminPoId(anketa.IdTermina);
             return termin.Lekar;
         }
 

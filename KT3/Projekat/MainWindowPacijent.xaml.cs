@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,20 +22,22 @@ namespace Projekat
         {
             InitializeComponent();
             PrikaziTermin.pacijentProzor = true;
-            AnketaMenadzer.NadjiSveAnkete();
-            MalicioznoPonasanjeMenadzer.NadjiSvaMalicioznaPonasanja();
+            AnketaServis.NadjiSveAnkete();
+            MalicioznoPonasanjeServis.NadjiSvaMalicioznaPonasanja();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            TerminMenadzer.sacuvajIzmene();
+            // TODO
+            TerminServis.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
+            MalicioznoPonasanjeServis.sacuvajIzmene();
+
             SaleMenadzer.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
-            ObavestenjaMenadzer.sacuvajIzmene();
-            MalicioznoPonasanjeMenadzer.sacuvajIzmene();
+            
             PrikaziTermin.pacijentProzor = false;  // nit
-
             LekariMenadzer.SacuvajIzmeneLekara();
         }
     }

@@ -1,6 +1,7 @@
 ﻿
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,10 +110,10 @@ namespace Projekat
 
         private void SacuvajIzmene()
         {
-            TerminMenadzer.sacuvajIzmene();
+            TerminServis.sacuvajIzmene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             SaleMenadzer.sacuvajIzmjene();
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         private List<DateTime> GenerisiUzimanjeTerapije(string datumPregleda,int kolicinaNaDan, int kolikoDana)
@@ -143,7 +144,7 @@ namespace Projekat
             {
                 List<int> lista = new List<int>();
                 lista.Add(pacijent.IdPacijenta);
-                int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+                int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
                 Obavestenja ob = new Obavestenja(idObavestenja, dt.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka, lista, true);  // dodat flag da je notifikacija
                 ObavestenjaMenadzer.obavestenja.Add(ob);
             }

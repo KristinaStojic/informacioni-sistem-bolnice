@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Adresa" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="BracnoStanje" xml:space="preserve">
+    <value>Bračno stanje</value>
+  </data>
+  <data name="BrojTelefona" xml:space="preserve">
+    <value>Broj telefona</value>
+  </data>
   <data name="Datum" xml:space="preserve">
     <value>Datum</value>
   </data>
@@ -153,14 +162,23 @@
   <data name="IzaberiteVremePocetka" xml:space="preserve">
     <value>*3. Izaberite vreme početka</value>
   </data>
+  <data name="IzabraniLekar" xml:space="preserve">
+    <value>Izabrani lekar</value>
+  </data>
   <data name="IzberiteTemu" xml:space="preserve">
     <value>Promeni temu</value>
   </data>
+  <data name="IzmenitePodatke" xml:space="preserve">
+    <value>Izmenite podatke</value>
+  </data>
   <data name="JmbgPacijenta" xml:space="preserve">
-    <value>JMBG pacijenta</value>
+    <value>JMBG </value>
   </data>
   <data name="Karton" xml:space="preserve">
     <value>Zdravstveni karton</value>
+  </data>
+  <data name="KorisnickoIme" xml:space="preserve">
+    <value>Korisničko ime</value>
   </data>
   <data name="LekarKodKogSeUpucuje" xml:space="preserve">
     <value>Lekar kod kog se upućuje</value>
@@ -170,6 +188,9 @@
   </data>
   <data name="LekarToolTip" xml:space="preserve">
     <value>Ime i prezime izabranog lekara</value>
+  </data>
+  <data name="Lozinka" xml:space="preserve">
+    <value>Lozinka</value>
   </data>
   <data name="Napomena" xml:space="preserve">
     <value>Napomena</value>
@@ -195,6 +216,9 @@
   <data name="Pocetna" xml:space="preserve">
     <value>Početna stranica</value>
   </data>
+  <data name="Pol" xml:space="preserve">
+    <value>Pol</value>
+  </data>
   <data name="Pomeri" xml:space="preserve">
     <value>Pomeri</value>
   </data>
@@ -203,6 +227,9 @@
   </data>
   <data name="PotpisLekara" xml:space="preserve">
     <value>Potpis</value>
+  </data>
+  <data name="Potvrdi" xml:space="preserve">
+    <value>Potvrdi</value>
   </data>
   <data name="Pregled" xml:space="preserve">
     <value>Pregled</value>
@@ -239,5 +266,8 @@
   </data>
   <data name="ZakaziTermin" xml:space="preserve">
     <value>Zakaži termin</value>
+  </data>
+  <data name="Zanimanje" xml:space="preserve">
+    <value>Zanimanje</value>
   </data>
 </root>

@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -145,7 +146,7 @@ namespace Projekat
                 }
             }
 
-            int idObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
 
             if (selektovaniPacijentiId.Count > 0)
             {

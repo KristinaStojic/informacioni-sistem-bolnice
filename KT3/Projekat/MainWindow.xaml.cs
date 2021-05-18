@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,9 +36,9 @@ namespace Projekat
             OpremaMenadzer.NadjiSvuOpremu();
             LekoviMenadzer.NadjiSveLijekove();
             PremjestajMenadzer.NadjiSvePremjestaje();
-            TerminMenadzer.NadjiSveTermine();
+            TerminServis.NadjiSveTermine();
             PacijentiMenadzer.PronadjiSve();
-            ObavestenjaMenadzer.NadjiSvaObavestenja();
+            ObavestenjaServis.NadjiSvaObavestenja();
             LekoviMenadzer.NadjiSveZahteve();
             LekariMenadzer.NadjiSveZahteve();
             LekariMenadzer.NadjiSveLekare();

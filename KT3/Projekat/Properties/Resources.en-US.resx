@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BracnoStanje" xml:space="preserve">
+    <value>Marital status</value>
+  </data>
+  <data name="BrojTelefona" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
   <data name="Datum" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -131,6 +137,9 @@
   </data>
   <data name="GboxSpecijalistickiPregled" xml:space="preserve">
     <value>Specialist examination</value>
+  </data>
+  <data name="I" xml:space="preserve">
+    <value>Address</value>
   </data>
   <data name="Ime" xml:space="preserve">
     <value>First name</value>
@@ -153,14 +162,23 @@
   <data name="IzaberiteVremePocetka" xml:space="preserve">
     <value>*3. Select start time</value>
   </data>
+  <data name="IzabraniLekar" xml:space="preserve">
+    <value>Chosen doctor</value>
+  </data>
   <data name="IzberiteTemu" xml:space="preserve">
     <value>Change theme</value>
+  </data>
+  <data name="IzmenitePodatke" xml:space="preserve">
+    <value>Edit data</value>
   </data>
   <data name="JmbgPacijenta" xml:space="preserve">
     <value>Patient ID</value>
   </data>
   <data name="Karton" xml:space="preserve">
     <value>Medical record</value>
+  </data>
+  <data name="KorisnickoIme" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="LekarKodKogSeUpucuje" xml:space="preserve">
     <value>Recommended doctor</value>
@@ -170,6 +188,9 @@
   </data>
   <data name="LekarToolTip" xml:space="preserve">
     <value>First name and last name of the chosen doctor</value>
+  </data>
+  <data name="Lozinka" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="Napomena" xml:space="preserve">
     <value>Note</value>
@@ -187,13 +208,16 @@
     <value>Log out</value>
   </data>
   <data name="Odustani" xml:space="preserve">
-    <value>Back</value>
+    <value>Cancel</value>
   </data>
   <data name="PacijentPodaci" xml:space="preserve">
     <value>Patient</value>
   </data>
   <data name="Pocetna" xml:space="preserve">
     <value>Home page</value>
+  </data>
+  <data name="Pol" xml:space="preserve">
+    <value>Gender</value>
   </data>
   <data name="Pomeri" xml:space="preserve">
     <value>Move</value>
@@ -203,6 +227,9 @@
   </data>
   <data name="PotpisLekara" xml:space="preserve">
     <value>Signature</value>
+  </data>
+  <data name="Potvrdi" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="Pregled" xml:space="preserve">
     <value>Examination</value>
@@ -239,5 +266,8 @@
   </data>
   <data name="ZakaziTermin" xml:space="preserve">
     <value>Make an appointment</value>
+  </data>
+  <data name="Zanimanje" xml:space="preserve">
+    <value>Profession</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,8 +26,6 @@ namespace Projekat
     {
         private static int idPacijent;
         public static ObservableCollection<Anketa> AnketePacijenta { get; set; }
-        //private static System.Timers.Timer aTimer;
-        public static int minBrojTerminaZaAnketuKlinika = 3;
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -34,25 +33,25 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             this.potvrdi.IsEnabled = false;
             AnketePacijenta = new ObservableCollection<Anketa>();
-            PrikaziSveAnketeZaProsleTermine();
+            AnketePacijenta = AnketaServis.PrikaziSveAnketeZaProsleTermine(AnketePacijenta, idPacijent);
             listaAnketi.ItemsSource = AnketePacijenta;
             Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
-        private void PrikaziSveAnketeZaProsleTermine()
+       /* private void PrikaziSveAnketeZaProsleTermine(ObservableCollection<Anketa> AnketePacijenta)
         {
-            foreach (Anketa anketa in AnketaMenadzer.SveAnketePacijenta(idPacijent))
+            foreach (Anketa anketa in AnketaServis.SveAnketePacijenta(idPacijent))
             {
-                foreach (Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent))
+                foreach (Termin termin in TerminServis.PronadjiTerminPoIdPacijenta(idPacijent))
                 {
                     PrikaziAnketeZaProsleTermine(anketa, termin);
                 }
             }
-        }
+        }*/
 
-        private void PrikaziAnketeZaProsleTermine(Anketa anketa, Termin termin)
+      /*  private void PrikaziAnketeZaProsleTermine(Anketa anketa, Termin termin)
         {
             DateTime datumTermina = DateTime.Parse(termin.Datum);
             TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);
@@ -73,13 +72,13 @@ namespace Projekat
 
         private void PrikaziAnketuZaKliniku()
         {
-            if (AnketePacijenta.Count() == minBrojTerminaZaAnketuKlinika)  /* posle 3 termina - anketa o radu klinike */
+            if (AnketePacijenta.Count() == minBrojTerminaZaAnketuKlinika) 
             {
-                Anketa anketa = AnketaMenadzer.PronadjiAnketuZaKliniku(idPacijent);
+                Anketa anketa = AnketaServis.PronadjiAnketuZaKliniku(idPacijent);
                 if (anketa == null) return;
                 AnketePacijenta.Add(anketa);
             }
-        }
+        }*/
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
