@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,24 @@ namespace Projekat
         {
             InitializeComponent();
             this.IDLekara = idLekara;
+            PopuniPodatkeLekara();
+        }
+
+        private void PopuniPodatkeLekara()
+        {
+            foreach (Lekar lekar in LekariMenadzer.lekari)
+            {
+                if (lekar.IdLekara == IDLekara)
+                {
+                    this.ime.Text = lekar.ImeLek;
+                    this.prezime.Text = lekar.PrezimeLek;
+                    this.jmbg.Text = lekar.Jmbg.ToString();
+                    this.telefon.Text = lekar.BrojTelefona.ToString();
+                    this.email.Text = lekar.Email;
+                    this.adresa.Text = lekar.AdresaStanovanja;
+                    this.specijalizacija.Text = lekar.specijalizacija.ToString();
+                }
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -39,7 +58,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
