@@ -1,4 +1,5 @@
-﻿using Projekat.Pomoc;
+﻿using Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,25 @@ namespace Projekat
         {
             InitializeComponent();
             this.IDLekara = idLekara;
+            PopuniPodatkeLekara();
         }
 
+        private void PopuniPodatkeLekara()
+        {
+            foreach(Lekar lekar in LekariMenadzer.lekari)
+            {
+                if(lekar.IdLekara == IDLekara)
+                {
+                    this.ime.Text = lekar.ImeLek;
+                    this.prezime.Text = lekar.PrezimeLek;
+                    this.jmbg.Text = lekar.Jmbg.ToString();
+                    this.telefon.Text = lekar.BrojTelefona.ToString();
+                    this.email.Text = lekar.Email;
+                    this.adresa.Text = lekar.AdresaStanovanja;
+                    this.specijalizacija.Text = lekar.specijalizacija.ToString();
+                }
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PrikazTerminaLekar pl = new PrikazTerminaLekar(IDLekara);
@@ -98,6 +116,12 @@ namespace Projekat
         {
             PocetnaStranaLekarPomoc pomoc = new PocetnaStranaLekarPomoc();
             pomoc.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            LicniPodaciLekar podaci = new LicniPodaciLekar(IDLekara);
+            podaci.Show();
         }
     }
 }

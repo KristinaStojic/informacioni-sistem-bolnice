@@ -209,6 +209,9 @@
     <Compile Include="Komunikacija.xaml.cs">
       <DependentUpon>Komunikacija.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LicniPodaciLekar.xaml.cs">
+      <DependentUpon>LicniPodaciLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LicniPodaciPacijenta.xaml.cs">
       <DependentUpon>LicniPodaciPacijenta.xaml</DependentUpon>
     </Compile>
@@ -700,6 +703,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Komunikacija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicniPodaciLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
