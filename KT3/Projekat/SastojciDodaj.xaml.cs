@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,30 +10,30 @@ namespace Projekat
     /// </summary>
     public partial class SastojciDodaj : Window
     {
-        Lek uneseniLijek;
+        //Lek uneseniLijek;
 
-        public SastojciDodaj(Lek uneseniLijek)
+        public SastojciDodaj()
         {
             InitializeComponent();
-            inicijalizujElemente(uneseniLijek);
+            //inicijalizujElemente(uneseniLijek);
         }
 
-        private void inicijalizujElemente(Lek uneseniLijek)
+       /* private void inicijalizujElemente(Lek uneseniLijek)
         {
             this.uneseniLijek = uneseniLijek;
             this.Potvrdi.IsEnabled = false;
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             
             uneseniLijek.sastojci.Add(napraviSastojak());
-            SastojciDodavanje.SastojciLijeka.Add(napraviSastojak());
+            LijekoviViewModel.SastojciLijeka.Add(napraviSastojak());
             this.Close();
         }
 
@@ -41,9 +42,9 @@ namespace Projekat
             string naziv = this.naziv.Text;
             double kolicina = double.Parse(this.kolicina.Text);
             return new Sastojak(naziv, kolicina);
-        }
+        }*/
 
-        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void naziv_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
@@ -51,9 +52,9 @@ namespace Projekat
         private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
-        }
+        }*/
 
-        private void postaviDugme()
+        /*private void postaviDugme()
         {
             if (jeBroj(this.kolicina.Text))
             {
@@ -63,9 +64,9 @@ namespace Projekat
             {
                 this.Potvrdi.IsEnabled = false;
             }
-        }
+        }*/
 
-        private void izvrsiPostavljanje()
+        /*private void izvrsiPostavljanje()
         {
             if (this.kolicina.Text.Trim().Equals("") || this.naziv.Text.Trim().Equals(""))
             {
@@ -75,12 +76,12 @@ namespace Projekat
             {
                 this.Potvrdi.IsEnabled = true;
             }
-        }
+        }*/
 
-        public bool jeBroj(string tekst)
+        /*public bool jeBroj(string tekst)
         {
             double test;
             return double.TryParse(tekst, out test);
-        }
+        }*/
     }
 }

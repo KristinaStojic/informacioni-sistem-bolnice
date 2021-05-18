@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         Title="Zahtjevi" Height="450" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:ZahtjeviViewModel/>
+    </Window.DataContext>
     <StackPanel>
         <Menu DockPanel.Dock="Top" Background="CadetBlue">
             <MenuItem Header="Navigacija" FontSize="15">
@@ -32,7 +35,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Obracun plate</Button>
-            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Click="Lijekovi_Click">Lijekovi</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Command="{Binding LijekoviProzor}">Lijekovi</Button>
         </StackPanel>
     </StackPanel>
 </Window>

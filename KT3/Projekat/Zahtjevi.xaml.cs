@@ -72,12 +72,12 @@ namespace Projekat
             //O aplikaciji
         }
 
-        private void Lijekovi_Click(object sender, RoutedEventArgs e)
+        /*private void Lijekovi_Click(object sender, RoutedEventArgs e)
         {
             Lijekovi lijekoviProzor = new Lijekovi();
             lijekoviProzor.Show();
             this.Close();
-        }
+        }*/
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {

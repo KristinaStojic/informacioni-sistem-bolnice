@@ -11,19 +11,19 @@ namespace Projekat
     /// </summary>
     public partial class SastojciDodavanje : Window
     {
-        Lek uneseniLijek;
+        /*Lek uneseniLijek;
         private int colNum = 0;
 
         public static ObservableCollection<Sastojak> SastojciLijeka {get; set;}
-
-        public SastojciDodavanje(Lek uneseniLijek)
+        */
+        public SastojciDodavanje()
         {
             InitializeComponent();
-            inicijalizujElemente(uneseniLijek);
-            dodajSastojke();
+            //inicijalizujElemente(uneseniLijek);
+            //dodajSastojke();
         }
 
-        private void inicijalizujElemente(Lek uneseniLijek)
+        /*private void inicijalizujElemente(Lek uneseniLijek)
         {
             this.DataContext = this;
             this.uneseniLijek = uneseniLijek;
@@ -44,20 +44,20 @@ namespace Projekat
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void DodajSastojak_Click(object sender, RoutedEventArgs e)
+        /*private void DodajSastojak_Click(object sender, RoutedEventArgs e)
         {
             SastojciDodaj dodajSastojak = new SastojciDodaj(uneseniLijek);
             dodajSastojak.Show();
-        }
+        }*/
 
-        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        /*private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
@@ -66,6 +66,6 @@ namespace Projekat
                     Odustani_Click(sender, e);
                 }
             }
-        }
+        }*/
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Projekat.Model;
 using Projekat.Servis;
+using Projekat.ViewModel;
 using System.Windows;
 
 namespace Projekat
@@ -9,23 +10,11 @@ namespace Projekat
     /// </summary>
     public partial class BrisanjeLijeka : Window
     {
-        Lek izabraniLijek;
-        public BrisanjeLijeka(Lek izabraniLijek)
+        //Lek izabraniLijek;
+        public BrisanjeLijeka()
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
         }
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            LekoviServis.obrisiLijek(izabraniLijek);
-            Lijekovi.Lekovi.Remove(izabraniLijek);
-            this.Close();
-        }
-
-        private void Odustani_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

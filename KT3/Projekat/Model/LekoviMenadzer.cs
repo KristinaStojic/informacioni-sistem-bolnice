@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -105,15 +106,15 @@ namespace Projekat.Model
                     lijek.nazivLeka = izmjenjeniLijek.nazivLeka;
                     lijek.zamenskiLekovi = izmjenjeniLijek.zamenskiLekovi;
                     lijek.sastojci = izmjenjeniLijek.sastojci;
-                    int idx = Lijekovi.Lekovi.IndexOf(izabraniLijek);
-                    Lijekovi.Lekovi.RemoveAt(idx);
-                    Lijekovi.Lekovi.Insert(idx, lijek);
+                    /*int idx = LijekoviViewModel.Lekovi.IndexOf(izabraniLijek);
+                    LijekoviViewModel.Lekovi.RemoveAt(idx);
+                    LijekoviViewModel.Lekovi.Insert(idx, lijek);
                     if (ZamjenskiLijekovi.ZamjenskiLekovi != null)
                     {
                         int idx1 = ZamjenskiLijekovi.ZamjenskiLekovi.IndexOf(izabraniLijek);
                         ZamjenskiLijekovi.ZamjenskiLekovi.RemoveAt(idx1);
                         ZamjenskiLijekovi.ZamjenskiLekovi.Insert(idx1, lijek);
-                    }
+                    }*/
                 }
             }
             sacuvajIzmjene();

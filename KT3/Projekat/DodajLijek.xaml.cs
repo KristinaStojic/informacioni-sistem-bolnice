@@ -16,26 +16,26 @@ namespace Projekat
         public DodajLijek()
         {
             InitializeComponent();
-            uneseniLijek = new Lek();
-            inicijalizujDugmad();
+            //uneseniLijek = new Lek();
+            //inicijalizujDugmad();
         }
 
-        private void inicijalizujDugmad()
+       /* private void inicijalizujDugmad()
         {
             this.Potvrdi.IsEnabled = false;
             this.Sastojci.IsEnabled = false;
-        }
+        }*/
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            definisiLijek();
-            LekoviServis.dodajZahtjev(uneseniLijek);
-            this.Close();
+            //definisiLijek();
+            //LekoviServis.dodajZahtjev(uneseniLijek);
+            //this.Close();
         }
 
         private void definisiLijek()
@@ -45,7 +45,7 @@ namespace Projekat
             uneseniLijek.idLeka = LekoviServis.GenerisanjeIdLijeka();
         }
 
-        private void sifra_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void sifra_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
@@ -59,11 +59,11 @@ namespace Projekat
         {
             if(this.sifra.Text.Trim().Equals("") || this.naziv.Text.Trim().Equals("") || postojiSifraLijeka())
             {
-                inicijalizujDugmad();
+                //inicijalizujDugmad();
             }
             else if(!this.sifra.Text.Trim().Equals("") && !this.naziv.Text.Trim().Equals("") && !postojiSifraLijeka())
             {
-                aktivirajDugmad();
+                //aktivirajDugmad();
             }
         }
 
@@ -71,9 +71,9 @@ namespace Projekat
         {
             this.Potvrdi.IsEnabled = true;
             this.Sastojci.IsEnabled = true;
-        }
+        }*/
 
-        private bool postojiSifraLijeka()
+        /*private bool postojiSifraLijeka()
         {
             foreach(Lek lijek in LekoviServis.Lijekovi())
             {
@@ -84,16 +84,16 @@ namespace Projekat
             }
             return false;
         }
-
+        */
 
         private void Sastojci_Click(object sender, RoutedEventArgs e)
         {
-            if (uneseniLijek == null)
-            {
-                uneseniLijek = new Lek(LekoviServis.GenerisanjeIdLijeka(), this.naziv.Text, this.sifra.Text);
-            }
-            SastojciDodavanje sastojciDodavanje = new SastojciDodavanje(uneseniLijek);
-            sastojciDodavanje.Show();
+            //if (uneseniLijek == null)
+            //{
+              //  uneseniLijek = new Lek(LekoviServis.GenerisanjeIdLijeka(), this.naziv.Text, this.sifra.Text);
+            //}
+            //SastojciDodavanje sastojciDodavanje = new SastojciDodavanje(uneseniLijek);
+            //sastojciDodavanje.Show();
         }
     }
 }

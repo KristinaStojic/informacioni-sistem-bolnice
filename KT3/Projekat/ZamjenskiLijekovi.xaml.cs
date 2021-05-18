@@ -13,29 +13,29 @@ namespace Projekat
     public partial class ZamjenskiLijekovi : Window
     {
         public Lek izabraniLijek;
-        private int colNum = 0;
+        //private int colNum = 0;
         public static ObservableCollection<Lek> ZamjenskiLekovi {get; set;}
-
-        public ZamjenskiLijekovi(Lek izabraniLijek)
+        
+        public ZamjenskiLijekovi()
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniLijek);
-            postaviTekst();
-            dodajLijekove();
+            //inicijalizujElemente(izabraniLijek);
+            //postaviTekst();
+            //dodajLijekove();
         }
 
-        private void inicijalizujElemente(Lek izabraniLijek)
+        /*private void inicijalizujElemente(Lek izabraniLijek)
         {
             this.izabraniLijek = izabraniLijek;
             this.DataContext = this;
-        }
+        }*/
 
-        private void postaviTekst()
+        /*private void postaviTekst()
         {
             this.tekst.Text = "Zamjenski lijekovi za lijek: " + izabraniLijek.nazivLeka;
-        }
+        }*/
 
-        private void dodajLijekove()
+        /*private void dodajLijekove()
         {
             ZamjenskiLekovi = new ObservableCollection<Lek>();
             foreach(Lek lijek in LekoviMenadzer.lijekovi)
@@ -67,18 +67,18 @@ namespace Projekat
                     }
                 }
             }
-        }
+        }*/
 
-        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
+       /* private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
-
+       */
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
-            DodajZamjenskiLijek dodajZamjenskiLijek = new DodajZamjenskiLijek(izabraniLijek);
+            DodajZamjenskiLijek dodajZamjenskiLijek = new DodajZamjenskiLijek();
             dodajZamjenskiLijek.Show();
         }
 
@@ -92,7 +92,7 @@ namespace Projekat
             Lek izabraniLijek = (Lek)dataGridLijekovi.SelectedItem;
             if(izabraniLijek != null)
             {
-                IzmjeniLijek izmjeniLijek = new IzmjeniLijek(izabraniLijek);
+                IzmjeniLijek izmjeniLijek = new IzmjeniLijek();
                 izmjeniLijek.Show();
             }
             else
@@ -114,7 +114,7 @@ namespace Projekat
             }
         }
 
-        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        /*private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
@@ -139,7 +139,7 @@ namespace Projekat
                 }
 
             }
-        }
+        }*/
 
         private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
