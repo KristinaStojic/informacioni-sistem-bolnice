@@ -34,12 +34,12 @@ namespace Model
         {
             termini.Add(termin);
             PrikaziTerminSekretar.TerminiSekretar.Add(termin);
-            
+
             // notifikacije 
             int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
-            Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", "  + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
+            Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
             ObavestenjaServis.sacuvajIzmene();
         }
@@ -72,7 +72,6 @@ namespace Model
             SaleServis.sacuvajIzmjene();
         }
 
-        // isto ovu metodu
         public static void ZakaziTerminLekar(Termin termin)
         {
             termini.Add(termin);
@@ -105,11 +104,11 @@ namespace Model
 
         public static void IzmeniTermin(Termin stariTermin, Termin noviTermin)
         {
-            foreach(Termin termin in termini)
+            foreach (Termin termin in termini)
             {
                 if (termin.IdTermin == stariTermin.IdTermin)
                 {
-                    AnketaMenadzer.IzmeniAnketuZaLekara(stariTermin, noviTermin);
+                    AnketaServis.IzmeniAnketuZaLekara(stariTermin, noviTermin);
                     termin.IdTermin = noviTermin.IdTermin;
                     termin.VremePocetka = noviTermin.VremePocetka;
                     termin.VremeKraja = noviTermin.VremeKraja;
@@ -135,7 +134,7 @@ namespace Model
                             }
                         }
                     }
-                    
+
                 }
             }
         }
@@ -174,7 +173,7 @@ namespace Model
                     t.IdTermin = noviTermin.IdTermin;
                     t.VremePocetka = noviTermin.VremePocetka;
                     t.VremeKraja = noviTermin.VremeKraja;
-                    t.Lekar = noviTermin.Lekar; 
+                    t.Lekar = noviTermin.Lekar;
                     t.Pacijent = noviTermin.Pacijent;
                     t.tipTermina = noviTermin.tipTermina;
                     t.Datum = noviTermin.Datum;
@@ -249,18 +248,17 @@ namespace Model
                             SaleServis.sacuvajIzmjene();
                         }
                     }
-                    AnketaMenadzer.ObrisiAnketu(termin.IdTermin);
+                    AnketaServis.ObrisiAnketu(termin.IdTermin);
                     termini.RemoveAt(i);
                 }
             }
             PrikaziTermin.Termini.Remove(termin);
         }
 
-        
+
         public static void OtkaziTerminSekretar(Termin termin)
         {
             int id = termin.Prostorija.Id;
-
             for (int i = 0; i < termini.Count; i++)
             {
                 if (termin.IdTermin == termini[i].IdTermin)
@@ -276,8 +274,8 @@ namespace Model
                     }
                     termini.RemoveAt(i);
                 }
-            }          
-          
+            }
+
             PrikaziTerminSekretar.TerminiSekretar.Remove(termin);
 
             // brisanje otkazanih termina iz zauzeca sala unutar drugih termina
@@ -287,6 +285,7 @@ namespace Model
                 {
                     t.Prostorija = SaleServis.NadjiSaluPoId(id);
                 }       
+
             }
             TerminMenadzer.sacuvajIzmene();
 
@@ -299,7 +298,6 @@ namespace Model
             ObavestenjaServis.sacuvajIzmene();
         }
 
-        // samo izmeni u svojoj klasi iz OtkaziTermin ---> OtkaziTerminLekar
         public static void OtkaziTerminLekar(Termin termin)
         {
             //termini.Remove(termin);
@@ -338,9 +336,9 @@ namespace Model
                 return termini;
             }
         }
-      
-      public static Termin NadjiTerminPoId(int idTermin)
-      {
+
+        public static Termin NadjiTerminPoId(int idTermin)
+        {
             foreach (Termin t in termini)
             {
                 if (t.IdTermin == idTermin)
@@ -349,7 +347,7 @@ namespace Model
                 }
             }
             return null;
-      }
+        }
 
 
         public static void sacuvajIzmene()
@@ -360,15 +358,15 @@ namespace Model
             fileStream.Close();
         }
 
-        public static Boolean SlobodanTermin(String datum, String VremePocetka, String VremeKraja, Sala sala) 
+        public static Boolean SlobodanTermin(String datum, String VremePocetka, String VremeKraja, Sala sala)
         {
-           // foreach (Termin t in TerminMenadzer.NadjiSveTermine())
+            // foreach (Termin t in TerminMenadzer.NadjiSveTermine())
             //{
-                // postoji zakazan termin u tom opsegu
-               // if (/*t.Datum.Equals(datum) &&*/ t.Prostorija.Id == sala.Id /*&& Int32.Parse(VremePocetka) >= Int32.Parse(t.VremePocetka) && Int32.Parse(VremeKraja) <= Int32.Parse(t.VremeKraja)*/)
-               /* {
-                    return false;
-                } */
+            // postoji zakazan termin u tom opsegu
+            // if (/*t.Datum.Equals(datum) &&*/ t.Prostorija.Id == sala.Id /*&& Int32.Parse(VremePocetka) >= Int32.Parse(t.VremePocetka) && Int32.Parse(VremeKraja) <= Int32.Parse(t.VremeKraja)*/)
+            /* {
+                 return false;
+             } */
             //}
             return true;
         }
@@ -377,9 +375,9 @@ namespace Model
         public static List<Termin> PronadjiTerminPoIdPacijenta(int idPacijenta)
         {
             List<Termin> terminiPacijenta = new List<Termin>();
-            foreach(Termin termin in termini)
+            foreach (Termin termin in termini)
             {
-                if(termin.Pacijent.IdPacijenta == idPacijenta)
+                if (termin.Pacijent.IdPacijenta == idPacijenta)
                 {
                     terminiPacijenta.Add(termin);
                 }
@@ -400,9 +398,19 @@ namespace Model
             }
             return terminiZaSelektovaniDatum;
         }
-        //public int AdresaFajla;  // ?
+        public static ObservableCollection<Termin> DodajTerminePacijenta(int idPacijent)
+        {
+            ObservableCollection<Termin> Termini = new ObservableCollection<Termin>();
+            foreach (Termin t in TerminMenadzer.termini)
+            {
+                if (t.Pacijent.IdPacijenta == idPacijent)
+                {
+                    Termini.Add(t);
+                }
+            }
+            return Termini;
+        }
+
         public static List<Termin> termini = new List<Termin>();
-
-
     }
 }

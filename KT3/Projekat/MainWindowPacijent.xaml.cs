@@ -22,20 +22,22 @@ namespace Projekat
         {
             InitializeComponent();
             PrikaziTermin.pacijentProzor = true;
-            AnketaMenadzer.NadjiSveAnkete();
-            MalicioznoPonasanjeMenadzer.NadjiSvaMalicioznaPonasanja();
+            AnketaServis.NadjiSveAnkete();
+            MalicioznoPonasanjeServis.NadjiSvaMalicioznaPonasanja();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // TODO
+            TerminServis.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
+            MalicioznoPonasanjeServis.sacuvajIzmene();
             TerminMenadzer.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
-            ObavestenjaMenadzer.sacuvajIzmene();
-            MalicioznoPonasanjeMenadzer.sacuvajIzmene();
+            
             PrikaziTermin.pacijentProzor = false;  // nit
-
             LekariMenadzer.SacuvajIzmeneLekara();
         }
     }

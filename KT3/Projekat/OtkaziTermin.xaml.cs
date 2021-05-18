@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,8 +53,8 @@ namespace Projekat
 
         private static void OtkaziOdabraniTermin()
         {
-            TerminMenadzer.OtkaziTermin(terminZaBrisanje);
-            MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent); // potencijalno maliciozno ponasanje
+            TerminServis.OtkaziTermin(terminZaBrisanje);
+            MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent); 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

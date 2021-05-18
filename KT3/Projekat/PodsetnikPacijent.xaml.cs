@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,20 +35,20 @@ namespace Projekat
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            InicijalizujPodsetnikePacijenta(obavestenjaPodsetnici);
+            ObavestenjaServis.DodajPodsetnikePacijenta(obavestenjaPodsetnici, idPacijent);
             Podsetnici.ItemsSource = obavestenjaPodsetnici;
         }
 
-        private static void InicijalizujPodsetnikePacijenta(ObservableCollection<Obavestenja> obavestenjaPodsetnici)
+        /*private static void InicijalizujPodsetnikePacijenta(ObservableCollection<Obavestenja> obavestenjaPodsetnici)
         {
-            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.PronadjiObavestenjaPoIdPacijenta(idPacijent))
+            foreach (Obavestenja obavestenje in ObavestenjaServis.PronadjiObavestenjaPoIdPacijenta(idPacijent))
             {
                 if (obavestenje.TipObavestenja.Equals("Podsetnik"))
                 {
                     obavestenjaPodsetnici.Add(obavestenje);
                 }
             }
-        }
+        }*/
 
         private void DodajPodsetnik_Click(object sender, RoutedEventArgs e)
         {
@@ -57,7 +58,8 @@ namespace Projekat
 
             List<int> pacijenti = new List<int>();
             pacijenti.Add(idPacijent);
-            Obavestenja obavestenjeZaPodsetnik = new Obavestenja(ObavestenjaMenadzer.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
+            Obavestenja obavestenjeZaPodsetnik = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
+            // TODO
             ObavestenjaMenadzer.obavestenja.Add(obavestenjeZaPodsetnik);
             obavestenjaPodsetnici.Add(obavestenjeZaPodsetnik);
 
@@ -65,7 +67,7 @@ namespace Projekat
             Datum.Text = null;
             SadrzajPodsetnika.Text = null;
         }
-
+        #region Wpf
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
@@ -128,5 +130,6 @@ namespace Projekat
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
+        #endregion
     }
 }

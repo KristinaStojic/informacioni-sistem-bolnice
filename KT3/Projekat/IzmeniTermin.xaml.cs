@@ -46,7 +46,7 @@ namespace Projekat
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
             view.Filter = UserFilter;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         private void InicijalizujPodatkeZaIzabraniTermin(Termin izabraniTermin)
@@ -130,9 +130,9 @@ namespace Projekat
         {
            try
             {
-                string datumTermina = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
+                string datumTermina = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
                 string vremePocetka = vpp.Text;
-                string vremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(vremePocetka);
+                string vremeKraja = TerminServis.IzracunajVremeKrajaPregleda(vremePocetka);
                 TipTermina tipTermina;
                 if (combo.Text.Equals("Pregled"))
                 {
@@ -151,7 +151,7 @@ namespace Projekat
                 prvaSlobodnaSala.zauzetiTermini.Add(zs);
                 noviTermin.Prostorija = prvaSlobodnaSala;
                 PostaviLekaraZaNoviTermin(noviTermin);
-                TerminMenadzer.IzmeniTermin(termin, noviTermin);
+                TerminServis.IzmeniTermin(termin, noviTermin);
                 Page uvidZakazaniTermini = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvidZakazaniTermini);
             }
@@ -223,7 +223,7 @@ namespace Projekat
         /* pacijent ne moze imati dva ili vise termina u isto vreme */
         private void UkloniZauzecaPacijentaZaSelektovaniDatum(string selektovaniDatum, ObservableCollection<string> PomocnaSviSlobodniSlotovi)
         {
-            List<Termin> termini = TerminMenadzer.PronadjiSveTerminePacijentaZaSelektovaniDatum(idPacijent, selektovaniDatum);
+            List<Termin> termini = TerminServis.PronadjiSveTerminePacijentaZaSelektovaniDatum(idPacijent, selektovaniDatum);
             foreach (Termin termin in termini)
             {
                 foreach (string slot in PomocnaSviSlobodniSlotovi)
@@ -243,6 +243,8 @@ namespace Projekat
                 MessageBox.Show("Izaberite tip termina", "Upozorenje", MessageBoxButton.OK);
                 return;
             }
+            string selektovaniDatum = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
+            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
             string selektovaniDatum = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
@@ -490,26 +492,49 @@ namespace Projekat
             this.NavigationService.Navigate(prikaziAnkete);
         }
 
-        private void PromeniTemu(object sender, RoutedEventArgs e)
-        {
-            var app = (App)Application.Current;
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
-            {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-            }
-            else
-            {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
-        }
-
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
+        }
+
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("Svetla") || mi.Header.Equals("Light"))
+            {
+                //mi.Header = "Tamna";
+                SvetlaTema.IsEnabled = false;
+                tamnaTema.IsEnabled = true;
+                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+            }
+            else
+            {
+                //mi.Header = "Svetla";
+                tamnaTema.IsEnabled = false;
+                SvetlaTema.IsEnabled = true;
+                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
+            }
+        }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
         }
     }
 }

@@ -110,7 +110,7 @@ namespace Projekat
 
         private void SacuvajIzmene()
         {
-            TerminMenadzer.sacuvajIzmene();
+            TerminServis.sacuvajIzmene();
             PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
             ObavestenjaServis.sacuvajIzmene();

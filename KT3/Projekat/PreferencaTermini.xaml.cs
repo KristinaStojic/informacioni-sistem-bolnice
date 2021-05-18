@@ -86,10 +86,10 @@ namespace Projekat
                                 if (!s.zauzetiTermini.Exists(x => x.datumPocetkaTermina.Equals(noviDatum)) && zs.idTermina != 0)
                                 {
                                     preporuceniTermin = new Termin();
-                                    preporuceniTermin.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
+                                    preporuceniTermin.IdTermin = TerminServis.GenerisanjeIdTermina();
                                     preporuceniTermin.Datum = noviDatum.ToString("MM/dd/yyyy");
                                     preporuceniTermin.VremePocetka = slot;
-                                    preporuceniTermin.VremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(slot);
+                                    preporuceniTermin.VremeKraja = TerminServis.IzracunajVremeKrajaPregleda(slot);
                                     preporuceniTermin.Prostorija = s;
                                     preporuceniTermin.tipTermina = TipTermina.Pregled;
                                     // TODO: ispraviti kada dobijemo raspored radnog vremena
@@ -109,10 +109,10 @@ namespace Projekat
                                     if (!s.zauzetiTermini.Exists(x => x.pocetakTermina.Equals(slot)) && zs.idTermina != 0)
                                     {
                                         preporuceniTermin = new Termin();
-                                        preporuceniTermin.IdTermin = TerminMenadzer.GenerisanjeIdTermina();
+                                        preporuceniTermin.IdTermin = TerminServis.GenerisanjeIdTermina();
                                         preporuceniTermin.Datum = zs.datumPocetkaTermina;
                                         preporuceniTermin.VremePocetka = slot;
-                                        preporuceniTermin.VremeKraja = ZakaziTermin.IzracunajVremeKrajaPregleda(slot);
+                                        preporuceniTermin.VremeKraja = TerminServis.IzracunajVremeKrajaPregleda(slot);
                                         preporuceniTermin.Prostorija = s;
                                         preporuceniTermin.tipTermina = TipTermina.Pregled;
                                         // TODO: ispraviti kada dobijemo raspored radnog vremena
@@ -145,14 +145,14 @@ namespace Projekat
                 MessageBox.Show("Oznacite termin koji zelite da zakazete", "Upozorenje", MessageBoxButton.OK);
                 return;
             }
-            TerminMenadzer.ZakaziTermin(termin);
+            TerminServis.ZakaziTermin(termin);
 
             // TODO: proveriti
             Sala sala = SaleServis.NadjiSaluPoId(termin.Prostorija.Id);
             ZauzeceSale novoZauzeceSale = new ZauzeceSale(termin.VremePocetka, termin.VremeKraja, termin.Datum, termin.IdTermin);
             sala.zauzetiTermini.Add(novoZauzeceSale);
+            TerminServis.sacuvajIzmene(); 
             SaleServis.sacuvajIzmjene(); // ? 
-            TerminMenadzer.sacuvajIzmene(); // ?
 
             Page prikaziTermin = new PrikaziTermin(termin.Pacijent.IdPacijenta);
             this.NavigationService.Navigate(prikaziTermin);

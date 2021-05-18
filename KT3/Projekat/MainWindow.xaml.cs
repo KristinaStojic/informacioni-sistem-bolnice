@@ -32,14 +32,13 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
+            TerminServis.NadjiSveTermine();
             SaleServis.NadjiSveSale();
             OpremaServis.NadjiSvuOpremu();
             LekoviServis.NadjiSveLijekove();
             PremjestajServis.NadjiSvePremjestaje();
-            TerminMenadzer.NadjiSveTermine();
             PacijentiServis.PronadjiSve();
             ObavestenjaServis.NadjiSvaObavestenja();
-            LekoviMenadzer.NadjiSveZahteve();
             LekariServis.NadjiSveZahteve();
             LekariServis.NadjiSveLekare();
 
