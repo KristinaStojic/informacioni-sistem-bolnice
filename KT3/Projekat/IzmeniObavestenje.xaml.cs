@@ -114,11 +114,10 @@ namespace Projekat
             }
         }
 
-        // potvrdi
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             int idLekara = 0;
-            List<int> selektovaniPacijentiId = new List<int>();     // za slucaj kad se obavestenja salju specificnim pacijentima
+            List<int> selektovaniPacijentiId = new List<int>();   
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             if (namena.Text.Equals("sve"))
@@ -146,26 +145,14 @@ namespace Projekat
                 }
             }
 
-            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
-
-            if (selektovaniPacijentiId.Count > 0)
-            {
-                Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaServis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
-                ObavestenjaServis.sacuvajIzmene();
-            }
-            else
-            {
-                Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaServis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
-                ObavestenjaServis.sacuvajIzmene();
-            }
+            Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
+            ObavestenjaServis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
+            ObavestenjaServis.sacuvajIzmene();       
 
             this.Close();
         }
 
-        // otkazi
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -28,7 +28,6 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
-
             jmbgStaratelja.IsEnabled = false;
         }
 
@@ -66,7 +65,6 @@ namespace Projekat
             bool maloletnoLice;
             int staratelj;
 
-            // tip naloga
             if (combo.Text.Equals("STALAN"))
             {
                 status = statusNaloga.Stalni;
@@ -76,7 +74,6 @@ namespace Projekat
                 status = statusNaloga.Guest;
             }
 
-            // pol pacijenta
             if (combo2.Text.Equals("M"))
             {
                 pol = pol.M;
@@ -86,7 +83,6 @@ namespace Projekat
                 pol = pol.Z;
             }
 
-            // bracno stanje
             if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("Z"))
             {
                 brStanje = bracnoStanje.Neudata;
@@ -120,7 +116,6 @@ namespace Projekat
                 brStanje = bracnoStanje.Razveden;
             }
 
-            // maloletnik
             if ((bool)maloletnik.IsChecked)
             {
                 Console.WriteLine("cekirano");
@@ -131,7 +126,6 @@ namespace Projekat
                 maloletnoLice = false;
             }
 
-            // jmbg staratelja za maloletnika
             if (jmbgStaratelja.Text.Equals(""))
             {
                 staratelj = 0;
@@ -141,27 +135,25 @@ namespace Projekat
                 staratelj = Convert.ToInt32(jmbgStaratelja.Text);
             }        
 
-            if (status.Equals(statusNaloga.Guest) /*brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals("")*/)
+            if (status.Equals(statusNaloga.Guest))
             {
-                int idP1 = PacijentiServis.GenerisanjeIdPacijenta();
-                Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
-                PacijentiServis.DodajNalog(p1);
+                Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
+                PacijentiServis.DodajNalog(guestPacijent);
             }
-            else  // ukoliko je stalan nalog
+            else
             {
-                int idP = PacijentiServis.GenerisanjeIdPacijenta();
-                Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                p.Karton = karton;
+                Pacijent pacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                ZdravstveniKarton karton = new ZdravstveniKarton(pacijent.IdPacijenta);
+                pacijent.Karton = karton;
                 List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                p.Karton.LekarskiRecepti = lr;
+                pacijent.Karton.LekarskiRecepti = lr;
                 List<Anamneza> an = new List<Anamneza>();
-                p.Karton.Anamneze = an;
+                pacijent.Karton.Anamneze = an;
                 List<Alergeni> ale = new List<Alergeni>();
-                p.Karton.Alergeni = ale;
+                pacijent.Karton.Alergeni = ale;
                 List<Uput> uput = new List<Uput>();
-                p.Karton.Uputi = uput;
-                PacijentiServis.DodajNalog(p);
+                pacijent.Karton.Uputi = uput;
+                PacijentiServis.DodajNalog(pacijent);
             }    
 
             this.Close();
@@ -224,8 +216,7 @@ namespace Projekat
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
-                jmbgStaratelja.Focusable = true;
-                
+                jmbgStaratelja.Focusable = true; 
             }
             else 
             {

@@ -60,12 +60,15 @@ namespace Projekat
         {
             uput = (Uput)dataGridUputi.SelectedItem;
             this.Close();
+            PopunjavanjeFormeZaZakazivanje();
+        }
 
-            // popunjavanje polja na formi za zakazivanje
+        private void PopunjavanjeFormeZaZakazivanje()
+        {
             zakazivanje.uputZaPregled = uput;
-            Lekar l = LekariServis.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
-            zakazivanje.Lekar = l;
-            zakazivanje.lekari.Text = l.ImeLek + " " + l.PrezimeLek;
+            Lekar lekar = LekariServis.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
+            zakazivanje.Lekar = lekar;
+            zakazivanje.lekari.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
             zakazivanje.tip.SelectedIndex = 1;
             foreach (Sala s in SaleMenadzer.sale)
             {
@@ -78,5 +81,6 @@ namespace Projekat
                 }
             }
         }
+
     }
 }

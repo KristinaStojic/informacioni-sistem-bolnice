@@ -34,7 +34,7 @@
         <Label x:Name="pacijenti" Content="Pronadji pacijente:" FontSize="17" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" Margin="4.4,5,0,44.6" VerticalAlignment="Center" Height="40" Width="157" Grid.RowSpan="2"/>
         <TextBox x:Name="naslov" Grid.Column="2" HorizontalAlignment="Left" Margin="8,6.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Width="188" FontSize="15"/>
         <TextBox x:Name="sadrzaj" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="5.6,1.4,6,17" AcceptsReturn="True" TextWrapping="Wrap" FontSize="15"/>
-        <ComboBox x:Name="namena" Grid.Column="2" HorizontalAlignment="Left" Margin="8,3.8,0,0" Grid.Row="6" VerticalAlignment="Top" Width="188" Height="31" FontSize="17" SelectedIndex="0" LostFocus="namena_LostFocus">
+        <ComboBox x:Name="namena" Grid.Column="2" HorizontalAlignment="Left" Margin="8,3.8,0,0" Grid.Row="6" VerticalAlignment="Top" Width="188" Height="31" FontSize="17" SelectedIndex="0" LostFocus="Namena_LostFocus">
             <ComboBoxItem Content="sve"/>
             <ComboBoxItem Content="sve lekare"/>
             <ComboBoxItem Content="sve upravnike"/>
@@ -80,7 +80,7 @@
         <!--   <Button x:Name="pretragaButton" HorizontalAlignment="Left" Margin="157.8,2.6,0,0" Grid.Row="7" VerticalAlignment="Top" Height="31" Width="29" Grid.Column="2" Click="Button_Click" Background="Transparent" BorderThickness="0">
             <Image Source="slike/search1.png" Width="27" Height="28" RenderTransformOrigin="0.476,0.482"/>
         </Button> -->
-        <Button Grid.Column="1" Grid.Row="12" Margin="6.4,12.6,20,26.6" Click="Button_Click_1" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
-        <Button Grid.Column="2" Grid.Row="12" Margin="19,12.6,8.4,26.6" Click="Button_Click_2" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="1" Grid.Row="12" Margin="6.4,12.6,20,26.6" Click="Potvrdi_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="12" Margin="19,12.6,8.4,26.6" Click="Odustani_Click" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>
