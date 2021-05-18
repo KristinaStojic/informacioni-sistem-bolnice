@@ -16,8 +16,6 @@ namespace Projekat.Model
             sacuvajIzmjene();
         }
 
-        
-
         public static void dodajZamjenskeLijekove(Lek izabraniLijek, List<Lek> zamjenskiLijekovi)
         {
             foreach(Lek lijek in lijekovi)
@@ -55,7 +53,6 @@ namespace Projekat.Model
                 if (lijek.idLeka == izabraniLijek.idLeka)
                 {
                     lijek.sastojci.Add(sastojak);
-                    Sastojci.SastojciLijeka.Add(sastojak);
                    //sastojci.Add(sastojak);
                     
 
@@ -81,7 +78,6 @@ namespace Projekat.Model
         public static void obrisiLijek(Lek lijek)
         {
             lijekovi.Remove(lijek);
-            Lijekovi.Lekovi.Remove(lijek);
             zahteviZaLekove.Remove(izabraniZahtjev(lijek));
             sacuvajIzmjene();
             sacuvajIzmeneZahteva();
@@ -200,9 +196,6 @@ namespace Projekat.Model
                         {
                             sastojak.naziv = noviSastojak.naziv;
                             sastojak.kolicina = noviSastojak.kolicina;
-                            int idx = Sastojci.SastojciLijeka.IndexOf(stariSastojak);
-                            Sastojci.SastojciLijeka.RemoveAt(idx);
-                            Sastojci.SastojciLijeka.Insert(idx, sastojak);
                             break;
                         }
                     }
@@ -219,9 +212,6 @@ namespace Projekat.Model
                 {
                     sastojak.naziv = uSastojak.naziv;
                     sastojak.kolicina = uSastojak.kolicina;
-                    int idx = IzmjeniSastojkeOdbijenog.SastojciLijeka.IndexOf(izabraniSastojak);
-                    IzmjeniSastojkeOdbijenog.SastojciLijeka.RemoveAt(idx);
-                    IzmjeniSastojkeOdbijenog.SastojciLijeka.Insert(idx, sastojak);
                 }
             }
             sacuvajIzmeneZahteva();

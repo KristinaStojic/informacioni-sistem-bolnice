@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -28,7 +29,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PacijentiMenadzer.ObrisiNalog(pacijent);
+            PacijentiServis.ObrisiNalog(pacijent);
             this.Close();
         }
 

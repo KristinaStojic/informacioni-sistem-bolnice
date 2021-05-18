@@ -11,6 +11,7 @@
             <Menu DockPanel.Dock="Top" Background="CadetBlue">
                 <MenuItem Header="Fajl" FontSize="15">
                     <MenuItem Header="Dodaj" FontSize="15" Click="DodajSalu_Click" InputGestureText="Ctrl + D"></MenuItem>
+                    <MenuItem Header="Dodaj krevet" FontSize="15" Click="Kreveti_Click" InputGestureText="Ctrl + T"></MenuItem>
                     <MenuItem Header="Zatvori" FontSize="15" Click="Upravnik_Click" InputGestureText="Ctrl + Z"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Uredi" FontSize="15">
@@ -42,10 +43,13 @@
                 <Button Click="Renoviranje_Click" ToolTip="Renoviraj, Ctrl + R">
                    <Image Source="slike/brush.png" Width="30" Height="30"></Image>
                 </Button>
+                <Button Click="Kreveti_Click" ToolTip="Dodaj krevet, Ctrl + T">
+                    <Image Source="slike/bed.png" Width="30" Height="30"></Image>
+                </Button>
                 <Button Click="ObrisiSalu_Click" ToolTip="Obrisi, Ctrl + O">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi, Ctrl + P" HorizontalAlignment="Right" Width="130" Height="30" Margin="410, 0, 0, 0" TextChanged="Pretraga_Click" Name="Pretraga"></TextBox>
+                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi, Ctrl + P" HorizontalAlignment="Right" Width="130" Height="30" Margin="375, 0, 0, 0" TextChanged="Pretraga_Click" Name="Pretraga"></TextBox>
                 <Button ToolTip="Pretrazi, Ctrl + P" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>

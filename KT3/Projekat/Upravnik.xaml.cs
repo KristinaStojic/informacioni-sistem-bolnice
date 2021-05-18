@@ -17,11 +17,11 @@ namespace Projekat
 
         private void dodajObavjestenja()
         {
-            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
+            foreach (Obavestenja obavjestenja in ObavestenjaMenadzer.obavestenja)
             {
-                if (o.Oznaka.Equals("svi") || o.Oznaka.Equals("upravnici"))
+                if (obavjestenja.Oznaka.Equals("svi") || obavjestenja.Oznaka.Equals("upravnici"))
                 {
-                    obavestenjaUpravnik.Items.Add(o);
+                    obavestenjaUpravnik.Items.Add(obavjestenja);
                 }
             }
         }

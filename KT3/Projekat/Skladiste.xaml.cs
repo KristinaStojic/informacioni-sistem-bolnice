@@ -1,6 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -71,9 +72,9 @@ namespace Projekat
         {
             OpremaDinamicka.Clear();
             OpremaStaticka.Clear();
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
-                if (s.Namjena.Equals("Skladiste"))
+                if (sala.Namjena.Equals("Skladiste"))
                 {
                     azurirajPrikazOpreme();
                 }
@@ -82,7 +83,7 @@ namespace Projekat
 
         private static void azurirajPrikazOpreme()
         {
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            foreach (Oprema oprema in OpremaServis.Oprema())
             {
                 if (oprema.Staticka)
                 {
@@ -100,7 +101,7 @@ namespace Projekat
             while (otvoren)
             {
                 Thread.Sleep(1000);
-                PremjestajMenadzer.odradiZakazanePremjestaje();
+                PremjestajServis.odradiZakazanePremjestaje();
             }
         }
 
@@ -113,7 +114,7 @@ namespace Projekat
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
-            OpremaMenadzer.sacuvajIzmjene();
+            OpremaServis.sacuvajIzmjene();
             Zahtjevi zahtjevi = new Zahtjevi();
             zahtjevi.Show();
             Skladiste.otvoren = false;
@@ -163,7 +164,7 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            OpremaMenadzer.sacuvajIzmjene();
+            OpremaServis.sacuvajIzmjene();
             Skladiste.otvoren = false;
         }
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -147,50 +148,50 @@ namespace Projekat
                 {
                     brStanje = bracnoStanje.Neudata;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Udata;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Udovica;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("Z"))
                 {
                     brStanje = bracnoStanje.Razvedena;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }
 
                 if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Neozenjen;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Ozenjen;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Udovac;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }
                 else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
                 {
                     brStanje = bracnoStanje.Razveden;
                     Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
+                    PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
                 }   
             }
             else // za guest nalog
@@ -198,7 +199,7 @@ namespace Projekat
                 status = statusNaloga.Guest;      
                 Pacijent noviPacijent1 = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, status);
                 noviPacijent1.BracnoStanje = bracnoStanje.Neodredjeno;
-                PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent1);    
+                PacijentiServis.IzmeniNalog(pacijent, noviPacijent1);    
             }
 
             this.Close();

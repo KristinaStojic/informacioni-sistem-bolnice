@@ -93,14 +93,14 @@ namespace Projekat
             if (selektovaniPacijentiId.Count > 0)
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.DodajObavestenje(novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
             else
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.DodajObavestenje(novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
             
             this.Close();

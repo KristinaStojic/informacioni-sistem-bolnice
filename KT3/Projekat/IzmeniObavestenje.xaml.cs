@@ -73,7 +73,7 @@ namespace Projekat
 
                     foreach (int id in obavestenje.ListaIdPacijenata)
                     {
-                        listaPacijenata.SelectedItem = PacijentiMenadzer.PronadjiPoId(id);
+                        listaPacijenata.SelectedItem = PacijentiServis.PronadjiPoId(id);
                     }
                 }
             }
@@ -151,14 +151,14 @@ namespace Projekat
             if (selektovaniPacijentiId.Count > 0)
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.IzmeniObavestenje(obavestenje, novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
             else
             {
                 Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
-                ObavestenjaMenadzer.sacuvajIzmene();
+                ObavestenjaServis.IzmeniObavestenje(obavestenje, novoObavestenje);
+                ObavestenjaServis.sacuvajIzmene();
             }
 
             this.Close();

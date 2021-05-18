@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -132,7 +133,7 @@ namespace Projekat
 
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            LekariMenadzer.SacuvajIzmeneLekara();
+            LekariServis.SacuvajIzmeneLekara();
             this.Close();
             Sekretar pocetnaStrana = new Sekretar();
             pocetnaStrana.Show();
@@ -141,7 +142,7 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // sacuvati sve
-            LekariMenadzer.SacuvajIzmeneLekara();
+            LekariServis.SacuvajIzmeneLekara();
         }
 
         private void TabelaLekara_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -172,8 +173,17 @@ namespace Projekat
 
         private void Radno_vreme_Click(object sender, RoutedEventArgs e)
         {
-            OdrediRadnoVreme radnoVreme = new OdrediRadnoVreme();
-            radnoVreme.Show();
+            Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;
+
+            if (selektovaniLekar == null)
+            {
+                MessageBox.Show("Izaberite lekara cije radno vreme zelite da odredite.");
+            }
+            else
+            {
+                OdrediRadnoVreme radnoVreme = new OdrediRadnoVreme(selektovaniLekar);
+                radnoVreme.Show();
+            }        
         }
 
         private void Godisnji_odmor_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Projekat
         }
         private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
             this.ime.Text = pacijent.ImePacijenta;
             this.prezime.Text = pacijent.PrezimePacijenta;
             this.jmbg.Text = pacijent.Jmbg.ToString();
@@ -93,7 +94,7 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);
 
                 TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
+                PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
             }
@@ -160,7 +161,7 @@ namespace Projekat
         {
             if (slobodneSobe.SelectedItem != null)
             {
-                Soba = SaleMenadzer.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
+                Soba = SaleServis.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
             }
             NadjiSlobodneKrevete(Soba);
         }
@@ -212,15 +213,15 @@ namespace Projekat
                 string datumPocetka = NadjiDatumPocetkaLecenja();
                 string datumKraja = NadjiDatumKrajaLecenja();
                 tipUputa tipUputa = NadjiTipUputa();
-                Soba = SaleMenadzer.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
-                Krevet = SaleMenadzer.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem);
+                Soba = SaleServis.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
+                Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
                 ZdravstveniKartonMenadzer.DodajUput(noviUput);
 
                 TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
-                SaleMenadzer.sacuvajIzmjene();
+                PacijentiServis.SacuvajIzmenePacijenta();
+                SaleServis.sacuvajIzmjene();
                 this.Close();
             }
             catch (System.Exception)
@@ -236,6 +237,8 @@ namespace Projekat
                 if(k.IdKreveta == krevet.IdKreveta)
                 {
                     k.Zauzet = true;
+                    k.PocetakZauzeca = (DateTime)datumPocetka.SelectedDate;
+                    k.KrajZauzeca = (DateTime) datumKraja.SelectedDate;
                 }
             }
         }

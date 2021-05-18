@@ -32,18 +32,17 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
-            SaleMenadzer.NadjiSveSale();
-            OpremaMenadzer.NadjiSvuOpremu();
-            LekoviMenadzer.NadjiSveLijekove();
-            PremjestajMenadzer.NadjiSvePremjestaje();
             TerminServis.NadjiSveTermine();
-            PacijentiMenadzer.PronadjiSve();
+            SaleServis.NadjiSveSale();
+            OpremaServis.NadjiSvuOpremu();
+            LekoviServis.NadjiSveLijekove();
+            PremjestajServis.NadjiSvePremjestaje();
+            PacijentiServis.PronadjiSve();
             ObavestenjaServis.NadjiSvaObavestenja();
-            LekoviMenadzer.NadjiSveZahteve();
-            LekariMenadzer.NadjiSveZahteve();
-            LekariMenadzer.NadjiSveLekare();
+            LekariServis.NadjiSveZahteve();
+            LekariServis.NadjiSveLekare();
 
-            lekari = new ObservableCollection<Lekar>();
+            /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
             lekari.Add(new Lekar() {IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa });
             lekari.Add(new Lekar() {IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
@@ -52,7 +51,7 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 6, ImeLek = "Jagoda", PrezimeLek = "Jagodic", specijalizacija = Specijalizacija.Ortopedija });
             lekari.Add(new Lekar() {IdLekara = 7, ImeLek = "Jovana", PrezimeLek = "Jovanovic", specijalizacija = Specijalizacija.Akuserstvo });
             lekari.Add(new Lekar() { IdLekara = 8, ImeLek = "Ivan", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Hirurgija });
-            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });
+            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });*/
 
 
             lekovi = new ObservableCollection<Lek>();
@@ -75,7 +74,7 @@ namespace Projekat
             zahtevi.Add(new ZahtevZaLekove(3, "Panklav", "PKL", "12/04/2021", false));
 
             kreveti = new ObservableCollection<Krevet>();
-            kreveti.Add(new Krevet(1, 6, false));
+            /*kreveti.Add(new Krevet(1., 6, false));
             kreveti.Add(new Krevet(2, 6, true));
             kreveti.Add(new Krevet(3, 6, false));
             kreveti.Add(new Krevet(4, 6, false));
@@ -94,40 +93,11 @@ namespace Projekat
                         s.Kreveti.Add(k);
                     }
                 }
-            }
+            }*/
 
             
 
         }
-
-        //TODO: prebaaci u LekariMenadzer-u
-        public static Lekar PronadjiPoId(int id)
-        {
-            foreach (Lekar p in lekari)
-            {
-                if (p.IdLekara == id)
-                {
-                    return p;
-                }
-            }
-            return null;
-
-        }
-
-        public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija oblastSpecijalizacije)
-        {
-            List<Lekar> specijalizovaniLekari = new List<Lekar>();
-
-            foreach (Lekar lekar in lekari)
-            {
-                if (lekar.specijalizacija.Equals(oblastSpecijalizacije))
-                {
-                    specijalizovaniLekari.Add(lekar);
-                }
-            }
-            return specijalizovaniLekari;
-        }
-        //------------------------------------------------------------------------------------
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -179,10 +149,10 @@ namespace Projekat
             {
                 Button_Click_2(sender, e);
             }
-            /*else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //sekretar
+            else if ( (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) || (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl)) ) //sekretar
             {
                 Button_Click_3(sender, e);
-            }*/
+            }
         }
     }
 }

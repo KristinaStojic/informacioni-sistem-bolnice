@@ -41,7 +41,7 @@ namespace Model
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         // hitan slucaj
@@ -51,9 +51,9 @@ namespace Model
 
             // TODO: ovaj deo direktno u ZakaziTerminSekretar
             ZauzeceSale novoZauzece = new ZauzeceSale(hitanTermin.VremePocetka, hitanTermin.VremeKraja, datum, hitanTermin.IdTermin);
-            Sala sala = SaleMenadzer.NadjiSaluPoId(hitanTermin.Prostorija.Id);
+            Sala sala = SaleServis.NadjiSaluPoId(hitanTermin.Prostorija.Id);
             sala.zauzetiTermini.Add(novoZauzece);
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
             // -----------------------------------------------
 
             DodajZauzeceUSveSale(sala);
@@ -69,7 +69,7 @@ namespace Model
                 }
             }
             sacuvajIzmene();
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
         }
 
         public static void ZakaziTerminLekar(Termin termin)
@@ -194,8 +194,8 @@ namespace Model
                     {
                         if (s.Id == stariTermin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, stariTermin.IdTermin, stariTermin.Datum, stariTermin.VremePocetka, stariTermin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, stariTermin.IdTermin, stariTermin.Datum, stariTermin.VremePocetka, stariTermin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
                     termini.RemoveAt(i);
@@ -207,8 +207,8 @@ namespace Model
             {
                 if (t.Prostorija.Id == stariTermin.Prostorija.Id)
                 {
-                    t.Prostorija = SaleMenadzer.NadjiSaluPoId(stariTermin.Prostorija.Id);
-                    SaleMenadzer.sacuvajIzmjene();
+                    t.Prostorija = SaleServis.NadjiSaluPoId(stariTermin.Prostorija.Id);
+                    SaleServis.sacuvajIzmjene();
                 }
             }
 
@@ -231,7 +231,7 @@ namespace Model
             ListaIdPacijenata.Add(stariTermin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, stariTermin.Datum, stariTermin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + stariTermin.Prostorija.brojSale + ", " + stariTermin.VremePocetka + "- " + stariTermin.VremeKraja, ListaIdPacijenata, stariTermin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         public static void OtkaziTermin(Termin termin)
@@ -244,8 +244,8 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
                     AnketaServis.ObrisiAnketu(termin.IdTermin);
@@ -268,8 +268,8 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
                     termini.RemoveAt(i);
@@ -283,8 +283,9 @@ namespace Model
             {
                 if (t.Prostorija.Id == id)
                 {
-                    t.Prostorija = SaleMenadzer.NadjiSaluPoId(id);
-                }
+                    t.Prostorija = SaleServis.NadjiSaluPoId(id);
+                }       
+
             }
             TerminMenadzer.sacuvajIzmene();
 
@@ -294,7 +295,7 @@ namespace Model
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
             ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         public static void OtkaziTerminLekar(Termin termin)
@@ -309,8 +310,8 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleMenadzer.sacuvajIzmjene();
+                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                            SaleServis.sacuvajIzmjene();
                         }
                     }
 

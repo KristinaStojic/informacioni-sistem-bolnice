@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,11 +36,11 @@ namespace Projekat
         private string nadjiDozvoljenuKolicinu()
         {
             dozvoljenaKolicina = izabranaOprema.Kolicina;
-            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
-                if (pm.izSale.Id == 4 && pm.oprema.IdOpreme == izabranaOprema.IdOpreme)
+                if (premjestaj.izSale.Id == 4 && premjestaj.oprema.IdOpreme == izabranaOprema.IdOpreme)
                 {
-                    dozvoljenaKolicina -= pm.kolicina;
+                    dozvoljenaKolicina -= premjestaj.kolicina;
                 }
             }
             return dozvoljenaKolicina.ToString();
@@ -52,30 +53,9 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            foreach(Sala sala in SaleMenadzer.sale)
-            {
-                if (sala.Namjena.Equals("Skladiste"))
-                {
-                    ukloniOpremuIzSale(sala);
-                }
-            }
+            SaleServis.ukloniOpremuIzSale(izabranaOprema, int.Parse(kolicina.Text));
             Skladiste.azurirajOpremu();
             this.Close();
-        }
-
-        private void ukloniOpremuIzSale(Sala sala)
-        {
-            foreach (Oprema oprema in sala.Oprema.ToList())
-            {
-                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
-                {
-                    oprema.Kolicina -= int.Parse(kolicina.Text);
-                    if (oprema.Kolicina == 0)
-                    {
-                        sala.Oprema.Remove(oprema);
-                    }
-                }
-            }
         }
 
         private void kolicina_TextChanged(object sender, TextChangedEventArgs e)

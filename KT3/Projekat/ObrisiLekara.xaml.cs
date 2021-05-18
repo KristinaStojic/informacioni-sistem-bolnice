@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -29,7 +30,7 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            LekariMenadzer.ObrisiLekara(lekar);
+            LekariServis.ObrisiLekara(lekar);
             this.Close();
         }
 

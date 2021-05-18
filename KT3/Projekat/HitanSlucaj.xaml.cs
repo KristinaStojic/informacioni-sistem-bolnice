@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -383,19 +384,19 @@ namespace Projekat
             if (tipTermina.Text.Equals("Pregled"))
             {
                 Tip = TipTermina.Pregled;
-                slobodneSale = SaleMenadzer.PronadjiSaleZaPregled();
+                slobodneSale = SaleServis.PronadjiSaleZaPregled();
             }
             else if (tipTermina.Text.Equals("Operacija"))
             {
                 Tip = TipTermina.Operacija;
-                slobodneSale = SaleMenadzer.PronadjiSaleZaOperaciju();
+                slobodneSale = SaleServis.PronadjiSaleZaOperaciju();
             }
         }
 
         private void OdrediOblastLekara()
         {
             Specijalizacija oblastSpecijalizacije = (Specijalizacija)oblastLekara.SelectedItem;
-            slobodniLekari = MainWindow.PronadjiLekarePoSpecijalizaciji(oblastSpecijalizacije);
+            slobodniLekari = LekariServis.PronadjiLekarePoSpecijalizaciji(oblastSpecijalizacije);
         }
 
         private int OdrediBrojSlotovaZaIzbacivanje(string pocetakTermina, string krajTermina)
@@ -467,11 +468,11 @@ namespace Projekat
                 {
                     if (idLekara != 0)
                     {
-                        return MainWindow.PronadjiPoId(idLekara);
+                        return LekariServis.NadjiPoId(idLekara);
                     }
                     else if (idSale != 0)
                     { 
-                        return SaleMenadzer.NadjiSaluPoId(idSale);
+                        return SaleServis.NadjiSaluPoId(idSale);
                     }
                 }
                 return null;
@@ -516,7 +517,7 @@ namespace Projekat
         {
             ObservableCollection<string> SlobodnoVremePocetka = InicijalizujListuTermina();
 
-            Sala sala = SaleMenadzer.NadjiSaluPoId(idSale);
+            Sala sala = SaleServis.NadjiSaluPoId(idSale);
             foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
                 RenovacijaSale(zauzece, SlobodnoVremePocetka, datum);

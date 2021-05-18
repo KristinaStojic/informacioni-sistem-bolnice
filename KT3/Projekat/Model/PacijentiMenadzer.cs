@@ -12,6 +12,7 @@ using System.Windows;
 using System.Xml.Serialization;
 using Projekat;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Model
 {
@@ -25,26 +26,26 @@ namespace Model
             PrikaziPacijenta.PacijentiTabela.Add(noviNalog);
         }
 
-        public static void IzmeniNalog(Pacijent nalog1, Pacijent nalog)
+        public static void IzmeniNalog(Pacijent stariNalog, Pacijent noviNalog)
         {
             foreach (Pacijent p in pacijenti)
             {
-                if (p.IdPacijenta == nalog1.IdPacijenta)
+                if (p.IdPacijenta == stariNalog.IdPacijenta)
                 {
-                    p.ImePacijenta = nalog.ImePacijenta;
-                    p.PrezimePacijenta = nalog.PrezimePacijenta;
-                    p.Jmbg = nalog.Jmbg;
-                    p.Pol = nalog.Pol;
-                    p.StatusNaloga = nalog.StatusNaloga;
-                    p.BrojTelefona = nalog.BrojTelefona;
-                    p.Email = nalog.Email;
-                    p.AdresaStanovanja = nalog.AdresaStanovanja;
-                    p.BracnoStanje = nalog.BracnoStanje;
-                    p.Zanimanje = nalog.Zanimanje;
-                    p.Maloletnik = nalog.Maloletnik;
-                    p.JmbgStaratelja = nalog.JmbgStaratelja;
+                    p.ImePacijenta = noviNalog.ImePacijenta;
+                    p.PrezimePacijenta = noviNalog.PrezimePacijenta;
+                    p.Jmbg = noviNalog.Jmbg;
+                    p.Pol = noviNalog.Pol;
+                    p.StatusNaloga = noviNalog.StatusNaloga;
+                    p.BrojTelefona = noviNalog.BrojTelefona;
+                    p.Email = noviNalog.Email;
+                    p.AdresaStanovanja = noviNalog.AdresaStanovanja;
+                    p.BracnoStanje = noviNalog.BracnoStanje;
+                    p.Zanimanje = noviNalog.Zanimanje;
+                    p.Maloletnik = noviNalog.Maloletnik;
+                    p.JmbgStaratelja = noviNalog.JmbgStaratelja;
                     
-                    int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(nalog1);
+                    int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(stariNalog);
                     PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
                     PrikaziPacijenta.PacijentiTabela.Insert(idx, p);
                 }
@@ -95,13 +96,13 @@ namespace Model
             {
                 if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count == 1)
                 {
-                    ObavestenjaMenadzer.ObrisiObavestenje(o);
-                    ObavestenjaMenadzer.sacuvajIzmene();
+                    ObavestenjaServis.ObrisiObavestenje(o);
+                    ObavestenjaServis.sacuvajIzmene();
                 }
                 else if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count > 1)
                 {
                     o.ListaIdPacijenata.Remove(nalog.IdPacijenta);
-                    ObavestenjaMenadzer.sacuvajIzmene();
+                    ObavestenjaServis.sacuvajIzmene();
                 }
             }
 
@@ -120,7 +121,7 @@ namespace Model
                             {
                                 if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
                                 {
-                                    s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
+                                    s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
                                     //SaleMenadzer.sacuvajIzmjene();
                                 }
                             }
@@ -195,16 +196,5 @@ namespace Model
             filestream.Close();
         }
 
-        public static bool JedinstvenJmbg(int jmbg)
-        {
-            foreach (Pacijent p in pacijenti)
-            {
-                if (p.Jmbg == jmbg)
-                {
-                    return false;
-                }
-            }
-            return true;         
-        } 
     }
 }

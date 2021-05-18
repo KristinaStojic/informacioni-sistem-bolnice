@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -77,10 +78,10 @@ namespace Projekat
                             if (l.IdLekara == izabraniZahtev.lekar.IdLekara)
                             {
                                 l.SlobodniDaniGodisnjegOdmora -= zahtev.brojDanaOdmora;
-                                LekariMenadzer.SacuvajIzmeneLekara();
+                                LekariServis.SacuvajIzmeneLekara();
                             }
                         }
-                        LekariMenadzer.sacuvajIzmjeneZahteva();
+                        LekariServis.sacuvajIzmjeneZahteva();
                     }
                 }
             }
@@ -103,7 +104,7 @@ namespace Projekat
                     if (zahtev.idZahteva == izabraniZahtev.idZahteva)
                     {
                         zahtev.odobren = StatusZahteva.ODBIJEN;
-                        LekariMenadzer.sacuvajIzmjeneZahteva();
+                        LekariServis.sacuvajIzmjeneZahteva();
                     }
                 }
             }

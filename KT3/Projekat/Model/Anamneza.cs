@@ -58,7 +58,7 @@ namespace Projekat.Model
         {
             String imeprz = null;
 
-            foreach(Lekar l in MainWindow.lekari)
+            foreach(Lekar l in LekariMenadzer.lekari)
             {
                 if (l.IdLekara == idLekara)
                 {

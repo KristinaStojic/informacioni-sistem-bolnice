@@ -1,6 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -85,7 +86,7 @@ namespace Projekat
 
         private void Upravnik_Click(object sender, RoutedEventArgs e)
         {
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
             Upravnik u = new Upravnik();
             u.Show();
             this.Hide();
@@ -94,12 +95,12 @@ namespace Projekat
         private void Renoviranje_Click(object sender, RoutedEventArgs e)
         {
             Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
-            if(izabranaSala != null && !salaZakazanaZaRenoviranje(izabranaSala))
+            if(izabranaSala != null && !SaleServis.salaZakazanaZaRenoviranje(izabranaSala))
             {
                 Renoviranje renoviranje = new Renoviranje(izabranaSala);
                 renoviranje.Show();
             }
-            else if (izabranaSala != null && salaZakazanaZaRenoviranje(izabranaSala))
+            else if (izabranaSala != null && SaleServis.salaZakazanaZaRenoviranje(izabranaSala))
             {
                 MessageBox.Show("Izabrana sala je vec zakazana za renoviranje!");
             }else
@@ -108,40 +109,10 @@ namespace Projekat
             }
         }
 
-        private bool salaZakazanaZaRenoviranje(Sala izabranaSala)
-        {
-            foreach(ZauzeceSale zauzeceSale in izabranaSala.zauzetiTermini)
-            {
-                if (zauzeceSale.idTermina == 0 && datumProsao(zauzeceSale.datumKrajaTermina) && vrijemeProslo(zauzeceSale.krajTermina))
-                {
-                    izabranaSala.zauzetiTermini.Remove(zauzeceSale);
-                    return false;
-                }
-                else if(zauzeceSale.idTermina == 0 && (!datumProsao(zauzeceSale.datumKrajaTermina) || !vrijemeProslo(zauzeceSale.krajTermina)))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private bool datumProsao(string datum)
-        {
-            datum = datum.Replace('/', '-');
-            DateTime datumKraja = DateTime.Parse(datum);
-            return datumKraja <= DateTime.Now.Date;
-        }
-
-        private bool vrijemeProslo(string vrijeme)
-        {
-            int vrijemeKraja = int.Parse(vrijeme.Split(':')[0]);
-            int sadasnjeVrijeme = int.Parse(DateTime.Now.TimeOfDay.ToString().Split(':')[0]);
-            return vrijemeKraja <= sadasnjeVrijeme;
-        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            SaleMenadzer.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -163,7 +134,7 @@ namespace Projekat
             {
                 PrikazStaticke.otvoren = true;
                 PrikazStaticke ps = new PrikazStaticke(izabranaSala);
-                PremjestajMenadzer.odradiZakazanePremjestaje();
+                PremjestajServis.odradiZakazanePremjestaje();
                 ps.ShowDialog();
             }
             catch (Exception ex) { Console.WriteLine(ex.Data); }
@@ -282,6 +253,23 @@ namespace Projekat
                 {
                     Pomoc_Click(sender, e);
                 }
+            }
+        }
+
+        private void Kreveti_Click(object sender, RoutedEventArgs e)
+        {
+            Sala izabranaSala = (Sala)dataGridSale.SelectedItem;
+            if(izabranaSala != null)
+            {
+                Krevet krevet = new Krevet(izabranaSala.Id, false);
+
+                izabranaSala.Kreveti.Add(krevet);
+                SaleServis.sacuvajIzmjene();
+
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati salu!");
             }
         }
     }

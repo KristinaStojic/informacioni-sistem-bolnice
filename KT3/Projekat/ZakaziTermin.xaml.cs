@@ -1,25 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Model;
-using Projekat.Model;
-using Projekat.Servis;
-using static Model.Termin;
-
-namespace Projekat
-{
-    public partial class ZakaziTermin : Page
+ public partial class ZakaziTermin : Page
     {
         private static int idPacijent;
         public static Lekar izabraniLekar { get; set; }
@@ -36,7 +15,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
-            PomocnaSviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
+            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();  //?
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;

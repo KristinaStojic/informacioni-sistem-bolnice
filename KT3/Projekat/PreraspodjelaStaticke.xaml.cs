@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -245,8 +246,8 @@ namespace Projekat
         {
             this.Close();
             aktivna = false;
-            PremjestajMenadzer.sacuvajIzmjene();
-            SaleMenadzer.sacuvajIzmjene();
+            PremjestajServis.sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
         }
 
         private void premjestiOpremu(Sala izabranaSala, int kolicina)
@@ -293,7 +294,7 @@ namespace Projekat
         private void dodajPremjestaj(Premjestaj zakazi, DateTime datumIVrijeme)
         {
             zakazi.datumIVrijeme = datumIVrijeme;
-            PremjestajMenadzer.dodajPremjestaj(zakazi);
+            PremjestajServis.dodajPremjestaj(zakazi);
         }
 
         private void dodajOpremuIzSala(Premjestaj zakazi)

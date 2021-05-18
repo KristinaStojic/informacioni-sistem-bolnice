@@ -38,8 +38,8 @@ namespace Projekat
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
             idPacijent = idPrijavljenogPacijenta;
-            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
-            PomocnaSviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
+            SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
+            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             Termini = new ObservableCollection<Termin>();
             PronadjiPreporuceneTermine(prijavljeniPacijent);
             preferencaGrid.ItemsSource = Termini;
@@ -148,11 +148,11 @@ namespace Projekat
             TerminServis.ZakaziTermin(termin);
 
             // TODO: proveriti
-            Sala sala = SaleMenadzer.NadjiSaluPoId(termin.Prostorija.Id);
+            Sala sala = SaleServis.NadjiSaluPoId(termin.Prostorija.Id);
             ZauzeceSale novoZauzeceSale = new ZauzeceSale(termin.VremePocetka, termin.VremeKraja, termin.Datum, termin.IdTermin);
             sala.zauzetiTermini.Add(novoZauzeceSale);
-            SaleMenadzer.sacuvajIzmjene(); 
             TerminServis.sacuvajIzmene(); 
+            SaleServis.sacuvajIzmjene(); // ? 
 
             Page prikaziTermin = new PrikaziTermin(termin.Pacijent.IdPacijenta);
             this.NavigationService.Navigate(prikaziTermin);

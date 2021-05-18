@@ -22,20 +22,17 @@ namespace Projekat
     {
         public Pacijent pacijent;
         public Termin termin;
-        public DodajAnamnezu(Pacijent izabraniPacijent, Termin termin)
+        public DodajAnamnezu(Pacijent izabraniPacijent, Termin Ntermin)
         {
             InitializeComponent();
-            PopuniPodatkePacijenta();
+            //PopuniPodatkePacijenta();
             this.pacijent = izabraniPacijent;
-        }
-
-        private void PopuniPodatkePacijenta()
-        {
-            this.pacijent = pacijent;
-            this.termin = termin;
+            this.termin = Ntermin;
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             this.datum.SelectedDate = DateTime.Parse(termin.Datum);
         }
+
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
            

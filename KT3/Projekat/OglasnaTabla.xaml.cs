@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -71,7 +72,7 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
         private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
@@ -115,7 +116,7 @@ namespace Projekat
                     namena.Text = "";
                     foreach (int id in selektovanoObavestenje.ListaIdPacijenata)
                     {
-                        Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(id);
+                        Pacijent pacijent = PacijentiServis.PronadjiPoId(id);
                         namena.Text += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta + " \n";
                     }
                 }

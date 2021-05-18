@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -57,43 +58,7 @@ namespace Projekat
             Renoviranje.opremaZaPrebacivanje = opremaZaPrebacivanje;
             Renoviranje.salaZaSpajanje = null;
             Renoviranje.novaSala = novaSala;
-            //prebaciOpremuIzStareSale();
-            //napraviNovuSalu();
             this.Close();
-        }
-
-        private void prebaciOpremuIzStareSale()
-        {
-            foreach(Oprema oprema in staraSala.Oprema)
-            {
-                prebaciOpremu(oprema);
-            }
-        }
-
-        private void prebaciOpremu(Oprema oprema)
-        {
-            foreach(Oprema opremaPrebacivanje in opremaZaPrebacivanje)
-            {
-                if(opremaPrebacivanje.IdOpreme == oprema.IdOpreme)
-                {
-                    ukloniOpremuIzSale(oprema, opremaPrebacivanje);
-                }
-            }
-        }
-
-        private void ukloniOpremuIzSale(Oprema oprema, Oprema opremaPrebacivanje)
-        {
-            oprema.Kolicina -= opremaPrebacivanje.Kolicina;
-            if (oprema.Kolicina == 0)
-            {
-                staraSala.Oprema.Remove(oprema);
-            }
-        }
-
-        private void napraviNovuSalu()
-        {
-            novaSala.Oprema = opremaZaPrebacivanje;
-            SaleMenadzer.DodajSalu(novaSala);
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -107,7 +72,7 @@ namespace Projekat
 
         private void dodajPrebacivanje(Oprema oprema, int kolicina)
         {
-            if (postojiOprema(oprema))
+            if (OpremaServis.postojiOprema(oprema, opremaZaPrebacivanje))
             {
                 postaviKolicinuPrebacivanja(oprema, kolicina);
             }
@@ -128,18 +93,6 @@ namespace Projekat
                     opremaPrebacivanje.Kolicina = kolicina;
                 }
             }
-        }
-
-        private bool postojiOprema(Oprema oprema)
-        {
-            foreach (Oprema opremaPrebacivanje in opremaZaPrebacivanje)
-            {
-                if (oprema.IdOpreme == opremaPrebacivanje.IdOpreme)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         private void podesiDugme(Oprema oprema, String kolicina)

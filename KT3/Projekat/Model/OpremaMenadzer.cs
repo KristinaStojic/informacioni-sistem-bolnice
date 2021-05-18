@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -10,53 +11,13 @@ namespace Projekat.Model
 
         public static void izmjeniOpremu(Oprema izOpreme, Oprema uOpremu)
         {
-            izmjeniPrikazOpreme(izOpreme, uOpremu);
             azurirajOpremuUSkladistu();
             sacuvajIzmjene();
         }
 
-        private static void izmjeniPrikazOpreme(Oprema izOpreme, Oprema uOpremu)
-        {
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
-            {
-                if (oprema.IdOpreme == izOpreme.IdOpreme)
-                {
-                    oprema.NazivOpreme = uOpremu.NazivOpreme;
-                    oprema.Kolicina = uOpremu.Kolicina;
-                    zamjeniOpremu(uOpremu, izOpreme, oprema);
-                }
-            }
-        }
-
-        private static void zamjeniOpremu(Oprema uOpremu, Oprema izOpreme, Oprema oprema)
-        {
-            if (uOpremu.Staticka)
-            {
-                zamjeniStatickuOpremuUSkladistu(izOpreme, oprema);
-            }
-            else
-            {
-                zamjeniDinamickuOpremuUSkladistu(izOpreme, oprema);
-            }
-        }
-
-        private static void zamjeniDinamickuOpremuUSkladistu(Oprema izOpreme, Oprema oprema)
-        {
-            int idx = Skladiste.OpremaDinamicka.IndexOf(izOpreme);
-            Skladiste.OpremaDinamicka.RemoveAt(idx);
-            Skladiste.OpremaDinamicka.Insert(idx, oprema);
-        }
-
-        private static void zamjeniStatickuOpremuUSkladistu(Oprema izOpreme, Oprema oprema)
-        {
-            int idx = Skladiste.OpremaStaticka.IndexOf(izOpreme);
-            Skladiste.OpremaStaticka.RemoveAt(idx);
-            Skladiste.OpremaStaticka.Insert(idx, oprema);
-        }
-
         private static void azurirajOpremuUSkladistu()
         {
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (sala.Namjena.Equals("Skladiste"))
                 {
@@ -91,61 +52,8 @@ namespace Projekat.Model
         {
             OpremaMenadzer.oprema.Add(oprema);
             azurirajOpremuUSkladistu();
-            dodajOpremuUPrikaz(oprema);
             sacuvajIzmjene();
         }
-        
-        public static void DodajKrevet(Krevet krevet)
-        {
-            OpremaMenadzer.kreveti.Add(krevet);
-            azurirajOpremuUSkladistu();
-            //dodajOpremuUPrikaz(oprema);
-            sacuvajIzmjene();
-        }
-
-        private static void dodajOpremuUPrikaz(Oprema oprema)
-        {
-            if (oprema.Staticka)
-            {
-                Skladiste.OpremaStaticka.Add(oprema);
-            }
-            else
-            {
-                Skladiste.OpremaDinamicka.Add(oprema);
-            }
-        }
-
-        public static void ObrisiOpremu(Oprema oprema)
-        {
-            ukloniOpremu(oprema);
-            azurirajOpremuUSkladistu();
-            ukloniOpremuIzPrikaza(oprema);
-            sacuvajIzmjene();
-        }
-
-        private static void ukloniOpremu(Oprema oprema)
-        {
-            for (int i = 0; i < OpremaMenadzer.oprema.Count; i++)
-            {
-                if (oprema.IdOpreme == OpremaMenadzer.oprema[i].IdOpreme)
-                {
-                    OpremaMenadzer.oprema.RemoveAt(i);
-                }
-            }
-        }
-
-        private static void ukloniOpremuIzPrikaza(Oprema oprema)
-        {
-            if (oprema.Staticka)
-            {
-                Skladiste.OpremaStaticka.Remove(oprema);
-            }
-            else
-            {
-                Skladiste.OpremaDinamicka.Remove(oprema);
-            }
-        }
-
 
         public static void sacuvajIzmjene()
         {
@@ -168,17 +76,39 @@ namespace Projekat.Model
             return id;
         }
 
-        public static int GenerisanjeIdKreveta()
+        public static int GenerisanjeIdKreveta(int idSobe)
         {
-            int id;
-            for (id = 1; id <= kreveti.Count; id++)
+            bool pomocna = false;
+            int id = 1;
+            foreach (Sala sala in SaleMenadzer.sale)
             {
-                if (!postojiIdKreveta(id))
+                if (sala.Id == idSobe)
                 {
-                    return id;
+                    for (id = 1; id <= sala.Kreveti.Count; id++)
+                    {
+                        foreach (Krevet k in sala.Kreveti)
+                        {
+                            if (k.IdKreveta == id)
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
                 }
             }
+
+
             return id;
+
+
+           
         }
 
         private static bool postojiIdOpreme(int id)
@@ -192,17 +122,7 @@ namespace Projekat.Model
             }
             return false;
         }
-        private static bool postojiIdKreveta(int id)
-        {
-            foreach (Krevet o in kreveti)
-            {
-                if (o.IdKreveta.Equals(id))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
 
         public static List<Oprema> oprema = new List<Oprema>();
         /*Kristina*/

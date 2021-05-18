@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -79,8 +80,8 @@ namespace Projekat
                 ZdravstveniKartonMenadzer.DodajAlergen(alergen);
 
                 TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
-                SaleMenadzer.sacuvajIzmjene();
+                PacijentiServis.SacuvajIzmenePacijenta();
+                SaleServis.sacuvajIzmjene();
 
                 this.Close();
             }

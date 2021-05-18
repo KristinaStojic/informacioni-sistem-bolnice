@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model;
+using Projekat.Servis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +12,8 @@ namespace Projekat.Model
         public int IdKreveta { get; set; }
         public int IdSobe { get; set; }
         public bool Zauzet { get; set; }
-        public string PocetakZauzeca { get; set; }
-        public string KrajZauzeca { get; set; }
+        public DateTime PocetakZauzeca { get; set; }
+        public DateTime KrajZauzeca { get; set; }
         public Krevet() { }
 
         public Krevet(int idKreveta)
@@ -19,9 +21,9 @@ namespace Projekat.Model
             this.IdKreveta = idKreveta;
         }
 
-        public Krevet(int idKreveta, int idSobe, bool zauzet)
+        public Krevet(int idSobe, bool zauzet)
         {
-            this.IdKreveta = idKreveta;
+            this.IdKreveta = OpremaMenadzer.GenerisanjeIdKreveta(idSobe);
             this.IdSobe = idSobe;
             this.Zauzet = zauzet;
         }

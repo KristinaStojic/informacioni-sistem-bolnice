@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System.Windows;
 
 namespace Projekat
@@ -17,7 +18,8 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            LekoviMenadzer.obrisiLijek(izabraniLijek);
+            LekoviServis.obrisiLijek(izabraniLijek);
+            Lijekovi.Lekovi.Remove(izabraniLijek);
             this.Close();
         }
 

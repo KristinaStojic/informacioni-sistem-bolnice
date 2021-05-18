@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using LiveCharts;
+using LiveCharts.Wpf;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -30,10 +33,24 @@ namespace Projekat
             get;
             set;
         }
-       
+
+
+        public ChartValues<int> ukupnoPregleda
+        {
+            get;set;
+        }
+
+        public ChartValues<int> ukupnoOperacija
+        {
+            get;set;
+        }
+
+        public Func<ChartPoint, string> LabelPoint { get; set; }
         public PrikazTerminaLekar(int id)
         {
             InitializeComponent();
+            LabelPoint = chartPoint =>
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
             this.idLekara = id;
             this.DataContext = this;
             NadjiUlogovanogLekara();
@@ -64,6 +81,11 @@ namespace Projekat
                 if (t.Lekar.IdLekara == idLekara) //Petar Nebojsic
                 {
                     Termini.Add(t);
+                    int brPregleda = t.Lekar.BrojPregleda; 
+                    int brOperacija = t.Lekar.BrojOperacija; 
+                    //int br = 10;
+                    this.ukupnoPregleda = new ChartValues<int>() { brPregleda };
+                    this.ukupnoOperacija = new ChartValues<int>() { brOperacija };
                 }
                 /*if (t.Lekar.IdLekara == 2) //Milos Dragojevic
                 {
@@ -123,7 +145,7 @@ namespace Projekat
             // nazad
 
             TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            PacijentiServis.SacuvajIzmenePacijenta();
             this.Close();
             //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();
@@ -172,8 +194,8 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            PacijentiServis.SacuvajIzmenePacijenta();
+            SaleServis.sacuvajIzmjene();
             //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/
         }
