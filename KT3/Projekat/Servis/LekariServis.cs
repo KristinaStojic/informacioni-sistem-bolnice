@@ -9,6 +9,7 @@ namespace Projekat.Servis
 {
     public class LekariServis
     {
+        #region Lekari
         public static void DodajLekara(Lekar noviLekar)
         {
             LekariMenadzer.DodajLekara(noviLekar);
@@ -86,5 +87,6 @@ namespace Projekat.Servis
         {
             LekariMenadzer.sacuvajIzmjeneZahteva();
         }
+        #endregion
     }
 }

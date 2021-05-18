@@ -9,40 +9,42 @@ namespace Projekat.Servis
 {
     public class ObavestenjaServis
     {
-        #region Obavestenja Pacijent
+        #region Obavestenja Sekretar
         public static void sacuvajIzmene()
         {
             ObavestenjaMenadzer.sacuvajIzmene();
         }
+
         public static List<Obavestenja> NadjiSvaObavestenja()
         {
             return ObavestenjaMenadzer.NadjiSvaObavestenja();
         }
-        public static void ObrisiObavestenje(Obavestenja obavestenje)
+
+        public static void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
         {
-            ObavestenjaMenadzer.ObrisiObavestenje(obavestenje);
-        }
-        public static int GenerisanjeIdObavestenja()
-        {
-            return ObavestenjaMenadzer.GenerisanjeIdObavestenja();
-        }
-        public static void ObrisiObavestenjePacijent(Obavestenja selektovanoObavestenje)
-        {
-            ObavestenjaMenadzer.ObrisiObavestenjePacijent(selektovanoObavestenje);
+            ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
         }
 
         public static void IzmeniObavestenjeSekretar(Obavestenja obavestenje, Obavestenja novoObavestenje)
         {
             ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
         }
+
+        public static void ObrisiObavestenje(Obavestenja obavestenje)
+        {
+            ObavestenjaMenadzer.ObrisiObavestenje(obavestenje);
+        }
+
+        public static int GenerisanjeIdObavestenja()
+        {
+            return ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+        }
+        #endregion
+
+        #region Obavestenja Pacijent
         public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)
         {
             return ObavestenjaMenadzer.PronadjiObavestenjaPoIdPacijenta(idPacijent);
-        }
-
-        public static void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
-        {
-            ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
         }
 
         public static void DodajPodsetnikePacijenta(ObservableCollection<Obavestenja> obavestenjaPodsetnici, int idPacijent)
@@ -55,6 +57,12 @@ namespace Projekat.Servis
                 }
             }
         }
+
+        public static void ObrisiObavestenjePacijent(Obavestenja selektovanoObavestenje)
+        {
+            ObavestenjaMenadzer.ObrisiObavestenjePacijent(selektovanoObavestenje);
+        }
+
         public static ObservableCollection<Obavestenja> DodajObavestenja(int idPacijent)
         {
             ObservableCollection<Obavestenja> ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
@@ -77,7 +85,6 @@ namespace Projekat.Servis
             }
             return ObavestenjaPacijent;
         }
-
         private static void DodajStaraObavestenjaZaTerapijePodsetnike(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
             DateTime dt = DateTime.Parse(obavestenje.Datum);
@@ -89,10 +96,6 @@ namespace Projekat.Servis
                 }
             }
         }
-
-       
-
         #endregion
     }
-
 }

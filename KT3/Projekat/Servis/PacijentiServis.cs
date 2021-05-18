@@ -8,6 +8,7 @@ namespace Projekat.Servis
 {
     public class PacijentiServis
     {
+        #region Pacijent 
         public static void DodajNalog(Pacijent noviNalog)
         {
             PacijentiMenadzer.DodajNalog(noviNalog);
@@ -60,6 +61,6 @@ namespace Projekat.Servis
             }
             return true;
         }
-
+        #endregion
     }
 }
