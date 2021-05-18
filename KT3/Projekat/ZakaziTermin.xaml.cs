@@ -1,4 +1,25 @@
- public partial class ZakaziTermin : Page
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using Model;
+using Projekat.Model;
+using Projekat.Servis;
+using static Model.Termin;
+
+namespace Projekat
+{
+    public partial class ZakaziTermin : Page
     {
         private static int idPacijent;
         public static Lekar izabraniLekar { get; set; }
@@ -44,7 +65,7 @@
 
         private void InicijalizujPodatkeOLekaru(Pacijent prijavljeniPacijent)
         {
-            if (izabraniLekar == null )
+            if (izabraniLekar == null)
             {
                 izabraniLekar = prijavljeniPacijent.IzabraniLekar;
             }
@@ -98,20 +119,6 @@
             prvaSlobodnaSala.zauzetiTermini.Add(zs);
         }
 
-       /* private static void ProveriAnketuZaKliniku(int idPacijent)
-        {
-            int brojacTermina = 0;
-            foreach(Termin termin in TerminServis.PronadjiTerminPoIdPacijenta(idPacijent)) 
-            {
-                brojacTermina++;
-                if (brojacTermina == AnketaServis.minBrojTerminaZaAnketuKlinika && !AnketaServis.SveAnketePacijenta(idPacijent).Exists(x => x.IdTermina == AnketaServis.oznakaAnketeZaKliniku))
-                {
-                    AnketaMenadzer.DodajAnketuZaKliniku(idPacijent);
-                    return;
-                }
-            }
-        }*/
-
         private void ElektronskoPlacanje(object sender, RoutedEventArgs e)
         {
             // elektronsko placanje
@@ -138,7 +145,7 @@
                 return;
             }
             vpp.ItemsSource = TerminServis.datum_SelectedDatesChanged(datum);
-            
+
         }
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -208,15 +215,14 @@
         }
         private void comboUputi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(combo.Text.Equals("Pregled"))
+            if (combo.Text.Equals("Pregled"))
             {
                 comboUputi.IsEnabled = false;
                 return;
             }
             Uput izabraniUput = (Uput)comboUputi.SelectedItem;
-            izabraniLekar = LekariMenadzer.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje); 
+            izabraniLekar = LekariMenadzer.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
             this.imePrz.Text = izabraniLekar.ToString();
         }
     }
-
 }

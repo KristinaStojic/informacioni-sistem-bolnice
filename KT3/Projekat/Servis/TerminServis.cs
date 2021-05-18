@@ -72,7 +72,7 @@ namespace Projekat.Servis
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
 
-            SaleZaPreglede = SaleMenadzer.PronadjiSaleZaPregled();
+            SaleZaPreglede = SaleServis.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
             if (combo.Text.Equals("Pregled"))
             {
@@ -92,8 +92,8 @@ namespace Projekat.Servis
         public static ObservableCollection<string> datum_SelectedDatesChanged(Calendar datum)
         {
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
-            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
-            PomocnaSviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
+            SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
+            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             SviSlobodniSlotovi = UkloniProsleSlotoveZaDanasnjiDatum(SviSlobodniSlotovi, PomocnaSviSlobodniSlotovi, datum);
             SviSlobodniSlotovi = UkloniZauzecaPacijentaZaSelektovaniDatum(SviSlobodniSlotovi, selektovaniDatum, PomocnaSviSlobodniSlotovi);
             SviSlobodniSlotovi = UkolniSlotoveZauzeteUSvimSalama(SviSlobodniSlotovi, PomocnaSviSlobodniSlotovi, datum);

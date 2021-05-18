@@ -244,8 +244,7 @@ namespace Projekat
                 return;
             }
             string selektovaniDatum = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
-            SviSlobodniSlotovi = SaleMenadzer.InicijalizujSveSlotove();
-            string selektovaniDatum = ZakaziTermin.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
+            SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             UkoloniProsleSlotoveZaDanasnjiDatum(PomocnaSviSlobodniSlotovi);
             UkloniZauzecaPacijentaZaSelektovaniDatum(selektovaniDatum, PomocnaSviSlobodniSlotovi);

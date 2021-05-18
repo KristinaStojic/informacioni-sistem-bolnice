@@ -22,7 +22,6 @@ namespace Projekat.Servis
         {
             ObavestenjaMenadzer.ObrisiObavestenje(obavestenje);
         }
-
         public static int GenerisanjeIdObavestenja()
         {
             return ObavestenjaMenadzer.GenerisanjeIdObavestenja();
@@ -32,9 +31,18 @@ namespace Projekat.Servis
             ObavestenjaMenadzer.ObrisiObavestenjePacijent(selektovanoObavestenje);
         }
 
+        public static void IzmeniObavestenjeSekretar(Obavestenja obavestenje, Obavestenja novoObavestenje)
+        {
+            ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
+        }
         public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)
         {
             return ObavestenjaMenadzer.PronadjiObavestenjaPoIdPacijenta(idPacijent);
+        }
+
+        public static void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
+        {
+            ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
         }
 
         public static void DodajPodsetnikePacijenta(ObservableCollection<Obavestenja> obavestenjaPodsetnici, int idPacijent)
@@ -47,7 +55,6 @@ namespace Projekat.Servis
                 }
             }
         }
-
         public static ObservableCollection<Obavestenja> DodajObavestenja(int idPacijent)
         {
             ObservableCollection<Obavestenja> ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
@@ -82,6 +89,8 @@ namespace Projekat.Servis
                 }
             }
         }
+
+       
 
         #endregion
     }
