@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -134,77 +135,32 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             PreraspodjelaDinamicke.izabranaOprema = (Oprema)kombo.SelectedItem;
-            foreach(Sala sala in SaleMenadzer.sale)
-            {
-                prebaciOpremu(sala, (Sala)komboSale.SelectedItem, int.Parse(Kolicina.Text));
-            }
+            PremjestajServis.prebaciOpremu((Sala)komboSale.SelectedItem, int.Parse(Kolicina.Text), izabranaOprema, salaDodavanje);    
             this.Close();
             aktivna = false;
         }
 
-        private void prebaciOpremu(Sala sala, Sala izabranaSala, int kolicina)
-        {
-            if (sala.Id == izabranaSala.Id)
-            {
-                ukloniOpremuIzSale(sala, kolicina);
-            }
-            if (sala.Id == salaDodavanje.Id)
-            {
-                dodajOpremuUSalu(sala, kolicina);
 
-            }
-        }
-
-        private void dodajOpremuUSalu(Sala sala, int kolicina)
-        {
-            if (prebaciDinamicku(sala, kolicina) == 0)
-            {
-                Oprema oprema = new Oprema(izabranaOprema.NazivOpreme, kolicina, false);
-                oprema.IdOpreme = izabranaOprema.IdOpreme;
-                PrikazDinamicke.OpremaDinamicka.Add(oprema);
-                sala.Oprema.Add(oprema);
-            }
-        }
-
-        private int prebaciDinamicku(Sala sala, int kolicina)
-        {
-            int x = 0;
-            foreach (Oprema oprema in sala.Oprema)
-            {
-                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
-                {
-                    oprema.Kolicina += kolicina;
-                    x += 1;
-                    azurirajPrikaz(oprema);
-                }
-            }
-            return x;
-        }
-
-        private void azurirajPrikaz(Oprema oprema)
+        public static void azurirajPrikaz(Oprema oprema)
         {
             int idx = PrikazDinamicke.OpremaDinamicka.IndexOf(oprema);
             PrikazDinamicke.OpremaDinamicka.RemoveAt(idx);
             PrikazDinamicke.OpremaDinamicka.Insert(idx, oprema);
         }
 
-        private void ukloniOpremuIzSale(Sala sala, int kolicina)
+        public static void smanjiKolicinuOpreme(int kolicina, Oprema oprema, Sala sala)
         {
-            foreach (Oprema oprema in sala.Oprema.ToArray())
-            {
-                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
-                {
-                    ukloniOpremu(oprema, kolicina, sala);
-                }
-            }
-        }
-
-        private void ukloniOpremu(Oprema oprema, int kolicina, Sala sala)
-        {
-            oprema.Kolicina -= kolicina;
-            if (oprema.Kolicina == 0)
+            if (oprema.Kolicina - kolicina == 0)
             {
                 sala.Oprema.Remove(oprema);
+                Skladiste.OpremaStaticka.Remove(oprema);
+            }
+            else
+            {
+                oprema.Kolicina -= kolicina;
+                int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
+                Skladiste.OpremaStaticka.RemoveAt(idx);
+                Skladiste.OpremaStaticka.Insert(idx, oprema);
             }
         }
 

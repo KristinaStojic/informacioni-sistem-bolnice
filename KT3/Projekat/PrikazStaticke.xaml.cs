@@ -157,11 +157,11 @@ namespace Projekat
         private bool provjeriPreostalo(Oprema opremaZaSlanje)
         {
             int kolicina = opremaZaSlanje.Kolicina;
-            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
             {
-                if (pm.izSale.Id == izabranaSala.Id && pm.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+                if (premjestaj.izSale.Id == izabranaSala.Id && premjestaj.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    kolicina -= pm.kolicina;
+                    kolicina -= premjestaj.kolicina;
                 }
             }
             if(kolicina <= 0)

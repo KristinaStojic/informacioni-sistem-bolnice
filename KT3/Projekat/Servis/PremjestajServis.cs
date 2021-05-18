@@ -3,7 +3,6 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Projekat.Servis
 {
@@ -100,7 +99,7 @@ namespace Projekat.Servis
             oprema.Kolicina += kolicina;
             if (sala.Namjena.Equals("Skladiste"))
             {
-                zamjeniOpremuUSkladistu(oprema);
+                PrebaciStaticku.zamjeniOpremuUSkladistu(oprema);
             }
             else
             {
@@ -115,7 +114,7 @@ namespace Projekat.Servis
             sala.Oprema.Add(oprema);
             if (salaDodavanje.Namjena.Equals("Skladiste"))
             {
-                dodajOpremuUSkladiste(oprema);
+                PrebaciStaticku.dodajOpremuUSkladiste(oprema);
             }
             else
             {
@@ -170,38 +169,11 @@ namespace Projekat.Servis
         {
             if (oprema.Kolicina == 0)
             {
-                ukloniOpremuIzSkladista(sala, oprema);
+                PrebaciStaticku.ukloniOpremuIzSkladista(sala, oprema);
             }
             else
             {
-                zamjeniOpremuUSkladistu(oprema);
-            }
-        }
-
-        private static void ukloniOpremuIzSkladista(Sala sala, Oprema oprema)
-        {
-            if (Skladiste.OpremaStaticka != null)
-            {
-                sala.Oprema.Remove(oprema);
-                Skladiste.OpremaStaticka.Remove(oprema);
-            }
-        }
-
-        private static void zamjeniOpremuUSkladistu(Oprema oprema)
-        {
-            if (Skladiste.OpremaStaticka != null)
-            {
-                int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
-                Skladiste.OpremaStaticka.RemoveAt(idx);
-                Skladiste.OpremaStaticka.Insert(idx, oprema);
-            }
-        }
-
-        private static void dodajOpremuUSkladiste(Oprema oprema)
-        {
-            if (Skladiste.OpremaStaticka != null)
-            {
-                Skladiste.OpremaStaticka.Add(oprema);
+                PrebaciStaticku.zamjeniOpremuUSkladistu(oprema);
             }
         }
 
@@ -314,12 +286,6 @@ namespace Projekat.Servis
             PremjestajServis.dodajPremjestaj(zakazi);
         }
 
-        private void zavrsiPremjestaj()
-        {
-            SaleServis.sacuvajIzmjene();
-            PremjestajServis.sacuvajIzmjene();
-        }
-
         private static void odradiPremjestajSada(DateTime datumIVrijeme, Sala salaUKojuSaljem, int kolicina, Oprema opremaZaSlanje)
         {
             if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
@@ -334,13 +300,13 @@ namespace Projekat.Servis
 
         private static void nadjiOpremuUSalama(Premjestaj zakazi, Oprema opremaZaSlanje)
         {
-            foreach (Sala s in SaleMenadzer.NadjiSveSale())
+            foreach (Sala sala in SaleMenadzer.NadjiSveSale())
             {
-                foreach (Oprema o in s.Oprema)
+                foreach (Oprema oprema in sala.Oprema)
                 {
-                    if (opremaZaSlanje.IdOpreme == o.IdOpreme)
+                    if (opremaZaSlanje.IdOpreme == oprema.IdOpreme)
                     {
-                        zakazi.oprema = o;
+                        zakazi.oprema = oprema;
                     }
                 }
             }
@@ -387,35 +353,9 @@ namespace Projekat.Servis
             {
                 if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    smanjiKolicinuOpreme(kolicina, oprema, sala);
+                    PreraspodjelaDinamicke.smanjiKolicinuOpreme(kolicina, oprema, sala);
                 }
             }
-        }
-
-        private static void smanjiKolicinuOpreme(int kolicina, Oprema oprema, Sala sala)
-        {
-            if (oprema.Kolicina - kolicina == 0)
-            {
-                ukloniOpremu(sala, oprema);
-            }
-            else
-            {
-                smanjiKolicinu(oprema, kolicina);
-            }
-        }
-
-        private static void smanjiKolicinu(Oprema oprema, int kolicina)
-        {
-            oprema.Kolicina -= kolicina;
-            int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
-            Skladiste.OpremaStaticka.RemoveAt(idx);
-            Skladiste.OpremaStaticka.Insert(idx, oprema);
-        }
-
-        private static void ukloniOpremu(Sala sala, Oprema oprema)
-        {
-            sala.Oprema.Remove(oprema);
-            Skladiste.OpremaStaticka.Remove(oprema);
         }
 
         private static void dodajStatickuOpremuUSalu(Sala s, int kolicina, Oprema opremaZaSlanje)
@@ -443,6 +383,460 @@ namespace Projekat.Servis
                 Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, true);
                 oprema.IdOpreme = opremaZaSlanje.IdOpreme;
                 sala.Oprema.Add(oprema);
+            }
+        }
+
+        public static void prebaciOpremu(Sala izabranaSala, int kolicina, Oprema izabranaOprema, Sala salaDodavanje)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == izabranaSala.Id)
+                {
+                    ukloniDinamickuOpremuIzSale(sala, kolicina, izabranaOprema);
+                }
+                if (sala.Id == salaDodavanje.Id)
+                {
+                    dodajDinamickuOpremuUSalu(sala, kolicina, izabranaOprema);
+
+                }
+            }
+        }
+
+        private static void dodajDinamickuOpremuUSalu(Sala sala, int kolicina, Oprema izabranaOprema)
+        {
+            if (prebaciDinamicku(sala, kolicina, izabranaOprema) == 0)
+            {
+                Oprema oprema = new Oprema(izabranaOprema.NazivOpreme, kolicina, false);
+                oprema.IdOpreme = izabranaOprema.IdOpreme;
+                PrikazDinamicke.OpremaDinamicka.Add(oprema);
+                sala.Oprema.Add(oprema);
+            }
+        }
+
+        private static int prebaciDinamicku(Sala sala, int kolicina, Oprema izabranaOprema)
+        {
+            int x = 0;
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    oprema.Kolicina += kolicina;
+                    x += 1;
+                    PreraspodjelaDinamicke.azurirajPrikaz(oprema);
+                }
+            }
+            return x;
+        }
+
+        private static void ukloniDinamickuOpremuIzSale(Sala sala, int kolicina, Oprema izabranaOprema)
+        {
+            foreach (Oprema oprema in sala.Oprema.ToArray())
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    ukloniOpremu(oprema, kolicina, sala);
+                }
+            }
+        }
+
+        private static void ukloniOpremu(Oprema oprema, int kolicina, Sala sala)
+        {
+            oprema.Kolicina -= kolicina;
+            if (oprema.Kolicina == 0)
+            {
+                sala.Oprema.Remove(oprema);
+            }
+        }
+
+        public static void dodajStatickuOpremu(Sala izabranaSala, int kolicina, DateTime datumIVrijeme, Sala salaDodavanje, Oprema izabranaOprema)
+        {
+            if (datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
+            {
+                provjeriPremjestaj(datumIVrijeme, izabranaSala, kolicina, salaDodavanje, izabranaOprema);
+            }
+            else
+            {
+                zakaziPremjestaj(izabranaSala, kolicina, datumIVrijeme, izabranaOprema, salaDodavanje);
+            }
+            sacuvajIzmjene();
+            SaleServis.sacuvajIzmjene();
+        }
+
+        private static void provjeriPremjestaj(DateTime datumIVrijeme, Sala izSale, int kolicina, Sala salaDodavanje, Oprema izabranaOprema)
+        {
+            if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
+            {
+                premjestiOpremu(salaDodavanje, kolicina, izSale, izabranaOprema);
+            }
+            else
+            {
+                zakaziPremjestaj(izSale, kolicina, datumIVrijeme, izabranaOprema, salaDodavanje);
+            }
+        }
+
+        private static void ukloniOpremuIzSaleStaticka(Sala sala, int kolicina, Oprema izabranaOprema, Sala salaDodavanje)
+        {
+            foreach (Oprema oprema in sala.Oprema.ToArray())
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    oprema.Kolicina -= kolicina;
+                    if (sala.Namjena.Equals("Skladiste"))
+                    {
+                        sala.Oprema.Remove(oprema);
+                        PreraspodjelaStaticke.prebaciOpremuIzSkladista(oprema);
+                    }
+                    else
+                    {
+                        PreraspodjelaStaticke.azurirajPrikazStaticke(oprema, sala);
+                    }
+                }
+            }
+        }
+
+        private static void ukloniOpremu(Sala sala, Oprema oprema)
+        {
+            if (sala.Namjena.Equals("Skladiste"))
+            {
+                if (Skladiste.OpremaStaticka != null)
+                {
+                    PreraspodjelaStaticke.prebaciUSkladiste(oprema);
+                }
+            }
+            else
+            {
+                PreraspodjelaStaticke.azurirajPrikaz();
+            }
+        }
+
+        private static void premjestiOpremu(Sala salaDodavanje, int kolicina, Sala izabranaSala, Oprema izabranaOprema)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == izabranaSala.Id)
+                {
+                    ukloniOpremuIzSaleStaticka(sala, kolicina, izabranaOprema, salaDodavanje);
+                }
+                if (sala.Id == salaDodavanje.Id)
+                {
+                    dodajOpremuUSaluStaticka(sala, kolicina, izabranaOprema, salaDodavanje);
+
+                }
+            }
+        }
+
+        private static int prebaciOpremu(Sala sala, int kolicina, Oprema izabranaOprema)
+        {
+            int x = 0;
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    oprema.Kolicina += kolicina;
+                    x += 1;
+                    ukloniOpremu(sala, oprema);
+                }
+            }
+            return x;
+        }
+
+        private static void dodajOpremu(Sala sala, int kolicina, Sala salaDodavanje, Oprema izabranaOprema)
+        {
+            Oprema oprema = new Oprema(izabranaOprema.NazivOpreme, kolicina, true);
+            oprema.IdOpreme = izabranaOprema.IdOpreme;
+            sala.Oprema.Add(oprema);
+            if (salaDodavanje.Namjena.Equals("Skladiste"))
+            {
+                PreraspodjelaStaticke.dodajStaticku(oprema);
+            }
+            else
+            {
+                PreraspodjelaStaticke.azurirajPrikaz();
+            }
+        }
+
+        private static void zakaziPremjestaj(Sala izabranaSala, int kolicina, DateTime datumIVrijeme, Oprema izabranaOprema, Sala salaDodavanje)
+        {
+            Premjestaj zakazi = new Premjestaj();
+            zakazi.kolicina = kolicina;
+            definisiSale(izabranaSala, zakazi, salaDodavanje);
+            definisiOpremu(zakazi, izabranaOprema);
+            dodajOpremuIzSala(zakazi, izabranaOprema);
+            dodajPremjestajStaticke(zakazi, datumIVrijeme);
+        }
+
+        private static void definisiSale(Sala izabranaSala, Premjestaj zakazi, Sala salaDodavanje)
+        {
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Id == izabranaSala.Id)
+                {
+                    zakazi.izSale = s;
+                }
+                if (s.Id == salaDodavanje.Id)
+                {
+                    zakazi.uSalu = s;
+                }
+            }
+        }
+
+        private static void dodajOpremuUSaluStaticka(Sala sala, int kolicina, Oprema izabranaOprema, Sala salaDodavanje)
+        {
+            if (prebaciOpremu(sala, kolicina, izabranaOprema) == 0)
+            {
+                dodajOpremu(sala, kolicina, salaDodavanje, izabranaOprema);
+            }
+        }
+
+        private static void dodajPremjestajStaticke(Premjestaj zakazi, DateTime datumIVrijeme)
+        {
+            zakazi.datumIVrijeme = datumIVrijeme;
+            PremjestajServis.dodajPremjestaj(zakazi);
+        }
+
+        private static void dodajOpremuIzSala(Premjestaj zakazi, Oprema izabranaOprema)
+        {
+            if (zakazi.oprema == null)
+            {
+                foreach (Sala sala in SaleMenadzer.sale)
+                {
+                    dodajOpremu(sala, zakazi, izabranaOprema);
+                }
+            }
+        }
+
+        private static void dodajOpremu(Sala sala, Premjestaj zakazi, Oprema izabranaOprema)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (izabranaOprema.IdOpreme == oprema.IdOpreme)
+                {
+                    zakazi.oprema = oprema;
+                }
+            }
+        }
+
+        private static void definisiOpremu(Premjestaj zakazi, Oprema izabranaOprema)
+        {
+            foreach (Oprema o in OpremaMenadzer.oprema)
+            {
+                if (izabranaOprema.IdOpreme == o.IdOpreme)
+                {
+                    zakazi.oprema = o;
+                }
+            }
+        }
+
+        public static void prebaciDinamickuOpremu(Sala salaUKojuSaljem, int kolicina, Sala salaIzKojeSaljem, Oprema opremaZaSlanje)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                posaljiIzSale(sala, kolicina, salaIzKojeSaljem, opremaZaSlanje);
+                dodajUSalu(sala, salaUKojuSaljem, kolicina, opremaZaSlanje);
+            }
+        }
+
+        private static void dodajUSalu(Sala sala, Sala salaUKojuSaljem, int kolicina, Oprema opremaZaSlanje)
+        {
+            if (sala.Id == salaUKojuSaljem.Id)
+            {
+                dodajOpremuUSaluDinamicka(sala, kolicina, opremaZaSlanje);
+            }
+        }
+
+        private static void posaljiIzSale(Sala sala, int kolicina, Sala salaIzKojeSaljem, Oprema opremaZaSlanje)
+        {
+            if (sala.Id == salaIzKojeSaljem.Id)
+            {
+                foreach (Oprema oprema in sala.Oprema.ToArray())
+                {
+                    prebaciOpremuIzSaleDinamicka(oprema, kolicina, sala, opremaZaSlanje);
+                }
+            }
+        }
+
+        private static void prebaciOpremuIzSaleDinamicka(Oprema oprema, int kolicina, Sala sala, Oprema opremaZaSlanje)
+        {
+            if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+            {
+                if (oprema.Kolicina - kolicina == 0)
+                {
+                    sala.Oprema.Remove(oprema);
+                    SlanjeDinamicke.ukloniOpremu(sala, oprema);
+                }
+                else
+                { 
+                    oprema.Kolicina -= kolicina;
+                    SlanjeDinamicke.prebaciOpremu(oprema, kolicina);
+                }
+
+            }
+        }
+
+        private static void dodajOpremuUSaluDinamicka(Sala sala, int kolicina, Oprema opremaZaSlanje)
+        {
+            if (!postojiOprema(sala, kolicina, opremaZaSlanje))
+            {
+                Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, false);
+                oprema.IdOpreme = opremaZaSlanje.IdOpreme;
+                sala.Oprema.Add(oprema);
+            }
+        }
+
+        private static bool postojiOprema(Sala sala, int kolicina, Oprema opremaZaSlanje)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+                {
+                    oprema.Kolicina += kolicina;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static void prebaciStatickuOpremu(DateTime datumIVrijeme, int kolicina, Sala salaUKojuSaljem, Sala salaIzKojeSaljem, Oprema opremaZaSlanje)
+        {
+            if (datumIVrijeme.Date.ToString().Equals(DateTime.Now.Date.ToString()))
+            {
+                provjeriPremjestajStaticka(datumIVrijeme, salaUKojuSaljem, kolicina, salaIzKojeSaljem, opremaZaSlanje);
+            }
+            else
+            {
+                zakaziPremjestajStaticke(kolicina, salaUKojuSaljem, datumIVrijeme, opremaZaSlanje, salaIzKojeSaljem);
+            }
+        }
+        private static void provjeriPremjestajStaticka(DateTime datumIVrijeme, Sala salaUKojuSaljem, int kolicina, Sala salaIzKojeSaljem, Oprema opremaZaSlanje)
+        {
+            if (datumIVrijeme.TimeOfDay <= DateTime.Now.TimeOfDay)
+            {
+                premjestiStatickuOpremu(salaUKojuSaljem, kolicina, salaIzKojeSaljem, opremaZaSlanje);
+            }
+            else
+            {
+                zakaziPremjestajStaticke(kolicina, salaUKojuSaljem, datumIVrijeme, opremaZaSlanje, salaIzKojeSaljem);
+            }
+        }
+
+        private static void zakaziPremjestajStaticke(int kolicina, Sala salaUKojuSaljem, DateTime datumIVrijeme, Oprema opremaZaSlanje, Sala salaIzKojeSaljem)
+        {
+            Premjestaj zakazi = new Premjestaj();
+            zakazi.kolicina = kolicina;
+            definisiSaleStaticka(zakazi, salaUKojuSaljem, salaIzKojeSaljem);
+            definisiOpremuIzSkladista(zakazi, opremaZaSlanje);
+            definisiOpremuIzSala(zakazi, opremaZaSlanje);
+            zakazi.datumIVrijeme = datumIVrijeme;
+            dodajPremjestaj(zakazi);
+        }
+        private static void premjestiStatickuOpremu(Sala salaUKojuSaljem, int kolicina, Sala salaIzKojeSaljem, Oprema opremaZaSlanje)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == salaIzKojeSaljem.Id)
+                {
+                    prebaciOpremuIzSale(sala, kolicina, opremaZaSlanje);
+                }
+                if (sala.Id == salaUKojuSaljem.Id)
+                {
+                    dodajOpremuUSaluStaticka(sala, kolicina, opremaZaSlanje);
+                }
+            }
+        }
+
+        private static void dodajOpremuUSaluStaticka(Sala sala, int kolicina, Oprema opremaZaSlanje)
+        {
+            if (!postojiStatickaOprema(sala, kolicina, opremaZaSlanje))
+            {
+                Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, true);
+                oprema.IdOpreme = opremaZaSlanje.IdOpreme;
+                sala.Oprema.Add(oprema);
+            }
+        }
+
+        private static void definisiSaleStaticka(Premjestaj zakazi, Sala salaUKojuSaljem, Sala salaIzKojeSaljem)
+        {
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Id == salaIzKojeSaljem.Id)
+                {
+                    zakazi.izSale = s;
+                }
+                if (s.Id == salaUKojuSaljem.Id)
+                {
+                    zakazi.uSalu = s;
+                }
+            }
+        }
+
+        private static bool postojiStatickaOprema(Sala s, int kolicina, Oprema opremaZaSlanje)
+        {
+            foreach (Oprema o in s.Oprema)
+            {
+                if (o.IdOpreme == opremaZaSlanje.IdOpreme)
+                {
+                    o.Kolicina += kolicina;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static void prebaciOpremuIzSale(Sala sala, int kolicina, Oprema opremaZaSlanje)
+        {
+            foreach (Oprema oprema in sala.Oprema.ToArray())
+            {
+                prebaciStatickuOpremu(oprema, sala, kolicina, opremaZaSlanje);
+            }
+        }
+
+        private static void prebaciStatickuOpremu(Oprema oprema, Sala sala, int kolicina, Oprema opremaZaSlanje)
+        {
+            if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
+            {
+                if (oprema.Kolicina - kolicina == 0)
+                {
+                    sala.Oprema.Remove(oprema);
+                    SlanjeStaticke.ukloniOpremu(sala, oprema);
+                }
+                else
+                {
+                    oprema.Kolicina -= kolicina;
+                    SlanjeStaticke.smanjiKolicinuOpreme(oprema, kolicina);
+                }
+            }
+        }
+
+        private static void definisiOpremuIzSkladista(Premjestaj zakazi, Oprema opremaZaSlanje)
+        {
+            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            {
+                if (opremaZaSlanje.IdOpreme == oprema.IdOpreme)
+                {
+                    zakazi.oprema = oprema;
+                }
+            }
+        }
+
+        private static void nadjiOpremuSale(Sala sala, Premjestaj zakazi, Oprema opremaZaSlanje)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (opremaZaSlanje.IdOpreme == oprema.IdOpreme)
+                {
+                    zakazi.oprema = oprema;
+                }
+            }
+        }
+
+        private static void definisiOpremuIzSala(Premjestaj zakazi, Oprema opremaZaSlanje)
+        {
+            if (zakazi.oprema == null)
+            {
+                foreach (Sala sala in SaleMenadzer.sale)
+                {
+                    nadjiOpremuSale(sala, zakazi, opremaZaSlanje);
+                }
             }
         }
 

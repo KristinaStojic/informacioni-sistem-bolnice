@@ -3,8 +3,6 @@ using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 
 namespace Projekat.Servis
 {
@@ -162,5 +160,46 @@ namespace Projekat.Servis
                 }
             }
         }
+
+        public static void prebaciOpremuIzStareSale(Sala izabranaSala, List<Oprema> opremaZaPrebacivanje)
+        {
+            foreach (Oprema oprema in izabranaSala.Oprema.ToArray())
+            {
+                prebaciOpremu(oprema, opremaZaPrebacivanje, izabranaSala);
+            }
+        }
+
+        private static void prebaciOpremu(Oprema oprema, List<Oprema> opremaZaPrebacivanje, Sala izabranaSala)
+        {
+            foreach (Oprema opremaPrebacivanje in opremaZaPrebacivanje)
+            {
+                if (opremaPrebacivanje.IdOpreme == oprema.IdOpreme)
+                {
+                    ukloniOpremuIzSale(oprema, opremaPrebacivanje, izabranaSala);
+                }
+            }
+        }
+
+        private static void ukloniOpremuIzSale(Oprema oprema, Oprema opremaPrebacivanje, Sala izabranaSala)
+        {
+            oprema.Kolicina -= opremaPrebacivanje.Kolicina;
+            if (oprema.Kolicina == 0)
+            {
+                izabranaSala.Oprema.Remove(oprema);
+            }
+        }
+
+
+        public static void zauzmiSalu(ZauzeceSale zauzeceSale, Sala izabranaSala)
+        {
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == izabranaSala.Id)
+                {
+                    sala.zauzetiTermini.Add(zauzeceSale);
+                }
+            }
+        }
+
     }
 }

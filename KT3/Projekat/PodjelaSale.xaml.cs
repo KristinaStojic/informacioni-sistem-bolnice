@@ -72,7 +72,7 @@ namespace Projekat
 
         private void dodajPrebacivanje(Oprema oprema, int kolicina)
         {
-            if (OpremaServis.postojiOprema(oprema, opremaZaPrebacivanje))
+            if (OpremaServis.portojiOpremaZaPrebacivanje(oprema, opremaZaPrebacivanje))
             {
                 postaviKolicinuPrebacivanja(oprema, kolicina);
             }

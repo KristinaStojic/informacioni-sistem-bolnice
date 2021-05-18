@@ -222,56 +222,28 @@ namespace Projekat
             {
                 spojiSale();
                 ZauzeceSale zauzeceSale = napraviZauzece();
-                zauzmiSalu(zauzeceSale);
-                zauzmiSaluZaSpajanje(zauzeceSale);
+                SaleServis.zauzmiSalu(zauzeceSale, izabranaSala);
+                SaleServis.zauzmiSalu(zauzeceSale, salaZaSpajanje);
                 SaleServis.sacuvajIzmjene();
             }
             else if (opremaZaPrebacivanje != null)
             {
                 ZauzeceSale zauzeceSale = napraviZauzece();
-                prebaciOpremuIzStareSale();
+                SaleServis.prebaciOpremuIzStareSale(izabranaSala, opremaZaPrebacivanje);
                 napraviNovuSalu();
-                zauzmiSalu(zauzeceSale);
-                zauzmiNovuSalu(zauzeceSale);
+                SaleServis.zauzmiSalu(zauzeceSale, izabranaSala);
+                SaleServis.zauzmiSalu(zauzeceSale, novaSala);
                 SaleServis.sacuvajIzmjene();
             }
             else
             {
                 ZauzeceSale zauzeceSale = napraviZauzece();
-                zauzmiSalu(zauzeceSale);
+                SaleServis.zauzmiSalu(zauzeceSale, izabranaSala);
                 SaleServis.sacuvajIzmjene();
             }
             this.Close();
         }
-
-        private void prebaciOpremuIzStareSale()
-        {
-            foreach (Oprema oprema in izabranaSala.Oprema.ToArray())
-            {
-                prebaciOpremu(oprema);
-            }
-        }
-
-        private void prebaciOpremu(Oprema oprema)
-        {
-            foreach (Oprema opremaPrebacivanje in opremaZaPrebacivanje)
-            {
-                if (opremaPrebacivanje.IdOpreme == oprema.IdOpreme)
-                {
-                    ukloniOpremuIzSale(oprema, opremaPrebacivanje);
-                }
-            }
-        }
-
-        private void ukloniOpremuIzSale(Oprema oprema, Oprema opremaPrebacivanje)
-        {
-            oprema.Kolicina -= opremaPrebacivanje.Kolicina;
-            if (oprema.Kolicina == 0)
-            {
-                izabranaSala.Oprema.Remove(oprema);
-            }
-        }
-
+   
         private void napraviNovuSalu()
         {
             novaSala.Oprema = opremaZaPrebacivanje;
@@ -281,45 +253,10 @@ namespace Projekat
 
         private void spojiSale()
         {
-            dodajOpremuIzSaleZaDodavanje();
+            OpremaServis.dodajOpremuIzSaleZaDodavanje(izabranaSala, salaZaSpajanje);
             SaleServis.ObrisiSalu(salaZaSpajanje);
             PrikaziSalu.Sale.Remove(salaZaSpajanje);
             SaleServis.sacuvajIzmjene();
-        }
-
-        private void dodajOpremuIzSaleZaDodavanje()
-        {
-            foreach(Sala sala in SaleMenadzer.sale)
-            {
-                if(sala.Id == izabranaSala.Id)
-                {
-                   dodajOpremu(sala);
-                }
-            }
-        }
-
-        private void dodajOpremu(Sala sala)
-        {
-            foreach(Oprema oprema in salaZaSpajanje.Oprema)
-            {
-                if(!postojiOprema(sala, oprema))
-                {
-                    sala.Oprema.Add(oprema);
-                }
-            }
-        }
-
-        private bool postojiOprema(Sala sala, Oprema oprema)
-        {
-            foreach (Oprema opremaSale in sala.Oprema)
-            {
-                if (opremaSale.IdOpreme == oprema.IdOpreme)
-                {
-                    opremaSale.Kolicina += oprema.Kolicina;
-                    return true;
-                }
-            }
-            return false;
         }
 
         private ZauzeceSale napraviZauzece()
@@ -327,39 +264,6 @@ namespace Projekat
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             return new ZauzeceSale(this.vrijemePocetka.Text, this.vrijemeKraja.Text, datumPocetka, datumKraja, 0);
-        }
-
-        private void zauzmiSalu(ZauzeceSale zauzeceSale)
-        {
-            foreach (Sala sala in SaleMenadzer.sale)
-            {
-                if (sala.Id == izabranaSala.Id)
-                {
-                    sala.zauzetiTermini.Add(zauzeceSale);
-                }
-            }
-        }
-
-        private void zauzmiSaluZaSpajanje(ZauzeceSale zauzeceSale)
-        {
-            foreach (Sala sala in SaleMenadzer.sale)
-            {
-                if (sala.Id == salaZaSpajanje.Id)
-                {
-                    sala.zauzetiTermini.Add(zauzeceSale);
-                }
-            }
-        }
-
-        private void zauzmiNovuSalu(ZauzeceSale zauzeceSale)
-        {
-            foreach (Sala sala in SaleMenadzer.sale)
-            {
-                if (sala.Id == novaSala.Id)
-                {
-                    sala.zauzetiTermini.Add(zauzeceSale);
-                }
-            }
         }
 
         private List<int> zauzecaZaDatum(string datum)
