@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,27 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            Lekar stariLekar = null; 
+            foreach (Lekar lekar in LekariMenadzer.lekari)
+            {
+                if(IDLekara == lekar.IdLekara)
+                {
+                    stariLekar = lekar;
+                }
+            }
+            string korisnickoIme = korIme.Text;
+            string sifra = this.sifra.Text;
+            string imeLekara = ime.Text;
+            string prezimeLekara = prezime.Text;
+            int jmbgLekara = Int32.Parse(jmbg.Text);
+            int brTelefon = Int32.Parse(telefon.Text);
+            string emailLekara = email.Text;
+            string adresaLekara = adresa.Text;
+           
+            //string specijalizacijaLekara = specijalizacija.Text;
+            /**NAPRAVI IZMENU KOR.IMENA I LOZINKE I ISPRAVI SPECIJALIZACIJU - DODAJ COMBOBOX*/
+            Lekar noviLekar = new Lekar(IDLekara,imeLekara,prezimeLekara,jmbgLekara, brTelefon, emailLekara,adresaLekara, stariLekar.specijalizacija);
+            LekariServis.IzmeniLekara(stariLekar, noviLekar);
         }
     }
 }

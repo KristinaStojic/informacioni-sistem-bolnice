@@ -264,6 +264,10 @@ namespace Projekat
             }
             return formatiranDatum;
         }
-        
+
+        private void Potvrdi_Laboratorija_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
