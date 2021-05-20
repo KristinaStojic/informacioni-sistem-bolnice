@@ -37,7 +37,7 @@ namespace Projekat
             {
                 this.DodajBelesku.Content = "Izmeni";
             }
-            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -47,6 +47,21 @@ namespace Projekat
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
+        private void SacuvajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            anamneza.Beleska = this.beleska.Text;
+            this.beleska.IsEnabled = false;
+            this.SacuvajBelesku.IsEnabled = false;
+            PacijentiServis.SacuvajIzmenePacijenta();
+        }
+
+        private void DodajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            this.DodajBelesku.Content = "Izmeni";
+            this.beleska.IsEnabled = true;
+            this.SacuvajBelesku.IsEnabled = true;
+        }
+
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             Page odjava = new PrijavaPacijent();
@@ -59,7 +74,7 @@ namespace Projekat
         }
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -103,19 +118,5 @@ namespace Projekat
             }
         }
 
-        private void SacuvajBelesku_Click(object sender, RoutedEventArgs e)
-        {
-            anamneza.Beleska = this.beleska.Text;
-            this.beleska.IsEnabled = false;
-            this.SacuvajBelesku.IsEnabled = false;
-            PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
-        }
-
-        private void DodajBelesku_Click(object sender, RoutedEventArgs e)
-        {
-            this.DodajBelesku.Content = "Izmeni";
-            this.beleska.IsEnabled = true;
-            this.SacuvajBelesku.IsEnabled = true;
-        }
     }
 }

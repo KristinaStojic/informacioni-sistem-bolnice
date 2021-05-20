@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for PrikaziAnkete.xaml
-    /// </summary>
     public partial class PrikaziAnkete : Page
     {
         private static int idPacijent;
@@ -35,50 +32,27 @@ namespace Projekat
             AnketePacijenta = new ObservableCollection<Anketa>();
             AnketePacijenta = AnketaServis.PrikaziSveAnketeZaProsleTermine(AnketePacijenta, idPacijent);
             listaAnketi.ItemsSource = AnketePacijenta;
-            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
-
-       /* private void PrikaziSveAnketeZaProsleTermine(ObservableCollection<Anketa> AnketePacijenta)
+        private void listaAnketi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (Anketa anketa in AnketaServis.SveAnketePacijenta(idPacijent))
+            Anketa anketa = (Anketa)listaAnketi.SelectedItem;
+            if (anketa != null && !anketa.PopunjenaAnketa)
             {
-                foreach (Termin termin in TerminServis.PronadjiTerminPoIdPacijenta(idPacijent))
+                if (anketa.VrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
                 {
-                    PrikaziAnketeZaProsleTermine(anketa, termin);
+                    PrikaziAnketuZaKliniku anketaZaKliniku = new PrikaziAnketuZaKliniku(idPacijent, anketa.IdAnkete);
+                    this.NavigationService.Navigate(anketaZaKliniku);
+                }
+                else
+                {
+                    PrikaziAntekuZaLekare anketaZaLekare = new PrikaziAntekuZaLekare(idPacijent, anketa.IdAnkete);
+                    this.NavigationService.Navigate(anketaZaLekare);
                 }
             }
-        }*/
-
-      /*  private void PrikaziAnketeZaProsleTermine(Anketa anketa, Termin termin)
-        {
-            DateTime datumTermina = DateTime.Parse(termin.Datum);
-            TimeSpan vremeKrajaTermina = TimeSpan.Parse(termin.VremeKraja);
-            if ((datumTermina == DateTime.Now.Date && vremeKrajaTermina <= DateTime.Now.TimeOfDay) || datumTermina < DateTime.Now.Date)
-            {
-                PrikaziAnketuZaLekara(anketa, termin.IdTermin);
-                PrikaziAnketuZaKliniku();
-            }
         }
-
-        private void PrikaziAnketuZaLekara(Anketa anketa, int IdTermina)
-        {
-            if (anketa.IdTermina == IdTermina)
-            {
-                AnketePacijenta.Add(anketa);
-            }
-        }
-
-        private void PrikaziAnketuZaKliniku()
-        {
-            if (AnketePacijenta.Count() == minBrojTerminaZaAnketuKlinika) 
-            {
-                Anketa anketa = AnketaServis.PronadjiAnketuZaKliniku(idPacijent);
-                if (anketa == null) return;
-                AnketePacijenta.Add(anketa);
-            }
-        }*/
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -94,7 +68,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -114,33 +88,11 @@ namespace Projekat
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
         }
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
-        }
-
-        private void listaAnketi_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Anketa anketa = (Anketa)listaAnketi.SelectedItem;
-            if (anketa != null && !anketa.PopunjenaAnketa)
-            {
-                if (anketa.VrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
-                {
-                    PrikaziAnketuZaKliniku anketaZaKliniku = new PrikaziAnketuZaKliniku(idPacijent, anketa.IdAnkete);
-                    this.NavigationService.Navigate(anketaZaKliniku);
-                }
-                else
-                {
-                    PrikaziAntekuZaLekare anketaZaLekare = new PrikaziAntekuZaLekare(idPacijent, anketa.IdAnkete);
-                    this.NavigationService.Navigate(anketaZaLekare);
-                }
-            }
-        }
-
-        private void popunjenCheckBox_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-
         }
 
         private void anketa_Click(object sender, RoutedEventArgs e)
@@ -148,6 +100,7 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;

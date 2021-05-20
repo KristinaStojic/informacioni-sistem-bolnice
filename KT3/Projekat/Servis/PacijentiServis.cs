@@ -62,5 +62,81 @@ namespace Projekat.Servis
             return true;
         }
         #endregion
+
+        #region Pacijent 
+        public static bracnoStanje OdrediBracnoStanjePacijenta(pol polPacijenta, string txtBracnoStanje)
+        {
+            bracnoStanje BracnoStanje = bracnoStanje.Neodredjeno;
+            if (polPacijenta.Equals("M"))
+            {
+                if (txtBracnoStanje.Equals("Ozenjen"))
+                {
+                    BracnoStanje = bracnoStanje.Ozenjen;
+                    return BracnoStanje;
+                }
+                else if (txtBracnoStanje.Equals("Neoznjen"))
+                {
+                    BracnoStanje = bracnoStanje.Neozenjen;
+                }
+                else if (txtBracnoStanje.Equals("Udovac"))
+                {
+                    BracnoStanje = bracnoStanje.Udovac;
+                }
+                else if (txtBracnoStanje.Equals("Razveden"))
+                {
+                    BracnoStanje = bracnoStanje.Razveden;
+                }
+                else if (txtBracnoStanje.Equals("Neodredjeno"))
+                {
+                    BracnoStanje = bracnoStanje.Neodredjeno;
+                }
+            }
+            else
+            {
+                if (txtBracnoStanje.Equals("Udata"))
+                {
+                    BracnoStanje = bracnoStanje.Udata;
+                }
+                else if (txtBracnoStanje.Equals("Neudata"))
+                {
+                    BracnoStanje = bracnoStanje.Neudata;
+                }
+                else if (txtBracnoStanje.Equals("Udovica"))
+                {
+                    BracnoStanje = bracnoStanje.Udovica;
+                }
+                else if (txtBracnoStanje.Equals("Razvedena"))
+                {
+                    BracnoStanje = bracnoStanje.Razvedena;
+                }
+                else if (txtBracnoStanje.Equals("Neodredjeno"))
+                {
+                    BracnoStanje = bracnoStanje.Neodredjeno;
+                }
+            }
+            return BracnoStanje;
+        }
+
+        public static string OdrediPolPacijenta(Pacijent prijavljeniPacijent)
+        {
+            string txtPol;
+            if (prijavljeniPacijent.Pol.Equals("M"))
+                txtPol = "M";
+            else
+                txtPol = "Z";
+            return txtPol;
+        }
+
+        public static pol IzmeniPolPacijenta(string txtPol)
+        {
+            pol retVal;
+            if (txtPol.Equals("M"))
+                retVal = pol.M;
+            else
+                retVal = pol.Z;
+            return retVal;
+        }
+
+        #endregion
     }
 }

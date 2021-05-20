@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,7 +28,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
             this.tabelaRecepata.ItemsSource = DodajLekarskeReceptePacijenta();
             this.prikazAnamnezi.ItemsSource = DodajAnamnezePacijenta();
             this.prikazUputa.ItemsSource = DodajUputePacijenta();
@@ -35,6 +36,7 @@ namespace Projekat
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
+        // TODO: dodati ove metode u Zdravstveni karton Servis
         private static ObservableCollection<Uput> DodajUputePacijenta()
         {
             ObservableCollection<Uput> uputiPacijenta = new ObservableCollection<Uput>();
@@ -102,7 +104,6 @@ namespace Projekat
             Page recept = new Recept(lp, prijavljeniPacijent);
             this.NavigationService.Navigate(recept);
         }
-        // **********
 
 
         /* ANAMNEZE */
@@ -127,7 +128,6 @@ namespace Projekat
             this.NavigationService.Navigate(anamnezaPrikaz);
         }
 
-        // *********
 
         private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -155,7 +155,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;

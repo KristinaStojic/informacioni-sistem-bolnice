@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,26 +30,15 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Termini = new ObservableCollection<Termin>();
-            DodajTerminePacijenta(idPacijent, Termini);
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            Termini = TerminServis.PronadjiTerminPoIdPacijenta(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
             view.Filter = UserFilter;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
         }
 
-        private static void DodajTerminePacijenta(int idPacijenta, ObservableCollection<Termin> Termini)
-        {
-            foreach (Termin t in TerminMenadzer.termini)
-            {
-                if (t.Pacijent.IdPacijenta == idPacijent)
-                {
-                    Termini.Add(t);
-                }
-            }
-        }
-
+        
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(txtFilter.Text))
@@ -69,9 +59,9 @@ namespace Projekat
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        /* Pomeri termin */
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            // izmeni
             Termin terminZaPomeranje = (Termin)dataGridTermini.SelectedItem;
             if (terminZaPomeranje == null)
             {
@@ -97,7 +87,7 @@ namespace Projekat
                 MessageBox.Show("Selektujte termin koji zelite da otkazete", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno otkazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -120,7 +110,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;

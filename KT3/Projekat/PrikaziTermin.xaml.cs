@@ -36,7 +36,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljeniPacijent;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Termini = new ObservableCollection<Termin>();
             ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
@@ -174,7 +174,7 @@ namespace Projekat
         // obavestenja servis
         private static Obavestenja PronadjiSledeceObavestenje(string datum)
         {
-            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
+            foreach (Obavestenja o in ObavestenjaServis.NadjiSvaObavestenja())
             {
                 if (o.ListaIdPacijenata.Contains(idPacijent))
                 {
@@ -220,41 +220,6 @@ namespace Projekat
             
         }
 
-        private void odjava_Click(object sender, RoutedEventArgs e)
-        {
-            Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);
-        }
-
-        public void karton_Click(object sender, RoutedEventArgs e)
-        {
-            Page karton = new ZdravstveniKartonPacijent(idPacijent);
-            this.NavigationService.Navigate(karton);
-        }
-
-        public void zakazi_Click(object sender, RoutedEventArgs e)
-        {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
-        }
-
-        public void uvid_Click(object sender, RoutedEventArgs e)
-        {
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid); 
-        }
-
-        private void pocetna_Click(object sender, RoutedEventArgs e)
-        {
-            Page pocetna = new PrikaziTermin(idPacijent);
-            this.NavigationService.Navigate(pocetna);
-        }
-
         // obavestenja servis
         private void UvidObavestenje_Click(object sender, RoutedEventArgs e)
         {
@@ -275,6 +240,40 @@ namespace Projekat
                 ObavestenjaServis.ObrisiObavestenjePacijent(obavestenje);
                 ObavestenjaPacijent.Remove(obavestenje);
             }
+        }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+            Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            Page karton = new ZdravstveniKartonPacijent(idPacijent);
+            this.NavigationService.Navigate(karton);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
+            {
+                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
+                return;
+            }
+            Page zakaziTermin = new ZakaziTermin(idPacijent);
+            this.NavigationService.Navigate(zakaziTermin);
+        }
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
+            this.NavigationService.Navigate(uvid);
+        }
+
+        private void pocetna_Click(object sender, RoutedEventArgs e)
+        {
+            Page pocetna = new PrikaziTermin(idPacijent);
+            this.NavigationService.Navigate(pocetna);
         }
 
         private void Korisnik_Click(object sender, RoutedEventArgs e)
