@@ -24,6 +24,8 @@ namespace Projekat
             PrikaziTermin.pacijentProzor = true;
             AnketaServis.NadjiSveAnkete();
             MalicioznoPonasanjeServis.NadjiSvaMalicioznaPonasanja();
+            var app = (App)Application.Current;
+            app.ChangeLanguage("sr-LATN");
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

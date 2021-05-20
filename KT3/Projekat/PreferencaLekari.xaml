@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="PreferencaLekari" Background="{DynamicResource BackgroundColor}" >
@@ -32,41 +33,38 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                     <Separator/>
-                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click"/>
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                     <Separator/>
-                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                    <MenuItem Header="_sr" />
-                                    <MenuItem Header="_en"/>
+                                    <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                    <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                     <Separator />
-                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
+                                    <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                    <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                    <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                     <Separator />
-                                    <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                            <Hyperlink Name="pocetna" Click="pocetna_Click">
-                            <Run Text="Početna stranica"/>
-                            </Hyperlink>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
-                                <Run Text="Zakažite termin"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text="  "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="uvid" Click="uvid_Click">
-                                <Run Text="Uvid u zakazane termine"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="karton" Click="karton_Click">
-                                <Run Text="Zdravstveni karton"/>
-                            </Hyperlink>
+                        <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                            <Run Text="{namespace:Loc Pocetna}"/>
+                        </Hyperlink>
+                        <Run Text="  "/>
+                        <Hyperlink Name="zakazi" Click="zakazi_Click">
+                            <Run Text="{namespace:Loc ZakaziTermin}"/>
+                        </Hyperlink>
+                        <Run Text="  "/>
+                        <Hyperlink Name="uvid" Click="uvid_Click">
+                            <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
+                        </Hyperlink>
+                        <Run Text=" "/>
+                        <Hyperlink Name="karton" Click="karton_Click">
+                            <Run Text="{namespace:Loc Karton}"/>
+                        </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>
@@ -74,8 +72,8 @@
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="160,9.5,145,76" Width="405">
 
 
-            <GroupBox x:Name="grupa" Header="Izaberite lekara" HorizontalAlignment="Center" Height="360"
-                VerticalAlignment="Top" Width="380" RenderTransformOrigin="0.858,0.494">
+            <GroupBox x:Name="grupa" Header="{namespace:Loc IzaberiteLekara2}" HorizontalAlignment="Center" Height="360"
+                VerticalAlignment="Top" Width="380" RenderTransformOrigin="0.858,0.494" Margin="-10">
                 <StackPanel>
                     <TextBox x:Name="txtFilter" Height="25" Width="200" Margin="0,20,20, 0" HorizontalAlignment="Right">
                         <TextBox.Style>
@@ -83,7 +81,7 @@
                                 <Style.Resources>
                                     <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                         <VisualBrush.Visual>
-                                            <Label Content="Pronađite lekara " Foreground="DarkGray" />
+                                            <Label Content="{namespace:Loc PronadjiteLekara}" Foreground="DarkGray" />
                                         </VisualBrush.Visual>
                                     </VisualBrush>
                                 </Style.Resources>
@@ -107,11 +105,11 @@
                             <GridView>
                                 <GridViewColumn Header="ID" 
                                 Width="33" DisplayMemberBinding="{Binding IdLekara}"/>
-                                <GridViewColumn Header="Ime" 
+                                <GridViewColumn Header="{namespace:Loc Ime}" 
                                 Width="80" DisplayMemberBinding="{Binding ImeLek}"/>
-                                <GridViewColumn Header="Prezime" 
+                                <GridViewColumn Header="{namespace:Loc Prezime}" 
                                 Width="80" DisplayMemberBinding="{Binding PrezimeLek}"/>
-                                <GridViewColumn Header="Specijalizacija"
+                                <GridViewColumn Header="{namespace:Loc Specijalizacija}"
                                 Width="140" DisplayMemberBinding="{Binding specijalizacija}"/>
                             </GridView>
                         </ListView.View>
@@ -119,9 +117,9 @@
                 </StackPanel>
             </GroupBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="104,20,103,0" Width="198">
-                <Button Content="Potvrdi" Name="zakaziLekar" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="90" 
+                <Button Content="{namespace:Loc Potvrdi}" Name="zakaziLekar" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="90" 
                 Height="30" ToolTip="Selektujte jedanog od ponudjenih lekara" Click="zakaziLekar_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
-                <Button Content="Nazad"  x:Name="nazad" HorizontalAlignment="Center" Margin="20, 0, 0, 0" VerticalAlignment="Center" Width="90" 
+                <Button Content="{namespace:Loc Nazad}"  x:Name="nazad" HorizontalAlignment="Center" Margin="20, 0, 0, 0" VerticalAlignment="Center" Width="90" 
                 Height="30" Click="nazad_Click" Style="{DynamicResource ButtonStyle2}" Grid.Column="1" Grid.Row="1"/>
 
             </StackPanel>

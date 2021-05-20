@@ -26,13 +26,11 @@ namespace Projekat
         private Termin termin;
         private static int idPacijent;
         private List<Sala> SaleZaPreglede;
-        private static ObservableCollection<string> SviSlobodniSlotovi { get; set; }
         private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
         private Sala prvaSlobodnaSala;
-        private int ukupanBrojSalaZaPregled;
         private static Pacijent prijavljeniPacijent;
+        // TODO: !! 
         private static List<string> SviZauzetiZaSelektovaniDatum { get; set; }
-        private static int oznakaZaRenoviranje = 0;
 
         public IzmeniTermin(Termin izabraniTermin)
         {

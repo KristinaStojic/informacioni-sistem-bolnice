@@ -48,9 +48,9 @@ namespace Projekat
             ObavestenjaPacijent = ObavestenjaServis.DodajObavestenja(idPacijent);
             this.SvetlaTema.IsEnabled = false;
             AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-            this.Jezik.Header = "en-US";
-            var app = (App)Application.Current;
-            app.ChangeLanguage("sr-LATN");
+            //this.Jezik.Header = "en-US";
+            //var app = (App)Application.Current;
+            //app.ChangeLanguage("sr-LATN");
 
         }
 

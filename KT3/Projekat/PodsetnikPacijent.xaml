@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace ="clr-namespace:Projekat.Lokalizacija"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800" Background="{DynamicResource BackgroundColor}"
       Title="PodsetnikPacijent">
@@ -36,50 +37,50 @@
                                 <MenuItem.Icon>
                                     <Image Source="/slike/user.png" />
                                 </MenuItem.Icon>
-                                <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
+                                <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                 <Separator/>
-                                <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
-                                <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                <MenuItem Header="_sr" />
-                                <MenuItem Header="_en"/>
+                                <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                 <Separator />
-                                <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                 <Separator />
-                                <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                                <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                             </MenuItem>
                         </Menu>
                     </StackPanel>
                 </StackPanel>
                 <TextBlock Margin="20,0,0,0" FontSize="14"  Height="25">
-                <Hyperlink Name="pocetna" Click="pocetna_Click">
-                    <Run Text="Početna stranica"/>
+                 <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                    <Run Text="{namespace:Loc Pocetna}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="zakazi" Click="zakazi_Click">
-                    <Run Text="Zakažite termin"/>
+                    <Run Text="{namespace:Loc ZakaziTermin}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="uvid" Click="uvid_Click">
-                    <Run Text="Uvid u zakazane termine"/>
+                    <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
                 </Hyperlink>
                 <Run Text=" "/>
                 <Hyperlink Name="karton" Click="karton_Click">
-                    <Run Text="Zdravstveni karton"/>
+                    <Run Text="{namespace:Loc Karton}"/>
                 </Hyperlink>
                 </TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="0, 10, 0, 0">
-                <GroupBox Header=" Novi podsetnik " Margin="120, 0, 120, 10">
+                <GroupBox Header="{namespace:Loc NoviPodsetnik}" Margin="120, 0, 120, 10">
                     <StackPanel Orientation="Vertical" >
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
-                            <Label Content="Datum" Foreground="{DynamicResource TextColor}"/>
+                            <Label Content="{namespace:Loc Datum}" Foreground="{DynamicResource TextColor}"/>
                             <DatePicker Name="Datum" Width="174" Margin="8, 0, 0, 0">
                             </DatePicker>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                            <Label Content="Vreme" Foreground="{DynamicResource TextColor}"/>
+                            <Label Content="{namespace:Loc Vreme}" Foreground="{DynamicResource TextColor}"/>
                             <!-- Vratiti na combo - HCI 
                         <ComboBox Name="Vreme" Width="175" Margin="10, 0, 0, 0">
                             <ComboBoxItem Content="07:00"/>
@@ -90,7 +91,7 @@
                             <TextBox x:Name="Vreme" Width="175" Margin="10, 0, 0, 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                            <Label Content="Sadržaj" Foreground="{DynamicResource TextColor}"></Label>
+                            <Label Content="{namespace:Loc SadrzajObavestenja}" Foreground="{DynamicResource TextColor}"></Label>
                             <TextBox x:Name="SadrzajPodsetnika"
                                  Width="175"
                                  Height="80"
@@ -98,7 +99,7 @@
                                  Margin="8,0, 0, 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 10">
-                            <Button Content="Dodaj"
+                            <Button Content="{namespace:Loc Dodaj}"
                                 Width="90"
                                 Height="30"
                                 Name="DodajPodsetnik"
@@ -108,7 +109,7 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <Label Content="⏰ Podsetnici" HorizontalAlignment="Center" Margin="0, 20, 0, 05"
+                <Label Content="{namespace:Loc Podsetnici}" HorizontalAlignment="Center" Margin="0, 20, 0, 05"
                            FontSize="14" Foreground="{DynamicResource TextColor}" FontWeight="Bold"/>
                     <StackPanel>
                         <ListView Margin="120, 0, 120, 0" Height="180" x:Name="Podsetnici">
@@ -123,8 +124,8 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Width="120" Header="Datum" x:Name="datum" DisplayMemberBinding="{Binding Datum}"/>
-                                    <GridViewColumn Width="180" Header="Sadrzaj" x:Name="sadrzaj">
+                                <GridViewColumn Width="120" Header="{namespace:Loc Datum}" x:Name="datum" DisplayMemberBinding="{Binding Datum}"/>
+                                <GridViewColumn Width="180" Header="{namespace:Loc SadrzajObavestenja}" x:Name="sadrzaj">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding SadrzajObavestenja}" TextWrapping="Wrap"></TextBlock>
@@ -135,12 +136,7 @@
                             </ListView.View>
                         </ListView>
                     </StackPanel>
-                    
-
-
                 </StackPanel>
-            
         </Grid>
-        
     </StackPanel>
 </Page>

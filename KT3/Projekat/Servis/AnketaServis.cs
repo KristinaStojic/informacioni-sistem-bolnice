@@ -108,7 +108,7 @@ namespace Projekat.Servis
         }
         public static string PrikaziNaslovAnkete(Lekar lekar)
         {
-            return "Anketa o radu lekara (" + lekar.ImeLek + " " + lekar.PrezimeLek + ")";
+            return "(" + lekar.ImeLek + " " + lekar.PrezimeLek + ")";
         }
 
         #endregion
