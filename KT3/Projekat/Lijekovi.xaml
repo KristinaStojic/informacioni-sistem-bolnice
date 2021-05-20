@@ -14,6 +14,7 @@
         <KeyBinding Key="D" Modifiers="Ctrl" Command="{Binding DodajLijekProzor}"></KeyBinding>
         <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding IzmjeniLijekKomanda}"></KeyBinding>
         <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZahtjeviKomanda}"></KeyBinding>
+        <KeyBinding Key="B" Modifiers="Ctrl" Command="{Binding OdbijeniLijekovi}"></KeyBinding>
     </Window.InputBindings>
     <DockPanel Margin="0,0,2,0">
         <StackPanel DockPanel.Dock="Top">
@@ -24,7 +25,7 @@
                 </MenuItem>
                 <MenuItem Header="Uredi" FontSize="15">
                     <MenuItem Header="Izmjeni" FontSize="15" Command="{Binding IzmjeniLijekKomanda}"  InputGestureText="Ctrl + I"></MenuItem>
-                    <MenuItem Header="Odbijeni" FontSize="15" Click="OdbijeniLijekovi_Click" InputGestureText="Ctrl + B"></MenuItem>
+                    <MenuItem Header="Odbijeni" FontSize="15" Command="{Binding OdbijeniLijekovi}" InputGestureText="Ctrl + B"></MenuItem>
                     <MenuItem Header="Obrisi" FontSize="15" Command="{Binding ObrisiLijekProzor}" InputGestureText="Ctrl + O"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Navigacija" FontSize="15">
@@ -48,7 +49,7 @@
                 <Button ToolTip="Izmjeni, Ctrl + I" Command="{Binding IzmjeniLijekKomanda}">
                     <Image Source="slike/pen.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button ToolTip="Odbijeni, Ctrl + B" Click="OdbijeniLijekovi_Click">
+                <Button ToolTip="Odbijeni, Ctrl + B" Command="{Binding OdbijeniLijekovi}">
                     <Image Source="slike/removed.png" Width="30" Height="30"></Image>
                 </Button>
                 <Button ToolTip="Obrisi, Ctrl + O" Command="{Binding ObrisiLijekProzor}">
@@ -70,8 +71,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
-                <Button Width="150" Height="50" Margin="150,30,0,0" Content="Zamjenski lijekovi" Background="CadetBlue" Command="{Binding ZamjenskiLijekoviKomanda}"/>
-                <Button Width="150" Height="50" Margin="30,30,0,0" Content="Sastojci" Background="CadetBlue" Click="Sastojci_Click"/>
+                <Button Width="150" Height="50" Margin="150,30,0,0" Content="Zamjenski lijekovi" Background="CadetBlue" Command="{Binding ZamjenskiLijekoviProzorKomanda}"/>
+                <Button Width="150" Height="50" Margin="30,30,0,0" Content="Sastojci" Background="CadetBlue" Command="{Binding SastojciProzorKomanda}"/>
             </StackPanel>
         </StackPanel>
     </DockPanel>

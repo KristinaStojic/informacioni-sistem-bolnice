@@ -71,6 +71,7 @@ namespace Projekat.Servis
             ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString("d"), false);
             LekoviMenadzer.zahteviZaLekove.Add(zahtjev);
             LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviMenadzer.sacuvajIzmeneZahteva();
         }
     }
 }

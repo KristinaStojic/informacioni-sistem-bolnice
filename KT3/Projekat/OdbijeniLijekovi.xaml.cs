@@ -11,21 +11,21 @@ namespace Projekat
     /// </summary>
     public partial class OdbijeniLijekovi : Window
     {
-        private int colNum = 0;
+        /*private int colNum = 0;
 
         public static ObservableCollection<Lek> OdbijeniLekovi
         {
             get;
             set;
-        }
+        }*/
         public OdbijeniLijekovi()
         {
             InitializeComponent();
-            inicijalizujElemente();
-            inicijalizujLijekove();
+            //inicijalizujElemente();
+            //inicijalizujLijekove();
         }
 
-        private void inicijalizujElemente()
+        /*private void inicijalizujElemente()
         {
             OdbijeniLekovi = new ObservableCollection<Lek>();
             this.DataContext = this;
@@ -40,21 +40,21 @@ namespace Projekat
                     OdbijeniLekovi.Add(zahtjev.lek);
                 }
             }
-        }
+        }*/
 
-        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
+       /* private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
-
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+       */
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Obrazlozenje_Click(object sender, RoutedEventArgs e)
+        /*private void Obrazlozenje_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)this.dataGridOdbijeniLijekovi.SelectedItem;
             if (izabraniLijek != null)
@@ -66,30 +66,30 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati lijek!");
             }
-        }
+        }*/
 
-        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        /*private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
                 if (e.Key == Key.N)
                 {
-                    Odustani_Click(sender, e);
+                    //Odustani_Click(sender, e);
 
                 }else if(e.Key == Key.P)
                 {
                     Potvrdi_Click(sender, e);
                 }else if(e.Key == Key.I)
                 {
-                    Izmjeni_Click(sender, e);
+                    //Izmjeni_Click(sender, e);
                 }else if(e.Key == Key.O)
                 {
-                    Obrisi_Click(sender, e);
+                    //Obrisi_Click(sender, e);
                 }
             }
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
             if(izabraniLijek != null)
@@ -101,9 +101,9 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati lijek!");
             }
-        }
+        }*/
 
-        public static void azurirajPrikaz()
+        /*public static void azurirajPrikaz()
         {
             OdbijeniLekovi.Clear();
             foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
@@ -113,9 +113,9 @@ namespace Projekat
                     OdbijeniLekovi.Add(zahtjev.lek);
                 }
             }
-        }
+        }*/
 
-        private void Izmjeni_Click(object sender, RoutedEventArgs e)
+       /* private void Izmjeni_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
             if(izabraniLijek != null)
@@ -127,9 +127,9 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati lijek");
             }
-        }
+        }*/
 
-        private void Obrisi_Click(object sender, RoutedEventArgs e)
+        /*private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridOdbijeniLijekovi.SelectedItem;
             if(izabraniLijek != null)
@@ -141,9 +141,9 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati lijek!");
             }
-        }
+        }*/
 
-        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+       /* private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             OdbijeniLekovi.Clear();
             foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
@@ -153,6 +153,6 @@ namespace Projekat
                     OdbijeniLekovi.Add(zahtjev.lek);
                 }
             }
-        }
+        }*/
     }
 }

@@ -9,15 +9,15 @@ namespace Projekat
     /// </summary>
     public partial class PotvrdaSlanjaZahtjeva : Window
     {
-        Lek izabraniLijek;
+        //Lek izabraniLijek;
 
-        public PotvrdaSlanjaZahtjeva(Lek izabraniLijek)
+        public PotvrdaSlanjaZahtjeva()
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
+            //this.izabraniLijek = izabraniLijek;
         }
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
            napraviNoviZahtjev();
            sacuvajIzmjene();
@@ -28,7 +28,7 @@ namespace Projekat
         {
             LekoviMenadzer.sacuvajIzmeneZahteva();
             LekoviServis.sacuvajIzmjene();
-            OdbijeniLijekovi.azurirajPrikaz();
+            //OdbijeniLijekovi.azurirajPrikaz();
         }
 
         private void napraviNoviZahtjev()
@@ -41,11 +41,11 @@ namespace Projekat
                     zahtjev.odobrenZahtev = false;
                 }
             }
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+       /* private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
     }
 }

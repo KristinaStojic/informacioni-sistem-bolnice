@@ -11,34 +11,34 @@ namespace Projekat
     public partial class IzmjeniOdbijeniLijek : Window
     {
         public Lek izabraniLijek;
-        public IzmjeniOdbijeniLijek(Lek izabraniLijek)
+        public IzmjeniOdbijeniLijek()
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniLijek);
-            postaviElementeProzora();
+            //inicijalizujElemente(izabraniLijek);
+            //postaviElementeProzora();
         }
 
-        private void inicijalizujElemente(Lek izabraniLijek)
+        /*private void inicijalizujElemente(Lek izabraniLijek)
         {
             this.izabraniLijek = izabraniLijek;
             this.Potvrdi.IsEnabled = false;
-        }
+        }*/
 
-        private void postaviElementeProzora()
+        /*private void postaviElementeProzora()
         {
             if (izabraniLijek != null)
             {
                 this.sifra.Text = izabraniLijek.sifraLeka;
                 this.naziv.Text = izabraniLijek.nazivLeka;
             }
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             string sifraLijeka = this.sifra.Text;
             string nazivLijeka = this.naziv.Text;
@@ -46,8 +46,8 @@ namespace Projekat
             LekoviServis.IzmjeniOdbijeniLijek(izabraniLijek, lijek);
             LekoviMenadzer.sacuvajIzmeneZahteva();
             this.Close();
-        }
-        private void sifra_TextChanged(object sender, TextChangedEventArgs e)
+        }*/
+        /*private void sifra_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
@@ -78,13 +78,13 @@ namespace Projekat
                 }
             }
             return false;
-        }
+        }*/
 
-        private void Sastojci_Click(object sender, RoutedEventArgs e)
+        /*private void Sastojci_Click(object sender, RoutedEventArgs e)
         {
             IzmjeniSastojkeOdbijenog izmjeniSastojkeOsbijenog = new IzmjeniSastojkeOdbijenog(izabraniLijek);
             izmjeniSastojkeOsbijenog.Show();
-        }
+        }*/
     }
 
 }

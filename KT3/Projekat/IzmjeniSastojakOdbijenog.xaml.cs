@@ -10,17 +10,17 @@ namespace Projekat
     /// </summary>
     public partial class IzmjeniSastojakOdbijenog : Window
     {
-        public Sastojak izabraniSastojak;
-        public Lek izabraniLijek;
+        //public Sastojak izabraniSastojak;
+        //public Lek izabraniLijek;
 
-        public IzmjeniSastojakOdbijenog(Lek izabraniLijek, Sastojak izabraniSastojak)
+        public IzmjeniSastojakOdbijenog()
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniLijek, izabraniSastojak);
-            postaviElemente();
+            //inicijalizujElemente(izabraniLijek, izabraniSastojak);
+            //postaviElemente();
         }
 
-        private void inicijalizujElemente(Lek izabraniLijek, Sastojak izabraniSastojak)
+        /*private void inicijalizujElemente(Lek izabraniLijek, Sastojak izabraniSastojak)
         {
             this.izabraniSastojak = izabraniSastojak;
             this.izabraniLijek = izabraniLijek;
@@ -30,9 +30,9 @@ namespace Projekat
         {
             this.naziv.Text = izabraniSastojak.naziv;
             this.kolicina.Text = izabraniSastojak.kolicina.ToString();
-        }
+        }*/
 
-        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void naziv_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
@@ -70,14 +70,14 @@ namespace Projekat
         {
             double test;
             return double.TryParse(tekst, out test);
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Sastojak sastojak = napraviSastojak();
             LekoviServis.izmjeniSastojakOdbijenogLijeka(izabraniLijek, izabraniSastojak, sastojak);
@@ -92,6 +92,6 @@ namespace Projekat
             string naziv = this.naziv.Text;
             double kolicina = double.Parse(this.kolicina.Text);
             return new Sastojak(naziv, kolicina);
-        }
+        }*/
     }
 }

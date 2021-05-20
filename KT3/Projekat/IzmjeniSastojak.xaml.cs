@@ -10,17 +10,17 @@ namespace Projekat
     /// </summary>
     public partial class IzmjeniSastojak : Window
     {
-        public Sastojak izabraniSastojak;
-        public Lek izabraniLijek;
+        //public Sastojak izabraniSastojak;
+        //public Lek izabraniLijek;
 
-        public IzmjeniSastojak(Sastojak izabraniSastojak, Lek izabraniLijek)
+        public IzmjeniSastojak()
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniSastojak, izabraniLijek);
-            postaviElemente();
+            //inicijalizujElemente(izabraniSastojak, izabraniLijek);
+           // postaviElemente();
         }
 
-        private void inicijalizujElemente(Sastojak izabraniSastojak, Lek izabraniLijek)
+        /*private void inicijalizujElemente(Sastojak izabraniSastojak, Lek izabraniLijek)
         {
             this.izabraniSastojak = izabraniSastojak;
             this.izabraniLijek = izabraniLijek;
@@ -30,9 +30,9 @@ namespace Projekat
         {
             this.naziv.Text = izabraniSastojak.naziv;
             this.kolicina.Text = izabraniSastojak.kolicina.ToString();
-        }
+        }*/
 
-        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void naziv_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
@@ -68,9 +68,9 @@ namespace Projekat
         {
             double test;
             return double.TryParse(tekst, out test);
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Sastojak sastojak = napraviSastojak();
             LekoviServis.izmjeniSastojakLijeka(izabraniLijek, izabraniSastojak, sastojak);
@@ -78,18 +78,18 @@ namespace Projekat
             Sastojci.SastojciLijeka.RemoveAt(idx);
             Sastojci.SastojciLijeka.Insert(idx, sastojak);
             this.Close();
-        }
+        }*/
 
-        private Sastojak napraviSastojak()
+        /*private Sastojak napraviSastojak()
         {
             string naziv = this.naziv.Text;
             double kolicina = double.Parse(this.kolicina.Text);
             return new Sastojak(naziv, kolicina);
-        }
+        }*/
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /*private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
     }
 }

@@ -13,25 +13,25 @@ namespace Projekat
     public partial class Sastojci : Window
     {
         public Lek izabraniLijek;
-        private int colNum = 0;
+        //private int colNum = 0;
 
         public static ObservableCollection<Sastojak> SastojciLijeka{get; set;}
-
+        
         public Sastojci(Lek izabraniLijek)
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniLijek);
-            postaviTekst();
-            dodajSastojke();
+            //inicijalizujElemente(izabraniLijek);
+            //postaviTekst();
+            //dodajSastojke();
         }
 
-        private void inicijalizujElemente(Lek izabraniLijek)
+        /*private void inicijalizujElemente(Lek izabraniLijek)
         {
             this.izabraniLijek = izabraniLijek;
-            this.DataContext = this;
-        }
+            //this.DataContext = this;
+        }*/
 
-        private void dodajSastojke()
+       /* private void dodajSastojke()
         {
             SastojciLijeka = new ObservableCollection<Sastojak>();
             foreach(Lek lijek in LekoviMenadzer.lijekovi)
@@ -50,31 +50,31 @@ namespace Projekat
                 SastojciLijeka.Add(sastojak);
             }
         }
-
-        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
+       */
+        /*private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
+        }*/
 
-        private void postaviTekst()
+       /* private void postaviTekst()
         {
             this.tekst.Text = "Sastojci za lijek: " + izabraniLijek.nazivLeka;
-        }
+        }*/
 
-        private void DodajSastojak_Click(object sender, RoutedEventArgs e)
+       /* private void DodajSastojak_Click(object sender, RoutedEventArgs e)
         {
             DodajSastojak dodajSastojak = new DodajSastojak(izabraniLijek);
             dodajSastojak.Show();
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void IzmjeniSastojak_Click(object sender, RoutedEventArgs e)
+        /*private void IzmjeniSastojak_Click(object sender, RoutedEventArgs e)
         {
             Sastojak izabraniSastojak = (Sastojak)dataGridSastojci.SelectedItem;
             if(izabraniSastojak != null)
@@ -86,9 +86,9 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati sastojak!");
             }
-        }
+        }*/
 
-        private void ObrisiSastojak_Click(object sender, RoutedEventArgs e)
+        /*private void ObrisiSastojak_Click(object sender, RoutedEventArgs e)
         {
             Sastojak izabraniSastojak = (Sastojak)dataGridSastojci.SelectedItem;
             if (izabraniSastojak != null)
@@ -99,9 +99,9 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati sastojak!");
             }
-        }
+        }*/
 
-        private void Pretraga_Click(object sender, TextChangedEventArgs e)
+        /*private void Pretraga_Click(object sender, TextChangedEventArgs e)
         {
             SastojciLijeka.Clear();
             if(izabraniLijek.sastojci != null)
@@ -114,7 +114,7 @@ namespace Projekat
                     }
                 }
             }
-        }
+        }*/
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -122,22 +122,22 @@ namespace Projekat
             {
                 if (e.Key == Key.P)
                 {
-                    this.Pretraga.Focus();
+                    //this.Pretraga.Focus();
                 }else if(e.Key == Key.N || e.Key == Key.Z)
                 {
-                    Odustani_Click(sender, e);
+                    //Odustani_Click(sender, e);
                 }
                 else if (e.Key == Key.D)
                 {
-                    DodajSastojak_Click(sender, e);
+                    //DodajSastojak_Click(sender, e);
                 }
                 else if (e.Key == Key.I)
                 {
-                    IzmjeniSastojak_Click(sender, e);
+                    //IzmjeniSastojak_Click(sender, e);
                 }
                 else if (e.Key == Key.O)
                 {
-                    ObrisiSastojak_Click(sender, e);
+                    //ObrisiSastojak_Click(sender, e);
                 }
             }
         }

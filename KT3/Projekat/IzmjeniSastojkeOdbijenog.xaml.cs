@@ -12,23 +12,23 @@ namespace Projekat
     public partial class IzmjeniSastojkeOdbijenog : Window
     {
         Lek izabraniLijek;
-        private int colNum = 0;
+        /*private int colNum = 0;
 
         public static ObservableCollection<Sastojak> SastojciLijeka
         {
             get;
             set;
-        }
+        }*/
         
-        public IzmjeniSastojkeOdbijenog(Lek izabraniLijek)
+        public IzmjeniSastojkeOdbijenog()
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniLijek);
-            postaviTekst();
-            dodajSastojke();
+            //inicijalizujElemente(izabraniLijek);
+            //postaviTekst();
+            //dodajSastojke();
         }
 
-        private void inicijalizujElemente(Lek izabraniLijek)
+        /*private void inicijalizujElemente(Lek izabraniLijek)
         {
             this.izabraniLijek = izabraniLijek;
             this.DataContext = this;
@@ -37,9 +37,9 @@ namespace Projekat
         private void postaviTekst()
         {
             this.tekst.Text = "Sastojci za lijek: " + izabraniLijek.nazivLeka;
-        }
+        }*/
 
-        private void dodajSastojke()
+       /* private void dodajSastojke()
         {
             SastojciLijeka = new ObservableCollection<Sastojak>();
 
@@ -65,9 +65,9 @@ namespace Projekat
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -81,9 +81,9 @@ namespace Projekat
                     Odustani_Click(sender, e);
                 }
             }
-        }
+        }*/
 
-        private void IzmjeniSastojak_Click(object sender, RoutedEventArgs e)
+        /*private void IzmjeniSastojak_Click(object sender, RoutedEventArgs e)
         {
             Sastojak izabraniSastojak = (Sastojak)dataGridSastojci.SelectedItem;
             if(izabraniSastojak != null)
@@ -95,6 +95,6 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati sastojak!");
             }
-        }
+        }*/
     }
 }

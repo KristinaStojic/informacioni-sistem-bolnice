@@ -19,15 +19,15 @@ namespace Projekat
     /// </summary>
     public partial class Obrazlozenje : Window
     {
-        Lek izabraniLijek;
-        public Obrazlozenje(Lek izabraniLijek)
+        //Lek izabraniLijek;
+        public Obrazlozenje()
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
-            inicijalizujElemente();
+            //this.izabraniLijek = izabraniLijek;
+            //inicijalizujElemente();
         }
 
-        private void inicijalizujElemente()
+       /* private void inicijalizujElemente()
         {
             foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
             {
@@ -37,9 +37,9 @@ namespace Projekat
                 }
             }
 
-        }
+        }*/
 
-        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+       /* private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
@@ -54,6 +54,6 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
     }
 }

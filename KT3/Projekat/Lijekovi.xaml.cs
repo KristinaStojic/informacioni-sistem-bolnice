@@ -83,7 +83,7 @@ namespace Projekat
             }
         }*/
 
-       /* private void ZamjenskiLijekovi_Click(object sender, RoutedEventArgs e)
+        /*private void ZamjenskiLijekovi_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridLijekovi.SelectedItem;
             if (izabraniLijek != null)
@@ -97,7 +97,7 @@ namespace Projekat
             }
         }*/
 
-        private void Sastojci_Click(object sender, RoutedEventArgs e)
+        /*private void Sastojci_Click(object sender, RoutedEventArgs e)
         {
             Lek izabraniLijek = (Lek)dataGridLijekovi.SelectedItem;
             if (izabraniLijek != null)
@@ -110,7 +110,7 @@ namespace Projekat
                 MessageBox.Show("Morate izabrati lijek!");
             }
         }
-
+        */
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
@@ -138,7 +138,7 @@ namespace Projekat
                     this.Pretraga.Focus();
                 }else if(e.Key == Key.B)
                 {
-                    OdbijeniLijekovi_Click(sender, e);
+                    //OdbijeniLijekovi_Click(sender, e);
                 }
                 else if (e.Key == Key.H)
                 {
@@ -170,11 +170,11 @@ namespace Projekat
             }
         }
 
-        private void OdbijeniLijekovi_Click(object sender, RoutedEventArgs e)
+        /*private void OdbijeniLijekovi_Click(object sender, RoutedEventArgs e)
         {
             OdbijeniLijekovi odbijeniLijekovi = new OdbijeniLijekovi();
             odbijeniLijekovi.Show();
-        }
+        }*/
 
         private void Pomoc_Click(object sender, RoutedEventArgs e)
         {

@@ -10,14 +10,14 @@ namespace Projekat
     /// </summary>
     public partial class DodajSastojak : Window
     {
-        public Lek izabraniLijek;
-        public DodajSastojak(Lek izabraniLijek)
+        //public Lek izabraniLijek;
+        public DodajSastojak()
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniLijek);
+            //inicijalizujElemente(izabraniLijek);
         }
 
-        private void inicijalizujElemente(Lek izabraniLijek)
+       /* private void inicijalizujElemente(Lek izabraniLijek)
         {
             this.Potvrdi.IsEnabled = false;
             this.izabraniLijek = izabraniLijek;
@@ -26,9 +26,9 @@ namespace Projekat
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Sastojak sastojak = napraviSastojak();
             LekoviServis.dodajSastojak(sastojak, izabraniLijek);
@@ -41,9 +41,9 @@ namespace Projekat
             string naziv = this.naziv.Text;
             double kolicina = double.Parse(this.kolicina.Text);
             return new Sastojak(naziv, kolicina);
-        }
+        }*/
 
-        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+       /* private void naziv_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
@@ -51,9 +51,9 @@ namespace Projekat
         private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
-        }
+        }*/
 
-        private void postaviDugme()
+        /*private void postaviDugme()
         {
             if (jeBroj(this.kolicina.Text))
             {
@@ -81,6 +81,6 @@ namespace Projekat
         {
             double test;
             return double.TryParse(tekst, out test);
-        }
+        }*/
     }
 }

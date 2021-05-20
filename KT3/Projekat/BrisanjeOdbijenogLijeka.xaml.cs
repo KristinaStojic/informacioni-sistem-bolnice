@@ -8,19 +8,19 @@ namespace Projekat
     /// </summary>
     public partial class BrisanjeOdbijenogLijeka : Window
     {
-        public Lek izabraniLijek;
-        public BrisanjeOdbijenogLijeka(Lek izabraniLijek)
+        //public Lek izabraniLijek;
+        public BrisanjeOdbijenogLijeka()
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
+            //this.izabraniLijek = izabraniLijek;
         }
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+       /* private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {   
             ukloniZahtjevZaLijek(nadjiIzabraniZahtjev());
             this.Close();
@@ -41,8 +41,8 @@ namespace Projekat
         private void ukloniZahtjevZaLijek(ZahtevZaLekove izabraniZahtjev)
         {
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
-            OdbijeniLijekovi.azurirajPrikaz();
+            //OdbijeniLijekovi.azurirajPrikaz();
             LekoviMenadzer.sacuvajIzmeneZahteva();
-        }
+        }*/
     }
 }
