@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
-        xmlns:ns="clr-namespace:Projekat.Lokalizacija"
+        xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
         mc:Ignorable="d"
         d:DesignHeight="600" d:DesignWidth="800"
         Title="Prikaz termina" Background= "{DynamicResource BackgroundColor}">
@@ -33,56 +32,56 @@
                                 <MenuItem.Icon>
                                     <Image Source="/slike/user.png" />
                                 </MenuItem.Icon>
-                                <MenuItem Header="{ns:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
+                                <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                 <Separator/>
-                                <MenuItem Header="{ns:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
+                                <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                 <Separator/>
-                                <MenuItem Header="{ns:Loc IzaberiteJezik}" IsEnabled="False" />
+                                <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
                                 <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                 <Separator />
-                                <MenuItem Header="{ns:Loc IzberiteTemu}" IsEnabled="False" />
-                                <MenuItem Header="{ns:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
-                                <MenuItem Header="{ns:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                 <Separator />
-                                <MenuItem Header="{ns:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
+                                <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                             </MenuItem>
                         </Menu>
                     </StackPanel>
                 </StackPanel>
                 <TextBlock Margin="20,0,-533,0" FontSize="14"  Height="25">
                 <Hyperlink x:Name="pocetna" Click="pocetna_Click">
-                    <Run Text="{ns:Loc Pocetna}"/>
+                    <Run Text="{namespace:Loc Pocetna}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="zakazi" Click="zakazi_Click">
-                    <Run Text="{ns:Loc ZakaziTermin}"/>
+                    <Run Text="{namespace:Loc ZakaziTermin}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="uvid" Click="uvid_Click">
-                    <Run Text="{ns:Loc UvidUZakazaneTermine}"/>
+                    <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
                 </Hyperlink>
                 <Run Text=" "/>
                 <Hyperlink Name="karton" Click="karton_Click">
-                    <Run Text="{ns:Loc Karton}"/>
+                    <Run Text="{namespace:Loc Karton}"/>
                 </Hyperlink>
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="0,10,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,05">
-                    <Label Content="{ns:Loc Obavestenja}" HorizontalAlignment="Center" Margin="50, 0, 0, 0"
+                    <Label Content="{namespace:Loc Obavestenja}" HorizontalAlignment="Center" Margin="50, 0, 0, 0"
                            VerticalAlignment="Top" Foreground="{DynamicResource TextColor}"
                         RenderTransformOrigin="0.263,0.577"  FontWeight="Bold" FontSize="16" FontFamily="Arial" Height="31" Width="142" Grid.Column="1" Grid.Row="1"/>
                     <StackPanel Orientation="Horizontal" Margin="180, 0, 0, 0">
                         <Button Style="{DynamicResource ButtonStyle2}" 
                         Name="ObrisiObavestenje" 
-                        ToolTip="{ns:Loc ObrisiObavestenje}" 
+                        ToolTip="{namespace:Loc ObrisiObavestenje}" 
                         Content="🗑" FontSize="16"
                             HorizontalAlignment="Right"
                         Click="ObrisiObavestenje_Click" Grid.Column="2" Grid.Row="1"/>
                         <Button Style="{DynamicResource ButtonStyle2}" 
                         Name="UvidObavestenje" 
                             HorizontalAlignment="Right"
-                        ToolTip="{ns:Loc UvidObavestenje}" 
+                        ToolTip="{namespace:Loc UvidObavestenje}" 
                         Click="UvidObavestenje_Click"
                         Content="📄" FontSize="16" Grid.Column="2" Grid.Row="1"/>
                     </StackPanel>
@@ -92,9 +91,9 @@
                       Height="205" Margin="0,0,0,0" VerticalAlignment="Top"  ItemsSource="{Binding ObavestenjaPacijent}"
                   SelectionChanged="obavestenja_SelectionChanged" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" Background="#FFF9F7F7" BorderBrush="#FF3F72AF" Grid.ColumnSpan="3" Grid.Row="1" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="{ns:Loc Datum}" Width="100" Binding="{Binding Datum}"/>
-                            <DataGridTextColumn Header="{ns:Loc TipObavestenja}" Width="100" Binding="{Binding TipObavestenja}"/>
-                            <DataGridTextColumn Header="{ns:Loc SadrzajObavestenja}" Width="*" Binding="{Binding SadrzajObavestenja}"/>
+                            <DataGridTextColumn Header="{namespace:Loc Datum}" Width="100" Binding="{Binding Datum}"/>
+                            <DataGridTextColumn Header="{namespace:Loc TipObavestenja}" Width="100" Binding="{Binding TipObavestenja}"/>
+                            <DataGridTextColumn Header="{namespace:Loc SadrzajObavestenja}" Width="*" Binding="{Binding SadrzajObavestenja}"/>
                             <!-- staviti button  -->
                             <!--" DataGridCheckBoxColumn Header="Procitano" Binding="{Binding ProcitanoObavestenje}" >
                     <DataGridCheckBoxColumn.CellStyle>
@@ -111,7 +110,7 @@
                     <Button x:Name="Podsetnik"
                             Height="30"
                             Width="92"
-                            Content="{ns:Loc DodajPodsetnik}"
+                            Content="{namespace:Loc DodajPodsetnik}"
                             Style="{DynamicResource ButtonStyle2}" Click="Podsetnik_Click"/>
                 </StackPanel>
 

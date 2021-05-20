@@ -74,6 +74,10 @@ namespace Projekat.Servis
 
             SaleZaPreglede = SaleServis.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
+            if (comboUputi == null)
+            {
+                return SaleZaPreglede;
+            }
             if (combo.Text.Equals("Pregled"))
             {
                 comboUputi.IsEnabled = true;

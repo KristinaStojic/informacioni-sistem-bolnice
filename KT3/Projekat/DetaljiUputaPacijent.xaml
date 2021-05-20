@@ -31,11 +31,11 @@
                         <MenuItem.Icon>
                             <Image Source="/slike/user.png" />
                         </MenuItem.Icon>
-                        <MenuItem Header="{nss:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
+                        <MenuItem Header="{nss:LocExtension Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                         <Separator/>
-                        <MenuItem Header="{nss:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
+                        <MenuItem Header="{nss:LocExtension PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                         <Separator/>
-                        <MenuItem Header="{nss:Loc IzaberiteJezik}" IsEnabled="False" />
+                        <MenuItem Header="{nss:LocExtension IzaberiteJezik}" IsEnabled="False" />
                         <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                         <Separator />
                         <MenuItem Header="{nss:Loc IzberiteTemu}" IsEnabled="False" />

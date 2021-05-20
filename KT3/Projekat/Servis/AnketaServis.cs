@@ -10,6 +10,7 @@ namespace Projekat.Servis
 {
     public class AnketaServis
     {
+        #region Ankete menadzer
         public static int oznakaAnketeZaKliniku = AnketaMenadzer.oznakaAnketeZaKliniku;
         public static int minBrojTerminaZaAnketuKlinika = 3;
         public static void sacuvajIzmene()
@@ -56,7 +57,9 @@ namespace Projekat.Servis
             return AnketaMenadzer.SveAnketePacijenta(idPacijent);
         }
 
-        //
+        #endregion
+
+        #region ankete u PrikaziAnkete
         public static ObservableCollection<Anketa> PrikaziSveAnketeZaProsleTermine(ObservableCollection<Anketa> AnketePacijenta, int idPacijent)
         {
             foreach (Anketa anketa in AnketaServis.SveAnketePacijenta(idPacijent))
@@ -97,6 +100,20 @@ namespace Projekat.Servis
             }
         }
 
+        public static Lekar pronadjiLekaraZaAnketu(int idAnkete)
+        {
+            Anketa anketa = NadjiAnketuPoId(idAnkete);
+            Termin termin = TerminServis.NadjiTerminPoId(anketa.IdTermina);
+            return termin.Lekar;
+        }
+        public static string PrikaziNaslovAnkete(Lekar lekar)
+        {
+            return "Anketa o radu lekara (" + lekar.ImeLek + " " + lekar.PrezimeLek + ")";
+        }
+
+        #endregion
+
+        #region ankete u ZakaziTermin
         public static void ProveriAnketuZaKliniku(int idPacijent)
         {
             int brojacTermina = 0;
@@ -110,6 +127,10 @@ namespace Projekat.Servis
                 }
             }
         }
+
+        #endregion
+
+
 
     }
 }
