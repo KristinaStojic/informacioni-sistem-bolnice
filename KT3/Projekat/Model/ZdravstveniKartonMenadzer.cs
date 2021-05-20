@@ -302,7 +302,7 @@ namespace Projekat.Model
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijenta);
             foreach(Uput uput in pacijent.Karton.Uputi)
             {
-                // TODO: moze i labr upute
+                // TODO: moze i labr upute i za stacionarno lecenje
                 if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
                 {
                     specijalistickiUputiPacijenta.Add(uput);

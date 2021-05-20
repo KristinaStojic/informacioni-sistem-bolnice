@@ -73,7 +73,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -99,6 +99,7 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
@@ -114,6 +115,7 @@ namespace Projekat
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);

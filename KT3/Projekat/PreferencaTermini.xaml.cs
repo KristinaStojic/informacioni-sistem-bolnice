@@ -34,7 +34,7 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
             idPacijent = idPrijavljenogPacijenta;
@@ -67,7 +67,7 @@ namespace Projekat
         {
             int brojacPreporucenihTermina = 0;
             bool jeTri = false;
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.NadjiSveSale())
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled))
                 {
@@ -77,6 +77,7 @@ namespace Projekat
                         if (i == 0)
                         {
                             IzbaciProsleSlotoveZaDanasnjiDan();
+                            //TerminServis.UkloniProsleSlotoveZaDanasnjiDatum(SviSlobodniSlotovi, PomocnaSviSlobodniSlotovi, (Calendar)noviDatum);
                         }
                         foreach (ZauzeceSale zs in s.zauzetiTermini)
                         {
@@ -149,10 +150,9 @@ namespace Projekat
 
             // TODO: proveriti
             Sala sala = SaleServis.NadjiSaluPoId(termin.Prostorija.Id);
-            ZauzeceSale novoZauzeceSale = new ZauzeceSale(termin.VremePocetka, termin.VremeKraja, termin.Datum, termin.IdTermin);
-            sala.zauzetiTermini.Add(novoZauzeceSale);
+            SaleServis.DodajZauzeceSale(termin, sala);
             TerminServis.sacuvajIzmene(); 
-            SaleServis.sacuvajIzmjene(); // ? 
+            SaleServis.sacuvajIzmjene(); 
 
             Page prikaziTermin = new PrikaziTermin(termin.Pacijent.IdPacijenta);
             this.NavigationService.Navigate(prikaziTermin);
@@ -178,7 +178,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -204,6 +204,7 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
@@ -219,6 +220,7 @@ namespace Projekat
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
