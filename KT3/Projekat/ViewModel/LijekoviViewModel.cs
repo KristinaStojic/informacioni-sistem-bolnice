@@ -27,7 +27,9 @@ namespace Projekat.ViewModel
 
 
         private ObservableCollection<Lek> zamjenskiLekovi;
+        private ObservableCollection<Lek> zamjenskiLijekovi;
         public ObservableCollection<Lek> ZamjenskiLekovi { get { return zamjenskiLekovi; } set { zamjenskiLekovi = value; OnPropertyChanged("ZamjenskiLekovi"); } }
+        public ObservableCollection<Lek> ZamjenskiLijekovi { get { return zamjenskiLijekovi; } set { zamjenskiLijekovi = value; OnPropertyChanged("ZamjenskiLijekovi"); } }
        
         private ObservableCollection<Sastojak> sastojciLijeka;
         public ObservableCollection<Sastojak> SastojciLijeka { get { return sastojciLijeka; } set { sastojciLijeka = value; OnPropertyChanged("SastojciLijeka"); } }
@@ -50,6 +52,7 @@ namespace Projekat.ViewModel
         public static Window IzmjenaSastojkaOdbijenogProzor { get; set; }
         public static Window BrisanjeOdbijenogLijekaProzor { get; set; }
         public static Window PonovnoSlanjeZahtjevaProzor { get; set; }
+        public static Window DodavanjeZamjenskogLijekaProzor { get; set; }
 
         public LijekoviViewModel()
         {
@@ -102,6 +105,9 @@ namespace Projekat.ViewModel
             PonovnoSlanjeZahtjeva = new MyICommand(PonovoPosaljiZahtjev);
             OdustaniOdPonovnogSlanjaZahtjeva = new MyICommand(OdustaniOdSlanja);
             PonovoPosaljiLijek = new MyICommand(PosaljiZahtjev);
+            DodajZamjenskiProzor = new MyICommand(OtvoriDodavanjeZamjenskog);
+            NapustiDodavanjeZamjenskih = new MyICommand(NapustiZamjenske);
+            DodajZamjenski = new MyICommand(DodavanjeZamjenskog);
         }
 
         private void inicijalizujElemente()
@@ -1302,6 +1308,69 @@ namespace Projekat.ViewModel
             PonovnoSlanjeZahtjevaProzor.Close();
         }
 
+        #endregion
+
+        #region DodajZamjenskiViewModel
+        public MyICommand DodajZamjenskiProzor { get; set; }
+        public MyICommand NapustiDodavanjeZamjenskih { get; set; }
+        public MyICommand DodajZamjenski { get; set; }
+        private string tekstZamjenskiLijek;
+        private Lek izabraniZamjenski;
+        public Lek IzabraniZamjenski {
+            get { return izabraniZamjenski; }
+            set { izabraniZamjenski = value; OnPropertyChanged("IzabraniZamjenski"); }
+        }
+        public string TekstZamjenskiLijek
+        {
+            get { return tekstZamjenskiLijek; }
+            set
+            {
+                tekstZamjenskiLijek = value; OnPropertyChanged("TekstZamjenskiLijek");
+            }
+        }
+        private void OtvoriDodavanjeZamjenskog()
+        {
+            DodavanjeZamjenskogLijekaProzor = new DodajZamjenskiLijek();
+            DodavanjeZamjenskogLijekaProzor.Show();
+            tekstZamjenskiLijek = izabraniLijek.nazivLeka;
+            DodavanjeZamjenskogLijekaProzor.DataContext = this;
+            dodajZamjenskeLijekove();
+        }
+
+        private void DodavanjeZamjenskog()
+        {
+            LekoviServis.dodajZamjenskeLijekove(izabraniLijek, izabraniZamjenski);
+            ZamjenskiLekovi.Add(izabraniZamjenski);
+            DodavanjeZamjenskogLijekaProzor.Close();
+        }
+
+        private void NapustiZamjenske()
+        {
+            DodavanjeZamjenskogLijekaProzor.Close();
+        }
+        private void dodajZamjenskeLijekove()
+        {
+            ZamjenskiLijekovi = new ObservableCollection<Lek>();
+            foreach (Lek lijek in LekoviServis.Lijekovi())
+            {
+                if (lijek.idLeka != izabraniLijek.idLeka && !postojiZamjenski(lijek))
+                {
+                    ZamjenskiLijekovi.Add(lijek);
+                }
+            }
+        }
+
+        private bool postojiZamjenski(Lek lijek)
+        {
+            foreach (int zamjenski in izabraniLijek.zamenskiLekovi)
+            {
+                if (zamjenski == lijek.idLeka)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
 
     }

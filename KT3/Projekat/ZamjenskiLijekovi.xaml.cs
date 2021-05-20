@@ -12,7 +12,7 @@ namespace Projekat
     /// </summary>
     public partial class ZamjenskiLijekovi : Window
     {
-        public Lek izabraniLijek;
+        //public Lek izabraniLijek;
         //private int colNum = 0;
         //public static ObservableCollection<Lek> ZamjenskiLekovi {get; set;}
         
@@ -76,11 +76,11 @@ namespace Projekat
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }*/
        
-        private void Dodaj_Click(object sender, RoutedEventArgs e)
+        /*private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             DodajZamjenskiLijek dodajZamjenskiLijek = new DodajZamjenskiLijek(izabraniLijek);
             dodajZamjenskiLijek.Show();
-        }
+        }*/
 
         /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {

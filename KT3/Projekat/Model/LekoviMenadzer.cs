@@ -17,18 +17,16 @@ namespace Projekat.Model
             sacuvajIzmjene();
         }
 
-        public static void dodajZamjenskeLijekove(Lek izabraniLijek, List<Lek> zamjenskiLijekovi)
+        public static void dodajZamjenskeLijekove(Lek izabraniLijek, Lek zamjenskiLijekovi)
         {
             foreach(Lek lijek in lijekovi)
             {
                 if(lijek.idLeka == izabraniLijek.idLeka)
                 {
-                    foreach(Lek zamjenski in zamjenskiLijekovi)
-                    {
-                        lijek.zamenskiLekovi.Add(zamjenski.idLeka);
+                        lijek.zamenskiLekovi.Add(zamjenskiLijekovi.idLeka);
                         //ZamjenskiLijekovi.ZamjenskiLekovi.Add(zamjenski);//doda ih onoliko puta koliko ih ima?
                         //LijekoviViewModel.ZamjenskiLekovi.Add(zamjenski);
-                    }
+                    
                 }
             }
             sacuvajIzmjene();

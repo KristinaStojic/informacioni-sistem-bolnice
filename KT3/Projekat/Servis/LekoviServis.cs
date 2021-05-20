@@ -12,7 +12,7 @@ namespace Projekat.Servis
         {
             LekoviMenadzer.DodajLijek(lijek);
         }
-        public static void dodajZamjenskeLijekove(Lek izabraniLijek, List<Lek> zamjenskiLijekovi)
+        public static void dodajZamjenskeLijekove(Lek izabraniLijek, Lek zamjenskiLijekovi)
         {
             LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, zamjenskiLijekovi);
         }

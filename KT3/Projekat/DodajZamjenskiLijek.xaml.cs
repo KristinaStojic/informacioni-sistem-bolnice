@@ -13,36 +13,36 @@ namespace Projekat
     /// </summary>
     public partial class DodajZamjenskiLijek : Window
     {
-        Lek izabraniLijek;
+        //Lek izabraniLijek;
 
-        private int colNum = 0;
+        /*private int colNum = 0;
 
         public ObservableCollection<Lek> ZamjenskiLekovi
         {
             get;
             set;
-        }
+        }*/
         
-        public DodajZamjenskiLijek(Lek izabraniLijek)
+        public DodajZamjenskiLijek()
         {
             InitializeComponent();
-            inicijalizujElemente(izabraniLijek);
-            postaviTekst();
-            dodajLijekove();
+            //inicijalizujElemente(izabraniLijek);
+            //postaviTekst();
+            //dodajLijekove();
         }
         
-        private void inicijalizujElemente(Lek izabraniLijek)
+       /* private void inicijalizujElemente(Lek izabraniLijek)
         {
             this.izabraniLijek = izabraniLijek;
             this.DataContext = this;
-        }
+        }*/
         
-        private void postaviTekst()
+        /*private void postaviTekst()
         {
             this.tekst.Text = izabraniLijek.nazivLeka;
         }
-        
-        private void dodajLijekove()
+        */
+        /*private void dodajLijekove()
         {
             ZamjenskiLekovi = new ObservableCollection<Lek>();
             foreach (Lek lijek in LekoviServis.Lijekovi())
@@ -71,9 +71,9 @@ namespace Projekat
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             if(nadjiIzabraneLijekove().Count != 0)
             {
@@ -95,9 +95,9 @@ namespace Projekat
             }
             
             return izabraniLijekovi;
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -111,6 +111,6 @@ namespace Projekat
                     Odustani_Click(sender, e);
                 }
             }
-        }
+        }*/
     }
 }
