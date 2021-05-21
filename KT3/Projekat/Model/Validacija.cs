@@ -32,11 +32,11 @@ namespace Projekat.Model
                     if (unesenaVrijednost > PreraspodjelaStaticke.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
                     if (unesenaVrijednost < 0) return new ValidationResult(false, "Morate unijeti veci broj");
                 }
-                else if (SlanjeDinamicke.aktivan)
+                /*else if (SlanjeDinamicke.aktivan)
                 {
                     if (unesenaVrijednost > SlanjeDinamicke.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");
                     if (unesenaVrijednost < 0) return new ValidationResult(false, "Morate unijeti veci broj");
-                }
+                }*/
                 else if (SlanjeStaticke.aktivan)
                 {
                     if (unesenaVrijednost > SlanjeStaticke.dozvoljenaKolicina) return new ValidationResult(false, "Morate unijeti manji broj");

@@ -13,8 +13,8 @@ namespace Projekat
     public partial class PrikazDinamicke : Window
     {
         Sala izabranaSala;
-        private int colNum = 0;
-
+        //private int colNum = 0;
+        
         public static ObservableCollection<Oprema> OpremaDinamicka
         {
             get;
@@ -24,12 +24,12 @@ namespace Projekat
         public PrikazDinamicke(Sala izabranaSala)
         {
             InitializeComponent();
-            inicijalizujElemente(izabranaSala);
-            postaviTekst();
-            dodajDinamickuOpremu();
+            //inicijalizujElemente(izabranaSala);
+            //postaviTekst();
+            //dodajDinamickuOpremu();
         }
 
-        private void inicijalizujElemente(Sala izabranaSala)
+        /*private void inicijalizujElemente(Sala izabranaSala)
         {
             this.izabranaSala = izabranaSala;
             this.DataContext = this;
@@ -79,7 +79,7 @@ namespace Projekat
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
         private void SlanjeDinamicke_Click(object sender, RoutedEventArgs e)
         {
@@ -88,7 +88,7 @@ namespace Projekat
             preraspodjelaDinamicke.ShowDialog();
         }
 
-        private void SlanjeStaticke_Click(object sender, RoutedEventArgs e)
+        /*private void SlanjeStaticke_Click(object sender, RoutedEventArgs e)
         {
             Oprema opremaZaSlanje = (Oprema)dataGrid.SelectedItem;
             if (opremaZaSlanje != null) {
@@ -112,9 +112,9 @@ namespace Projekat
                     OpremaDinamicka.Add(oprema);
                 }
             }
-        }
+        }*/
 
-        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+       /* private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
@@ -127,6 +127,6 @@ namespace Projekat
                     this.Pretraga.Focus();
                 }
             }
-        }
+        }*/
     }
 }

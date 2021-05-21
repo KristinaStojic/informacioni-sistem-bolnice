@@ -11,9 +11,9 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for SlanjeDinamicke.xaml
     /// </summary>
-    public partial class SlanjeDinamicke : Window, INotifyPropertyChanged
+    public partial class SlanjeDinamicke : Window
     {
-        public ObservableCollection<Sala> sale { get; set; }
+       /* public ObservableCollection<Sala> sale { get; set; }
         Oprema opremaZaSlanje;
         Sala salaIzKojeSaljem;
         public static bool aktivan;
@@ -25,28 +25,29 @@ namespace Projekat
             get{return validacija;}
             set
             {
-                if (value != validacija)
-                {
+                if (value != validacija)                {
+
                     validacija = value;
                     OnPropertyChanged("Validacija");
                 }
             }
-        }
+        }*/
 
-        public SlanjeDinamicke(Sala izabranaSala, Oprema kojuSaljem)
+        public SlanjeDinamicke()
         {
             InitializeComponent();
-            inicijalizujElemente(izabranaSala, kojuSaljem);
-            dodajSale(izabranaSala);
+            //inicijalizujElemente(izabranaSala, kojuSaljem);
+            //dodajSale(izabranaSala);
         }
 
-        private void inicijalizujElemente(Sala izabranaSala, Oprema kojuSaljem) 
+        /*private void inicijalizujElemente(Sala izabranaSala, Oprema kojuSaljem) 
         {
             this.opremaZaSlanje = kojuSaljem;
             this.salaIzKojeSaljem = izabranaSala;
             this.tekst.Text = kojuSaljem.NazivOpreme;
             this.DataContext = this;
             sale = new ObservableCollection<Sala>();
+
             this.maks.Text = "MAX: " + kojuSaljem.Kolicina.ToString();
             dozvoljenaKolicina = kojuSaljem.Kolicina;
             this.Potvrdi.IsEnabled = false;
@@ -61,15 +62,15 @@ namespace Projekat
                     sale.Add(s);
                 }
             }
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             aktivan = false;
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             
             PremjestajServis.prebaciDinamickuOpremu((Sala)kombo.SelectedItem, int.Parse(KOlicina.Text), salaIzKojeSaljem, opremaZaSlanje);
@@ -88,8 +89,8 @@ namespace Projekat
         {
             PrikazDinamicke.OpremaDinamicka.Remove(oprema);
         }
-            
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+          */  
+       /* private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             aktivan = false;
         }
@@ -108,9 +109,9 @@ namespace Projekat
         {
             int test;
             return int.TryParse(tekst, out test);
-        }
+        }*/
 
-        private void podesiDugme()
+        /*private void podesiDugme()
         {
             if (jeBroj(this.KOlicina.Text))
             {
@@ -121,7 +122,7 @@ namespace Projekat
                 this.Potvrdi.IsEnabled = false;
             }
         }
-
+        
         private void izvrsiPodesavanje()
         {
             if (int.Parse(this.KOlicina.Text) > dozvoljenaKolicina || int.Parse(this.KOlicina.Text) <= 0 || this.kombo.SelectedItem == null)
@@ -141,6 +142,6 @@ namespace Projekat
         private void KOlicina_TextChanged(object sender, TextChangedEventArgs e)
         {
             podesiDugme();
-        }
+        }*/
     }
 }

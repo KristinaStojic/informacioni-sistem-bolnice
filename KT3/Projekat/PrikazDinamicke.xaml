@@ -3,21 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Prikaz dinamicke opreme" Height="390" Width="400" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
+        Title="Prikaz dinamicke opreme" Height="390" Width="400" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:SaleViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding NapustiDinamicku}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Click="Odustani_Click" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" BorderBrush="LightSteelBlue" Background="LightSteelBlue">
+            <Button Command="{Binding NapustiDinamicku}" ToolTip="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" BorderBrush="LightSteelBlue" Background="LightSteelBlue">
                 <Image Source="slike/back.png" Width="30" Height="30"></Image>
             </Button>
-            <TextBox HorizontalAlignment="Right" Width="130" Height="30" Margin="165, 0, 0, 0" ToolTip="Pretraga, Ctrl + P" TextChanged="Pretraga_TextChanged" Name="Pretraga"></TextBox>
+            <TextBox HorizontalAlignment="Right" Width="130" Height="30" Margin="165, 0, 0, 0" ToolTip="Pretraga, Ctrl + P" Text="{Binding PretragaDinamicke, UpdateSourceTrigger=PropertyChanged}"  Name="Pretraga"></TextBox>
             <Button ToolTip="Pretrazi, Ctrl + P" IsEnabled="False" Width="30" Height="30" BorderBrush="LightSteelBlue" Background="LightSteelBlue">
                 <Image Source="slike/search.png" Width="30" Height="30"></Image>
             </Button>
         </StackPanel>
-        <TextBlock Name="tekst" FontWeight="Black" FontSize="15" HorizontalAlignment="Center"></TextBlock>
-        <DataGrid x:Name="dataGrid" ItemsSource="{Binding OpremaDinamicka}" IsReadOnly="True" 
+        <TextBlock Name="tekst" FontWeight="Black" FontSize="15" HorizontalAlignment="Center" Text="{Binding TekstDinamicka, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding OpremaDinamicka}" SelectedItem="{Binding IzabranaDinamicka, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="161" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="291">
             <DataGrid.Columns>
@@ -26,8 +32,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal">
-            <Button Height="40" Width="100" Margin="90, 10, 10, 10" Background="CadetBlue" Click="SlanjeDinamicke_Click">Dodaj</Button>
-            <Button Height="40" Width="100" Margin="10, 10, 10, 10" Background="CadetBlue" Click="SlanjeStaticke_Click">Premjesti</Button>
+            <Button Height="40" Width="100" Margin="90, 10, 10, 10" Background="CadetBlue" Command="{Binding DodavanjeDinamickeKomanda}">Dodaj</Button>
+            <Button Height="40" Width="100" Margin="10, 10, 10, 10" Background="CadetBlue" Command="{Binding PremjestiDinamickuKomanda}">Premjesti</Button>
         </StackPanel>
     </StackPanel>
 </Window>

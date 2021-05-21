@@ -667,12 +667,12 @@ namespace Projekat.Servis
                 if (oprema.Kolicina - kolicina == 0)
                 {
                     sala.Oprema.Remove(oprema);
-                    SlanjeDinamicke.ukloniOpremu(sala, oprema);
+                   // SlanjeDinamicke.ukloniOpremu(sala, oprema);
                 }
                 else
                 { 
                     oprema.Kolicina -= kolicina;
-                    SlanjeDinamicke.prebaciOpremu(oprema, kolicina);
+                    //SlanjeDinamicke.prebaciOpremu(oprema, kolicina);
                 }
 
             }

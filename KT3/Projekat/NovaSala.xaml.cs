@@ -20,27 +20,27 @@ namespace Projekat
     /// </summary>
     public partial class NovaSala : Window
     {
-        Sala izabranaSala;
+        /*Sala izabranaSala;
         Sala novaSala;
-
-        public NovaSala(Sala izabranaSala)
+        */
+        public NovaSala()
         {
             InitializeComponent();
-            inicijalizujElemente(izabranaSala);
+            //inicijalizujElemente(izabranaSala);
         }
 
-        private void inicijalizujElemente(Sala izabranaSala)
+        /*private void inicijalizujElemente(Sala izabranaSala)
         {
             this.Potvrdi.IsEnabled = false;
             this.izabranaSala = izabranaSala;
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             novaSala = new Sala();
             novaSala.TipSale = izabranaSala.TipSale;
@@ -57,8 +57,8 @@ namespace Projekat
             podjelaSale.Show();
             this.Close();
         }
-
-        private void postaviDugme()
+        */
+        /*private void postaviDugme()
         {
             if (this.brojSale.Text.Trim().Equals("") || this.namjenaSale.Text.Trim().Equals("") || !jeBroj(this.brojSale.Text) || jeBroj(this.namjenaSale.Text) || postojiBrojSale())
             {
@@ -99,6 +99,6 @@ namespace Projekat
         private void namjenaSale_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
-        }
+        }*/
     }
 }

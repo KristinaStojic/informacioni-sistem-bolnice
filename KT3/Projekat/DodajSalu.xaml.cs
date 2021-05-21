@@ -15,15 +15,15 @@ namespace Projekat
         public DodajSalu()
         {
             InitializeComponent();
-            this.Potvrdi.IsEnabled = false;
+            //this.Potvrdi.IsEnabled = false;
         }
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Sala sala = napraviSalu();
             SaleServis.DodajSalu(sala);
@@ -55,9 +55,9 @@ namespace Projekat
             {
                 return tipSale.SalaZaLezanje;
             }
-        }
+        }*/
 
-        public bool jeBroj(string tekst)
+        /*public bool jeBroj(string tekst)
         {
             int test;
             return int.TryParse(tekst, out test);
@@ -98,6 +98,6 @@ namespace Projekat
                 }
             }
             return false;
-        }
+        }*/
     }
 }

@@ -14,21 +14,21 @@ namespace Projekat
     /// </summary>
     public partial class PodjelaSale : Window
     {
-        Sala staraSala;
+        /*Sala staraSala;
         Sala novaSala;
         private int colNum = 0;
         public static ObservableCollection<Oprema> OpremaStaraSala{get; set;}
         public static ObservableCollection<Oprema> OpremaNovaSala { get; set; }
         private List<Oprema> opremaZaPrebacivanje = new List<Oprema>();
-
+        */
         public PodjelaSale(Sala staraSala, Sala novaSala)
         {
             InitializeComponent();
-            inicijalizujElemente(staraSala, novaSala);
-            dodajOpremu();
+           // inicijalizujElemente(staraSala, novaSala);
+            //dodajOpremu();
         }
 
-        private void dodajOpremu()
+        /*private void dodajOpremu()
         {
             OpremaStaraSala = new ObservableCollection<Oprema>();
             OpremaNovaSala = new ObservableCollection<Oprema>(); 
@@ -37,40 +37,40 @@ namespace Projekat
                 OpremaStaraSala.Add(oprema);
                 OpremaNovaSala.Add(oprema);
             }
-        }
+        }*/
 
-        private void inicijalizujElemente(Sala staraSala, Sala novaSala)
+        /*private void inicijalizujElemente(Sala staraSala, Sala novaSala)
         {
             this.DataContext = this;
             this.staraSala = staraSala;
             this.novaSala = novaSala;
             this.staraSalaTekst.Text = "Sala " + staraSala.Namjena + ", br. " + staraSala.brojSale.ToString();
             this.novaSalaTekst.Text = "Sala " + novaSala.Namjena + ", br. " + novaSala.brojSale.ToString();
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            Renoviranje.opremaZaPrebacivanje = opremaZaPrebacivanje;
-            Renoviranje.salaZaSpajanje = null;
-            Renoviranje.novaSala = novaSala;
-            this.Close();
-        }
+        /* private void Potvrdi_Click(object sender, RoutedEventArgs e)
+         {
+             Renoviranje.opremaZaPrebacivanje = opremaZaPrebacivanje;
+             Renoviranje.salaZaSpajanje = null;
+             Renoviranje.novaSala = novaSala;
+             this.Close();
+         }*/
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             int kolonaKolicine = 1;
             ContentPresenter prezenter = dataGridNova.Columns[kolonaKolicine].GetCellContent(dataGridNova.SelectedItem) as ContentPresenter;
             var templejt = prezenter.ContentTemplate;
             TextBox tekstBoks = templejt.FindName("kolicina", prezenter) as TextBox;
-            podesiDugme((Oprema)dataGridNova.SelectedItem, tekstBoks.Text);
+            //SaleViewModel.podesiDugme((Oprema)dataGridNova.SelectedItem, tekstBoks.Text);
         }
-
-        private void dodajPrebacivanje(Oprema oprema, int kolicina)
+        */
+        /*private void dodajPrebacivanje(Oprema oprema, int kolicina)
         {
             if (OpremaServis.portojiOpremaZaPrebacivanje(oprema, opremaZaPrebacivanje))
             {
@@ -124,11 +124,11 @@ namespace Projekat
                 }
             }
         }
-
-        public bool jeBroj(string tekst)
+        */
+        /*public bool jeBroj(string tekst)
         {
             int test;
             return int.TryParse(tekst, out test);
-        }
+        }*/
     }
 }

@@ -494,6 +494,7 @@
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
     <Compile Include="ViewModel\ProstorijeViewModel.cs" />
+    <Compile Include="ViewModel\SaleViewModel.cs" />
     <Compile Include="ViewModel\SkladisteViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\ZahtjeviViewModel.cs" />

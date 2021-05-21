@@ -15,7 +15,7 @@ namespace Projekat
     public partial class Renoviranje : Window
     {
         
-        public ObservableCollection<string> terminiPocetak { get; set; }
+        /*public ObservableCollection<string> terminiPocetak { get; set; }
 
         public ObservableCollection<string> terminiKraj { get; set; }
         
@@ -24,36 +24,36 @@ namespace Projekat
         public static Sala salaZaSpajanje;
         public static bool spajanje;
         public static List<Oprema> opremaZaPrebacivanje;
-        
-        public Renoviranje(Sala izabranaSala)
+        */
+        public Renoviranje()
         {
             InitializeComponent();
-            inicijalizujElemente(izabranaSala);
-            postaviTerminePocetka();
-            postaviTermineKraja();
+            //inicijalizujElemente(izabranaSala);
+            //postaviTerminePocetka();
+            //postaviTermineKraja();
         }
        
-        private void inicijalizujElemente(Sala izabranaSala)
+        /*private void inicijalizujElemente(Sala izabranaSala)
         {
             this.DataContext = this;
             this.izabranaSala = izabranaSala;
-            terminiPocetak = new ObservableCollection<string>();
-            terminiKraj = new ObservableCollection<string>();
-            this.Potvrdi.IsEnabled = false;
-        }
+            //terminiPocetak = new ObservableCollection<string>();
+            //terminiKraj = new ObservableCollection<string>();
+            //this.Potvrdi.IsEnabled = false;
+        }*/
 
-        private void DatePickerPocetak_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        /*private void DatePickerPocetak_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             azurirajDatumKraja();
             postaviTerminePocetka();
-        }
+        }*/
 
-        private void DatePickerKraj_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        /*private void DatePickerKraj_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             azurirajVrijemeKraja();
-        }
+        }*/
 
-        private void vrijemePocetka_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*private void vrijemePocetka_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             azurirajVrijemeKraja();
             postaviDugme();
@@ -62,9 +62,9 @@ namespace Projekat
         private void vrijemeKraja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             postaviDugme();
-        }
+        }*/
 
-        private void postaviTerminePocetka()
+        /*private void postaviTerminePocetka()
         {
             if(DatePickerPocetak.SelectedDate == DateTime.Now.Date)
             {
@@ -74,9 +74,9 @@ namespace Projekat
             {
                 azurirajVrijemePocetkaDrugiDatum();
             }
-        }
+        }*/
 
-        private void azurirajVrijemeKraja()
+        /*private void azurirajVrijemeKraja()
         {
             if(DatePickerKraj.SelectedDate == DatePickerPocetak.SelectedDate)
             {
@@ -86,9 +86,9 @@ namespace Projekat
             {
                 azurirajVrijemeKrajaDrugiDatum();
             }
-        }
+        }*/
 
-        private void azurirajVrijemePocetkaIstiDatum()
+        /*private void azurirajVrijemePocetkaIstiDatum()
         {
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             if (terminiPocetak != null)
@@ -100,25 +100,25 @@ namespace Projekat
                 }
             }
 
-        }
+        }*/
 
-        private void dodajTerminPocetka(string datumPocetka, int termin)
+        /*private void dodajTerminPocetka(string datumPocetka, int termin)
         {
             if (!zauzecaZaDatum(datumPocetka).Contains(termin))
             {
                 terminiPocetak.Add(termin + ":00");
             }
-        }
+        }*/
 
-        private void dodajTerminKraja(string datumPocetka, int termin)
+        /*private void dodajTerminKraja(string datumPocetka, int termin)
         {
             if (!zauzecaZaDatum(datumPocetka).Contains(termin))
             {
                 terminiKraj.Add(termin + ":00");
             }
-        }
+        }*/
 
-        private void azurirajVrijemePocetkaDrugiDatum()
+        /*private void azurirajVrijemePocetkaDrugiDatum()
         {
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             if (terminiPocetak != null)
@@ -129,9 +129,9 @@ namespace Projekat
                     dodajTerminPocetka(datumPocetka, termin);
                 }
             }
-        }
+        }*/
 
-        private void azurirajVrijemeKrajaIstiDatum()
+        /*private void azurirajVrijemeKrajaIstiDatum()
         {
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             if (terminiKraj != null && vrijemePocetka.SelectedItem != null)
@@ -142,9 +142,9 @@ namespace Projekat
                     dodajTerminKraja(datumPocetka, termin);
                 }
             }
-        }
+        }*/
 
-        private void azurirajVrijemeKrajaDrugiDatum()
+        /*private void azurirajVrijemeKrajaDrugiDatum()
         {
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
@@ -178,10 +178,10 @@ namespace Projekat
                 }
             }
             return true;
-        }
+        }*/
 
 
-        private int prvoSledeceZauzece(string vrijeme, string datum)
+        /*private int prvoSledeceZauzece(string vrijeme, string datum)
         {
             foreach(int zauzetiTermin in zauzecaZaDatum(datum))
             {
@@ -191,9 +191,9 @@ namespace Projekat
                 }
             }
             return 24;
-        }
+        }*/
         
-        private void postaviTermineKraja()
+        /*private void postaviTermineKraja()
         {
             string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             if (terminiKraj != null)
@@ -204,19 +204,19 @@ namespace Projekat
                     dodajTerminKraja(datumKraja, termin);
                 }
             }
-        }
+        }*/
         
 
-        private void azurirajDatumKraja()
+        /*private void azurirajDatumKraja()
         {
             if (DatePickerKraj != null && DatePickerPocetak != null)
             {
                 this.DatePickerKraj.DisplayDateStart = DatePickerPocetak.SelectedDate;
                 this.DatePickerKraj.SelectedDate = DatePickerPocetak.SelectedDate;
             }
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             if (salaZaSpajanje != null)
             {
@@ -242,31 +242,31 @@ namespace Projekat
                 SaleServis.sacuvajIzmjene();
             }
             this.Close();
-        }
+        }*/
    
-        private void napraviNovuSalu()
+        /*private void napraviNovuSalu()
         {
             novaSala.Oprema = opremaZaPrebacivanje;
             SaleServis.DodajSalu(novaSala);
             PrikaziSalu.Sale.Add(novaSala);
-        }
+        }*/
 
-        private void spojiSale()
+        /*private void spojiSale()
         {
             OpremaServis.dodajOpremuIzSaleZaDodavanje(izabranaSala, salaZaSpajanje);
             SaleServis.ObrisiSalu(salaZaSpajanje);
             PrikaziSalu.Sale.Remove(salaZaSpajanje);
             SaleServis.sacuvajIzmjene();
-        }
+        }*/
 
-        private ZauzeceSale napraviZauzece()
+        /*private ZauzeceSale napraviZauzece()
         {
             string datumPocetka = ((DateTime)DatePickerPocetak.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             string datumKraja = ((DateTime)DatePickerKraj.SelectedDate).ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             return new ZauzeceSale(this.vrijemePocetka.Text, this.vrijemeKraja.Text, datumPocetka, datumKraja, 0);
-        }
+        }*/
 
-        private List<int> zauzecaZaDatum(string datum)
+        /*private List<int> zauzecaZaDatum(string datum)
         {
             List<int> zauzeca = new List<int>();
             foreach (ZauzeceSale zauzece in izabranaSala.zauzetiTermini)
@@ -279,14 +279,14 @@ namespace Projekat
                 }
             }
             return zauzeca;
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void postaviDugme()
+        /*private void postaviDugme()
         {
             if(this.vrijemeKraja.SelectedItem != null && this.vrijemePocetka.SelectedItem != null)
             {
@@ -295,21 +295,20 @@ namespace Projekat
             {
                 this.Potvrdi.IsEnabled = false;
             }
-        }
+        }*/
 
-        private void Spoji_Click(object sender, RoutedEventArgs e)
+        /*private void Spoji_Click(object sender, RoutedEventArgs e)
         {
             SpajanjeSala spajanjeSala = new SpajanjeSala(izabranaSala);
-            spajanjeSala.Show();
-        }
+        }*/
 
-        private void Podijeli_Click(object sender, RoutedEventArgs e)
+       /* private void Podijeli_Click(object sender, RoutedEventArgs e)
         {
             NovaSala novaSala = new NovaSala(izabranaSala);
             novaSala.Show();
-        }
+        }*/
 
-        private void Window_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+       /* private void Window_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (salaZaSpajanje != null)
             {
@@ -323,6 +322,6 @@ namespace Projekat
             {
                 this.tekst.Text = "";
             }
-        }
+        }*/
     }
 }

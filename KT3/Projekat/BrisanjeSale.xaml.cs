@@ -10,15 +10,15 @@ namespace Projekat
     public partial class BrisanjeSale : Window
     {
 
-        Sala izabranaSala;
+        //Sala izabranaSala;
 
-        public BrisanjeSale(Sala izabranaSala)
+        public BrisanjeSale()
         {
             InitializeComponent();
-            this.izabranaSala = izabranaSala;
+            //this.izabranaSala = izabranaSala;
         }
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             SaleServis.ObrisiSalu((Sala)izabranaSala);
             PrikaziSalu.Sale.Remove((Sala)izabranaSala);
@@ -28,6 +28,6 @@ namespace Projekat
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
     }
 }

@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         Title="PodjelaSale" Height="550" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+    <Window.DataContext>
+        <viewmodel:SaleViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -16,8 +19,8 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="staraSalaTekst" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="1" x:Name="novaSalaTekst" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="staraSalaTekst" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding StaraSalaString}"></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" x:Name="novaSalaTekst" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding NovaSalaString}"></TextBlock>
         <DataGrid x:Name="dataGridStara" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding OpremaStaraSala}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="290" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="291">
@@ -26,7 +29,7 @@
                 <DataGridTextColumn Header="Kolicina                         " Binding="{Binding Kolicina}" />
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="dataGridNova" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OpremaNovaSala}" IsReadOnly="True" 
+        <DataGrid x:Name="dataGridNova" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding OpremaNovaSala, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding OpremaZaPodjelu, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="290" Margin="10, 20, 10, 20" VerticalAlignment="Center" Width="291">
             <DataGrid.Columns>
@@ -36,13 +39,13 @@
                     <DataGridTemplateColumn.Header>Kolicina</DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox x:Name="kolicina" TextChanged="TextBox_TextChanged"></TextBox>
+                            <TextBox x:Name="kolicina" Text="{Binding Kolicina, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Column="0" Grid.Row="2" Width="190" Height="55" Background="CadetBlue" Margin="120, 0, 0, 0" Click="Potvrdi_Click" Name="Potvrdi">Potvrdi</Button>
-        <Button Grid.Column="1" Grid.Row="2" Width="190" Height="55" Background="CadetBlue" Margin="10, 0, 120, 0" Click="Odustani_Click">Odustani</Button>
+        <Button Grid.Column="0" Grid.Row="2" Width="190" Height="55" Background="CadetBlue" Margin="120, 0, 0, 0" Command="{Binding PotvrdiPodjeluOpreme}" Name="Potvrdi">Potvrdi</Button>
+        <Button Grid.Column="1" Grid.Row="2" Width="190" Height="55" Background="CadetBlue" Margin="10, 0, 120, 0" Command="{Binding OdustaniOdPodjeleOpreme}">Odustani</Button>
     </Grid>
 </Window>

@@ -20,26 +20,26 @@ namespace Projekat
     /// </summary>
     public partial class SpajanjeSala : Window
     {
-        private int colNum = 0;
+        /*private int colNum = 0;
         Sala izabranaSala;
 
         public static ObservableCollection<Sala> Sale{get; set;}
-
-        public SpajanjeSala(Sala izabranaSala)
+        */
+        public SpajanjeSala()
         {
             InitializeComponent();
-            inicijalizujElemente(izabranaSala);
-            dodajSale();
+            //inicijalizujElemente(izabranaSala);
+            //dodajSale();
         }
 
-        private void inicijalizujElemente(Sala izabranaSala)
+        /*private void inicijalizujElemente(Sala izabranaSala)
         {
             this.izabranaSala = izabranaSala;
             this.DataContext = this;
 
-        }
+        }*/
 
-        private void dodajSale()
+        /*private void dodajSale()
         {
             Sale = new ObservableCollection<Sala>();
             foreach (Sala sala in SaleMenadzer.sale)
@@ -56,9 +56,9 @@ namespace Projekat
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Sala izabranaSalaZaSpajanje = (Sala)dataGridSale.SelectedItem;
             if(izabranaSalaZaSpajanje != null)
@@ -71,11 +71,11 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati salu!");
             }
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
     }
 }

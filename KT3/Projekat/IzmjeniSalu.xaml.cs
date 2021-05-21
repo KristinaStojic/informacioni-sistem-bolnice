@@ -10,15 +10,15 @@ namespace Projekat
     /// </summary>
     public partial class IzmjeniSalu : Window
     {
-        public Sala izabranaSala;
+        //public Sala izabranaSala;
 
-        public IzmjeniSalu(Sala izabranaSala)
+        public IzmjeniSalu()
         {
             InitializeComponent();
-            postaviElemente(izabranaSala);
+            //postaviElemente(izabranaSala);
         }
 
-        private void postaviElemente(Sala izabranaSala)
+        /*private void postaviElemente(Sala izabranaSala)
         {
             this.izabranaSala = izabranaSala;
             if (izabranaSala != null)
@@ -43,9 +43,9 @@ namespace Projekat
             {
                 this.tipSale.SelectedIndex = 2;
             }
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Sala sala = napraviSalu();
             SaleServis.IzmjeniSalu(izabranaSala, sala);
@@ -53,9 +53,9 @@ namespace Projekat
             PrikaziSalu.Sale.RemoveAt(idx);
             PrikaziSalu.Sale.Insert(idx, sala);
             this.Close();
-        }
+        }*/
 
-        private Sala napraviSalu()
+        /*private Sala napraviSalu()
         {
             int brojSale = int.Parse(this.brojSale.Text);
             string namjena = this.namjenaSale.Text;
@@ -77,14 +77,14 @@ namespace Projekat
             {
                 return global::Model.tipSale.SalaZaLezanje;
             }
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        public bool jeBroj(string tekst)
+        /*public bool jeBroj(string tekst)
         {
             int test;
             return int.TryParse(tekst, out test);
@@ -126,6 +126,6 @@ namespace Projekat
             }
             return false;
            
-        }
+        }*/
     }
 }

@@ -785,14 +785,14 @@ namespace Projekat.ViewModel
                     {
                         if (int.Parse(validacija) > dozvoljenaKolicinaStaticke)
                         {
-                            upozorenje = "Morate unijeti manji broj";
+                            Upozorenje = "Morate unijeti manji broj";
                         } else if (int.Parse(validacija) <= 0)
                         {
-                            upozorenje = "Morate unijeti veci broj";
+                            Upozorenje = "Morate unijeti veci broj";
                         }
                         else
                         {
-                            upozorenje = "";
+                            Upozorenje = "";
                         }
                         return false;
                     }
