@@ -10,15 +10,15 @@ namespace Projekat
     /// </summary>
     public partial class IzmjeniOpremu : Window
     {
-        public Oprema izabranaOprema;
+        //public Oprema izabranaOprema;
 
-        public IzmjeniOpremu(Oprema izabranaOprema)
+        public IzmjeniOpremu()
         {
             InitializeComponent();
-            inicijalizujElemente(izabranaOprema);
+            //inicijalizujElemente(izabranaOprema);
         }
 
-        private void inicijalizujElemente(Oprema izabranaOprema)
+        /*private void inicijalizujElemente(Oprema izabranaOprema)
         {
             this.izabranaOprema = izabranaOprema;
             if (izabranaOprema != null)
@@ -26,17 +26,17 @@ namespace Projekat
                 this.naziv.Text = izabranaOprema.NazivOpreme;
                 this.kolicina.Text = izabranaOprema.Kolicina.ToString();
             }
-        }
+        }*/
 
-        public void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*public void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Oprema oprema = napraviOpremu();
             OpremaServis.izmjeniOpremu(izabranaOprema, oprema);
             izmjeniPrikazOpreme(izabranaOprema, oprema);
             this.Close();
-        }
+        }*/
 
-        private static void izmjeniPrikazOpreme(Oprema izOpreme, Oprema uOpremu)
+        /*private static void izmjeniPrikazOpreme(Oprema izOpreme, Oprema uOpremu)
         {
             foreach (Oprema oprema in OpremaMenadzer.oprema)
             {
@@ -73,18 +73,18 @@ namespace Projekat
             int idx = Skladiste.OpremaStaticka.IndexOf(izOpreme);
             Skladiste.OpremaStaticka.RemoveAt(idx);
             Skladiste.OpremaStaticka.Insert(idx, oprema);
-        }
+        }*/
 
-        private Oprema napraviOpremu()
+        /*private Oprema napraviOpremu()
         {
             string naziv = this.naziv.Text;
             int kolicina = int.Parse(this.kolicina.Text);
             Oprema uOpremu = new Oprema(naziv, kolicina, izabranaOprema.Staticka);
             uOpremu.IdOpreme = izabranaOprema.IdOpreme;
             return uOpremu;
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -115,6 +115,6 @@ namespace Projekat
         {
             int test;
             return int.TryParse(tekst, out test);
-        }
+        }*/
     }
 }

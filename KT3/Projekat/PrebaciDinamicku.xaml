@@ -3,9 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat" xmlns:local1="clr-namespace:Projekat.Model"
+        xmlns:local="clr-namespace:Projekat" xmlns:local1="clr-namespace:Projekat.Model" xmlns:viewmodel="clr-namespace:Projekat.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
-        Title="Prebacivanje dinamicke opreme" Height="320" Width="360" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" Closing="Window_Closing" ResizeMode="NoResize">
+        Title="Prebacivanje dinamicke opreme" Height="320" Width="360" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:SkladisteViewModel/>
+    </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <command:EventToCommand Command="{Binding ZatvoriPrebacivanjaDinamicke}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -21,10 +29,10 @@
         <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">U salu:</TextBlock>
     
         <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Kolicina:</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Name="oprema" Width="125" Height="27" IsEnabled="False"></TextBox>
-        <ComboBox Name="kombo" Grid.Row="1" Grid.Column="1" Width="125" Height="27" ItemsSource="{Binding Sale}" SelectionChanged="kombo_SelectionChanged"></ComboBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="oprema" Width="125" Height="27" IsEnabled="False" Text="{Binding Dinamicka, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <ComboBox Name="kombo" Grid.Row="1" Grid.Column="1" Width="125" Height="27" ItemsSource="{Binding Sale}" SelectedItem="{Binding SalaDinamicka, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
         <!--<TextBox Grid.Row="2" Grid.Column="1" Width="125" Height="27" Name="Kolicina"></TextBox>-->
-        <TextBox Grid.Row="2" Grid.Column="1" Width="125" Height="27" Name="Kolicina" TextChanged="Kolicina_TextChanged">
+        <TextBox Grid.Row="2" Grid.Column="1" Width="125" Height="27" Name="Kolicina">
             <TextBox.Text>
                 <Binding Path="Validacija" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -41,8 +49,8 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Name="maks" Margin="0, 0, 10, 0"></TextBlock>
-        <Button Grid.Row="3" Grid.Column="0" IsEnabled="{Binding Path= dugmeOmoguceno}" Background="CadetBlue" Width="100" Height="40" HorizontalAlignment="Right" Margin="10" Click="Potvrdi_Click" Name="Potvrdi">Potvrdi</Button>
-        <Button Grid.Row="3" Grid.Column="1" Background="CadetBlue" Width="100" Height="40" Click="Nazad_Click" HorizontalAlignment="Left" Margin="10">Odustani</Button>
+        <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Name="maks" Margin="0, 0, 10, 0" Text="{Binding MaxDinamicka, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        <Button Grid.Row="3" Grid.Column="0" Background="CadetBlue" Width="100" Height="40" HorizontalAlignment="Right" Margin="10" Command="{Binding PrebaciDinamickuKomanda}" Name="Potvrdi">Potvrdi</Button>
+        <Button Grid.Row="3" Grid.Column="1" Background="CadetBlue" Width="100" Height="40" Command="{Binding OdustaniOdPrebacivanjaDinamicke}" HorizontalAlignment="Left" Margin="10">Odustani</Button>
     </Grid>
 </Window>

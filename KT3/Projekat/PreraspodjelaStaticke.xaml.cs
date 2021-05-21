@@ -1,6 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Projekat.ViewModel;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -227,14 +228,14 @@ namespace Projekat
         {
             if (oprema.Kolicina == 0)
             {
-                if (Skladiste.OpremaStaticka != null)
+                if (SkladisteViewModel.otvoren)
                 {
-                    Skladiste.OpremaStaticka.Remove(oprema);
+                    SkladisteViewModel.azurirajPrikaz();
                 }
             }
             else
             {
-                if (Skladiste.OpremaStaticka != null)
+                if (SkladisteViewModel.otvoren)
                 {
                     PreraspodjelaStaticke.prebaciUSkladiste(oprema);
                 }
@@ -264,9 +265,9 @@ namespace Projekat
 
         public static void dodajStaticku(Oprema oprema)
         {
-            if (Skladiste.OpremaStaticka != null)
+            if (SkladisteViewModel.otvoren != null)
             {
-                Skladiste.OpremaStaticka.Add(oprema);
+                SkladisteViewModel.azurirajPrikaz();
             }
         }
 
@@ -281,9 +282,10 @@ namespace Projekat
 
         public static void prebaciUSkladiste(Oprema oprema)
         {
-            int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
+            /*int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
             Skladiste.OpremaStaticka.RemoveAt(idx);
-            Skladiste.OpremaStaticka.Insert(idx, oprema);
+            Skladiste.OpremaStaticka.Insert(idx, oprema);*/
+            SkladisteViewModel.azurirajPrikaz();
         }
 
         public static void azurirajPrikazStaticke(Oprema o, Sala s)

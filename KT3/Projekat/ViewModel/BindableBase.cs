@@ -13,6 +13,18 @@ namespace Projekat.ViewModel
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private static event EventHandler<PropertyChangedEventArgs> staticPC
+                                                     = delegate { };
+        public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged
+        {
+            add { staticPC += value; }
+            remove { staticPC -= value; }
+        }
+        protected static void OnStaticPropertyChanged(string propertyName)
+        {
+            staticPC(null, new PropertyChangedEventArgs(propertyName));
+        }
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
 }

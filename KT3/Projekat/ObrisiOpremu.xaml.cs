@@ -1,6 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Projekat.ViewModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,23 +13,23 @@ namespace Projekat
     /// </summary>
     public partial class ObrisiOpremu : Window
     {
-        public Oprema izabranaOprema;
+        /*public Oprema izabranaOprema;
         public int dozvoljenaKolicina;
-
-        public ObrisiOpremu(Oprema izabranaOprema)
+        */
+        public ObrisiOpremu()
         {
             InitializeComponent();
-            inicijalizujElemente(izabranaOprema);
-            postaviMaksimalnuKolicinu();
+            //inicijalizujElemente(izabranaOprema);
+            //postaviMaksimalnuKolicinu();
         }
 
-        private void inicijalizujElemente(Oprema izabranaOprema)
+        /*private void inicijalizujElemente(Oprema izabranaOprema)
         {
             this.izabranaOprema = izabranaOprema;
             this.Potvrdi.IsEnabled = false;
-        }
+        }*/
 
-        private void postaviMaksimalnuKolicinu()
+        /*private void postaviMaksimalnuKolicinu()
         {
             this.maks.Text = "MAX: " + nadjiDozvoljenuKolicinu();
         }
@@ -44,30 +45,30 @@ namespace Projekat
                 }
             }
             return dozvoljenaKolicina.ToString();
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+       /* private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             SaleServis.ukloniOpremuIzSale(izabranaOprema, int.Parse(kolicina.Text));
-            Skladiste.azurirajOpremu();
+            SkladisteViewModel.azurirajPrikaz();
             this.Close();
-        }
+        }*/
 
-        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (jeBroj(this.kolicina.Text)) {
                 postaviDugme();
             }else{
                 this.Potvrdi.IsEnabled = false;
             }
-        }
+        }*/
 
-        private void postaviDugme()
+        /*private void postaviDugme()
         {
             if (int.Parse(this.kolicina.Text) > dozvoljenaKolicina || int.Parse(this.kolicina.Text) <= 0 || this.kolicina.Text.Trim().Equals(""))
             {
@@ -83,6 +84,6 @@ namespace Projekat
         {
             int test;
             return int.TryParse(tekst, out test);
-        }
+        }*/
     }
 }

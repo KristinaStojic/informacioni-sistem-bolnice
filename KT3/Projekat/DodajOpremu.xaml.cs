@@ -20,15 +20,15 @@ namespace Projekat
     /// </summary>
     public partial class DodajOpremu : Window
     {
-        public bool staticka;
-        public DodajOpremu(bool staticka)
+        //public bool staticka;
+        public DodajOpremu()
         {
             InitializeComponent();
-            this.staticka = staticka;
-            this.Potvrdi.IsEnabled = false;
+            //this.staticka = staticka;
+            //this.Potvrdi.IsEnabled = false;
         }
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Oprema oprema = napraviOpremu();
             OpremaServis.DodajOpremu(oprema);
@@ -51,14 +51,14 @@ namespace Projekat
             Oprema oprema = new Oprema(nazivOpreme, Kolicina, staticka);
             oprema.IdOpreme = idOpreme;
             return oprema;
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+       /* private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
+        }*/
 
-        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void naziv_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
         }
@@ -84,6 +84,6 @@ namespace Projekat
         {
             int test;
             return int.TryParse(input, out test);
-        }
+        }*/
     }
 }

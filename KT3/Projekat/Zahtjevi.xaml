@@ -30,7 +30,7 @@
             <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 50, 50, 10">Godisnji odmori</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Click="Button_Click">Skladiste</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Command="{Binding SkladisteKomanda}">Skladiste</Button>
             <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Radno vrijeme</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">

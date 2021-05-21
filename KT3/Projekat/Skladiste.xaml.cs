@@ -2,6 +2,7 @@
 using Projekat.Model;
 using Projekat.Pomoc;
 using Projekat.Servis;
+using Projekat.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,30 +20,30 @@ namespace Projekat
     /// </summary>
     public partial class Skladiste : Window
     {
-        private int colNum = 0;
-        public static bool otvoren;
+        /*private int colNum = 0;
+        //public static bool otvoren;
         List<Oprema> opremaStaticka1;
         public static ObservableCollectionEx<Oprema> OpremaStaticka{get; set;}
         public static ObservableCollection<Oprema> OpremaDinamicka{get; set;}
-
+        */
         public Skladiste()
         {
             InitializeComponent();
-            inicijaliujElemente();
-            dodajOpremu();
-            OpremaStaticka = new ObservableCollectionEx<Oprema>(opremaStaticka1);
-            Thread th = new Thread(izvrsi);
-            th.Start();   
+            //inicijaliujElemente();
+            //dodajOpremu();
+            //OpremaStaticka = new ObservableCollectionEx<Oprema>(opremaStaticka1);
+            //Thread th = new Thread(izvrsi);
+            //th.Start();   
         }
 
-        private void inicijaliujElemente()
+        /*private void inicijaliujElemente()
         {
             this.DataContext = this;
             OpremaDinamicka = new ObservableCollection<Oprema>();
             opremaStaticka1 = new List<Oprema>();
-        }
+        }*/
 
-        private void dodajOpremu()
+        /*private void dodajOpremu()
         {
             foreach (Sala s in SaleMenadzer.sale)
             {
@@ -66,9 +67,9 @@ namespace Projekat
                     OpremaDinamicka.Add(oprema);
                 }
             }
-        }
+        }*/
 
-        public static void azurirajOpremu()
+       /* public static void azurirajOpremu()
         {
             OpremaDinamicka.Clear();
             OpremaStaticka.Clear();
@@ -94,9 +95,9 @@ namespace Projekat
                     OpremaDinamicka.Add(oprema);
                 }
             }
-        }
+        }*/
 
-        public void izvrsi()
+        /*public void izvrsi()
         {
             while (otvoren)
             {
@@ -110,18 +111,18 @@ namespace Projekat
             colNum++;
             if (colNum == 3)
                 e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             OpremaServis.sacuvajIzmjene();
             Zahtjevi zahtjevi = new Zahtjevi();
             zahtjevi.Show();
             Skladiste.otvoren = false;
             this.Close();
-        }
+        }*/
 
-        private void DodajOpremu_Click(object sender, RoutedEventArgs e)
+        /*private void DodajOpremu_Click(object sender, RoutedEventArgs e)
         {
             if (T1.IsSelected)
             {
@@ -133,9 +134,9 @@ namespace Projekat
                 DodajOpremu w1 = new DodajOpremu(false);
                 w1.ShowDialog();
             }
-        }
+        }*/
 
-        private void IzmjeniOpreum_Click(object sender, RoutedEventArgs e)
+        /*private void IzmjeniOpreum_Click(object sender, RoutedEventArgs e)
         {
             if (T1.IsSelected)
             {
@@ -147,9 +148,9 @@ namespace Projekat
                 Oprema izabranaOprema = (Oprema)dataGridT2.SelectedItem;
                 izmjeniOpremu(izabranaOprema);
             }
-        }
+        }*/
 
-        private void izmjeniOpremu(Oprema izabranaOprema)
+        /*private void izmjeniOpremu(Oprema izabranaOprema)
         {
             if (izabranaOprema != null)
             {
@@ -160,15 +161,15 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati opremu!");
             }
-        }
+        }*/
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        /*private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             OpremaServis.sacuvajIzmjene();
-            Skladiste.otvoren = false;
-        }
+            SkladisteViewModel.otvoren = false;
+        }*/
 
-        private void PrebaciStaticku_Click(object sender, RoutedEventArgs e)
+        /*private void PrebaciStaticku_Click(object sender, RoutedEventArgs e)
         {
             if (T1.IsSelected)
             {
@@ -180,9 +181,9 @@ namespace Projekat
                 Oprema izabranaOprema = (Oprema)dataGridT2.SelectedItem;
                 prebaciDinamicku(izabranaOprema);
             }
-        }
+        }*/
 
-        private void prebaciStaticku(Oprema izabranaOprema)
+        /*private void prebaciStaticku(Oprema izabranaOprema)
         {
             if (izabranaOprema != null)
             {
@@ -220,7 +221,7 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati opremu!");
             }
-        }
+        }*/
 
         private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
@@ -256,7 +257,7 @@ namespace Projekat
             //Izvjestaj
         }
 
-        private void Obrisi_Click(object sender, RoutedEventArgs e)
+        /*private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             if (T1.IsSelected)
             {
@@ -281,9 +282,9 @@ namespace Projekat
             {
                 MessageBox.Show("Morate izabrati opremu!");
             }
-        }
+        }*/
 
-        private void obrisiOpremuSkladista(Oprema izabranaOprema)
+        /*private void obrisiOpremuSkladista(Oprema izabranaOprema)
         {
             if (provjeriPreostalo(izabranaOprema))
             {
@@ -319,9 +320,9 @@ namespace Projekat
                 }
             }
             return dozvoljenaKolicina;
-        }
-
-        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        }*/
+        
+        /*private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (T1.IsSelected)
             {
@@ -330,9 +331,9 @@ namespace Projekat
             {
                 nadjiDinamicku();
             }
-        }
+        }*/
 
-        private void nadjiStaticku()
+       /* private void nadjiStaticku()
         {
             OpremaStaticka.Clear();
             foreach (Oprema oprema in OpremaMenadzer.oprema)
@@ -354,7 +355,7 @@ namespace Projekat
                     OpremaDinamicka.Add(oprema);
                 }
             }
-        }
+        }*/
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -362,26 +363,26 @@ namespace Projekat
             {
                 if (e.Key == Key.N)
                 {
-                    Odustani_Click(sender, e);
+                    //Odustani_Click(sender, e);
                 }else if (e.Key == Key.D)
                 {
-                    DodajOpremu_Click(sender, e);
+                    //DodajOpremu_Click(sender, e);
                 }
                 else if (e.Key == Key.I)
                 {
-                    IzmjeniOpreum_Click(sender, e);
+                    //IzmjeniOpreum_Click(sender, e);
                 }
                 else if (e.Key == Key.O)
                 {
-                    Obrisi_Click(sender, e);
+                    //Obrisi_Click(sender, e);
                 }
                 else if (e.Key == Key.R)
                 {
-                    PrebaciStaticku_Click(sender, e);
+                    //PrebaciStaticku_Click(sender, e);
                 }
                 else if (e.Key == Key.P)
                 {
-                    this.Pretraga.Focus();
+                    //this.Pretraga.Focus();
                 }
                 else if (e.Key == Key.S)
                 {

@@ -11,13 +11,13 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for PrebaciDinamicku.xaml
     /// </summary>
-    public partial class PrebaciDinamicku : Window, INotifyPropertyChanged
+    public partial class PrebaciDinamicku : Window
     {
-        public ObservableCollection<Sala> Sale { get; set; }
-        Oprema opremaZaSlanje;
-        public static bool aktivan;
-        public static int dozvoljenaKolicina;
-        public int validacija;
+        //public ObservableCollection<Sala> Sale { get; set; }
+        //Oprema opremaZaSlanje;
+        //public static bool aktivan;
+        //public static int dozvoljenaKolicina;
+        /*public int validacija;
 
         public int Validacija
         {
@@ -30,25 +30,25 @@ namespace Projekat
                     OnPropertyChanged("Validacija");
                 }
             }
-        }
+        }*/
 
         public PrebaciDinamicku(Oprema oprema)
         {
             InitializeComponent();
-            inicijalizujElemente(oprema);
-            dodajSale();
+            //inicijalizujElemente(oprema);
+            //dodajSale();
         }
 
-        private void inicijalizujElemente(Oprema oprema)
+        /*private void inicijalizujElemente(Oprema oprema)
         {
-            this.opremaZaSlanje = oprema;
-            this.oprema.Text = opremaZaSlanje.NazivOpreme;
-            this.DataContext = this;
-            this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
-            dozvoljenaKolicina = opremaZaSlanje.Kolicina;
-        }
+           // this.opremaZaSlanje = oprema;
+            //this.oprema.Text = opremaZaSlanje.NazivOpreme;
+            //this.DataContext = this;
+            //this.maks.Text = "MAX: " + opremaZaSlanje.Kolicina.ToString();
+            //dozvoljenaKolicina = opremaZaSlanje.Kolicina;
+        }*/
 
-        private void dodajSale()
+        /*private void dodajSale()
         {
             Sale = new ObservableCollection<Sala>();
             foreach (Sala sala in SaleMenadzer.sale)
@@ -58,23 +58,23 @@ namespace Projekat
                     Sale.Add(sala);
                 }
             }
-        }
+        }*/
 
-        private void Nazad_Click(object sender, RoutedEventArgs e)
+        /*private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             aktivan = false;
-        }
+        }*/
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             PremjestajServis.izvrsiPremjestanje((Sala)kombo.SelectedItem, int.Parse(Kolicina.Text), opremaZaSlanje);    
             Skladiste.azurirajOpremu();
             this.Close();
             aktivan = false;
-        }
+        }*/
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        /*public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string name)
         {
@@ -82,9 +82,9 @@ namespace Projekat
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
-        }
+        }*/
          
-        public bool jeBroj(string tekst)
+        /*public bool jeBroj(string tekst)
         {
             int test;
             return int.TryParse(tekst, out test);
@@ -98,9 +98,9 @@ namespace Projekat
         private void Kolicina_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugme();
-        }
+        }*/
 
-        private void postaviDugme()
+        /*private void postaviDugme()
         {
             if (jeBroj(this.Kolicina.Text))
             {
@@ -127,7 +127,7 @@ namespace Projekat
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             aktivan = false;
-        }
+        }*/
 
     }
 }

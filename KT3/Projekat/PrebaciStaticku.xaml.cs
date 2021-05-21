@@ -12,17 +12,17 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for PrebaciStaticku.xaml
     /// </summary>
-    public partial class PrebaciStaticku : Window, INotifyPropertyChanged
+    public partial class PrebaciStaticku : Window
     {
-        public ObservableCollection<Sala> Sale { get; set; }
+        /*public ObservableCollection<Sala> Sale { get; set; }
         public ObservableCollection<string> termini { get; set; }
-        public static bool aktivan;
+        //public static bool aktivan;
         Oprema opremaZaSlanje;
         public DateTime datumIVrijemeSlanja;
-        public int validacija;
+        //public int validacija;
         public static int dozvoljenaKolicina;
-
-        public int Validacija
+        */
+        /*public int Validacija
         {
             get{return validacija;}
             set
@@ -33,26 +33,26 @@ namespace Projekat
                     OnPropertyChanged("Validacija");
                 }
             }
-        }
+        }*/
 
         public PrebaciStaticku(Oprema oprema)
         {
             InitializeComponent();
-            inicijalizujElemente(oprema);
-            dodajSale();
-            dodajTerminePocetak();
-            postaviMax();
+            //inicijalizujElemente(oprema);
+            //dodajSale();
+            //dodajTerminePocetak();
+            //postaviMax();
         }
 
-        private void inicijalizujElemente(Oprema oprema)
+        /*private void inicijalizujElemente(Oprema oprema)
         {
             termini = new ObservableCollection<string>();
             this.opremaZaSlanje = oprema;
             this.oprema.Text = opremaZaSlanje.NazivOpreme;
             this.DataContext = this;
-        }
+        }*/
 
-        private void dodajSale()
+        /*private void dodajSale()
         {
             Sale = new ObservableCollection<Sala>();
             foreach (Sala s in SaleServis.Sale())
@@ -62,9 +62,9 @@ namespace Projekat
                     Sale.Add(s);
                 }
             }
-        }
+        }*/
 
-        private void dodajTerminePocetak()
+        /*private void dodajTerminePocetak()
         {
             for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
             {
@@ -85,9 +85,9 @@ namespace Projekat
                 }
             }
             return false;
-        }
+        }*/
 
-        public static void ukloniOpremuIzSkladista(Sala sala, Oprema oprema)
+        /*public static void ukloniOpremuIzSkladista(Sala sala, Oprema oprema)
         {
             if (Skladiste.OpremaStaticka != null)
             {
@@ -112,9 +112,9 @@ namespace Projekat
             {
                 Skladiste.OpremaStaticka.Add(oprema);
             }
-        }
+        }*/
 
-        private void postaviMax()
+        /*private void postaviMax()
         {
             dozvoljenaKolicina = nadjidozvoljenuKolicinu();
             this.maks.Text = "MAX: " + dozvoljenaKolicina.ToString();
@@ -131,15 +131,15 @@ namespace Projekat
                 }
             }
             return kolicina;
-        }
+        }*/
 
-        private void Odustani_Click(object sender, RoutedEventArgs e)
+        /*private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             aktivan = false;
-        }
+        }*/
 
-        private DateTime napraviTerminPremjestaja()
+        /*private DateTime napraviTerminPremjestaja()
         {
             DateTime? datumSlanja = DatePicker.SelectedDate;
             string vrijemeSlanja = vrijeme.SelectedItem.ToString();
@@ -162,9 +162,9 @@ namespace Projekat
             PremjestajServis.odradiPremjestaj(datumIVrijeme, salaUKojuSaljem, kolicina, opremaZaSlanje);
             this.Close();
             aktivan = false;
-        }
+        }*/
 
-        private void datumPremjestaja_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        /*private void datumPremjestaja_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (termini != null)
             {
@@ -177,9 +177,9 @@ namespace Projekat
                     dodajTermine();
                 }
             }
-        }
+        }*/
 
-        private void dodajTermineDanas()
+        /*private void dodajTermineDanas()
         {
             termini.Clear();
             for (int termin = (int)DateTime.Now.Hour + 1; termin <= 23; termin++)
@@ -215,25 +215,16 @@ namespace Projekat
                     termini.Insert(0, termin + ":00");
                 }
             }
-        }
+        }*/
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        /*private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             PremjestajServis.sacuvajIzmjene();
             aktivan = false;
-        }
+        }*/
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
-        public bool jeBroj(string tekst)
+        /*public bool jeBroj(string tekst)
         {
             int test;
             return int.TryParse(tekst, out test);
@@ -247,9 +238,9 @@ namespace Projekat
         private void sale_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             postaviDugme();
-        }
+        }*/
 
-        private void postaviDugme()
+        /*private void postaviDugme()
         {
             if (jeBroj(this.Kolicina.Text))
             {
@@ -257,20 +248,20 @@ namespace Projekat
             }
             else
             {
-                this.potvrda.IsEnabled = false;
+                //this.potvrda.IsEnabled = false;
             }
-        }
+        }*/
 
-        private void izvrsiPostavljanje()
+        /*private void izvrsiPostavljanje()
         {
             if (int.Parse(this.Kolicina.Text) > dozvoljenaKolicina || int.Parse(this.Kolicina.Text) <= 0 || this.sale.SelectedItem == null)
             {
-                this.potvrda.IsEnabled = false;
+                //this.potvrda.IsEnabled = false;
             }
             else if (int.Parse(this.Kolicina.Text) <= dozvoljenaKolicina && int.Parse(this.Kolicina.Text) > 0 && this.sale.SelectedItem != null)
             {
-                this.potvrda.IsEnabled = true;
+                //this.potvrda.IsEnabled = true;
             }
-        }
+        }*/
     }
 }

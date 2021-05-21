@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,7 +100,8 @@ namespace Projekat.Servis
             oprema.Kolicina += kolicina;
             if (sala.Namjena.Equals("Skladiste"))
             {
-                PrebaciStaticku.zamjeniOpremuUSkladistu(oprema);
+                //SkladisteViewModel.zamjeniOpremuUSkladistu(oprema);
+                SkladisteViewModel.azurirajPrikaz();
             }
             else
             {
@@ -114,7 +116,8 @@ namespace Projekat.Servis
             sala.Oprema.Add(oprema);
             if (salaDodavanje.Namjena.Equals("Skladiste"))
             {
-                PrebaciStaticku.dodajOpremuUSkladiste(oprema);
+                //SkladisteViewModel.dodajOpremuUSkladiste(oprema);
+                SkladisteViewModel.azurirajPrikaz();
             }
             else
             {
@@ -169,11 +172,13 @@ namespace Projekat.Servis
         {
             if (oprema.Kolicina == 0)
             {
-                PrebaciStaticku.ukloniOpremuIzSkladista(sala, oprema);
+                //SkladisteViewModel.ukloniOpremuIzSkladista(sala, oprema);
+                SkladisteViewModel.azurirajPrikaz();
             }
             else
             {
-                PrebaciStaticku.zamjeniOpremuUSkladistu(oprema);
+                //SkladisteViewModel.zamjeniOpremuUSkladistu(oprema);
+                SkladisteViewModel.azurirajPrikaz();
             }
         }
 
@@ -498,7 +503,7 @@ namespace Projekat.Servis
         {
             if (sala.Namjena.Equals("Skladiste"))
             {
-                if (Skladiste.OpremaStaticka != null)
+                if (SkladisteViewModel.otvoren != null)
                 {
                     PreraspodjelaStaticke.prebaciUSkladiste(oprema);
                 }

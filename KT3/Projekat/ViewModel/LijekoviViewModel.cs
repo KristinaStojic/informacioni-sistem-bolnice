@@ -371,8 +371,8 @@ namespace Projekat.ViewModel
             {
                 ZahtjeviViewModel.LijekProzor.Close();
             }
-            ZahtjeviProzor = new Zahtjevi();
-            ZahtjeviProzor.Show();
+            //ZahtjeviProzor = new Zahtjevi();
+            //ZahtjeviProzor.Show();
         }
         #endregion
 

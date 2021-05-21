@@ -17,7 +17,7 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /*private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Projekat
                 skladiste.ShowDialog();
             }
             catch(Exception ex) { Console.WriteLine(ex.Data); }
-        }
+        }*/
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {

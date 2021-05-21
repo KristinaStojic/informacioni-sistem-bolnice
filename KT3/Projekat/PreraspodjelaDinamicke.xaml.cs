@@ -1,6 +1,8 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Projekat.ViewModel;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -153,14 +155,16 @@ namespace Projekat
             if (oprema.Kolicina - kolicina == 0)
             {
                 sala.Oprema.Remove(oprema);
-                Skladiste.OpremaStaticka.Remove(oprema);
+                //SkladisteViewModel.OpremaStaticka.Remove(oprema);
+                SkladisteViewModel.azurirajPrikaz();
             }
             else
             {
                 oprema.Kolicina -= kolicina;
-                int idx = Skladiste.OpremaStaticka.IndexOf(oprema);
-                Skladiste.OpremaStaticka.RemoveAt(idx);
-                Skladiste.OpremaStaticka.Insert(idx, oprema);
+                SkladisteViewModel.azurirajPrikaz();
+                /*int idx = SkladisteViewModel.OpremaStaticka.IndexOf(oprema);
+                SkladisteViewModel.OpremaStaticka.RemoveAt(idx);
+                SkladisteViewModel.OpremaStaticka.Insert(idx, oprema);*/
             }
         }
 
