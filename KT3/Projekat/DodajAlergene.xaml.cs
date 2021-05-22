@@ -37,7 +37,7 @@ namespace Projekat
 
         private void PopuniPodatkePacijenta()
         {
-            this.nadjiAlergen.ItemsSource = LekoviMenadzer.NadjiSveSastojke();
+            this.nadjiAlergen.ItemsSource = LekoviServis.NadjiSveSastojke();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiAlergen.ItemsSource);
             view.Filter = UserFilter;
         }
