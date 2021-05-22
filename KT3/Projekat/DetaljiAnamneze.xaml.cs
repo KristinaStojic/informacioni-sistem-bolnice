@@ -59,7 +59,7 @@ namespace Projekat
             datumPregleda = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             Anamneza nova = new Anamneza(stara.IdAnamneze,stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta,stara.IdLekara, termin.IdTermin);
-            ZdravstveniKartonMenadzer.IzmeniAnamnezu(stara, nova);
+            ZdravstveniKartonServis.IzmeniAnamnezu(stara, nova);
 
             TerminMenadzer.sacuvajIzmene();
             PacijentiServis.SacuvajIzmenePacijenta();

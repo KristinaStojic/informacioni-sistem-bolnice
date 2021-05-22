@@ -76,7 +76,9 @@ namespace Projekat.Model
             
 
             return id;
-        }public static int GenerisanjeIdAlergena(int idPac)
+        }
+        
+        public static int GenerisanjeIdAlergena(int idPac)
         {
             bool pomocna = false;
             int id = 1;
@@ -192,48 +194,7 @@ namespace Projekat.Model
             ZdravstveniKartonLekar.TabelaAlergena.Insert(idx, noviAlergen);
         }
 
-        public static List<Lek> NadjiPacijentuDozvoljeneLekove(int idSelektovanogPacijenta)
-        {
-            List<Lek> dozvoljeniLekovi = new List<Lek>();
-
-
-            foreach(Lek lek in LekoviMenadzer.lijekovi)
-            {
-                dozvoljeniLekovi.Add(lek);
-            }
-
-            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
-            {
-                if(idSelektovanogPacijenta == pacijent.IdPacijenta)
-                {
-                    
-                        foreach (Lek lek in LekoviMenadzer.lijekovi.ToArray())
-                        {
-                            foreach (Alergeni alergen in pacijent.Karton.Alergeni.ToArray())
-                            {
-
-                                /*if (alergen.NazivSastojka.Equals(lek.sifraLeka))
-                                {
-                                    dozvoljeniLekovi.Remove(lek);
-                                }*/
-
-                                 foreach(Sastojak sastojak in lek.sastojci.ToArray())
-                                 {
-                                        if (sastojak.naziv.Equals(alergen.NazivSastojka))
-                                        {
-                                             dozvoljeniLekovi.Remove(lek);
-                                        }
-                                 }
-
-                            }
-                        }
-                    
-                }
-            }
-
-            return dozvoljeniLekovi;
-
-        }
+        
 
 
         public static int GenerisanjeIdUputa(int idPacijenta)

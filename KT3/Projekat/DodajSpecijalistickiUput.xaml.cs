@@ -91,7 +91,7 @@ namespace Projekat
                 tipUputa tipUputa = NadjiTipUputa();
 
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
-                ZdravstveniKartonMenadzer.DodajUput(noviUput);
+                ZdravstveniKartonServis.DodajUput(noviUput);
 
                 TerminMenadzer.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
@@ -217,7 +217,7 @@ namespace Projekat
                 Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
-                ZdravstveniKartonMenadzer.DodajUput(noviUput);
+                ZdravstveniKartonServis.DodajUput(noviUput);
 
                 TerminMenadzer.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
