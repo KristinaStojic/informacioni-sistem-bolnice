@@ -12,23 +12,48 @@ namespace Projekat.ViewModel
         #region ZahtjeviViewModel
         public MyICommand LijekoviProzor { get; set; }
         public MyICommand SkladisteKomanda { get; set; }
-        public static Window LijekProzor { get; set; }
-        public static Window SkladisteProzor { get; set; }
+        public MyICommand ZatvoriZahtjeveKomanda { get; set; }
+        public MyICommand OtvoriSale { get; set; }
+        public MyICommand OtvoriKomunikaciju { get; set; }
         public static Window ZahtjeviProzor { get; set; }//zatvori prozor sa kog si dosla(kad sve bude uvezano...)
         
         public ZahtjeviViewModel()
         {
             LijekoviProzor = new MyICommand(OtvoriLijekove);
             SkladisteKomanda = new MyICommand(OtvoriSkladiste);
+            ZatvoriZahtjeveKomanda = new MyICommand(ZatvoriZahtjeve);
+            OtvoriSale = new MyICommand(PrikaziSale);
+            OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
+        }
+        private void PrikaziKomunikaciju()
+        {
+            KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
+            KomunikacijaViewModel.KomunikacijaProzor.Show();
+            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new Komunikacija();
+            ZahtjeviProzor.Close();
+        }
+        private void PrikaziSale()
+        {
+            SaleViewModel.SaleProzor = new PrikaziSalu();
+            SaleViewModel.SaleProzor.Show();
+            SaleViewModel.SaleProzor.DataContext = new SaleViewModel();
+            ZahtjeviProzor.Close();
+        }
+        private void ZatvoriZahtjeve()
+        {
+            UpravnikViewModel.UpravnikProzor = new Upravnik();
+            UpravnikViewModel.UpravnikProzor.Show();
+            UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();
+            ZahtjeviProzor.Close();
         }
         #endregion
         #region LijekoviViewModel
         private void OtvoriLijekove()
         {
-            LijekProzor = new Lijekovi();
-            LijekProzor.Show();
-            LijekProzor.DataContext = new LijekoviViewModel();
-            //ZahtjeviProzor.Close();
+            LijekoviViewModel.LijekoviProzor = new Lijekovi();
+            LijekoviViewModel.LijekoviProzor.Show();
+            LijekoviViewModel.LijekoviProzor.DataContext = new LijekoviViewModel();
+            ZahtjeviProzor.Close();
         }
         #endregion
         #region SkladisteViewModel
@@ -36,11 +61,11 @@ namespace Projekat.ViewModel
         {
             try
             {
-                SkladisteProzor = new Skladiste();
-                SkladisteProzor.Show();
+                SkladisteViewModel.SkladisteProzor = new Skladiste();
+                SkladisteViewModel.SkladisteProzor.Show();
                 SkladisteViewModel.otvoren = true;
                 PremjestajServis.odradiZakazanePremjestaje();
-                SkladisteProzor.DataContext = new SkladisteViewModel();
+                SkladisteViewModel.SkladisteProzor.DataContext = new SkladisteViewModel();
             }
             catch (Exception ex) { Console.WriteLine(ex.Data); }
         }

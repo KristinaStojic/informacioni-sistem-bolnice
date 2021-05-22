@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
-        Title="Skladiste" Height="490" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
+        Title="Skladiste" Height="490" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
     <Window.DataContext>
         <viewmodel:SkladisteViewModel/>
     </Window.DataContext>
@@ -20,6 +20,8 @@
         <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding IzmjeniOpremu}"></KeyBinding>
         <KeyBinding Key="R" Modifiers="Ctrl" Command="{Binding PrebaciOpremu}"></KeyBinding>
         <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding ObrisiOpremu}"></KeyBinding>
+        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding PrikaziSale}"></KeyBinding>
+        <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding PrikaziKomunikaciju}"></KeyBinding>
     </Window.InputBindings>
     <StackPanel>
         <Menu DockPanel.Dock="Top" Background="CadetBlue">
@@ -33,14 +35,14 @@
                 <MenuItem Header="Prebaci" FontSize="15" Command="{Binding PrebaciOpremu}" InputGestureText="Ctrl + R"></MenuItem>
             </MenuItem>
             <MenuItem Header="Navigacija" FontSize="15">
-                <MenuItem Header="Osoblje" FontSize="15" Click="Osoblje_Click" InputGestureText="Ctrl + S"></MenuItem>
-                <MenuItem Header="Prostorije" FontSize="15" Click="OAplikaciji_Click" InputGestureText="Ctrl + T"></MenuItem>
-                <MenuItem Header="Komunikacija" FontSize="15" Click="Komunikacija_Click" InputGestureText="Ctrl + K"></MenuItem>
-                <MenuItem Header="Izvjestaj" FontSize="15" Click="Sale_Click" InputGestureText="Ctrl + V"></MenuItem>
+                <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
+                <MenuItem Header="Prostorije" FontSize="15" Command="{Binding PrikaziSale}" InputGestureText="Ctrl + T"></MenuItem>
+                <MenuItem Header="Komunikacija" FontSize="15" Command="{Binding PrikaziKomunikaciju}" InputGestureText="Ctrl + K"></MenuItem>
+                <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_6">
-                <MenuItem Header="Pomoc" FontSize="15" Click="Pomoc_Click" InputGestureText="Ctrl + H"></MenuItem>
-                <MenuItem Header="O aplikaciji" FontSize="15" Click="OAplikaciji_Click"></MenuItem>
+                <MenuItem Header="Pomoc" FontSize="15" InputGestureText="Ctrl + H"></MenuItem>
+                <MenuItem Header="O aplikaciji" FontSize="15" ></MenuItem>
             </MenuItem>
         </Menu>
         <ToolBar Background="CadetBlue">

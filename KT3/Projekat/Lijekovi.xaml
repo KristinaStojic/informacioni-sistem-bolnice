@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Lijekovi"  Height="490" Width="650" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
+        Title="Lijekovi"  Height="490" Width="650" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
     <Window.DataContext>
         <ViewModel:LijekoviViewModel/>
     </Window.DataContext>
@@ -15,6 +15,8 @@
         <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding IzmjeniLijekKomanda}"></KeyBinding>
         <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZahtjeviKomanda}"></KeyBinding>
         <KeyBinding Key="B" Modifiers="Ctrl" Command="{Binding OdbijeniLijekovi}"></KeyBinding>
+        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding OtvoriSale}"></KeyBinding>
+        <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
     </Window.InputBindings>
     <DockPanel Margin="0,0,2,0">
         <StackPanel DockPanel.Dock="Top">
@@ -30,8 +32,8 @@
                 </MenuItem>
                 <MenuItem Header="Navigacija" FontSize="15">
                     <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
-                    <MenuItem Header="Prostorije" FontSize="15" Click="Sale_Click" InputGestureText="Ctrl + T"></MenuItem>
-                    <MenuItem Header="Komunikacija" FontSize="15" Click="Komunikacija_Click" InputGestureText="Ctrl + K"></MenuItem>
+                    <MenuItem Header="Prostorije" FontSize="15" Command="{Binding OtvoriSale}" InputGestureText="Ctrl + T"></MenuItem>
+                    <MenuItem Header="Komunikacija" FontSize="15" Command="{Binding OtvoriKomunikaciju}" InputGestureText="Ctrl + K"></MenuItem>
                     <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Pomoc" FontSize="15">
@@ -55,7 +57,7 @@
                 <Button ToolTip="Obrisi, Ctrl + O" Command="{Binding ObrisiLijekProzor}">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="260, 0, 0, 0" TextChanged="Pretraga_TextChanged"></TextBox>
+                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="260, 0, 0, 0" Text="{Binding PretragaLijekova}"></TextBox>
                 <Button ToolTip="Pretrazi" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>

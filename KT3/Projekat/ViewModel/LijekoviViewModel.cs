@@ -53,6 +53,7 @@ namespace Projekat.ViewModel
         public static Window BrisanjeOdbijenogLijekaProzor { get; set; }
         public static Window PonovnoSlanjeZahtjevaProzor { get; set; }
         public static Window DodavanjeZamjenskogLijekaProzor { get; set; }
+        public static Window LijekoviProzor { get; set; }
 
         public LijekoviViewModel()
         {
@@ -108,6 +109,38 @@ namespace Projekat.ViewModel
             DodajZamjenskiProzor = new MyICommand(OtvoriDodavanjeZamjenskog);
             NapustiDodavanjeZamjenskih = new MyICommand(NapustiZamjenske);
             DodajZamjenski = new MyICommand(DodavanjeZamjenskog);
+            OtvoriSale = new MyICommand(PrikaziSale);
+            OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
+        }
+        public MyICommand OtvoriSale { get; set; }
+        public MyICommand OtvoriKomunikaciju { get; set; }
+        private string pretragaLijekova;
+        public string PretragaLijekova { get { return pretragaLijekova; } set { pretragaLijekova = value; OnPropertyChanged("PretragaLijekova"); NadjiLijekove(); } }
+
+        private void PrikaziSale()
+        {
+            SaleViewModel.SaleProzor = new PrikaziSalu();
+            SaleViewModel.SaleProzor.Show();
+            SaleViewModel.SaleProzor.DataContext = new SaleViewModel();
+            LijekoviProzor.Close();
+        }
+        private void PrikaziKomunikaciju()
+        {
+            KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
+            KomunikacijaViewModel.KomunikacijaProzor.Show();
+            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new KomunikacijaViewModel();
+            LijekoviProzor.Close();
+        }
+        private void NadjiLijekove()
+        {
+            Lekovi.Clear();
+            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            {
+                if (lijek.nazivLeka.StartsWith(PretragaLijekova))
+                {
+                    Lekovi.Add(lijek);
+                }
+            }
         }
 
         private void inicijalizujElemente()
@@ -351,28 +384,10 @@ namespace Projekat.ViewModel
 
         private void OtvoriZahtjeve()
         {
-            if(BrisanjeLijekaProzor != null)
-            {
-                BrisanjeLijekaProzor.Close();
-            }
-            if(DodavanjeLijekaProzor != null)
-            {
-                DodavanjeLijekaProzor.Close();
-            }
-            if(DodavanjeSastojkaProzor != null)
-            {
-                DodavanjeSastojkaProzor.Close();
-            }
-            if(DodavanjeNovogSastojkaProzor != null)
-            {
-                DodavanjeNovogSastojkaProzor.Close();
-            }
-            if(ZahtjeviViewModel.LijekProzor != null)
-            {
-                ZahtjeviViewModel.LijekProzor.Close();
-            }
-            //ZahtjeviProzor = new Zahtjevi();
-            //ZahtjeviProzor.Show();
+            LijekoviProzor.Close();
+            ZahtjeviViewModel.ZahtjeviProzor = new Zahtjevi();
+            ZahtjeviViewModel.ZahtjeviProzor.Show();
+            ZahtjeviViewModel.ZahtjeviProzor.DataContext = new ZahtjeviViewModel();
         }
         #endregion
 
@@ -691,7 +706,7 @@ namespace Projekat.ViewModel
         {
             if (izabraniLijek != null)
             {
-                SastojciProzor = new Sastojci(izabraniLijek);
+                SastojciProzor = new Sastojci();
                 tekstSastojci = "Sastojci za lijek: " + izabraniLijek.nazivLeka;
                 dodajSastojkeLijeka();
                 SastojciProzor.DataContext = this;

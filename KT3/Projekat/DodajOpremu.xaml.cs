@@ -20,70 +20,10 @@ namespace Projekat
     /// </summary>
     public partial class DodajOpremu : Window
     {
-        //public bool staticka;
         public DodajOpremu()
         {
             InitializeComponent();
-            //this.staticka = staticka;
-            //this.Potvrdi.IsEnabled = false;
         }
 
-        /*private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            Oprema oprema = napraviOpremu();
-            OpremaServis.DodajOpremu(oprema);
-            if (oprema.Staticka)
-            {
-                Skladiste.OpremaStaticka.Add(oprema);
-            }
-            else
-            {
-                Skladiste.OpremaDinamicka.Add(oprema);
-            }
-            this.Close();
-        }
-
-        private Oprema napraviOpremu()
-        {
-            string nazivOpreme = naziv.Text;
-            int Kolicina = int.Parse(kolicina.Text);
-            int idOpreme = OpremaServis.GenerisanjeIdOpreme();
-            Oprema oprema = new Oprema(nazivOpreme, Kolicina, staticka);
-            oprema.IdOpreme = idOpreme;
-            return oprema;
-        }*/
-
-       /* private void Odustani_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }*/
-
-        /*private void naziv_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            postaviDugme();
-        }
-
-        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            postaviDugme();   
-        }
-
-        private void postaviDugme()
-        {
-            if (!jeBroj(this.kolicina.Text) || this.kolicina.Text.Trim().Equals("") || jeBroj(this.naziv.Text) || this.naziv.Text.Trim().Equals(""))
-            {
-                this.Potvrdi.IsEnabled = false;
-            }
-            else if (jeBroj(this.kolicina.Text) && !this.kolicina.Text.Trim().Equals("") && !jeBroj(this.naziv.Text) && !this.naziv.Text.Trim().Equals(""))
-            {
-                this.Potvrdi.IsEnabled = true;
-            }
-        }
-
-        public bool jeBroj(string input)
-        {
-            int test;
-            return int.TryParse(input, out test);
-        }*/
     }
 }

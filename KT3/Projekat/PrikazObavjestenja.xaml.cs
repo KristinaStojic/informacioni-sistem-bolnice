@@ -19,22 +19,11 @@ namespace Projekat
     /// </summary>
     public partial class PrikazObavjestenja : Window
     {
-        public Obavestenja izabranoObavjestenje;
-        public PrikazObavjestenja(Obavestenja izabranoObavjestenje)
+        
+        public PrikazObavjestenja()
         {
             InitializeComponent();
-            this.izabranoObavjestenje = izabranoObavjestenje;
-            postaviTekst();
         }
 
-        private void postaviTekst()
-        {
-            this.sadrzajObavjestenja.Text = izabranoObavjestenje.SadrzajObavestenja;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

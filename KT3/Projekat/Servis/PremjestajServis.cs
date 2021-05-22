@@ -127,11 +127,11 @@ namespace Projekat.Servis
 
         private static void azurirajPrikazStaticke()
         {
-
-            if (PrikazStaticke.otvoren)
+            SaleViewModel.azuriraj = true;
+            /*if (PrikazStaticke.otvoren)
             {
                 PrikazStaticke.azurirajPrikaz();
-            }
+            }*/
         }
 
         private static void prebaciOpremuIzSale(Sala sala, Oprema izabranaOprema, int kolicina)
@@ -358,7 +358,7 @@ namespace Projekat.Servis
             {
                 if (oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
-                    PreraspodjelaDinamicke.smanjiKolicinuOpreme(kolicina, oprema, sala);
+                    //PreraspodjelaDinamicke.smanjiKolicinuOpreme(kolicina, oprema, sala);
                 }
             }
         }
@@ -413,7 +413,7 @@ namespace Projekat.Servis
             {
                 Oprema oprema = new Oprema(izabranaOprema.NazivOpreme, kolicina, false);
                 oprema.IdOpreme = izabranaOprema.IdOpreme;
-                PrikazDinamicke.OpremaDinamicka.Add(oprema);
+                //PrikazDinamicke.OpremaDinamicka.Add(oprema);
                 sala.Oprema.Add(oprema);
             }
         }
@@ -427,7 +427,7 @@ namespace Projekat.Servis
                 {
                     oprema.Kolicina += kolicina;
                     x += 1;
-                    PreraspodjelaDinamicke.azurirajPrikaz(oprema);
+                    //PreraspodjelaDinamicke.azurirajPrikaz(oprema);
                 }
             }
             return x;
@@ -489,11 +489,13 @@ namespace Projekat.Servis
                     if (sala.Namjena.Equals("Skladiste"))
                     {
                         sala.Oprema.Remove(oprema);
-                        PreraspodjelaStaticke.prebaciOpremuIzSkladista(oprema);
+                        //PreraspodjelaStaticke.prebaciOpremuIzSkladista(oprema);
+                        SaleViewModel.azuriraj = true;
                     }
                     else
                     {
-                        PreraspodjelaStaticke.azurirajPrikazStaticke(oprema, sala);
+                        //PreraspodjelaStaticke.azurirajPrikazStaticke(oprema, sala);
+                        SaleViewModel.azuriraj = true;
                     }
                 }
             }
@@ -503,14 +505,16 @@ namespace Projekat.Servis
         {
             if (sala.Namjena.Equals("Skladiste"))
             {
-                if (SkladisteViewModel.otvoren != null)
+                if (SkladisteViewModel.otvoren)
                 {
-                    PreraspodjelaStaticke.prebaciUSkladiste(oprema);
+                    // PreraspodjelaStaticke.prebaciUSkladiste(oprema);
+                    SaleViewModel.azuriraj = true;
                 }
             }
             else
             {
-                PreraspodjelaStaticke.azurirajPrikaz();
+                //PreraspodjelaStaticke.azurirajPrikaz();
+                SaleViewModel.azuriraj = true;
             }
         }
 
@@ -552,11 +556,13 @@ namespace Projekat.Servis
             sala.Oprema.Add(oprema);
             if (salaDodavanje.Namjena.Equals("Skladiste"))
             {
-                PreraspodjelaStaticke.dodajStaticku(oprema);
+                //PreraspodjelaStaticke.dodajStaticku(oprema);
+                SaleViewModel.azuriraj = true;
             }
             else
             {
-                PreraspodjelaStaticke.azurirajPrikaz();
+                // PreraspodjelaStaticke.azurirajPrikaz();
+                SaleViewModel.azuriraj = true;
             }
         }
 
@@ -802,12 +808,14 @@ namespace Projekat.Servis
                 if (oprema.Kolicina - kolicina == 0)
                 {
                     sala.Oprema.Remove(oprema);
-                    SlanjeStaticke.ukloniOpremu(sala, oprema);
+                    //SlanjeStaticke.ukloniOpremu(sala, oprema);
+                    SaleViewModel.azuriraj = true;
                 }
                 else
                 {
                     oprema.Kolicina -= kolicina;
-                    SlanjeStaticke.smanjiKolicinuOpreme(oprema, kolicina);
+                    //SlanjeStaticke.smanjiKolicinuOpreme(oprema, kolicina);
+                    SaleViewModel.azuriraj = true;
                 }
             }
         }

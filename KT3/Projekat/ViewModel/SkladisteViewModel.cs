@@ -38,6 +38,7 @@ namespace Projekat.ViewModel
         public Window PrebaciStatickuProzor { get; set; }
         public Window PrebaciDinamickuProzor { get; set; }
         public Window ObrisiOpremuProzor { get; set; }
+        public static  Window SkladisteProzor { get; set;}
 
         public SkladisteViewModel()
         {
@@ -67,7 +68,25 @@ namespace Projekat.ViewModel
             ObrisiOpremu = new MyICommand(BrisanjeOpreme);
             OdustaniOdBrisanjaOpreme = new MyICommand(OdustaniOdBrisanja);
             PotvrdiBrisanjeOpreme = new MyICommand(ObrisiIzabranuOpremu, ValidnaPoljaZaBrisanjeOpreme);
+            PrikaziSale = new MyICommand(OtvoriSale);
+            PrikaziKomunikaciju = new MyICommand(OtvoriKomunikaciju);
         }
+        private void OtvoriKomunikaciju()
+        {
+            KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
+            KomunikacijaViewModel.KomunikacijaProzor.Show();
+            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new KomunikacijaViewModel();
+            SkladisteProzor.Close();
+        }
+        private void OtvoriSale()
+        {
+            SaleViewModel.SaleProzor = new PrikaziSalu();
+            SaleViewModel.SaleProzor.Show();
+            SaleViewModel.SaleProzor.DataContext = new SaleViewModel();
+            SkladisteProzor.Close();
+        }
+        public MyICommand PrikaziSale { get; set; }
+        public MyICommand PrikaziKomunikaciju { get; set; }
         private void dodajOpremu()
         {
             foreach (Sala sala in SaleServis.Sale())
@@ -148,7 +167,7 @@ namespace Projekat.ViewModel
         public MyICommand NapustiSkladiste { get; set; }
         private void ZatvoriSkladiste()
         {
-            ZahtjeviViewModel.SkladisteProzor.Close();
+            SkladisteViewModel.SkladisteProzor.Close();
             otvoren = false;
         }
         #endregion

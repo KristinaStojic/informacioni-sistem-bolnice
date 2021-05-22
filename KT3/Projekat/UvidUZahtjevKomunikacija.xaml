@@ -3,16 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Uvid u zahtjev komunikacija" Height="350" Width="450" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
+        Title="Uvid u zahtjev komunikacija" Height="350" Width="450" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:KomunikacijaViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriOpremu}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
-        <Button Click="Odustani_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" VerticalAlignment="Top" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+        <Button Command="{Binding ZatvoriOpremu}"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" VerticalAlignment="Top" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
-        <TextBlock FontSize="20" Margin="10, 10, 50, 10" Name="tekst"></TextBlock>
+        <TextBlock FontSize="20" Margin="10, 10, 50, 10" Name="tekst" Text="{Binding TextOprema}"></TextBlock>
         <StackPanel Orientation="Horizontal">
-            <DataGrid x:Name="dataGridKomunikacija" ItemsSource="{Binding Zahtjevi}" IsReadOnly="True" 
+            <DataGrid x:Name="dataGridKomunikacija" ItemsSource="{Binding ZahtjeviOprema}" IsReadOnly="True" 
                         SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                         Height="210"  VerticalAlignment="Center" Width="260" Margin="10, 0, 10, 10">
                 <DataGrid.Columns>
@@ -21,8 +27,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Vertical">
-                <Button Width="110" Background="CadetBlue" Height="40" Margin="10, 100, 10, 10" Click="Button_Click">Potvrdi zahtjev</Button>
-                <Button Width="110" Background="CadetBlue" Height="40" Margin="10, 10, 10, 10" Click="Button_Click_1">Odbij zahtjev</Button>
+                <Button Width="110" Background="CadetBlue" Height="40" Margin="10, 100, 10, 10" Command="{Binding UkloniZahtjev}">Potvrdi zahtjev</Button>
+                <Button Width="110" Background="CadetBlue" Height="40" Margin="10, 10, 10, 10" Command="{Binding UkloniZahtjev}">Odbij zahtjev</Button>
             </StackPanel>
         </StackPanel>
     </StackPanel>
