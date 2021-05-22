@@ -112,7 +112,7 @@
         <DatePicker HorizontalAlignment="Left" Name="datum" Grid.Column="2" Grid.Row="9" Width="192" Height="32" Margin="8.8,6.4,0,6.4" FontSize="15" SelectedDateChanged="datum_SelectedDateChanged"/>
 
         <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="8.8,6.6,0,6.2" FontSize="15" LostFocus="vremePocetka_LostFocus" IsKeyboardFocusedChanged="vremePocetka_IsKeyboardFocusedChanged" SelectionChanged="vremePocetka_SelectionChanged"/>
-        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="106.8,6.6,0,6.2" FontSize="15" IsKeyboardFocusedChanged="vremeKraja_IsKeyboardFocusedChanged"/>
+        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="106.8,6.6,0,6.2" FontSize="15" IsKeyboardFocusedChanged="vremeKraja_IsKeyboardFocusedChanged" AllowDrop="True"/>
 
         <Button Name="potvrdi" Grid.Column="1" Grid.Row="11" Click="Button_Click" Content="Potvrdi" Margin="8.2,27.8,13.2,23" Background="#FFA3DADE" FontSize="17"/>
         <Button Grid.Column="2" Grid.Row="11" Click="Button_Click_1" Content="Odustani" Margin="9.8,27.8,9.8,23" Background="#FFA3DADE" FontSize="17"/>

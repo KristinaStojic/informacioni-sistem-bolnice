@@ -50,7 +50,7 @@ namespace Projekat.Servis
             PacijentiMenadzer.SacuvajIzmenePacijenta();
         }
 
-        public static bool JedinstvenJmbg(int jmbg)
+        public static bool JedinstvenJmbg(long jmbg)
         {
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {

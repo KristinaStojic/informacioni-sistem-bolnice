@@ -51,7 +51,7 @@ namespace Projekat.Servis
         }
 
         // TODO: problem - moguce je da neki pacijent i neki lekar imaju isti jmbg a nisu ista osoba
-        public static bool JedinstvenJmbg(int jmbg)
+        public static bool JedinstvenJmbg(long jmbg)
         {
             foreach (Lekar lekar in LekariMenadzer.lekari)
             {

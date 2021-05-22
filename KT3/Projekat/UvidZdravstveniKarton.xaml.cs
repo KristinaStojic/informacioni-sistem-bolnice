@@ -54,71 +54,69 @@ namespace Projekat
 
             if (izabraniNalog != null)
             {
-                ime.Text = izabraniNalog.ImePacijenta;
-                prezime.Text = izabraniNalog.PrezimePacijenta;
-                jmbg.Text = izabraniNalog.Jmbg.ToString();
-
-                if (izabraniNalog.Pol.Equals(pol.M))
-                {
-                    combo2.SelectedIndex = 0;
-                }
-                else if (izabraniNalog.Pol.Equals(pol.Z))
-                {
-                    combo2.SelectedIndex = 1;
-                }
-
-                if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
-                {
-                    combo.SelectedIndex = 0;
-                }
-                else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest))
-                {
-                    combo.SelectedIndex = 1;
-                }
-
-                brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
-                email.Text = izabraniNalog.Email;
-                adresa.Text = izabraniNalog.AdresaStanovanja;
-                zanimanje.Text = izabraniNalog.Zanimanje;
-
-                if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neudata))
-                {
-                    combo3.SelectedIndex = 0;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Ozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udata))
-                {
-                    combo3.SelectedIndex = 1;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovac) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovica))
-                {
-                    combo3.SelectedIndex = 2;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razveden) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razvedena))
-                {
-                    combo3.SelectedIndex = 3;
-                }
-
-                ime.IsEnabled = false;
-                prezime.IsEnabled = false;
-                jmbg.IsEnabled = false;
-                combo.IsEnabled = false;
-                combo2.IsEnabled = false;
-                brojTelefona.IsEnabled = false;
-                email.IsEnabled = false;
-                adresa.IsEnabled = false;
-                combo3.IsEnabled = false;
-                zanimanje.IsEnabled = false;
-
-                if (izabraniNalog.Maloletnik == true)
-                {
-                    maloletnik.IsChecked = true;
-                }
-                else
-                {
-                    maloletnik.IsChecked = false;
-                }
+                PopuniPoljaZdravstvenogKartona(izabraniNalog);
+                OnemoguciIzmenuPolja(izabraniNalog);
             }
 
+            PopuniTabeluRecepata();
+            PopuniTabeluAnamneza();
+            PopuniTabeluAlergena();
+            PopuniTabeluUputa();           
+        }
+
+        private void PopuniPoljaZdravstvenogKartona(Pacijent izabraniNalog)
+        {
+            ime.Text = izabraniNalog.ImePacijenta;
+            prezime.Text = izabraniNalog.PrezimePacijenta;
+            jmbg.Text = izabraniNalog.Jmbg.ToString();
+            brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
+            email.Text = izabraniNalog.Email;
+            adresa.Text = izabraniNalog.AdresaStanovanja;
+            zanimanje.Text = izabraniNalog.Zanimanje;
+
+            if (izabraniNalog.Pol.Equals(pol.M))
+            {
+                combo2.SelectedIndex = 0;
+            }
+            else if (izabraniNalog.Pol.Equals(pol.Z))
+            {
+                combo2.SelectedIndex = 1;
+            }
+
+            if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
+            {
+                combo.SelectedIndex = 0;
+            }
+            else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest))
+            {
+                combo.SelectedIndex = 1;
+            }
+
+            if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neudata))
+            {
+                combo3.SelectedIndex = 0;
+            }
+            else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Ozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udata))
+            {
+                combo3.SelectedIndex = 1;
+            }
+            else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovac) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovica))
+            {
+                combo3.SelectedIndex = 2;
+            }
+            else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razveden) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razvedena))
+            {
+                combo3.SelectedIndex = 3;
+            }
+            
+            if (izabraniNalog.IzabraniLekar != null)
+            {
+                lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
+            }
+        }
+
+        private void PopuniTabeluRecepata() 
+        {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
@@ -130,7 +128,10 @@ namespace Projekat
                     }
                 }
             }
+        }
 
+        private void PopuniTabeluAnamneza()
+        {
             TabelaAnamneza = new ObservableCollection<Anamneza>();
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
@@ -142,7 +143,10 @@ namespace Projekat
                     }
                 }
             }
+        }
 
+        private void PopuniTabeluAlergena()
+        {
             TabelaAlergena = new ObservableCollection<Alergeni>();
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
@@ -154,7 +158,10 @@ namespace Projekat
                     }
                 }
             }
+        }
 
+        private void PopuniTabeluUputa() 
+        {
             TabelaUputa = new ObservableCollection<Uput>();
             foreach (Pacijent p in PacijentiMenadzer.pacijenti)
             {
@@ -166,10 +173,28 @@ namespace Projekat
                     }
                 }
             }
+        }
 
-            if (izabraniNalog.IzabraniLekar != null)
+        private void OnemoguciIzmenuPolja(Pacijent izabraniNalog)
+        {
+            ime.IsEnabled = false;
+            prezime.IsEnabled = false;
+            jmbg.IsEnabled = false;
+            combo.IsEnabled = false;
+            combo2.IsEnabled = false;
+            brojTelefona.IsEnabled = false;
+            email.IsEnabled = false;
+            adresa.IsEnabled = false;
+            combo3.IsEnabled = false;
+            zanimanje.IsEnabled = false;
+
+            if (izabraniNalog.Maloletnik == true)
             {
-                lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
+                maloletnik.IsChecked = true;
+            }
+            else
+            {
+                maloletnik.IsChecked = false;
             }
         }
 
@@ -200,7 +225,6 @@ namespace Projekat
 
             if (izabranaAnamneza != null)
             {
-
                 DetaljiAnamnezeSekretar detaljiAnamneze = new DetaljiAnamnezeSekretar(izabranaAnamneza, pacijent);
                 detaljiAnamneze.Show();
             }
