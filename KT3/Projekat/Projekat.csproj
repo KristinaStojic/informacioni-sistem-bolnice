@@ -497,7 +497,15 @@
     <Compile Include="UvidZdravstveniKartonLekar.xaml.cs">
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BrisanjeLijeka.cs" />
+    <Compile Include="ViewModel\BindableBase.cs" />
+    <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
+    <Compile Include="ViewModel\LijekoviViewModel.cs" />
+    <Compile Include="ViewModel\MyICommand.cs" />
+    <Compile Include="ViewModel\SaleViewModel.cs" />
+    <Compile Include="ViewModel\SkladisteViewModel.cs" />
+    <Compile Include="ViewModel\UpravnikViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ZahtjeviViewModel.cs" />
     <Compile Include="ZahteviZaGodisnjiLekar.xaml.cs">
       <DependentUpon>ZahteviZaGodisnjiLekar.xaml</DependentUpon>
     </Compile>

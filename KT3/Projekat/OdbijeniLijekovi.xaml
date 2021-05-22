@@ -3,26 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Odbijeni lijekovi" Height="450" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
-
+        Title="Odbijeni lijekovi" Height="450" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:LijekoviViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriOdbijene}"></KeyBinding>
+        <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding IzmjeniOdbijeniLijek}"></KeyBinding>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding BrisanjeOdbijenogLijeka}"></KeyBinding>
+        <KeyBinding Key="P" Modifiers="Ctrl" Command="{Binding PonovnoSlanjeZahtjeva}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
         <StackPanel>
             <ToolBar Background="CadetBlue" Margin="0, 0, 0, 30">
-                <Button ToolTip="Nazad, Ctrl + N" Click="Odustani_Click">
+                <Button ToolTip="Nazad, Ctrl + N" Command="{Binding ZatvoriOdbijene}">
                     <Image Source="slike/back.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button ToolTip="Izmjeni, Ctrl + I" Click="Izmjeni_Click">
+                <Button ToolTip="Izmjeni, Ctrl + I" Command="{Binding IzmjeniOdbijeniLijek}">
                     <Image Source="slike/pen.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button ToolTip="Posalji zahtjev ponovo, Ctrl + P" Click="Potvrdi_Click">
+                <Button ToolTip="Posalji zahtjev ponovo, Ctrl + P" Command="{Binding PonovnoSlanjeZahtjeva}">
                     <Image Source="slike/send.png" Width="30" Height="30"></Image>
                 </Button>
-                <Button ToolTip="Obrisi, Ctrl + O" Click="Obrisi_Click">
+                <Button ToolTip="Obrisi, Ctrl + O" Command="{Binding BrisanjeOdbijenogLijeka}">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                    <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="145, 0, 0, 0" TextChanged="Pretraga_TextChanged"></TextBox>
+                    <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="145, 0, 0, 0" Text="{Binding PretragaOdbijenih, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <Button ToolTip="Pretrazi" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>
@@ -30,7 +38,7 @@
 
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,0">
-            <DataGrid x:Name="dataGridOdbijeniLijekovi" ItemsSource="{Binding OdbijeniLekovi}" IsReadOnly="True" 
+            <DataGrid x:Name="dataGridOdbijeniLijekovi" ItemsSource="{Binding OdbijeniLekovi}" SelectedItem="{Binding IzabraniOdbijeniLijek, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
                       SelectionMode="Extended" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="230" Margin="0,10,0,0" VerticalAlignment="Center" Width="410">
                 <DataGrid.Columns>
@@ -39,6 +47,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button Width="150" Height="50" Margin="190,30,0,0" Content="Obrazlozenje" Background="CadetBlue" Click="Obrazlozenje_Click"/>
+        <Button Width="150" Height="50" Margin="190,30,0,0" Content="Obrazlozenje" Background="CadetBlue" Command="{Binding ObrazlozenjeKomanda}"/>
     </StackPanel>
 </Window>

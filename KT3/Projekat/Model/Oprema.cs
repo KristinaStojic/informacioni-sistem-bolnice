@@ -1,4 +1,5 @@
 ﻿using Projekat.Servis;
+using System;
 using System.ComponentModel;
 
 
@@ -13,6 +14,18 @@ namespace Projekat.Model
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+        private static event EventHandler<PropertyChangedEventArgs> staticPC
+                                                     = delegate { };
+        public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged
+        {
+            add { staticPC += value; }
+            remove { staticPC -= value; }
+        }
+        protected static void OnStaticPropertyChanged(string propertyName)
+        {
+            staticPC(null, new PropertyChangedEventArgs(propertyName));
         }
 
         public string NazivOpreme { get; set; }

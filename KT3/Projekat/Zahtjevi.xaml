@@ -3,23 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Zahtjevi" Height="450" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
+        Title="Zahtjevi" Height="450" Width="700" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:ZahtjeviViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriZahtjeveKomanda}"></KeyBinding>
+        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding OtvoriSale}"></KeyBinding>
+        <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
         <Menu DockPanel.Dock="Top" Background="CadetBlue">
             <MenuItem Header="Navigacija" FontSize="15">
-                <MenuItem Header="Osoblje" FontSize="15" Click="Osoblje_Click" InputGestureText="Ctrl + S"></MenuItem>
-                <MenuItem Header="Prostorije" FontSize="15" Click="Sale_Click" InputGestureText="Ctrl + T"></MenuItem>
-                <MenuItem Header="Komunikacija" FontSize="15" Click="Komunikacija_Click" InputGestureText="Ctrl + K"></MenuItem>
-                <MenuItem Header="Izvjestaj" FontSize="15" Click="Izvjestaj_Click" InputGestureText="Ctrl + V"></MenuItem>
+                <MenuItem Header="Osoblje" FontSize="15"  InputGestureText="Ctrl + S"></MenuItem>
+                <MenuItem Header="Prostorije" FontSize="15" Command="{Binding OtvoriSale}" InputGestureText="Ctrl + T"></MenuItem>
+                <MenuItem Header="Komunikacija" FontSize="15" Command="{Binding OtvoriKomunikaciju}" InputGestureText="Ctrl + K"></MenuItem>
+                <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
                 <MenuItem Header="Pomoc" FontSize="15" Click="Pomoc_Click" InputGestureText="Ctrl + H"></MenuItem>
-                <MenuItem Header="O aplikaciji" FontSize="15" Click="OAplikaciji_Click"></MenuItem>
+                <MenuItem Header="O aplikaciji" FontSize="15" ></MenuItem>
             </MenuItem>
         </Menu>
-        <Button Click="Odustani_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+        <Button Command="{Binding ZatvoriZahtjeveKomanda}" ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
         <StackPanel Orientation="Horizontal">
@@ -27,12 +35,12 @@
             <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 50, 50, 10">Godisnji odmori</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Click="Button_Click">Skladiste</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Command="{Binding SkladisteKomanda}">Skladiste</Button>
             <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10">Radno vrijeme</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Obracun plate</Button>
-            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Click="Lijekovi_Click">Lijekovi</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Command="{Binding LijekoviProzor}">Lijekovi</Button>
         </StackPanel>
     </StackPanel>
 </Window>

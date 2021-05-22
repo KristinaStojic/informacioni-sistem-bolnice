@@ -12,7 +12,7 @@ namespace Projekat.Servis
         {
             LekoviMenadzer.DodajLijek(lijek);
         }
-        public static void dodajZamjenskeLijekove(Lek izabraniLijek, List<Lek> zamjenskiLijekovi)
+        public static void dodajZamjenskeLijekove(Lek izabraniLijek, Lek zamjenskiLijekovi)
         {
             LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, zamjenskiLijekovi);
         }
@@ -70,6 +70,7 @@ namespace Projekat.Servis
         {
             ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString("d"), false);
             LekoviMenadzer.zahteviZaLekove.Add(zahtjev);
+            LekoviMenadzer.sacuvajIzmeneZahteva();
             LekoviMenadzer.sacuvajIzmeneZahteva();
         }
     }
