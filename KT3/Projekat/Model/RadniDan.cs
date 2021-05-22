@@ -11,6 +11,7 @@ namespace Projekat.Model
         public string Datum { get; set; }
         public string VremePocetka { get; set; }
         public string VremeKraja { get; set; }
+        public bool NaGodisnjemOdmoru { get; set; }
 
         public RadniDan() { }
 
@@ -20,6 +21,7 @@ namespace Projekat.Model
             this.Datum = Datum;
             this.VremePocetka = VremePocetka;
             this.VremeKraja = VremeKraja;
+            this.NaGodisnjemOdmoru = false;
         }
     }
 }

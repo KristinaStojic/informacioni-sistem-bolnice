@@ -13,11 +13,8 @@ namespace Projekat.Model
         public Lekar lekar { get; set; }
         public string pocetakOdmora {get;set;}
         public string krajOdmora {get;set;}
-
         public int brojDanaOdmora { get; set;}
-
         public string napomena { get; set;}
-
         public StatusZahteva odobren { get; set; }
 
         public ZahtevZaGodisnji() { }

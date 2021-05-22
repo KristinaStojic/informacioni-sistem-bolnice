@@ -17,22 +17,20 @@ namespace Model
         public int IdLekara { get; set; }
         public string ImeLek { get; set; }
         public string PrezimeLek { get; set; }
-        public int Jmbg { get; set; }
+        public long Jmbg { get; set; }
         public long BrojTelefona { get; set; }
         public string Email { get; set; }
         public string AdresaStanovanja { get; set; }
         public Specijalizacija specijalizacija { get; set; }
         public int SlobodniDaniGodisnjegOdmora { get; set; }
-        public int ZahtevaniiDaniGodisnjegOdmora { get; set; } // prilikom slanja zahteva od strane lekara 
+        public int ZahtevaniDaniGodisnjegOdmora { get; set; } 
         public List<int> ZahteviZaOdmor { get; set; }
-         public List<RadniDan> RadniDani { get; set; }
+        public List<RadniDan> RadniDani { get; set; }
         public int BrojPregleda { get; set; }
         public int BrojOperacija { get; set; }
-        // radno vreme?
-
         
 
-        public Lekar(int IdLekara, string Ime, string Prezime, int Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija)
+        public Lekar(int IdLekara, string Ime, string Prezime, long Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija)
         {
             this.IdLekara = IdLekara;
             this.ImeLek = Ime;
@@ -43,7 +41,7 @@ namespace Model
             this.AdresaStanovanja = AdresaStanovanja;
             this.specijalizacija = Specijalizacija;
             this.SlobodniDaniGodisnjegOdmora = MAX_DANA_GODISNJEG_ODMORA;
-            this.ZahtevaniiDaniGodisnjegOdmora = 0;
+            this.ZahtevaniDaniGodisnjegOdmora = 0;
             this.BrojOperacija = 0;
             this.BrojPregleda = 0;
             this.ZahteviZaOdmor = new List<int>();

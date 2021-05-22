@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for IzmeniPacijenta.xaml
     /// </summary>
-    public partial class IzmeniPacijenta : Window
+    public partial class IzmeniPacijenta : Window, INotifyPropertyChanged
     {
         public Pacijent pacijent;
         public bracnoStanje brStanje;
@@ -28,10 +29,71 @@ namespace Projekat
         {
             InitializeComponent();
             this.pacijent = izabraniNalog;
-            
+            this.DataContext = this;
             if (izabraniNalog != null) 
             {
                 PupuniPoljaForme(izabraniNalog);
+            }
+        }
+
+        public string validacijaJmbg;
+        public string validacijaBrojTelefona;
+        public string validacijaJmbgStaratelja;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public string ValidacijaJmbg
+        {
+            get
+            {
+                return validacijaJmbg;
+            }
+            set
+            {
+                if (value != validacijaJmbg)
+                {
+                    validacijaJmbg = value;
+                    OnPropertyChanged("ValidacijaJmbg");
+                }
+            }
+        }
+
+        public string ValidacijaBrojTelefona
+        {
+            get
+            {
+                return validacijaBrojTelefona;
+            }
+            set
+            {
+                if (value != validacijaBrojTelefona)
+                {
+                    validacijaBrojTelefona = value;
+                    OnPropertyChanged("ValidacijaBrojTelefona");
+                }
+            }
+        }
+
+        public string ValidacijaJmbgStaratelja
+        {
+            get
+            {
+                return validacijaJmbgStaratelja;
+            }
+            set
+            {
+                if (value != validacijaJmbgStaratelja)
+                {
+                    validacijaJmbgStaratelja = value;
+                    OnPropertyChanged("ValidacijaJmbgStaratelja");
+                }
             }
         }
 
@@ -39,12 +101,12 @@ namespace Projekat
         {
             ime.Text = izabraniNalog.ImePacijenta;
             prezime.Text = izabraniNalog.PrezimePacijenta;
-            jmbg.Text = izabraniNalog.Jmbg.ToString();
-            jmbgStaratelja.Text = izabraniNalog.JmbgStaratelja.ToString();
-            brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
+            ValidacijaJmbg = izabraniNalog.Jmbg.ToString();
+            ValidacijaBrojTelefona = izabraniNalog.BrojTelefona.ToString();
             email.Text = izabraniNalog.Email;
             adresa.Text = izabraniNalog.AdresaStanovanja;
             zanimanje.Text = izabraniNalog.Zanimanje;
+            ValidacijaJmbgStaratelja = izabraniNalog.JmbgStaratelja.ToString();
 
             if (izabraniNalog.Pol.Equals(pol.M))
             {
@@ -115,7 +177,7 @@ namespace Projekat
             statusNaloga status;
             pol pol;
             bool maloletnoLice;
-            int staratelj;
+            long staratelj;
 
             if (combo2.Text.Equals("M"))
             {
@@ -142,7 +204,7 @@ namespace Projekat
             }
             else
             {
-                staratelj = Convert.ToInt32(jmbgStaratelja.Text);
+                staratelj = long.Parse(jmbgStaratelja.Text);
             }
 
             if (combo.SelectedIndex == 0) // za stalan nalog    
@@ -182,13 +244,13 @@ namespace Projekat
                     brStanje = bracnoStanje.Razveden;
                 }
 
-                Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
                 PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
             }
             else
             {
                 status = statusNaloga.Guest;      
-                Pacijent guestPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, status);
+                Pacijent guestPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
                 guestPacijent.BracnoStanje = bracnoStanje.Neodredjeno;
                 PacijentiServis.IzmeniNalog(pacijent, guestPacijent);    
             }

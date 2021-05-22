@@ -88,11 +88,25 @@ namespace Projekat
 
         private void OduzmiSlobodneDaneLekaru(ZahtevZaGodisnji zahtev) 
         {
-            foreach (Lekar l in LekariMenadzer.lekari)
+            foreach (Lekar lekar in LekariMenadzer.lekari)
             {
-                if (l.IdLekara == zahtev.lekar.IdLekara)
+                if (lekar.IdLekara == zahtev.lekar.IdLekara)
+                {  
+                    OznaciLekarimaGodisnjiOdmor(lekar, zahtev);
+                    lekar.SlobodniDaniGodisnjegOdmora -= zahtev.brojDanaOdmora;
+                    LekariServis.SacuvajIzmeneLekara();
+                }
+            }
+        }
+
+        private void OznaciLekarimaGodisnjiOdmor(Lekar lekar, ZahtevZaGodisnji zahtev)
+        {
+            foreach (RadniDan dan in lekar.RadniDani)
+            {
+                if ((DateTime.Parse(zahtev.pocetakOdmora) <= DateTime.Parse(dan.Datum)) &&
+                     (DateTime.Parse(zahtev.krajOdmora) >= DateTime.Parse(dan.Datum)))
                 {
-                    l.SlobodniDaniGodisnjegOdmora -= zahtev.brojDanaOdmora;
+                    dan.NaGodisnjemOdmoru = true;
                     LekariServis.SacuvajIzmeneLekara();
                 }
             }

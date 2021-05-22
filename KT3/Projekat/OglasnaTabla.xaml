@@ -34,7 +34,7 @@
                 <Style TargetType="ListViewItem">
                     <Setter Property="Height" Value="80"/>
                 </Style>
-                
+
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -44,12 +44,13 @@
                             <TextBlock Text="{Binding TipObavestenja}" Width="400"/>
                             <TextBlock Text="{Binding Datum}" HorizontalAlignment="Right"/>
                         </WrapPanel>
-                    </Border> 
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" StrokeThickness="0" VerticalAlignment="Top" Width="478" Margin="799,0,-3.4,0" />
+
         <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="475" Background="#FFE7F6F7" Margin="799,0,-0.4,-0.6" Visibility="Hidden">
             <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Napusti_uvid_Click">
                 <StackPanel>
@@ -62,7 +63,7 @@
             <Label Canvas.Left="50" Canvas.Top="379" FontSize="15">DATUM:</Label>
             <Label Canvas.Left="50" Canvas.Top="417" FontSize="15">NAMENJENO ZA:</Label>
             <TextBox Name="naslov" Canvas.Left="185" Canvas.Top="117" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15" ></TextBox>
-            <TextBox x:Name="sadrzaj" Canvas.Left="185" Canvas.Top="158" Width="220" Height="217" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True" />
+            <TextBox x:Name="sadrzaj" Canvas.Left="185" Canvas.Top="158" Width="220" Height="217" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"/>
             <!-- doadto kao linije za sadrzaj -->
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="158" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="178" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
@@ -75,7 +76,6 @@
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="321" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="341" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
 
-
             <TextBox x:Name="datum" Canvas.Left="185" Canvas.Top="382" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15"/>
             <TextBox x:Name="namena" Canvas.Left="187" Canvas.Top="420" Width="218" Height="193" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True"/>
             <!-- dodato kao linije za listu namenjenih -->
@@ -86,22 +86,24 @@
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="502" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="523" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
         </Canvas>
+        <GroupBox x:Name="okvir" Header="UVID U OBAVEŠTENJE" Canvas.Left="34" Canvas.Top="71" FontSize="20"  BorderBrush="#FF18A3AC" Margin="832,63,32.6,107.4" Visibility="Hidden"/>
+
         <Button Content="Dodaj" HorizontalAlignment="Left" Margin="449,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Dodaj_Click" FontSize="17" Background="#FFA3DADE">
-           <!-- <Button.Resources>
+            <!-- <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Button.Resources> -->
         </Button>
         <Button Content="Izmeni" HorizontalAlignment="Left" Margin="566,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Izmeni_Click" FontSize="17" Background="#FFA3DADE">
-          <!--  <Button.Resources>
+            <!--  <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Button.Resources> -->
         </Button>
         <Button Content="Obrisi" HorizontalAlignment="Left" Margin="683,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Obrisi_Click" FontSize="17" Background="#FFA3DADE">
-          <!--  <Button.Resources>
+            <!--  <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
                 </Style>

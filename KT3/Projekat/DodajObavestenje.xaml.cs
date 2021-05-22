@@ -23,10 +23,13 @@ namespace Projekat
     public partial class DodajObavestenje : Window
     {
         public string oznaka;
+        bool flag1 = false;
+        bool flag2 = false;
         public DodajObavestenje()
         {
             InitializeComponent();
 
+            potvrdi.IsEnabled = false;
             pretraga.IsEnabled = false;
             listaPacijenata.IsEnabled = false;
             pacijenti.IsEnabled = false;
@@ -113,5 +116,40 @@ namespace Projekat
                 pacijenti.IsEnabled = false;
             }
         }
+
+        private void Naslov_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag1 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag1 = true;
+                if (flag1 == true && flag2 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Sadrzaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag2 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag2 = true;
+                if (flag1 == true && flag2 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
     }
 }

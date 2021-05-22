@@ -163,6 +163,16 @@ namespace Projekat
                 email.Text = selektovaniLekar.Email;
                 adresa.Text = selektovaniLekar.AdresaStanovanja;
                 specijalizacija.Text = selektovaniLekar.specijalizacija.ToString();
+                if (selektovaniLekar.RadniDani.Count > 0)
+                {
+                    vreme_pocetka.Text = selektovaniLekar.RadniDani[0].VremePocetka;
+                    vreme_kraja.Text = selektovaniLekar.RadniDani[0].VremeKraja;
+                }
+                else
+                {                
+                    vreme_pocetka.Text = "";
+                    vreme_kraja.Text = "";
+                }
             }
         }
 
