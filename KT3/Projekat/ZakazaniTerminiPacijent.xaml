@@ -117,13 +117,13 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="85">
-                <Button Height="30"
-                            Width="90"
+                <Button Height="50"
+                            Width="130"
                             ToolTip="Ukoliko zelite da pomerite termin, selektujte termin i pritisnite dugme 'Pomeri termin'" Content="{namespace:Loc PomeriTermin}"
                             Click="Button_Click_1"
                         Style="{DynamicResource ButtonStyle2}"/>
-                <Button Height="30"
-                            Width="90"
+                <Button Height="50"
+                            Width="130"
                             ToolTip="Ukoliko zelite da otkazete termin, selektujte zeljeni termin i pritisnite dugme 'Otkazi termin'"
                             Content="{namespace:Loc OtkaziTermin}"
                             Margin="30, 0, 0, 0"
