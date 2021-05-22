@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="ZakazaniTerminiPacijent" Background="{DynamicResource BackgroundColor}">
@@ -37,37 +38,37 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                     <Separator/>
-                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                     <Separator/>
-                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                    <MenuItem Header="_sr" />
-                                    <MenuItem Header="_en"/>
+                                    <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                    <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                     <Separator />
-                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
+                                    <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                    <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                    <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                     <Separator />
-                                    <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14"  Height="25">
-                <Hyperlink Name="pocetna" Click="pocetna_Click">
-                    <Run Text="Početna stranica"/>
+                <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                    <Run Text="{namespace:Loc Pocetna}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="zakazi" Click="zakazi_Click">
-                    <Run Text="Zakažite termin"/>
+                    <Run Text="{namespace:Loc ZakaziTermin}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="uvid" Click="uvid_Click">
-                    <Run Text="Uvid u zakazane termine"/>
+                    <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
                 </Hyperlink>
                 <Run Text=" "/>
                 <Hyperlink Name="karton" Click="karton_Click">
-                    <Run Text="Zdravstveni karton"/>
+                    <Run Text="{namespace:Loc Karton}"/>
                 </Hyperlink>
                     </TextBlock>
                 </StackPanel>
@@ -75,7 +76,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBox  BorderThickness="1" DockPanel.Dock="Top" Name="txtFilter" TextChanged="txtFilter_TextChanged"
-                      Margin="0,20,40,0" TextAlignment="Left" Height="25" Width="300"  ToolTip="Pretrazite listu termina po datumu"
+                      Margin="0,20,40,0" TextAlignment="Left" Height="25" Width="300"  ToolTip="{namespace:Loc ToolTipPretragaDatuma}"
                       HorizontalAlignment="Right" FontSize="14"
                       BorderBrush="White">
                 <TextBox.Style>
@@ -83,7 +84,7 @@
                         <Style.Resources>
                             <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
-                                    <Label Content="Pronađite termin po datumu (MM/dd/yyyy)" Foreground="DarkGray" />
+                                    <Label Content="{namespace:Loc TekstLabeleZaPretragu}" Foreground="DarkGray" />
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Style.Resources>
@@ -107,24 +108,24 @@
                           Background="#FFF9F7F7" BorderBrush="White" Margin="0,20,0,0">
                 <DataGrid.Columns >
                     <!--DataGridTextColumn Header="RBR" Binding="{Binding IdTermin}" /-->
-                    <DataGridTextColumn Header="Datum" Width="90" Binding="{Binding Datum}" />
-                    <DataGridTextColumn Header="Vreme pocetka" Width="110" Binding="{Binding VremePocetka}"/>
-                    <DataGridTextColumn Header="Vreme kraja"  Width="110" Binding="{Binding VremeKraja}"/>
-                    <DataGridTextColumn Header="Lekar" Binding="{Binding Lekar}" Width="120" />
-                    <DataGridTextColumn Header="Sala" Binding="{Binding Prostorija.brojSale}" Width="65" />
-                    <DataGridTextColumn Header="Tip usluge" Width="*" Binding="{Binding tipTermina}"/>
+                    <DataGridTextColumn Header="{namespace:Loc Datum}" Width="90" Binding="{Binding Datum}" />
+                    <DataGridTextColumn Header="{namespace:Loc VremePocetka}" Width="110" Binding="{Binding VremePocetka}"/>
+                    <DataGridTextColumn Header="{namespace:Loc VremeKraja}"  Width="110" Binding="{Binding VremeKraja}"/>
+                    <DataGridTextColumn Header="{namespace:Loc LekarPodaci}" Binding="{Binding Lekar}" Width="120" />
+                    <DataGridTextColumn Header="{namespace:Loc Sala}" Binding="{Binding Prostorija.brojSale}" Width="65" />
+                    <DataGridTextColumn Header="{namespace:Loc TipTermin}" Width="*" Binding="{Binding tipTermina}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="85">
-                <Button Height="30"
-                            Width="90"
-                            ToolTip="Ukoliko zelite da pomerite termin, selektujte termin i pritisnite dugme 'Pomeri termin'" Content="Pomeri termin"
+                <Button Height="50"
+                            Width="130"
+                            ToolTip="Ukoliko zelite da pomerite termin, selektujte termin i pritisnite dugme 'Pomeri termin'" Content="{namespace:Loc PomeriTermin}"
                             Click="Button_Click_1"
                         Style="{DynamicResource ButtonStyle2}"/>
-                <Button Height="30"
-                            Width="90"
+                <Button Height="50"
+                            Width="130"
                             ToolTip="Ukoliko zelite da otkazete termin, selektujte zeljeni termin i pritisnite dugme 'Otkazi termin'"
-                            Content="Otkazi termin"
+                            Content="{namespace:Loc OtkaziTermin}"
                             Margin="30, 0, 0, 0"
                             Click="Button_Click_2"
                             Style="{DynamicResource ButtonStyle2}"/>

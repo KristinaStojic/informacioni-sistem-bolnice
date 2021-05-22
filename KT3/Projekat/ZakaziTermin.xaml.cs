@@ -34,8 +34,8 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
-            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove(); 
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
@@ -224,5 +224,26 @@ namespace Projekat
             izabraniLekar = LekariServis.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
             this.imePrz.Text = izabraniLekar.ToString();
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 }

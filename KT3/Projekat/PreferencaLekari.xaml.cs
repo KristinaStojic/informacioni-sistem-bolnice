@@ -33,7 +33,7 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         
@@ -54,6 +54,7 @@ namespace Projekat
 
         private void datagridLekari_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            zakaziLekar.IsEnabled = true;
             if (datagridLekari.SelectedItems.Count > 0)
             {
                 Lekar item = (Lekar)datagridLekari.SelectedItem;
@@ -66,11 +67,15 @@ namespace Projekat
             if (datagridLekari.SelectedItems.Count > 0)
             {
                 lekar = (Lekar)datagridLekari.SelectedItems[0];
+                ZakaziTermin.izabraniLekar = lekar;
+                Page zt = new ZakaziTermin(idPacijent);
+                this.NavigationService.Navigate(zt);
             }
-            MessageBox.Show(lekar.ToString());
-            ZakaziTermin.izabraniLekar = lekar;
-            Page zt = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zt);
+            else
+            {
+                MessageBox.Show("Selektujte lekara");
+            }
+            
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -117,6 +122,7 @@ namespace Projekat
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
@@ -128,6 +134,7 @@ namespace Projekat
             Page zakazivanje = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakazivanje);
         }
+
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
             if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
@@ -138,7 +145,28 @@ namespace Projekat
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 
-    
+
 }
