@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,7 @@ namespace Projekat.ViewModel
         public MyICommand ZatvoriSalu { get; set; }
         public MyICommand OtvoriZahtjeve { get; set; }
         public MyICommand OtvoriKomunikaciju { get; set; }
+        public MyICommand OAplikacijiKomanda { get; set; }
         public static Window SaleProzor { get; set; }
         public SaleViewModel()
         {
@@ -116,7 +118,14 @@ namespace Projekat.ViewModel
             ZatvoriSalu = new MyICommand(Zatvori);
             OtvoriZahtjeve = new MyICommand(PrikaziZahtjeve);
             OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
+            OAplikacijiKomanda = new MyICommand(OtvoriOpis);
             DodajSale();
+        }
+        private void OtvoriOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
         private void PrikaziKomunikaciju()
         {

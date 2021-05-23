@@ -18,6 +18,7 @@
         <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriProzorKomanda}"></KeyBinding>
         <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
         <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OAplikacijiKomanda}"></KeyBinding>
     </Window.InputBindings>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -45,7 +46,7 @@
                 </MenuItem>
                 <MenuItem Header="Pomoc" FontSize="15">
                     <MenuItem Header="Pomoc" FontSize="15" Click="Pomoc_Click" InputGestureText="Ctrl + H"></MenuItem>
-                    <MenuItem Header="O aplikaciji" FontSize="15" ></MenuItem>
+                    <MenuItem Header="O aplikaciji" Command="{Binding OAplikacijiKomanda}" InputGestureText="Ctrl + A" FontSize="15" ></MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBar Background="CadetBlue">

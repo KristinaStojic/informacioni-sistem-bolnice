@@ -1,4 +1,5 @@
-﻿using Projekat.Servis;
+﻿using Projekat.Pomoc;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Projekat.ViewModel
         public MyICommand ZatvoriZahtjeveKomanda { get; set; }
         public MyICommand OtvoriSale { get; set; }
         public MyICommand OtvoriKomunikaciju { get; set; }
+        public MyICommand OtvoriOAplikaciji { get; set; }
         public static Window ZahtjeviProzor { get; set; }//zatvori prozor sa kog si dosla(kad sve bude uvezano...)
         
         public ZahtjeviViewModel()
@@ -24,6 +26,13 @@ namespace Projekat.ViewModel
             ZatvoriZahtjeveKomanda = new MyICommand(ZatvoriZahtjeve);
             OtvoriSale = new MyICommand(PrikaziSale);
             OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
+            OtvoriOAplikaciji = new MyICommand(PrikaziOpis);
+        }
+        private void PrikaziOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
         private void PrikaziKomunikaciju()
         {

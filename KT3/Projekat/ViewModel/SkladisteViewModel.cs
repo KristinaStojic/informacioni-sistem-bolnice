@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace Projekat.ViewModel
         public Window ObrisiOpremuProzor { get; set; }
         public static  Window SkladisteProzor { get; set;}
 
+        public MyICommand OtvoriOAplikaciji { get; set; }
         public SkladisteViewModel()
         {
             OpremaDinamicka = new ObservableCollection<Oprema>();
@@ -70,6 +72,13 @@ namespace Projekat.ViewModel
             PotvrdiBrisanjeOpreme = new MyICommand(ObrisiIzabranuOpremu, ValidnaPoljaZaBrisanjeOpreme);
             PrikaziSale = new MyICommand(OtvoriSale);
             PrikaziKomunikaciju = new MyICommand(OtvoriKomunikaciju);
+            OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
+        }
+        private void OtvoriOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
         private void OtvoriKomunikaciju()
         {

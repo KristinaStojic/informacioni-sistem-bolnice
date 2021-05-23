@@ -16,6 +16,21 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -79,6 +94,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </ApplicationDefinition>
     <Compile Include="BrisanjeLijeka.xaml.cs">
       <DependentUpon>BrisanjeLijeka.xaml</DependentUpon>
@@ -316,8 +332,14 @@
     <Compile Include="Pomoc\AnamnezaPomoc.xaml.cs">
       <DependentUpon>AnamnezaPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\KomunikacijaPomoc.xaml.cs">
+      <DependentUpon>KomunikacijaPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\LijekoviPomoc.xaml.cs">
       <DependentUpon>LijekoviPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\OAplikaciji.xaml.cs">
+      <DependentUpon>OAplikaciji.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\OglasnaTablaPomoc.xaml.cs">
       <DependentUpon>OglasnaTablaPomoc.xaml</DependentUpon>
@@ -485,6 +507,9 @@
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpravnikPrijava.xaml.cs">
+      <DependentUpon>UpravnikPrijava.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UvidUZahtjevKomunikacija.xaml.cs">
       <DependentUpon>UvidUZahtjevKomunikacija.xaml</DependentUpon>
     </Compile>
@@ -501,6 +526,8 @@
     <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
+    <Compile Include="ViewModel\OAplikacijiViewModel.cs" />
+    <Compile Include="ViewModel\PomocViewModel.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />
     <Compile Include="ViewModel\SkladisteViewModel.cs" />
     <Compile Include="ViewModel\UpravnikViewModel.cs" />
@@ -734,6 +761,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="DodajSalu.xaml.cs">
       <DependentUpon>DodajSalu.xaml</DependentUpon>
@@ -841,7 +869,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\KomunikacijaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\LijekoviPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\OAplikaciji.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1061,6 +1097,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UpravnikPrijava.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UvidUZahtjevKomunikacija.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1272,6 +1312,16 @@
   <ItemGroup>
     <Resource Include="slike\bed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Video\PomocZaKomunikaciju.mp4" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
