@@ -366,6 +366,9 @@
   <data name="PrezimePacijenta" xml:space="preserve">
     <value>Patient lastname</value>
   </data>
+  <data name="PrijaviSe" xml:space="preserve">
+    <value>Log in</value>
+  </data>
   <data name="Profil" xml:space="preserve">
     <value>Your profile</value>
   </data>
@@ -401,6 +404,9 @@
   </data>
   <data name="TekstLabeleZaPretragu" xml:space="preserve">
     <value>Find an appointment by date (MM/dd/yyyy)</value>
+  </data>
+  <data name="Tema" xml:space="preserve">
+    <value>Theme</value>
   </data>
   <data name="Terapija" xml:space="preserve">
     <value>Therapy</value>
@@ -443,6 +449,11 @@
   </data>
   <data name="UvidUZakazaneTermine" xml:space="preserve">
     <value>Scheduled appointments</value>
+  </data>
+  <data name="Uvod" xml:space="preserve">
+    <value>ZdravoCorporation is a private healthcare system that offers the highest quality of service,
+                     the most effective recovery of health and encourages a healthy life of each patient.
+                     Register at the nearest clinical center and take advantage of the opportunities offered by the Zdravo Corporation.</value>
   </data>
   <data name="Vreme" xml:space="preserve">
     <value>Time</value>

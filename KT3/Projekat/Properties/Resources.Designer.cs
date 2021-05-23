@@ -808,6 +808,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prijavi se.
+        /// </summary>
+        public static string PrijaviSe {
+            get {
+                return ResourceManager.GetString("PrijaviSe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vaš profil.
         /// </summary>
         public static string Profil {
@@ -912,6 +921,15 @@ namespace Projekat.Properties {
         public static string TekstLabeleZaPretragu {
             get {
                 return ResourceManager.GetString("TekstLabeleZaPretragu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tema.
+        /// </summary>
+        public static string Tema {
+            get {
+                return ResourceManager.GetString("Tema", resourceCulture);
             }
         }
         
@@ -1038,6 +1056,17 @@ namespace Projekat.Properties {
         public static string UvidUZakazaneTermine {
             get {
                 return ResourceManager.GetString("UvidUZakazaneTermine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zdravo korporacija je privatni zdravstveni sistem koji nudi najviši kvalitet usluge, 
+        ///                    najefikasniji oporavak zdravlja i podstiče na zdrav život svakog pacijenta.
+        ///                    Registujte se u najbližem kliničkom centru i iskoristite mogućnosti koje Vam nudi Zdravo korporacija..
+        /// </summary>
+        public static string Uvod {
+            get {
+                return ResourceManager.GetString("Uvod", resourceCulture);
             }
         }
         

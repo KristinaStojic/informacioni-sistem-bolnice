@@ -463,6 +463,7 @@
     <Compile Include="Servis\ObavestenjaServis.cs" />
     <Compile Include="Servis\OpremaServis.cs" />
     <Compile Include="Servis\PacijentiServis.cs" />
+    <Compile Include="Servis\PacijentPagesServis.cs" />
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
@@ -497,10 +498,12 @@
     <Compile Include="UvidZdravstveniKartonLekar.xaml.cs">
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AnketeViewModel.cs" />
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
+    <Compile Include="ViewModel\PrikaziTerminViewModel.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />
     <Compile Include="ViewModel\SkladisteViewModel.cs" />
     <Compile Include="ViewModel\UpravnikViewModel.cs" />

@@ -4,13 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
+        xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         d:DesignHeight="600" d:DesignWidth="800"
         Title="Prikaz termina" Background= "{DynamicResource BackgroundColor}">
+    <!--Page.DataContext>
+        <viewmodel:PrikaziTerminViewModel/>
+    </-->
     <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
         <Grid  Margin="0,0,0,0" Height="578">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="11*"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
                 <ColumnDefinition Width="58*"/>
                 <ColumnDefinition Width="11*"/>
             </Grid.ColumnDefinitions>

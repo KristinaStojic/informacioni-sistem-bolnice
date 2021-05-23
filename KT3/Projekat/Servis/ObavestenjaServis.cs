@@ -98,7 +98,74 @@ namespace Projekat.Servis
                 }
             }
         }
+        #region Obavestenja nit
+        public static void ProveriSvaObavestenja(int idPacijent, ObservableCollection<Obavestenja> ObavestenjaPacijent)
+        {
+            App.Current.Dispatcher.Invoke((Action)delegate
+            {
+                // TODO: CLEAN CODE i ispraviti
+                foreach (Obavestenja obavestenje in ObavestenjaServis.PronadjiObavestenjaPoIdPacijenta(idPacijent))
+                {
+                    DateTime datumObavestenja = DateTime.Parse(obavestenje.Datum);
+                    string trenutnoVreme = DateTime.Now.ToString("MM/dd/yyyy HH:mm"); // HH:mm
+                    string vremeZaTerapiju = datumObavestenja.ToString("MM/dd/yyyy HH:mm");
+                    if (vremeZaTerapiju.Equals(trenutnoVreme))
+                    {
+                        bool postojeNovaObavestenja = ProveriObjavljenaObavestenja(obavestenje, ObavestenjaPacijent);
+                        if (!postojeNovaObavestenja)
+                        {
+                            Obavestenja novoObavestenje = PronadjiSledeceObavestenje(datumObavestenja.ToString("MM/dd/yyyy HH:mm"), idPacijent, ObavestenjaPacijent);
+                            if (novoObavestenje == null)
+                            {
+                                return;
+                            }
+                            ObavestenjaPacijent.Add(novoObavestenje);
+                            string sadrzajObavestenja = novoObavestenje.SadrzajObavestenja;
+                            //return true;
+                        }
+                    }
+                }
+                //return false;
+           });
+        }
 
+        public static void ObrisiSelektovanoObavestenje(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
+        {
+            if (obavestenje != null && obavestenje.TipObavestenja.Equals("Terapija"))
+            {
+                ObavestenjaServis.ObrisiObavestenjePacijent(obavestenje);
+                ObavestenjaPacijent.Remove(obavestenje);
+            }
+        }
+
+        // obavestenja servis
+        private static Obavestenja PronadjiSledeceObavestenje(string datum, int idPacijent, ObservableCollection<Obavestenja> ObavestenjaPacijent)
+        {
+            foreach (Obavestenja o in ObavestenjaServis.NadjiSvaObavestenja())
+            {
+                if (o.ListaIdPacijenata.Contains(idPacijent))
+                {
+                    if (o.Datum.Equals(datum) && !ObavestenjaPacijent.Any(x => x.IdObavestenja == o.IdObavestenja))
+                    {
+                        return o;
+                    }
+                }
+            }
+            return null;
+        }
+        // obavestenja servis
+        private static bool ProveriObjavljenaObavestenja(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
+        {
+            foreach (Obavestenja o in ObavestenjaPacijent)
+            {
+                if (o.IdObavestenja == obavestenje.IdObavestenja)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
 
 
         #endregion

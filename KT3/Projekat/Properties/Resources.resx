@@ -366,6 +366,9 @@
   <data name="PrezimePacijenta" xml:space="preserve">
     <value>Prezime pacijenta</value>
   </data>
+  <data name="PrijaviSe" xml:space="preserve">
+    <value>Prijavi se</value>
+  </data>
   <data name="Profil" xml:space="preserve">
     <value>Vaš profil</value>
   </data>
@@ -401,6 +404,9 @@
   </data>
   <data name="TekstLabeleZaPretragu" xml:space="preserve">
     <value>Pronađite termin po datumu (MM/dd/yyyy)</value>
+  </data>
+  <data name="Tema" xml:space="preserve">
+    <value>Tema</value>
   </data>
   <data name="Terapija" xml:space="preserve">
     <value>Terapija</value>
@@ -443,6 +449,11 @@
   </data>
   <data name="UvidUZakazaneTermine" xml:space="preserve">
     <value>Uvid u zakazane termine</value>
+  </data>
+  <data name="Uvod" xml:space="preserve">
+    <value>Zdravo korporacija je privatni zdravstveni sistem koji nudi najviši kvalitet usluge, 
+                    najefikasniji oporavak zdravlja i podstiče na zdrav život svakog pacijenta.
+                    Registujte se u najbližem kliničkom centru i iskoristite mogućnosti koje Vam nudi Zdravo korporacija.</value>
   </data>
   <data name="Vreme" xml:space="preserve">
     <value>Vreme</value>

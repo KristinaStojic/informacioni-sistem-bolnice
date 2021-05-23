@@ -25,7 +25,7 @@ namespace Projekat
             AnketaServis.NadjiSveAnkete();
             MalicioznoPonasanjeServis.NadjiSvaMalicioznaPonasanja();
             var app = (App)Application.Current;
-            app.ChangeLanguage("sr-LATN");
+            app.ChangeLanguage("sr-LATN");  
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

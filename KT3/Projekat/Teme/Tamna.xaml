@@ -20,7 +20,10 @@
     <Style TargetType="TextBlock" x:Key="ZdravoText">
         <Setter Property="Foreground" Value="White"/>
     </Style>
-    
+
+    <SolidColorBrush x:Key="MenuItemJezik" Color="#dbe2ef"/>
+    <SolidColorBrush x:Key="MenuItemJezikText" Color="Black"/>
+
     <Style TargetType="Button" x:Key="ButtonStyle" >
         <Setter Property="Background" Value="#dbe2ef"/>
         <Setter Property="Foreground" Value="Black"/>
