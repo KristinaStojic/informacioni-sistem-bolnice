@@ -14,6 +14,6 @@
             <RowDefinition Height="400"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <MediaElement Source="../Video/PomocZaKomunikaciju.mp4"/>
+        <MediaElement Source="C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT3\Projekat\Video\PomocZaKomunikaciju.mp4"/>
     </Grid>
 </Window>
