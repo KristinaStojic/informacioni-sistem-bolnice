@@ -103,10 +103,14 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UpravnikViewModel.UpravnikProzor = new Upravnik();
+            /*UpravnikViewModel.UpravnikProzor = new Upravnik();
             UpravnikViewModel.UpravnikProzor.Show();
-            UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();
-            //this.Hide();
+            UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();*/
+            UpravnikViewModel.PrijavaProzor = new UpravnikPrijava();
+            UpravnikViewModel.PrijavaProzor.Show();
+            UpravnikViewModel.PrijavaProzor.DataContext = new UpravnikViewModel();
+            this.Hide();
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

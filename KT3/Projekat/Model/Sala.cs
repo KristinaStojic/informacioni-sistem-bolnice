@@ -70,7 +70,7 @@ namespace Model
 
         private string stringZaStaticku()
         {
-            string stringStaticka = "";
+            string stringStaticka = brojSale + " - " + Namjena;
             if (SaleViewModel.izabranaStat != null)
             {
                 foreach (Oprema oprema in Oprema)
