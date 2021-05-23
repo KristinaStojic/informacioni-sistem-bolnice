@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Komunikacija pomoc" Height="500" Width="480" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+        Title="Komunikacija pomoc" Height="500" Width="480" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
     <Window.DataContext>
         <ViewModel:PomocViewModel/>
     </Window.DataContext>

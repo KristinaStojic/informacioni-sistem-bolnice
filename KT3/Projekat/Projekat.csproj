@@ -258,6 +258,8 @@
     <Compile Include="Model\RadniDan.cs" />
     <Compile Include="Model\Sastojak.cs" />
     <Compile Include="Model\Specijalizacija.cs" />
+    <Compile Include="Model\UpravnikModel.cs" />
+    <Compile Include="Model\UpravnikMenadzer.cs" />
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ValidacijaSekretar.cs" />
@@ -488,6 +490,7 @@
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
+    <Compile Include="Servis\UpravnikServis.cs" />
     <Compile Include="Servis\ZdravstveniKartonServis.cs" />
     <Compile Include="Skladiste.xaml.cs">
       <DependentUpon>Skladiste.xaml</DependentUpon>
@@ -509,6 +512,12 @@
     </Compile>
     <Compile Include="UpravnikPrijava.xaml.cs">
       <DependentUpon>UpravnikPrijava.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpravnikRegistracija.xaml.cs">
+      <DependentUpon>UpravnikRegistracija.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UspjesnaRegistracijaUpravnik.xaml.cs">
+      <DependentUpon>UspjesnaRegistracijaUpravnik.xaml</DependentUpon>
     </Compile>
     <Compile Include="UvidUZahtjevKomunikacija.xaml.cs">
       <DependentUpon>UvidUZahtjevKomunikacija.xaml</DependentUpon>
@@ -1101,6 +1110,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UpravnikRegistracija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UspjesnaRegistracijaUpravnik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UvidUZahtjevKomunikacija.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1321,6 +1338,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Video\PomocZaSale.mp4" />
+    <Resource Include="slike\bolnica.png" />
     <Content Include="Video\PomocZaKomunikaciju.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

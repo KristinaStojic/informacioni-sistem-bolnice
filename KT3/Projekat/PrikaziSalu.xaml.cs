@@ -22,11 +22,5 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private void Pomoc_Click(object sender, RoutedEventArgs e)
-        {
-            SalePomoc salePomoc = new SalePomoc();
-            salePomoc.Show();
-        }
-
     }
 }
