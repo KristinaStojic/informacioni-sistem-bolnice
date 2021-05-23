@@ -17,6 +17,7 @@
         <KeyBinding Key="B" Modifiers="Ctrl" Command="{Binding OdbijeniLijekovi}"></KeyBinding>
         <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding OtvoriSale}"></KeyBinding>
         <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
     </Window.InputBindings>
     <DockPanel Margin="0,0,2,0">
         <StackPanel DockPanel.Dock="Top">
@@ -38,7 +39,7 @@
                 </MenuItem>
                 <MenuItem Header="Pomoc" FontSize="15">
                     <MenuItem Header="Pomoc" FontSize="15" Click="Pomoc_Click" InputGestureText="Ctrl + H"></MenuItem>
-                    <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
+                    <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOAplikaciji}" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBar Background="CadetBlue">
