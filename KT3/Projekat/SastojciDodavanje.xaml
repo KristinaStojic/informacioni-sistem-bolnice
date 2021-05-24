@@ -3,14 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Dodavanje sastojaka" Height="400" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize">
+        Title="Dodavanje sastojaka" Height="400" Width="500" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:LijekoviViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriDodavanjeSastojakaKomanda}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
-        <Button ToolTip="Nazad" Width="30" Margin="5, 10, 420, 10" Click="Odustani_Click" Background="LightSteelBlue">
+        <Button ToolTip="Nazad" Width="30" Margin="5, 10, 420, 10" Command="{Binding ZatvoriDodavanjeSastojakaKomanda}" Background="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
-        <DataGrid x:Name="dataGridSastojci" ItemsSource="{Binding SastojciLijeka}" IsReadOnly="True" 
+        <DataGrid x:Name="dataGridSastojci" ItemsSource="{Binding SastojciLijeka, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="210" Margin="0,10,0,0" VerticalAlignment="Center" Width="410">
             <DataGrid.Columns>
@@ -18,6 +24,6 @@
                 <DataGridTextColumn Header="Kolicina                                            " Binding="{Binding kolicina}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Width="150" Height="50" Margin="250, 30, 0, 0" Background="CadetBlue" Click="DodajSastojak_Click">Dodaj sastojak</Button>
+        <Button Width="150" Height="50" Margin="250, 30, 0, 0" Background="CadetBlue" Command="{Binding DodajSastojakKomanda}">Dodaj sastojak</Button>
     </StackPanel>
 </Window>

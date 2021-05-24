@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         Title="Izmjeni salu" Height="400" Width="500" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:SaleViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,15 +24,15 @@
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Namjena:</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Tip prostorije:</TextBlock>
        
-        <TextBox Grid.Row="0" Grid.Column="1" Width="190" Height="30" BorderBrush="Black" Name="brojSale" TextChanged="brojSale_TextChanged"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="190" Height="30" BorderBrush="Black" Name="namjenaSale" TextChanged="namjenaSale_TextChanged"></TextBox>
-        <ComboBox Grid.Row="2" Grid.Column="1" Width="190" Height="30" BorderBrush="Black" Name="tipSale">
+        <TextBox Grid.Row="0" Grid.Column="1" Width="190" Height="30" BorderBrush="Black" Name="brojSale" Text="{Binding BrojSaleIzmjena, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="190" Height="30" BorderBrush="Black" Name="namjenaSale" Text="{Binding NamjenaSaleIzmjena, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <ComboBox Grid.Row="2" Grid.Column="1" Width="190" Height="30" BorderBrush="Black" Name="tipSale" SelectedIndex="{Binding TipSaleIzmjena, UpdateSourceTrigger=PropertyChanged}">
             <ComboBoxItem Content="Sala za operacije"/>
             <ComboBoxItem Content="Sala za preglede"/>
             <ComboBoxItem Content="Sala za lezanje"/>
         </ComboBox>
        
-        <Button Grid.Column="0" Grid.Row="5" Width="100" Height="40" Background="CadetBlue" Name="Potvrdi" HorizontalAlignment="Right" Margin="10" Click="Potvrdi_Click">Potvrdi</Button>
-        <Button Grid.Column="1" Grid.Row="5" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Click="Odustani_Click">Odustani</Button>
+        <Button Grid.Column="0" Grid.Row="5" Width="100" Height="40" Background="CadetBlue" Name="Potvrdi" HorizontalAlignment="Right" Margin="10" Command="{Binding PotvrdiIzmjenuSale}">Potvrdi</Button>
+        <Button Grid.Column="1" Grid.Row="5" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Command="{Binding OdustaniOdIzmjeneSale}">Odustani</Button>
     </Grid>
 </Window>

@@ -32,23 +32,12 @@ namespace Projekat
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             obavestenjaPodsetnici = new ObservableCollection<Obavestenja>();
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             ObavestenjaServis.DodajPodsetnikePacijenta(obavestenjaPodsetnici, idPacijent);
             Podsetnici.ItemsSource = obavestenjaPodsetnici;
         }
-
-        /*private static void InicijalizujPodsetnikePacijenta(ObservableCollection<Obavestenja> obavestenjaPodsetnici)
-        {
-            foreach (Obavestenja obavestenje in ObavestenjaServis.PronadjiObavestenjaPoIdPacijenta(idPacijent))
-            {
-                if (obavestenje.TipObavestenja.Equals("Podsetnik"))
-                {
-                    obavestenjaPodsetnici.Add(obavestenje);
-                }
-            }
-        }*/
 
         private void DodajPodsetnik_Click(object sender, RoutedEventArgs e)
         {
@@ -67,7 +56,6 @@ namespace Projekat
             Datum.Text = null;
             SadrzajPodsetnika.Text = null;
         }
-        #region Wpf
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
@@ -130,6 +118,26 @@ namespace Projekat
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
-        #endregion
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 }

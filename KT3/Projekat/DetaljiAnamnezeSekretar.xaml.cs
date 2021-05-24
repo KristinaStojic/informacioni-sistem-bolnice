@@ -34,9 +34,9 @@ namespace Projekat
         {
             this.anamneza = izabranaAnamneza;
 
-            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {
-                if (pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
+                if (pacijent.IdPacijenta == izabranaAnamneza.IdPacijenta)
                 {
                     this.datum.SelectedDate = DateTime.Parse(izabranaAnamneza.Datum);
                     this.lekar.Text = anamneza.ImePrezimeLekara;

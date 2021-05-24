@@ -26,9 +26,7 @@ namespace Projekat
         private List<Sala> SaleZaPreglede;
         private Sala prvaSlobodnaSala;
         private static Pacijent prijavljeniPacijent;
-        private static ObservableCollection<string> SviSlobodniSlotovi { get; set; }
         private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
-        private static List<string> SviZauzetiZaSelektovaniDatum { get; set; }
         private static ObservableCollection<Uput> UputiPacijenta { get; set; }
         private static bool selektovanUput;
         public ZakaziTermin(int idPrijavljenogPacijenta)
@@ -36,8 +34,8 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
-            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();  //?
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
@@ -46,7 +44,7 @@ namespace Projekat
         {
             //datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodatkeOLekaru(prijavljeniPacijent);
             UputiPacijenta = new ObservableCollection<Uput>();
@@ -57,7 +55,9 @@ namespace Projekat
 
         private static void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
         {
-            foreach (Uput uput in ZdravstveniKartonServis.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
+
+            // TODO: ispraviti na ZdravstveniKartonServis
+            foreach (Uput uput in ZdravstveniKartonMenadzer.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
             {
                 uputiPacijenta.Add(uput);
             }
@@ -72,7 +72,6 @@ namespace Projekat
             this.imePrz.Text = izabraniLekar.ToString();
         }
 
-        // Zakazivanje termina - button click
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             try
@@ -86,6 +85,7 @@ namespace Projekat
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
             }
+            // TODO: odraditi i preko validacije
             catch (System.Exception)
             {
                 MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -100,37 +100,18 @@ namespace Projekat
             String vremeKraja = TerminServis.IzracunajVremeKrajaPregleda(vremePocetka);
             TipTermina tipTermina = TipTermina.Pregled;
             Termin termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
-            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;
-            DodajZauzeceSale(termin);
+            SaleServis.DodajZauzeceSale(termin, prvaSlobodnaSala);
             termin.Prostorija = prvaSlobodnaSala;
             TerminServis.ZakaziTermin(termin);
 
             AnketaServis.DodajAnketuZaLekara(termin, idPacijent);
             AnketaServis.ProveriAnketuZaKliniku(idPacijent);
-
             MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent);
         }
-
-        private void DodajZauzeceSale(Termin termin)
-        {
-            ZauzeceSale zs = new ZauzeceSale(termin.VremePocetka, termin.VremeKraja, termin.Datum, termin.IdTermin);
-            prvaSlobodnaSala.zauzetiTermini.Add(zs);
-        }
-
-        private void ElektronskoPlacanje(object sender, RoutedEventArgs e)
-        {
-            // elektronsko placanje
-            MessageBox.Show("Elektronsko placanje ce uskoro biti implementirano", "Obavestenje");
-        }
-
-        private void preferenca_Click(object sender, RoutedEventArgs e)
-        {
-            Page ztp = new ZakaziTerminPreferenca(idPacijent);
-            this.NavigationService.Navigate(ztp);
-        }
-
+         
         #region Zakazivanje termina
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -158,19 +139,33 @@ namespace Projekat
         }
         #endregion
 
+        private void preferenca_Click(object sender, RoutedEventArgs e)
+        {
+            Page ztp = new ZakaziTerminPreferenca(idPacijent);
+            this.NavigationService.Navigate(ztp);
+        }
+
+        private void ElektronskoPlacanje(object sender, RoutedEventArgs e)
+        {
+            // elektronsko placanje
+            MessageBox.Show("Elektronsko placanje ce uskoro biti implementirano", "Obavestenje");
+        }
+
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             Page odjava = new PrijavaPacijent();
             this.NavigationService.Navigate(odjava);
         }
+
         public void karton_Click(object sender, RoutedEventArgs e)
         {
             Page karton = new ZdravstveniKartonPacijent(idPacijent);
             this.NavigationService.Navigate(karton);
         }
+
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -178,21 +173,25 @@ namespace Projekat
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             this.NavigationService.Navigate(zakaziTermin);
         }
+
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
         }
+
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
         }
+
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
@@ -208,11 +207,13 @@ namespace Projekat
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
         }
+
         private void comboUputi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (combo.Text.Equals("Pregled"))
@@ -221,8 +222,29 @@ namespace Projekat
                 return;
             }
             Uput izabraniUput = (Uput)comboUputi.SelectedItem;
-            izabraniLekar = LekariMenadzer.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
+            izabraniLekar = LekariServis.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
             this.imePrz.Text = izabraniLekar.ToString();
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 }

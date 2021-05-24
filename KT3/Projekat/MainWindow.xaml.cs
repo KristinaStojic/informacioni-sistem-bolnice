@@ -1,6 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Projekat.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -41,6 +42,7 @@ namespace Projekat
             ObavestenjaServis.NadjiSvaObavestenja();
             LekariServis.NadjiSveZahteve();
             LekariServis.NadjiSveLekare();
+            LekoviMenadzer.NadjiSveZahteve();
 
             /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
@@ -101,9 +103,14 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Upravnik w1 = new Upravnik();
-            w1.Show();
-            //this.Hide();
+            /*UpravnikViewModel.UpravnikProzor = new Upravnik();
+            UpravnikViewModel.UpravnikProzor.Show();
+            UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();*/
+            UpravnikViewModel.PrijavaProzor = new UpravnikPrijava();
+            UpravnikViewModel.PrijavaProzor.Show();
+            UpravnikViewModel.PrijavaProzor.DataContext = new UpravnikViewModel();
+            this.Hide();
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

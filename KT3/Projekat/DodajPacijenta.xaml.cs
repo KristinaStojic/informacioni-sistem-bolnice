@@ -28,11 +28,12 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
-
             jmbgStaratelja.IsEnabled = false;
         }
 
-        public int validacija;
+        public string validacijaJmbg;
+        public string validacijaJmbgStaratelja;
+        public string validacijaBrojTelefona;
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
@@ -43,18 +44,50 @@ namespace Projekat
             }
         }
 
-        public int ValidacijaSekretar
+        public string ValidacijaJmbg
         {
             get
             {
-                return validacija;
+                return validacijaJmbg;
             }
             set
             {
-                if (value != validacija)
+                if (value != validacijaJmbg)
                 {
-                    validacija = value;
-                    OnPropertyChanged("ValidacijaSekretar");
+                    validacijaJmbg = value;
+                    OnPropertyChanged("ValidacijaJmbg");
+                }
+            }
+        }
+
+        public string ValidacijaBrojTelefona
+        {
+            get
+            {
+                return validacijaBrojTelefona;
+            }
+            set
+            {
+                if (value != validacijaBrojTelefona)
+                {
+                    validacijaBrojTelefona = value;
+                    OnPropertyChanged("ValidacijaBrojTelefona");
+                }
+            }
+        }
+
+        public string ValidacijaJmbgStaratelja
+        {
+            get
+            {
+                return validacijaJmbgStaratelja;
+            }
+            set
+            {
+                if (value != validacijaJmbgStaratelja)
+                {
+                    validacijaJmbgStaratelja = value;
+                    OnPropertyChanged("ValidacijaJmbgStaratelja");
                 }
             }
         }
@@ -64,9 +97,8 @@ namespace Projekat
             statusNaloga status;
             pol pol;
             bool maloletnoLice;
-            int staratelj;
+            long staratelj;
 
-            // tip naloga
             if (combo.Text.Equals("STALAN"))
             {
                 status = statusNaloga.Stalni;
@@ -76,7 +108,6 @@ namespace Projekat
                 status = statusNaloga.Guest;
             }
 
-            // pol pacijenta
             if (combo2.Text.Equals("M"))
             {
                 pol = pol.M;
@@ -86,7 +117,6 @@ namespace Projekat
                 pol = pol.Z;
             }
 
-            // bracno stanje
             if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("Z"))
             {
                 brStanje = bracnoStanje.Neudata;
@@ -120,10 +150,8 @@ namespace Projekat
                 brStanje = bracnoStanje.Razveden;
             }
 
-            // maloletnik
             if ((bool)maloletnik.IsChecked)
             {
-                Console.WriteLine("cekirano");
                 maloletnoLice = true;
             }
             else
@@ -131,37 +159,34 @@ namespace Projekat
                 maloletnoLice = false;
             }
 
-            // jmbg staratelja za maloletnika
             if (jmbgStaratelja.Text.Equals(""))
             {
                 staratelj = 0;
             }
             else
             {
-                staratelj = Convert.ToInt32(jmbgStaratelja.Text);
+                staratelj = long.Parse(jmbgStaratelja.Text);
             }        
 
-            if (status.Equals(statusNaloga.Guest) /*brojTelefona.Text.Equals("") || adresa.Text.Equals("") || email.Text.Equals("") || zanimanje.Text.Equals("")*/)
+            if (status.Equals(statusNaloga.Guest))
             {
-                int idP1 = PacijentiServis.GenerisanjeIdPacijenta();
-                Pacijent p1 = new Pacijent(idP1, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, status);
-                PacijentiServis.DodajNalog(p1);
+                Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
+                PacijentiServis.DodajNalog(guestPacijent);
             }
-            else  // ukoliko je stalan nalog
+            else
             {
-                int idP = PacijentiServis.GenerisanjeIdPacijenta();
-                Pacijent p = new Pacijent(idP, ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, Convert.ToInt64(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                ZdravstveniKarton karton = new ZdravstveniKarton(idP);
-                p.Karton = karton;
+                Pacijent pacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                ZdravstveniKarton karton = new ZdravstveniKarton(pacijent.IdPacijenta);
+                pacijent.Karton = karton;
                 List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                p.Karton.LekarskiRecepti = lr;
+                pacijent.Karton.LekarskiRecepti = lr;
                 List<Anamneza> an = new List<Anamneza>();
-                p.Karton.Anamneze = an;
+                pacijent.Karton.Anamneze = an;
                 List<Alergeni> ale = new List<Alergeni>();
-                p.Karton.Alergeni = ale;
+                pacijent.Karton.Alergeni = ale;
                 List<Uput> uput = new List<Uput>();
-                p.Karton.Uputi = uput;
-                PacijentiServis.DodajNalog(p);
+                pacijent.Karton.Uputi = uput;
+                PacijentiServis.DodajNalog(pacijent);
             }    
 
             this.Close();
@@ -207,15 +232,11 @@ namespace Projekat
         {
             if (!(jmbg.Text.Equals("")))
             {
-                if ((!PacijentiServis.JedinstvenJmbg(Convert.ToInt32(jmbg.Text))))
+                if ((!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text))))
                 {
                     MessageBox.Show("JMBG vec postoji");
                     jmbg.Text = "";
                 }
-            }
-            else
-            { 
-                // TODO: da javi na polju value can not be converted il itako nesto - da validira podatke
             }
         }
 
@@ -224,19 +245,12 @@ namespace Projekat
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
-                jmbgStaratelja.Focusable = true;
-                
+                jmbgStaratelja.Focusable = true; 
             }
             else 
             {
                 jmbgStaratelja.IsEnabled = false;
             }
-        }
-
-        public bool IsNumeric(string input)
-        {
-            int test;
-            return int.TryParse(input, out test);
         }
 
         private void jmbg_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -250,6 +264,18 @@ namespace Projekat
             }*/
         }
 
+        private void Button_LostFocus(object sender, RoutedEventArgs e)
+        {
+            /*if (ime.Text.Equals("") || prezime.Text.Equals("") || jmbg.Text.Equals(""))
+            {
+                potvrdi.IsEnabled.Equals(false);
+            }
+            else
+            {
+                potvrdi.IsEnabled = true;
+
+            }*/
+        }
     }
 }
 

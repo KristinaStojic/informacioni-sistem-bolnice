@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -18,21 +19,66 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for IzmeniLekara.xaml
     /// </summary>
-    public partial class IzmeniLekara : Window
+    public partial class IzmeniLekara : Window, INotifyPropertyChanged
     {
         public Lekar lekar;
+        public string validacijaJmbg;
+        public string validacijaBrojTelefona;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public string ValidacijaJmbg
+        {
+            get
+            {
+                return validacijaJmbg;
+            }
+            set
+            {
+                if (value != validacijaJmbg)
+                {
+                    validacijaJmbg = value;
+                    OnPropertyChanged("ValidacijaJmbg");
+                }
+            }
+        }
+
+        public string ValidacijaBrojTelefona
+        {
+            get
+            {
+                return validacijaBrojTelefona;
+            }
+            set
+            {
+                if (value != validacijaBrojTelefona)
+                {
+                    validacijaBrojTelefona = value;
+                    OnPropertyChanged("ValidacijaBrojTelefona");
+                }
+            }
+        }
+
         public IzmeniLekara(Lekar izbraniLekar)
         {
             InitializeComponent();
             this.lekar = izbraniLekar;
+            this.DataContext = this;
             oblastLekara.ItemsSource = Enum.GetValues(typeof(Specijalizacija)).Cast<Specijalizacija>();
 
             if (lekar != null)
             {
                 ime.Text = izbraniLekar.ImeLek;
                 prezime.Text = izbraniLekar.PrezimeLek;
-                jmbg.Text = izbraniLekar.Jmbg.ToString();
-                brojTelefona.Text = izbraniLekar.BrojTelefona.ToString();
+                ValidacijaJmbg = izbraniLekar.Jmbg.ToString();
+                ValidacijaBrojTelefona = izbraniLekar.BrojTelefona.ToString();
                 email.Text = izbraniLekar.Email;
                 adresa.Text = izbraniLekar.AdresaStanovanja;
                 oblastLekara.SelectedItem = izbraniLekar.specijalizacija;   
@@ -42,7 +88,7 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Specijalizacija specijalizacija = (Specijalizacija)oblastLekara.SelectedItem;
-            Lekar izmenjeniLekar = new Lekar(lekar.IdLekara, ime.Text, prezime.Text, Int32.Parse(jmbg.Text), Int32.Parse(brojTelefona.Text), email.Text, adresa.Text, specijalizacija);
+            Lekar izmenjeniLekar = new Lekar(lekar.IdLekara, ime.Text, prezime.Text, long.Parse(jmbg.Text), long.Parse(brojTelefona.Text), email.Text, adresa.Text, specijalizacija);
             LekariServis.IzmeniLekara(lekar, izmenjeniLekar);
             this.Close();
         }
@@ -59,7 +105,6 @@ namespace Projekat
 
         private void jmbg_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // TODO: iskoristiti prilikom validacije polja
         }
     }
 }

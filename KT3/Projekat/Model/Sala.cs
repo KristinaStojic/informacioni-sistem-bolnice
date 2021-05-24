@@ -6,6 +6,9 @@
 
 using Projekat;
 using Projekat.Model;
+using Projekat.Servis;
+using Projekat.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -67,12 +70,15 @@ namespace Model
 
         private string stringZaStaticku()
         {
-            string stringStaticka = "";
-            foreach (Oprema oprema in Oprema)
+            string stringStaticka = brojSale + " - " + Namjena;
+            if (SaleViewModel.izabranaStat != null)
             {
-                if (oprema.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme)
+                foreach (Oprema oprema in Oprema)
                 {
-                    stringStaticka = napraviStringStaticke(smanjiKolicinuPreostaleOpreme(oprema));
+                    if (oprema.IdOpreme == SaleViewModel.izabranaStat.IdOpreme)
+                    {
+                        stringStaticka = napraviStringStaticke(smanjiKolicinuPreostaleOpreme(oprema));
+                    }
                 }
             }
             return stringStaticka;
@@ -81,9 +87,9 @@ namespace Model
         private int smanjiKolicinuPreostaleOpreme(Oprema oprema)
         {
             int kolicinaPreostaleOpreme = oprema.Kolicina;
-            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
-                if (premjestaj.izSale.Id == this.Id && premjestaj.oprema.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme)
+                if (premjestaj.izSale.Id == this.Id && premjestaj.oprema.IdOpreme == SaleViewModel.izabranaStat.IdOpreme)
                 {
                     kolicinaPreostaleOpreme -= premjestaj.kolicina;
                 }
@@ -98,12 +104,12 @@ namespace Model
 
         private string stringZaDinamicku()
         {
-            string stringDinamicka = "";
+            string stringDinamicka = brojSale + " - " + Namjena;
             foreach (Oprema oprema in Oprema)
             {
-                if (oprema.IdOpreme == PreraspodjelaDinamicke.izabranaOprema.IdOpreme)
+                if (oprema.IdOpreme == SaleViewModel.opremaZaDodavanje.IdOpreme)
                 {
-                    stringDinamicka = brojSale + " - " + Namjena + " (" + oprema.Kolicina + ")";
+                    stringDinamicka +=  " (" + oprema.Kolicina + ")";
                 }
             }
             return stringDinamicka;
@@ -111,12 +117,12 @@ namespace Model
 
         private bool statickaAktivna()
         {
-            return PreraspodjelaStaticke.aktivna && PreraspodjelaStaticke.izabranaOprema != null;
+            return SaleViewModel.aktivnaStaticka;
         }
 
         private bool dinamickaAktivna()
         {
-            return PreraspodjelaDinamicke.aktivna && PreraspodjelaDinamicke.izabranaOprema != null;
+            return SaleViewModel.aktivnaDinamicka && SaleViewModel.opremaZaDodavanje != null;
         }
     }
 }

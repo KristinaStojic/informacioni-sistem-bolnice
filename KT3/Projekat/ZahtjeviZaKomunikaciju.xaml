@@ -3,15 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Uvid u zahtjeve za komunikaciju" Height="430" Width="630" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Uvid u zahtjeve za komunikaciju" Height="430" Width="630" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+    <Window.DataContext>
+        <ViewModel:KomunikacijaViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriZahtjeve}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
-        <Button Click="Odustani_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+        <Button Command="{Binding ZatvoriZahtjeve}" ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
         <TextBlock FontSize="20" Margin="40, 10, 10, 10">Zahtjevi drugih ustanova:</TextBlock>
-        <DataGrid x:Name="dataGridKomunikacija" ItemsSource="{Binding Zahtjevi}" IsReadOnly="True" 
+        <DataGrid x:Name="dataGridKomunikacija" ItemsSource="{Binding ZahtjeviZaKomunikaciju, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding IzabraniZahtjev, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="230"  VerticalAlignment="Center" Width="560">
             <DataGrid.Columns>
@@ -20,6 +26,6 @@
                 <DataGridTextColumn Header="Tip zahtjeva                               " Binding="{Binding tipZahtjeva}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Background="CadetBlue" Width="150" Height="40" Margin="300, 20, 10, 10" Click="UvidUZahtjeve_Click">Uvid u zahtjev</Button>
+        <Button Background="CadetBlue" Width="150" Height="40" Margin="300, 20, 10, 10" Command="{Binding UvidUZahtjev}">Uvid u zahtjev</Button>
     </StackPanel>
 </Window>

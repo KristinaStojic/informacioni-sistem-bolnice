@@ -37,7 +37,7 @@
             <TabItem Header="Zahtevi za procesiranje" IsSelected="True" Height="25" Margin="9,0,-9,-0.2" Width="150">
                 <Grid>
                     <Label Content="Izberite zahtev lekara kome zelite da odobrite ili odbijete godisnji odmor:" FontSize="17" HorizontalAlignment="Left" Margin="24,18,0,0" VerticalAlignment="Top"/>
-                    <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding TabelaZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="23,64,23,104" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaLekara_SelectionChanged">
+                    <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding TabelaZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="23,64,23,104" AutoGenerateColumns="False" FontSize="14">
                         <DataGrid.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFE7F6F7" Offset="0"/>
@@ -54,8 +54,8 @@
                             <DataGridTextColumn Header="     Status &#x0a;    zahteva" Width="*" Binding="{Binding odobren}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Odobri zahtev" HorizontalAlignment="Left" Margin="212,366,0,0" VerticalAlignment="Top" Width="179" Height="51" Click="Odobri_Click" FontSize="17" Background="#FFA3DADE"/>
-                    <Button Content="Odbij zahtev" Margin="423,366,212,0" VerticalAlignment="Top" Height="51" Click="Odbij_Click" FontSize="17" Background="#FFA3DADE"/>
+                    <Button Content="Odobri zahtev" HorizontalAlignment="Left" Margin="206,366,0,0" VerticalAlignment="Top" Width="179" Height="51" Click="Odobri_Click" FontSize="17" Background="#FFA3DADE"/>
+                    <Button Content="Odbij zahtev" Margin="405,366,224,0" VerticalAlignment="Top" Height="51" Click="Odbij_Click" FontSize="17" Background="#FFA3DADE"/>
                     <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="728,367,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Nazad_Click">
                         <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                             <Image.RenderTransform>
@@ -76,7 +76,7 @@
                         <ColumnDefinition Width="87*"/>
                         <ColumnDefinition Width="721*"/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="ProcesiraniZahtevi" ItemsSource="{Binding TabelaProcesiranihZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="23,24,23,92" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaLekara_SelectionChanged" Grid.ColumnSpan="2">
+                    <DataGrid x:Name="ProcesiraniZahtevi" ItemsSource="{Binding TabelaProcesiranihZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="23,24,23,92" AutoGenerateColumns="False" FontSize="14" Grid.ColumnSpan="2">
                         <DataGrid.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFE7F6F7" Offset="0"/>

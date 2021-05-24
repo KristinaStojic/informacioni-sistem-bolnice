@@ -25,7 +25,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -43,7 +43,7 @@ namespace Projekat
 
         private static Lekar PronadjiLekaraPoId(int idLekara)
         {
-            foreach (Lekar lekar in MainWindow.lekari)
+            foreach (Lekar lekar in LekariServis.NadjiSveLekare())
             {
                 if (lekar.IdLekara == idLekara)
                 {
@@ -67,7 +67,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;

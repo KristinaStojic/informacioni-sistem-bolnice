@@ -22,12 +22,14 @@ namespace Projekat
     /// </summary>
     public partial class DodajObavestenje : Window
     {
-        private bool flag = false;
         public string oznaka;
+        bool flag1 = false;
+        bool flag2 = false;
         public DodajObavestenje()
         {
             InitializeComponent();
 
+            potvrdi.IsEnabled = false;
             pretraga.IsEnabled = false;
             listaPacijenata.IsEnabled = false;
             pacijenti.IsEnabled = false;
@@ -56,11 +58,10 @@ namespace Projekat
             CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource).Refresh();
         }
 
-        // potvrdi
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             int idLekara = 0;
-            List<int> selektovaniPacijentiId = new List<int>();     // za slucaj kad se obavestenja salju specificnim pacijentima
+            List<int> selektovaniPacijentiId = new List<int>();
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             
             if (namena.Text.Equals("sve"))
@@ -87,33 +88,20 @@ namespace Projekat
                     selektovaniPacijentiId.Add(p.IdPacijenta);
                 }
             }
-
-            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
-
-            if (selektovaniPacijentiId.Count > 0)
-            {
-                Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
-                ObavestenjaServis.sacuvajIzmene();
-            }
-            else
-            {
-                Obavestenja novoObavestenje = new Obavestenja(idObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-                ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
-                ObavestenjaServis.sacuvajIzmene();
-            }
+            
+            Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
+            ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
+            ObavestenjaServis.sacuvajIzmene();   
             
             this.Close();
         }
 
-        // odustani
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        // combo box namene obavestenja
-        private void namena_LostFocus(object sender, RoutedEventArgs e)
+        private void Namena_LostFocus(object sender, RoutedEventArgs e)
         {
             if (namena.Text.Equals("izabrane pacijente"))
             {
@@ -128,5 +116,40 @@ namespace Projekat
                 pacijenti.IsEnabled = false;
             }
         }
+
+        private void Naslov_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag1 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag1 = true;
+                if (flag1 == true && flag2 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Sadrzaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag2 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag2 = true;
+                if (flag1 == true && flag2 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
     }
 }

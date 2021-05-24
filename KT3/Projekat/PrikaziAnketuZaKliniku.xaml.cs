@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for PrikaziAnketuZaKliniku.xaml
-    /// </summary>
     public partial class PrikaziAnketuZaKliniku : Page
     {
         private static int idPacijent;
@@ -35,13 +33,13 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             idAnkete = idSelektovaneAnkete;
             this.potvrdi.IsEnabled = false;
-            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
+
         public void jedan1_Click(object sender, RoutedEventArgs e)
         {
-            // brPitanja = odgovor ; ......
             prvoPitanje = "1=";
             if ((bool)jedan1.IsChecked)
             {
@@ -169,6 +167,23 @@ namespace Projekat
             }
             PoveriOdgovoreNaSvaPitanja();
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
+            Anketa anketa = AnketaServis.NadjiAnketuPoId(idAnkete);
+            anketa.Odgovori = odgovoriPacijenta;
+            anketa.PopunjenaAnketa = true;
+
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
+        private void PoveriOdgovoreNaSvaPitanja()
+        {
+            if (prvoPitanje != null && drugoPitanje != null && trecePitanje != null && cetvrtoPitanje != null && petoPitanje != null)
+            {
+                this.potvrdi.IsEnabled = true;
+            }
+        }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
@@ -184,7 +199,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -204,29 +219,11 @@ namespace Projekat
             Page pocetna = new PrikaziTermin(idPacijent);
             this.NavigationService.Navigate(pocetna);
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
-            Anketa anketa = AnketaMenadzer.NadjiAnketuPoId(idAnkete);
-            anketa.Odgovori = odgovoriPacijenta;
-            anketa.PopunjenaAnketa = true;
-
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
-        }
+        
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
-        }
-
-        private void PoveriOdgovoreNaSvaPitanja()
-        {
-            if (prvoPitanje != null && drugoPitanje != null && trecePitanje != null && cetvrtoPitanje != null && petoPitanje != null)
-            {
-                this.potvrdi.IsEnabled = true;
-            }
         }
 
         private void anketa_Click(object sender, RoutedEventArgs e)
@@ -234,6 +231,7 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
@@ -249,5 +247,26 @@ namespace Projekat
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 }

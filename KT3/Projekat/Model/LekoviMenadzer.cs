@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,17 +17,16 @@ namespace Projekat.Model
             sacuvajIzmjene();
         }
 
-        public static void dodajZamjenskeLijekove(Lek izabraniLijek, List<Lek> zamjenskiLijekovi)
+        public static void dodajZamjenskeLijekove(Lek izabraniLijek, Lek zamjenskiLijekovi)
         {
             foreach(Lek lijek in lijekovi)
             {
                 if(lijek.idLeka == izabraniLijek.idLeka)
                 {
-                    foreach(Lek zamjenski in zamjenskiLijekovi)
-                    {
-                        lijek.zamenskiLekovi.Add(zamjenski.idLeka);
-                        ZamjenskiLijekovi.ZamjenskiLekovi.Add(zamjenski);//doda ih onoliko puta koliko ih ima?
-                    }
+                        lijek.zamenskiLekovi.Add(zamjenskiLijekovi.idLeka);
+                        //ZamjenskiLijekovi.ZamjenskiLekovi.Add(zamjenski);//doda ih onoliko puta koliko ih ima?
+                        //LijekoviViewModel.ZamjenskiLekovi.Add(zamjenski);
+                    
                 }
             }
             sacuvajIzmjene();
@@ -105,15 +105,15 @@ namespace Projekat.Model
                     lijek.nazivLeka = izmjenjeniLijek.nazivLeka;
                     lijek.zamenskiLekovi = izmjenjeniLijek.zamenskiLekovi;
                     lijek.sastojci = izmjenjeniLijek.sastojci;
-                    int idx = Lijekovi.Lekovi.IndexOf(izabraniLijek);
-                    Lijekovi.Lekovi.RemoveAt(idx);
-                    Lijekovi.Lekovi.Insert(idx, lijek);
+                    /*int idx = LijekoviViewModel.Lekovi.IndexOf(izabraniLijek);
+                    LijekoviViewModel.Lekovi.RemoveAt(idx);
+                    LijekoviViewModel.Lekovi.Insert(idx, lijek);
                     if (ZamjenskiLijekovi.ZamjenskiLekovi != null)
                     {
                         int idx1 = ZamjenskiLijekovi.ZamjenskiLekovi.IndexOf(izabraniLijek);
                         ZamjenskiLijekovi.ZamjenskiLekovi.RemoveAt(idx1);
                         ZamjenskiLijekovi.ZamjenskiLekovi.Insert(idx1, lijek);
-                    }
+                    }*/
                 }
             }
             sacuvajIzmjene();
@@ -129,9 +129,9 @@ namespace Projekat.Model
                     zahtjev.lek.nazivLeka = uLijek.nazivLeka;
                     zahtjev.sifraLeka = uLijek.sifraLeka;
                     zahtjev.nazivLeka = uLijek.nazivLeka;
-                    int idx = OdbijeniLijekovi.OdbijeniLekovi.IndexOf(izabraniLijek);
-                    OdbijeniLijekovi.OdbijeniLekovi.RemoveAt(idx);
-                    OdbijeniLijekovi.OdbijeniLekovi.Insert(idx, zahtjev.lek);
+                   // int idx = OdbijeniLijekovi.OdbijeniLekovi.IndexOf(izabraniLijek);
+                   // OdbijeniLijekovi.OdbijeniLekovi.RemoveAt(idx);
+                    //OdbijeniLijekovi.OdbijeniLekovi.Insert(idx, zahtjev.lek);
                 }
             }
         }
@@ -166,7 +166,6 @@ namespace Projekat.Model
                 if (lijek.idLeka == izabraniLijek.idLeka)
                 {
                     lijek.sastojci.Remove(sastojak);
-                    Sastojci.SastojciLijeka.Remove(sastojak);
                 }
             }
             sacuvajIzmjene();
@@ -260,7 +259,7 @@ namespace Projekat.Model
                 if(lijek.idLeka == izabraniLijek.idLeka)
                 {
                     lijek.zamenskiLekovi.Remove(zamjenskiLijek.idLeka);
-                    ZamjenskiLijekovi.ZamjenskiLekovi.Remove(zamjenskiLijek);
+                    //ZamjenskiLijekovi.ZamjenskiLekovi.Remove(zamjenskiLijek);
                 }
             }
             sacuvajIzmjene();
@@ -422,11 +421,19 @@ namespace Projekat.Model
             bool pomocna = false;
             int id = 1;
 
-            for (id = 1; id <= LekoviMenadzer.lijekovi.Count; id++)
+            for (id = 1; id <= LekoviMenadzer.lijekovi.Count + zahteviZaLekove.Count; id++)
             {
                 foreach (Lek lijek in LekoviMenadzer.lijekovi)
                 {
                     if (lijek.idLeka.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+                foreach (ZahtevZaLekove zahtjev in NadjiSveZahteve())//da u zahtjeve ne ide isti id 
+                {
+                    if (zahtjev.lek.idLeka.Equals(id))
                     {
                         pomocna = true;
                         break;

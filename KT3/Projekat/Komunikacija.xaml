@@ -3,23 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Komunikacija" Height="470" Width="670" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" PreviewKeyDown="Button_PreviewKeyDown" ResizeMode="NoResize">
+        Title="Komunikacija" Height="470" Width="670" WindowStartupLocation="CenterScreen" Background="LightSteelBlue"  ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:KomunikacijaViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriKomunikaciju}"></KeyBinding>
+        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding OtvoriSale}"></KeyBinding>
+        <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
         <Menu Background="CadetBlue">
             <MenuItem Header="Navigacija" FontSize="15">
-                <MenuItem Header="Osoblje" FontSize="15" Click="Osoblje_Click" InputGestureText="Ctrl + S"></MenuItem>
-                <MenuItem Header="Prostorije" FontSize="15" Click="Prostorije_Click" InputGestureText="Ctrl + T"></MenuItem>
-                <MenuItem Header="Zahtjevi" FontSize="15" Click="Zahtjevi_Click" InputGestureText="Ctrl + E"></MenuItem>
+                <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
+                <MenuItem Header="Prostorije" FontSize="15" Command="{Binding OtvoriSale}" InputGestureText="Ctrl + T"></MenuItem>
+                <MenuItem Header="Zahtjevi" FontSize="15" Command="{Binding OtvoriZahtjeve}" InputGestureText="Ctrl + E"></MenuItem>
                 <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
-                <MenuItem Header="Pomoc" FontSize="15" InputGestureText="Ctrl + H"></MenuItem>
-                <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
+                <MenuItem Header="Pomoc" FontSize="15" Command="{Binding OtvoriPomoc}" InputGestureText="Ctrl + H"></MenuItem>
+                <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOAplikaciji}" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
             </MenuItem>
         </Menu>
-        <Button Click="Nazad_Click"  ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+        <Button Command="{Binding ZatvoriKomunikaciju}" ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
         <TextBlock FontSize="20" FontFamily="Arial" Margin="40, 10, 10, 10">Izaberite ustanovu kojoj zelite da posaljete zahtjev:</TextBlock>
@@ -33,8 +43,8 @@
             
         </TextBox>
         <StackPanel Orientation="Horizontal">
-            <Button Background="CadetBlue" Margin="140, 10, 10, 10" Width="190" Height="50" Click="Button_Click">Posalji zahtjev</Button>
-            <Button Background="CadetBlue" Margin="10, 10, 10, 10" Width="190" Height="50" Click="UvidUZahtjev_Click">Uvid u zahtjeve</Button>
+            <Button Background="CadetBlue" Margin="140, 10, 10, 10" Width="190" Height="50" Command="{Binding ZatvoriKomunikaciju}">Posalji zahtjev</Button>
+            <Button Background="CadetBlue" Margin="10, 10, 10, 10" Width="190" Height="50" Command="{Binding UviduUZahtjeveKomanda}">Uvid u zahtjeve</Button>
         </StackPanel>
     </StackPanel>
 </Window>

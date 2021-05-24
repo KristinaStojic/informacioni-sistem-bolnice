@@ -3,12 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         Title="Prostorije" Height="430" Width="780" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:SaleViewModel/>
+    </Window.DataContext>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
-            <DataGrid x:Name="dataGridSale" ItemsSource="{Binding Sale}" IsReadOnly="True" 
+            <DataGrid x:Name="dataGridSale" ItemsSource="{Binding SaleSpajanje}" SelectedItem="{Binding IzabranaSalaZaSpajanje, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="225" Margin="10, 50, 10, 20" VerticalAlignment="Center" Width="531">
                 <DataGrid.Columns>
@@ -18,8 +21,8 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
-                <Button Height="50" Width="165" Margin="205, 10, 10, 10" Background="CadetBlue" Click="Potvrdi_Click">Potvrdi</Button>
-                <Button Height="50" Width="165" Margin="10, 10, 10, 10" Background="CadetBlue" Click="Odustani_Click">Odustani</Button>
+                <Button Height="50" Width="165" Margin="205, 10, 10, 10" Background="CadetBlue" Command="{Binding PotvrdiSpajanjeSala}">Potvrdi</Button>
+                <Button Height="50" Width="165" Margin="10, 10, 10, 10" Background="CadetBlue" Command="{Binding OdustaniOdSpajanjaSala}">Odustani</Button>
             </StackPanel>
         </StackPanel>
     </DockPanel>

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,9 +26,9 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         private void lekari_Click(object sender, RoutedEventArgs e)
@@ -56,7 +57,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -102,5 +103,26 @@ namespace Projekat
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 }

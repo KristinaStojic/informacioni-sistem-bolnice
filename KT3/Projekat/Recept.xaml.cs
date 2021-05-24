@@ -29,7 +29,7 @@ namespace Projekat
             idPacijent = izabraniPacijent.IdPacijenta;
             InicijalizujPodatkeRecepta(recept, izabraniPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         private void InicijalizujPodatkeRecepta(LekarskiRecept recept, Pacijent izabraniPacijent)
@@ -73,7 +73,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -99,6 +99,7 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
@@ -114,10 +115,31 @@ namespace Projekat
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }
         }
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 }

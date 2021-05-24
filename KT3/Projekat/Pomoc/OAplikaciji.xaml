@@ -1,0 +1,15 @@
+﻿<Window x:Class="Projekat.Pomoc.OAplikaciji"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat.Pomoc" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
+        mc:Ignorable="d"
+        Title="O aplikaciji" Height="250" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="LightSteelBlue">
+    <Window.DataContext>
+        <viewmodel:OAplikacijiViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TextBlock FontSize="20">O aplikaciji...</TextBlock>
+    </Grid>
+</Window>

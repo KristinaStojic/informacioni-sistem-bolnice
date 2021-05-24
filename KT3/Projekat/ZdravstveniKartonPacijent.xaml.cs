@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,14 +28,15 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
             this.tabelaRecepata.ItemsSource = DodajLekarskeReceptePacijenta();
             this.prikazAnamnezi.ItemsSource = DodajAnamnezePacijenta();
             this.prikazUputa.ItemsSource = DodajUputePacijenta();
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
+        // TODO: dodati ove metode u Zdravstveni karton Servis
         private static ObservableCollection<Uput> DodajUputePacijenta()
         {
             ObservableCollection<Uput> uputiPacijenta = new ObservableCollection<Uput>();
@@ -102,7 +104,6 @@ namespace Projekat
             Page recept = new Recept(lp, prijavljeniPacijent);
             this.NavigationService.Navigate(recept);
         }
-        // **********
 
 
         /* ANAMNEZE */
@@ -127,7 +128,6 @@ namespace Projekat
             this.NavigationService.Navigate(anamnezaPrikaz);
         }
 
-        // *********
 
         private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -155,7 +155,7 @@ namespace Projekat
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -181,6 +181,7 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             var app = (App)Application.Current;
@@ -202,5 +203,26 @@ namespace Projekat
             Page podaci = new LicniPodaciPacijenta(idPacijent);
             this.NavigationService.Navigate(podaci);
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
+        }
+
     }
 }

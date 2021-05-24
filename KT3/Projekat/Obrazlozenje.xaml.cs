@@ -19,41 +19,9 @@ namespace Projekat
     /// </summary>
     public partial class Obrazlozenje : Window
     {
-        Lek izabraniLijek;
-        public Obrazlozenje(Lek izabraniLijek)
+        public Obrazlozenje()
         {
             InitializeComponent();
-            this.izabraniLijek = izabraniLijek;
-            inicijalizujElemente();
-        }
-
-        private void inicijalizujElemente()
-        {
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
-            {
-                if (zahtjev.lek.idLeka == izabraniLijek.idLeka)
-                {
-                    this.obrazlozenje.Text = zahtjev.obrazlozenjeOdbijanja;
-                }
-            }
-
-        }
-
-        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
-            {
-                if (e.Key == Key.N)
-                {
-                    Button_Click(sender, e);
-
-                }
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

@@ -14,7 +14,23 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -25,6 +41,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +51,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -76,6 +94,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </ApplicationDefinition>
     <Compile Include="BrisanjeLijeka.xaml.cs">
       <DependentUpon>BrisanjeLijeka.xaml</DependentUpon>
@@ -245,6 +264,8 @@
     <Compile Include="Model\RadniDan.cs" />
     <Compile Include="Model\Sastojak.cs" />
     <Compile Include="Model\Specijalizacija.cs" />
+    <Compile Include="Model\UpravnikModel.cs" />
+    <Compile Include="Model\UpravnikMenadzer.cs" />
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ValidacijaSekretar.cs" />
@@ -322,8 +343,14 @@
     <Compile Include="Pomoc\AnamnezaPomoc.xaml.cs">
       <DependentUpon>AnamnezaPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\KomunikacijaPomoc.xaml.cs">
+      <DependentUpon>KomunikacijaPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\LijekoviPomoc.xaml.cs">
       <DependentUpon>LijekoviPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\OAplikaciji.xaml.cs">
+      <DependentUpon>OAplikaciji.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\OglasnaTablaPomoc.xaml.cs">
       <DependentUpon>OglasnaTablaPomoc.xaml</DependentUpon>
@@ -439,6 +466,11 @@
     <Compile Include="PrikazZamenskihLekovaLekar.xaml.cs">
       <DependentUpon>PrikazZamenskihLekovaLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+    </Compile>
     <Compile Include="Recept.xaml.cs">
       <DependentUpon>Recept.xaml</DependentUpon>
     </Compile>
@@ -468,6 +500,7 @@
     <Compile Include="Servis\SaleServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\TerminServisLekar.cs" />
+    <Compile Include="Servis\UpravnikServis.cs" />
     <Compile Include="Servis\ZdravstveniKartonServis.cs" />
     <Compile Include="Skladiste.xaml.cs">
       <DependentUpon>Skladiste.xaml</DependentUpon>
@@ -487,6 +520,15 @@
     <Compile Include="Upravnik.xaml.cs">
       <DependentUpon>Upravnik.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpravnikPrijava.xaml.cs">
+      <DependentUpon>UpravnikPrijava.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpravnikRegistracija.xaml.cs">
+      <DependentUpon>UpravnikRegistracija.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UspjesnaRegistracijaUpravnik.xaml.cs">
+      <DependentUpon>UspjesnaRegistracijaUpravnik.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UvidUZahtjevKomunikacija.xaml.cs">
       <DependentUpon>UvidUZahtjevKomunikacija.xaml</DependentUpon>
     </Compile>
@@ -499,7 +541,17 @@
     <Compile Include="UvidZdravstveniKartonLekar.xaml.cs">
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BrisanjeLijeka.cs" />
+    <Compile Include="ViewModel\BindableBase.cs" />
+    <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
+    <Compile Include="ViewModel\LijekoviViewModel.cs" />
+    <Compile Include="ViewModel\MyICommand.cs" />
+    <Compile Include="ViewModel\OAplikacijiViewModel.cs" />
+    <Compile Include="ViewModel\PomocViewModel.cs" />
+    <Compile Include="ViewModel\SaleViewModel.cs" />
+    <Compile Include="ViewModel\SkladisteViewModel.cs" />
+    <Compile Include="ViewModel\UpravnikViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ZahtjeviViewModel.cs" />
     <Compile Include="ZahteviZaGodisnjiLekar.xaml.cs">
       <DependentUpon>ZahteviZaGodisnjiLekar.xaml</DependentUpon>
     </Compile>
@@ -736,6 +788,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="DodajSalu.xaml.cs">
       <DependentUpon>DodajSalu.xaml</DependentUpon>
@@ -847,7 +900,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\KomunikacijaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\LijekoviPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\OAplikaciji.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1067,6 +1128,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UpravnikPrijava.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpravnikRegistracija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UspjesnaRegistracijaUpravnik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UvidUZahtjevKomunikacija.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1155,9 +1228,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.en-US.resx" />
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -1275,6 +1351,18 @@
   <ItemGroup>
     <Resource Include="slike\bed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Video\PomocZaSale.mp4" />
+    <Resource Include="slike\bolnica.png" />
+    <Content Include="Video\PomocZaKomunikaciju.mp4" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

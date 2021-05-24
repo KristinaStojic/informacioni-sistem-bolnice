@@ -33,11 +33,8 @@ namespace Projekat
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
             this.beleska.Text = anamneza.Beleska;
-            if (!anamneza.Beleska.Equals(""))
-            {
-                this.DodajBelesku.Content = "Izmeni";
-            }
-            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            isEnabledDugmad();
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -45,8 +42,50 @@ namespace Projekat
             this.sala.Text = termin.Prostorija.brojSale.ToString();
             this.vremeTermina.Text = termin.VremePocetka + "-" + termin.VremeKraja;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
+
+        private void isEnabledDugmad()
+        {
+            if (anamneza.Beleska.Equals(""))
+            {
+                this.DodajBelesku.IsEnabled = true;
+                this.IzmeniBelesku.IsEnabled = false;
+                return;
+            }
+            else
+            {
+                this.IzmeniBelesku.IsEnabled = true;
+                this.DodajBelesku.IsEnabled = false;
+                return;
+            }
+        }
+
+        private void SacuvajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            anamneza.Beleska = this.beleska.Text;
+            this.beleska.IsEnabled = false;
+            this.SacuvajBelesku.IsEnabled = false;
+            isEnabledDugmad();
+            PacijentiServis.SacuvajIzmenePacijenta();
+        }
+
+        private void DodajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            this.beleska.IsEnabled = true;
+            this.SacuvajBelesku.IsEnabled = true;
+            this.DodajBelesku.IsEnabled = false;
+            this.IzmeniBelesku.IsEnabled = false;
+        }
+
+        private void IzmeniBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            this.beleska.IsEnabled = true;
+            this.SacuvajBelesku.IsEnabled = true;
+            this.DodajBelesku.IsEnabled = false;
+            this.IzmeniBelesku.IsEnabled = false;
+        }
+
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             Page odjava = new PrijavaPacijent();
@@ -59,7 +98,7 @@ namespace Projekat
         }
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
+            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -103,19 +142,26 @@ namespace Projekat
             }
         }
 
-        private void SacuvajBelesku_Click(object sender, RoutedEventArgs e)
+        private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            anamneza.Beleska = this.beleska.Text;
-            this.beleska.IsEnabled = false;
-            this.SacuvajBelesku.IsEnabled = false;
-            PacijentiMenadzer.SacuvajIzmenePacijenta(); // ?
+            var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
+            MenuItem mi = (MenuItem)sender;
+            if (mi.Header.Equals("en-US"))
+            {
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
+            }
+            else
+            {
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }
+
         }
 
-        private void DodajBelesku_Click(object sender, RoutedEventArgs e)
-        {
-            this.DodajBelesku.Content = "Izmeni";
-            this.beleska.IsEnabled = true;
-            this.SacuvajBelesku.IsEnabled = true;
-        }
+       
     }
 }

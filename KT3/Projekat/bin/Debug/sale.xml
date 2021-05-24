@@ -49,15 +49,7 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>10:00</pocetakTermina>
-        <krajTermina>12:00</krajTermina>
-        <datumPocetkaTermina>06/09/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/09/2021</datumKrajaTermina>
-        <idTermina>3</idTermina>
-      </ZauzeceSale>
-    </zauzetiTermini>
+    <zauzetiTermini />
     <Kreveti />
   </Sala>
   <Sala>
@@ -118,18 +110,11 @@
         <idTermina>1</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>09:00</pocetakTermina>
+        <pocetakTermina>10:00</pocetakTermina>
         <krajTermina>11:00</krajTermina>
-        <datumPocetkaTermina>05/21/2021</datumPocetkaTermina>
-        <datumKrajaTermina>05/21/2021</datumKrajaTermina>
+        <datumPocetkaTermina>05/19/2021</datumPocetkaTermina>
+        <datumKrajaTermina>05/19/2021</datumKrajaTermina>
         <idTermina>1</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>08:00</pocetakTermina>
-        <krajTermina>09:00</krajTermina>
-        <datumPocetkaTermina>06/09/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/09/2021</datumKrajaTermina>
-        <idTermina>4</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />
@@ -142,7 +127,7 @@
     <Oprema>
       <Oprema>
         <NazivOpreme>rukavice</NazivOpreme>
-        <Kolicina>200</Kolicina>
+        <Kolicina>195</Kolicina>
         <Staticka>false</Staticka>
         <IdOpreme>6</IdOpreme>
       </Oprema>
@@ -177,15 +162,7 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>10:00</pocetakTermina>
-        <krajTermina>12:00</krajTermina>
-        <datumPocetkaTermina>06/04/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/04/2021</datumKrajaTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
-    </zauzetiTermini>
+    <zauzetiTermini />
     <Kreveti />
   </Sala>
   <Sala>
@@ -232,7 +209,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>rukavice</NazivOpreme>
-        <Kolicina>200</Kolicina>
+        <Kolicina>205</Kolicina>
         <Staticka>false</Staticka>
         <IdOpreme>6</IdOpreme>
       </Oprema>

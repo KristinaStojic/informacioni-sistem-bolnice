@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace Projekat.Model
 {
-    public class Lek
+    public class Lek : INotifyPropertyChanged
     {
         public int idLeka { get; set; }
         public string nazivLeka { get; set; }
         public string sifraLeka { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
         public List<int> zamenskiLekovi { get; set; }
         public List<Sastojak> sastojci { get; set; }
 

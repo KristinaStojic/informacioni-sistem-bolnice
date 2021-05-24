@@ -78,6 +78,7 @@ namespace Projekat
         private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
         {
             canvas2.Visibility = Visibility.Hidden;
+            okvir.Visibility = Visibility.Hidden;
         }
 
         private void Obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,6 +86,7 @@ namespace Projekat
             if (flag == false)
             {
                 canvas2.Visibility = Visibility.Visible;
+                okvir.Visibility = Visibility.Visible;
             }
 
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;

@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="PrikaziAntekuZaLekare" Background="{DynamicResource BackgroundColor}">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
@@ -32,18 +32,18 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                     <Separator/>
-                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                     <Separator/>
-                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                    <MenuItem Header="_sr" />
-                                    <MenuItem Header="_en"/>
+                                    <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                    <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                     <Separator />
-                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
+                                    <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                    <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                    <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                     <Separator />
-                                    <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
@@ -91,12 +91,12 @@
             <StackPanel Margin="179,10,181,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="342" Width="350" 
                         Background="#e8f1f5">
                 <StackPanel Margin="0,10,0,0"  HorizontalAlignment="Center" Width="350">
-                    <Label Name="lekar" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
-                    <Label HorizontalAlignment="Center" Content="1️⃣-veoma lose, 2️⃣-lose, 3️⃣-dobro, 4️⃣-vrlo dobro, 5️⃣-odlicno" FontSize="11"/>
+                    <Label Name="lekar" Content="{namespace:Loc AnketaOLekaru}" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
+                    <Label HorizontalAlignment="Center" Content="{namespace:Loc Ocene}" FontSize="11"/>
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280" Text="1. Kako biste ocenili strucnost lekara u svom radu?"/>
+                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280" Text="{namespace:Loc Prvo}"/>
                     </StackPanel>
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
@@ -110,7 +110,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="2. Kako biste ocenili odnos lekara prema pacijentima i drugim zaposlenima?"/>
+                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Drugo}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje2" x:Name="jedan2" Margin="30,0,30,0" Content="1" Click="jedan2_Click"/>
@@ -122,7 +122,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="3. Kako biste ocenili higijenu radnog mesta lekara?"/>
+                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Trece}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje3" x:Name="jedan3" Margin="30,0,30,0" Content="1" Click="jedan3_Click"/>
@@ -134,7 +134,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="4. Kako biste ocenili strucnost lekara u radu na racunaru?" />
+                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Cetvrto}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
 

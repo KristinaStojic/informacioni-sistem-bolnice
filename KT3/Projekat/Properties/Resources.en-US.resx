@@ -117,11 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Adresa" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Anamneza" xml:space="preserve">
+    <value>Anamnesis</value>
+  </data>
+  <data name="AnamnezaPodaci" xml:space="preserve">
+    <value>Anamnesis data</value>
+  </data>
+  <data name="Anamneze" xml:space="preserve">
+    <value>Anamnesis</value>
+  </data>
+  <data name="AnketaOLekaru" xml:space="preserve">
+    <value>Survey work</value>
+  </data>
+  <data name="Beleske" xml:space="preserve">
+    <value>Notes</value>
+  </data>
   <data name="BracnoStanje" xml:space="preserve">
     <value>Marital status</value>
   </data>
+  <data name="BrojDana" xml:space="preserve">
+    <value>How many days to take the medicine</value>
+  </data>
+  <data name="BrojDana2" xml:space="preserve">
+    <value>Days</value>
+  </data>
   <data name="BrojTelefona" xml:space="preserve">
     <value>Phone number</value>
+  </data>
+  <data name="Cetiri" xml:space="preserve">
+    <value>4. How would you rate the expertise of Zdravo Corporation employees?</value>
+  </data>
+  <data name="Cetvrto" xml:space="preserve">
+    <value>4. How would you rate the expertise of a doctor in working on a computer?</value>
+  </data>
+  <data name="Da" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="Datum" xml:space="preserve">
     <value>Date</value>
@@ -129,17 +162,35 @@
   <data name="DatumIzdavanjaUputa" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="DatumPropisivanja" xml:space="preserve">
+    <value>Date of prescription</value>
+  </data>
+  <data name="DnevnoUzimanje" xml:space="preserve">
+    <value>Daily intake</value>
+  </data>
+  <data name="Dodaj" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="DodajPodsetnik" xml:space="preserve">
     <value>Add reminder</value>
+  </data>
+  <data name="DrugiLekar" xml:space="preserve">
+    <value>Choose another doctor</value>
+  </data>
+  <data name="Drugo" xml:space="preserve">
+    <value>2. How would you rate the doctor's attitude towards patients and other employees?</value>
+  </data>
+  <data name="Dva" xml:space="preserve">
+    <value>2. How would you rate the effectiveness of online scheduling, rescheduling and cancellations?</value>
+  </data>
+  <data name="ElektronskoPlacanje" xml:space="preserve">
+    <value>Electronic payment</value>
   </data>
   <data name="FilterLekari" xml:space="preserve">
     <value>Find a doctor by last name, first name or specialization</value>
   </data>
   <data name="GboxSpecijalistickiPregled" xml:space="preserve">
     <value>Specialist examination</value>
-  </data>
-  <data name="I" xml:space="preserve">
-    <value>Address</value>
   </data>
   <data name="Ime" xml:space="preserve">
     <value>First name</value>
@@ -150,14 +201,23 @@
   <data name="IzaberiteDatum" xml:space="preserve">
     <value>*2. Select a date</value>
   </data>
+  <data name="IzaberiteJednu" xml:space="preserve">
+    <value>Choose one of the offered preferences</value>
+  </data>
   <data name="IzaberiteJezik" xml:space="preserve">
     <value>Change language</value>
   </data>
   <data name="IzaberiteLekara" xml:space="preserve">
     <value>*4. Select a doctor</value>
   </data>
+  <data name="IzaberiteLekara2" xml:space="preserve">
+    <value>Choose a doctor</value>
+  </data>
   <data name="IzaberiteTipTermina" xml:space="preserve">
     <value>*1. Select an appointment type</value>
+  </data>
+  <data name="IzaberiteUput" xml:space="preserve">
+    <value>* 1.1. Select a referral</value>
   </data>
   <data name="IzaberiteVremePocetka" xml:space="preserve">
     <value>*3. Select start time</value>
@@ -168,8 +228,14 @@
   <data name="IzberiteTemu" xml:space="preserve">
     <value>Change theme</value>
   </data>
+  <data name="Izmeni" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="IzmenitePodatke" xml:space="preserve">
     <value>Edit data</value>
+  </data>
+  <data name="Jedan" xml:space="preserve">
+    <value>1. How would you rate the quality of services offered by the Zdravo Corporation?</value>
   </data>
   <data name="JmbgPacijenta" xml:space="preserve">
     <value>Patient ID</value>
@@ -180,11 +246,26 @@
   <data name="KorisnickoIme" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="LblPreporuceniTermini" xml:space="preserve">
+    <value>📆 Recommended appointments</value>
+  </data>
+  <data name="Lekar" xml:space="preserve">
+    <value>Doctor</value>
+  </data>
   <data name="LekarKodKogSeUpucuje" xml:space="preserve">
     <value>Recommended doctor</value>
   </data>
   <data name="LekarPodaci" xml:space="preserve">
     <value>Doctor</value>
+  </data>
+  <data name="LekarskiRecept" xml:space="preserve">
+    <value>Prescription</value>
+  </data>
+  <data name="LekarskiRecepti" xml:space="preserve">
+    <value>Medical prescriptions</value>
+  </data>
+  <data name="LekarskiUputi" xml:space="preserve">
+    <value>Medical referral</value>
   </data>
   <data name="LekarToolTip" xml:space="preserve">
     <value>First name and last name of the chosen doctor</value>
@@ -196,7 +277,22 @@
     <value>Note</value>
   </data>
   <data name="NaslovUputa" xml:space="preserve">
-    <value>Medical instruction for specialist examination</value>
+    <value>Medical referral for specialist examination</value>
+  </data>
+  <data name="Nazad" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="NazivAnkete" xml:space="preserve">
+    <value>The name of the survey</value>
+  </data>
+  <data name="NazivLeka" xml:space="preserve">
+    <value>Medicine name</value>
+  </data>
+  <data name="Ne" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoviPodsetnik" xml:space="preserve">
+    <value>New reminder</value>
   </data>
   <data name="Obavestenja" xml:space="preserve">
     <value>🔔 Notifications</value>
@@ -204,23 +300,47 @@
   <data name="ObrisiObavestenje" xml:space="preserve">
     <value>Delete the selected notification</value>
   </data>
+  <data name="Ocene" xml:space="preserve">
+    <value>1️⃣-very bad, 2️⃣-bad, 3️⃣-good, 4️⃣-very good, 5️⃣-excellent</value>
+  </data>
   <data name="Odjava" xml:space="preserve">
     <value>Log out</value>
   </data>
   <data name="Odustani" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="OpisBolesti" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="OpisUputa" xml:space="preserve">
+    <value>Referral description</value>
+  </data>
+  <data name="OtkaziTermin" xml:space="preserve">
+    <value>Cancel appointment</value>
+  </data>
   <data name="PacijentPodaci" xml:space="preserve">
     <value>Patient</value>
   </data>
+  <data name="Pet" xml:space="preserve">
+    <value>5. How would you rate hygiene in Zdravo Corporation clinics?</value>
+  </data>
+  <data name="PocetakTerapije" xml:space="preserve">
+    <value>Initiation of therapy</value>
+  </data>
   <data name="Pocetna" xml:space="preserve">
     <value>Home page</value>
+  </data>
+  <data name="Podsetnici" xml:space="preserve">
+    <value>⏰ Reminders</value>
   </data>
   <data name="Pol" xml:space="preserve">
     <value>Gender</value>
   </data>
   <data name="Pomeri" xml:space="preserve">
     <value>Move</value>
+  </data>
+  <data name="PomeriTermin" xml:space="preserve">
+    <value>Move the appointment</value>
   </data>
   <data name="PopuniAnketu" xml:space="preserve">
     <value>Fill out the survey</value>
@@ -231,8 +351,14 @@
   <data name="Potvrdi" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Preference" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
   <data name="Pregled" xml:space="preserve">
     <value>Examination</value>
+  </data>
+  <data name="PreporuceniTermini" xml:space="preserve">
+    <value>Recommended appointments</value>
   </data>
   <data name="Prezime" xml:space="preserve">
     <value>Last name</value>
@@ -243,8 +369,26 @@
   <data name="Profil" xml:space="preserve">
     <value>Your profile</value>
   </data>
+  <data name="PronadjiteLekara" xml:space="preserve">
+    <value>Find a doctor</value>
+  </data>
+  <data name="Prvo" xml:space="preserve">
+    <value>1. How would you assess the expertise of doctors in your work?</value>
+  </data>
+  <data name="Recept" xml:space="preserve">
+    <value>Prescription</value>
+  </data>
+  <data name="Sacuvaj" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="SadrzajObavestenja" xml:space="preserve">
     <value>Content</value>
+  </data>
+  <data name="Sala" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="SpecijalistickiPregled" xml:space="preserve">
+    <value>Specialist examination</value>
   </data>
   <data name="Specijalizacija" xml:space="preserve">
     <value>Specialization</value>
@@ -255,14 +399,59 @@
   <data name="Tamna" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="TekstLabeleZaPretragu" xml:space="preserve">
+    <value>Find an appointment by date (MM/dd/yyyy)</value>
+  </data>
+  <data name="Terapija" xml:space="preserve">
+    <value>Therapy</value>
+  </data>
+  <data name="TerminPodaci" xml:space="preserve">
+    <value>Appointment</value>
+  </data>
   <data name="TipObavestenja" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="TipTermin" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="TipUputa" xml:space="preserve">
+    <value>Referral type</value>
+  </data>
+  <data name="ToolTipLekar" xml:space="preserve">
+    <value>If you want to make an appointment with another doctor, click on the Preferences button</value>
+  </data>
+  <data name="ToolTipPreferenca" xml:space="preserve">
+    <value>If you want to make an appointment with another doctor or for the system to suggest 3 free appointments</value>
+  </data>
+  <data name="ToolTipPretragaDatuma" xml:space="preserve">
+    <value>Search the list of dates by date</value>
+  </data>
+  <data name="ToolTipUput" xml:space="preserve">
+    <value>If you schedule a specialist review, select the referral</value>
+  </data>
+  <data name="Trece" xml:space="preserve">
+    <value>3. How would you rate the hygiene of a doctor's workplace?</value>
+  </data>
+  <data name="Tri" xml:space="preserve">
+    <value>3. How would you rate the price-performance ratio at Zdravo Corporation?</value>
+  </data>
+  <data name="UpitZaBrisanje" xml:space="preserve">
+    <value>Do you want to cancel the selected appointment?</value>
   </data>
   <data name="UvidObavestenje" xml:space="preserve">
     <value>Insight into the selected notification</value>
   </data>
   <data name="UvidUZakazaneTermine" xml:space="preserve">
     <value>Scheduled appointments</value>
+  </data>
+  <data name="Vreme" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="VremeKraja" xml:space="preserve">
+    <value>End time</value>
+  </data>
+  <data name="VremePocetka" xml:space="preserve">
+    <value>Start time</value>
   </data>
   <data name="ZakaziTermin" xml:space="preserve">
     <value>Make an appointment</value>

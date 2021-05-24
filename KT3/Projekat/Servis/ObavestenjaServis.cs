@@ -9,7 +9,7 @@ namespace Projekat.Servis
 {
     public class ObavestenjaServis
     {
-        #region Obavestenja Sekretar
+        #region Obavestenja menadzer
         public static void sacuvajIzmene()
         {
             ObavestenjaMenadzer.sacuvajIzmene();
@@ -20,16 +20,6 @@ namespace Projekat.Servis
             return ObavestenjaMenadzer.NadjiSvaObavestenja();
         }
 
-        public static void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
-        {
-            ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
-        }
-
-        public static void IzmeniObavestenjeSekretar(Obavestenja obavestenje, Obavestenja novoObavestenje)
-        {
-            ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
-        }
-
         public static void ObrisiObavestenje(Obavestenja obavestenje)
         {
             ObavestenjaMenadzer.ObrisiObavestenje(obavestenje);
@@ -38,6 +28,18 @@ namespace Projekat.Servis
         public static int GenerisanjeIdObavestenja()
         {
             return ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+        }
+#endregion
+
+        #region Obavestenja Sekretar
+        public static void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
+        {
+            ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
+        }
+
+        public static void IzmeniObavestenjeSekretar(Obavestenja obavestenje, Obavestenja novoObavestenje)
+        {
+            ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
         }
         #endregion
 
@@ -96,6 +98,9 @@ namespace Projekat.Servis
                 }
             }
         }
+
+
+
         #endregion
     }
 }

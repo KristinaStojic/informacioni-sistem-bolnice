@@ -96,15 +96,28 @@ namespace Projekat
 
             return krajOdmora;
         }
-
+        
         private int OdrediBrojDanaOdmora()
         {
             DateTime kraj = (DateTime)this.kraj.SelectedDate;
             DateTime pocetak = (DateTime)this.pocetak.SelectedDate;
+            int brojDanaOdmora = 0;
 
-            TimeSpan brojDana = kraj.Subtract(pocetak);
-            int brojDanaOdmora = brojDana.Days;
-
+            foreach (Lekar lekar in LekariMenadzer.lekari)
+            {
+                if (lekar.IdLekara == idLekara)
+                {
+                    foreach (RadniDan dan in lekar.RadniDani)
+                    {
+                        if ( (pocetak <= DateTime.Parse(dan.Datum)) &&
+                             (kraj >= DateTime.Parse(dan.Datum)) )
+                        {
+                            brojDanaOdmora++;
+                        }
+                    }
+                }
+            }
+            
             return brojDanaOdmora;
         }
 

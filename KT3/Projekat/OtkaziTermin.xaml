@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
+      xmlns:ns="clr-namespace:Projekat.Lokalizacija"
         mc:Ignorable="d"
         d:DesignHeight="600" d:DesignWidth="800"
         Title="Otkazi termin" Background="{DynamicResource BackgroundColor}">
@@ -24,75 +25,75 @@
                             <MenuItem.Icon>
                                 <Image Source="/slike/user.png" />
                             </MenuItem.Icon>
-                            <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
+                            <MenuItem Header="{ns:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                             <Separator/>
-                            <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                            <MenuItem Header="{ns:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                             <Separator/>
-                            <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                            <MenuItem Header="_sr" />
-                            <MenuItem Header="_en"/>
+                            <MenuItem Header="{ns:Loc IzaberiteJezik}" IsEnabled="False" />
+                            <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                             <Separator />
-                            <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                            <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu" />
+                            <MenuItem Header="{ns:Loc IzberiteTemu}" IsEnabled="False" />
+                            <MenuItem Header="{ns:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                            <MenuItem Header="{ns:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                             <Separator />
-                            <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                            <MenuItem Header="{ns:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                         </MenuItem>
                     </Menu>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
         <TextBlock Margin="20,35,0,518" FontSize="14" Foreground="#004a7c" Height="25">
-                <Hyperlink Name="pocetna" Click="pocetna_Click">
-                    <Run Text="Početna stranica"/>
+                 <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                    <Run Text="{ns:Loc Pocetna}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="zakazi" Click="zakazi_Click">
-                    <Run Text="Zakažite termin"/>
+                    <Run Text="{ns:Loc ZakaziTermin}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="uvid" Click="uvid_Click">
-                    <Run Text="Uvid u zakazane termine"/>
+                    <Run Text="{ns:Loc UvidUZakazaneTermine}"/>
                 </Hyperlink>
                 <Run Text=" "/>
                 <Hyperlink Name="karton" Click="karton_Click">
-                    <Run Text="Zdravstveni karton"/>
+                    <Run Text="{ns:Loc Karton}"/>
                 </Hyperlink>
         </TextBlock>
 
-        <GroupBox Header="Podaci o terminu" Height="280" Margin="238,85,238,213" 
+        <GroupBox Header="{ns:Loc TerminPodaci}" Height="280" Margin="238,85,238,213" 
                   Foreground="{DynamicResource TextColor}"/>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="200,0,200,0">
 
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0, 80, 0, 0" Height="295" Width="325">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0, 35, 0, 0">
-                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Tip termina" FontSize="14" />
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="{ns:Loc TipTermin}" FontSize="14" />
                     <TextBox Height="25" Width="150" HorizontalAlignment="Right"  Margin="10, 10, 18, 10" IsEnabled="False" Name="tipTermina"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Datum" FontSize="14" />
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="{ns:Loc Datum}" FontSize="14" />
                     <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="datum"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Vreme" FontSize="14" />
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="{ns:Loc Vreme}" FontSize="14" />
                     <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False"  Margin="10, 10, 18, 10" Name="vreme"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Lekar" FontSize="14" />
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="{ns:Loc LekarPodaci}" FontSize="14" />
                     <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="lekar"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="Sala" FontSize="14" />
+                    <Label Height="30" Width="100" HorizontalAlignment="Left" Content="{ns:Loc Sala}" FontSize="14" />
                     <TextBox Height="25" Width="150" HorizontalAlignment="Right" IsEnabled="False" Margin="10, 10, 18, 10" Name="sala"/>
                 </StackPanel>
             </StackPanel>
-            <Label Content="Da li ste sigurni da zelite da otkazete odabrani termin?" FontSize="13" Margin="0, 30, 0, 0"
+            <Label Content="{ns:Loc UpitZaBrisanje}" FontSize="13" Margin="0, 30, 0, 0"
                 HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Height="30" Width="325"
                    Foreground="{DynamicResource TextColor}"/>
             <Separator Height="10" Background="{DynamicResource BackgroundColor}" />
             <StackPanel Orientation="Horizontal" Height="31" HorizontalAlignment="Center">
-                <Button Width="90" Content="Da" Style="{DynamicResource ButtonStyle2}" Click="Button_Click_1"/>
+                <Button Width="90" Content="{ns:Loc Da}" Style="{DynamicResource ButtonStyle2}" Click="Button_Click_1"/>
                 <Separator Width="30" Background="{DynamicResource BackgroundColor}" />
-                <Button Width="90" Content="Ne" Style="{DynamicResource ButtonStyle2}" Click="Button_Click"/>
+                <Button Width="90" Content="{ns:Loc Ne}" Style="{DynamicResource ButtonStyle2}" Click="Button_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

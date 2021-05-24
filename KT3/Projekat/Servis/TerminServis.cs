@@ -74,6 +74,10 @@ namespace Projekat.Servis
 
             SaleZaPreglede = SaleServis.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
+            if (comboUputi == null)
+            {
+                return SaleZaPreglede;
+            }
             if (combo.Text.Equals("Pregled"))
             {
                 comboUputi.IsEnabled = true;
@@ -364,9 +368,16 @@ namespace Projekat.Servis
             TerminMenadzer.sacuvajIzmene();
         }
 
-        public static List<Termin> PronadjiTerminPoIdPacijenta(int idPacijenta)
+        public static ObservableCollection<Termin> PronadjiTerminPoIdPacijenta(int idPacijenta)
         {
-            return TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijenta);
+            // TODO: u observavble listu
+            //return TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijenta);
+            ObservableCollection<Termin> TerminiPacijenta = new ObservableCollection<Termin>();
+            foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijenta))
+            {
+                TerminiPacijenta.Add(termin);   
+            }
+            return TerminiPacijenta;
         }
 
         public static List<Termin> PronadjiSveTerminePacijentaZaSelektovaniDatum(int idPacijent, string selektovaniDatum)

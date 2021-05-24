@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         Title="Izmjeni sastojak" Height="350" Width="400" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:LijekoviViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,10 +21,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Naziv sastojka::</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Kolicina:</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="naziv" Background="AliceBlue" TextChanged="naziv_TextChanged"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="kolicina" Background="AliceBlue" TextChanged="kolicina_TextChanged"></TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="naziv" Background="AliceBlue" Text="{Binding NazivSastojkaIzmjena, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="kolicina" Background="AliceBlue" Text="{Binding KolicinaSastojkaIzmjena, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
-        <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10" Name="Potvrdi" Click="Potvrdi_Click">Potvrdi</Button>
-        <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Click="Button_Click">Odustani</Button>
+        <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10" Name="Potvrdi" Command="{Binding IzmjeniSastojak}">Potvrdi</Button>
+        <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Command="{Binding OdustaniOdIzmjeneSastojka}">Odustani</Button>
     </Grid>
 </Window>

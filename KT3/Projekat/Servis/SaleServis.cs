@@ -114,6 +114,12 @@ namespace Projekat.Servis
                                                         "18:00", "18:30", "19:00", "19:30", "20:00"};
         }
 
+        public static void DodajZauzeceSale(Termin termin, Sala prvaSlobodnaSala)
+        {
+            ZauzeceSale zs = new ZauzeceSale(termin.VremePocetka, termin.VremeKraja, termin.Datum, termin.IdTermin);
+            prvaSlobodnaSala.zauzetiTermini.Add(zs);
+        }
+
         public static bool salaZakazanaZaRenoviranje(Sala izabranaSala)
         {
             foreach (ZauzeceSale zauzeceSale in izabranaSala.zauzetiTermini)
