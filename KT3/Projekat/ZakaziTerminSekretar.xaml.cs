@@ -163,7 +163,7 @@ namespace Projekat
                     }
                 }
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
 
                 this.Close();
@@ -174,7 +174,7 @@ namespace Projekat
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
 
                 this.Close();

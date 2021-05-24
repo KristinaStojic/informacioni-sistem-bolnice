@@ -93,7 +93,7 @@ namespace Projekat
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
                 ZdravstveniKartonServis.DodajUput(noviUput);
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
@@ -133,7 +133,7 @@ namespace Projekat
             {
                 tipUputa = tipUputa.Laboratorija;
             }
-            else if (selektovaniTab.Equals("Stacionarno lečenje"))
+            else if (selektovaniTab.Equals("Bolničko lečenje"))
             {
                 tipUputa = tipUputa.StacionarnoLecenje;
             }
@@ -219,7 +219,7 @@ namespace Projekat
                 zauzmiKrevet(Soba, Krevet);
                 ZdravstveniKartonServis.DodajUput(noviUput);
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
@@ -268,6 +268,38 @@ namespace Projekat
         private void Potvrdi_Laboratorija_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Tabovi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl)) //laboratorija
+            {
+                laboratorija.IsSelected = true;
+            }
+            else if (e.Key == Key.B && Keyboard.IsKeyDown(Key.LeftCtrl)) //bolnicko lecenje
+            {
+                bolnickoLecenjeTab.IsSelected = true;
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl)) //specijalisticki pregled
+            {
+                specijalistickiTab.IsSelected = true;
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // nazad
+            {
+                this.Close();
+            }
+        }
+
+        private void Bolnicko_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Sacuvaj
+            {
+                PotvrdiLecenje_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
+            {
+                Odustani_Click(sender, e);
+            }
         }
     }
 }

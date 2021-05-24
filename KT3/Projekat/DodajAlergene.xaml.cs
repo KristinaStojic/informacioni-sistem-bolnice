@@ -79,7 +79,7 @@ namespace Projekat
                 Alergeni alergen = new Alergeni(idAlergena, pacijent.IdPacijenta, nazivLeka, sifraLeka, Nuspojava, vremeNuspojave);
                 ZdravstveniKartonServis.DodajAlergen(alergen);
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
 

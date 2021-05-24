@@ -61,7 +61,7 @@ namespace Projekat
             Anamneza nova = new Anamneza(stara.IdAnamneze,stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta,stara.IdLekara, termin.IdTermin);
             ZdravstveniKartonServis.IzmeniAnamnezu(stara, nova);
 
-            TerminMenadzer.sacuvajIzmene();
+            TerminServisLekar.sacuvajIzmene();
             PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
 

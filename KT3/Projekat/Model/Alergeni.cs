@@ -32,5 +32,7 @@ namespace Projekat.Model
             this.NazivSastojka = nazivLeka;
             this.SifraSastojka = sifraLeka;
         }
+
+
     }
 }

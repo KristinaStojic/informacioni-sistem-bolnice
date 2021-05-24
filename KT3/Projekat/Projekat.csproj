@@ -461,6 +461,7 @@
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
+    <Compile Include="Servis\TerminServisLekar.cs" />
     <Compile Include="Servis\ZdravstveniKartonServis.cs" />
     <Compile Include="Skladiste.xaml.cs">
       <DependentUpon>Skladiste.xaml</DependentUpon>
