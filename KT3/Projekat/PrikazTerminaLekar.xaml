@@ -93,7 +93,8 @@ Pomoć?(CTRL+H)
                 <!-- Kraj parcadi u grafikonu -->
 
             </Wpf:PieChart>
-            <!-- Kraj grafikona.-->
+        <Label Content="Grafikon 1. Tipovi termina" Margin="1000,430,99,231" FontSize="14"/>
+        <!-- Kraj grafikona.-->
 
     </Grid>
 </Window>

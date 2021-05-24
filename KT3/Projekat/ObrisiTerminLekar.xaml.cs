@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace Projekat
             if (TerminzaBrisanje != null)
             {
 
-                TerminMenadzer.OtkaziTerminLekar(TerminzaBrisanje);
+                TerminServisLekar.OtkaziTerminLekar(TerminzaBrisanje);
                 this.Close();
             }
             else

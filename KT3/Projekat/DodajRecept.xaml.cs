@@ -37,7 +37,7 @@ namespace Projekat
         private void PopuniPodatkePacijenta(Pacijent izabraniPacijent)
         {
             
-            this.nadjiLek.ItemsSource = ZdravstveniKartonMenadzer.NadjiPacijentuDozvoljeneLekove(pacijent.IdPacijenta);
+            this.nadjiLek.ItemsSource = ZdravstveniKartonServis.NadjiPacijentuDozvoljeneLekove(pacijent.IdPacijenta);
             this.pacijentIme.Text = izabraniPacijent.ImePacijenta + " " + izabraniPacijent.PrezimePacijenta;
             this.jmbg.Text = izabraniPacijent.Jmbg.ToString();
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
@@ -73,7 +73,7 @@ namespace Projekat
         {
             try
             {
-                int brojRecepta = ZdravstveniKartonMenadzer.GenerisanjeIdRecepta(pacijent.IdPacijenta);
+                int brojRecepta = ZdravstveniKartonServis.GenerisanjeIdRecepta(pacijent.IdPacijenta);
                 String nazivLeka = nazivSifra.Text;
                 
                 int kolicinaNaDan = int.Parse(kolicina.Text);
@@ -95,7 +95,7 @@ namespace Projekat
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, datumPregleda, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
                 recept.IdLekara = termin.Lekar.IdLekara;
                 MessageBox.Show(termin.Lekar.IdLekara.ToString());
-                ZdravstveniKartonMenadzer.DodajRecept(recept);
+                ZdravstveniKartonServis.DodajRecept(recept);
 
                 PosaljiObavestenjeOTerapiji(recept);
                 SacuvajIzmene();

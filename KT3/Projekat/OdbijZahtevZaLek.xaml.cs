@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace Projekat
         private void Button_Sacuvaj(object sender, RoutedEventArgs e)
         {
             //sacuvaj
-            LekoviMenadzer.odbijaZahtev(zahtev, this.razlogOdbijanja.Text);
+            LekoviServis.odbijaZahtev(zahtev, this.razlogOdbijanja.Text);
             this.Close();
         }
     }

@@ -34,7 +34,7 @@ namespace Projekat
             TerminServis.sacuvajIzmene();
             ObavestenjaServis.sacuvajIzmene();
             MalicioznoPonasanjeServis.sacuvajIzmene();
-            TerminMenadzer.sacuvajIzmene();
+            TerminServisLekar.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();

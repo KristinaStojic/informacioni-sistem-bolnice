@@ -6,6 +6,7 @@
 
 using Projekat;
 using Projekat.Model;
+using Projekat.Servis;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -34,7 +35,7 @@ namespace Model
                 if (t.Prostorija.Id == sala.Id)
                 {
                     TerminMenadzer.termini.Remove(t);
-                    TerminMenadzer.sacuvajIzmene();
+                    TerminServisLekar.sacuvajIzmene();
                 }
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            LekoviMenadzer.obrisiSastojakLekaLekar(lek, sastojak);
+            LekoviServis.obrisiSastojakLekaLekar(lek, sastojak);
             this.Close();
 
         }

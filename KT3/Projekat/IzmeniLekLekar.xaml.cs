@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Projekat
             string sifraLeka = this.sifra.Text;
             string nazivLeka = this.naziv.Text;
             Lek noviLek = new Lek(izabraniLek.idLeka, nazivLeka, sifraLeka);
-            LekoviMenadzer.IzmeniLekoveLekar(izabraniLek, noviLek);
+            LekoviServis.IzmeniLekoveLekar(izabraniLek, noviLek);
             this.Close();
         }
 

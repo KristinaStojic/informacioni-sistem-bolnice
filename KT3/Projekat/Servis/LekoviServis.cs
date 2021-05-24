@@ -73,5 +73,51 @@ namespace Projekat.Servis
             LekoviMenadzer.sacuvajIzmeneZahteva();
             LekoviMenadzer.sacuvajIzmeneZahteva();
         }
+
+        public static void IzmeniLekoveLekar(Lek izabraniLek, Lek izmenjeniLek)
+        {
+            LekoviMenadzer.IzmeniLekoveLekar(izabraniLek, izmenjeniLek);
+        }
+
+        public static void obrisiSastojakLekaLekar(Lek izabraniLek, Sastojak sastojak)
+        {
+            LekoviMenadzer.obrisiSastojakLekaLekar(izabraniLek, sastojak);
+        }
+
+        public static void izmeniSastojakLekaLekar(Lek izabraniLek, Sastojak stariSastojak, Sastojak noviSastojak)
+        {
+            LekoviMenadzer.izmeniSastojakLekaLekar(izabraniLek, stariSastojak, noviSastojak);
+        }
+
+        public static void obrisiZamenskiLekLekar(Lek izabraniLek, Lek zamenskiLek)
+        {
+            LekoviMenadzer.obrisiZamenskiLekLekar(izabraniLek, zamenskiLek);
+        }
+
+        public static List<Sastojak> nadjiSastojke(ZahtevZaLekove izabraniZahtev)
+        {
+            return LekoviMenadzer.nadjiSastojke(izabraniZahtev);
+        }
+
+        public static void izmeniZahtev(ZahtevZaLekove izabraniZahtev)
+        {
+            LekoviMenadzer.izmeniZahtev(izabraniZahtev);
+        }
+
+        public static void odbijaZahtev(ZahtevZaLekove izabraniZahtev, String razlogOdbijanja)
+        {
+            LekoviMenadzer.odbijaZahtev(izabraniZahtev, razlogOdbijanja);
+        }
+
+        public static List<Sastojak> NadjiSveSastojke()
+        {
+            return LekoviMenadzer.NadjiSveSastojke();
+        }
+
+        public static int GenerisanjeIdZahtjeva()
+        {
+            return LekoviMenadzer.GenerisanjeIdZahtjeva();
+        }
+
     }
 }

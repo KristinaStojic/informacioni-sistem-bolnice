@@ -76,6 +76,8 @@ namespace Model
         {
             termini.Add(termin);
             PrikazTerminaLekar.Termini.Add(termin);
+            sacuvajIzmene();
+
         }
 
         public static int GenerisanjeIdTermina()
@@ -162,6 +164,8 @@ namespace Model
             int idx = PrikazTerminaLekar.Termini.IndexOf(termin);
             PrikazTerminaLekar.Termini.RemoveAt(idx);
             PrikazTerminaLekar.Termini.Insert(idx, termin1);
+            sacuvajIzmene();
+
         }
 
         public static void IzmeniTerminSekretar(Termin stariTermin, Termin noviTermin)
@@ -319,6 +323,7 @@ namespace Model
                 }
             }
             PrikazTerminaLekar.Termini.Remove(termin);
+            sacuvajIzmene();
         }
 
         public static List<Termin> NadjiSveTermine()

@@ -55,6 +55,7 @@ namespace Projekat
 
         private static void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
         {
+
             // TODO: ispraviti na ZdravstveniKartonServis
             foreach (Uput uput in ZdravstveniKartonMenadzer.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
             {

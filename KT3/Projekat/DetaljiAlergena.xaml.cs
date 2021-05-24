@@ -54,9 +54,9 @@ namespace Projekat
             string vremeReakcije = vreme.Text;
 
             Alergeni noviAlergen = new Alergeni(stariAlergen.IdAlergena, stariAlergen.IdPacijenta, nazivLeka, sifraLeka, nuspojavaNaLek, vremeReakcije);
-            ZdravstveniKartonMenadzer.IzmeniAlergen(stariAlergen, noviAlergen);
+            ZdravstveniKartonServis.IzmeniAlergen(stariAlergen, noviAlergen);
 
-            TerminMenadzer.sacuvajIzmene();
+            TerminServisLekar.sacuvajIzmene();
             PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
 

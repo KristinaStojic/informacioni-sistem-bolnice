@@ -54,6 +54,10 @@ namespace Projekat
             this.prezimePacijenta.Text = pacijent.PrezimePacijenta;
             this.jmbgPacijenta.Text = pacijent.Jmbg.ToString();
             this.Lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+            /*provjeriti da li moze ovo*/
+            this.datumKraja.SelectedDate = DateTime.Today;
+            this.datumPocetka.SelectedDate = DateTime.Today;
+
 
         }
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,9 +95,9 @@ namespace Projekat
                 tipUputa tipUputa = NadjiTipUputa();
 
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
-                ZdravstveniKartonMenadzer.DodajUput(noviUput);
+                ZdravstveniKartonServis.DodajUput(noviUput);
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
@@ -133,7 +137,7 @@ namespace Projekat
             {
                 tipUputa = tipUputa.Laboratorija;
             }
-            else if (selektovaniTab.Equals("Stacionarno lečenje"))
+            else if (selektovaniTab.Equals("Bolničko lečenje"))
             {
                 tipUputa = tipUputa.StacionarnoLecenje;
             }
@@ -217,9 +221,9 @@ namespace Projekat
                 Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
-                ZdravstveniKartonMenadzer.DodajUput(noviUput);
+                ZdravstveniKartonServis.DodajUput(noviUput);
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
@@ -264,6 +268,63 @@ namespace Projekat
             }
             return formatiranDatum;
         }
+
+        private void Potvrdi_Laboratorija_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Tabovi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl)) //laboratorija
+            {
+                laboratorija.IsSelected = true;
+            }
+            else if (e.Key == Key.B && Keyboard.IsKeyDown(Key.LeftCtrl)) //bolnicko lecenje
+            {
+                bolnickoLecenjeTab.IsSelected = true;
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl)) //specijalisticki pregled
+            {
+                specijalistickiTab.IsSelected = true;
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // nazad
+            {
+                this.Close();
+            }
+        }
+
+        private void Bolnicko_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Sacuvaj
+            {
+                PotvrdiLecenje_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
+            {
+                Odustani_Click(sender, e);
+            }
+        }
+
         
+            
+        private void datumKraja_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var dp = sender as DatePicker;
+            if (dp == null) return;
+            if (!dp.SelectedDate.HasValue) return;
+
+            var date = dp.SelectedDate.Value;
+            if (e.Key == Key.Up)
+            {
+                e.Handled = true;
+                dp.SetValue(DatePicker.SelectedDateProperty, date.AddDays(1));
+            }
+            else if (e.Key == Key.Down)
+            {
+                e.Handled = true;
+                dp.SetValue(DatePicker.SelectedDateProperty, date.AddDays(-1));
+            }
+        }
     }
 }
