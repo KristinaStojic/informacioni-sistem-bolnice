@@ -20,34 +20,24 @@ namespace Projekat
     /// </summary>
     public partial class DodajPacijentaGuestIzmeni : Window
     {
-        public IzmeniTerminSekretar z;
+        public IzmeniTerminSekretar izmenaTermina;
 
         public DodajPacijentaGuestIzmeni(IzmeniTerminSekretar terminSekretar)
         {
             InitializeComponent();
-            this.z = terminSekretar;
+            this.izmenaTermina = terminSekretar;
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            pol pol;
-
-            if (combo2.Text.Equals("M"))
-            {
-                pol = pol.M;
-            }
-            else
-            {
-                pol = pol.Z;
-            }
-
-            Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
+            pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
+            Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, statusNaloga.Guest);
             PacijentiMenadzer.pacijenti.Add(guestPacijent);
             PacijentiServis.SacuvajIzmenePacijenta();
 
-            z.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
-            z.AzurirajListuPacijenata();
-            z.Pacijent = guestPacijent;
+            izmenaTermina.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
+            izmenaTermina.AzurirajListuPacijenata();
+            izmenaTermina.Pacijent = guestPacijent;
 
             this.Close();
         }
@@ -59,7 +49,7 @@ namespace Projekat
 
         private void jmbg_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!PacijentiServis.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            if (!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text)))
             {
                 MessageBox.Show("JMBG vec postoji");
                 jmbg.Text = "";

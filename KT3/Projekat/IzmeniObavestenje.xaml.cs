@@ -22,7 +22,6 @@ namespace Projekat
     public partial class IzmeniObavestenje : Window
     {
         public Obavestenja obavestenje;
-        public string oznaka;
 
         public IzmeniObavestenje(Obavestenja selektovanoObavestenje)
         {
@@ -35,48 +34,52 @@ namespace Projekat
 
             if (selektovanoObavestenje != null)
             {
-                naslov.Text = selektovanoObavestenje.TipObavestenja;
-                sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
+                PopuniFormu(selektovanoObavestenje);
+            }
+        }
 
-                if (selektovanoObavestenje.Oznaka.Equals("svi"))
-                {
-                    namena.SelectedIndex = 0;
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("lekari"))
-                {
-                    namena.SelectedIndex = 1;
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("upravnici"))
-                {
-                    namena.SelectedIndex = 2;
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("pacijenti"))
-                {
-                    namena.SelectedIndex = 3;
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
-                {
-                    namena.SelectedIndex = 4;
-                }
+        private void PopuniFormu(Obavestenja selektovanoObavestenje)
+        {
+            naslov.Text = selektovanoObavestenje.TipObavestenja;
+            sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
+            namena.SelectedIndex = ObavestenjaServis.OdrediIndeksIzabranogObavestenja(selektovanoObavestenje);
 
-                if (!selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
-                {
-                    pretraga.IsEnabled = false;
-                    listaPacijenata.IsEnabled = false;
-                    pacijenti.IsEnabled = false;
-                }
-                else 
-                {
-                    pretraga.IsEnabled = true;
-                    listaPacijenata.IsEnabled = true;
-                    pacijenti.IsEnabled = true;
+            if (!selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
+            {
+                pretraga.IsEnabled = false;
+                listaPacijenata.IsEnabled = false;
+                pacijenti.IsEnabled = false;
+            }
+            else
+            {
+                pretraga.IsEnabled = true;
+                listaPacijenata.IsEnabled = true;
+                pacijenti.IsEnabled = true;
 
-                    foreach (int id in obavestenje.ListaIdPacijenata)
-                    {
-                        listaPacijenata.SelectedItem = PacijentiServis.PronadjiPoId(id);
-                    }
+                foreach (int id in obavestenje.ListaIdPacijenata)
+                {
+                    listaPacijenata.SelectedItem = PacijentiServis.PronadjiPoId(id);
                 }
             }
+        }
+
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            int idLekara = 0;
+            String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
+            List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
+
+            Obavestenja novoObavestenje = new Obavestenja(obavestenje.IdObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
+            ObavestenjaServis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
+            ObavestenjaServis.sacuvajIzmene();
+
+            this.Close();
+        }
+
+        private void Odustani_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private bool UserFilter(object item)
@@ -93,12 +96,12 @@ namespace Projekat
             }
         }
 
-        private void pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void Pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource).Refresh();
         }
 
-        private void namena_LostFocus(object sender, RoutedEventArgs e)
+        private void Namena_LostFocus(object sender, RoutedEventArgs e)
         {
             if (namena.Text.Equals("izabrane pacijente"))
             {
@@ -114,47 +117,5 @@ namespace Projekat
             }
         }
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            int idLekara = 0;
-            List<int> selektovaniPacijentiId = new List<int>();   
-            String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-            if (namena.Text.Equals("sve"))
-            {
-                oznaka = "svi";
-            }
-            else if (namena.Text.Equals("sve lekare"))
-            {
-                oznaka = "lekari";
-            }
-            else if (namena.Text.Equals("sve upravnike"))
-            {
-                oznaka = "upravnici";
-            }
-            else if (namena.Text.Equals("sve pacijente"))
-            {
-                oznaka = "pacijenti";
-            }
-            else  // specificni pacijenti
-            {
-                oznaka = "specificni pacijenti";
-                foreach (Pacijent p in listaPacijenata.SelectedItems)
-                {
-                    selektovaniPacijentiId.Add(p.IdPacijenta);
-                }
-            }
-
-            Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-            ObavestenjaServis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
-            ObavestenjaServis.sacuvajIzmene();       
-
-            this.Close();
-        }
-
-        private void Odustani_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

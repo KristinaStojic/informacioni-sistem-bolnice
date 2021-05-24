@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajPacijentaGuest" Height="410" Width="520" WindowStartupLocation="CenterScreen">
+        Title="DodajPacijentaGuest" Height="410" Width="520" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -32,7 +32,7 @@
         <TextBox x:Name="ime" Grid.Column="2" Grid.Row="1" Margin="12.2,11,12,0" Height="30" VerticalAlignment="Top" FontSize="17"/>
         <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="2" Margin="12.2,10.6,12,0" Height="30" VerticalAlignment="Top" FontSize="17"/>
         <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="3" Margin="12.2,11.2,12,0" LostFocus="jmbg_LostFocus" Height="30" VerticalAlignment="Top" FontSize="17"/>
-        <ComboBox x:Name="combo2" Grid.Column="2" Grid.Row="4"  Margin="12.2,8.6,12,0" SelectedIndex="0" Height="30" VerticalAlignment="Top" FontSize="17">
+        <ComboBox x:Name="polPacijenta" Grid.Column="2" Grid.Row="4"  Margin="12.2,8.6,12,0" SelectedIndex="0" Height="30" VerticalAlignment="Top" FontSize="17">
             <ComboBoxItem Content="M"/>
             <ComboBoxItem Content="Z"/>
         </ComboBox>

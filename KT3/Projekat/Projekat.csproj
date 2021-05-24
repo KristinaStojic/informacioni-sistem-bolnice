@@ -465,6 +465,7 @@
     <Compile Include="Servis\PacijentiServis.cs" />
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
+    <Compile Include="Servis\TerminiSekretarServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\ZdravstveniKartonServis.cs" />
     <Compile Include="Skladiste.xaml.cs">
@@ -499,6 +500,7 @@
     </Compile>
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
+    <Compile Include="ViewModel\LekarViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />

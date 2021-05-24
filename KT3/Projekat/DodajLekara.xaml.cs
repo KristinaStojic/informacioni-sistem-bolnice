@@ -20,15 +20,15 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for DodajLekara.xaml
     /// </summary>
-    public partial class DodajLekara : Window, INotifyPropertyChanged
+    public partial class DodajLekara : Window//, INotifyPropertyChanged
     {
         public DodajLekara()
         {
             InitializeComponent();
-            forma.DataContext = this;
-            oblastLekara.ItemsSource = Enum.GetValues(typeof(Specijalizacija)).Cast<Specijalizacija>();
+        //    forma.DataContext = this;
+        //    oblastLekara.ItemsSource = Enum.GetValues(typeof(Specijalizacija)).Cast<Specijalizacija>();
         }
-
+        /*
         public string validacijaJmbg;
         public string validacijaBrojTelefona;
 
@@ -104,9 +104,6 @@ namespace Projekat
             this.Close();
         }
 
-        private void ime_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       */
     }
 }

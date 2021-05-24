@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazeUputeSekretar" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+        Title="PrikazeUputeSekretar" Height="450" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <DataGrid x:Name="dataGridUputi" ItemsSource="{Binding TabelaUputa}" IsReadOnly="True" 
                                 SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 

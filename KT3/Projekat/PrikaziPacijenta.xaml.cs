@@ -95,7 +95,7 @@ namespace Projekat
         {
             flag = true;
             Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
-            canvas2.Visibility = Visibility.Hidden;
+            informacijePacijenta.Visibility = Visibility.Hidden;
 
             if (zaBrisanje != null)
             {
@@ -139,18 +139,17 @@ namespace Projekat
 
         private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
         {
-            canvas2.Visibility = Visibility.Hidden;
+            informacijePacijenta.Visibility = Visibility.Hidden;
         }
 
         private void TabelaPacijenata_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (flag == false)
             {
-                canvas2.Visibility = Visibility.Visible;
+                informacijePacijenta.Visibility = Visibility.Visible;
             }
 
             Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
-
             if (p != null)
             {
                 ime.Text = p.ImePacijenta;

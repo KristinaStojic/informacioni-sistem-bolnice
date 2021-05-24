@@ -22,7 +22,6 @@ namespace Projekat
     /// </summary>
     public partial class DodajObavestenje : Window
     {
-        public string oznaka;
         bool flag1 = false;
         bool flag2 = false;
         public DodajObavestenje()
@@ -53,7 +52,7 @@ namespace Projekat
             }
         }
 
-        private void pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void Pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource).Refresh();
         }
@@ -61,34 +60,10 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             int idLekara = 0;
-            List<int> selektovaniPacijentiId = new List<int>();
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            
-            if (namena.Text.Equals("sve"))
-            {
-                oznaka = "svi";
-            }
-            else if (namena.Text.Equals("sve lekare"))
-            {
-                oznaka = "lekari";
-            }
-            else if (namena.Text.Equals("sve upravnike"))
-            {
-                oznaka = "upravnici";
-            }
-            else if (namena.Text.Equals("sve pacijente"))
-            {
-                oznaka = "pacijenti";
-            }
-            else  // specificni pacijenti
-            {
-                oznaka = "specificni pacijenti";
-                foreach (Pacijent p in listaPacijenata.SelectedItems)
-                {
-                    selektovaniPacijentiId.Add(p.IdPacijenta);
-                }
-            }
-            
+            string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
+            List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
+
             Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
             ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
             ObavestenjaServis.sacuvajIzmene();   

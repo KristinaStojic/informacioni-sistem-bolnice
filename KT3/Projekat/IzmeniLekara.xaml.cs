@@ -19,9 +19,9 @@ namespace Projekat
     /// <summary>
     /// Interaction logic for IzmeniLekara.xaml
     /// </summary>
-    public partial class IzmeniLekara : Window, INotifyPropertyChanged
+    public partial class IzmeniLekara : Window //, INotifyPropertyChanged
     {
-        public Lekar lekar;
+       /* public Lekar lekar;
         public string validacijaJmbg;
         public string validacijaBrojTelefona;
 
@@ -65,11 +65,11 @@ namespace Projekat
                 }
             }
         }
-
-        public IzmeniLekara(Lekar izbraniLekar)
+       */
+        public IzmeniLekara(/*Lekar izbraniLekar*/)
         {
             InitializeComponent();
-            this.lekar = izbraniLekar;
+           /* this.lekar = izbraniLekar;
             this.DataContext = this;
             oblastLekara.ItemsSource = Enum.GetValues(typeof(Specijalizacija)).Cast<Specijalizacija>();
 
@@ -82,10 +82,10 @@ namespace Projekat
                 email.Text = izbraniLekar.Email;
                 adresa.Text = izbraniLekar.AdresaStanovanja;
                 oblastLekara.SelectedItem = izbraniLekar.specijalizacija;   
-            }
+            }*/
         }
 
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+      /*  private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             Specijalizacija specijalizacija = (Specijalizacija)oblastLekara.SelectedItem;
             Lekar izmenjeniLekar = new Lekar(lekar.IdLekara, ime.Text, prezime.Text, long.Parse(jmbg.Text), long.Parse(brojTelefona.Text), email.Text, adresa.Text, specijalizacija);
@@ -105,6 +105,6 @@ namespace Projekat
 
         private void jmbg_TextChanged(object sender, TextChangedEventArgs e)
         {
-        }
+        }*/
     }
 }
