@@ -145,12 +145,12 @@ namespace Projekat
             Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
             Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
-            t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
+            t = new Termin(TerminiSekretarServis.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
 
             // TODO: premesti u TerminMenadzer
             if (Sala.zauzetiTermini.Count != 0)  // ako postoje zauzeti termini
             {
-                TerminMenadzer.ZakaziTerminSekretar(t);
+                TerminiSekretarServis.ZakaziTerminSekretar(t);
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 
@@ -170,7 +170,7 @@ namespace Projekat
             }
             else  // ako ne postoje zauzeti termini
             {
-                TerminMenadzer.ZakaziTerminSekretar(t);
+                TerminiSekretarServis.ZakaziTerminSekretar(t);
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 
@@ -388,7 +388,7 @@ namespace Projekat
                 RenovacijaSale(z);
 
                 // slobodni termini u selektovanoj sali
-                if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)  // za zauzece nadjemo koji je to termin
+                if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)  // za zauzece nadjemo koji je to termin
                 {
                     if (z.datumPocetkaTermina.Equals(dat))
                     {
@@ -433,9 +433,9 @@ namespace Projekat
                 {
                     if (z.datumPocetkaTermina.Equals(dat)) // za selektovani datum gledamo zauzetost selektovanog lekara
                     {
-                        if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                        if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                         {
-                            Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                            Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                             if (pomocna.Lekar.IdLekara == Lekar.IdLekara)
                             {
@@ -482,9 +482,9 @@ namespace Projekat
                 {
                     if (z.datumPocetkaTermina.Equals(dat)) // za selektovani datum gledamo zauzetost selektovanog lekara
                     {
-                        if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                        if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                         {
-                            Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                            Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                             if (pomocna.Pacijent.IdPacijenta == Pacijent.IdPacijenta)
                             {

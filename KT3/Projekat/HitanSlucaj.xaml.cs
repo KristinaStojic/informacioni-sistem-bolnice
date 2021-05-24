@@ -74,7 +74,7 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             DodeliLekaraZaHitanTermin();
-            TerminMenadzer.ZakaziHitanTermin(hitanTermin, datum);
+            TerminiSekretarServis.ZakaziHitanTermin(hitanTermin, datum);
             this.Close();
         }
 
@@ -125,7 +125,7 @@ namespace Projekat
 
         private Termin KreirajHitanTermin()
         {
-            return new Termin(TerminMenadzer.GenerisanjeIdTermina(), datum, VremePocetka(), VremeKraja(), Tip, Lekar, Sala, Pacijent);
+            return new Termin(TerminiSekretarServis.GenerisanjeIdTermina(), datum, VremePocetka(), VremeKraja(), Tip, Lekar, Sala, Pacijent);
         }
 
         private void Pretrazi_Click(object sender, RoutedEventArgs e)
@@ -153,8 +153,8 @@ namespace Projekat
                 noviLekar = stariTermin.Lekar;
 
                 Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);
-                TerminMenadzer.OtkaziTerminSekretar(stariTermin);
-                TerminMenadzer.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
+                TerminiSekretarServis.OtkaziTerminSekretar(stariTermin);
+                TerminiSekretarServis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
                 potvrdiDugme.IsEnabled = true;               
             }
         }
@@ -278,7 +278,7 @@ namespace Projekat
                     return;
                 }
 
-                Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(zauzece.idTermina);
                 if (pomocna == null)
                 {
                     return;
@@ -496,7 +496,7 @@ namespace Projekat
                             continue;                            
                         }
 
-                        Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                        Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(zauzece.idTermina);
                         if (pomocna == null)
                         {
                             return null;
@@ -529,7 +529,7 @@ namespace Projekat
                         continue;
                     }
 
-                    Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                    Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(zauzece.idTermina);
                     if (pomocna == null)
                     {
                         return null;

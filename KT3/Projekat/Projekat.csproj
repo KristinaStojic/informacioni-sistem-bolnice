@@ -489,6 +489,9 @@
     <Compile Include="Sekretar.xaml.cs">
       <DependentUpon>Sekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SekretarPrijava.xaml.cs">
+      <DependentUpon>SekretarPrijava.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Servis\AnketaServis.cs" />
     <Compile Include="Servis\LekariServis.cs" />
     <Compile Include="Servis\LekoviServis.cs" />
@@ -1095,6 +1098,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SekretarPrijava.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -31,7 +31,7 @@
         <Label Grid.Column="1" Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Status naloga:"/>
         <TextBox x:Name="ime" Grid.Column="2" Grid.Row="1" Margin="12.2,11,12,0" Height="30" VerticalAlignment="Top" FontSize="17"/>
         <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="2" Margin="12.2,10.6,12,0" Height="30" VerticalAlignment="Top" FontSize="17"/>
-        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="3" Margin="12.2,11.2,12,0" LostFocus="jmbg_LostFocus" Height="30" VerticalAlignment="Top" FontSize="17"/>
+        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="3" Margin="12.2,11.2,12,0" LostFocus="Jmbg_LostFocus" Height="30" VerticalAlignment="Top" FontSize="17"/>
         <ComboBox x:Name="polPacijenta" Grid.Column="2" Grid.Row="4"  Margin="12.2,8.6,12,0" SelectedIndex="0" Height="30" VerticalAlignment="Top" FontSize="17">
             <ComboBoxItem Content="M"/>
             <ComboBoxItem Content="Z"/>
@@ -39,7 +39,7 @@
         <ComboBox x:Name="combo" Grid.Column="2" Grid.Row="5"  Margin="12.2,9,12,0" SelectedIndex="0"  IsEnabled="False" Height="30" VerticalAlignment="Top" FontSize="17">
             <ComboBoxItem Content="GUEST"/>
         </ComboBox>
-        <Button Grid.Column="1" Grid.Row="7" Margin="5.4,17.4,21.8,27" Click="Button_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
-        <Button Grid.Column="2" Grid.Row="7" Margin="11.8,17.4,11.6,27" Click="Button_Click_1" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="1" Grid.Row="7" Margin="5.4,17.4,21.8,27" Click="Potvrdi_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="7" Margin="11.8,17.4,11.6,27" Click="Nazad_Click" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>

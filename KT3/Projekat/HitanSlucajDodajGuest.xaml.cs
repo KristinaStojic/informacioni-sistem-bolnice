@@ -27,20 +27,10 @@ namespace Projekat
             this.hitanSlucaj = hitanSlucaj;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            pol pol;
-
-            if (polPacijenta.Text.Equals("M"))
-            {
-                pol = pol.M;
-            }
-            else
-            {
-                pol = pol.Z;
-            }
-
-            Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
+            pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
+            Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, statusNaloga.Guest);
             PacijentiMenadzer.pacijenti.Add(guestPacijent);
             PacijentiServis.SacuvajIzmenePacijenta();
 
@@ -51,14 +41,14 @@ namespace Projekat
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void jmbg_LostFocus(object sender, RoutedEventArgs e)
+        private void Jmbg_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!PacijentiServis.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            if (!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text)))
             {
                 MessageBox.Show("JMBG vec postoji");
                 jmbg.Text = "";

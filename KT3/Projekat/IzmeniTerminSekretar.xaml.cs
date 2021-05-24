@@ -243,9 +243,9 @@ namespace Projekat
             {
                 foreach (ZauzeceSale z in Sala.zauzetiTermini)
                 {
-                    if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                    if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                     {
-                        Termin t = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                        Termin t = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                         if (z.datumPocetkaTermina.Equals(dat))
                         {
@@ -293,9 +293,9 @@ namespace Projekat
                     {
                         if (z.datumPocetkaTermina.Equals(dat)) // za selektovani datum gledamo zauzetost selektovanog lekara
                         {
-                            if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                            if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                             {
-                                Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                                Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                                 if (pomocna.Lekar.IdLekara == Lekar.IdLekara)
                                 {
@@ -345,9 +345,9 @@ namespace Projekat
                     {
                         if (z.datumPocetkaTermina.Equals(dat)) // za selektovani datum gledamo zauzetost selektovanog lekara
                         {
-                            if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                            if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                             {
-                                Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                                Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                                 if (pomocna.Pacijent.IdPacijenta == Pacijent.IdPacijenta)
                                 {
@@ -576,11 +576,11 @@ namespace Projekat
                 }
             }
 
-            TerminMenadzer.IzmeniTerminSekretar(termin, izmenjeniTermin);
+            TerminiSekretarServis.IzmeniTerminSekretar(termin, izmenjeniTermin);
             ZauzeceSale z = new ZauzeceSale(vp, vk, dat, termin.IdTermin);
             Sala.zauzetiTermini.Add(z);
 
-            TerminServisLekar.sacuvajIzmene();
+            TerminiSekretarServis.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
 
             this.Close();
