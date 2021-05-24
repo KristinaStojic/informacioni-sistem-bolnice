@@ -123,5 +123,11 @@ namespace Projekat
             LicniPodaciLekar podaci = new LicniPodaciLekar(IDLekara);
             podaci.Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            EvidencijaUtrosenogMaterijala em = new EvidencijaUtrosenogMaterijala();
+            em.Show();
+        }
     }
 }

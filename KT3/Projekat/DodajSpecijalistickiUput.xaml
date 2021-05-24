@@ -171,7 +171,7 @@
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,8.8,19,0" Grid.Row="3" IsEnabled="False" Name="jmbgPacijenta"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="Lekar"/>
                         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,0" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Height="35" Width="192" IsEnabled="True" Name="datumPocetka" SelectedDateChanged="datum_SelectedDateChanged"/>
-                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="True" x:Name="datumKraja"/>
+                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="True" x:Name="datumKraja" PreviewKeyDown="datumKraja_PreviewKeyDown"/>
                         <ComboBox Grid.Column="2" Margin="19,10,19,0" Grid.Row="7" Name="slobodneSobe" SelectionChanged="brojSobe_SelectionChanged"/>
                         <ComboBox Grid.Column="2" Margin="19,11,19,44" Grid.Row="8" x:Name="slobodniKreveti" Grid.RowSpan="2"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="1" Margin="1,0,19,38" Grid.Row="10" IsEnabled="True" x:Name="napomenaPregelda" Grid.ColumnSpan="2"/>

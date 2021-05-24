@@ -367,6 +367,12 @@ namespace Projekat
             AnamnezaPomoc ap = new AnamnezaPomoc();
             ap.Show();
         }
+        
+        private void Alergeni_Click(object sender, RoutedEventArgs e)
+        {
+            AlergeniPomoc ap = new AlergeniPomoc();
+            ap.Show();
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

@@ -54,6 +54,10 @@ namespace Projekat
             this.prezimePacijenta.Text = pacijent.PrezimePacijenta;
             this.jmbgPacijenta.Text = pacijent.Jmbg.ToString();
             this.Lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
+            /*provjeriti da li moze ovo*/
+            this.datumKraja.SelectedDate = DateTime.Today;
+            this.datumPocetka.SelectedDate = DateTime.Today;
+
 
         }
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -299,6 +303,27 @@ namespace Projekat
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
                 Odustani_Click(sender, e);
+            }
+        }
+
+        
+            
+        private void datumKraja_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var dp = sender as DatePicker;
+            if (dp == null) return;
+            if (!dp.SelectedDate.HasValue) return;
+
+            var date = dp.SelectedDate.Value;
+            if (e.Key == Key.Up)
+            {
+                e.Handled = true;
+                dp.SetValue(DatePicker.SelectedDateProperty, date.AddDays(1));
+            }
+            else if (e.Key == Key.Down)
+            {
+                e.Handled = true;
+                dp.SetValue(DatePicker.SelectedDateProperty, date.AddDays(-1));
             }
         }
     }
