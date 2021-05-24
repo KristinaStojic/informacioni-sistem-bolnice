@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="OdrediRadnoVreme" Height="423" Width="630" WindowStartupLocation="CenterScreen">
+        Title="OdrediRadnoVreme" Height="423" Width="630" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,2,-1,-2.2" HorizontalAlignment="Left" Width="625">
         <Calendar x:Name="kalendar" HorizontalAlignment="Left" Margin="26,60,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="201" Height="167" IsManipulationEnabled="True" SelectionMode="MultipleRange">
             <Calendar.LayoutTransform>
@@ -29,7 +29,7 @@
         <Label Content="Vreme pocetka:" FontSize="17" HorizontalAlignment="Left" Margin="348,82,0,0" VerticalAlignment="Top"/>
         <Label Content="Vreme kraja:" FontSize="17" HorizontalAlignment="Left" Margin="348,123,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="pocetak" HorizontalAlignment="Left" Margin="486,83,0,0" FontSize="17" VerticalAlignment="Top" Width="89" Height="29" SelectionChanged="Vreme_pocetka_SelectionChanged"/>
-        <ComboBox x:Name="kraj" HorizontalAlignment="Left" Margin="486,126,0,0" FontSize="17" VerticalAlignment="Top" Width="89" Height="29" LostFocus="Vreme_kraja_LostFocus"/>
+        <ComboBox x:Name="kraj" HorizontalAlignment="Left" Margin="486,126,0,0" FontSize="17" VerticalAlignment="Top" Width="89" Height="29" />
         <Button Content="Potvrdi" HorizontalAlignment="Left" Margin="73,306,0,0" VerticalAlignment="Top" Width="181" Height="51" Click="Potvrdi_Click" FontSize="17" Background="#FFA3DADE"/>
         <Button Content="Odustani" Margin="371,306,73,0" VerticalAlignment="Top" Height="51" Click="Odustani_Click" FontSize="17" Background="#FFA3DADE"/>
         <GroupBox Header="Odredite radno vreme lekara" FontStyle="Italic" FontSize="17" HorizontalAlignment="Left" Width="282" Height="252" Margin="321,30,0,0" VerticalAlignment="Top"/>

@@ -46,7 +46,6 @@ namespace Model
             this.BrojPregleda = 0;
             this.ZahteviZaOdmor = new List<int>();
             this.RadniDani = new List<RadniDan>();
-
         }
 
         public Lekar(int id)

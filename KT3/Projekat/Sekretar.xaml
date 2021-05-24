@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Image Source="slike/medical-symbol.png" Margin="143,131,732.6,237.4"/>
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="525" StrokeThickness="0" VerticalAlignment="Top" Width="470" Margin="701,81,0,0"/>

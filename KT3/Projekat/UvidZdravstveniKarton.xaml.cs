@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -73,42 +74,10 @@ namespace Projekat
             email.Text = izabraniNalog.Email;
             adresa.Text = izabraniNalog.AdresaStanovanja;
             zanimanje.Text = izabraniNalog.Zanimanje;
+            polPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksPola(izabraniNalog);
+            bracnoStanjePacijenta.SelectedIndex = PacijentiServis.UcitajIndeksBracnogStanja(izabraniNalog);
+            statusPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksStatusaNaloga(izabraniNalog);
 
-            if (izabraniNalog.Pol.Equals(pol.M))
-            {
-                combo2.SelectedIndex = 0;
-            }
-            else if (izabraniNalog.Pol.Equals(pol.Z))
-            {
-                combo2.SelectedIndex = 1;
-            }
-
-            if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
-            {
-                combo.SelectedIndex = 0;
-            }
-            else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest))
-            {
-                combo.SelectedIndex = 1;
-            }
-
-            if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neudata))
-            {
-                combo3.SelectedIndex = 0;
-            }
-            else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Ozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udata))
-            {
-                combo3.SelectedIndex = 1;
-            }
-            else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovac) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovica))
-            {
-                combo3.SelectedIndex = 2;
-            }
-            else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razveden) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razvedena))
-            {
-                combo3.SelectedIndex = 3;
-            }
-            
             if (izabraniNalog.IzabraniLekar != null)
             {
                 lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
@@ -180,12 +149,12 @@ namespace Projekat
             ime.IsEnabled = false;
             prezime.IsEnabled = false;
             jmbg.IsEnabled = false;
-            combo.IsEnabled = false;
-            combo2.IsEnabled = false;
+            statusPacijenta.IsEnabled = false;
+            polPacijenta.IsEnabled = false;
             brojTelefona.IsEnabled = false;
             email.IsEnabled = false;
             adresa.IsEnabled = false;
-            combo3.IsEnabled = false;
+            bracnoStanjePacijenta.IsEnabled = false;
             zanimanje.IsEnabled = false;
 
             if (izabraniNalog.Maloletnik == true)
@@ -206,7 +175,6 @@ namespace Projekat
         private void Detalji_alergena_Click(object sender, RoutedEventArgs e)
         {
             Alergeni izabraniAlergen = (Alergeni)dataGridAlergeni.SelectedItem;
-
             if (izabraniAlergen != null)
             {
 
@@ -222,7 +190,6 @@ namespace Projekat
         private void Detalji_anamneze_Click(object sender, RoutedEventArgs e)
         {
             Anamneza izabranaAnamneza = (Anamneza)dataGridAnamneze.SelectedItem;
-
             if (izabranaAnamneza != null)
             {
                 DetaljiAnamnezeSekretar detaljiAnamneze = new DetaljiAnamnezeSekretar(izabranaAnamneza, pacijent);
@@ -237,7 +204,6 @@ namespace Projekat
         private void Detalji_uputa_Click(object sender, RoutedEventArgs e)
         {
             Uput izabraniUput = (Uput)dataGridUputi.SelectedItem;
-
             if (izabraniUput != null)
             {
                 DetaljiUputaSekretar detaljiUputa = new DetaljiUputaSekretar(izabraniUput);

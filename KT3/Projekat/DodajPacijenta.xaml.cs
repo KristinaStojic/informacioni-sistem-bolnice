@@ -23,7 +23,6 @@ namespace Projekat
 
     public partial class DodajPacijenta : Window, INotifyPropertyChanged
     {
-        bracnoStanje brStanje;
         public DodajPacijenta()
         {
             InitializeComponent();
@@ -93,80 +92,12 @@ namespace Projekat
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            statusNaloga status;
-            pol pol;
-            bool maloletnoLice;
-            long staratelj;
-
-            if (combo.Text.Equals("STALAN"))
-            {
-                status = statusNaloga.Stalni;
-            }
-            else
-            {
-                status = statusNaloga.Guest;
-            }
-
-            if (combo2.Text.Equals("M"))
-            {
-                pol = pol.M;
-            }
-            else
-            {
-                pol = pol.Z;
-            }
-
-            if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("Z"))
-            {
-                brStanje = bracnoStanje.Neudata;
-            }
-            else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
-            {
-                brStanje = bracnoStanje.Udata;
-            }
-            else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
-            {
-                brStanje = bracnoStanje.Udovica;
-            }
-            else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("Z"))
-            {
-                brStanje = bracnoStanje.Razvedena;
-            }
-            else if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("M"))
-            {
-                brStanje = bracnoStanje.Neozenjen;
-            }
-            else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
-            {
-                brStanje = bracnoStanje.Ozenjen;
-            }
-            else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
-            {
-                brStanje = bracnoStanje.Udovac;
-            }
-            else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
-            {
-                brStanje = bracnoStanje.Razveden;
-            }
-
-            if ((bool)maloletnik.IsChecked)
-            {
-                maloletnoLice = true;
-            }
-            else
-            {
-                maloletnoLice = false;
-            }
-
-            if (jmbgStaratelja.Text.Equals(""))
-            {
-                staratelj = 0;
-            }
-            else
-            {
-                staratelj = long.Parse(jmbgStaratelja.Text);
-            }        
+        { 
+            statusNaloga status = PacijentiServis.OdrediStatusNaloga(combo.Text);
+            pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
+            bracnoStanje brStanje = PacijentiServis.OdreditiBracnoStanje(bracnoStanjePacijenta.SelectedIndex, polPacijenta.Text);
+            bool maloletnoLice = PacijentiServis.MaloletnoLice((bool)maloletnik.IsChecked);
+            long staratelj = PacijentiServis.OdrediJmbgStaratelja(jmbgStaratelja.Text);
 
             if (status.Equals(statusNaloga.Guest))
             {
@@ -176,16 +107,6 @@ namespace Projekat
             else
             {
                 Pacijent pacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                ZdravstveniKarton karton = new ZdravstveniKarton(pacijent.IdPacijenta);
-                pacijent.Karton = karton;
-                List<LekarskiRecept> lr = new List<LekarskiRecept>();
-                pacijent.Karton.LekarskiRecepti = lr;
-                List<Anamneza> an = new List<Anamneza>();
-                pacijent.Karton.Anamneze = an;
-                List<Alergeni> ale = new List<Alergeni>();
-                pacijent.Karton.Alergeni = ale;
-                List<Uput> uput = new List<Uput>();
-                pacijent.Karton.Uputi = uput;
                 PacijentiServis.DodajNalog(pacijent);
             }    
 
@@ -197,7 +118,7 @@ namespace Projekat
             this.Close();
         }
 
-        private void combo_LostFocus(object sender, RoutedEventArgs e)
+        private void Combo_LostFocus(object sender, RoutedEventArgs e)
         {
             if (combo.Text.Equals("GUEST")) 
             {
@@ -205,7 +126,7 @@ namespace Projekat
                 email.IsEnabled = false;
                 adresa.IsEnabled = false;
                 zanimanje.IsEnabled = false;
-                combo3.IsEnabled = false;
+                bracnoStanjePacijenta.IsEnabled = false;
                 maloletnik.IsEnabled = false;
                 jmbgStaratelja.IsEnabled = false;
             }
@@ -215,7 +136,7 @@ namespace Projekat
                 email.IsEnabled = true;
                 adresa.IsEnabled = true;
                 zanimanje.IsEnabled = true;
-                combo3.IsEnabled = true;
+                bracnoStanjePacijenta.IsEnabled = true;
                 
                 if ((bool)maloletnik.IsChecked)
                 {
@@ -228,7 +149,7 @@ namespace Projekat
             }
         }
 
-        private void jmbg_LostFocus(object sender, RoutedEventArgs e)
+        private void Jmbg_LostFocus(object sender, RoutedEventArgs e)
         {
             if (!(jmbg.Text.Equals("")))
             {
@@ -240,7 +161,7 @@ namespace Projekat
             }
         }
 
-        private void maloletnik_LostFocus(object sender, RoutedEventArgs e)
+        private void Maloletnik_LostFocus(object sender, RoutedEventArgs e)
         {
             if ((bool)maloletnik.IsChecked)
             {
@@ -253,29 +174,6 @@ namespace Projekat
             }
         }
 
-        private void jmbg_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-           /* if (this.jmbg != null)
-            {
-                if (IsNumeric(this.jmbg.Text))
-                {
-                    int.Parse(this.jmbg.Text);
-                }
-            }*/
-        }
-
-        private void Button_LostFocus(object sender, RoutedEventArgs e)
-        {
-            /*if (ime.Text.Equals("") || prezime.Text.Equals("") || jmbg.Text.Equals(""))
-            {
-                potvrdi.IsEnabled.Equals(false);
-            }
-            else
-            {
-                potvrdi.IsEnabled = true;
-
-            }*/
-        }
     }
 }
 

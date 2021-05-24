@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="UvidZdravstveniKarton" Height="678" Width="860" WindowStartupLocation="CenterScreen">
+        Title="UvidZdravstveniKarton" Height="678" Width="860" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,-6,1">
         <Label Content="Zdravstveni karton" VerticalAlignment="Top" Height="31" Width="166" FontWeight="Bold" FontSize="17" Margin="347,10,346.6,0"/>
         <StackPanel>
@@ -54,20 +54,19 @@
                             <TextBox x:Name="ime" Grid.Row="0" Margin="235,71,382.2,437" IsReadOnly="True" />
                             <TextBox x:Name="prezime" Margin="235,110,382.2,397" IsReadOnly="True"/>
                             <TextBox  x:Name="jmbg" Margin="235,152,382.2,355" IsReadOnly="True"/>
-                            <ComboBox x:Name="combo2"  Margin="235,189,382.2,317" IsReadOnly="True" IsEnabled="False" Height="30">
+                            <ComboBox x:Name="polPacijenta"  Margin="235,189,382.2,317" IsReadOnly="True" IsEnabled="False" Height="30">
                                 <ComboBoxItem Content="M"/>
                                 <ComboBoxItem Content="Z"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo"  Margin="235,229,382.2,274" SelectedIndex="0" IsReadOnly="True">
+                            <ComboBox x:Name="statusPacijenta"  Margin="235,229,382.2,274" SelectedIndex="0" IsReadOnly="True">
                                 <ComboBoxItem Content="STALAN"/>
                                 <ComboBoxItem Content="GUEST"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo3"  Margin="235,399,382.2,107" IsReadOnly="True" IsEnabled="False"  Height="30">
+                            <ComboBox x:Name="bracnoStanjePacijenta"  Margin="235,399,382.2,107" IsReadOnly="True" IsEnabled="False"  Height="30">
                                 <ComboBoxItem Content="Neozenjen/Neudata"/>
                                 <ComboBoxItem Content="Ozenjen/Udata"/>
                                 <ComboBoxItem Content="Udovac/Udovica"/>
                                 <ComboBoxItem Content="Razveden/Razvedena"/>
-                                <ComboBoxItem Content="Neodredjeno"/>
                             </ComboBox>
                             <TextBox x:Name="brojTelefona" Margin="235,274,382.2,233" IsReadOnly="True"/>
                             <TextBox x:Name="email" Margin="235,316,382.2,191" IsReadOnly="True"/>
@@ -187,7 +186,7 @@
                     </TabItem>
                     <TabItem Header="Uputi" Width="100">
                         <Grid>
-                            <Label Content="Uputi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+                            <Label Content="Uputi" Foreground="#FF918A8A" HorizontalAlignment="Left" Margin="50,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
 
                             <DataGrid x:Name="dataGridUputi" ItemsSource="{Binding TabelaUputa}" IsReadOnly="True" 
                                 SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 

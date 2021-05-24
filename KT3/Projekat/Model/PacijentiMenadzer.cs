@@ -24,6 +24,7 @@ namespace Model
         {
             pacijenti.Add(noviNalog);
             PrikaziPacijenta.PacijentiTabela.Add(noviNalog);
+            SacuvajIzmenePacijenta();
         }
 
         public static void IzmeniNalog(Pacijent stariNalog, Pacijent noviNalog)
@@ -44,13 +45,18 @@ namespace Model
                     p.Zanimanje = noviNalog.Zanimanje;
                     p.Maloletnik = noviNalog.Maloletnik;
                     p.JmbgStaratelja = noviNalog.JmbgStaratelja;
-                    
+
+                    if (noviNalog.Karton != null) // ako menjamo nalog iz guest u stalan
+                    {
+                        p.Karton = noviNalog.Karton;
+                    }
+
                     int idx = PrikaziPacijenta.PacijentiTabela.IndexOf(stariNalog);
                     PrikaziPacijenta.PacijentiTabela.RemoveAt(idx);
                     PrikaziPacijenta.PacijentiTabela.Insert(idx, p);
                 }
             }
-            
+            SacuvajIzmenePacijenta();
         }
 
         // Sanja 
@@ -132,6 +138,7 @@ namespace Model
                     }
                 }
             }
+            SacuvajIzmenePacijenta();
         }
 
         public static List<Pacijent> PronadjiSve()

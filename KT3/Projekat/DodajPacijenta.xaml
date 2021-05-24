@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Model"
         mc:Ignorable="d"
-        Title="DodajPacijenta" Height="660" Width="560" WindowStartupLocation="CenterScreen">
+        Title="DodajPacijenta" Height="660" Width="560" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
@@ -41,7 +41,7 @@
         <Label Grid.Column="1" Grid.Row="10" FontSize="17" VerticalContentAlignment="Center" Content="Maloletnik:"/>
         <TextBox x:Name="ime" Grid.Column="2" Grid.Row="0" Margin="7" FontSize="15"/>
         <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="1" Margin="7" FontSize="15"/>
-        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="2" Margin="7" LostFocus="jmbg_LostFocus" FontSize="15" TextChanged="jmbg_TextChanged">
+        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="2" Margin="7" LostFocus="Jmbg_LostFocus" FontSize="15" >
             <TextBox.Text>
                 <Binding Path="ValidacijaJmbg" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -59,12 +59,12 @@
                 </ControlTemplate>
             </Validation.ErrorTemplate>
         </TextBox>
-        
-        <ComboBox x:Name="combo2" Grid.Column="2" Grid.Row="3"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
+
+        <ComboBox x:Name="polPacijenta" Grid.Column="2" Grid.Row="3"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
             <ComboBoxItem Content="M"/>
             <ComboBoxItem Content="Z"/>
         </ComboBox>
-        <ComboBox x:Name="combo" Grid.Column="2" Grid.Row="4"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" LostFocus="combo_LostFocus" FontSize="15">
+        <ComboBox x:Name="combo" Grid.Column="2" Grid.Row="4"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" LostFocus="Combo_LostFocus" FontSize="15">
             <ComboBoxItem Content="STALAN"/>
             <ComboBoxItem Content="GUEST"/>
         </ComboBox>
@@ -89,14 +89,14 @@
         
         <TextBox x:Name="email" Grid.Column="2" Grid.Row="6" Margin="7" FontSize="15"/>
         <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="7" Margin="7" FontSize="15"/>
-        <ComboBox x:Name="combo3" Grid.Column="2" Grid.Row="8"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
+        <ComboBox x:Name="bracnoStanjePacijenta" Grid.Column="2" Grid.Row="8"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
             <ComboBoxItem Content="Neozenjen/Neudata"/>
             <ComboBoxItem Content="Ozenjen/Udata"/>
             <ComboBoxItem Content="Udovac/Udovica"/>
             <ComboBoxItem Content="Razveden/Razvedena"/>
         </ComboBox>
         <TextBox x:Name="zanimanje" Grid.Column="2" Grid.Row="9" Margin="7" FontSize="15"/>
-        <CheckBox x:Name="maloletnik" Grid.Column="2" Grid.Row="10" FontSize="17" HorizontalAlignment="Left" Margin="8.8,13.6,0,0" VerticalAlignment="Top" LostFocus="maloletnik_LostFocus" />
+        <CheckBox x:Name="maloletnik" Grid.Column="2" Grid.Row="10" FontSize="17" HorizontalAlignment="Left" Margin="8.8,13.6,0,0" VerticalAlignment="Top" LostFocus="Maloletnik_LostFocus" />
         <Label Grid.Column="1" Grid.Row="11" FontSize="17" VerticalContentAlignment="Center" Content="JMBG staratelja:"/>
         <TextBox  x:Name="jmbgStaratelja" Grid.Column="2" Grid.Row="11" Margin="7" FontSize="15">
             <TextBox.Text>
@@ -117,7 +117,7 @@
             </Validation.ErrorTemplate>
         </TextBox>
 
-        <Button  x:Name="potvrdi" Grid.Column="1" Grid.Row="12" Margin="5,17,9.2,20.4" Click="Potvrdi_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17" LostFocus="Button_LostFocus" />
+        <Button  x:Name="potvrdi" Grid.Column="1" Grid.Row="12" Margin="5,17,9.2,20.4" Click="Potvrdi_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17" />
         <Button Grid.Column="2" Grid.Row="12" Margin="6.8,17,7.6,20.4" Click="Odustani_Click" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>

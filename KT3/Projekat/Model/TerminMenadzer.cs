@@ -54,7 +54,6 @@ namespace Model
             Sala sala = SaleServis.NadjiSaluPoId(hitanTermin.Prostorija.Id);
             sala.zauzetiTermini.Add(novoZauzece);
             SaleServis.sacuvajIzmjene();
-            // -----------------------------------------------
 
             DodajZauzeceUSveSale(sala);
         }

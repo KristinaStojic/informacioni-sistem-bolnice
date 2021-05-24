@@ -20,13 +20,18 @@ namespace Model
         public int brojSpecijalistickihUputa { get; set; }
         public int brojBolnickihUputa { get; set; }
 
-        public ZdravstveniKarton() {}
+        public ZdravstveniKarton() { } 
+
         public ZdravstveniKarton(int id)
         {
             this.IdPacijenta = id;
             this.brojBolnickihUputa = 0;
             this.brojLaboratorijskihUputa = 0;
             this.brojSpecijalistickihUputa = 0;
+            this.LekarskiRecepti = new List<LekarskiRecept>();
+            this.Anamneze = new List<Anamneza>(); 
+            this.Alergeni = new List<Alergeni>();     
+            this.Uputi = new List<Uput>();
         }
     }
 }
