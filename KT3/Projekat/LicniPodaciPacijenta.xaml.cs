@@ -35,7 +35,7 @@ namespace Projekat
             /* LEKARI OPSTE PRAKSE */
             this.lekar.ItemsSource = LekariServis.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
             InicijalizujLicnePodatke();
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
 
         }
 

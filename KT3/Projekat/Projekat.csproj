@@ -499,6 +499,8 @@
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AnketeViewModel.cs" />
+    <Compile Include="ViewModel\AnketeZaKlinikuViewModel.cs" />
+    <Compile Include="ViewModel\AnketeZaLekaraViewModel.cs" />
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />

@@ -98,5 +98,17 @@ namespace Projekat.Servis
             nazivPagea.NavigationService.Navigate(prikaziAnkete);
         }
 
+        public static void AktivnaTema(StackPanel PanelZaglavlja, MenuItem SvetlaTema, MenuItem TamnaTema)
+        {
+            if (PanelZaglavlja.Background.ToString().Equals("#FF112D4E"))
+            {
+                TamnaTema.IsEnabled = false;
+
+            }
+            else if (PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
+            {
+                SvetlaTema.IsEnabled = false;
+            }
+        }
     }
 }

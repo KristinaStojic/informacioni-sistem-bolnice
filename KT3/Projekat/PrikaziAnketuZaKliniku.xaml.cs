@@ -1,6 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Projekat.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,13 +30,12 @@ namespace Projekat
         public PrikaziAnketuZaKliniku(int idPrijavljenogPacijenta, int idSelektovaneAnkete)
         {
             InitializeComponent();
-            this.DataContext = this;
+            this.potvrdi.IsEnabled = false;
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             idPacijent = idPrijavljenogPacijenta;
             idAnkete = idSelektovaneAnkete;
-            this.potvrdi.IsEnabled = false;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         public void jedan1_Click(object sender, RoutedEventArgs e)
@@ -167,6 +167,7 @@ namespace Projekat
             }
             PoveriOdgovoreNaSvaPitanja();
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
@@ -177,6 +178,7 @@ namespace Projekat
             Page prikaziAnkete = new PrikaziAnkete(idPacijent);
             this.NavigationService.Navigate(prikaziAnkete);
         }
+
         private void PoveriOdgovoreNaSvaPitanja()
         {
             if (prvoPitanje != null && drugoPitanje != null && trecePitanje != null && cetvrtoPitanje != null && petoPitanje != null)
@@ -185,67 +187,10 @@ namespace Projekat
             }
         }
 
-        private void odjava_Click(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
-            PacijentPagesServis.odjava_Click(this);
-        }
-
-        public void karton_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentPagesServis.karton_Click(this, idPacijent);
-        }
-
-        public void zakazi_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentPagesServis.zakazi_Click(this, idPacijent);
-        }
-        public void uvid_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentPagesServis.uvid_Click(this, idPacijent);
-        }
-
-        private void pocetna_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentPagesServis.pocetna_Click(this, idPacijent);
-        }
-
-        private void Korisnik_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentPagesServis.Korisnik_Click(this, idPacijent);
-        }
-
-        private void anketa_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentPagesServis.anketa_Click(this, idPacijent);
-        }
-
-        private void PromeniTemu(object sender, RoutedEventArgs e)
-        {
-            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
-        }
-
-        private void Jezik_Click(object sender, RoutedEventArgs e)
-        {
-            /*var app = (App)Application.Current;
-            // TODO: proveriti
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }*/
-            PacijentPagesServis.Jezik_Click(Jezik);
+            this.DataContext = new AnketeZaKlinikuViewModel(this.NavigationService, idPacijent, idAnkete);
 
         }
-
     }
 }

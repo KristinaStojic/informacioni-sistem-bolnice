@@ -36,7 +36,7 @@ namespace Projekat
             this.DataContext = this;
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             idPacijent = idPrijavljenogPacijenta;
             SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();

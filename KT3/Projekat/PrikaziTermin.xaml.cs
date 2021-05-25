@@ -44,26 +44,12 @@ namespace Projekat
             pacijentProzor = true;
             thread = new Thread(izvrsiNit);
             thread.Start();
+
             Termini = TerminServis.DodajTerminePacijenta(idPacijent);
             ObavestenjaPacijent = ObavestenjaServis.DodajObavestenja(idPacijent);
+
             this.SvetlaTema.IsEnabled = false;
-            AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-        }
-
-       
-        public static void AktivnaTemaPagea(StackPanel PanelZaglavlja, MenuItem SvetlaTema, MenuItem TamnaTema)
-        {
-            if (PanelZaglavlja.Background.ToString().Equals("#FF112D4E"))
-            {
-                //AktivnaTema.Header = "Svetla";
-                TamnaTema.IsEnabled = false;
-
-            }
-            else if (PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
-            {
-                //AktivnaTema.Header = "Tamna";
-                SvetlaTema.IsEnabled = false;
-            }
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         private void anketa_Click(object sender, RoutedEventArgs e)

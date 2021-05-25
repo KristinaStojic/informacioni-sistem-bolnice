@@ -5,8 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
       xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
+      xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="PrikaziAntekuZaLekare" Background="{DynamicResource BackgroundColor}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,41 +34,39 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Command="{Binding ProfilKomanda}"/>
                                     <Separator/>
-                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Command="{Binding PopuniAnketuKomanda}" />
                                     <Separator/>
                                     <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
-                                    <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
+                                    <MenuItem Header="_eng-US" Command="{Binding PromeniJezikKomanda}"/>
+                                    <MenuItem Header="_sr-LATN" Command="{Binding PromeniJezikKomandaSR}"/>
                                     <Separator />
                                     <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
-                                    <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
-                                    <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
+                                    <MenuItem Header="{namespace:Loc Tamna}" x:Name="tamnaTema"  Command="{Binding PromeniTemuKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Svetla}" x:Name="SvetlaTema" Command="{Binding PromeniTemuKomanda}"/>
                                     <Separator />
-                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Command="{Binding OdjavaKomanda}"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                            <Hyperlink Name="pocetna" Click="pocetna_Click">
-                            <Run Text="Početna stranica"/>
-                            </Hyperlink>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
-                                <Run Text="Zakažite termin"/>
-                            </Hyperlink><Run Text=" "/>
+                        <Hyperlink x:Name="pocetna" Command="{Binding PocetnaStranicaKomanda}">
+                            <Run Text="{namespace:Loc Pocetna}"/>
+                        </Hyperlink>
                             <Run Text="  "/>
+                        <Hyperlink Name="zakazi" Command="{Binding ZakaziTerminKomanada}">
+                            <Run Text="{namespace:Loc ZakaziTermin}"/>
+                        </Hyperlink>
+                        <Run Text="  "/>
+                        <Hyperlink Name="uvid" Command="{Binding UvidUZakazaneTermineKomanda}">
+                            <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
+                        </Hyperlink>
                             <Run Text=" "/>
-                            <Hyperlink x:Name="uvid" Click="uvid_Click">
-                                <Run Text="Uvid u zakazane termine"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="karton" Click="karton_Click">
-                                <Run Text="Zdravstveni karton"/>
-                            </Hyperlink>
+                        <Hyperlink Name="karton" Command="{Binding KartonKomanda}">
+                            <Run Text="{namespace:Loc Karton}"/>
+                        </Hyperlink>    
                     </TextBlock>
                 </StackPanel>
             </Grid>
@@ -84,12 +84,10 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Naziv ankete" Width="400" DisplayMemberBinding="{Binding NazivAnkete}"/>
-
                     </GridView>
                 </ListView.View>
             </-->
-            <StackPanel Margin="179,10,181,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="342" Width="350" 
-                        Background="#e8f1f5">
+            <StackPanel Margin="179,10,171,10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="400" Width="350" Background="#e8f1f5">
                 <StackPanel Margin="0,10,0,0"  HorizontalAlignment="Center" Width="350">
                     <Label Name="lekar" Content="{namespace:Loc AnketaOLekaru}" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
                     <Label HorizontalAlignment="Center" Content="{namespace:Loc Ocene}" FontSize="11"/>

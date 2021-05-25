@@ -276,6 +276,9 @@
   <data name="Napomena" xml:space="preserve">
     <value>Napomena</value>
   </data>
+  <data name="NaslovAnketaKlinika" xml:space="preserve">
+    <value>Anketa o uslugama Zdravo korporacije</value>
+  </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Lekarski uput za specijalistički pregled</value>
   </data>
@@ -341,6 +344,9 @@
   </data>
   <data name="PomeriTermin" xml:space="preserve">
     <value>Pomeri termin</value>
+  </data>
+  <data name="Popuni" xml:space="preserve">
+    <value>Popuni</value>
   </data>
   <data name="PopuniAnketu" xml:space="preserve">
     <value>Popuni anketu</value>

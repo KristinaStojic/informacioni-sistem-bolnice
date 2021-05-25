@@ -23,6 +23,11 @@ namespace Projekat.Servis
             return AnketaMenadzer.NadjiSveAnkete();
         }
 
+        public static List<Anketa> NadjiSveAnketePoId(int idPacijenta)
+        {
+            return AnketaMenadzer.NadjiSveAnketePoId(idPacijenta);
+        }
+
         public static Anketa NadjiAnketuPoId(int IdAnkete)
         {
             return AnketaMenadzer.NadjiAnketuPoId(IdAnkete);
@@ -120,7 +125,7 @@ namespace Projekat.Servis
             foreach (Termin termin in TerminServis.PronadjiTerminPoIdPacijenta(idPacijent))
             {
                 brojacTermina++;
-                if (brojacTermina == AnketaServis.minBrojTerminaZaAnketuKlinika && !AnketaServis.SveAnketePacijenta(idPacijent).Exists(x => x.IdTermina == AnketaServis.oznakaAnketeZaKliniku))
+                if (brojacTermina == minBrojTerminaZaAnketuKlinika && !AnketaServis.SveAnketePacijenta(idPacijent).Exists(x => x.IdTermina == AnketaServis.oznakaAnketeZaKliniku))
                 {
                     AnketaServis.DodajAnketuZaKliniku(idPacijent);
                     return;

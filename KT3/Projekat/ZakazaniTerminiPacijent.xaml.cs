@@ -35,7 +35,7 @@ namespace Projekat
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
             view.Filter = UserFilter;
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
 

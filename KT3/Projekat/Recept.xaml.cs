@@ -29,7 +29,7 @@ namespace Projekat
             idPacijent = izabraniPacijent.IdPacijenta;
             InicijalizujPodatkeRecepta(recept, izabraniPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         private void InicijalizujPodatkeRecepta(LekarskiRecept recept, Pacijent izabraniPacijent)

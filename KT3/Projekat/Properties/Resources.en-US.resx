@@ -130,7 +130,7 @@
     <value>Anamnesis</value>
   </data>
   <data name="AnketaOLekaru" xml:space="preserve">
-    <value>Survey work</value>
+    <value>Survey on the work of doctors</value>
   </data>
   <data name="Beleske" xml:space="preserve">
     <value>Notes</value>
@@ -276,6 +276,9 @@
   <data name="Napomena" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="NaslovAnketaKlinika" xml:space="preserve">
+    <value>Zdravo Corporate Services Survey</value>
+  </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Medical referral for specialist examination</value>
   </data>
@@ -341,6 +344,9 @@
   </data>
   <data name="PomeriTermin" xml:space="preserve">
     <value>Move the appointment</value>
+  </data>
+  <data name="Popuni" xml:space="preserve">
+    <value>Fill</value>
   </data>
   <data name="PopuniAnketu" xml:space="preserve">
     <value>Fill out the survey</value>

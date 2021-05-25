@@ -33,7 +33,7 @@ namespace Projekat
             this.prikazAnamnezi.ItemsSource = DodajAnamnezePacijenta();
             this.prikazUputa.ItemsSource = DodajUputePacijenta();
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         // TODO: dodati ove metode u Zdravstveni karton Servis
