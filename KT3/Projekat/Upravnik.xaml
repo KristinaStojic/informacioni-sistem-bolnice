@@ -9,18 +9,17 @@
     <Window.DataContext>
         <viewmodel:UpravnikViewModel/>
     </Window.DataContext>
-
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OdjavaKomanda}"></KeyBinding>
     </Window.InputBindings>
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="CadetBlue" Width="200">
-            <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10"/>
-            <Button Name="Osoblje" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Osoblje</Button>
+            <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10, 10, 10, 40"/>
+            <!--<Button Name="Osoblje" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Osoblje</Button>-->
             <Button Name="Prostorije" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding ProstorijeProzor}">Prostorije</Button>
             <Button Name="Zahtjevi" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding ZahtjeviProzor}">Zahtjevi</Button>
             <Button Name="Komunikacija" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding KomunikacijProzor}">Komunikacija</Button>
-            <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Izvjestaj</Button>
+            <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding IzvjestajProzor}">Izvjestaj</Button>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Background="CadetBlue" Height="70" Orientation="Horizontal">
             <Button Width="40" Height="50" Margin="540, 0, 0, 0" Command="{Binding OdjavaKomanda}"  Background="CadetBlue" BorderBrush="CadetBlue" ToolTip="Odjava, Ctrl + O">

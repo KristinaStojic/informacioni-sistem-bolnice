@@ -34,6 +34,7 @@ namespace Projekat.ViewModel
             RegistracijaKlik = new MyICommand(OtvoriRegistraciju);
             Logovanje = new MyICommand(UlogujSe);
             Upravnik = new MyICommand(OtvoriUpravnika);
+            IzvjestajProzor = new MyICommand(PrikaziIzvjestaj);
             dodajObavjestenja();
         }
         public MyICommand RegistracijaKlik { get; set; }
@@ -189,6 +190,16 @@ namespace Projekat.ViewModel
             PrijavaProzor.Close();
         }
 
+        #endregion
+        #region IzvjestajViewModel
+        public MyICommand IzvjestajProzor { get; set; }
+        private void PrikaziIzvjestaj()
+        {
+            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
+            IzvjestajViewModel.IzvjestajProzor.Show();
+            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
+            UpravnikProzor.Close();
+        }
         #endregion
     }
 }
