@@ -186,5 +186,9 @@ namespace Projekat
             PacijentPagesServis.Jezik_Click(Jezik);
         }
 
+        private void Izvestaj_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

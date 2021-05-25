@@ -154,10 +154,10 @@
     <value>Broj telefona</value>
   </data>
   <data name="Cetiri" xml:space="preserve">
-    <value>4. Kako biste ocenili strucnost zaposlenih u Zdravo korporaciji?</value>
+    <value>4. Kako biste ocenili stručnost zaposlenih u Zdravo korporaciji?</value>
   </data>
   <data name="Cetvrto" xml:space="preserve">
-    <value>4. Kako biste ocenili strucnost lekara u radu na racunaru?</value>
+    <value>4. Kako biste ocenili stručnost lekara u radu na racunaru?</value>
   </data>
   <data name="Da" xml:space="preserve">
     <value>Da</value>
@@ -203,6 +203,9 @@
   </data>
   <data name="GboxSpecijalistickiPregled" xml:space="preserve">
     <value>Specijalistički pregled</value>
+  </data>
+  <data name="Godina" xml:space="preserve">
+    <value>Godina</value>
   </data>
   <data name="Grad" xml:space="preserve">
     <value>Grad</value>
@@ -255,6 +258,9 @@
   <data name="IzmenitePodatke" xml:space="preserve">
     <value>Izmenite podatke</value>
   </data>
+  <data name="Izvestaj" xml:space="preserve">
+    <value>Izveštaj</value>
+  </data>
   <data name="Jedan" xml:space="preserve">
     <value>1. Kako biste ocenili kvalitet usluga koje Vam nudi Zdravo korporacija?</value>
   </data>
@@ -293,6 +299,12 @@
   </data>
   <data name="Lozinka" xml:space="preserve">
     <value>Lozinka</value>
+  </data>
+  <data name="Mesec" xml:space="preserve">
+    <value>Mesec</value>
+  </data>
+  <data name="Modifikacija" xml:space="preserve">
+    <value>Modifikuj termine</value>
   </data>
   <data name="Napomena" xml:space="preserve">
     <value>Napomena</value>
@@ -461,6 +473,9 @@
   </data>
   <data name="ToolTipLekar" xml:space="preserve">
     <value>Ukoliko želite da zakazete termin kod drugog lekara pritisnite na dugme Preference</value>
+  </data>
+  <data name="ToolTipModifikacija" xml:space="preserve">
+    <value>Ukoliko zelite da pomerite ili otkazete termin</value>
   </data>
   <data name="ToolTipPreferenca" xml:space="preserve">
     <value>Ukoliko želite da zakazete termin kod drugog lekara ili da Vam sistem predlozi 3 slobodna termina</value>

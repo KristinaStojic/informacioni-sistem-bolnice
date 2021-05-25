@@ -89,33 +89,35 @@
                                 </Style>
                             </TabControl.Resources>
 
-                            <TabItem Header="{namespace:Loc LekarskiRecepti}" 
-                            ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
-                                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" 
-                                          FontFamily="Segoe UI" FontSize="16" Margin="0,0,0,0">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Width="35" >
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <Button  HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle2}"
+                            <TabItem Header="{namespace:Loc LekarskiRecepti}" ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
+                                <StackPanel Orientation="Vertical">
+                                    <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" 
+                                          FontFamily="Segoe UI" FontSize="16" Height="380" Margin="0,0,0,10">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Width="35" >
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Button  HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle2}"
                                                                  Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Header="{namespace:Loc NazivLeka}" 
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="{namespace:Loc NazivLeka}" 
                                                 Width="120" DisplayMemberBinding="{Binding NazivLeka}"/>
-                                            <GridViewColumn Header="{namespace:Loc Datum}" 
+                                                <GridViewColumn Header="{namespace:Loc Datum}" 
                                                 Width="95" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
-                                            <GridViewColumn Header="{namespace:Loc PocetakTerapije}" 
+                                                <GridViewColumn Header="{namespace:Loc PocetakTerapije}" 
                                                 Width="145" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
-                                            <GridViewColumn Header="{namespace:Loc BrojDana2}" Width="80"
+                                                <GridViewColumn Header="{namespace:Loc BrojDana2}" Width="80"
                                                 DisplayMemberBinding="{Binding BrojDanaKoriscenja}"/>
-                                            <GridViewColumn Header="{namespace:Loc DnevnoUzimanje}" Width="126"
+                                                <GridViewColumn Header="{namespace:Loc DnevnoUzimanje}" Width="126"
                                             DisplayMemberBinding="{Binding DnevnaKolicina}"/>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <Button HorizontalAlignment="Center" Height="30" Width="100" Content="{namespace:Loc Izvestaj}" Style="{DynamicResource ButtonStyle2}" Name="Izvestaj" Click="Izvestaj_Click"/>
+                                </StackPanel>
                             </TabItem>
 
                             <TabItem Header="{namespace:Loc Anamneze}" x:Name="istorijaBolesti" FontSize="16" >
