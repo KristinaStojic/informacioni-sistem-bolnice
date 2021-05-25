@@ -135,6 +135,9 @@
   <data name="Beleske" xml:space="preserve">
     <value>Beleške</value>
   </data>
+  <data name="Bosna" xml:space="preserve">
+    <value>Bosna i Hercegovina</value>
+  </data>
   <data name="BracnoStanje" xml:space="preserve">
     <value>Bračno stanje</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="BrojDana2" xml:space="preserve">
     <value>Broj dana</value>
+  </data>
+  <data name="BrojKartice" xml:space="preserve">
+    <value>Broj kartice</value>
   </data>
   <data name="BrojTelefona" xml:space="preserve">
     <value>Broj telefona</value>
@@ -165,6 +171,9 @@
   <data name="DatumPropisivanja" xml:space="preserve">
     <value>Datum propisivanja leka</value>
   </data>
+  <data name="DatumVazenja" xml:space="preserve">
+    <value>Datum važenja</value>
+  </data>
   <data name="DnevnoUzimanje" xml:space="preserve">
     <value>Dnevno uzimanje leka</value>
   </data>
@@ -180,6 +189,9 @@
   <data name="Drugo" xml:space="preserve">
     <value>2. Kako biste ocenili odnos lekara prema pacijentima i drugim zaposlenima?</value>
   </data>
+  <data name="Drzava" xml:space="preserve">
+    <value>Država</value>
+  </data>
   <data name="Dva" xml:space="preserve">
     <value>2. Kako biste ocenili efikasnost online zakazivanja, pomeranja i otkazivanja termina?</value>
   </data>
@@ -192,8 +204,17 @@
   <data name="GboxSpecijalistickiPregled" xml:space="preserve">
     <value>Specijalistički pregled</value>
   </data>
+  <data name="Grad" xml:space="preserve">
+    <value>Grad</value>
+  </data>
+  <data name="Hrvatska" xml:space="preserve">
+    <value>Hrvatska</value>
+  </data>
   <data name="Ime" xml:space="preserve">
     <value>Ime</value>
+  </data>
+  <data name="ImeIPrezimeNaKartici" xml:space="preserve">
+    <value>Ime i prezime na kartici</value>
   </data>
   <data name="ImePacijenta" xml:space="preserve">
     <value>Ime pacijenta</value>
@@ -351,6 +372,9 @@
   <data name="PopuniAnketu" xml:space="preserve">
     <value>Popuni anketu</value>
   </data>
+  <data name="PostanskiBroj" xml:space="preserve">
+    <value>Poštanski broj</value>
+  </data>
   <data name="PotpisLekara" xml:space="preserve">
     <value>Potpis lekara</value>
   </data>
@@ -396,11 +420,17 @@
   <data name="Sala" xml:space="preserve">
     <value>Sala</value>
   </data>
+  <data name="Slovenija" xml:space="preserve">
+    <value>Slovenija</value>
+  </data>
   <data name="SpecijalistickiPregled" xml:space="preserve">
     <value>Specijalistički pregled</value>
   </data>
   <data name="Specijalizacija" xml:space="preserve">
     <value>Specijalizacija</value>
+  </data>
+  <data name="Srbija" xml:space="preserve">
+    <value>Srbija</value>
   </data>
   <data name="Svetla" xml:space="preserve">
     <value>Svetla</value>

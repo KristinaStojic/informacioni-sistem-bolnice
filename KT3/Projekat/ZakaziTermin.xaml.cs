@@ -29,6 +29,7 @@ namespace Projekat
         private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
         private static ObservableCollection<Uput> UputiPacijenta { get; set; }
         private static bool selektovanUput;
+        private static Termin termin;
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace Projekat
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
             PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
@@ -98,7 +100,8 @@ namespace Projekat
             String vremePocetka = vpp.Text;
             String vremeKraja = TerminServis.IzracunajVremeKrajaPregleda(vremePocetka);
             TipTermina tipTermina = TipTermina.Pregled;
-            Termin termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
+            
+            termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
             Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;
@@ -146,8 +149,22 @@ namespace Projekat
 
         private void ElektronskoPlacanje(object sender, RoutedEventArgs e)
         {
-            // elektronsko placanje
-            MessageBox.Show("Elektronsko placanje ce uskoro biti implementirano", "Obavestenje");
+            try
+            {
+                if (comboUputi.Text.Equals("Specijalistički pregled") && !selektovanUput)
+                {
+                    MessageBox.Show("Izaberite uput za koji želite da zakažene specijalistički pregled", "Uput", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                PokupiPodatkeZaZakazivanjeTermina();
+                Page elektronsko = new ElektronskoPlacanjePacijent(idPacijent, termin.tipTermina);
+                this.NavigationService.Navigate(elektronsko);
+            }
+            // TODO: odraditi i preko validacije
+            catch (System.Exception)
+            {
+                MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
