@@ -175,6 +175,9 @@
     <Compile Include="DodajZamenskiLekLekar.xaml.cs">
       <DependentUpon>DodajZamenskiLekLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ElektronskoPlacanjePacijent.xaml.cs">
+      <DependentUpon>ElektronskoPlacanjePacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EvidencijaUtrosenogMaterijala.xaml.cs">
       <DependentUpon>EvidencijaUtrosenogMaterijala.xaml</DependentUpon>
     </Compile>
@@ -506,6 +509,7 @@
     <Compile Include="Servis\ObavestenjaServis.cs" />
     <Compile Include="Servis\OpremaServis.cs" />
     <Compile Include="Servis\PacijentiServis.cs" />
+    <Compile Include="Servis\PacijentPagesServis.cs" />
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
     <Compile Include="Servis\TerminiSekretarServis.cs" />
@@ -552,6 +556,9 @@
     <Compile Include="UvidZdravstveniKartonLekar.xaml.cs">
       <DependentUpon>UvidZdravstveniKartonLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AnketeViewModel.cs" />
+    <Compile Include="ViewModel\AnketeZaKlinikuViewModel.cs" />
+    <Compile Include="ViewModel\AnketeZaLekaraViewModel.cs" />
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="Izvjestaj.xaml.cs">
       <DependentUpon>Izvjestaj.xaml</DependentUpon>
@@ -561,6 +568,7 @@
     <Compile Include="ViewModel\LekarViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
+    <Compile Include="ViewModel\PrikaziTerminViewModel.cs" />
     <Compile Include="ViewModel\OAplikacijiViewModel.cs" />
     <Compile Include="ViewModel\PomocViewModel.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />
@@ -697,6 +705,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ElektronskoPlacanjePacijent.xaml">
+     <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     <Page Include="EvidencijaUtrosenogMaterijala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

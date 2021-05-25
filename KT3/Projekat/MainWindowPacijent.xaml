@@ -58,7 +58,7 @@
         </StackPanel-->
     <DockPanel>
         <ScrollViewer>
-            <Frame  Source="PrijavaPacijent.xaml">
+            <Frame x:Name="frame"  Source="PrijavaPacijent.xaml">
             </Frame>
         </ScrollViewer>
     </DockPanel>

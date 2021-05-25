@@ -29,13 +29,15 @@ namespace Projekat
         private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
         private static ObservableCollection<Uput> UputiPacijenta { get; set; }
         private static bool selektovanUput;
+        private static Termin termin;
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
             PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
@@ -99,7 +101,8 @@ namespace Projekat
             String vremePocetka = vpp.Text;
             String vremeKraja = TerminServis.IzracunajVremeKrajaPregleda(vremePocetka);
             TipTermina tipTermina = TipTermina.Pregled;
-            Termin termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
+            
+            termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
             Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;
@@ -147,65 +150,57 @@ namespace Projekat
 
         private void ElektronskoPlacanje(object sender, RoutedEventArgs e)
         {
-            // elektronsko placanje
-            MessageBox.Show("Elektronsko placanje ce uskoro biti implementirano", "Obavestenje");
+            try
+            {
+                if (comboUputi.Text.Equals("Specijalistički pregled") && !selektovanUput)
+                {
+                    MessageBox.Show("Izaberite uput za koji želite da zakažene specijalistički pregled", "Uput", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                PokupiPodatkeZaZakazivanjeTermina();
+                Page elektronsko = new ElektronskoPlacanjePacijent(idPacijent, termin.tipTermina);
+                this.NavigationService.Navigate(elektronsko);
+            }
+            // TODO: odraditi i preko validacije
+            catch (System.Exception)
+            {
+                MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);
+            /*Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);*/
+            PacijentPagesServis.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(idPacijent);
-            this.NavigationService.Navigate(karton);
+            PacijentPagesServis.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
+            PacijentPagesServis.zakazi_Click(this, idPacijent);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid);
+            PacijentPagesServis.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            Page pocetna = new PrikaziTermin(idPacijent);
-            this.NavigationService.Navigate(pocetna);
+            PacijentPagesServis.pocetna_Click(this, idPacijent);
         }
-
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
+            PacijentPagesServis.anketa_Click(this, idPacijent);
         }
 
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
-            {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-            }
-            else
-            {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
+            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
         }
 
         private void Korisnik_Click(object sender, RoutedEventArgs e)
@@ -228,21 +223,7 @@ namespace Projekat
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
-            // TODO: proveriti
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }
+            PacijentPagesServis.Jezik_Click(Jezik);
 
         }
 

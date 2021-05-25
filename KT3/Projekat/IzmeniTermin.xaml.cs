@@ -44,7 +44,7 @@ namespace Projekat
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
             view.Filter = UserFilter;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTemaPagea(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         private void InicijalizujPodatkeZaIzabraniTermin(Termin izabraniTermin)
@@ -211,74 +211,49 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);
+            /*Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);*/
+            PacijentPagesServis.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(idPacijent);
-            this.NavigationService.Navigate(karton);
+            PacijentPagesServis.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
+            PacijentPagesServis.zakazi_Click(this, idPacijent);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid);
+            PacijentPagesServis.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            Page pocetna = new PrikaziTermin(idPacijent);
-            this.NavigationService.Navigate(pocetna);
+            PacijentPagesServis.pocetna_Click(this, idPacijent);
         }
 
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
+            PacijentPagesServis.anketa_Click(this, idPacijent);
         }
 
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            Page podaci = new LicniPodaciPacijenta(idPacijent);
-            this.NavigationService.Navigate(podaci);
+            PacijentPagesServis.Korisnik_Click(this, idPacijent);
         }
 
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla") || mi.Header.Equals("Light"))
-            {
-                //mi.Header = "Tamna";
-                SvetlaTema.IsEnabled = false;
-                tamnaTema.IsEnabled = true;
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-            }
-            else
-            {
-                //mi.Header = "Svetla";
-                tamnaTema.IsEnabled = false;
-                SvetlaTema.IsEnabled = true;
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
+            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+
         }
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
+            /*var app = (App)Application.Current;
             string eng = "en-US";
             string srb = "sr-LATN";
             MenuItem mi = (MenuItem)sender;
@@ -290,9 +265,8 @@ namespace Projekat
             else
             {
                 mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }
-
+                app.ChangeLanguage(srb);*/
+            PacijentPagesServis.Jezik_Click(Jezik);
         }
     }
 }

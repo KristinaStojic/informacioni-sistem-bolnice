@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekat.Servis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,7 @@ namespace Projekat
         // TODO: izmeniti
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
+            /*var app = (App)Application.Current;
             MenuItem mi = (MenuItem)sender;
             if (mi.Header.Equals("Svetla"))
             {
@@ -54,12 +55,15 @@ namespace Projekat
             {
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
+            }*/
+            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+
+
         }
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
+            /*var app = (App)Application.Current;
             // TODO: proveriti
             string eng = "en-US";
             string srb = "sr-LATN";
@@ -73,7 +77,8 @@ namespace Projekat
             {
                 mi.Header = "en-US";
                 app.ChangeLanguage(srb);
-            }
+            }*/
+            PacijentPagesServis.Jezik_Click(Jezik);
 
         }
 

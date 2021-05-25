@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,19 @@ namespace Projekat.Model
                 fileStream.Close();
                 return ankete;
             }
+        }
+
+        public static List<Anketa> NadjiSveAnketePoId(int idPacijent)
+        {
+            List<Anketa> Ankete = new List<Anketa>();
+            foreach(Anketa anketa in ankete)
+            {
+                if(anketa.IdPacijent == idPacijent)
+                {
+                    Ankete.Add(anketa);
+                }
+            }
+            return Ankete;
         }
 
         public static int GenerisanjeIdAnkete()

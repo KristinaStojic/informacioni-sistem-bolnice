@@ -1,8 +1,8 @@
 ﻿using Model;
-using Projekat.Model;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -17,46 +17,51 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    public partial class DetaljiUputaPacijent : Page
+    /// <summary>
+    /// Interaction logic for ElektronskoPlacanjePacijent.xaml
+    /// </summary>
+    public partial class ElektronskoPlacanjePacijent : Page
     {
         private static int idPacijent;
-        public DetaljiUputaPacijent(int idPrijavljenogPacijenta, Uput izabraniUput)
+        public ElektronskoPlacanjePacijent(int idPrijavaljenogPacijenta, TipTermina tip)
         {
             InitializeComponent();
-            this.DataContext = this;
-            idPacijent = idPrijavljenogPacijenta;
+            idPacijent = idPrijavaljenogPacijenta;
+            OdrediCenuPregleda(tip);
+
             Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
-            this.ime.Text = prijavljeniPacijent.ImePacijenta;
-            this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
-            this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
-
-            this.datum.Text = izabraniUput.datumIzdavanja;
-            Lekar lekarKodKogSeUpucuje =  PronadjiLekaraPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
-            this.LekarKodKogSeUpucuje.Text = lekarKodKogSeUpucuje.ToString();
-            Lekar lekarKojiIzdajeUput = PronadjiLekaraPoId(izabraniUput.IdLekaraKojiIzdajeUput);
-            this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
-            this.Napomena.Text = izabraniUput.opisPregleda;
-
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
-        private static Lekar PronadjiLekaraPoId(int idLekara)
+        private void OdrediCenuPregleda(TipTermina tip)
         {
-            foreach (Lekar lekar in LekariServis.NadjiSveLekare())
+            if (tip.Equals(TipTermina.Pregled))
             {
-                if (lekar.IdLekara == idLekara)
+                if (Jezik.Header.Equals("_sr-LATN"))
                 {
-                    return lekar;
+                    cena.Text = "10 €";
+                }
+                else
+                {
+                    cena.Text = "1170 DIN";
                 }
             }
-            return null;
+            else
+            {
+                if (Jezik.Header.Equals("_sr-LATN"))
+                {
+                    cena.Text = "50 €";
+                }
+                else
+                {
+                    cena.Text = "6000 DIN";
+                }
+            }
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentPagesServis.odjava_Click(this);
         }
 
@@ -69,6 +74,7 @@ namespace Projekat
         {
             PacijentPagesServis.zakazi_Click(this, idPacijent);
         }
+
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.uvid_Click(this, idPacijent);
@@ -83,34 +89,33 @@ namespace Projekat
         {
             PacijentPagesServis.anketa_Click(this, idPacijent);
         }
-      
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.Korisnik_Click(this, idPacijent);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+
         }
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /*var app = (App)Application.Current;
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }*/
+          
             PacijentPagesServis.Jezik_Click(Jezik);
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ElektronskoPotvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
+            this.NavigationService.Navigate(uvid);
         }
     }
 }
