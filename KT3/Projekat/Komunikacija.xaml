@@ -15,7 +15,7 @@
         <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
         <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
-        <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding OtvoriIzvjestaj}"></KeyBinding>
+        <KeyBinding Key="V" Modifiers="Ctrl" Command="{Binding OtvoriIzvjestaj}"></KeyBinding>
     </Window.InputBindings>
     <StackPanel>
         <Menu Background="CadetBlue">

@@ -9,16 +9,24 @@
     <Window.DataContext>
         <local:IzvjestajViewModel/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriIzvjestaj}"></KeyBinding>
+        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding OtvoriProstorije}"></KeyBinding>
+        <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
+        <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel>
         <Menu Background="CadetBlue">
             <MenuItem Header="Navigacija" FontSize="15">
-                <MenuItem Header="Prostorije" FontSize="15"  InputGestureText="Ctrl + T"></MenuItem>
-                <MenuItem Header="Zahtjevi" FontSize="15" InputGestureText="Ctrl + E"></MenuItem>
-                <MenuItem Header="Komunikacija" FontSize="15" InputGestureText="Ctrl + K"></MenuItem>
+                <MenuItem Header="Prostorije" Command="{Binding OtvoriProstorije}" FontSize="15"  InputGestureText="Ctrl + T"></MenuItem>
+                <MenuItem Header="Zahtjevi" Command="{Binding OtvoriZahtjeve}"  FontSize="15" InputGestureText="Ctrl + E"></MenuItem>
+                <MenuItem Header="Komunikacija" Command="{Binding OtvoriKomunikaciju}" FontSize="15" InputGestureText="Ctrl + K"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
-                <MenuItem Header="Pomoc" FontSize="15" InputGestureText="Ctrl + H"></MenuItem>
-                <MenuItem Header="O aplikaciji" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
+                <MenuItem Header="Pomoc" Command="{Binding OtvoriPomoc}" FontSize="15" InputGestureText="Ctrl + H"></MenuItem>
+                <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOAplikaciji}" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
             </MenuItem>
         </Menu>
         <Button Command="{Binding ZatvoriIzvjestaj}" ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
