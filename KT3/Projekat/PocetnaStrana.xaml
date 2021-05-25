@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PocetnaStrana" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" KeyDown="Grid_KeyDown">
+        Title="Klinika Zdravo" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" KeyDown="Grid_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="316*"/>
@@ -22,35 +22,43 @@
                 <MenuItem Header="Evidencija utrošenog materijala" InputGestureText="Ctrl + M" FontSize="15" Background="White"></MenuItem>
                 <MenuItem Header="Zatvori" InputGestureText="Ctrl + X" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
             </MenuItem>
-            <MenuItem Header="_Uredi" FontSize="15">
+            <MenuItem Header="_Uredi" FontSize="15" Click="MenuItem_Click">
                 <MenuItem Header="Lični podaci" InputGestureText="Ctrl + I" FontSize="15"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Pomoć" FontSize="15">
                 <MenuItem Header="Pomoć" InputGestureText="Ctrl + H" FontSize="15" Click="Pomoc_Click"></MenuItem>
                 <MenuItem Header="O aplikaciji" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
             </MenuItem>
+
         </Menu>
         <Image Source="slike/odjava.png" Margin="482,16,91.6,610.4" Grid.Column="1" RenderTransformOrigin="0.471,2.109" MouseDown="Image_MouseDown"></Image>
 
 
-        <Button Content="Pregledi i operacije" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,115,0,0" FontSize="18" Grid.Column="1" Click="Button_Click"/>
-        <Button Content="Odobravanje lekova za korišćenje" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,226,0,0" FontSize="18" Grid.Column="1" Click="Button_Zahtevi"/>
-        <Button Content="Godišnji odmor" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,337,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_3"/>
-        <Button Content="Evidencija utrošenog materijala" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,449,0,0" FontSize="18" Grid.Column="1"/>
-        <Button Content="Obaveštenja" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108.4,561,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_2"/>
+        <Button Content="Pregledi i operacije" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="76" Margin="108,117,0,0" FontSize="18" Grid.Column="1" Click="Button_Click"/>
+        <Button Content="Odobravanje lekova za korišćenje" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108,224,0,0" FontSize="18" Grid.Column="1" Click="Button_Zahtevi"/>
+        <Button Content="Godišnji odmor" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108,335,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_3"/>
+        <Button Content="Evidencija utrošenog materijala" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108,447,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_1"/>
+        <Button Content="Obaveštenja" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="432" Height="77" Margin="108,559,0,0" FontSize="18" Grid.Column="1" Click="Button_Click_2"/>
         <Label Content="Izaberite željenu opciju:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108.4,38,0,0" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
         <Label Content="Osnovni podaci:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,38,0,0" FontSize="24" FontWeight="Bold"/>
-        <Label Content="Ime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,115,0,0" FontSize="18"/>
-        <Label Content="Prezime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,190,0,0" FontSize="18"/>
-        <Label Content="JMBG" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,269,0,0" FontSize="18"/>
-        <Label Content="Broj telefona" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,343,0,0" FontSize="18"/>
-        <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,423,0,0" FontSize="18"/>
-        <Label Content="Adresa stanovanja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,502,0,0" FontSize="18"/>
-        <Label Content="Specijalizacija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,583,0,0" FontSize="18"/>
-        <Image Source="slike/stethoscope.png" Margin="118,124,456,503" Grid.Column="1"></Image>
-        <Image Source="slike/lek.png" Margin="115,234,459,393" Grid.Column="1"></Image>
-        <Image Source="slike/odmor.png" Margin="118,350,456,277" Grid.Column="1"></Image>
-        <Image Source="slike/izmeni.png" Margin="118,462,456,165" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
-        <Image Source="slike/obavestenja.png" Margin="115,572,459,55" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
+        <Label Content="Ime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,121,0,0" FontSize="18" Height="35" Width="42"/>
+        <Label Content="Prezime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,198,0,0" FontSize="18" Height="35" Width="76"/>
+        <Label Content="JMBG" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,278,0,0" FontSize="18" Height="35" Width="57"/>
+        <Label Content="Broj telefona" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,354,0,0" FontSize="18" Height="35" Width="116"/>
+        <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,435,0,0" FontSize="18" Height="36" Width="63"/>
+        <Label Content="Adresa stanovanja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,516,0,0" FontSize="18" Height="35" Width="162"/>
+        <Label Content="Specijalizacija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,599,0,0" FontSize="18" Height="35" Width="123"/>
+        <Image Source="slike/stethoscope.png" Margin="118,125,456,502" Grid.Column="1"></Image>
+        <Image Source="slike/lek.png" Margin="115,232,459,395" Grid.Column="1"></Image>
+        <Image Source="slike/odmor.png" Margin="118,348,456,279" Grid.Column="1"></Image>
+        <Image Source="slike/izmeni.png" Margin="118,460,456,167" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
+        <Image Source="slike/obavestenja.png" Margin="115,570,459,57" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,121,68,535" IsEnabled="False" Name="ime" FontSize="18"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,198,68,458" IsEnabled="False" Name="prezime" FontSize="18"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,278,68,378" IsEnabled="False" Name="jmbg" FontSize="18"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,354,68,302" IsEnabled="False" Name="telefon" FontSize="18"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,435,68,220" IsEnabled="False" Name="email" FontSize="18" />
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,516,68,140" IsEnabled="False" Name="adresa" FontSize="18"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,599,68,57"  IsEnabled="False" Name="specijalizacija" FontSize="18"/>
     </Grid>
 </Window>

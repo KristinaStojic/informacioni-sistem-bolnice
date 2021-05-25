@@ -37,7 +37,7 @@ namespace Projekat
 
         private void PopuniPodatkePacijenta()
         {
-            this.nadjiAlergen.ItemsSource = LekoviMenadzer.NadjiSveSastojke();
+            this.nadjiAlergen.ItemsSource = LekoviServis.NadjiSveSastojke();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiAlergen.ItemsSource);
             view.Filter = UserFilter;
         }
@@ -69,7 +69,7 @@ namespace Projekat
         {
             try
             {
-                int idAlergena = ZdravstveniKartonMenadzer.GenerisanjeIdAlergena(pacijent.IdPacijenta);
+                int idAlergena = ZdravstveniKartonServis.GenerisanjeIdAlergena(pacijent.IdPacijenta);
                 String nazivLeka = naziv.Text;
                 String sifraLeka = sifra.Text;
                 String Nuspojava = nuspojava.Text;
@@ -77,9 +77,9 @@ namespace Projekat
 
 
                 Alergeni alergen = new Alergeni(idAlergena, pacijent.IdPacijenta, nazivLeka, sifraLeka, Nuspojava, vremeNuspojave);
-                ZdravstveniKartonMenadzer.DodajAlergen(alergen);
+                ZdravstveniKartonServis.DodajAlergen(alergen);
 
-                TerminMenadzer.sacuvajIzmene();
+                TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
 

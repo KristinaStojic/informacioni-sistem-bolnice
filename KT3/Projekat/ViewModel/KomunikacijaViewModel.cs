@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,8 @@ namespace Projekat.ViewModel
         public MyICommand ZatvoriKomunikaciju { get; set; }
         public MyICommand ZatvoriOsoblje { get; set; }
         public MyICommand ZatvoriZahtjev { get; set; }
+        public MyICommand OtvoriOAplikaciji { get; set; }
+
         private ZahtjevZaKomunikaciju izabraniZahtjev;
         private string textOprema;
         private string textOsoblje;
@@ -28,6 +31,7 @@ namespace Projekat.ViewModel
         public Window ZahtjeviProzor { get; set; }
         public Window ZahtjevOpremaProzor { get; set; }
         public Window ZahtjevOsobljeProzor { get; set; }
+        public Window KomunikacijaPomocProzor { get; set; }
         public static Window KomunikacijaProzor { get; set; }
         public KomunikacijaViewModel()
         {
@@ -41,6 +45,14 @@ namespace Projekat.ViewModel
             ZatvoriKomunikaciju = new MyICommand(ZatvoriProzor);
             OtvoriSale = new MyICommand(PrikaziSale);
             OtvoriZahtjeve = new MyICommand(PrikaziZahtjeve);
+            OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
+            OtvoriPomoc = new MyICommand(PrikaziPomoc);
+        }
+        private void OtvoriOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
         public MyICommand OtvoriSale { get; set; }
         public MyICommand OtvoriZahtjeve { get; set; }
@@ -174,6 +186,17 @@ namespace Projekat.ViewModel
         {
             ZahtjevOpremaProzor.Close();
         }
+        #endregion
+        #region KomunikacijaPomocViewModel
+        public MyICommand OtvoriPomoc { get; set; }
+
+        private void PrikaziPomoc()
+        {
+            KomunikacijaPomocProzor = new KomunikacijaPomoc();
+            KomunikacijaPomocProzor.Show();
+            KomunikacijaPomocProzor.DataContext = this;
+        }
+
         #endregion
     }
 

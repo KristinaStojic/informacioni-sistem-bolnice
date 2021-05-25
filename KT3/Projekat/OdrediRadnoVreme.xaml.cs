@@ -90,9 +90,10 @@ namespace Projekat
             this.Close();
         }
 
-        // TODO: ispraviti da je vreme kraja vece od vremena pocetka - nije dobra promena fokusa
-        private void Vreme_kraja_LostFocus(object sender, RoutedEventArgs e)
+        private void Vreme_pocetka_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            kraj.Text = "";
+
             foreach (string slot in PocetakRadnogVremena)
             {
                 if (DateTime.Parse((string)pocetak.SelectedItem) >= DateTime.Parse(slot))
@@ -100,11 +101,6 @@ namespace Projekat
                     KrajRadnogVremena.Remove(slot);
                 }
             }
-        }
-
-        private void Vreme_pocetka_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            kraj.Text = "";
         }
     }
 }

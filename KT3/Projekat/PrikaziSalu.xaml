@@ -18,6 +18,8 @@
         <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriProzorKomanda}"></KeyBinding>
         <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
         <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OAplikacijiKomanda}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding PomocSale}"></KeyBinding>
     </Window.InputBindings>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -44,8 +46,8 @@
                     <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Pomoc" FontSize="15">
-                    <MenuItem Header="Pomoc" FontSize="15" Click="Pomoc_Click" InputGestureText="Ctrl + H"></MenuItem>
-                    <MenuItem Header="O aplikaciji" FontSize="15" ></MenuItem>
+                    <MenuItem Header="Pomoc" FontSize="15" Command="{Binding PomocSale}" InputGestureText="Ctrl + H"></MenuItem>
+                    <MenuItem Header="O aplikaciji" Command="{Binding OAplikacijiKomanda}" InputGestureText="Ctrl + A" FontSize="15" ></MenuItem>
                 </MenuItem>
             </Menu>
             <ToolBar Background="CadetBlue">
@@ -67,7 +69,7 @@
                 <Button Command="{Binding ObrisiSaluKomanda}" ToolTip="Obrisi, Ctrl + O">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi, Ctrl + P" HorizontalAlignment="Right" Width="130" Height="30" Margin="375, 0, 0, 0" Text="{Binding PretragaSala, UpdateSourceTrigger=PropertyChanged}"  Name="Pretraga"></TextBox>
+                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi" HorizontalAlignment="Right" Width="130" Height="30" Margin="375, 0, 0, 0" Text="{Binding PretragaSala, UpdateSourceTrigger=PropertyChanged}"  Name="Pretraga"></TextBox>
                 <Button ToolTip="Pretrazi, Ctrl + P" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>

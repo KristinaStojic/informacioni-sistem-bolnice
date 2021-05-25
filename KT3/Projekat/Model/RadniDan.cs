@@ -13,7 +13,9 @@ namespace Projekat.Model
         public string VremeKraja { get; set; }
         public bool NaGodisnjemOdmoru { get; set; }
 
-        public RadniDan() { }
+        public RadniDan() 
+        {
+        }
 
         public RadniDan(int Id, string Datum, string VremePocetka, string VremeKraja) 
         {

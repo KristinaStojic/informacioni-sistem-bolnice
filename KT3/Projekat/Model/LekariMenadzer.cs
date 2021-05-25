@@ -17,7 +17,7 @@ namespace Model
         public static void DodajLekara(Lekar noviLekar)
         {
             lekari.Add(noviLekar);
-            PrikaziLekare.Lekari.Add(noviLekar);
+            //PrikaziLekare.Lekari.Add(noviLekar);
             SacuvajIzmeneLekara();
         }
 
@@ -35,9 +35,9 @@ namespace Model
                     l.AdresaStanovanja = noviLekar.AdresaStanovanja;
                     l.specijalizacija = noviLekar.specijalizacija;
 
-                    int idx = PrikaziLekare.Lekari.IndexOf(stariLekar);
-                    PrikaziLekare.Lekari.RemoveAt(idx);
-                    PrikaziLekare.Lekari.Insert(idx, l);
+                   // int idx = PrikaziLekare.Lekari.IndexOf(stariLekar);
+                   // PrikaziLekare.Lekari.RemoveAt(idx);
+                   // PrikaziLekare.Lekari.Insert(idx, l);
                     SacuvajIzmeneLekara();
                 }
             }
@@ -53,7 +53,7 @@ namespace Model
                 if (lekari[i].IdLekara == lekar.IdLekara)
                 {   
                     lekari.RemoveAt(i);
-                    PrikaziLekare.Lekari.Remove(lekar);
+                   // PrikaziLekare.Lekari.Remove(lekar);
                     SacuvajIzmeneLekara();
 
                     /*   for (int j = 0; j < TerminMenadzer.termini.Count; j++)

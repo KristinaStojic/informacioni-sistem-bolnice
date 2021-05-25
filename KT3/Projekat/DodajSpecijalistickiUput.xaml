@@ -5,17 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajSpecijalistickiUput" Height="700" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        Title="DodajSpecijalistickiUput" Height="700" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
 
-            <TabControl x:Name="uputi" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="31,20.4,29.6,85.4" Height="625">
+            <TabControl x:Name="uputi" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="31,20.4,29.6,85.4" Height="625" KeyDown="Tabovi_KeyDown">
 
-                <TabItem Header="Laboratorija" Width="100" Height="25">
+                <TabItem Header="Laboratorija" Width="100" Height="25" x:Name="laboratorija">
 
-                    <Grid/>
+                    <Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="145"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="230"/>
+                                <ColumnDefinition Width="230"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Ime pacijenta" Grid.Column="1" Margin="0,10,20,45.2" Grid.Row="1" Grid.RowSpan="2" FontSize="16"/>
+                            <Label Content="Prezime pacijenta" Grid.Column="1" Margin="0,9.4,20,0.2" Grid.Row="2" FontSize="16"/>
+                            <Label Content="JMBG pacijenta" Grid.Column="1" Margin="0,9.8,20,43.8" Grid.Row="3" FontSize="16" Grid.RowSpan="2"/>
+                            <Label Content="Lekar koji izdaje uput" Margin="1,9,19,44.6" Grid.Row="4" FontSize="16" Grid.RowSpan="2" Grid.Column="1"/>
+                            <Label Content="Datum izdavanja uputa" Grid.Column="1" Margin="0,9.2,10,44.4" Grid.Row="5" FontSize="16" Grid.RowSpan="2"/>
+                            <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,45.2" Grid.Row="1" Grid.RowSpan="2" IsEnabled="False" Name="imeLab"/>
+                            <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,44" Grid.Row="2" Grid.RowSpan="2" IsEnabled="False" Name="prezimeLab"/>
+                            <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,0" Grid.Row="3" IsEnabled="False" Name="jmbgLab"/>
+                            <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="lekarLab"/>
+                            <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="False" Name="datumLab"/>
+
+
+
+                            <Button Content="Sačuvaj" Grid.Column="1" Margin="89.4,31.6,50,0" Grid.Row="10" VerticalAlignment="Top" Height="29" Background="#FF6895C5" Click="Potvrdi_Laboratorija_Click"/>
+                            <Button Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,27.6,0,0" Grid.Row="10" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" Click="Odustani_Click"/>
+                            <Label Content="Napomena za pregled" Grid.Column="1" Margin="1,10,9,44" Grid.Row="6" FontSize="16" Grid.RowSpan="2"/>
+                            <TextBox TextWrapping="Wrap" Grid.Column="1" Margin="0,10,19,10" Grid.Row="7" IsEnabled="True" Grid.RowSpan="3" x:Name="napomenaLab" Grid.ColumnSpan="2"/>
+                        </Grid>
+                    </Grid>
                 </TabItem>
-                <TabItem Header="Specijalistički pregled" Width="130" x:Name="specijalistickiTab">
+                <TabItem Header="Specijalistički pregled" Width="130" x:Name="specijalistickiTab" KeyDown="Window_KeyDown">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="10"/>
@@ -94,7 +135,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Stacionarno lečenje" Width="130" Margin="0,0,0,-2">
+                <TabItem Header="Bolničko lečenje" Width="130" Margin="0,0,0,-2" x:Name="bolnickoLecenjeTab" KeyDown="Bolnicko_KeyDown">
 
                     <Grid>
                         <Grid.RowDefinitions>
@@ -130,7 +171,7 @@
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,8.8,19,0" Grid.Row="3" IsEnabled="False" Name="jmbgPacijenta"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="Lekar"/>
                         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,0" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Height="35" Width="192" IsEnabled="True" Name="datumPocetka" SelectedDateChanged="datum_SelectedDateChanged"/>
-                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="True" x:Name="datumKraja"/>
+                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="True" x:Name="datumKraja" PreviewKeyDown="datumKraja_PreviewKeyDown"/>
                         <ComboBox Grid.Column="2" Margin="19,10,19,0" Grid.Row="7" Name="slobodneSobe" SelectionChanged="brojSobe_SelectionChanged"/>
                         <ComboBox Grid.Column="2" Margin="19,11,19,44" Grid.Row="8" x:Name="slobodniKreveti" Grid.RowSpan="2"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="1" Margin="1,0,19,38" Grid.Row="10" IsEnabled="True" x:Name="napomenaPregelda" Grid.ColumnSpan="2"/>

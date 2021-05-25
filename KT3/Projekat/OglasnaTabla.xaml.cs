@@ -77,7 +77,7 @@ namespace Projekat
 
         private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
         {
-            canvas2.Visibility = Visibility.Hidden;
+            canvas.Visibility = Visibility.Hidden;
             okvir.Visibility = Visibility.Hidden;
         }
 
@@ -85,43 +85,17 @@ namespace Projekat
         {
             if (flag == false)
             {
-                canvas2.Visibility = Visibility.Visible;
+                canvas.Visibility = Visibility.Visible;
                 okvir.Visibility = Visibility.Visible;
             }
 
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
-
             if (selektovanoObavestenje != null)
             {
                 naslov.Text = selektovanoObavestenje.TipObavestenja;
                 datum.Text = selektovanoObavestenje.Datum;
                 sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
-
-                if (selektovanoObavestenje.Oznaka.Equals("svi"))
-                {
-                    namena.Text = "sve";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("lekari"))
-                {
-                    namena.Text = "lekare";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("upravnici"))
-                {
-                    namena.Text = "upravnike";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("pacijenti"))
-                {
-                    namena.Text = "sve pacijente";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
-                {
-                    namena.Text = "";
-                    foreach (int id in selektovanoObavestenje.ListaIdPacijenata)
-                    {
-                        Pacijent pacijent = PacijentiServis.PronadjiPoId(id);
-                        namena.Text += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta + " \n";
-                    }
-                }
+                namena.Text = ObavestenjaServis.PopuniNamenuObavestenja(selektovanoObavestenje);
             }
         }
 
@@ -149,10 +123,9 @@ namespace Projekat
         private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             flag = true;
-            canvas2.Visibility = Visibility.Hidden;
+            canvas.Visibility = Visibility.Hidden;
 
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
-
             if (selektovanoObavestenje != null)
             {
                 ObrisiObavestenjeSekretar brisanje = new ObrisiObavestenjeSekretar(selektovanoObavestenje);

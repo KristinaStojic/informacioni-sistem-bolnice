@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,13 +37,13 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
            
-                int brojAnamneze = ZdravstveniKartonMenadzer.GenerisanjeIdAnamneze(pacijent.IdPacijenta);          
+                int brojAnamneze = ZdravstveniKartonServis.GenerisanjeIdAnamneze(pacijent.IdPacijenta);          
                 String datum = NadjiDatumPregleda();
                 string bolest = bol.Text;
                 string terapija = terap.Text;
 
                 Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, datum, bolest, terapija,termin.Lekar.IdLekara, termin.IdTermin); 
-                ZdravstveniKartonMenadzer.DodajAnamnezu(anamneza);
+                ZdravstveniKartonServis.DodajAnamnezu(anamneza);
 
 
                 this.Close();

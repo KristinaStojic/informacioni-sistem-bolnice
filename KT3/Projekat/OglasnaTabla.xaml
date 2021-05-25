@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="OglasnaTabla" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown">
+        Title="OglasnaTabla" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Label FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,0,849.6,608.4" Content="Oglasna tabla" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold"/>
         <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="2" Margin="-2,0,0,0" >
@@ -51,7 +51,7 @@
 
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" StrokeThickness="0" VerticalAlignment="Top" Width="478" Margin="799,0,-3.4,0" />
 
-        <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="475" Background="#FFE7F6F7" Margin="799,0,-0.4,-0.6" Visibility="Hidden">
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="475" Background="#FFE7F6F7" Margin="799,0,-0.4,-0.6" Visibility="Hidden">
             <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Napusti_uvid_Click">
                 <StackPanel>
                     <Image Source="slike/cancel.png" Height="25" Width="27" RenderTransformOrigin="0.254,0.462" />

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
@@ -69,8 +70,11 @@ namespace Projekat.ViewModel
         public MyICommand ZatvoriProzorKomanda { get; set; }
         public MyICommand ZatvoriSalu { get; set; }
         public MyICommand OtvoriZahtjeve { get; set; }
+        public MyICommand PomocSale { get; set; }
         public MyICommand OtvoriKomunikaciju { get; set; }
+        public MyICommand OAplikacijiKomanda { get; set; }
         public static Window SaleProzor { get; set; }
+        public static Window PomocSaleProzor { get; set; }
         public SaleViewModel()
         {
             ZatvoriPrikazSala = new MyICommand(ZatvoriSale);
@@ -116,7 +120,15 @@ namespace Projekat.ViewModel
             ZatvoriSalu = new MyICommand(Zatvori);
             OtvoriZahtjeve = new MyICommand(PrikaziZahtjeve);
             OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
+            OAplikacijiKomanda = new MyICommand(OtvoriOpis);
+            PomocSale = new MyICommand(OtvoriPomoc);
             DodajSale();
+        }
+        private void OtvoriOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
         private void PrikaziKomunikaciju()
         {
@@ -329,7 +341,7 @@ namespace Projekat.ViewModel
 
         private bool ValidnaPoljaZaIzmjenuSale()
         {
-            if (brojSaleIzmjena != null && namjenaSaleIzmjena != null && tipSaleIzmjena != 0)
+            if (brojSaleIzmjena != null && namjenaSaleIzmjena != null)
             {
                 if (brojSaleIzmjena.Trim().Equals("") || namjenaSaleIzmjena.Trim().Equals("") || !jeBroj(brojSaleIzmjena) || jeBroj(namjenaSaleIzmjena) || postojiBrojNoveSale())
                 {
@@ -901,7 +913,7 @@ namespace Projekat.ViewModel
         private void promjenjenTekstPretrage()
         {
             Sale.Clear();
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (sala.Namjena.Equals("Skladiste"))
                 {
@@ -1906,6 +1918,14 @@ namespace Projekat.ViewModel
             return false;
         }
 
+        #endregion
+        #region PomocViewModel
+        private void OtvoriPomoc()
+        {
+            PomocSaleProzor = new SalePomoc();
+            PomocSaleProzor.Show();
+            PomocSaleProzor.DataContext = this;
+        }
         #endregion
     }
 }

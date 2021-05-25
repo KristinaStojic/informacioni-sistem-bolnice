@@ -7,6 +7,7 @@
 using System;
 using System.ComponentModel;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Model
 {
@@ -54,11 +55,12 @@ namespace Model
             this.BracnoStanje = stanje;
             this.Maloletnik = Maloletnik;
             this.JmbgStaratelja = JmbgStaratelja;
+            this.Karton = new ZdravstveniKarton(IdPacijenta);
         }
 
         public Pacijent() { }
 
-        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, long Jmbg, pol pol, statusNaloga Status)
+        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, long Jmbg, pol pol, statusNaloga Status) // za guest nalog
         {
             this.IdPacijenta = IdPacijenta;
             this.ImePacijenta = ImePacijenta;

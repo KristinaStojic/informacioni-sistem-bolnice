@@ -44,20 +44,29 @@ namespace Model
 
         public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
         {
-            value = long.Parse((string)value);
-            if (value is long)
+            try
             {
-                long d = (long)value;
-                if ( d.ToString().Length < Min || d.ToString().Length > Max)
+                var s = value as string;
+                long r;
+
+                if (long.TryParse(s, out r))
                 {
-                    return new ValidationResult(false, "Potrebno je uneti " + Convert.ToString(Min) + " - " + Convert.ToString(Max) + " cifara");
+                    if (r.ToString().Length < Min || r.ToString().Length > Max)
+                    {
+                        return new ValidationResult(false, "Potrebno je uneti " + Convert.ToString(Min) + " - " + Convert.ToString(Max) + " cifara");
+                    }
+                    else
+                    {
+                        return new ValidationResult(true, "Greska");
+                    }
                 }
                 else
                 {
-                    return new ValidationResult(true, "Greska");
+                    return new ValidationResult(false, "Unknown error occured.");
+
                 }
             }
-            else
+            catch
             {
                 return new ValidationResult(false, "Unknown error occured.");
 

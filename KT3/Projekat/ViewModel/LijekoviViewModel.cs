@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Pomoc;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,7 @@ namespace Projekat.ViewModel
         public static Window PonovnoSlanjeZahtjevaProzor { get; set; }
         public static Window DodavanjeZamjenskogLijekaProzor { get; set; }
         public static Window LijekoviProzor { get; set; }
+        public MyICommand OtvoriOAplikaciji { get; set; }
 
         public LijekoviViewModel()
         {
@@ -111,6 +113,13 @@ namespace Projekat.ViewModel
             DodajZamjenski = new MyICommand(DodavanjeZamjenskog);
             OtvoriSale = new MyICommand(PrikaziSale);
             OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
+            OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
+        }
+        private void OtvoriOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
         public MyICommand OtvoriSale { get; set; }
         public MyICommand OtvoriKomunikaciju { get; set; }

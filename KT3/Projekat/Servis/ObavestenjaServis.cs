@@ -1,15 +1,17 @@
+using Model;
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 
 namespace Projekat.Servis
 {
     public class ObavestenjaServis
     {
-        #region Obavestenja menadzer
+        #region Obavestenja Menadzer
         public static void sacuvajIzmene()
         {
             ObavestenjaMenadzer.sacuvajIzmene();
@@ -29,7 +31,8 @@ namespace Projekat.Servis
         {
             return ObavestenjaMenadzer.GenerisanjeIdObavestenja();
         }
-#endregion
+
+        #endregion
 
         #region Obavestenja Sekretar
         public static void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
@@ -41,7 +44,108 @@ namespace Projekat.Servis
         {
             ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
         }
-        #endregion
+
+        public static string OdrediOznakuObavestenja(string namena)
+        {
+            string oznaka = "";
+            if (namena.Equals("sve"))
+            {
+                oznaka = "svi";
+            }
+            else if (namena.Equals("sve lekare"))
+            {
+                oznaka = "lekari";
+            }
+            else if (namena.Equals("sve upravnike"))
+            {
+                oznaka = "upravnici";
+            }
+            else if (namena.Equals("sve pacijente"))
+            {
+                oznaka = "pacijenti";
+            }
+            else
+            {
+                oznaka = "specificni pacijenti";
+            }
+
+            return oznaka;
+        }
+
+        public static List<int> DodajSelektovanePacijente(string oznaka, ListView listaPacijenata)
+        {
+            List<int> selektovaniPacijentiId = new List<int>();
+            if (oznaka.Equals("specificni pacijenti"))
+            {
+                foreach (Pacijent p in listaPacijenata.SelectedItems)
+                {
+                    selektovaniPacijentiId.Add(p.IdPacijenta);
+                }
+            }
+
+            return selektovaniPacijentiId;
+        }
+
+        public static string PopuniNamenuObavestenja(Obavestenja selektovanoObavestenje) 
+        {
+            string namena = "";
+            if (selektovanoObavestenje.Oznaka.Equals("svi"))
+            {
+                namena = "sve";
+            }
+            else if (selektovanoObavestenje.Oznaka.Equals("lekari"))
+            {
+                namena = "lekare";
+            }
+            else if (selektovanoObavestenje.Oznaka.Equals("upravnici"))
+            {
+                namena = "upravnike";
+            }
+            else if (selektovanoObavestenje.Oznaka.Equals("pacijenti"))
+            {
+                namena = "sve pacijente";
+            }   
+            else if (selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
+            {
+                namena = "";
+                foreach (int id in selektovanoObavestenje.ListaIdPacijenata)
+                {
+                    Pacijent pacijent = PacijentiServis.PronadjiPoId(id);
+                    namena += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta + " \n";
+                }
+            }
+
+            return namena;
+        }
+
+        public static int OdrediIndeksIzabranogObavestenja(Obavestenja selektovanoObavestenje)
+        {
+            int namena = 0;
+            if (selektovanoObavestenje.Oznaka.Equals("svi"))
+            {
+                namena = 0;
+            }
+            else if (selektovanoObavestenje.Oznaka.Equals("lekari"))
+            {
+                namena = 1;
+            }
+            else if (selektovanoObavestenje.Oznaka.Equals("upravnici"))
+            {
+                namena = 2;
+            }
+            else if (selektovanoObavestenje.Oznaka.Equals("pacijenti"))
+            {
+                namena = 3;
+            }
+            else if (selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
+            {
+                namena = 4;
+            }
+
+            return namena;
+        }
+
+    #endregion
 
         #region Obavestenja Pacijent
         public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)
@@ -77,13 +181,12 @@ namespace Projekat.Servis
                         DodajStaraObavestenjaZaTerapijePodsetnike(obavestenje, ObavestenjaPacijent);
                     }
                 }
-                else // if (!o.TipObavestenja.Equals("Terapija") ||  !o.TipObavestenja.e)
+                
+                if (obavestenje.ListaIdPacijenata.Contains(idPacijent) || obavestenje.Oznaka.Equals("pacijenti") || obavestenje.Oznaka.Equals("svi"))
                 {
-                    if (obavestenje.ListaIdPacijenata.Contains(idPacijent) || obavestenje.Oznaka.Equals("pacijenti") || obavestenje.Oznaka.Equals("svi"))
-                    {
-                        ObavestenjaPacijent.Add(obavestenje);
-                    }
+                    ObavestenjaPacijent.Add(obavestenje);
                 }
+               
             }
             return ObavestenjaPacijent;
         }

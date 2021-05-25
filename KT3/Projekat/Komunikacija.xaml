@@ -13,6 +13,8 @@
         <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriKomunikaciju}"></KeyBinding>
         <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding OtvoriSale}"></KeyBinding>
         <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
     </Window.InputBindings>
     <StackPanel>
         <Menu Background="CadetBlue">
@@ -23,8 +25,8 @@
                 <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
-                <MenuItem Header="Pomoc" FontSize="15" InputGestureText="Ctrl + H"></MenuItem>
-                <MenuItem Header="O aplikaciji" FontSize="15"></MenuItem>
+                <MenuItem Header="Pomoc" FontSize="15" Command="{Binding OtvoriPomoc}" InputGestureText="Ctrl + H"></MenuItem>
+                <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOAplikaciji}" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
             </MenuItem>
         </Menu>
         <Button Command="{Binding ZatvoriKomunikaciju}" ToolTip="Nazad, Ctrl + N" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">

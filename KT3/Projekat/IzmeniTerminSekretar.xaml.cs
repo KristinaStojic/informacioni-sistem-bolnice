@@ -580,7 +580,7 @@ namespace Projekat
             ZauzeceSale z = new ZauzeceSale(vp, vk, dat, termin.IdTermin);
             Sala.zauzetiTermini.Add(z);
 
-            TerminMenadzer.sacuvajIzmene();
+            TerminServisLekar.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
 
             this.Close();

@@ -22,18 +22,18 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziLekare : Window
     {
-        private bool flag = false;
+/*        private bool flag = false;
 
         public static ObservableCollection<Lekar> Lekari
         {
             get;
             set;
-        }
+        }*/
 
         public PrikaziLekare()
         {
             InitializeComponent();
-            this.DataContext = this;
+         /*   this.DataContext = this;
             Lekari = new ObservableCollection<Lekar>();
 
             foreach (Lekar l in LekariMenadzer.lekari)
@@ -42,9 +42,10 @@ namespace Projekat
             }
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Lekari);
-            view.Filter = UserFilterLekari;
+            view.Filter = UserFilterLekari; */
         }
 
+        /*
         private bool UserFilterLekari(object item)
         {
             if (String.IsNullOrEmpty(pretraga.Text))
@@ -98,7 +99,7 @@ namespace Projekat
             }
             flag = false;
         }
-
+        */
         private void Pacijenti_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -138,7 +139,7 @@ namespace Projekat
             Sekretar pocetnaStrana = new Sekretar();
             pocetnaStrana.Show();
         }
-
+        /*
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // TODO: sacuvati sve ?
@@ -175,12 +176,12 @@ namespace Projekat
                 }
             }
         }
-
+        
         private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(Lekari).Refresh();
         }
-
+        */
         private void Radno_vreme_Click(object sender, RoutedEventArgs e)
         {
             Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;
@@ -201,34 +202,10 @@ namespace Projekat
             OdobravanjeGodisnjegOdmora odobravanje = new OdobravanjeGodisnjegOdmora();
             odobravanje.Show();
         }
-
+       
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                Dodaj_Click(sender, e);
-            }
-            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                Dodaj_Click(sender, e);
-            }
-            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                Izmeni_Click(sender, e);
-            }
-            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                Izmeni_Click(sender, e);
-            }
-            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                Obrisi_Click(sender, e);
-            }
-            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                Obrisi_Click(sender, e);
-            }
-            else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
+            if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Godisnji_odmor_Click(sender, e);
             }
