@@ -47,6 +47,7 @@ namespace Projekat.ViewModel
             OtvoriZahtjeve = new MyICommand(PrikaziZahtjeve);
             OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
             OtvoriPomoc = new MyICommand(PrikaziPomoc);
+            OtvoriIzvjestaj = new MyICommand(OtvaranjeIzvjestaja);
         }
         private void OtvoriOpis()
         {
@@ -197,6 +198,16 @@ namespace Projekat.ViewModel
             KomunikacijaPomocProzor.DataContext = this;
         }
 
+        #endregion
+        #region OtvoriIzvjestajViewModel
+        public MyICommand OtvoriIzvjestaj { get; set; }
+        private void OtvaranjeIzvjestaja()
+        {
+            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
+            IzvjestajViewModel.IzvjestajProzor.Show();
+            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
+            KomunikacijaProzor.Close();
+        }
         #endregion
     }
 

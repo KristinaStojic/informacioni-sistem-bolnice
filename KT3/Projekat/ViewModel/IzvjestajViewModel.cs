@@ -3,6 +3,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Projekat.ViewModel
     {
         #region IzvjestajViewModel
         public static Window IzvjestajProzor { get; set; }
+        public Window PomocProzor { get; set; }
         private ObservableCollection<Sala> slobodneSale;
         private ObservableCollection<Sala> zauzeteSale;
         public ObservableCollection<Sala> SlobodneSale { get { return slobodneSale; } set { slobodneSale = value; OnPropertyChanged("SlobodneSale"); } }
@@ -27,6 +29,11 @@ namespace Projekat.ViewModel
         {
             ZatvoriIzvjestaj = new MyICommand(ZatvoriProzor);
             GenerisiIzvjestajKomanda = new MyICommand(GenerisiIzvjestaj);
+            OtvoriProstorije = new MyICommand(OtvoriSale);
+            OtvoriZahtjeve = new MyICommand(OtvoriZahtjev);
+            OtvoriKomunikaciju = new MyICommand(OtvoriProzorKomunikacije);
+            OtvoriPomoc = new MyICommand(OtvoriPomocKorisniku);
+            OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
             SlobodneSale = new ObservableCollection<Sala>();
             ZauzeteSale = new ObservableCollection<Sala>();
             NadjiSlobodneSale();
@@ -183,9 +190,68 @@ namespace Projekat.ViewModel
                 pdfDoc.Add(nemaSala);
             }
             pdfDoc.Close();
-        }   
+        }
 
         #endregion
 
+        #region OtvoriProstorijeViewModel
+        public MyICommand OtvoriProstorije { get; set; }
+        
+        private void OtvoriSale()
+        {
+            SaleViewModel.SaleProzor = new PrikaziSalu();
+            SaleViewModel.SaleProzor.Show();
+            SaleViewModel.SaleProzor.DataContext = new SaleViewModel();
+            IzvjestajProzor.Close();
+        }
+
+        #endregion
+
+        #region OtvoriZahtjeveViewModel
+        public MyICommand OtvoriZahtjeve { get; set; }
+        private void OtvoriZahtjev()
+        {
+            ZahtjeviViewModel.ZahtjeviProzor = new Zahtjevi();
+            ZahtjeviViewModel.ZahtjeviProzor.Show();
+            ZahtjeviViewModel.ZahtjeviProzor.DataContext = new ZahtjeviViewModel();
+            IzvjestajProzor.Close();
+        }
+
+        #endregion
+
+        #region OtvoriKomunikacijuViewModel
+        public MyICommand OtvoriKomunikaciju { get; set; }
+        private void OtvoriProzorKomunikacije()
+        {
+            KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
+            KomunikacijaViewModel.KomunikacijaProzor.Show();
+            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new KomunikacijaViewModel();
+            IzvjestajProzor.Close();
+        }
+        #endregion
+
+        #region OAplikacijiViewModel
+        public MyICommand OtvoriOAplikaciji { get; set; }
+
+        private void OtvoriOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
+        }
+
+        #endregion
+
+        #region PomocViewModel
+        public MyICommand OtvoriPomoc { get; set; }
+
+        private void OtvoriPomocKorisniku()
+        {
+            PomocProzor = new IzvjestajPomoc();
+            PomocProzor.Show();
+            PomocProzor.DataContext = this;
+        }
+
+        #endregion
     }
 }

@@ -15,13 +15,13 @@ using System.Windows.Threading;
 namespace Projekat.Pomoc
 {
     /// <summary>
-    /// Interaction logic for LijekoviPomoc.xaml
+    /// Interaction logic for IzvjestajPomoc.xaml
     /// </summary>
-    public partial class LijekoviPomoc : Window
+    public partial class IzvjestajPomoc : Window
     {
         DispatcherTimer timer;
         bool isDraging = false;
-        public LijekoviPomoc()
+        public IzvjestajPomoc()
         {
             InitializeComponent();
             mediaElement.Play();

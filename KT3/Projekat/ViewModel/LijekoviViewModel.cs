@@ -36,6 +36,7 @@ namespace Projekat.ViewModel
         public ObservableCollection<Sastojak> SastojciLijeka { get { return sastojciLijeka; } set { sastojciLijeka = value; OnPropertyChanged("SastojciLijeka"); } }
 
         public static Window DodavanjeLijekaProzor{ get; set; }
+        public Window PomocProzor{ get; set; }
         public static Window DodavanjeSastojkaProzor { get; set; }
         public static Window DodavanjeNovogSastojkaProzor { get; set; }
         public static Window BrisanjeLijekaProzor { get; set; }
@@ -56,6 +57,7 @@ namespace Projekat.ViewModel
         public static Window DodavanjeZamjenskogLijekaProzor { get; set; }
         public static Window LijekoviProzor { get; set; }
         public MyICommand OtvoriOAplikaciji { get; set; }
+        public MyICommand OtvoriPomoc { get; set; }
 
         public LijekoviViewModel()
         {
@@ -114,6 +116,22 @@ namespace Projekat.ViewModel
             OtvoriSale = new MyICommand(PrikaziSale);
             OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
             OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
+            OtvoriIzvjestaj = new MyICommand(PrikaziIzvjestaj);
+            OtvoriPomoc = new MyICommand(Pomoc);
+        }
+        private void Pomoc()
+        {
+            PomocProzor = new LijekoviPomoc();
+            PomocProzor.Show();
+            PomocProzor.DataContext = this;
+        }
+        public MyICommand OtvoriIzvjestaj { get; set; }
+        private void PrikaziIzvjestaj()
+        {
+            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
+            IzvjestajViewModel.IzvjestajProzor.Show();
+            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
+            LijekoviProzor.Close();
         }
         private void OtvoriOpis()
         {

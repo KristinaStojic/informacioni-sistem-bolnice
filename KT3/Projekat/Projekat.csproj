@@ -356,6 +356,9 @@
     <Compile Include="Pomoc\AnamnezaPomoc.xaml.cs">
       <DependentUpon>AnamnezaPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\IzvjestajPomoc.xaml.cs">
+      <DependentUpon>IzvjestajPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\KomunikacijaPomoc.xaml.cs">
       <DependentUpon>KomunikacijaPomoc.xaml</DependentUpon>
     </Compile>
@@ -388,9 +391,6 @@
     </Compile>
     <Compile Include="Pomoc\SalePomoc.xaml.cs">
       <DependentUpon>SalePomoc.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pomoc\SastojciPomoc.xaml.cs">
-      <DependentUpon>SastojciPomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\SekretarPomoc.xaml.cs">
       <DependentUpon>SekretarPomoc.xaml</DependentUpon>
@@ -931,6 +931,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\IzvjestajPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\KomunikacijaPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -972,10 +976,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\SalePomoc.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pomoc\SastojciPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1398,7 +1398,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="slike\play.png" />
+    <Resource Include="slike\pause.png" />
+    <Content Include="Video\PomocZaSkladiste.mp4" />
     <Resource Include="slike\zdravo.png" />
+    <Content Include="Video\PomocZaIzvjestaj.mp4" />
+    <Content Include="Video\PomocZaLijekove.mp4" />
     <Content Include="Video\PomocZaSale.mp4" />
     <Resource Include="slike\bolnica.png" />
     <Content Include="Video\PomocZaKomunikaciju.mp4" />
