@@ -15,14 +15,14 @@
         <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
         <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
+        <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding OtvoriIzvjestaj}"></KeyBinding>
     </Window.InputBindings>
     <StackPanel>
         <Menu Background="CadetBlue">
             <MenuItem Header="Navigacija" FontSize="15">
-                <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
                 <MenuItem Header="Prostorije" FontSize="15" Command="{Binding OtvoriSale}" InputGestureText="Ctrl + T"></MenuItem>
                 <MenuItem Header="Zahtjevi" FontSize="15" Command="{Binding OtvoriZahtjeve}" InputGestureText="Ctrl + E"></MenuItem>
-                <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
+                <MenuItem Header="Izvjestaj" FontSize="15" Command="{Binding OtvoriIzvjestaj}" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
                 <MenuItem Header="Pomoc" FontSize="15" Command="{Binding OtvoriPomoc}" InputGestureText="Ctrl + H"></MenuItem>

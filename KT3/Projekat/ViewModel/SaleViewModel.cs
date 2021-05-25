@@ -122,6 +122,7 @@ namespace Projekat.ViewModel
             OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
             OAplikacijiKomanda = new MyICommand(OtvoriOpis);
             PomocSale = new MyICommand(OtvoriPomoc);
+            OtvoriIzvjestaj = new MyICommand(OtvaranjeIzvjestaja);
             DodajSale();
         }
         private void OtvoriOpis()
@@ -505,8 +506,8 @@ namespace Projekat.ViewModel
             else if (opremaZaPrebacivanje != null)
             {
                 ZauzeceSale zauzeceSale = napraviZauzece();
-                SaleServis.prebaciOpremuIzStareSale(izabranaSala, opremaZaPrebacivanje);
                 napraviNovuSalu();
+                SaleServis.prebaciOpremuIzStareSale(izabranaSala, opremaZaPrebacivanje);
                 SaleServis.zauzmiSalu(zauzeceSale, izabranaSala);
                 SaleServis.zauzmiSalu(zauzeceSale, novaSala);
                 SaleServis.sacuvajIzmjene();
@@ -1322,6 +1323,7 @@ namespace Projekat.ViewModel
             {
                 if (azuriraj)
                 {
+                    Thread.Sleep(1000);
                     azurirajPrikazStaticke();
                     azuriraj = false;
                 }
@@ -1926,6 +1928,18 @@ namespace Projekat.ViewModel
             PomocSaleProzor.Show();
             PomocSaleProzor.DataContext = this;
         }
+        #endregion
+        #region OtvoriIzvjestajViewModel
+        public MyICommand OtvoriIzvjestaj { get; set; }
+
+        private void OtvaranjeIzvjestaja()
+        {
+            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
+            IzvjestajViewModel.IzvjestajProzor.Show();
+            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
+            SaleProzor.Close();
+        }
+
         #endregion
     }
 }

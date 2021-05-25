@@ -23,6 +23,8 @@
         <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding PrikaziSale}"></KeyBinding>
         <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding PrikaziKomunikaciju}"></KeyBinding>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
+        <KeyBinding Key="V" Modifiers="Ctrl" Command="{Binding OtvoriIzvjestaj}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
     </Window.InputBindings>
     <StackPanel>
         <Menu DockPanel.Dock="Top" Background="CadetBlue">
@@ -36,13 +38,12 @@
                 <MenuItem Header="Prebaci" FontSize="15" Command="{Binding PrebaciOpremu}" InputGestureText="Ctrl + R"></MenuItem>
             </MenuItem>
             <MenuItem Header="Navigacija" FontSize="15">
-                <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
                 <MenuItem Header="Prostorije" FontSize="15" Command="{Binding PrikaziSale}" InputGestureText="Ctrl + T"></MenuItem>
                 <MenuItem Header="Komunikacija" FontSize="15" Command="{Binding PrikaziKomunikaciju}" InputGestureText="Ctrl + K"></MenuItem>
-                <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
+                <MenuItem Header="Izvjestaj" FontSize="15" Command="{Binding OtvoriIzvjestaj}" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Pomoc" FontSize="15" Click="MenuItem_Click_6">
-                <MenuItem Header="Pomoc" FontSize="15" InputGestureText="Ctrl + H"></MenuItem>
+            <MenuItem Header="Pomoc" FontSize="15">
+                <MenuItem Header="Pomoc" FontSize="15" Command="{Binding OtvoriPomoc}" InputGestureText="Ctrl + H"></MenuItem>
                 <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOAplikaciji}" InputGestureText="Ctrl + A" FontSize="15" ></MenuItem>
             </MenuItem>
         </Menu>

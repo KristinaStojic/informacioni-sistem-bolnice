@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Projekat.ViewModel
 {
-    class ZahtjeviViewModel : BindableBase
+    public class ZahtjeviViewModel : BindableBase
     {
         #region ZahtjeviViewModel
         public MyICommand LijekoviProzor { get; set; }
@@ -27,6 +27,7 @@ namespace Projekat.ViewModel
             OtvoriSale = new MyICommand(PrikaziSale);
             OtvoriKomunikaciju = new MyICommand(PrikaziKomunikaciju);
             OtvoriOAplikaciji = new MyICommand(PrikaziOpis);
+            OtvoriIzvjestaj = new MyICommand(OtvaranjeIzvjestaja);
         }
         private void PrikaziOpis()
         {
@@ -75,9 +76,22 @@ namespace Projekat.ViewModel
                 SkladisteViewModel.otvoren = true;
                 PremjestajServis.odradiZakazanePremjestaje();
                 SkladisteViewModel.SkladisteProzor.DataContext = new SkladisteViewModel();
+                ZahtjeviProzor.Close();
             }
             catch (Exception ex) { Console.WriteLine(ex.Data); }
         }
+        #endregion
+        #region OtvoriIzvjestajViewModel
+        public MyICommand OtvoriIzvjestaj { get; set; }
+
+        private void OtvaranjeIzvjestaja()
+        {
+            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
+            IzvjestajViewModel.IzvjestajProzor.Show();
+            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
+            ZahtjeviProzor.Close();
+        }
+
         #endregion
     }
 }

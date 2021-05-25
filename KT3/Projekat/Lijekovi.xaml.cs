@@ -19,11 +19,5 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private void Pomoc_Click(object sender, RoutedEventArgs e)
-        {
-            LijekoviPomoc lijekoviPomoc = new LijekoviPomoc();
-            lijekoviPomoc.Show();
-        }
-
     }
 }

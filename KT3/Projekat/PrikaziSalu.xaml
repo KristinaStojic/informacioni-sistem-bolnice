@@ -20,6 +20,7 @@
         <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OAplikacijiKomanda}"></KeyBinding>
         <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding PomocSale}"></KeyBinding>
+        <KeyBinding Key="V" Modifiers="Ctrl" Command="{Binding OtvoriIzvjestaj}"></KeyBinding>
     </Window.InputBindings>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -40,10 +41,9 @@
                     <MenuItem Header="Obrisi" FontSize="15" Command="{Binding ObrisiSaluKomanda}" InputGestureText="Ctrl + O"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Navigacija" FontSize="15">
-                    <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
                     <MenuItem Header="Zahtjevi" FontSize="15" Command="{Binding OtvoriZahtjeve}" InputGestureText="Ctrl + E"></MenuItem>
                     <MenuItem Header="Komunikacija" FontSize="15" Command="{Binding OtvoriKomunikaciju}" InputGestureText="Ctrl + K"></MenuItem>
-                    <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
+                    <MenuItem Header="Izvjestaj" FontSize="15" Command="{Binding OtvoriIzvjestaj}" InputGestureText="Ctrl + V"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Pomoc" FontSize="15">
                     <MenuItem Header="Pomoc" FontSize="15" Command="{Binding PomocSale}" InputGestureText="Ctrl + H"></MenuItem>

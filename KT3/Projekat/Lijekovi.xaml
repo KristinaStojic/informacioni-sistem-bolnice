@@ -18,6 +18,8 @@
         <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding OtvoriSale}"></KeyBinding>
         <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
+        <KeyBinding Key="V" Modifiers="Ctrl" Command="{Binding OtvoriIzvjestaj}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
     </Window.InputBindings>
     <DockPanel Margin="0,0,2,0">
         <StackPanel DockPanel.Dock="Top">
@@ -32,13 +34,12 @@
                     <MenuItem Header="Obrisi" FontSize="15" Command="{Binding ObrisiLijekProzor}" InputGestureText="Ctrl + O"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Navigacija" FontSize="15">
-                    <MenuItem Header="Osoblje" FontSize="15" InputGestureText="Ctrl + S"></MenuItem>
                     <MenuItem Header="Prostorije" FontSize="15" Command="{Binding OtvoriSale}" InputGestureText="Ctrl + T"></MenuItem>
                     <MenuItem Header="Komunikacija" FontSize="15" Command="{Binding OtvoriKomunikaciju}" InputGestureText="Ctrl + K"></MenuItem>
-                    <MenuItem Header="Izvjestaj" FontSize="15" InputGestureText="Ctrl + V"></MenuItem>
+                    <MenuItem Header="Izvjestaj" FontSize="15" Command="{Binding OtvoriIzvjestaj}" InputGestureText="Ctrl + V"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Pomoc" FontSize="15">
-                    <MenuItem Header="Pomoc" FontSize="15" Click="Pomoc_Click" InputGestureText="Ctrl + H"></MenuItem>
+                    <MenuItem Header="Pomoc" FontSize="15" Command="{Binding OtvoriPomoc}" InputGestureText="Ctrl + H"></MenuItem>
                     <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOAplikaciji}" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
                 </MenuItem>
             </Menu>
@@ -58,7 +59,7 @@
                 <Button ToolTip="Obrisi, Ctrl + O" Command="{Binding ObrisiLijekProzor}">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="260, 0, 0, 0" Text="{Binding PretragaLijekova}"></TextBox>
+                <TextBox BorderBrush="LightBlue" Background="LightBlue" HorizontalAlignment="Right" Name="Pretraga" ToolTip="Pretraga, Ctrl + P" Width="130" Height="30" Margin="260, 0, 0, 0" Text="{Binding PretragaLijekova, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <Button ToolTip="Pretrazi" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>

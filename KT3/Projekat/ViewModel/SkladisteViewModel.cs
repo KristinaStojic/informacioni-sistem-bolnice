@@ -39,9 +39,11 @@ namespace Projekat.ViewModel
         public Window PrebaciStatickuProzor { get; set; }
         public Window PrebaciDinamickuProzor { get; set; }
         public Window ObrisiOpremuProzor { get; set; }
+        public Window PomocProzor { get; set; }
         public static  Window SkladisteProzor { get; set;}
-
+        public MyICommand OtvoriIzvjestaj { get; set; }
         public MyICommand OtvoriOAplikaciji { get; set; }
+        public MyICommand OtvoriPomoc { get; set; }
         public SkladisteViewModel()
         {
             OpremaDinamicka = new ObservableCollection<Oprema>();
@@ -73,6 +75,21 @@ namespace Projekat.ViewModel
             PrikaziSale = new MyICommand(OtvoriSale);
             PrikaziKomunikaciju = new MyICommand(OtvoriKomunikaciju);
             OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
+            OtvoriIzvjestaj = new MyICommand(PrikaziIzvjestaj);
+            OtvoriPomoc = new MyICommand(Pomoc);
+        }
+        private void Pomoc()
+        {
+            PomocProzor = new SkladistePomoc();
+            PomocProzor.Show();
+            PomocProzor.DataContext = this;
+        }
+        private void PrikaziIzvjestaj()
+        {
+            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
+            IzvjestajViewModel.IzvjestajProzor.Show();
+            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
+            SkladisteProzor.Close();
         }
         private void OtvoriOpis()
         {
@@ -125,7 +142,7 @@ namespace Projekat.ViewModel
         {
             while (otvoren)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 PremjestajServis.odradiZakazanePremjestaje();
             }
         }
@@ -177,6 +194,9 @@ namespace Projekat.ViewModel
         private void ZatvoriSkladiste()
         {
             SkladisteViewModel.SkladisteProzor.Close();
+            ZahtjeviViewModel.ZahtjeviProzor = new Zahtjevi();
+            ZahtjeviViewModel.ZahtjeviProzor.Show();
+            ZahtjeviViewModel.ZahtjeviProzor.DataContext = new ZahtjeviViewModel();
             otvoren = false;
         }
         #endregion
@@ -421,6 +441,7 @@ namespace Projekat.ViewModel
             {
                 if (azuriraj)
                 {
+                    Thread.Sleep(1000);
                     azurirajPrikazStaticke();
                     azuriraj = false;
                 }
