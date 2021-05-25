@@ -588,6 +588,9 @@
     <Compile Include="ZakazaniTerminiPacijent.xaml.cs">
       <DependentUpon>ZakazaniTerminiPacijent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZakazaniTerminiPacijentDatum.xaml.cs">
+      <DependentUpon>ZakazaniTerminiPacijentDatum.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ZakaziTermin.xaml.cs">
       <DependentUpon>ZakaziTermin.xaml</DependentUpon>
     </Compile>
@@ -706,9 +709,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ElektronskoPlacanjePacijent.xaml">
-     <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-	</Page>
+    </Page>
     <Page Include="EvidencijaUtrosenogMaterijala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1204,6 +1207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ZakazaniTerminiPacijentDatum.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ZakaziTermin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1390,12 +1397,17 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="slike\zdravo.png" />
     <Content Include="Video\PomocZaSale.mp4" />
     <Resource Include="slike\bolnica.png" />
     <Content Include="Video\PomocZaKomunikaciju.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jarloo.Calendar\MyCalendar.Calendar.csproj">
+      <Project>{31c3b4a7-504b-4eff-bacc-c8f2ffe5af6f}</Project>
+      <Name>MyCalendar.Calendar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
