@@ -192,10 +192,11 @@ namespace Projekat.ViewModel
             Ankete = new ObservableCollection<Anketa>();
             foreach (Anketa anketa in AnketaServis.NadjiSveAnkete())
             {
-                if (anketa.IdPacijent == idPacijent)
+                if (anketa.IdPacijent == idPacijent && anketa.PopunjenaAnketa == false)
+                {
                     Ankete.Add(anketa);
+                }
             }
-
         }
     }
 }
