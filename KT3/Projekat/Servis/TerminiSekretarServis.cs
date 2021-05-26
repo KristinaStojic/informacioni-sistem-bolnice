@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 using Model;
 
 namespace Projekat.Servis
@@ -53,11 +55,6 @@ namespace Projekat.Servis
         public static void ZakaziHitanTermin(Termin hitanTermin, string datum)
         {
             TerminMenadzer.ZakaziHitanTermin(hitanTermin, datum);
-        }
-
-        public static void DodajZauzeceUSveSale(Sala sala)
-        {
-            TerminMenadzer.DodajZauzeceUSveSale(sala);
         }
 
         #endregion

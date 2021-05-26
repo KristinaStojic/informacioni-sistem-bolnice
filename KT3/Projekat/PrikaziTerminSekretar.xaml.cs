@@ -62,7 +62,7 @@ namespace Projekat
 
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            TerminMenadzer.sacuvajIzmene();
+            TerminiSekretarServis.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
             this.Close();
             Sekretar s = new Sekretar();
@@ -110,7 +110,7 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            TerminMenadzer.sacuvajIzmene();
+            TerminiSekretarServis.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
         }
 
@@ -187,7 +187,7 @@ namespace Projekat
 
         private void Pacijenti_Click(object sender, RoutedEventArgs e)
         {
-            TerminMenadzer.sacuvajIzmene();
+            TerminiSekretarServis.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
 
             this.Close();

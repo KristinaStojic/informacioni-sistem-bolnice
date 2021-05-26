@@ -21,6 +21,8 @@ namespace Projekat
     /// </summary>
     public partial class IzmeniObavestenje : Window
     {
+        bool flag1 = false;
+        bool flag2 = false;
         public Obavestenja obavestenje;
 
         public IzmeniObavestenje(Obavestenja selektovanoObavestenje)
@@ -117,5 +119,38 @@ namespace Projekat
             }
         }
 
+        private void Naslov_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag1 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag1 = true;
+                if (flag1 == true && flag2 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Sadrzaj_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag2 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag2 = true;
+                if (flag1 == true && flag2 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
         Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Image Source="slike/medical-symbol.png" Margin="143,131,732.6,237.4"/>
-        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="525" StrokeThickness="0" VerticalAlignment="Top" Width="470" Margin="701,81,0,0"/>
+        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="525" StrokeThickness="0" VerticalAlignment="Top" Width="477" Margin="701,81,0,0"/>
 
         <Button Margin="27,596,1164.6,25.4" Click="Nazad_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <Button.RenderTransform>
@@ -70,6 +70,14 @@
         <Label Content="Broj telefona:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="757,361,0,0" FontSize="20" FontStyle="Italic"/>
         <Label Content="E-mail:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="759,416,0,0" FontSize="20" FontStyle="Italic"/>
         <Label Content="Adresa stanovanja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="757,471,0,0" FontSize="20" FontStyle="Italic"/>
+
+        <Label Content="Teodora" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,196,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="Maruna" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,251,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="2203999805138" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,306,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="060-752-762-0" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,361,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="tm@gmail.com" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="959,416,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="Balzakova 10" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,471,0,0" FontSize="20" FontStyle="Italic"/>
+
         <Label Content="Klinika Zdravo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,444,0,0" FontSize="40" FontStyle="Italic" FontWeight="DemiBold" Foreground="#FF18A3AC"/>
         <Label Content="07:00-20:00" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="237,492,0,0" FontSize="40" FontStyle="Italic" Foreground="#FF18A3AC"/>
 

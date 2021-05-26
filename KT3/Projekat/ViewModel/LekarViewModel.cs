@@ -123,7 +123,7 @@ namespace Projekat.ViewModel
         {
             if (imeLekaraDodavanje != null && prezimeLekaraDodavanje != null && jmbgLekaraDodavanje != null && emailDodavanje != null && brojTelefonaDodavanje != null && adresaDodavanje != null && specijalizacijaDodavanje != null)
             {
-                Console.WriteLine(jmbgLekaraDodavanje.Length);
+                //Console.WriteLine(jmbgLekaraDodavanje.Length);
                 if (imeLekaraDodavanje.Trim().Equals("") || prezimeLekaraDodavanje.Trim().Equals("") || !ManjiOd6(jmbgLekaraDodavanje) || !jeBroj(jmbgLekaraDodavanje) || !jeBroj(brojTelefonaDodavanje) || emailDodavanje.Trim().Equals("") || adresaDodavanje.Trim().Equals("") )
                 {
                     return false;
@@ -180,13 +180,13 @@ namespace Projekat.ViewModel
         private string adresaIzmena;
         private Specijalizacija specijalizacijaIzmena;
 
-        public string ImeLekaraIzmena { get { return imeLekaraIzmena; } set { imeLekaraIzmena = value; OnPropertyChanged("ImeLekaraIzmena"); IzmeniLekaraKomanda.RaiseCanExecuteChanged(); } }
-        public string PrezimeLekaraIzmena { get { return prezimeLekaraIzmena; } set { prezimeLekaraIzmena = value; OnPropertyChanged("PrezimeLekaraIzmena"); IzmeniLekaraKomanda.RaiseCanExecuteChanged(); } }
-        public string JmbgLekaraIzmena { get { return jmbgLekaraIzmena; } set { jmbgLekaraIzmena = value; OnPropertyChanged("JmbgLekaraIzmena"); IzmeniLekaraKomanda.RaiseCanExecuteChanged(); } }
-        public string BrojTelefonaIzmena { get { return brojTelefonaIzmena; } set { brojTelefonaIzmena = value; OnPropertyChanged("BrojTelefonaIzmena"); IzmeniLekaraKomanda.RaiseCanExecuteChanged(); } }
-        public string EmailIzmena { get { return emailIzmena; } set { emailIzmena = value; OnPropertyChanged("EmailIzmena"); IzmeniLekaraKomanda.RaiseCanExecuteChanged(); } }
-        public string AdresaIzmena { get { return adresaIzmena; } set { adresaIzmena = value; OnPropertyChanged("AdresaIzmena"); IzmeniLekaraKomanda.RaiseCanExecuteChanged(); } }
-        public Specijalizacija SpecijalizacijaIzmena { get { return specijalizacijaIzmena; } set { specijalizacijaIzmena = value; OnPropertyChanged("SpecijalizacijaIzmena"); IzmeniLekaraKomanda.RaiseCanExecuteChanged(); } }
+        public string ImeLekaraIzmena { get { return imeLekaraIzmena; } set { imeLekaraIzmena = value; OnPropertyChanged("ImeLekaraIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
+        public string PrezimeLekaraIzmena { get { return prezimeLekaraIzmena; } set { prezimeLekaraIzmena = value; OnPropertyChanged("PrezimeLekaraIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
+        public string JmbgLekaraIzmena { get { return jmbgLekaraIzmena; } set { jmbgLekaraIzmena = value; OnPropertyChanged("JmbgLekaraIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
+        public string BrojTelefonaIzmena { get { return brojTelefonaIzmena; } set { brojTelefonaIzmena = value; OnPropertyChanged("BrojTelefonaIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
+        public string EmailIzmena { get { return emailIzmena; } set { emailIzmena = value; OnPropertyChanged("EmailIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
+        public string AdresaIzmena { get { return adresaIzmena; } set { adresaIzmena = value; OnPropertyChanged("AdresaIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
+        public Specijalizacija SpecijalizacijaIzmena { get { return specijalizacijaIzmena; } set { specijalizacijaIzmena = value; OnPropertyChanged("SpecijalizacijaIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
 
         private void OtvoriIzmenuLekara()
         {
@@ -227,12 +227,12 @@ namespace Projekat.ViewModel
         {
             if (imeLekaraIzmena != null && prezimeLekaraIzmena != null && jmbgLekaraIzmena != null && emailIzmena != null && brojTelefonaIzmena != null && adresaIzmena != null && specijalizacijaIzmena != null)
             {
-                Console.WriteLine(jmbgLekaraIzmena.Length);
-                if (imeLekaraIzmena.Trim().Equals("") || prezimeLekaraIzmena.Trim().Equals("") || /*!ManjiOd6(jmbgLekaraIzmena) || !jeBroj(jmbgLekaraIzmena) || !jeBroj(brojTelefonaIzmena) || */ emailIzmena.Trim().Equals("") || adresaIzmena.Trim().Equals(""))
+                //Console.WriteLine(jmbgLekaraIzmena.Length);
+                if (imeLekaraIzmena.Trim().Equals("") || prezimeLekaraIzmena.Trim().Equals("") || !ManjiOd6(jmbgLekaraIzmena) || !jeBroj(jmbgLekaraIzmena) || !jeBroj(brojTelefonaIzmena) ||  emailIzmena.Trim().Equals("") || adresaIzmena.Trim().Equals(""))
                 {
                     return false;
                 }
-                else if (!imeLekaraIzmena.Trim().Equals("") && !prezimeLekaraIzmena.Trim().Equals("") /*&& ManjiOd6(jmbgLekaraIzmena) && jeBroj(jmbgLekaraIzmena) && jeBroj(brojTelefonaIzmena)*/ && !emailIzmena.Trim().Equals("") && !adresaIzmena.Trim().Equals(""))
+                else if (!imeLekaraIzmena.Trim().Equals("") && !prezimeLekaraIzmena.Trim().Equals("") && ManjiOd6(jmbgLekaraIzmena) && jeBroj(jmbgLekaraIzmena) && jeBroj(brojTelefonaIzmena) && !emailIzmena.Trim().Equals("") && !adresaIzmena.Trim().Equals(""))
                 {
                     return true;
                 }

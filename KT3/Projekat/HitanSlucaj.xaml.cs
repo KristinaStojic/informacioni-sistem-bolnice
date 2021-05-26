@@ -74,7 +74,7 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             DodeliLekaraZaHitanTermin();
-            TerminMenadzer.ZakaziHitanTermin(hitanTermin, datum);
+            TerminiSekretarServis.ZakaziHitanTermin(hitanTermin, datum);
             this.Close();
         }
 
@@ -125,7 +125,7 @@ namespace Projekat
 
         private Termin KreirajHitanTermin()
         {
-            return new Termin(TerminMenadzer.GenerisanjeIdTermina(), datum, VremePocetka(), VremeKraja(), Tip, Lekar, Sala, Pacijent);
+            return new Termin(TerminiSekretarServis.GenerisanjeIdTermina(), datum, VremePocetka(), VremeKraja(), Tip, Lekar, Sala, Pacijent);
         }
 
         private void Pretrazi_Click(object sender, RoutedEventArgs e)
@@ -153,8 +153,8 @@ namespace Projekat
                 noviLekar = stariTermin.Lekar;
 
                 Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);
-                TerminMenadzer.OtkaziTerminSekretar(stariTermin);
-                TerminMenadzer.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
+                TerminiSekretarServis.OtkaziTerminSekretar(stariTermin);
+                TerminiSekretarServis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
                 potvrdiDugme.IsEnabled = true;               
             }
         }
@@ -172,6 +172,13 @@ namespace Projekat
 
             List<Termin> terminiZaPomeranje = FiltrirajPrikazaneTermine();
             zauzetiTermini.ItemsSource = terminiZaPomeranje;
+
+            if (terminiZaPomeranje.Count == 0  && Lekar == null)
+            {
+                MessageBox.Show("Ne postoje lekari izabrane specijalizacije!");
+                pomeriDugme.IsEnabled = false;
+                pretraziDugme.IsEnabled = false;
+            }
         }
 
         private string Sati(string Vreme)
@@ -278,7 +285,7 @@ namespace Projekat
                     return;
                 }
 
-                Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(zauzece.idTermina);
                 if (pomocna == null)
                 {
                     return;
@@ -481,8 +488,36 @@ namespace Projekat
             return null;
         }
 
+        private bool LekarNijeNaGodisnjemOdmoru(int idLekara)
+        {
+            foreach (Lekar lekar in LekariMenadzer.lekari)
+            { 
+                if (lekar.IdLekara == idLekara)
+                {
+                    foreach (RadniDan dan in lekar.RadniDani)
+                    {
+                        DateTime parsiraniDatum = DateTime.Parse(dan.Datum);
+                        if (DateTime.Parse(datum) == parsiraniDatum)
+                        {
+                            if (dan.NaGodisnjemOdmoru == false)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+
+                }
+            }
+            return false;
+        }
+
         private Lekar SlobodanLekar(int idLekara)
         {
+            if (!LekarNijeNaGodisnjemOdmoru(idLekara))
+            {
+                return null;
+            }
+
             ObservableCollection<string> SlobodnoVremePocetka = InicijalizujListuTermina();
 
             foreach (Sala sala in SaleMenadzer.sale)
@@ -496,7 +531,7 @@ namespace Projekat
                             continue;                            
                         }
 
-                        Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                        Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(zauzece.idTermina);
                         if (pomocna == null)
                         {
                             return null;
@@ -529,7 +564,7 @@ namespace Projekat
                         continue;
                     }
 
-                    Termin pomocna = TerminMenadzer.NadjiTerminPoId(zauzece.idTermina);
+                    Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(zauzece.idTermina);
                     if (pomocna == null)
                     {
                         return null;

@@ -132,7 +132,7 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-             Sekretar s = new Sekretar();
+             SekretarPrijava s = new SekretarPrijava();
              s.Show();
            // this.Close();
         }

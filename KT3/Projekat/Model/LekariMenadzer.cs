@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml.Serialization;
 using Projekat;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Model
 {
@@ -43,10 +44,86 @@ namespace Model
             }
         }
 
+        public static void ObrisiTermineZaLekara(Lekar lekar)
+        {
+            for (int i = 0; i < TerminMenadzer.termini.Count; i++)
+            {
+                if (TerminMenadzer.termini[i].Lekar.IdLekara == lekar.IdLekara)
+                {
+                    TerminMenadzer.termini.RemoveAt(i);
+                    i--;
+                    TerminiSekretarServis.sacuvajIzmene();
+                }
+            }
+        }
+
+        public static void ObrisiZahteveZaGodisnji(Lekar lekar)
+        {
+            for (int i = 0; i < zahtevi.Count; i++)
+            {
+                if (zahtevi[i].lekar.IdLekara == lekar.IdLekara)
+                {
+                    zahtevi.RemoveAt(i);
+                    sacuvajIzmjeneZahteva();
+                }
+            }
+        }
+
+        public static void ObrisiRecepte(Lekar lekar)
+        {
+            for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
+            {
+                for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.Count; j++)
+                {
+                    if (PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti[j].IdLekara == lekar.IdLekara)
+                    {
+                        PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.RemoveAt(j);
+                        j--;
+                        PacijentiServis.SacuvajIzmenePacijenta();
+                    }
+                }
+            }
+        }
+
+        public static void ObrisiUpute(Lekar lekar)
+        {
+            for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
+            { 
+                for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.Uputi.Count; j++)
+                {
+                    if (PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKodKogSeUpucuje == lekar.IdLekara 
+                        || PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKojiIzdajeUput == lekar.IdLekara)
+                    {
+                        PacijentiMenadzer.pacijenti[i].Karton.Uputi.RemoveAt(j);
+                        j--;
+                        PacijentiServis.SacuvajIzmenePacijenta();
+                    }
+                }
+            }
+        }
+
+        public static void ObrisiIzabranogLekara(Lekar lekar)
+        {
+            for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
+            {
+                if (PacijentiMenadzer.pacijenti[i].IzabraniLekar != null)
+                {
+                    if (PacijentiMenadzer.pacijenti[i].IzabraniLekar.IdLekara == lekar.IdLekara)
+                    {
+                        PacijentiMenadzer.pacijenti[i].IzabraniLekar = new Lekar();
+                        PacijentiServis.SacuvajIzmenePacijenta();
+                    }
+                }
+            }
+        }
+
         public static void ObrisiLekara(Lekar lekar)
         {
-            // TODO: brisanje termina sa datim lekarom
-            // TODO: brisanje lekara iz izabranih lekara pacijenata (ili je to automatski?)
+            ObrisiUpute(lekar);
+            ObrisiRecepte(lekar);
+            ObrisiZahteveZaGodisnji(lekar);
+            ObrisiIzabranogLekara(lekar);
+            ObrisiTermineZaLekara(lekar);
 
             for (int i = 0; i < lekari.Count; i++)
             {
@@ -55,26 +132,8 @@ namespace Model
                     lekari.RemoveAt(i);
                    // PrikaziLekare.Lekari.Remove(lekar);
                     SacuvajIzmeneLekara();
-
-                    /*   for (int j = 0; j < TerminMenadzer.termini.Count; j++)
-                       {
-                           if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
-                           {
-                               foreach (Sala s in SaleMenadzer.sale)
-                               {
-                                   if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
-                                   {
-                                       s.zauzetiTermini.Remove(SaleMenadzer.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
-                                       //SaleMenadzer.sacuvajIzmjene();
-                                   }
-                               }
-
-                               TerminMenadzer.termini.RemoveAt(j);
-                               j--;
-                           }
-                       }*/
                 }
-            }            
+            }
         }
 
         public static List<Lekar> NadjiSveLekare()
@@ -159,7 +218,6 @@ namespace Model
                 }
             }
 
-
             return id;
         }
 
@@ -171,18 +229,17 @@ namespace Model
             filestream.Close();
         }
 
-        // TODO: promeniti naziv - specijalizovaniLekari , a ne lekariOpstePrakse?
         public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
         {
-            List<Lekar> lekariOpstePrakse = new List<Lekar>();
+            List<Lekar> specijalizovaniLekari = new List<Lekar>();
             foreach (Lekar lekar in lekari)
             {
                 if (lekar.specijalizacija.Equals(tipSpecijalizacije))
                 {
-                    lekariOpstePrakse.Add(lekar);
+                    specijalizovaniLekari.Add(lekar);
                 }
             }
-            return lekariOpstePrakse;
+            return specijalizovaniLekari;
         }
 
         public static void DodajZahtev(ZahtevZaGodisnji zahtev)
@@ -198,7 +255,6 @@ namespace Model
                 }
             }
         }
-
 
         public static List<ZahtevZaGodisnji> NadjiSveZahteve()
         {

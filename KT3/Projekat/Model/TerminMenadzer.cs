@@ -353,26 +353,12 @@ namespace Model
             return null;
         }
 
-
         public static void sacuvajIzmene()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Termin>));
             TextWriter fileStream = new StreamWriter("termini.xml");
             serializer.Serialize(fileStream, termini);
             fileStream.Close();
-        }
-
-        public static Boolean SlobodanTermin(String datum, String VremePocetka, String VremeKraja, Sala sala)
-        {
-            // foreach (Termin t in TerminMenadzer.NadjiSveTermine())
-            //{
-            // postoji zakazan termin u tom opsegu
-            // if (/*t.Datum.Equals(datum) &&*/ t.Prostorija.Id == sala.Id /*&& Int32.Parse(VremePocetka) >= Int32.Parse(t.VremePocetka) && Int32.Parse(VremeKraja) <= Int32.Parse(t.VremeKraja)*/)
-            /* {
-                 return false;
-             } */
-            //}
-            return true;
         }
 
         // Sanja
