@@ -68,7 +68,10 @@ namespace Projekat
             zakazivanje.uputZaPregled = uput;
             Lekar lekar = LekariServis.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
             zakazivanje.Lekar = lekar;
-            zakazivanje.lekari.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+            if (zakazivanje.Lekar != null)
+            {
+                zakazivanje.lekari.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+            }
             zakazivanje.tip.SelectedIndex = 1;
             foreach (Sala s in SaleMenadzer.sale)
             {

@@ -99,17 +99,29 @@
             </ListView.View>
         </ListView>
 
-        <TextBox Grid.Column="2" Grid.Row="4" Name="pacijenti" Margin="8.8,6.2,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap"/>
-        <TextBox Grid.Column="2" Grid.Row="6" Name="lekari" Margin="8.8,6.8,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" />
+        <TextBox Grid.Column="2" Grid.Row="4" Name="pacijenti" Margin="8.8,6.2,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" TextChanged="Pacijenti_TextChanged"/>
+        <TextBox Grid.Column="2" Grid.Row="6" Name="lekari" Margin="8.8,6.8,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" TextChanged="Lekari_TextChanged" />
 
-        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="7" Height="32" Margin="8.8,6,9.6,6.8" FontSize="15" IsKeyboardFocusedChanged="tip_IsKeyboardFocusedChanged">
+        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="7" Height="32" Margin="8.8,6,9.6,6.8" FontSize="15" IsKeyboardFocusedChanged="tip_IsKeyboardFocusedChanged" SelectionChanged="Tip_SelectionChanged">
             <ComboBoxItem Content="Pregled"/>
             <ComboBoxItem Content="Pregled sa uputom"/>
             <ComboBoxItem Content="Operacija"/>
         </ComboBox>
 
-        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="8" Margin="8.8,6.2,0,0" SelectedIndex="0" HorizontalAlignment="Left" Width="192" Height="32" FontSize="15" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Name="datum" Grid.Column="2" Grid.Row="9" Width="192" Height="32" Margin="8.8,6.4,0,6.4" FontSize="15" SelectedDateChanged="datum_SelectedDateChanged"/>
+        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="8" Margin="8.8,6.2,0,0" SelectedIndex="0" HorizontalAlignment="Left" Width="192" Height="32" FontSize="15" VerticalAlignment="Top" SelectionChanged="Prostorije_SelectionChanged"/>
+        <DatePicker HorizontalAlignment="Left" Name="datum" Grid.Column="2" Grid.Row="9" Width="192" Height="32" Margin="8.8,6.4,0,6.4" FontSize="15" SelectedDateChanged="datum_SelectedDateChanged" Text="" >
+            <DatePicker.Style>
+                <Style TargetType="DatePicker" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Datum u obliku " FontSize="14" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                </Style>
+            </DatePicker.Style>
+        </DatePicker>
 
         <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="8.8,6.6,0,6.2" FontSize="15" LostFocus="vremePocetka_LostFocus" IsKeyboardFocusedChanged="vremePocetka_IsKeyboardFocusedChanged" SelectionChanged="vremePocetka_SelectionChanged"/>
         <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="106.8,6.6,0,6.2" FontSize="15" IsKeyboardFocusedChanged="vremeKraja_IsKeyboardFocusedChanged" AllowDrop="True"/>

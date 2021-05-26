@@ -172,6 +172,13 @@ namespace Projekat
 
             List<Termin> terminiZaPomeranje = FiltrirajPrikazaneTermine();
             zauzetiTermini.ItemsSource = terminiZaPomeranje;
+
+            if (terminiZaPomeranje.Count == 0  && Lekar == null)
+            {
+                MessageBox.Show("Ne postoje lekari izabrane specijalizacije!");
+                pomeriDugme.IsEnabled = false;
+                pretraziDugme.IsEnabled = false;
+            }
         }
 
         private string Sati(string Vreme)
@@ -481,8 +488,36 @@ namespace Projekat
             return null;
         }
 
+        private bool LekarNijeNaGodisnjemOdmoru(int idLekara)
+        {
+            foreach (Lekar lekar in LekariMenadzer.lekari)
+            { 
+                if (lekar.IdLekara == idLekara)
+                {
+                    foreach (RadniDan dan in lekar.RadniDani)
+                    {
+                        DateTime parsiraniDatum = DateTime.Parse(dan.Datum);
+                        if (DateTime.Parse(datum) == parsiraniDatum)
+                        {
+                            if (dan.NaGodisnjemOdmoru == false)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+
+                }
+            }
+            return false;
+        }
+
         private Lekar SlobodanLekar(int idLekara)
         {
+            if (!LekarNijeNaGodisnjemOdmoru(idLekara))
+            {
+                return null;
+            }
+
             ObservableCollection<string> SlobodnoVremePocetka = InicijalizujListuTermina();
 
             foreach (Sala sala in SaleMenadzer.sale)

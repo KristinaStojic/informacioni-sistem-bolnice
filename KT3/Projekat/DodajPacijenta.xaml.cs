@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -21,29 +22,48 @@ namespace Projekat
     /// Interaction logic for DodajPacijenta.xaml
     /// </summary>
 
-    public partial class DodajPacijenta : Window, INotifyPropertyChanged
+    public partial class DodajPacijenta : Window //, INotifyPropertyChanged
     {
+        public bool flag1 = false;
+        public bool flag2 = false;
+        public bool flag3 = false;
+        public bool flag4 = false;
+        public bool flag5 = false;
+        public bool flag6 = false;
+        public bool flag7 = false;
+        public bool flag8 = true;
+
+      /*  public string validacijaJmbg;
+        public string validacijaJmbgStaratelja;
+        public string validacijaBrojTelefona;  */
+
         public DodajPacijenta()
         {
             InitializeComponent();
             this.DataContext = this;
             jmbgStaratelja.IsEnabled = false;
+            potvrdi.IsEnabled = false;
+            validacijaJmbg.Visibility = Visibility.Hidden;
+            validacijaBrojTelefona.Visibility = Visibility.Hidden; 
+            validacijaJmbgStaratelja.Visibility = Visibility.Hidden;
         }
 
-        public string validacijaJmbg;
-        public string validacijaJmbgStaratelja;
-        public string validacijaBrojTelefona;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
+    /*    public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string name, bool flag_)
         {
             if (PropertyChanged != null)
             {
+               // flag_ = true;
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
+            else
+            {
+                flag_ = false;
+            }
+            Console.WriteLine(flag_);
         }
 
-        public string ValidacijaJmbg
+       public string ValidacijaJmbg
         {
             get
             {
@@ -54,7 +74,7 @@ namespace Projekat
                 if (value != validacijaJmbg)
                 {
                     validacijaJmbg = value;
-                    OnPropertyChanged("ValidacijaJmbg");
+                    OnPropertyChanged("ValidacijaJmbg"/*, flag6);
                 }
             }
         }
@@ -70,7 +90,7 @@ namespace Projekat
                 if (value != validacijaBrojTelefona)
                 {
                     validacijaBrojTelefona = value;
-                    OnPropertyChanged("ValidacijaBrojTelefona");
+                    OnPropertyChanged("ValidacijaBrojTelefona"/*, flag7);
                 }
             }
         }
@@ -86,10 +106,10 @@ namespace Projekat
                 if (value != validacijaJmbgStaratelja)
                 {
                     validacijaJmbgStaratelja = value;
-                    OnPropertyChanged("ValidacijaJmbgStaratelja");
+                    OnPropertyChanged("ValidacijaJmbgStaratelja"/*, flag8);
                 }
             }
-        }
+        } */
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         { 
@@ -129,6 +149,15 @@ namespace Projekat
                 bracnoStanjePacijenta.IsEnabled = false;
                 maloletnik.IsEnabled = false;
                 jmbgStaratelja.IsEnabled = false;
+
+                if (flag1 == true && flag2 == true && flag6 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
             else if (combo.Text.Equals("STALAN"))
             {
@@ -137,7 +166,8 @@ namespace Projekat
                 adresa.IsEnabled = true;
                 zanimanje.IsEnabled = true;
                 bracnoStanjePacijenta.IsEnabled = true;
-                
+                maloletnik.IsEnabled = true;
+
                 if ((bool)maloletnik.IsChecked)
                 {
                     jmbgStaratelja.IsEnabled = true;
@@ -146,6 +176,15 @@ namespace Projekat
                 {
                     jmbgStaratelja.IsEnabled = false;
                 }
+
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
         }
 
@@ -153,11 +192,15 @@ namespace Projekat
         {
             if (!(jmbg.Text.Equals("")))
             {
-                if ((!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text))))
+                long result;
+                if (long.TryParse(jmbg.Text, out result))
                 {
-                    MessageBox.Show("JMBG vec postoji");
-                    jmbg.Text = "";
-                }
+                    if ((!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text))))
+                    {
+                        MessageBox.Show("Uneseni JMBG vec postoji!");
+                        jmbg.Text = "";
+                    }
+                }               
             }
         }
 
@@ -166,11 +209,213 @@ namespace Projekat
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
-                jmbgStaratelja.Focusable = true; 
+                jmbgStaratelja.Focusable = true;
+                flag8 = false;
+                potvrdi.IsEnabled = false;
             }
             else 
             {
                 jmbgStaratelja.IsEnabled = false;
+                flag8 = true;
+            }
+        }
+
+        private void Ime_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag1 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag1 = true;
+                if ( (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                    || (flag1 == true && flag2 == true && flag6 == true && combo.Text.Equals("GUEST")) )
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Prezime_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag2 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag2 = true;
+                if ( (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                    || (flag1 == true && flag2 == true && flag6 == true && combo.Text.Equals("GUEST")) )
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Adresa_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag3 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag3 = true;
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Email_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag4 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag4 = true;
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Zanimanje_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag5 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag5 = true;
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }        
+
+        private void Jmbg_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag6 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(jmbg.Text, out result))
+                {
+                    if (jmbg.Text.Length >= 9 && jmbg.Text.Length <= 13)
+                    {
+                        validacijaJmbg.Visibility = Visibility.Hidden;
+                        flag6 = true;
+                        if ( (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                            || (flag1 == true && flag2 == true && flag6 == true && combo.Text.Equals("GUEST")) )
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flag6 = false;
+                        validacijaJmbg.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flag6 = false;
+                    validacijaJmbg.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void BrojTelefona_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag7 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(brojTelefona.Text, out result))
+                {
+                    if (brojTelefona.Text.Length >= 6 && brojTelefona.Text.Length <= 10)
+                    {
+                        validacijaBrojTelefona.Visibility = Visibility.Hidden;
+                        flag7 = true;
+                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flag7 = false;
+                        validacijaBrojTelefona.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flag7 = false;
+                    validacijaBrojTelefona.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void JmbgStaratelja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag8 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(jmbgStaratelja.Text, out result))
+                {
+                    if (jmbgStaratelja.Text.Length >= 9 && jmbgStaratelja.Text.Length <= 13)
+                    {
+                        validacijaJmbgStaratelja.Visibility = Visibility.Hidden;
+                        flag8 = true;
+                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && combo.Text.Equals("STALAN"))
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flag8 = false;
+                        validacijaJmbgStaratelja.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flag8 = false;
+                    validacijaJmbgStaratelja.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
             }
         }
 

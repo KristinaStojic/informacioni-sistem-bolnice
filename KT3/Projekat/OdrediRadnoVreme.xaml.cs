@@ -43,6 +43,10 @@ namespace Projekat
             kalendar.DisplayDateEnd = DateTime.Now.AddDays(7);
             pocetak.ItemsSource = PocetakRadnogVremena;
             kraj.ItemsSource = KrajRadnogVremena;
+
+            potvrdi.IsEnabled = false;
+            pocetak.IsEnabled = false;
+            kraj.IsEnabled = false;
         }
 
         private string KonvertujDatum(DateTime datum)
@@ -100,6 +104,39 @@ namespace Projekat
                 {
                     KrajRadnogVremena.Remove(slot);
                 }
+            }
+
+            if (kalendar.SelectedDate.HasValue && pocetak.SelectedIndex != -1)
+            {
+                kraj.IsEnabled = true;
+            }
+            else
+            {
+                kraj.IsEnabled = false;
+            }
+        }
+
+        private void Vreme_kraja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (kraj.SelectedIndex != -1 && pocetak.SelectedIndex != -1 && kalendar.SelectedDate.HasValue)
+            {
+                potvrdi.IsEnabled = true;
+            }
+            else
+            {
+                potvrdi.IsEnabled = false;
+            }
+        }
+
+        private void Kalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (kalendar.SelectedDate.HasValue)
+            {
+                pocetak.IsEnabled = true;
+            }
+            else
+            {
+                pocetak.IsEnabled = false;
             }
         }
     }

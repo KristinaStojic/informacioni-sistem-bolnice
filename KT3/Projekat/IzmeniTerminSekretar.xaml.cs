@@ -23,8 +23,7 @@ namespace Projekat
     /// </summary>
     public partial class IzmeniTerminSekretar : Window
     {
-        public Termin termin; // ucitani termin
-
+        public Termin termin; 
         public List<Pacijent> AzuriranaLista = new List<Pacijent>();
         public Pacijent Pacijent;
         public Lekar Lekar;
@@ -66,7 +65,7 @@ namespace Projekat
 
                 // vreme
                 vremePocetka.SelectedItem = izabraniTermin.VremePocetka;
-                PocetnoVreme = vremePocetka.Text;        // ?
+                PocetnoVreme = vremePocetka.Text;       
                 vremeKraja.SelectedItem = izabraniTermin.VremeKraja;
 
                 // lekar
@@ -140,7 +139,7 @@ namespace Projekat
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
             }
 
-            datum.BlackoutDates.AddDatesInPast();   // ne mogu se menjati termini koji su prosli, za njih ovo javlja error - TODO: handle exception
+           // datum.BlackoutDates.AddDatesInPast();   // ne mogu se menjati termini koji su prosli, za njih ovo javlja error - TODO: handle exception
         }
 
         private bool UserFilterPacijenti(object item)
@@ -184,13 +183,13 @@ namespace Projekat
             listaPacijenata.SelectedIndex = duzina - 1;
         }
 
-        private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource).Refresh();
             CollectionViewSource.GetDefaultView(listaLekara.ItemsSource).Refresh();
         }
 
-        private void listaPacijenata_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void ListaPacijenata_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (listaPacijenata.SelectedItem != null)
             {
@@ -199,7 +198,7 @@ namespace Projekat
             }
         }
 
-        private void listaLekara_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void ListaLekara_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (listaLekara.SelectedItem != null)
             {
@@ -398,7 +397,7 @@ namespace Projekat
             }
         }
 
-        private void datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void Datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             DateTime? selectedDate = datum.SelectedDate;
             if (selectedDate.HasValue)
@@ -410,10 +409,10 @@ namespace Projekat
             //vremeKraja.ItemsSource = SlobodnoVremeKraja;
 
             //IzbaciDanasnjeProsleTermine();            
-            //IzbaciZauzeteTermine();               // --------------------------------------ne radi za izmenu
+            //IzbaciZauzeteTermine();  
         }
 
-        private void tip_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)  // tip_SelectionChanged
+        private void Tip_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)  // tip_SelectionChanged
         {
             prostorije.Items.Clear();
 
@@ -447,7 +446,7 @@ namespace Projekat
             prostorije.SelectedIndex = 0;
         }
 
-        private void vremeKraja_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void VremeKraja_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             string[] pocetak = PocetnoVreme.Split(':');
             string pocetakSati = pocetak[0];
@@ -474,27 +473,24 @@ namespace Projekat
             vremeKraja.ItemsSource = SlobodnoVremeKraja;
         }
 
-        private void vremePocetka_LostFocus(object sender, RoutedEventArgs e)
+        private void VremePocetka_LostFocus(object sender, RoutedEventArgs e)
         {
             PocetnoVreme = vremePocetka.Text;                
             vremeKraja.ItemsSource = SlobodnoVremeKraja;
         }
 
-        // pravljenje guest naloga
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Guest_nalog_Click(object sender, RoutedEventArgs e)
         {
             DodajPacijentaGuestIzmeni dodavanje = new DodajPacijentaGuestIzmeni(this);
             dodavanje.Show();
         }
 
-        // odustani
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        // potvrdi
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             // vreme pocetka i kraja
             string vp = vremePocetka.Text;
@@ -586,14 +582,12 @@ namespace Projekat
             this.Close();
         }
 
-        // pacijenti list view
         private void Pretraga_Pacijenata(object sender, RoutedEventArgs e)
         {
             listaPacijenata.Visibility = Visibility.Visible;
             listaLekara.Visibility = Visibility.Hidden;
         }
 
-        // lekari list view
         private void Pretraga_Lekara(object sender, RoutedEventArgs e)
         {
             listaLekara.Visibility = Visibility.Visible;

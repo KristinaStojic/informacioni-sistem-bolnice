@@ -40,27 +40,12 @@
         <Label Grid.Column="1" Grid.Row="9" FontSize="17" VerticalContentAlignment="Center" Content="Zanimanje:"/>
         <Label Grid.Column="1" Grid.Row="10" FontSize="17" VerticalContentAlignment="Center" Content="Maloletnik:"/>
         <Label Grid.Column="1" Grid.Row="11" FontSize="17" VerticalContentAlignment="Center" Content="JMBG staratelja:"/>
-        <TextBox x:Name="ime" Grid.Column="2" Grid.Row="0" Margin="7" FontSize="15"/>
-        <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="1" Margin="7" FontSize="15"/>
-        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="2" Margin="7" FontSize="15">
-            <TextBox.Text>
-                <Binding Path="ValidacijaJmbg" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:ValidacijaSekretar ValidationStep="RawProposedValue"/>
-                        <local:MinMaxValidationRule ValidationStep="ConvertedProposedValue" Min="9" Max="13"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-            <Validation.ErrorTemplate>
-                <ControlTemplate>
-                    <StackPanel>
-                        <AdornedElementPlaceholder/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                    </StackPanel>
-                </ControlTemplate>
-            </Validation.ErrorTemplate>
-        </TextBox>
-        
+        <TextBox x:Name="ime" Grid.Column="2" Grid.Row="0" Margin="7" FontSize="15" TextChanged="Ime_TextChanged"/>
+        <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="1" Margin="7" FontSize="15" TextChanged="Prezime_TextChanged"/>
+        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="2" Margin="7" FontSize="15" TextChanged="Jmbg_TextChanged"/>
+        <TextBox  x:Name="validacijaJmbg" Text="Potrebno je uneti 9-13 cifara!" Foreground="Red" Grid.Column="2" Grid.Row="2" Margin="12.2,38.8,43.6,0"  Height="19" VerticalAlignment="Top" FontSize="10" 
+                  Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2"/>
+
         <ComboBox x:Name="polPacijenta" Grid.Column="2" Grid.Row="3"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
             <ComboBoxItem Content="M"/>
             <ComboBoxItem Content="Z"/>
@@ -69,55 +54,25 @@
             <ComboBoxItem Content="STALAN"/>
             <ComboBoxItem Content="GUEST"/>
         </ComboBox>
-        <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="5" Margin="7" FontSize="15">
-            <TextBox.Text>
-                <Binding Path="ValidacijaBrojTelefona" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:ValidacijaSekretar ValidationStep="RawProposedValue"/>
-                        <local:MinMaxValidationRule ValidationStep="ConvertedProposedValue" Min="6" Max="10"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-            <Validation.ErrorTemplate>
-                <ControlTemplate>
-                    <StackPanel>
-                        <AdornedElementPlaceholder/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                    </StackPanel>
-                </ControlTemplate>
-            </Validation.ErrorTemplate>
-        </TextBox>
-        
-        <TextBox x:Name="email" Grid.Column="2" Grid.Row="6" Margin="7" FontSize="15"/>
-        <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="7" Margin="7" FontSize="15"/>
+        <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="5" Margin="7" FontSize="15" TextChanged="BrojTelefona_TextChanged"/>
+        <TextBox  x:Name="validacijaBrojTelefona" Text="Potrebno je uneti 6-10 cifara!" Foreground="Red" Grid.Column="2" Grid.Row="5" Margin="12.2,39.6,43.6,0"  Height="19" VerticalAlignment="Top" FontSize="10" 
+                  Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2"/>
+
+        <TextBox x:Name="email" Grid.Column="2" Grid.Row="6" Margin="7" FontSize="15" TextChanged="Email_TextChanged"/>
+        <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="7" Margin="7" FontSize="15" TextChanged="Adresa_TextChanged"/>
         <ComboBox x:Name="bracnoStanjePacijenta" Grid.Column="2" Grid.Row="8"  Margin="6.8,6.2,7.6,6.6" SelectedIndex="0" FontSize="15">
             <ComboBoxItem Content="Neozenjen/Neudata"/>
             <ComboBoxItem Content="Ozenjen/Udata"/>
             <ComboBoxItem Content="Udovac/Udovica"/>
             <ComboBoxItem Content="Razveden/Razvedena"/>
         </ComboBox>
-        <TextBox x:Name="zanimanje" Grid.Column="2" Grid.Row="9" Margin="7" FontSize="15"/>
-        <TextBox  x:Name="jmbgStaratelja" Grid.Column="2" Grid.Row="11" Margin="7" FontSize="15">
-            <TextBox.Text>
-                <Binding Path="ValidacijaJmbgStaratelja" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <local:ValidacijaSekretar ValidationStep="RawProposedValue"/>
-                        <local:MinMaxValidationRule ValidationStep="ConvertedProposedValue" Min="9" Max="13"/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-            <Validation.ErrorTemplate>
-                <ControlTemplate>
-                    <StackPanel>
-                        <AdornedElementPlaceholder/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                    </StackPanel>
-                </ControlTemplate>
-            </Validation.ErrorTemplate>
-        </TextBox>
+        <TextBox x:Name="zanimanje" Grid.Column="2" Grid.Row="9" Margin="7" FontSize="15" TextChanged="Zanimanje_TextChanged"/>
+        <TextBox  x:Name="jmbgStaratelja" Grid.Column="2" Grid.Row="11" Margin="7" FontSize="15" TextChanged="JmbgStaratelja_TextChanged"/>
+        <TextBox  x:Name="validacijaJmbgStaratelja" Text="Potrebno je uneti 9-13 cifara!" Foreground="Red" Grid.Column="2" Grid.Row="11" Margin="12.2,37.8,43.6,0"  Height="19" VerticalAlignment="Top" FontSize="10" 
+                  Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2"/>
 
         <CheckBox x:Name="maloletnik" Grid.Column="2" Grid.Row="10" FontSize="17" HorizontalAlignment="Left" Margin="8.8,13.6,0,0" VerticalAlignment="Top" LostFocus="Maloletnik_LostFocus"/>
-        <Button Grid.Column="1" Grid.Row="12" Margin="5,17,9.2,20.4" Click="Potvrdi_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
+        <Button x:Name="potvrdi" Grid.Column="1" Grid.Row="12" Margin="5,17,9.2,20.4" Click="Potvrdi_Click" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
         <Button Grid.Column="2" Grid.Row="12" Margin="6.8,17,7.6,20.4" Click="Odustani_Click" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>
