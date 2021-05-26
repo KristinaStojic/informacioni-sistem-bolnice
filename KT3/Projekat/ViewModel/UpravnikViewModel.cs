@@ -35,6 +35,7 @@ namespace Projekat.ViewModel
             Logovanje = new MyICommand(UlogujSe);
             Upravnik = new MyICommand(OtvoriUpravnika);
             IzvjestajProzor = new MyICommand(PrikaziIzvjestaj);
+            UgasiAplikaciju = new MyICommand(Ugasi);
             dodajObavjestenja();
         }
         public MyICommand RegistracijaKlik { get; set; }
@@ -80,6 +81,12 @@ namespace Projekat.ViewModel
         public MyICommand PrijaviSeKomanda { get; set; }
         public MyICommand Registracija { get; set; }
         public MyICommand Upravnik { get; set; }
+        public MyICommand UgasiAplikaciju { get; set; }
+
+        private void Ugasi()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
 
         private void OtvoriKomunikaciju()
         {
@@ -104,11 +111,9 @@ namespace Projekat.ViewModel
         }
         private void ZatvoriAplikaciju()
         {
-            PrijavaProzor = new UpravnikPrijava();
-            PrijavaProzor.Show();
             korisnickoIme = "";
             lozinka = "";
-            PrijavaProzor.DataContext = this;
+            PrijavaProzor.Show();
             UpravnikProzor.Close();
         }
         #endregion
@@ -126,7 +131,7 @@ namespace Projekat.ViewModel
                     UpravnikProzor = new Upravnik();
                     UpravnikProzor.Show();
                     UpravnikProzor.DataContext = this;
-                    PrijavaProzor.Close();
+                    PrijavaProzor.Hide();
                     return;
                 }
             }
@@ -187,7 +192,7 @@ namespace Projekat.ViewModel
             ime = "";
             prezime = "";
             UpravnikRegistracijaProzor.DataContext = this;
-            PrijavaProzor.Close();
+            PrijavaProzor.Hide();
         }
 
         #endregion

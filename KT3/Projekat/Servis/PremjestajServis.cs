@@ -100,7 +100,6 @@ namespace Projekat.Servis
             oprema.Kolicina += kolicina;
             if (sala.Namjena.Equals("Skladiste"))
             {
-                //SkladisteViewModel.zamjeniOpremuUSkladistu(oprema);
                 SkladisteViewModel.azurirajPrikaz();
             }
             else
@@ -116,7 +115,6 @@ namespace Projekat.Servis
             sala.Oprema.Add(oprema);
             if (salaDodavanje.Namjena.Equals("Skladiste"))
             {
-                //SkladisteViewModel.dodajOpremuUSkladiste(oprema);
                 SkladisteViewModel.azurirajPrikaz();
             }
             else
@@ -128,10 +126,6 @@ namespace Projekat.Servis
         private static void azurirajPrikazStaticke()
         {
             SaleViewModel.azuriraj = true;
-            /*if (PrikazStaticke.otvoren)
-            {
-                PrikazStaticke.azurirajPrikaz();
-            }*/
         }
 
         private static void prebaciOpremuIzSale(Sala sala, Oprema izabranaOprema, int kolicina)
@@ -172,12 +166,10 @@ namespace Projekat.Servis
         {
             if (oprema.Kolicina == 0)
             {
-                //SkladisteViewModel.ukloniOpremuIzSkladista(sala, oprema);
                 SkladisteViewModel.azurirajPrikaz();
             }
             else
             {
-                //SkladisteViewModel.zamjeniOpremuUSkladistu(oprema);
                 SkladisteViewModel.azurirajPrikaz();
             }
         }
@@ -413,7 +405,6 @@ namespace Projekat.Servis
             {
                 Oprema oprema = new Oprema(izabranaOprema.NazivOpreme, kolicina, false);
                 oprema.IdOpreme = izabranaOprema.IdOpreme;
-                //PrikazDinamicke.OpremaDinamicka.Add(oprema);
                 sala.Oprema.Add(oprema);
             }
         }
@@ -427,7 +418,6 @@ namespace Projekat.Servis
                 {
                     oprema.Kolicina += kolicina;
                     x += 1;
-                    //PreraspodjelaDinamicke.azurirajPrikaz(oprema);
                 }
             }
             return x;
@@ -489,12 +479,10 @@ namespace Projekat.Servis
                     if (sala.Namjena.Equals("Skladiste"))
                     {
                         sala.Oprema.Remove(oprema);
-                        //PreraspodjelaStaticke.prebaciOpremuIzSkladista(oprema);
                         SaleViewModel.azuriraj = true;
                     }
                     else
                     {
-                        //PreraspodjelaStaticke.azurirajPrikazStaticke(oprema, sala);
                         SaleViewModel.azuriraj = true;
                     }
                 }
@@ -507,13 +495,11 @@ namespace Projekat.Servis
             {
                 if (SkladisteViewModel.otvoren)
                 {
-                    // PreraspodjelaStaticke.prebaciUSkladiste(oprema);
                     SaleViewModel.azuriraj = true;
                 }
             }
             else
             {
-                //PreraspodjelaStaticke.azurirajPrikaz();
                 SaleViewModel.azuriraj = true;
             }
         }
@@ -556,12 +542,10 @@ namespace Projekat.Servis
             sala.Oprema.Add(oprema);
             if (salaDodavanje.Namjena.Equals("Skladiste"))
             {
-                //PreraspodjelaStaticke.dodajStaticku(oprema);
                 SaleViewModel.azuriraj = true;
             }
             else
             {
-                // PreraspodjelaStaticke.azurirajPrikaz();
                 SaleViewModel.azuriraj = true;
             }
         }
@@ -673,12 +657,10 @@ namespace Projekat.Servis
                 if (oprema.Kolicina - kolicina == 0)
                 {
                     sala.Oprema.Remove(oprema);
-                   // SlanjeDinamicke.ukloniOpremu(sala, oprema);
                 }
                 else
                 { 
                     oprema.Kolicina -= kolicina;
-                    //SlanjeDinamicke.prebaciOpremu(oprema, kolicina);
                 }
 
             }
@@ -808,13 +790,11 @@ namespace Projekat.Servis
                 if (oprema.Kolicina - kolicina == 0)
                 {
                     sala.Oprema.Remove(oprema);
-                    //SlanjeStaticke.ukloniOpremu(sala, oprema);
                     SaleViewModel.azuriraj = true;
                 }
                 else
                 {
                     oprema.Kolicina -= kolicina;
-                    //SlanjeStaticke.smanjiKolicinuOpreme(oprema, kolicina);
                     SaleViewModel.azuriraj = true;
                 }
             }

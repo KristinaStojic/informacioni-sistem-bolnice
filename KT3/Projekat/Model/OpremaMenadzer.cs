@@ -82,7 +82,7 @@ namespace Projekat.Model
             int id = 1;
             foreach (Sala sala in SaleMenadzer.sale)
             {
-                if (sala.Id == idSobe)
+                if (sala.Id == idSobe && sala.Kreveti != null)
                 {
                     for (id = 1; id <= sala.Kreveti.Count; id++)
                     {

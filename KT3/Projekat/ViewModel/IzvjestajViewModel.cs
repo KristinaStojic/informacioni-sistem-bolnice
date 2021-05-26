@@ -18,13 +18,25 @@ namespace Projekat.ViewModel
 {
     public class IzvjestajViewModel : BindableBase
     {
-        #region IzvjestajViewModel
-        public static Window IzvjestajProzor { get; set; }
+        #region Promjenljive
         public Window PomocProzor { get; set; }
+        public MyICommand OtvoriPomoc { get; set; }
+        public MyICommand OtvoriZahtjeve { get; set; }
+        public MyICommand OtvoriProstorije { get; set; }
+        public MyICommand ZatvoriIzvjestaj { get; set; }
+        public MyICommand OtvoriOAplikaciji { get; set; }
+        public MyICommand OtvoriKomunikaciju { get; set; }
+        public static Window IzvjestajProzor { get; set; }
+        public MyICommand GenerisiIzvjestajKomanda { get; set; }
+
         private ObservableCollection<Sala> slobodneSale;
+
         private ObservableCollection<Sala> zauzeteSale;
         public ObservableCollection<Sala> SlobodneSale { get { return slobodneSale; } set { slobodneSale = value; OnPropertyChanged("SlobodneSale"); } }
         public ObservableCollection<Sala> ZauzeteSale { get { return zauzeteSale; } set { zauzeteSale = value; OnPropertyChanged("ZauzeteSale"); } }
+        #endregion
+
+        #region Konstruktor
         public IzvjestajViewModel()
         {
             ZatvoriIzvjestaj = new MyICommand(ZatvoriProzor);
@@ -39,6 +51,9 @@ namespace Projekat.ViewModel
             NadjiSlobodneSale();
             NadjiZauzeteSale();
         }
+        #endregion
+
+        #region IzvjestajViewModel
         private void NadjiSlobodneSale()
         {
             foreach(Sala sala in SaleServis.Sale())
@@ -80,7 +95,7 @@ namespace Projekat.ViewModel
         #endregion
 
         #region ZatvoriIzvjestajViewModel
-        public MyICommand ZatvoriIzvjestaj { get; set; }
+        
         private void ZatvoriProzor()
         {
             IzvjestajProzor.Close();
@@ -91,7 +106,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region GenerisanjeIzvjestajaViewModel
-        public MyICommand GenerisiIzvjestajKomanda { get; set; }
 
         private void GenerisiIzvjestaj()
         {
@@ -195,7 +209,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region OtvoriProstorijeViewModel
-        public MyICommand OtvoriProstorije { get; set; }
         
         private void OtvoriSale()
         {
@@ -208,7 +221,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region OtvoriZahtjeveViewModel
-        public MyICommand OtvoriZahtjeve { get; set; }
         private void OtvoriZahtjev()
         {
             ZahtjeviViewModel.ZahtjeviProzor = new Zahtjevi();
@@ -220,7 +232,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region OtvoriKomunikacijuViewModel
-        public MyICommand OtvoriKomunikaciju { get; set; }
         private void OtvoriProzorKomunikacije()
         {
             KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
@@ -231,7 +242,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region OAplikacijiViewModel
-        public MyICommand OtvoriOAplikaciji { get; set; }
 
         private void OtvoriOpis()
         {
@@ -243,7 +253,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region PomocViewModel
-        public MyICommand OtvoriPomoc { get; set; }
 
         private void OtvoriPomocKorisniku()
         {

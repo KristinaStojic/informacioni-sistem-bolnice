@@ -37,23 +37,6 @@ namespace Projekat.Servis
             return OpremaMenadzer.GenerisanjeIdOpreme();
         }
 
-        /*public static int GenerisanjeIdKreveta()
-        {
-            return OpremaMenadzer.GenerisanjeIdKreveta();
-        }*/
-
-        public static bool portojiOpremaZaPrebacivanje(Oprema oprema, List<Oprema> opremaZaPrebacivanje)
-        {
-            foreach (Oprema opremaPrebacivanje in opremaZaPrebacivanje)
-            {
-                if (oprema.IdOpreme == opremaPrebacivanje.IdOpreme)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         private static bool postojiOpremaUSali(Sala sala, Oprema oprema)
         {
             foreach (Oprema opremaSale in sala.Oprema)
@@ -89,6 +72,20 @@ namespace Projekat.Servis
             }
         }
 
-        
+        public static void EvidentirajUtrosenuOpremu(Oprema oprema)
+        {
+            foreach(Oprema opremaSkladista in Oprema())
+            {
+                if (oprema.NazivOpreme.Equals(opremaSkladista.NazivOpreme))
+                {
+                    opremaSkladista.Kolicina -= oprema.Kolicina;
+                    if(opremaSkladista.Kolicina == 0)
+                    {
+                        OpremaMenadzer.oprema.Remove(oprema);
+                    }
+                }
+            }
+        }
+
     }
 }

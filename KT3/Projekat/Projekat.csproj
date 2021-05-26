@@ -178,8 +178,14 @@
     <Compile Include="ElektronskoPlacanjePacijent.xaml.cs">
       <DependentUpon>ElektronskoPlacanjePacijent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EvidencijaSkladista.xaml.cs">
+      <DependentUpon>EvidencijaSkladista.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EvidencijaUtrosenogMaterijala.xaml.cs">
       <DependentUpon>EvidencijaUtrosenogMaterijala.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormulaZaObracunPlate.xaml.cs">
+      <DependentUpon>FormulaZaObracunPlate.xaml</DependentUpon>
     </Compile>
     <Compile Include="HitanSlucaj.xaml.cs">
       <DependentUpon>HitanSlucaj.xaml</DependentUpon>
@@ -293,6 +299,9 @@
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ObracunataPlata.xaml.cs">
+      <DependentUpon>ObracunataPlata.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObradiZahtevZaLek.xaml.cs">
       <DependentUpon>ObradiZahtevZaLek.xaml</DependentUpon>
     </Compile>
@@ -356,6 +365,9 @@
     <Compile Include="Pomoc\AnamnezaPomoc.xaml.cs">
       <DependentUpon>AnamnezaPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\EvidencijaPomoc.xaml.cs">
+      <DependentUpon>EvidencijaPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\IzvjestajPomoc.xaml.cs">
       <DependentUpon>IzvjestajPomoc.xaml</DependentUpon>
     </Compile>
@@ -370,6 +382,9 @@
     </Compile>
     <Compile Include="Pomoc\OglasnaTablaPomoc.xaml.cs">
       <DependentUpon>OglasnaTablaPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\PlatePomoc.xaml.cs">
+      <DependentUpon>PlatePomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\PocetnaStranaLekarPomoc.xaml.cs">
       <DependentUpon>PocetnaStranaLekarPomoc.xaml</DependentUpon>
@@ -715,7 +730,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EvidencijaSkladista.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EvidencijaUtrosenogMaterijala.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormulaZaObracunPlate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -850,6 +873,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ObracunataPlata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObradiZahtevZaLek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -934,6 +961,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\EvidencijaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\IzvjestajPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -951,6 +982,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\OglasnaTablaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\PlatePomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1405,6 +1440,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Video\PomocZaEvidenciju.mp4" />
+    <Content Include="Video\PomocZaPlate.mp4" />
+    <Content Include="Video\PomocZaZahtjeve.mp4" />
     <Resource Include="slike\play.png" />
     <Resource Include="slike\pause.png" />
     <Content Include="Video\PomocZaSkladiste.mp4" />
