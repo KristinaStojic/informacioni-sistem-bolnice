@@ -11,28 +11,47 @@ namespace Projekat.ViewModel
 {
     public class KomunikacijaViewModel : BindableBase
     {
-        #region KomunikacijaViewModel
+        #region Promjenljive
         public MyICommand UviduUZahtjeveKomanda { get; set; }
         public MyICommand ZatvoriKomunikaciju { get; set; }
         public MyICommand ZatvoriOsoblje { get; set; }
         public MyICommand ZatvoriZahtjev { get; set; }
         public MyICommand OtvoriOAplikaciji { get; set; }
-
-        private ZahtjevZaKomunikaciju izabraniZahtjev;
-        private string textOprema;
-        private string textOsoblje;
-        public string TextOprema { get { return textOprema; } set { textOprema = value; OnPropertyChanged("TextOprema"); } }
-        public string TextOsoblje{ get { return textOsoblje; } set { textOsoblje = value; OnPropertyChanged("TextOsoblje"); } }
-        public ZahtjevZaKomunikaciju IzabraniZahtjev { get { return izabraniZahtjev; } set { izabraniZahtjev = value; OnPropertyChanged("IzabraniZahtjev"); } }
-        private ObservableCollection<Oprema> zahtjeviOprema;
-        private ObservableCollection<Osoblje> zahtjeviOsoblje;
-        public ObservableCollection<Oprema> ZahtjeviOprema { get { return zahtjeviOprema; } set { zahtjeviOprema = value;OnPropertyChanged("ZahtjeviOprema"); } }
-        public ObservableCollection<Osoblje> ZahtjeviOsoblje{ get { return zahtjeviOsoblje; } set { zahtjeviOsoblje = value;OnPropertyChanged("ZahtjeviOsoblje"); } }
+        public MyICommand OtvoriSale { get; set; }
+        public MyICommand OtvoriZahtjeve { get; set; }
+        public MyICommand ZatvoriZahtjeve { get; set; }
+        public MyICommand UvidUZahtjev { get; set; }
+        public MyICommand ZatvoriOpremu { get; set; }
+        public MyICommand UkloniZahtjev { get; set; }
+        public MyICommand OtvoriPomoc { get; set; }
+        public MyICommand OtvoriIzvjestaj { get; set; }
         public Window ZahtjeviProzor { get; set; }
         public Window ZahtjevOpremaProzor { get; set; }
         public Window ZahtjevOsobljeProzor { get; set; }
         public Window KomunikacijaPomocProzor { get; set; }
         public static Window KomunikacijaProzor { get; set; }
+
+        private string textOprema;
+
+        private string textOsoblje;
+        public string TextOprema { get { return textOprema; } set { textOprema = value; OnPropertyChanged("TextOprema"); } }
+        public string TextOsoblje { get { return textOsoblje; } set { textOsoblje = value; OnPropertyChanged("TextOsoblje"); } }
+
+        private ZahtjevZaKomunikaciju izabraniZahtjev;
+        public ZahtjevZaKomunikaciju IzabraniZahtjev { get { return izabraniZahtjev; } set { izabraniZahtjev = value; OnPropertyChanged("IzabraniZahtjev"); } }
+
+        private ObservableCollection<Oprema> zahtjeviOprema;
+
+        private ObservableCollection<Osoblje> zahtjeviOsoblje;
+        public ObservableCollection<Oprema> ZahtjeviOprema { get { return zahtjeviOprema; } set { zahtjeviOprema = value; OnPropertyChanged("ZahtjeviOprema"); } }
+        public ObservableCollection<Osoblje> ZahtjeviOsoblje { get { return zahtjeviOsoblje; } set { zahtjeviOsoblje = value; OnPropertyChanged("ZahtjeviOsoblje"); } }
+        
+        private ObservableCollection<ZahtjevZaKomunikaciju> zahtjeviZaKomunikaciju;
+        public ObservableCollection<ZahtjevZaKomunikaciju> ZahtjeviZaKomunikaciju { get { return zahtjeviZaKomunikaciju; } set { zahtjeviZaKomunikaciju = value; OnPropertyChanged("ZahtjeviZaKomunikaciju"); } }
+
+        #endregion
+
+        #region Kontruktor
         public KomunikacijaViewModel()
         {
             UviduUZahtjeveKomanda = new MyICommand(UvidUZahtjeve);
@@ -49,14 +68,31 @@ namespace Projekat.ViewModel
             OtvoriPomoc = new MyICommand(PrikaziPomoc);
             OtvoriIzvjestaj = new MyICommand(OtvaranjeIzvjestaja);
         }
+        #endregion 
+
+        #region NavigacijaViewModel
+        private void OtvaranjeIzvjestaja()
+        {
+            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
+            IzvjestajViewModel.IzvjestajProzor.Show();
+            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
+            KomunikacijaProzor.Close();
+        }
+
+        private void PrikaziPomoc()
+        {
+            KomunikacijaPomocProzor = new KomunikacijaPomoc();
+            KomunikacijaPomocProzor.Show();
+            KomunikacijaPomocProzor.DataContext = this;
+        }
+
         private void OtvoriOpis()
         {
             OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
             OAplikacijiViewModel.OAplikacijiProzor.Show();
             OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
-        public MyICommand OtvoriSale { get; set; }
-        public MyICommand OtvoriZahtjeve { get; set; }
+
         private void PrikaziZahtjeve()
         {
             ZahtjeviViewModel.ZahtjeviProzor = new Zahtjevi();
@@ -64,6 +100,7 @@ namespace Projekat.ViewModel
             ZahtjeviViewModel.ZahtjeviProzor.DataContext = new ZahtjeviViewModel();
             KomunikacijaProzor.Close();
         }
+
         private void PrikaziSale()
         {
             SaleViewModel.SaleProzor = new PrikaziSalu();
@@ -71,6 +108,7 @@ namespace Projekat.ViewModel
             SaleViewModel.SaleProzor.DataContext = new SaleViewModel();
             KomunikacijaProzor.Close();
         }
+
         private void ZatvoriProzor()
         {
             UpravnikViewModel.UpravnikProzor = new Upravnik();
@@ -78,6 +116,7 @@ namespace Projekat.ViewModel
             UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();
             KomunikacijaProzor.Close();
         }
+
         private void UvidUZahtjeve()
         {
             ZahtjeviProzor = new ZahtjeviZaKomunikaciju();
@@ -86,11 +125,8 @@ namespace Projekat.ViewModel
             ZahtjeviProzor.DataContext = this;
         }
         #endregion
-        #region ZahtjeviZaKomunikacijuViewModel
-        public MyICommand ZatvoriZahtjeve { get; set; }
 
-        private ObservableCollection<ZahtjevZaKomunikaciju> zahtjeviZaKomunikaciju;
-        public ObservableCollection<ZahtjevZaKomunikaciju> ZahtjeviZaKomunikaciju { get { return zahtjeviZaKomunikaciju; } set { zahtjeviZaKomunikaciju = value; OnPropertyChanged("ZahtjeviZaKomunikaciju"); } }
+        #region ZahtjeviZaKomunikacijuViewModel
         private void dodajZahtjeve()
         {
             ZahtjeviZaKomunikaciju = new ObservableCollection<ZahtjevZaKomunikaciju>();
@@ -98,6 +134,7 @@ namespace Projekat.ViewModel
             ZahtjeviZaKomunikaciju.Add(new ZahtjevZaKomunikaciju("ZDRAVO", "Beograd", "Transfer osoblja", null, dodajOsoblje()));
             ZahtjeviZaKomunikaciju.Add(new ZahtjevZaKomunikaciju("ZDRAVO", "Sarajevo", "Transfer materijala", dodajOpremu(), null));
         }
+
         private List<Osoblje> dodajOsoblje()
         {
             List<Osoblje> osoblje = new List<Osoblje>();
@@ -122,10 +159,8 @@ namespace Projekat.ViewModel
         }
 
         #endregion
+
         #region  UvidUZahtjevViewModel
-        public MyICommand UvidUZahtjev { get; set; }
-        public MyICommand ZatvoriOpremu { get; set; }
-        public MyICommand UkloniZahtjev { get; set; }
 
         private void PrikaziZahtjev()
         {
@@ -150,6 +185,7 @@ namespace Projekat.ViewModel
                 ZahtjevOsobljeProzor.DataContext = this;
             }
         }
+
         private void dodajZahtjeveOsoblje()
         {
             ZahtjeviOsoblje = new ObservableCollection<Osoblje>();
@@ -158,15 +194,18 @@ namespace Projekat.ViewModel
                 ZahtjeviOsoblje.Add(osoblje);
             }
         }
+
         private void UkloniOsoblje()
         {
             ZahtjevOsobljeProzor.Close();
             ZahtjeviZaKomunikaciju.Remove(IzabraniZahtjev);
         }
+
         private void ZatvoriZahtjeveOsoblje()
         {
             ZahtjevOsobljeProzor.Close();
         }
+
         private void dodajZahtjeveOprema()
         {
             ZahtjeviOprema = new ObservableCollection<Oprema>();
@@ -178,37 +217,19 @@ namespace Projekat.ViewModel
                 }
             }
         }
+
         private void ObrisiOprema()
         {
             ZahtjeviZaKomunikaciju.Remove(IzabraniZahtjev);
             ZahtjevOpremaProzor.Close();
         }
+
         private void ZatvoriZahtjeveOpreme()
         {
             ZahtjevOpremaProzor.Close();
         }
         #endregion
-        #region KomunikacijaPomocViewModel
-        public MyICommand OtvoriPomoc { get; set; }
 
-        private void PrikaziPomoc()
-        {
-            KomunikacijaPomocProzor = new KomunikacijaPomoc();
-            KomunikacijaPomocProzor.Show();
-            KomunikacijaPomocProzor.DataContext = this;
-        }
-
-        #endregion
-        #region OtvoriIzvjestajViewModel
-        public MyICommand OtvoriIzvjestaj { get; set; }
-        private void OtvaranjeIzvjestaja()
-        {
-            IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
-            IzvjestajViewModel.IzvjestajProzor.Show();
-            IzvjestajViewModel.IzvjestajProzor.DataContext = new IzvjestajViewModel();
-            KomunikacijaProzor.Close();
-        }
-        #endregion
     }
 
     #region ZahtjeviKlasa
@@ -229,7 +250,9 @@ namespace Projekat.ViewModel
             this.osoblje = osoblje;
         }
     }
+    #endregion
 
+    #region OsobljeKlasa
     public class Osoblje
     {
         public string nazivOsoblja { get; set; }

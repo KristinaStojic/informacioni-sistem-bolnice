@@ -1,11 +1,11 @@
-﻿<Window x:Class="Projekat.Pomoc.IzvjestajPomoc"
+﻿<Window x:Class="Projekat.Pomoc.EvidencijaPomoc"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Izvjestaj pomoc" Height="500" Width="610" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+       Title="Evidencija utrosenog materijala pomoc" Height="500" Width="410" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
     <Window.DataContext>
         <ViewModel:PomocViewModel/>
     </Window.DataContext>
@@ -14,10 +14,10 @@
             <RowDefinition Height="400"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <MediaElement MediaOpened="mediaElement_MediaOpened" ScrubbingEnabled="True" Name="mediaElement" IsManipulationEnabled="True" LoadedBehavior="Manual" Source="C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT3\Projekat\Video\PomocZaIzvjestaj.mp4"/>
+        <MediaElement MediaOpened="mediaElement_MediaOpened" ScrubbingEnabled="True" Name="mediaElement" IsManipulationEnabled="True" LoadedBehavior="Manual" Source="C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT3\Projekat\Video\PomocZaEvidenciju.mp4"/>
         <Slider Thumb.DragStarted="timelineSlider_DragStarted" Thumb.DragCompleted="timelineSlider_DragCompleted" Grid.Row="1" Name="timelineSlider"></Slider>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Click="Play_Click" Margin="260, 0, 0, 0" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue" Width="30" Height="35">
+            <Button Click="Play_Click" Margin="165, 0, 0, 0" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue" Width="30" Height="35">
                 <Image Source="C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT3\Projekat\slike\play.png" Width="30" Height="30"></Image>
             </Button>
             <Button Click="Stop_Click" Margin="10, 0, 0, 0" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue" Width="30" Height="35">

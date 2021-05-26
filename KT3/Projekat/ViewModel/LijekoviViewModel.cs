@@ -13,30 +13,9 @@ namespace Projekat.ViewModel
 
     public class LijekoviViewModel : BindableBase  
     {
-        #region LijekoviViewModel
-        private ObservableCollection<Lek> lekovi;
-        public ObservableCollection<Lek> Lekovi { get { return lekovi; } set { lekovi = value; OnPropertyChanged("Lekovi"); } }
-       
-        private ObservableCollection<Lek> odbijeniLekovi;
-        public ObservableCollection<Lek> OdbijeniLekovi { get { return odbijeniLekovi; } set { odbijeniLekovi = value; OnPropertyChanged("OdbijeniLekovi"); } }
-
-        private ObservableCollection<Sastojak> sastojciLeka;
-        public ObservableCollection<Sastojak> SastojciLeka { get { return sastojciLeka; } set { sastojciLeka = value; OnPropertyChanged("SastojciLeka"); } }
-
-        private ObservableCollection<Sastojak> sastojciOdbijenog;
-        public ObservableCollection<Sastojak> SastojciOdbijenog { get { return sastojciOdbijenog; } set { sastojciOdbijenog = value; OnPropertyChanged("SastojciOdbijenog"); } }
-
-
-        private ObservableCollection<Lek> zamjenskiLekovi;
-        private ObservableCollection<Lek> zamjenskiLijekovi;
-        public ObservableCollection<Lek> ZamjenskiLekovi { get { return zamjenskiLekovi; } set { zamjenskiLekovi = value; OnPropertyChanged("ZamjenskiLekovi"); } }
-        public ObservableCollection<Lek> ZamjenskiLijekovi { get { return zamjenskiLijekovi; } set { zamjenskiLijekovi = value; OnPropertyChanged("ZamjenskiLijekovi"); } }
-       
-        private ObservableCollection<Sastojak> sastojciLijeka;
-        public ObservableCollection<Sastojak> SastojciLijeka { get { return sastojciLijeka; } set { sastojciLijeka = value; OnPropertyChanged("SastojciLijeka"); } }
-
-        public static Window DodavanjeLijekaProzor{ get; set; }
-        public Window PomocProzor{ get; set; }
+        #region Promjenljive
+        public Window PomocProzor { get; set; }
+        public static Window DodavanjeLijekaProzor { get; set; }
         public static Window DodavanjeSastojkaProzor { get; set; }
         public static Window DodavanjeNovogSastojkaProzor { get; set; }
         public static Window BrisanjeLijekaProzor { get; set; }
@@ -58,6 +37,62 @@ namespace Projekat.ViewModel
         public static Window LijekoviProzor { get; set; }
         public MyICommand OtvoriOAplikaciji { get; set; }
         public MyICommand OtvoriPomoc { get; set; }
+        public MyICommand OtvoriSale { get; set; }
+        public MyICommand OtvoriKomunikaciju { get; set; }
+        public MyICommand OtvoriIzvjestaj { get; set; }
+        public MyICommand ObrisiLijekKomanda { get; set; }
+        public MyICommand ObrisiLijekProzor { get; set; }
+        public MyICommand ZatvoriBrisanjeLijekaKomanda { get; set; }
+        
+        public MyICommand DodajLijekKomanda { get; set; }
+        public MyICommand DodajLijekProzor { get; set; }
+        public MyICommand DodajSastojakLijekuProzorKomanda { get; set; }
+        public MyICommand ZatvoriDodavanjeLijekaKomanda { get; set; }
+        public MyICommand DodajSastojakKomanda { get; set; }
+        public MyICommand ZatvoriDodavanjeSastojakaKomanda { get; set; }
+        public MyICommand DodajNoviSastojak { get; set; }
+        public MyICommand DodajSastojakZatvori { get; set; }
+
+        private static Lek uneseniLijek;
+        private string pretragaLijekova;
+        private static string nazivLijeka;
+        private static string sifraLijeka;
+        private static string nazivSastojka;
+        private static string kolicinaSastojka;
+        public string NazivLijeka{get { return nazivLijeka; }set { nazivLijeka = value; DodajLijekKomanda.RaiseCanExecuteChanged(); DodajSastojakLijekuProzorKomanda.RaiseCanExecuteChanged(); }}
+        public string SifraLijeka{get { return sifraLijeka; }set { sifraLijeka = value; DodajLijekKomanda.RaiseCanExecuteChanged(); DodajSastojakLijekuProzorKomanda.RaiseCanExecuteChanged(); }}
+        public string NazivSastojka{get { return nazivSastojka; }set { nazivSastojka = value; DodajNoviSastojak.RaiseCanExecuteChanged(); }}
+        public string KolicinaSastojka{get { return kolicinaSastojka; }set { kolicinaSastojka = value; DodajNoviSastojak.RaiseCanExecuteChanged(); }}
+        public string PretragaLijekova { get { return pretragaLijekova; } set { pretragaLijekova = value; OnPropertyChanged("PretragaLijekova"); NadjiLijekove(); } }
+
+        private static Lek izabraniLijek;
+        public Lek IzabraniLijek {get { return izabraniLijek; }set{izabraniLijek = value;ObrisiLijekKomanda.RaiseCanExecuteChanged();}}
+
+        private ObservableCollection<Lek> lekovi;
+        public ObservableCollection<Lek> Lekovi { get { return lekovi; } set { lekovi = value; OnPropertyChanged("Lekovi"); } }
+
+        private ObservableCollection<Lek> odbijeniLekovi;
+        public ObservableCollection<Lek> OdbijeniLekovi { get { return odbijeniLekovi; } set { odbijeniLekovi = value; OnPropertyChanged("OdbijeniLekovi"); } }
+
+        private ObservableCollection<Sastojak> sastojciLeka;
+        public ObservableCollection<Sastojak> SastojciLeka { get { return sastojciLeka; } set { sastojciLeka = value; OnPropertyChanged("SastojciLeka"); } }
+
+        private ObservableCollection<Sastojak> sastojciOdbijenog;
+        public ObservableCollection<Sastojak> SastojciOdbijenog { get { return sastojciOdbijenog; } set { sastojciOdbijenog = value; OnPropertyChanged("SastojciOdbijenog"); } }
+
+        private ObservableCollection<Lek> zamjenskiLekovi;
+
+        private ObservableCollection<Lek> zamjenskiLijekovi;
+        public ObservableCollection<Lek> ZamjenskiLekovi { get { return zamjenskiLekovi; } set { zamjenskiLekovi = value; OnPropertyChanged("ZamjenskiLekovi"); } }
+        public ObservableCollection<Lek> ZamjenskiLijekovi { get { return zamjenskiLijekovi; } set { zamjenskiLijekovi = value; OnPropertyChanged("ZamjenskiLijekovi"); } }
+
+        private ObservableCollection<Sastojak> sastojciLijeka;
+        public ObservableCollection<Sastojak> SastojciLijeka { get { return sastojciLijeka; } set { sastojciLijeka = value; OnPropertyChanged("SastojciLijeka"); } }
+
+
+        #endregion
+
+        #region Konstruktor
 
         public LijekoviViewModel()
         {
@@ -119,13 +154,16 @@ namespace Projekat.ViewModel
             OtvoriIzvjestaj = new MyICommand(PrikaziIzvjestaj);
             OtvoriPomoc = new MyICommand(Pomoc);
         }
+        #endregion
+
+        #region LijekoviViewModel
         private void Pomoc()
         {
             PomocProzor = new LijekoviPomoc();
             PomocProzor.Show();
             PomocProzor.DataContext = this;
         }
-        public MyICommand OtvoriIzvjestaj { get; set; }
+
         private void PrikaziIzvjestaj()
         {
             IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();
@@ -139,11 +177,7 @@ namespace Projekat.ViewModel
             OAplikacijiViewModel.OAplikacijiProzor.Show();
             OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
         }
-        public MyICommand OtvoriSale { get; set; }
-        public MyICommand OtvoriKomunikaciju { get; set; }
-        private string pretragaLijekova;
-        public string PretragaLijekova { get { return pretragaLijekova; } set { pretragaLijekova = value; OnPropertyChanged("PretragaLijekova"); NadjiLijekove(); } }
-
+        
         private void PrikaziSale()
         {
             SaleViewModel.SaleProzor = new PrikaziSalu();
@@ -184,20 +218,7 @@ namespace Projekat.ViewModel
         #endregion
 
         #region BrisanjeLijekaViewModel
-        public MyICommand ObrisiLijekKomanda { get; set; }
-        public MyICommand ObrisiLijekProzor { get; set; }
-        public MyICommand ZatvoriBrisanjeLijekaKomanda { get; set; }
 
-        private static Lek izabraniLijek;
-        public Lek IzabraniLijek
-        {
-            get { return izabraniLijek; }
-            set
-            {
-                izabraniLijek = value;
-                ObrisiLijekKomanda.RaiseCanExecuteChanged();
-            }
-        }
         private void Obrisi()
         {
             LekoviServis.obrisiLijek(izabraniLijek);
@@ -226,23 +247,7 @@ namespace Projekat.ViewModel
         #endregion
 
         #region DodajLijekViewModel
-        private static Lek uneseniLijek;
-        public MyICommand DodajLijekKomanda { get; set; }
-        public MyICommand DodajLijekProzor { get; set; }
-        public MyICommand DodajSastojakLijekuProzorKomanda { get; set; }
-        public MyICommand ZatvoriDodavanjeLijekaKomanda { get; set; }
-        public MyICommand DodajSastojakKomanda { get; set; }
-        public MyICommand ZatvoriDodavanjeSastojakaKomanda { get; set; }
-        public MyICommand DodajNoviSastojak { get; set; }
-        public MyICommand DodajSastojakZatvori { get; set; }
-
-
         
-        private static string nazivLijeka;
-        private static string sifraLijeka;
-        private static string nazivSastojka;
-        private static string kolicinaSastojka;
-
         private bool ValidnaPoljaZaDodavanjeLijeka()
         {
             if (sifraLijeka != null && nazivLijeka != null)
@@ -276,30 +281,6 @@ namespace Projekat.ViewModel
                 }
             }
             return false;
-        }
-
-        public string NazivLijeka
-        {
-            get { return nazivLijeka; }
-            set { nazivLijeka = value; DodajLijekKomanda.RaiseCanExecuteChanged(); DodajSastojakLijekuProzorKomanda.RaiseCanExecuteChanged(); }
-        }
-
-        public string SifraLijeka
-        {
-            get { return sifraLijeka; }
-            set { sifraLijeka = value; DodajLijekKomanda.RaiseCanExecuteChanged(); DodajSastojakLijekuProzorKomanda.RaiseCanExecuteChanged(); }
-        }
-
-        public string NazivSastojka
-        {
-            get { return nazivSastojka; }
-            set { nazivSastojka = value; DodajNoviSastojak.RaiseCanExecuteChanged(); }
-        }
-
-        public string KolicinaSastojka
-        {
-            get { return kolicinaSastojka; }
-            set { kolicinaSastojka = value; DodajNoviSastojak.RaiseCanExecuteChanged(); }
         }
 
         private void ZatvoriDodavanjeLijeka()

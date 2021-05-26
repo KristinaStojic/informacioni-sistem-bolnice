@@ -74,7 +74,6 @@ namespace Projekat.Servis
                 if (zauzeceSale.idTermina == IdTermina)
                 {
                     sala.zauzetiTermini.Remove(zauzeceSale);
-                    Console.WriteLine("Obrisano zauzuce sale: " + sala.Id);
                     return;
                 }
             }

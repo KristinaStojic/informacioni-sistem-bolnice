@@ -15,6 +15,7 @@
         <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOAplikaciji}"></KeyBinding>
         <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding OtvoriKomunikaciju}"></KeyBinding>
         <KeyBinding Key="V" Modifiers="Ctrl" Command="{Binding OtvoriIzvjestaj}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomoc}"></KeyBinding>
     </Window.InputBindings>
     <StackPanel>
         <Menu DockPanel.Dock="Top" Background="CadetBlue">
@@ -24,7 +25,7 @@
                 <MenuItem Header="Izvjestaj" FontSize="15" Command="{Binding OtvoriIzvjestaj}" InputGestureText="Ctrl + V"></MenuItem>
             </MenuItem>
             <MenuItem Header="Pomoc" FontSize="15">
-                <MenuItem Header="Pomoc" FontSize="15" Click="Pomoc_Click" InputGestureText="Ctrl + H"></MenuItem>
+                <MenuItem Header="Pomoc" FontSize="15" Command="{Binding OtvoriPomoc}" InputGestureText="Ctrl + H"></MenuItem>
                 <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOAplikaciji}" InputGestureText="Ctrl + A" FontSize="15" ></MenuItem>
             </MenuItem>
         </Menu>
@@ -32,11 +33,11 @@
             <Image Source="slike/back.png" Width="30" Height="30"></Image>
         </Button>
         <StackPanel Orientation="Horizontal">
-            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Evidencija utrosenog materijala</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Command="{Binding OtvoriEvidenciju}">Evidencija utrosenog materijala</Button>
             <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Command="{Binding SkladisteKomanda}">Skladiste</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10">Obracun plate</Button>
+            <Button Background="CadetBlue" Width="210" Height="60" Margin="110, 20, 50, 10" Command="{Binding ObracunPlate}">Obracun plate</Button>
             <Button Background="CadetBlue" Width="210" Height="60" Margin="10, 20, 50, 10" Command="{Binding LijekoviProzor}">Lijekovi</Button>
         </StackPanel>
     </StackPanel>

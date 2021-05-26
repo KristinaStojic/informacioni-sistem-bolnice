@@ -18,10 +18,10 @@
         <Slider Thumb.DragStarted="timelineSlider_DragStarted" Thumb.DragCompleted="timelineSlider_DragCompleted" Grid.Row="1" Name="timelineSlider"></Slider>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Click="Play_Click" Margin="250, 0, 0, 0" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue" Width="30" Height="35">
-                <Image Source="Projekat/slike/play.png" Width="30" Height="30"></Image>
+                <Image Source="C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT3\Projekat\slike\play.png" Width="30" Height="30"></Image>
             </Button>
             <Button Click="Stop_Click" Margin="10, 0, 0, 0" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue" Width="30" Height="35">
-                <Image Source="Projekat/slike/pause.png" Width="30" Height="30"></Image>
+                <Image Source="C:\Users\pc\Desktop\SIMS\informacioni-sistem-bolnice\KT3\Projekat\slike\pause.png" Width="30" Height="30"></Image>
             </Button>
         </StackPanel>
     </Grid>

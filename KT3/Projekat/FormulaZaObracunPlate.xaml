@@ -1,0 +1,21 @@
+﻿<Window x:Class="Projekat.FormulaZaObracunPlate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
+        mc:Ignorable="d"
+        Title="Formula plate" Height="200" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="LightSteelBlue">
+    <Window.DataContext>
+        <viewmodel:ZahtjeviViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" Margin="10, 10, 10, 0">Unesite formulu za</TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20">obracun plate:</TextBlock>
+        <TextBox Width="200" Height="30" Margin="10, 10, 10, 10" Text="{Binding FormulaPlate, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <StackPanel Orientation="Horizontal">
+            <Button Background="CadetBlue" Width="100" Height="30" Margin="45, 10, 10, 10" Command="{Binding UnesenaFormula}">Potvrdi</Button>
+            <Button Background="CadetBlue" Width="100" Height="30" Margin="0, 10, 10, 10" Command="{Binding ZatvoriFormulu}">Odustani</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
