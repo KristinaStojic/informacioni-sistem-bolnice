@@ -17,6 +17,11 @@ namespace Projekat.Model
             fileStream.Close();
         }
 
+        public static List<Obavestenja> SvaObavestenja()
+        {
+            return obavestenja;
+        }
+
         public static List<Obavestenja> NadjiSvaObavestenja()
         {
             if (File.ReadAllText("obavestenja.xml").Trim().Equals(""))

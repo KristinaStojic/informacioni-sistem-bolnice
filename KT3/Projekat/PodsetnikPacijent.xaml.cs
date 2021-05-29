@@ -25,18 +25,14 @@ namespace Projekat
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
-        private static ObservableCollection<Obavestenja> obavestenjaPodsetnici;
         public PodsetnikPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            obavestenjaPodsetnici = new ObservableCollection<Obavestenja>();
             PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            ObavestenjaServis.DodajPodsetnikePacijenta(obavestenjaPodsetnici, idPacijent);
-            Podsetnici.ItemsSource = obavestenjaPodsetnici;
         }
 
         private void DodajPodsetnik_Click(object sender, RoutedEventArgs e)
@@ -48,10 +44,9 @@ namespace Projekat
             List<int> pacijenti = new List<int>();
             pacijenti.Add(idPacijent);
             Obavestenja obavestenjeZaPodsetnik = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
-            // TODO
-            ObavestenjaMenadzer.obavestenja.Add(obavestenjeZaPodsetnik);
-            obavestenjaPodsetnici.Add(obavestenjeZaPodsetnik);
-
+            ObavestenjaServis.PronadjiSvaObavestenja().Add(obavestenjeZaPodsetnik);
+            ObavestenjaServis.sacuvajIzmene();
+            
             Vreme.Text = null;
             Datum.Text = null;
             SadrzajPodsetnika.Text = null;
@@ -62,12 +57,10 @@ namespace Projekat
             this.NavigationService.Navigate(odjava);*/
             PacijentPagesServis.odjava_Click(this);
         }
-
         public void karton_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.karton_Click(this, idPacijent);
         }
-
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.zakazi_Click(this, idPacijent);
@@ -76,7 +69,6 @@ namespace Projekat
         {
             PacijentPagesServis.uvid_Click(this, idPacijent);
         }
-
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.pocetna_Click(this, idPacijent);
@@ -85,18 +77,14 @@ namespace Projekat
         {
             PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
         }
-
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.Korisnik_Click(this, idPacijent);
         }
-
-
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.anketa_Click(this, idPacijent);
         }
-
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
             /* var app = (App)Application.Current;

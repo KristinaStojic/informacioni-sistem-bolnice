@@ -109,34 +109,7 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <Label Content="{namespace:Loc Podsetnici}" HorizontalAlignment="Center" Margin="0, 20, 0, 05"
-                           FontSize="14" Foreground="{DynamicResource TextColor}" FontWeight="Bold"/>
-                    <StackPanel>
-                        <ListView Margin="120, 0, 120, 0" Height="180" x:Name="Podsetnici">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Width="30" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <!--Button  HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle2}"
-                                                                 Content="ℹ︎" FontSize="14" Click="Button_Click_1"/-->
-                                                <CheckBox HorizontalAlignment="Center" IsChecked="False"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                <GridViewColumn Width="120" Header="{namespace:Loc Datum}" x:Name="datum" DisplayMemberBinding="{Binding Datum}"/>
-                                <GridViewColumn Width="180" Header="{namespace:Loc SadrzajObavestenja}" x:Name="sadrzaj">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding SadrzajObavestenja}" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </StackPanel>
-                </StackPanel>
+            </StackPanel>
         </Grid>
     </StackPanel>
 </Page>
