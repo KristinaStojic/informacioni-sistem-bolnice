@@ -13,6 +13,11 @@ namespace Projekat.Model
         public static List<ZdravstveniKarton> kartoni = new List<ZdravstveniKarton>();
         public static List<LekarskiRecept> recepti = new List<LekarskiRecept>();
 
+        public static List<ZdravstveniKarton> nadjiKartone()
+        {
+            return kartoni;
+        }
+
         public static int GenerisanjeIdRecepta(int idPac)
         {
             bool pomocna = false;

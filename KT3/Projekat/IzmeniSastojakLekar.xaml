@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="IzmeniSastojakLekar" Height="350" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+        Title="IzmeniSastojakLekar" Height="350" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>

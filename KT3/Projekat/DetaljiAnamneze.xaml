@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DetaljiAnamneze" Height="570" Width="442" KeyDown="Grid_KeyDown" WindowStartupLocation="CenterScreen">
+        Title="DetaljiAnamneze" Height="570" Width="442" KeyDown="Grid_KeyDown" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,-6.8,-5"  Background="LightSkyBlue">
         <Label Content="Datum" HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
         <DatePicker Name ="datum" HorizontalAlignment="Left" Margin="216,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.871,0.065" Width="169"/>

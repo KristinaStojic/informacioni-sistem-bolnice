@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Klinika Zdravo" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" KeyDown="Grid_KeyDown">
+        Title="Klinika Zdravo" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" KeyDown="Grid_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="316*"/>

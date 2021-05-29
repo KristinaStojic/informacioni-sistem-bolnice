@@ -34,7 +34,7 @@ namespace Projekat
             set;
         }
 
-
+        
         public ChartValues<int> ukupnoPregleda
         {
             get;set;

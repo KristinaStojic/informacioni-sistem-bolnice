@@ -88,7 +88,7 @@ namespace Projekat
         {
             try
             {
-                int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
                 int idSpecijaliste = NadjiIDSpecijaliste();
                 string datum = NadjiDatum();
@@ -212,7 +212,7 @@ namespace Projekat
         {
             try
             {
-                int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaPregelda.Text;
                 string datumPocetka = NadjiDatumPocetkaLecenja();
                 string datumKraja = NadjiDatumKrajaLecenja();

@@ -7,7 +7,7 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Pregledi i operacije" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown">
+        Title="Pregledi i operacije" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid Margin="0,0,-6,-4" Background="LightSkyBlue" >
 
         <TextBox DockPanel.Dock="Top" Name="datumFilter" TextChanged="datumFilter_TextChanged" TextAlignment="Left" Height="35" Width="206" ToolTip="Pronadjite termin po datumu" HorizontalAlignment="Right" FontSize="17" Margin="0,30,414.6,0" VerticalAlignment="Top">

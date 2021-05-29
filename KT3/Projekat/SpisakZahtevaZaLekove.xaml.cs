@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -221,7 +222,7 @@ namespace Projekat
 
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
             TabelaZahteva.Remove(zaBrisanje);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();
         }
     }
 }

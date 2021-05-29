@@ -6,7 +6,7 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="ZdravstveniKartonLekar" Height="677" Width="870" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        Title="ZdravstveniKartonLekar" Height="677" Width="870" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid  Background="LightSkyBlue">
         <StackPanel>
 

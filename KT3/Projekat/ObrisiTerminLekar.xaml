@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="ObrisiTerminLekar" Height="280" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        Title="ObrisiTerminLekar" Height="280" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Grid Margin="0,0,0,-12">
             <Grid.ColumnDefinitions>

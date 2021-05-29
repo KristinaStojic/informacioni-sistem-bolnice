@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="LicniPodaciLekar" Height="541" Width="442" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Background="LightSkyBlue">
+        Title="LicniPodaciLekar" Height="541" Width="442" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Background="LightSkyBlue" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"/>

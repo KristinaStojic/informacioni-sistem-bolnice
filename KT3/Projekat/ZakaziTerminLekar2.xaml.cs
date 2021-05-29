@@ -695,7 +695,7 @@ namespace Projekat
                     hitnaOperacija = true;
                 }
 
-                t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent, hitnaOperacija);
+                t = new Termin(TerminServisLekar.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent, hitnaOperacija);
 
 
                 if (Sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini

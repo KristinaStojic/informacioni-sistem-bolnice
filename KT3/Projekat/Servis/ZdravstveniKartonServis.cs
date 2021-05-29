@@ -64,37 +64,13 @@ namespace Projekat.Servis
             List<Lek> dozvoljeniLekovi = new List<Lek>();
 
 
-            foreach (Lek lek in LekoviMenadzer.lijekovi)
-            {
-                dozvoljeniLekovi.Add(lek);
-            }
+            dozvoljeniLekovi = nadjiDozvoljeneLekove();
 
             foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
             {
                 if (idSelektovanogPacijenta == pacijent.IdPacijenta)
-                {
-
-                    foreach (Lek lek in LekoviMenadzer.lijekovi.ToArray())
-                    {
-                        foreach (Alergeni alergen in pacijent.Karton.Alergeni.ToArray())
-                        {
-
-                            /*if (alergen.NazivSastojka.Equals(lek.sifraLeka))
-                            {
-                                dozvoljeniLekovi.Remove(lek);
-                            }*/
-
-                            foreach (Sastojak sastojak in lek.sastojci.ToArray())
-                            {
-                                if (sastojak.naziv.Equals(alergen.NazivSastojka))
-                                {
-                                    dozvoljeniLekovi.Remove(lek);
-                                }
-                            }
-
-                        }
-                    }
-
+                {                 
+                    izbaciZabranjeneLekove(dozvoljeniLekovi, pacijent);
                 }
             }
 
@@ -102,9 +78,47 @@ namespace Projekat.Servis
 
         }
 
+        private static List<Lek> nadjiDozvoljeneLekove()
+        {
+            List<Lek> dozvoljeniLekovi = new List<Lek>();
+
+            foreach (Lek lek in LekoviMenadzer.lijekovi)
+            {
+               dozvoljeniLekovi.Add(lek);
+            }
+
+            return dozvoljeniLekovi;
+        }
+
+        private static void izbaciZabranjeneLekove(List<Lek> dozvoljeniLekovi, Pacijent pacijent)
+        {
+            foreach (Lek lek in LekoviMenadzer.lijekovi.ToArray())
+            {
+                foreach (Alergeni alergen in pacijent.Karton.Alergeni.ToArray())
+                {
+
+                    foreach (Sastojak sastojak in lek.sastojci.ToArray())
+                    {
+                        if (sastojak.naziv.Equals(alergen.NazivSastojka))
+                        {
+                            dozvoljeniLekovi.Remove(lek);
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+
         public static List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
         {
             return ZdravstveniKartonMenadzer.PronadjiSveSpecijalistickeUputePacijenta(idPacijenta);
+        }
+
+        public static List<ZdravstveniKarton> kartoni()
+        {
+            return ZdravstveniKartonMenadzer.nadjiKartone();
         }
     }
 }

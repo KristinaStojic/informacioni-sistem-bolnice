@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajZamenskiLekLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue">
+        Title="DodajZamenskiLekLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" ResizeMode="NoResize">
     <StackPanel>
         <StackPanel>
             <TextBlock Name="tekst"  FontWeight="Black" FontSize="15" Margin="0, 25, 0, 0" HorizontalAlignment="Center"></TextBlock>
