@@ -1018,7 +1018,7 @@ namespace Projekat.ViewModel
         {
             foreach (Oprema oprema in OpremaNovaSala)
             {
-                if (oprema.Kolicina != 0)
+                if (oprema.Kolicina != 0 && !postojiOpremaZaPrebacivanje(oprema))
                 {
                     opremaZaPrebacivanje.Add(oprema);
                 }
@@ -1035,6 +1035,17 @@ namespace Projekat.ViewModel
             }
         }
 
+        private bool postojiOpremaZaPrebacivanje(Oprema oprema)
+        {
+            foreach(Oprema opremaZaPrebacivanje in opremaZaPrebacivanje)
+            {
+                if (opremaZaPrebacivanje.NazivOpreme.Equals(oprema.NazivOpreme))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         #endregion
 

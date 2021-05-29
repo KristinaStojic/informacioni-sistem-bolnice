@@ -1022,7 +1022,7 @@ namespace Projekat.ViewModel
         {
             Lek lijek = new Lek(izabraniOdbijeniLijek.idLeka, nazivOdbijenog, sifraOdbijenog);
             LekoviServis.IzmjeniOdbijeniLijek(izabraniOdbijeniLijek, lijek);
-            LekoviServis.sacuvajIzmeneZahteva();
+            LekoviServis.SacuvajIzmeneZahteva();
             int idx = OdbijeniLekovi.IndexOf(izabraniOdbijeniLijek);
             OdbijeniLekovi.RemoveAt(idx);
             OdbijeniLekovi.Insert(idx, lijek);
@@ -1194,7 +1194,7 @@ namespace Projekat.ViewModel
         {
             LekoviServis.ukloniZahtjev(izabraniZahtjev);
             OdbijeniLekovi.Remove(IzabraniOdbijeniLijek);
-            LekoviServis.sacuvajIzmeneZahteva();
+            LekoviServis.SacuvajIzmeneZahteva();
         }
 
         private void ZatvoriBrisanjeOdbijenog()
@@ -1229,7 +1229,7 @@ namespace Projekat.ViewModel
 
         private void sacuvajIzmjene()
         {
-            LekoviServis.sacuvajIzmeneZahteva();
+            LekoviServis.SacuvajIzmeneZahteva();
             LekoviServis.sacuvajIzmjene();
             OdbijeniLekovi.Remove(izabraniOdbijeniLijek);
         }

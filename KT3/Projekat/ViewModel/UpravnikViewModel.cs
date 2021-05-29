@@ -143,9 +143,9 @@ namespace Projekat.ViewModel
         }
         private void ZatvoriAplikaciju()
         {
+            PrijavaProzor.Show();
             KorisnickoIme = "";
             Lozinka = "";
-            PrijavaProzor.Show();
             UpravnikProzor.Close();
         }
         #endregion

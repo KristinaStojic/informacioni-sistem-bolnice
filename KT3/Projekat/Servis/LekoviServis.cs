@@ -12,6 +12,15 @@ namespace Projekat.Servis
         {
             LekoviMenadzer.DodajLijek(lijek);
         }
+
+        public static List<ZahtevZaLekove> ZahtjeviZaLijekove()
+        {
+            return LekoviMenadzer.zahteviZaLekove;
+        }
+        public static void SacuvajIzmeneZahteva()
+        {
+            LekoviMenadzer.sacuvajIzmeneZahteva();
+        }
         public static void dodajZamjenskeLijekove(Lek izabraniLijek, Lek zamjenskiLijekovi)
         {
             LekoviMenadzer.dodajZamjenskeLijekove(izabraniLijek, zamjenskiLijekovi);
@@ -117,6 +126,11 @@ namespace Projekat.Servis
         public static int GenerisanjeIdZahtjeva()
         {
             return LekoviMenadzer.GenerisanjeIdZahtjeva();
+        }
+
+        public static void ukloniZahtjev(ZahtevZaLekove izabraniZahtjev)
+        {
+            LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
         }
 
     }
