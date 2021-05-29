@@ -5,8 +5,6 @@ using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
 
@@ -14,7 +12,7 @@ namespace Projekat.ViewModel
 {
     public class SaleViewModel : BindableBase
     {
-        #region SaleViewModel
+        #region PromjenljiveViewModel
         public Window DodajSaluProzor { get; set; }
         public Window IzmjeniSaluProzor { get; set; }
         public Window RenoviranjeProzor { get; set; }
@@ -28,34 +26,256 @@ namespace Projekat.ViewModel
         public Window PrikazStatickeProzor { get; set; }
         public Window SlanjeStatickeProzor { get; set; }
         public Window DodavanjeStatickeProzor { get; set; }
+        public static Window SaleProzor { get; set; }
+        public static Window PomocSaleProzor { get; set; }
+        public MyICommand ZatvoriProzorKomanda { get; set; }
+        public MyICommand ZatvoriSalu { get; set; }
+        public MyICommand OtvoriZahtjeve { get; set; }
+        public MyICommand PomocSale { get; set; }
+        public MyICommand OtvoriKomunikaciju { get; set; }
+        public MyICommand OAplikacijiKomanda { get; set; }
+        public MyICommand DodajSaluKomanda { get; set; }
+        public MyICommand OdustaniOdDodavanjaSale { get; set; }
+        public MyICommand PotvrdiDodavanjeSale { get; set; }
+        public MyICommand IzmjeniSaluKomanda { get; set; }
+        public MyICommand OdustaniOdIzmjeneSale { get; set; }
+        public MyICommand PotvrdiIzmjenuSale { get; set; }
+        public MyICommand RenoviranjeKomanda { get; set; }
+        public MyICommand OdustaniOdRenoviranja { get; set; }
+        public MyICommand ObrisiSaluKomanda { get; set; }
+        public MyICommand PotvrdiBrisanjeSale { get; set; }
+        public MyICommand PremjestiDinamickuKomanda { get; set; }
+        public MyICommand OdustaniOdSlanjaDinamicke { get; set; }
+        public MyICommand PotvrdiSlanjeDinamicke { get; set; }
+        public MyICommand OdustaniOdBrisanjaSale { get; set; }
+        public MyICommand DodavanjeDinamickeKomanda { get; set; }
+        public MyICommand PregledStatickeKomanda { get; set; }
+        public MyICommand OdustaniOdDodavanjaDinamicke { get; set; }
+        public MyICommand PotvrdiDodavanjeDinamicke { get; set; }
+        public MyICommand PotvrdiRenoviranje { get; set; }
+        public MyICommand OdustaniOdSpajanjaSala { get; set; }
+        public MyICommand SpojiSaluKomanda { get; set; }
+        public MyICommand PregledDinamickeKomanda { get; set; }
+        public MyICommand NapustiDinamicku { get; set; }
+        public MyICommand PotvrdiSpajanjeSala { get; set; }
+        public MyICommand PodijeliSaluKomanda { get; set; }
+        public MyICommand OdustaniOdPodjeleOpreme { get; set; }
+        public MyICommand OtvoriIzvjestaj { get; set; }
+        public MyICommand PotvrdiPodjeluOpreme { get; set; }
+        public MyICommand KrevetKomanda { get; set; }
+        public MyICommand PrebaciStatickuKomanda { get; set; }
+        public MyICommand OdustaniOdSlanjaStaticke { get; set; }
+        public MyICommand PotvrdiSlanjeStaticke { get; set; }
+        public MyICommand ZatvoriStaticku { get; set; }
+        public MyICommand ZatvoriStatickuPrikaz { get; set; }
+        public MyICommand DodajStatickuKomanda { get; set; }
+        public MyICommand OdustaniOdDodavanjaStaticke { get; set; }
+        public MyICommand DodajStaticku { get; set; }
+        public MyICommand PotvrdiPodjeluSale { get; set; }
+        public MyICommand ZatvoriPrikazSala { get; set; }
+        public MyICommand OdustaniOdPodjeleSale { get; set; }
 
         public static Sala novaSala;
+        
         public static Sala salaZaSpajanje;
+        
         public static bool spajanje;
+        
         public static List<Oprema> opremaZaPrebacivanje;
+        
         public static bool aktivnaDinamicka;
+        
         public static bool aktivnaStaticka;
+        
+        private string brojSaleDodavanje;
+        
+        private string namjenaSaleDodavanje;
+        
+        private string tipSaleDodavanje;
+
+        private string tekstRenoviranja;
+
+        private string brojSaleIzmjena;
+
+        private string namjenaSaleIzmjena;
+
+        private int tipSaleIzmjena;
+        public string BrojSaleIzmjena { get { return brojSaleIzmjena; } set { brojSaleIzmjena = value; OnPropertyChanged("BrojSaleIzmjena"); PotvrdiIzmjenuSale.RaiseCanExecuteChanged(); } }
+        public string NamjenaSaleIzmjena { get { return namjenaSaleIzmjena; } set { namjenaSaleIzmjena = value; OnPropertyChanged("NamjenaSaleIzmjena"); PotvrdiIzmjenuSale.RaiseCanExecuteChanged(); } }
+        public int TipSaleIzmjena { get { return tipSaleIzmjena; } set { tipSaleIzmjena = value; OnPropertyChanged("TipSaleIzmjena"); PotvrdiIzmjenuSale.RaiseCanExecuteChanged(); } }
+
+        private DateTime datumPocetka;
+
+        private DateTime datumKraja;
+
+        private DateTime pocetakKraja;
+
+        private string vrijemePocetka;
+
+        private string vrijemeKraja;
+
+        private string maxDinamickaText;
+
+        private Oprema izabranaDinamickaDodavanje;
+
+        private Sala izabranaSalaDodavanje;
+
+        public static int dozvoljenaKolicinaDinamicka;
+
+        public string kolicinaDodavanjeDinamicke;
+
+        public static Oprema opremaZaDodavanje;
+        public string KolicinaDodavanjeDinamicke { get { return kolicinaDodavanjeDinamicke; } set { kolicinaDodavanjeDinamicke = value; OnPropertyChanged("KolicinaDodavanjeDinamicke"); PotvrdiDodavanjeDinamicke.RaiseCanExecuteChanged(); } }
+        public Oprema IzabranaDinamickaDodavanje { get { return izabranaDinamickaDodavanje; } set { izabranaDinamickaDodavanje = value; OnPropertyChanged("IzabranaDinamickaDodavanje"); promjenjenaOpremaDinamicka(); PotvrdiDodavanjeDinamicke.RaiseCanExecuteChanged(); } }
+        public Sala IzabranaSalaDodavanje { get { return izabranaSalaDodavanje; } set { izabranaSalaDodavanje = value; OnPropertyChanged("IzabranaSalaDodavanje"); promjenjenaSalaDinamicka(); PotvrdiDodavanjeDinamicke.RaiseCanExecuteChanged(); } }
+        public string MaxDinamickaText { get { return maxDinamickaText; } set { maxDinamickaText = value; OnPropertyChanged("MaxDinamickaText"); } }
+
+        private Sala izabranaSalaZaSpajanje;
+        public Sala IzabranaSalaZaSpajanje { get { return izabranaSalaZaSpajanje; } set { izabranaSalaZaSpajanje = value; OnPropertyChanged("IzabranaSalaZaSpajanje"); } }
+        public string VrijemePocetka { get { return vrijemePocetka; } set { vrijemePocetka = value; OnPropertyChanged("VrijemePocetka"); PromijenjenoVrijemePocetka(); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
+        public string VrijemeKraja { get { return vrijemeKraja; } set { vrijemeKraja = value; OnPropertyChanged("VrijemeKraja"); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
+        public DateTime DatumPocetka { get { return datumPocetka; } set { datumPocetka = value; OnPropertyChanged("DatumPocetka"); PromjenjenDatumPocetka(); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
+        public DateTime DatumKraja { get { return datumKraja; } set { datumKraja = value; OnPropertyChanged("DatumKraja"); PromjenjenDatumKraja(); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
+        public DateTime PocetakKraja { get { return pocetakKraja; } set { pocetakKraja = value; OnPropertyChanged("PocetakKraja"); } }
+
+        private string pretragaSala;
+        public string PretragaSala { get { return pretragaSala; } set { pretragaSala = value; OnPropertyChanged("PretragaSala"); promjenjenTekstPretrage(); } }
+
+        private string nazivNoveSale;
+
+        private string brojNoveSale;
+        public string NazivNoveSale { get { return nazivNoveSale; } set { nazivNoveSale = value; OnPropertyChanged("NazivNoveSale"); PotvrdiPodjeluSale.RaiseCanExecuteChanged(); } }
+        public string BrojNoveSale { get { return brojNoveSale; } set { brojNoveSale = value; OnPropertyChanged("BrojNoveSale"); PotvrdiPodjeluSale.RaiseCanExecuteChanged(); } }
+        
+        private string staraSalaString;
+
+        private Oprema opremaZaPodjelu;
+        public Oprema OpremaZaPodjelu { get { return opremaZaPodjelu; } set { opremaZaPodjelu = value; OnPropertyChanged("OpremaZaPodjelu"); } }
+        
+        private string unijetaKolicina;
+        public string UnijetaKolicina { get { return unijetaKolicina; } set { unijetaKolicina = value; OnPropertyChanged("UnijetaKolicina"); } }
+
+        private string novaSalaString;
+        public string StaraSalaString { get { return staraSalaString; } set { staraSalaString = value; OnPropertyChanged("StaraSalaString"); } }
+        public string NovaSalaString { get { return novaSalaString; } set { novaSalaString = value; OnPropertyChanged("NovaSalaString"); } }
+        
+        private string pretragaDinamicke;
+        
+        private string tekstDinamicka;
+        public string PretragaDinamicke { get { return pretragaDinamicke; } set { pretragaDinamicke = value; OnPropertyChanged("PretragaDinamicke"); PromijenjenTekstDinamicke(); } }
+        public string TekstDinamicka { get { return tekstDinamicka; } set { tekstDinamicka = value; OnPropertyChanged("TekstDinamicka"); } }
+        
+        private Oprema izabranaDinamicka;
+        
+        private string maxDinamickeTekst;
+        
+        private string nazivDinamicke;
+        
+        private Sala izabranaSalaDinamicka;
+        
+        private string kolicinaSlanjeDinamicke;
+        
+        private string upozorenjeSlanjeDinamicke;
+        public string UpozorenjeSlanjeDinamicke { get { return upozorenjeSlanjeDinamicke; } set { upozorenjeSlanjeDinamicke = value; OnPropertyChanged("UpozorenjeSlanjeDinamicke"); } }
+        public string KolicinaSlanjeDinamicke { get { return kolicinaSlanjeDinamicke; } set { kolicinaSlanjeDinamicke = value; OnPropertyChanged("KolicinaSlanjeDinamicke"); PotvrdiSlanjeDinamicke.RaiseCanExecuteChanged(); } }
+        public Sala IzabranaSalaDinamicka { get { return izabranaSalaDinamicka; } set { izabranaSalaDinamicka = value; OnPropertyChanged("IzabranaSalaDinamicka"); PotvrdiSlanjeDinamicke.RaiseCanExecuteChanged(); } }
+        public string NazivDinamicke { get { return nazivDinamicke; } set { nazivDinamicke = value; OnPropertyChanged("NazivDinamicke"); } }
+        public string MaxDinamickeTekst { get { return maxDinamickeTekst; } set { maxDinamickeTekst = value; OnPropertyChanged("MaxDinamickeTekst"); } }
+        public Oprema IzabranaDinamicka { get { return izabranaDinamicka; } set { izabranaDinamicka = value; OnPropertyChanged("IzabranaDinamicka"); } }
+        
+        public static bool azuriraj;
+        
+        private string tekstStaticka;
+        public string TekstStaticka { get { return tekstStaticka; } set { tekstStaticka = value; OnPropertyChanged("TekstStaticka"); } }
+        
+        public static bool otvoren;
+
+        private string pretragaStaticke;
+        public string PretragaStaticke { get { return pretragaStaticke; } set { pretragaStaticke = value; OnPropertyChanged("PretragaStaticke"); pretraziStaticku(); } }
+
+        private Sala izabranaSala;
+        public Sala IzabranaSala {get { return izabranaSala; }set { izabranaSala = value; OnPropertyChanged("IzabranaSala"); }}
+        public string TekstRenoviranja { get { return tekstRenoviranja; } set { tekstRenoviranja = value; OnPropertyChanged("TekstRenoviranja"); } }
+        public string BrojSaleDodavanje { get { return brojSaleDodavanje; } set { brojSaleDodavanje = value; OnPropertyChanged("BrojSaleDodavanje"); PotvrdiDodavanjeSale.RaiseCanExecuteChanged(); } }
+        public string NamjenaSaleDodavanje { get { return namjenaSaleDodavanje; } set { namjenaSaleDodavanje = value; OnPropertyChanged("NamjenaSaleDodavanje"); PotvrdiDodavanjeSale.RaiseCanExecuteChanged(); } }
+        public string TipSaleDodavanje { get { return tipSaleDodavanje; } set { tipSaleDodavanje = value; OnPropertyChanged("TipSaleDodavanje"); PotvrdiDodavanjeSale.RaiseCanExecuteChanged(); } }
+        
+        private string statickaZaSlanje;
+        
+        private string maxStaticka;
+
+        private Oprema izabranaStatickaDodavanje;
+        
+        public static Oprema izabranaStat;
+        
+        private Sala izabranaSalaZaDodavanje;
+        
+        public static int dozvoljenaKolicinaDodavanjeStaticke;
+        
+        private string tekstDodavanjaStaticke;
+        
+        private DateTime datumPrebacivanja;
+        
+        private string kolicinaDodavanjaStaticke;
+        
+        private string vrijemeDodavanja;
+        public string VrijemeDodavanja { get { return vrijemeDodavanja; } set { vrijemeDodavanja = value; OnPropertyChanged("VrijemeDodavanja"); DodajStaticku.RaiseCanExecuteChanged(); } }
+        public string KolicinaDodavanjaStaticke { get { return kolicinaDodavanjaStaticke; } set { kolicinaDodavanjaStaticke = value; OnPropertyChanged("KolicinaDodavanjaStaticke"); DodajStaticku.RaiseCanExecuteChanged(); } }
+        public DateTime DatumPrebacivanja { get { return datumPrebacivanja; } set { datumPrebacivanja = value; OnPropertyChanged("DatumPrebacivanja"); promijenjenDatum(); DodajStaticku.RaiseCanExecuteChanged(); } }
+        public string TekstDodavanjaStaticke { get { return tekstDodavanjaStaticke; } set { tekstDodavanjaStaticke = value; OnPropertyChanged("TekstDodavanjaStaticke"); } }
+        public Oprema IzabranaStatickaDodavanje { get { return izabranaStatickaDodavanje; } set { izabranaStatickaDodavanje = value; OnPropertyChanged("IzabranaStatickaDodavanje"); promjenjenaOprema(); izabranaStat = izabranaStatickaDodavanje; DodajStaticku.RaiseCanExecuteChanged(); } }
+        public Sala IzabranaSalaZaDodavanje { get { return izabranaSalaZaDodavanje; } set { izabranaSalaZaDodavanje = value; OnPropertyChanged("IzabranaSalaZaDodavanje"); promjenjenaSala(); DodajStaticku.RaiseCanExecuteChanged(); } }
+
+        private DateTime datumSlanjaStaticke;
+        public DateTime DatumSlanjaStaticke { get { return datumSlanjaStaticke; } set { datumSlanjaStaticke = value; OnPropertyChanged("DatumSlanjaStaticke"); promijenjenDatumSlanja(); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
+        public string StatickaZaSlanje { get { return statickaZaSlanje; } set { statickaZaSlanje = value; OnPropertyChanged("StatickaZaSlanje"); } }
+        public string MaxStaticka { get { return maxStaticka; } set { maxStaticka = value; OnPropertyChanged("MaxStaticka"); } }
+        
+        private Oprema izabranaStaticka;
+        public Oprema IzabranaStaticka { get { return izabranaStaticka; } set { izabranaStaticka = value; OnPropertyChanged("IzabranaStaticka"); } }
+        
+        public static int dozvoljenaKolicinaStaticke;
+        
+        private Sala salaZaSlanjeStaticke;
+        public Sala SalaZaSlanjeStaticke { get { return salaZaSlanjeStaticke; } set { salaZaSlanjeStaticke = value; OnPropertyChanged("SalaZaSlanjeStaticke"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
+        
+        private string vrijemeSlanjaStaticke;
+        public string VrijemeSlanjaStaticke { get { return vrijemeSlanjaStaticke; } set { vrijemeSlanjaStaticke = value; OnPropertyChanged("VrijemeSlanjaStaticke"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
+        
+        private string kolicinaSlanjaStaticke;
+        public string KolicinaSlanjaStaticke { get { return kolicinaSlanjaStaticke; } set { kolicinaSlanjaStaticke = value; OnPropertyChanged("KolicinaSlanjaStaticke"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
 
         private ObservableCollection<Sala> sale;
+        
         private ObservableCollection<Sala> saleDinamicka;
+        
         private ObservableCollection<Sala> saleSpajanje;
+        
         private ObservableCollection<string> terminiPocetak;
+        
         private ObservableCollection<string> terminiKraj;
+        
         private ObservableCollection<Oprema> opremaStaraSala;
+        
         private ObservableCollection<Oprema> opremaNovaSala;
+        
         private ObservableCollection<Oprema> opremaDinamicka;
+        
         private ObservableCollectionEx<Oprema> opremaStaticka;
+        
         private ObservableCollection<Oprema> dodavanjeDinamicka;
-        private string tekstRenoviranja;
-        public string TekstRenoviranja
-        {
-            get { return tekstRenoviranja; }
-            set
-            {
-                tekstRenoviranja = value;
-                OnPropertyChanged("TekstRenoviranja");
-            }
-        }
+
+        private ObservableCollection<string> terminiDodavanjaStaticke;
+        
+        private ObservableCollection<Sala> saleZaDodavanjeStaticke;
+        
+        private ObservableCollection<Oprema> statickaZaDodavanje;
+        
+        public static ObservableCollection<Oprema> OpremaStatickaZaDodavanje;
+        public ObservableCollection<Sala> SaleZaDodavanjeStaticke { get { return saleZaDodavanjeStaticke; } set { saleZaDodavanjeStaticke = value; OnPropertyChanged("SaleZaDodavanjeStaticke"); } }
+        public ObservableCollection<Oprema> StatickaZaDodavanje { get { return statickaZaDodavanje; } set { statickaZaDodavanje = value; OnPropertyChanged("StatickaZaDodavanje"); } }
+        public ObservableCollection<string> TerminiDodavanjaStaticke { get { return terminiDodavanjaStaticke; } set { terminiDodavanjaStaticke = value; OnPropertyChanged("TerminiDodavanjaStaticke"); } }
+
         public ObservableCollection<Oprema> OpremaStaraSala { get { return opremaStaraSala; } set { opremaStaraSala = value; OnPropertyChanged("OpremaStaraSala"); } }
         public ObservableCollection<Oprema> OpremaNovaSala { get { return opremaNovaSala; } set { opremaNovaSala = value; OnPropertyChanged("OpremaNovaSala"); } }
         public ObservableCollection<Oprema> DodavanjeDinamicka { get { return dodavanjeDinamicka; } set { dodavanjeDinamicka = value; OnPropertyChanged("DodavanjeDinamicka"); } }
@@ -63,18 +283,23 @@ namespace Projekat.ViewModel
         public ObservableCollectionEx<Oprema> OpremaStaticka { get { return opremaStaticka; } set { opremaStaticka = value; OnPropertyChanged("OpremaStaticka"); } }
         public ObservableCollection<string> TerminiPocetak { get { return terminiPocetak; } set { terminiPocetak = value; OnPropertyChanged("TerminiPocetak"); } }
         public ObservableCollection<string> TerminiKraj { get { return terminiKraj; } set { terminiKraj = value; OnPropertyChanged("TerminiKraj"); } }
-
         public ObservableCollection<Sala> Sale { get { return sale; } set { sale = value; OnPropertyChanged("Sale"); } }
         public ObservableCollection<Sala> SaleDinamicka { get { return saleDinamicka; } set { saleDinamicka = value; OnPropertyChanged("SaleDinamicka "); } }
         public ObservableCollection<Sala> SaleSpajanje { get { return saleSpajanje; } set { saleSpajanje = value; OnPropertyChanged("SaleSpajanje"); } }
-        public MyICommand ZatvoriProzorKomanda { get; set; }
-        public MyICommand ZatvoriSalu { get; set; }
-        public MyICommand OtvoriZahtjeve { get; set; }
-        public MyICommand PomocSale { get; set; }
-        public MyICommand OtvoriKomunikaciju { get; set; }
-        public MyICommand OAplikacijiKomanda { get; set; }
-        public static Window SaleProzor { get; set; }
-        public static Window PomocSaleProzor { get; set; }
+        
+        private ObservableCollection<Sala> saleZaSlanjeStaticke;
+        public ObservableCollection<Sala> SaleZaSlanjeStaticke { get { return saleZaSlanjeStaticke; } set { saleZaSlanjeStaticke = value; OnPropertyChanged("SaleZaSlanjeStaticke"); } }
+
+        private ObservableCollection<string> terminiStaticke;
+        public ObservableCollection<string> TerminiStaticke { get { return terminiStaticke; } set { terminiStaticke = value; OnPropertyChanged("TerminiStaticke"); } }
+        
+        private ObservableCollection<Sala> saleZaSlanje;
+        public ObservableCollection<Sala> SaleZaSlanje { get { return saleZaSlanje; } set { saleZaSlanje = value; OnPropertyChanged("SaleZaSlanje"); } }
+
+        #endregion
+
+        #region Konstruktor
+
         public SaleViewModel()
         {
             ZatvoriPrikazSala = new MyICommand(ZatvoriSale);
@@ -125,41 +350,10 @@ namespace Projekat.ViewModel
             OtvoriIzvjestaj = new MyICommand(OtvaranjeIzvjestaja);
             DodajSale();
         }
-        private void OtvoriOpis()
-        {
-            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
-            OAplikacijiViewModel.OAplikacijiProzor.Show();
-            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
-        }
-        private void PrikaziKomunikaciju()
-        {
-            KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
-            KomunikacijaViewModel.KomunikacijaProzor.Show();
-            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new KomunikacijaViewModel();
-            SaleProzor.Close();
-        }
-        private void PrikaziZahtjeve()
-        {
-            ZahtjeviViewModel.ZahtjeviProzor = new Zahtjevi();
-            ZahtjeviViewModel.ZahtjeviProzor.Show();
-            ZahtjeviViewModel.ZahtjeviProzor.DataContext = new ZahtjeviViewModel();
-            SaleProzor.Close();
-        }
-        private void Zatvori()
-        {
-            SaleServis.sacuvajIzmjene();
-        }
-        private void ZatvoriSaleProzor()
-        {
-            UpravnikViewModel.UpravnikProzor = new Upravnik();
-            UpravnikViewModel.UpravnikProzor.Show();
-            UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();
-            SaleProzor.Close();
-        }
         private void DodajSale()
         {
             Sale = new ObservableCollection<Sala>();
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (!sala.Namjena.Equals("Skladiste"))
                 {
@@ -168,24 +362,56 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
+
         #region ZatvoriPrikazSalaViewModel
-        public MyICommand ZatvoriPrikazSala { get; set; }
         private void ZatvoriSale()
         {
             //dio iz upravnik viewMODEL za zatvaranje...
         }
         #endregion
-        #region DodajSaluViewModel
-        private string brojSaleDodavanje;
-        private string namjenaSaleDodavanje;
-        private string tipSaleDodavanje;
-        public string BrojSaleDodavanje { get { return brojSaleDodavanje; } set { brojSaleDodavanje = value; OnPropertyChanged("BrojSaleDodavanje"); PotvrdiDodavanjeSale.RaiseCanExecuteChanged(); } }
-        public string NamjenaSaleDodavanje { get { return namjenaSaleDodavanje; } set { namjenaSaleDodavanje = value; OnPropertyChanged("NamjenaSaleDodavanje"); PotvrdiDodavanjeSale.RaiseCanExecuteChanged(); } }
-        public string TipSaleDodavanje { get { return tipSaleDodavanje; } set { tipSaleDodavanje = value; OnPropertyChanged("TipSaleDodavanje"); PotvrdiDodavanjeSale.RaiseCanExecuteChanged(); } }
-        public MyICommand DodajSaluKomanda { get; set; }
-        public MyICommand OdustaniOdDodavanjaSale { get; set; }
-        public MyICommand PotvrdiDodavanjeSale { get; set; }
 
+        #region SaleViewModel
+
+        private void OtvoriOpis()
+        {
+            OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
+            OAplikacijiViewModel.OAplikacijiProzor.Show();
+            OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
+        }
+        
+        private void PrikaziKomunikaciju()
+        {
+            KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
+            KomunikacijaViewModel.KomunikacijaProzor.Show();
+            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new KomunikacijaViewModel();
+            SaleProzor.Close();
+        }
+        
+        private void PrikaziZahtjeve()
+        {
+            ZahtjeviViewModel.ZahtjeviProzor = new Zahtjevi();
+            ZahtjeviViewModel.ZahtjeviProzor.Show();
+            ZahtjeviViewModel.ZahtjeviProzor.DataContext = new ZahtjeviViewModel();
+            SaleProzor.Close();
+        }
+        
+        private void Zatvori()
+        {
+            SaleServis.sacuvajIzmjene();
+        }
+        
+        private void ZatvoriSaleProzor()
+        {
+            UpravnikViewModel.UpravnikProzor = new Upravnik();
+            UpravnikViewModel.UpravnikProzor.Show();
+            UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();
+            SaleProzor.Close();
+        }
+        
+        #endregion
+
+        #region DodajSaluViewModel
+        
         private void OtvoriDodavanjeSale()
         {
             DodajSaluProzor = new DodajSalu();
@@ -264,24 +490,9 @@ namespace Projekat.ViewModel
         }
 
         #endregion
+
         #region IzmjeniSaluViewModel
-        public MyICommand IzmjeniSaluKomanda { get; set; }
-        public MyICommand OdustaniOdIzmjeneSale { get; set; }
-        public MyICommand PotvrdiIzmjenuSale { get; set; }
 
-        private string brojSaleIzmjena;
-        private string namjenaSaleIzmjena;
-        private int tipSaleIzmjena;
-        public string BrojSaleIzmjena { get { return brojSaleIzmjena; } set { brojSaleIzmjena = value; OnPropertyChanged("BrojSaleIzmjena"); PotvrdiIzmjenuSale.RaiseCanExecuteChanged(); } }
-        public string NamjenaSaleIzmjena { get { return namjenaSaleIzmjena; } set { namjenaSaleIzmjena = value; OnPropertyChanged("NamjenaSaleIzmjena"); PotvrdiIzmjenuSale.RaiseCanExecuteChanged(); } }
-        public int TipSaleIzmjena { get { return tipSaleIzmjena; } set { tipSaleIzmjena = value; OnPropertyChanged("TipSaleIzmjena"); PotvrdiIzmjenuSale.RaiseCanExecuteChanged(); } }
-
-        private Sala izabranaSala;
-        public Sala IzabranaSala
-        {
-            get { return izabranaSala; }
-            set { izabranaSala = value; OnPropertyChanged("IzabranaSala"); }
-        }
         private void OtvoriIzmjenuSale()
         {
             if (izabranaSala != null)
@@ -378,27 +589,8 @@ namespace Projekat.ViewModel
         }
 
         #endregion
-        #region RenoviranjeSaleViewModel
-        public MyICommand RenoviranjeKomanda { get; set; }
-        public MyICommand OdustaniOdRenoviranja { get; set; }
-        public MyICommand PotvrdiRenoviranje { get; set; }
-        public MyICommand OdustaniOdSpajanjaSala { get; set; }
-        public MyICommand SpojiSaluKomanda { get; set; }
-        public MyICommand PotvrdiSpajanjeSala { get; set; }
-        public MyICommand PodijeliSaluKomanda { get; set; }
 
-        private DateTime datumPocetka;
-        private DateTime datumKraja;
-        private DateTime pocetakKraja;
-        private string vrijemePocetka;
-        private string vrijemeKraja;
-        private Sala izabranaSalaZaSpajanje;
-        public Sala IzabranaSalaZaSpajanje { get { return izabranaSalaZaSpajanje; } set { izabranaSalaZaSpajanje = value; OnPropertyChanged("IzabranaSalaZaSpajanje"); } }
-        public string VrijemePocetka { get { return vrijemePocetka; } set { vrijemePocetka = value; OnPropertyChanged("VrijemePocetka"); PromijenjenoVrijemePocetka(); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
-        public string VrijemeKraja { get { return vrijemeKraja; } set { vrijemeKraja = value; OnPropertyChanged("VrijemeKraja"); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
-        public DateTime DatumPocetka { get { return datumPocetka; } set { datumPocetka = value; OnPropertyChanged("DatumPocetka"); PromjenjenDatumPocetka(); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
-        public DateTime DatumKraja { get { return datumKraja; } set { datumKraja = value; OnPropertyChanged("DatumKraja"); PromjenjenDatumKraja(); PotvrdiRenoviranje.RaiseCanExecuteChanged(); } }
-        public DateTime PocetakKraja { get { return pocetakKraja; } set { pocetakKraja = value; OnPropertyChanged("PocetakKraja"); } }
+        #region RenoviranjeSaleViewModel
 
         private void OtvoriRenoviranje()
         {
@@ -478,7 +670,7 @@ namespace Projekat.ViewModel
         private void dodajSaleSpajanje()
         {
             SaleSpajanje = new ObservableCollection<Sala>();
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (!sala.Namjena.Equals("Skladiste") && sala.Id != izabranaSala.Id && sala.TipSale.Equals(izabranaSala.TipSale))
                 {
@@ -486,6 +678,7 @@ namespace Projekat.ViewModel
                 }
             }
         }
+        
         private void spojiSale()
         {
             OpremaServis.dodajOpremuIzSaleZaDodavanje(izabranaSala, izabranaSalaZaSpajanje);
@@ -493,6 +686,7 @@ namespace Projekat.ViewModel
             Sale.Remove(IzabranaSalaZaSpajanje);
             SaleServis.sacuvajIzmjene();
         }
+
         private void IzvrsiRenoviranje()
         {
             if (salaZaSpajanje != null)
@@ -540,6 +734,7 @@ namespace Projekat.ViewModel
                 }
             }
         }
+
         private void postaviTerminePocetka()
         {
             if (DatumPocetka.Date == DateTime.Now.Date)
@@ -551,8 +746,6 @@ namespace Projekat.ViewModel
                 azurirajVrijemePocetkaDrugiDatum();
             }
         }
-
-
 
         private ZauzeceSale napraviZauzece()
         {
@@ -718,14 +911,11 @@ namespace Projekat.ViewModel
         {
             azurirajVrijemeKraja();
         }
+
         #endregion
+
         #region PodjelaSaleViewModel
-        private string nazivNoveSale;
-        private string brojNoveSale;
-        public string NazivNoveSale { get { return nazivNoveSale; } set { nazivNoveSale = value; OnPropertyChanged("NazivNoveSale"); PotvrdiPodjeluSale.RaiseCanExecuteChanged(); } }
-        public string BrojNoveSale { get { return brojNoveSale; } set { brojNoveSale = value; OnPropertyChanged("BrojNoveSale"); PotvrdiPodjeluSale.RaiseCanExecuteChanged(); } }
-        public MyICommand OdustaniOdPodjeleSale { get; set; }
-        public MyICommand PotvrdiPodjeluSale { get; set; }
+
         private void ZatvoriPodjelu()
         {
             PodijeliSaluProzor.Close();
@@ -752,7 +942,7 @@ namespace Projekat.ViewModel
 
             if (jeBroj(BrojNoveSale))
             {
-                foreach (Sala sala in SaleMenadzer.sale)
+                foreach (Sala sala in SaleServis.Sale())
                 {
                     if (sala.brojSale == int.Parse(BrojNoveSale))
                     {
@@ -786,21 +976,6 @@ namespace Projekat.ViewModel
             DefinisiPodjeluProzor.DataContext = this;
             PodijeliSaluProzor.Close();
         }
-
-        #endregion
-        #region PodjelaSaleViewModel
-        public MyICommand OdustaniOdPodjeleOpreme { get; set; }
-        public MyICommand PotvrdiPodjeluOpreme { get; set; }
-
-        private string staraSalaString;
-        private Oprema opremaZaPodjelu;
-        public Oprema OpremaZaPodjelu { get { return opremaZaPodjelu; } set { opremaZaPodjelu = value; OnPropertyChanged("OpremaZaPodjelu"); } }
-        private string unijetaKolicina;
-        public string UnijetaKolicina { get { return unijetaKolicina; } set { unijetaKolicina = value; OnPropertyChanged("UnijetaKolicina"); } }
-
-        private string novaSalaString;
-        public string StaraSalaString { get { return staraSalaString; } set { staraSalaString = value; OnPropertyChanged("StaraSalaString"); } }
-        public string NovaSalaString { get { return novaSalaString; } set { novaSalaString = value; OnPropertyChanged("NovaSalaString"); } }
         private bool ValidnaPoljaZaPodjelu()
         {
             if (OpremaNovaSala != null)
@@ -862,8 +1037,8 @@ namespace Projekat.ViewModel
 
 
         #endregion
+
         #region KrevetViewModel
-        public MyICommand KrevetKomanda { get; set; }
         private void DodajKrevet()
         {
             if (izabranaSala != null)
@@ -879,10 +1054,8 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
+
         #region ObrisiSaluViewModel
-        public MyICommand ObrisiSaluKomanda { get; set; }
-        public MyICommand PotvrdiBrisanjeSale { get; set; }
-        public MyICommand OdustaniOdBrisanjaSale { get; set; }
         private void ObrisiSalu()
         {
             if (izabranaSala != null)
@@ -896,6 +1069,7 @@ namespace Projekat.ViewModel
                 MessageBox.Show("Morate izabrati salu!");
             }
         }
+
         private void ObrisiIzabranuSalu()
         {
             SaleServis.ObrisiSalu(izabranaSala);
@@ -908,9 +1082,8 @@ namespace Projekat.ViewModel
             BrisanjeSaleProzor.Close();
         }
         #endregion
+
         #region PretragaSalaViewModel
-        private string pretragaSala;
-        public string PretragaSala { get { return pretragaSala; } set { pretragaSala = value; OnPropertyChanged("PretragaSala"); promjenjenTekstPretrage(); } }
         private void promjenjenTekstPretrage()
         {
             Sale.Clear();
@@ -927,15 +1100,10 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
-        #region DinamickaOpremaViewModel
-        public MyICommand PregledDinamickeKomanda { get; set; }
-        public MyICommand NapustiDinamicku { get; set; }
 
-        private string pretragaDinamicke;
-        private string tekstDinamicka;
-        public string PretragaDinamicke { get { return pretragaDinamicke; } set { pretragaDinamicke = value; OnPropertyChanged("PretragaDinamicke"); PromijenjenTekstDinamicke(); } }
-        public string TekstDinamicka { get { return tekstDinamicka; } set { tekstDinamicka = value; OnPropertyChanged("TekstDinamicka"); } }
-        private void PrikaziDinamicku()
+        #region DinamickaOpremaViewModel
+
+       private void PrikaziDinamicku()
         {
             if (izabranaSala != null)
             {
@@ -1015,24 +1183,9 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
+
         #region PremjestiDinamickuViewModel
-        private Oprema izabranaDinamicka;
-        private string maxDinamickeTekst;
-        private string nazivDinamicke;
-        private Sala izabranaSalaDinamicka;
-        private string kolicinaSlanjeDinamicke;
-        private string upozorenjeSlanjeDinamicke;
-        public string UpozorenjeSlanjeDinamicke { get { return upozorenjeSlanjeDinamicke; } set { upozorenjeSlanjeDinamicke = value; OnPropertyChanged("UpozorenjeSlanjeDinamicke"); } }
-        public string KolicinaSlanjeDinamicke { get { return kolicinaSlanjeDinamicke; } set { kolicinaSlanjeDinamicke = value; OnPropertyChanged("KolicinaSlanjeDinamicke"); PotvrdiSlanjeDinamicke.RaiseCanExecuteChanged(); } }
-        public Sala IzabranaSalaDinamicka { get { return izabranaSalaDinamicka; } set { izabranaSalaDinamicka = value; OnPropertyChanged("IzabranaSalaDinamicka"); PotvrdiSlanjeDinamicke.RaiseCanExecuteChanged(); } }
-        public string NazivDinamicke { get { return nazivDinamicke; } set { nazivDinamicke = value; OnPropertyChanged("NazivDinamicke"); } }
-        public string MaxDinamickeTekst { get { return maxDinamickeTekst; } set { maxDinamickeTekst = value; OnPropertyChanged("MaxDinamickeTekst"); } }
-        private ObservableCollection<Sala> saleZaSlanje;
-        public ObservableCollection<Sala> SaleZaSlanje { get { return saleZaSlanje; } set { saleZaSlanje = value; OnPropertyChanged("SaleZaSlanje"); } }
-        public Oprema IzabranaDinamicka { get { return izabranaDinamicka; } set { izabranaDinamicka = value; OnPropertyChanged("IzabranaDinamicka"); } }
-        public MyICommand PremjestiDinamickuKomanda { get; set; }
-        public MyICommand OdustaniOdSlanjaDinamicke { get; set; }
-        public MyICommand PotvrdiSlanjeDinamicke { get; set; }
+         
         private void OtvoriPremjestanjeDinamicke()
         {
             if (izabranaDinamicka != null)
@@ -1087,13 +1240,6 @@ namespace Projekat.ViewModel
                 {
                     if (int.Parse(kolicinaSlanjeDinamicke) > izabranaDinamicka.Kolicina || int.Parse(kolicinaSlanjeDinamicke) <= 0 || izabranaSalaDinamicka == null)
                     {
-                        if (int.Parse(kolicinaSlanjeDinamicke) > izabranaDinamicka.Kolicina)
-                        {
-                            UpozorenjeSlanjeDinamicke = "Morate unijeti manju vrijednost";
-                        } else if (int.Parse(kolicinaSlanjeDinamicke) <= 0)
-                        {
-                            UpozorenjeSlanjeDinamicke = "Morate unijeti vecu vrijednost";
-                        }
                         return false;
                     }
                     else if (int.Parse(kolicinaSlanjeDinamicke) <= izabranaDinamicka.Kolicina && int.Parse(kolicinaSlanjeDinamicke) > 0 && izabranaSalaDinamicka != null)
@@ -1115,21 +1261,9 @@ namespace Projekat.ViewModel
             azurirajPrikazDinamicke();
         }
         #endregion
-        #region DodavanjeDinamickeViewModel
-        private string maxDinamickaText;
-        private Oprema izabranaDinamickaDodavanje;
-        private Sala izabranaSalaDodavanje;
-        public static int dozvoljenaKolicinaDinamicka;
-        public string kolicinaDodavanjeDinamicke;
 
-        public static Oprema opremaZaDodavanje;
-        public string KolicinaDodavanjeDinamicke { get { return kolicinaDodavanjeDinamicke; } set { kolicinaDodavanjeDinamicke = value; OnPropertyChanged("KolicinaDodavanjeDinamicke"); PotvrdiDodavanjeDinamicke.RaiseCanExecuteChanged(); } }
-        public Oprema IzabranaDinamickaDodavanje { get { return izabranaDinamickaDodavanje; } set { izabranaDinamickaDodavanje = value; OnPropertyChanged("IzabranaDinamickaDodavanje"); promjenjenaOpremaDinamicka(); PotvrdiDodavanjeDinamicke.RaiseCanExecuteChanged(); } }
-        public Sala IzabranaSalaDodavanje { get { return izabranaSalaDodavanje; } set { izabranaSalaDodavanje = value; OnPropertyChanged("IzabranaSalaDodavanje"); promjenjenaSalaDinamicka(); PotvrdiDodavanjeDinamicke.RaiseCanExecuteChanged(); } }
-        public string MaxDinamickaText { get { return maxDinamickaText; } set { maxDinamickaText = value; OnPropertyChanged("MaxDinamickaText"); } }
-        public MyICommand DodavanjeDinamickeKomanda { get; set; }
-        public MyICommand OdustaniOdDodavanjaDinamicke { get; set; }
-        public MyICommand PotvrdiDodavanjeDinamicke { get; set; }
+        #region DodavanjeDinamickeViewModel
+        
         private void OtvoriDodavanjeDinamicke()
         {
             DodavanjeDinamickeProzor = new PreraspodjelaDinamicke();
@@ -1161,7 +1295,7 @@ namespace Projekat.ViewModel
 
         private void dodajIzSkladista()
         {
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            foreach (Oprema oprema in OpremaServis.Oprema())
             {
                 if (!oprema.Staticka)
                 {
@@ -1171,7 +1305,7 @@ namespace Projekat.ViewModel
         }
         private void dodajIzSala()
         {
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
                 foreach (Oprema oprema in sala.Oprema)
                 {
@@ -1248,7 +1382,7 @@ namespace Projekat.ViewModel
             if (IzabranaSalaDodavanje != null)
             {
 
-                foreach (Sala sala in SaleMenadzer.sale)
+                foreach (Sala sala in SaleServis.Sale())
                 {
                     if (IzabranaSalaDodavanje.Id == sala.Id)
                     {
@@ -1282,14 +1416,9 @@ namespace Projekat.ViewModel
             return false;
         }
         #endregion
+
         #region SlanjeStatickeViewModel
-        public MyICommand PregledStatickeKomanda { get; set; }
-        public static bool azuriraj;
-        public MyICommand ZatvoriStaticku { get; set; }
-        public MyICommand ZatvoriStatickuPrikaz { get; set; }
-        private string tekstStaticka;
-        public string TekstStaticka { get { return tekstStaticka; } set { tekstStaticka = value; OnPropertyChanged("TekstStaticka"); } }
-        public static bool otvoren;
+        
         private void PrikaziStaticku()
         {
             if (izabranaSala != null)
@@ -1336,7 +1465,7 @@ namespace Projekat.ViewModel
             List<Oprema> opremaStaticka1 = new List<Oprema>();
             if (izabranaSala.Oprema != null)
             {
-                foreach (Sala sala in SaleMenadzer.sale)
+                foreach (Sala sala in SaleServis.Sale())
                 {
                     if (sala.Id == izabranaSala.Id)
                     {
@@ -1376,7 +1505,7 @@ namespace Projekat.ViewModel
             List<Oprema> opremaStaticka1 = new List<Oprema>();
             if (izabranaSala.Oprema != null)
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                foreach (Sala s in SaleServis.Sale())
                 {
                     if (s.Id == izabranaSala.Id)
                     {
@@ -1416,10 +1545,9 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
-        #region PretragaStatickeViewModel
-        private string pretragaStaticke;
-        public string PretragaStaticke { get { return pretragaStaticke; } set { pretragaStaticke = value; OnPropertyChanged("PretragaStaticke"); pretraziStaticku(); } }
 
+        #region PretragaStatickeViewModel
+       
         private void pretraziStaticku()
         {
             OpremaStaticka.Clear();
@@ -1432,30 +1560,8 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
-        #region PrebaciStatickuViewModel
-        public MyICommand PrebaciStatickuKomanda { get; set; }
-        public MyICommand OdustaniOdSlanjaStaticke { get; set; }
-        public MyICommand PotvrdiSlanjeStaticke { get; set; }
-        private string statickaZaSlanje;
-        private string maxStaticka;
-        private DateTime datumSlanjaStaticke;
-        public DateTime DatumSlanjaStaticke { get { return datumSlanjaStaticke; } set { datumSlanjaStaticke = value; OnPropertyChanged("DatumSlanjaStaticke"); promijenjenDatumSlanja(); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
-        public string StatickaZaSlanje { get { return statickaZaSlanje; } set { statickaZaSlanje = value; OnPropertyChanged("StatickaZaSlanje"); } }
-        public string MaxStaticka { get { return maxStaticka; } set { maxStaticka = value; OnPropertyChanged("MaxStaticka"); } }
-        private ObservableCollection<Sala> saleZaSlanjeStaticke;
-        public ObservableCollection<Sala> SaleZaSlanjeStaticke { get { return saleZaSlanjeStaticke; } set { saleZaSlanjeStaticke = value; OnPropertyChanged("SaleZaSlanjeStaticke"); } }
 
-        private ObservableCollection<string> terminiStaticke;
-        public ObservableCollection<string> TerminiStaticke { get { return terminiStaticke; } set { terminiStaticke = value; OnPropertyChanged("TerminiStaticke"); } }
-        private Oprema izabranaStaticka;
-        public Oprema IzabranaStaticka { get { return izabranaStaticka; } set { izabranaStaticka = value; OnPropertyChanged("IzabranaStaticka"); } }
-        public static int dozvoljenaKolicinaStaticke;
-        private Sala salaZaSlanjeStaticke;
-        public Sala SalaZaSlanjeStaticke { get { return salaZaSlanjeStaticke; } set { salaZaSlanjeStaticke = value; OnPropertyChanged("SalaZaSlanjeStaticke"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
-        private string vrijemeSlanjaStaticke;
-        public string VrijemeSlanjaStaticke { get { return vrijemeSlanjaStaticke; } set { vrijemeSlanjaStaticke = value; OnPropertyChanged("VrijemeSlanjaStaticke"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
-        private string kolicinaSlanjaStaticke;
-        public string KolicinaSlanjaStaticke { get { return kolicinaSlanjaStaticke; } set { kolicinaSlanjaStaticke = value; OnPropertyChanged("KolicinaSlanjaStaticke"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } }
+        #region PrebaciStatickuViewModel
         private void OtvoriPrebacivanjeStaticke()
         {
             if (IzabranaStaticka != null)
@@ -1533,7 +1639,7 @@ namespace Projekat.ViewModel
         private void postaviDozvoljenuKolicinu()
         {
             int kolicina = izabranaStaticka.Kolicina;
-            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
                 if (premjestaj.izSale.Id == izabranaSala.Id && premjestaj.oprema.IdOpreme == izabranaStaticka.IdOpreme)
                 {
@@ -1589,7 +1695,7 @@ namespace Projekat.ViewModel
 
         private bool postojiTermin(int termin)
         {
-            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
                 if (premjestaj.datumIVrijeme.Hour.ToString().Equals(termin.ToString()))
                 {
@@ -1611,7 +1717,7 @@ namespace Projekat.ViewModel
         private bool provjeriPreostalo(Oprema opremaZaSlanje)
         {
             int kolicina = opremaZaSlanje.Kolicina;
-            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
                 if (premjestaj.izSale.Id == izabranaSala.Id && premjestaj.oprema.IdOpreme == opremaZaSlanje.IdOpreme)
                 {
@@ -1628,31 +1734,8 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
+
         #region DodajStatickuViewModel
-        public MyICommand DodajStatickuKomanda { get; set; }
-        public MyICommand OdustaniOdDodavanjaStaticke { get; set; }
-        public MyICommand DodajStaticku { get; set; }
-        private Oprema izabranaStatickaDodavanje;
-        public static Oprema izabranaStat;
-        private ObservableCollection<string> terminiDodavanjaStaticke;
-        private ObservableCollection<Sala> saleZaDodavanjeStaticke;
-        private ObservableCollection<Oprema> statickaZaDodavanje;
-        public static ObservableCollection<Oprema> OpremaStatickaZaDodavanje;
-        private Sala izabranaSalaZaDodavanje;
-        public static int dozvoljenaKolicinaDodavanjeStaticke;
-        private string tekstDodavanjaStaticke;
-        private DateTime datumPrebacivanja;
-        private string kolicinaDodavanjaStaticke;
-        private string vrijemeDodavanja;
-        public string VrijemeDodavanja { get { return vrijemeDodavanja; }set{ vrijemeDodavanja = value; OnPropertyChanged("VrijemeDodavanja"); DodajStaticku.RaiseCanExecuteChanged(); } }
-        public string KolicinaDodavanjaStaticke { get { return kolicinaDodavanjaStaticke; } set { kolicinaDodavanjaStaticke = value; OnPropertyChanged("KolicinaDodavanjaStaticke"); DodajStaticku.RaiseCanExecuteChanged(); } }
-        public DateTime DatumPrebacivanja { get { return datumPrebacivanja; } set { datumPrebacivanja = value;OnPropertyChanged("DatumPrebacivanja"); promijenjenDatum(); DodajStaticku.RaiseCanExecuteChanged(); } }
-        public string TekstDodavanjaStaticke { get { return tekstDodavanjaStaticke; } set { tekstDodavanjaStaticke = value; OnPropertyChanged("TekstDodavanjaStaticke"); } }
-        public ObservableCollection<Sala> SaleZaDodavanjeStaticke { get { return saleZaDodavanjeStaticke; } set { saleZaDodavanjeStaticke = value; OnPropertyChanged("SaleZaDodavanjeStaticke"); } }
-        public ObservableCollection<Oprema> StatickaZaDodavanje { get { return statickaZaDodavanje; } set { statickaZaDodavanje = value; OnPropertyChanged("StatickaZaDodavanje"); } }
-        public ObservableCollection<string> TerminiDodavanjaStaticke { get { return terminiDodavanjaStaticke; } set { terminiDodavanjaStaticke = value; OnPropertyChanged("TerminiDodavanjaStaticke"); } }
-        public Oprema IzabranaStatickaDodavanje { get { return izabranaStatickaDodavanje; }set { izabranaStatickaDodavanje = value; OnPropertyChanged("IzabranaStatickaDodavanje"); promjenjenaOprema(); izabranaStat = izabranaStatickaDodavanje; DodajStaticku.RaiseCanExecuteChanged(); } }
-        public Sala IzabranaSalaZaDodavanje { get { return izabranaSalaZaDodavanje; } set { izabranaSalaZaDodavanje = value; OnPropertyChanged("IzabranaSalaZaDodavanje"); promjenjenaSala(); DodajStaticku.RaiseCanExecuteChanged(); } }
         private void OtvoriDodavanjeStaticke()
         {
             try
@@ -1747,7 +1830,7 @@ namespace Projekat.ViewModel
         private int nadjiDozvoljenuKolicinuDodavanja(Oprema oprema, Sala sala)
         {
             int kolicina = oprema.Kolicina;
-            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj pm in PremjestajServis.Premjestaji())
             {
                 if (pm.izSale.Id == sala.Id && pm.oprema.IdOpreme == oprema.IdOpreme)
                 {
@@ -1829,7 +1912,7 @@ namespace Projekat.ViewModel
         private int nadjiDozvoljenuKolicinu(Oprema oprema, Sala sala)
         {
             int kolicina = oprema.Kolicina;
-            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj pm in PremjestajServis.Premjestaji())
             {
                 if (pm.izSale.Id == IzabranaSala.Id && pm.oprema.IdOpreme == IzabranaStatickaDodavanje.IdOpreme)
                 {
@@ -1848,19 +1931,11 @@ namespace Projekat.ViewModel
                     TerminiDodavanjaStaticke.Add(termin + ":00");
                 }
             }
-            TerminiDodavanjaStaticke.Add("15:51");
-            TerminiDodavanjaStaticke.Add("15:52");
-            TerminiDodavanjaStaticke.Add("15:53");
-            TerminiDodavanjaStaticke.Add("15:54");
-            TerminiDodavanjaStaticke.Add("15:55");
-            TerminiDodavanjaStaticke.Add("15:56");
-            TerminiDodavanjaStaticke.Add("15:57");
-            TerminiDodavanjaStaticke.Add("15:54");
         }
 
         private bool postojiTerminDodavanja(int termin)
         {
-            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
                 if (premjestaj.datumIVrijeme.Hour.ToString().Equals(termin.ToString()))
                 {
@@ -1878,7 +1953,7 @@ namespace Projekat.ViewModel
 
         private void dodajStatickuIzSkladista()
         {
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            foreach (Oprema oprema in OpremaServis.Oprema())
             {
                 if (oprema.Staticka)
                 {
@@ -1921,6 +1996,7 @@ namespace Projekat.ViewModel
         }
 
         #endregion
+
         #region PomocViewModel
         private void OtvoriPomoc()
         {
@@ -1928,9 +2004,10 @@ namespace Projekat.ViewModel
             PomocSaleProzor.Show();
             PomocSaleProzor.DataContext = this;
         }
+
         #endregion
+
         #region OtvoriIzvjestajViewModel
-        public MyICommand OtvoriIzvjestaj { get; set; }
 
         private void OtvaranjeIzvjestaja()
         {

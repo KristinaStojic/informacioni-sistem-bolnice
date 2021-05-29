@@ -11,12 +11,9 @@ namespace Projekat
     /// </summary>
     public partial class IzmjeniSastojkeOdbijenog : Window
     {
-        
         public IzmjeniSastojkeOdbijenog()
         {
             InitializeComponent();
         }
-
-       
     }
 }

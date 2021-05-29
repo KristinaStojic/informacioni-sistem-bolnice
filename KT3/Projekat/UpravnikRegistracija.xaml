@@ -9,6 +9,10 @@
     <Window.DataContext>
         <ViewModel:UpravnikViewModel/>
     </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding NapustiRegistraciju}"></KeyBinding>
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -21,6 +25,9 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Button Command="{Binding NapustiRegistraciju}" HorizontalAlignment="Left" ToolTip="Nazad, Ctrl + N" Background="White">
+            <Image Source="slike/back.png" Width="30" Height="30" Margin="10"></Image>
+        </Button>
         <TextBlock Grid.Row="0" FontSize="20" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center">Registracija</TextBlock>
         <TextBlock Grid.Row="1" FontWeight="Black" Margin="200, 0, 0, 0">Ime:</TextBlock>
         <TextBox Grid.Row="1" BorderBrush="Black" Width="200" Height="30" Text="{Binding Ime, UpdateSourceTrigger=PropertyChanged}"></TextBox>

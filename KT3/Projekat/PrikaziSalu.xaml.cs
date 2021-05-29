@@ -16,7 +16,6 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziSalu : Window
     {
-
         public PrikaziSalu()
         {
             InitializeComponent();

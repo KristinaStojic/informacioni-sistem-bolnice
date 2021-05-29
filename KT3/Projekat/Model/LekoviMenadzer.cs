@@ -24,9 +24,6 @@ namespace Projekat.Model
                 if(lijek.idLeka == izabraniLijek.idLeka)
                 {
                         lijek.zamenskiLekovi.Add(zamjenskiLijekovi.idLeka);
-                        //ZamjenskiLijekovi.ZamjenskiLekovi.Add(zamjenski);//doda ih onoliko puta koliko ih ima?
-                        //LijekoviViewModel.ZamjenskiLekovi.Add(zamjenski);
-                    
                 }
             }
             sacuvajIzmjene();
@@ -53,9 +50,6 @@ namespace Projekat.Model
                 if (lijek.idLeka == izabraniLijek.idLeka)
                 {
                     lijek.sastojci.Add(sastojak);
-                   //sastojci.Add(sastojak);
-                    
-
                 }
             }
             sacuvajIzmjene();
@@ -105,15 +99,6 @@ namespace Projekat.Model
                     lijek.nazivLeka = izmjenjeniLijek.nazivLeka;
                     lijek.zamenskiLekovi = izmjenjeniLijek.zamenskiLekovi;
                     lijek.sastojci = izmjenjeniLijek.sastojci;
-                    /*int idx = LijekoviViewModel.Lekovi.IndexOf(izabraniLijek);
-                    LijekoviViewModel.Lekovi.RemoveAt(idx);
-                    LijekoviViewModel.Lekovi.Insert(idx, lijek);
-                    if (ZamjenskiLijekovi.ZamjenskiLekovi != null)
-                    {
-                        int idx1 = ZamjenskiLijekovi.ZamjenskiLekovi.IndexOf(izabraniLijek);
-                        ZamjenskiLijekovi.ZamjenskiLekovi.RemoveAt(idx1);
-                        ZamjenskiLijekovi.ZamjenskiLekovi.Insert(idx1, lijek);
-                    }*/
                 }
             }
             sacuvajIzmjene();
@@ -129,9 +114,6 @@ namespace Projekat.Model
                     zahtjev.lek.nazivLeka = uLijek.nazivLeka;
                     zahtjev.sifraLeka = uLijek.sifraLeka;
                     zahtjev.nazivLeka = uLijek.nazivLeka;
-                   // int idx = OdbijeniLijekovi.OdbijeniLekovi.IndexOf(izabraniLijek);
-                   // OdbijeniLijekovi.OdbijeniLekovi.RemoveAt(idx);
-                    //OdbijeniLijekovi.OdbijeniLekovi.Insert(idx, zahtjev.lek);
                 }
             }
         }
@@ -259,7 +241,6 @@ namespace Projekat.Model
                 if(lijek.idLeka == izabraniLijek.idLeka)
                 {
                     lijek.zamenskiLekovi.Remove(zamjenskiLijek.idLeka);
-                    //ZamjenskiLijekovi.ZamjenskiLekovi.Remove(zamjenskiLijek);
                 }
             }
             sacuvajIzmjene();

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Projekat.ViewModel
 {
-    class PomocViewModel
-    {
-    }
+    #region PomocViewModel
+    class PomocViewModel{}
+    #endregion
 }
