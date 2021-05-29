@@ -18,7 +18,5 @@ namespace Projekat
         {
             InitializeComponent();
         }
-
-      
     }
 }

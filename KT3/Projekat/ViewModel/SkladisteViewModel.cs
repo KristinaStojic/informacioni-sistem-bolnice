@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
@@ -16,34 +14,126 @@ namespace Projekat.ViewModel
 {
     class SkladisteViewModel : BindableBase
     {
-        #region SkladisteViewModel
-        public static bool otvoren;
-        private int izabraniTab;
-        public static int dozvoljenaKolicina;
-        public static int dozvoljenaKolicinaStaticke;
-        public static bool azuriraj = false;
-        private ObservableCollection<string> termini;
-        public ObservableCollection<string> Termini { get { return termini; } set { termini = value; OnPropertyChanged("Termini"); } }
-        public int IzabraniTab { get { return izabraniTab; } set { izabraniTab = value; OnPropertyChanged("IzabraniTab"); } }
-        List<Oprema> opremaStaticka1;
-        public string validacija;
-        public string Validacija { get { return validacija; } set { if (value != validacija) { validacija = value; OnPropertyChanged("Validacija"); PrebaciDinamickuKomanda.RaiseCanExecuteChanged(); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } } }
-        private ObservableCollection<Sala> sale;
-        public ObservableCollection<Sala> Sale { get { return sale; } set { sale = value; OnPropertyChanged("Sale"); } }
-        public ObservableCollectionEx<Oprema> opremaStaticka;
-        private ObservableCollection<Oprema> opremaDinamicka;
-        public ObservableCollectionEx<Oprema> OpremaStaticka { get { return opremaStaticka; } set { opremaStaticka = value; OnPropertyChanged("OpremaStaticka"); } }
-        public ObservableCollection<Oprema> OpremaDinamicka { get { return opremaDinamicka; } set { opremaDinamicka = value; OnPropertyChanged("OpremaDinamicka"); } }
+        #region Promjenljive
         public Window DodajOpremuProzor { get; set; }
         public Window IzmjeniOpremuProzor { get; set; }
         public Window PrebaciStatickuProzor { get; set; }
         public Window PrebaciDinamickuProzor { get; set; }
         public Window ObrisiOpremuProzor { get; set; }
         public Window PomocProzor { get; set; }
-        public static  Window SkladisteProzor { get; set;}
+        public static Window SkladisteProzor { get; set; }
         public MyICommand OtvoriIzvjestaj { get; set; }
         public MyICommand OtvoriOAplikaciji { get; set; }
         public MyICommand OtvoriPomoc { get; set; }
+        public MyICommand PrikaziSale { get; set; }
+        public MyICommand PrikaziKomunikaciju { get; set; }
+        public MyICommand NapustiSkladiste { get; set; }
+        public MyICommand DodajOpremu { get; set; }
+        public MyICommand ZatvoriDodavanjeOpreme { get; set; }
+        public MyICommand ZatvoriSkladisteProzor { get; set; }
+        public MyICommand DodavanjeOpremeKomanda { get; set; }
+        public MyICommand IzmjeniOpremu { get; set; }
+        public MyICommand OdustaniOdIzmjeneOpreme { get; set; }
+        public MyICommand PotvrdiIzmjenuOpreme { get; set; }
+        public MyICommand OdustaniOdSlanjaStaticke { get; set; }
+        public MyICommand PotvrdiSlanjeStaticke { get; set; }
+        public MyICommand ObrisiOpremu { get; set; }
+        public MyICommand OdustaniOdBrisanjaOpreme { get; set; }
+        public MyICommand PotvrdiBrisanjeOpreme { get; set; }
+        public MyICommand ZatvoriPrebacivanjaStaticke { get; set; }
+        public MyICommand PrebaciOpremu { get; set; }
+        public MyICommand OdustaniOdPrebacivanjaDinamicke { get; set; }
+        public MyICommand PrebaciDinamickuKomanda { get; set; }
+        public MyICommand ZatvoriPrebacivanjaDinamicke { get; set; }
+
+        public static bool otvoren;
+        
+        private int izabraniTab;
+        
+        public static int dozvoljenaKolicina;
+        
+        public static int dozvoljenaKolicinaStaticke;
+        
+        public static bool azuriraj = false;
+        
+        private string tekstPretrage;
+
+        private string nazivOpreme;
+
+        private string kolicinaOpreme;
+        
+        private Oprema izabranaStaticka;
+        
+        private Oprema izabranaDinamicka;
+        
+        Oprema izabranaOprema;
+
+        private string izmjenaOpremeNaziv;
+        
+        private string izmjenaOpremeKolicina;
+        
+        public static bool aktivnaDinamicka;
+        
+        private string dinamicka;
+        
+        private string maxDinamicka;
+        
+        private string nazivStaticke;
+        
+        private string maxStaticka;
+        
+        public static bool aktivnaStaticka;
+        
+        private DateTime izabraniDatum;
+        
+        private Sala salaStaticka;
+        
+        private string termin;
+        
+        private string kolicinaZaBrisanje;
+        
+        private string unesenaKolicinaZaBrisanje;
+        public string UnesenaKolicinaZaBrisanje{get { return unesenaKolicinaZaBrisanje; }set{unesenaKolicinaZaBrisanje = value;OnPropertyChanged("UnesenaKolicinaZaBrisanje");PotvrdiBrisanjeOpreme.RaiseCanExecuteChanged();}}
+        public string KolicinaZaBrisanje{get { return kolicinaZaBrisanje; }set { kolicinaZaBrisanje = value; OnPropertyChanged("KolicinaZaBrisanje"); }}
+        public string Termin{get { return termin; }set { termin = value; OnPropertyChanged("Termin"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); }}
+        public Sala SalaStaticka{get { return salaStaticka; }set { salaStaticka = value; OnPropertyChanged("SaleStaticka"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); }}
+        public DateTime IzabraniDatum{get { return izabraniDatum; }set { izabraniDatum = value; OnPropertyChanged("IzabraniDatum"); PromijenioSeDatum(); }}
+        public string MaxStaticka{get { return maxStaticka; }set { maxStaticka = value; OnPropertyChanged("MaxStaticka"); }}
+        public string NazivStaticke{get { return nazivStaticke; }set { nazivStaticke = value; OnPropertyChanged("NazivStaticke"); }}
+        public string Dinamicka { get { return dinamicka; } set { dinamicka = value; OnPropertyChanged("Dinamicka"); } }
+        public string MaxDinamicka { get { return maxDinamicka; } set { maxDinamicka = value; OnPropertyChanged("MaxDinamicka"); } }
+        
+        private Sala salaDinamicka;
+        public Sala SalaDinamicka{get { return salaDinamicka; }set { salaDinamicka = value; OnPropertyChanged("SalaDinamicka"); PrebaciDinamickuKomanda.RaiseCanExecuteChanged(); }}
+        public string IzmjenaOpremeNaziv{get { return izmjenaOpremeNaziv; }set { izmjenaOpremeNaziv = value; OnPropertyChanged("IzmjenaOpremeNaziv"); PotvrdiIzmjenuOpreme.RaiseCanExecuteChanged(); }}
+        public string IzmjenaOpremeKolicina{get { return izmjenaOpremeKolicina; }set { izmjenaOpremeKolicina = value; OnPropertyChanged("IzmjenaOpremeKolicina"); PotvrdiIzmjenuOpreme.RaiseCanExecuteChanged(); }}
+        public Oprema IzabranaStaticka{get { return izabranaStaticka; }set { izabranaStaticka = value; OnPropertyChanged("IzabranaStaticka"); }}
+        public Oprema IzabranaDinamicka{get { return izabranaDinamicka; }set { izabranaDinamicka = value; OnPropertyChanged("IzabranaDinamicka"); }}
+        public string NazivOpreme{get { return nazivOpreme; }set { nazivOpreme = value; OnPropertyChanged("NazivOpreme"); DodavanjeOpremeKomanda.RaiseCanExecuteChanged(); }}
+        public string KolicinaOpreme{get { return kolicinaOpreme; }set { kolicinaOpreme = value; OnPropertyChanged("KolicinaOpreme"); DodavanjeOpremeKomanda.RaiseCanExecuteChanged(); }}
+        public string TekstPretrage{get { return tekstPretrage; }set { tekstPretrage = value; OnPropertyChanged("TekstPretrage"); PretraziSkladiste(); }}
+        public int IzabraniTab { get { return izabraniTab; } set { izabraniTab = value; OnPropertyChanged("IzabraniTab"); } }
+        
+        public string validacija;
+        public string Validacija { get { return validacija; } set { if (value != validacija) { validacija = value; OnPropertyChanged("Validacija"); PrebaciDinamickuKomanda.RaiseCanExecuteChanged(); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); } } }
+        
+        List<Oprema> opremaStaticka1;
+        
+        private ObservableCollection<Sala> sale;
+        public ObservableCollection<Sala> Sale { get { return sale; } set { sale = value; OnPropertyChanged("Sale"); } }
+
+        private ObservableCollection<string> termini;
+        public ObservableCollection<string> Termini { get { return termini; } set { termini = value; OnPropertyChanged("Termini"); } }
+
+        public ObservableCollectionEx<Oprema> opremaStaticka;
+
+        private ObservableCollection<Oprema> opremaDinamicka;
+        public ObservableCollectionEx<Oprema> OpremaStaticka { get { return opremaStaticka; } set { opremaStaticka = value; OnPropertyChanged("OpremaStaticka"); } }
+        public ObservableCollection<Oprema> OpremaDinamicka { get { return opremaDinamicka; } set { opremaDinamicka = value; OnPropertyChanged("OpremaDinamicka"); } }
+
+        #endregion
+
+        #region Konstruktor
         public SkladisteViewModel()
         {
             OpremaDinamicka = new ObservableCollection<Oprema>();
@@ -78,6 +168,28 @@ namespace Projekat.ViewModel
             OtvoriIzvjestaj = new MyICommand(PrikaziIzvjestaj);
             OtvoriPomoc = new MyICommand(Pomoc);
         }
+        public void izvrsi()
+        {
+            while (otvoren)
+            {
+                Thread.Sleep(2000);
+                PremjestajServis.odradiZakazanePremjestaje();
+            }
+        }
+
+        private void dodajOpremu()
+        {
+            foreach (Sala sala in SaleServis.Sale())
+            {
+                if (sala.Namjena.Equals("Skladiste"))
+                {
+                    pronadjiOpremuZaDodavanje();
+                }
+            }
+        }
+        #endregion
+
+        #region SkladisteViewModel
         private void Pomoc()
         {
             PomocProzor = new SkladistePomoc();
@@ -111,49 +223,11 @@ namespace Projekat.ViewModel
             SaleViewModel.SaleProzor.DataContext = new SaleViewModel();
             SkladisteProzor.Close();
         }
-        public MyICommand PrikaziSale { get; set; }
-        public MyICommand PrikaziKomunikaciju { get; set; }
-        private void dodajOpremu()
-        {
-            foreach (Sala sala in SaleServis.Sale())
-            {
-                if (sala.Namjena.Equals("Skladiste"))
-                {
-                    pronadjiOpremuZaDodavanje();
-                }
-            }
-        }
-
-        private void pronadjiOpremuZaDodavanje()
-        {
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
-            {
-                if (oprema.Staticka)
-                {
-                    opremaStaticka1.Add(oprema);
-                }
-                else
-                {
-                    OpremaDinamicka.Add(oprema);
-                }
-            }
-        }
-        public void izvrsi()
-        {
-            while (otvoren)
-            {
-                Thread.Sleep(2000);
-                PremjestajServis.odradiZakazanePremjestaje();
-            }
-        }
+        
         #endregion
+
         #region PretragaSkladistaViewModel
-        private string tekstPretrage;
-        public string TekstPretrage
-        {
-            get { return tekstPretrage; }
-            set { tekstPretrage = value; OnPropertyChanged("TekstPretrage"); PretraziSkladiste(); }
-        }
+        
         private void PretraziSkladiste()
         {
             if (izabraniTab == 0)
@@ -168,7 +242,7 @@ namespace Projekat.ViewModel
         private void nadjiStaticku()
         {
             OpremaStaticka.Clear();
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            foreach (Oprema oprema in OpremaServis.Oprema())
             {
                 if (oprema.NazivOpreme.StartsWith(tekstPretrage) && oprema.Staticka)
                 {
@@ -180,7 +254,7 @@ namespace Projekat.ViewModel
         private void nadjiDinamicku()
         {
             OpremaDinamicka.Clear();
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            foreach (Oprema oprema in OpremaServis.Oprema())
             {
                 if (oprema.NazivOpreme.StartsWith(tekstPretrage) && !oprema.Staticka)
                 {
@@ -189,8 +263,8 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
+
         #region NapustiSkladisteViewModel
-        public MyICommand NapustiSkladiste { get; set; }
         private void ZatvoriSkladiste()
         {
             SkladisteViewModel.SkladisteProzor.Close();
@@ -200,24 +274,23 @@ namespace Projekat.ViewModel
             otvoren = false;
         }
         #endregion
+
         #region DodajOpremuViewModel
-        public MyICommand DodajOpremu { get; set; }
-        public MyICommand ZatvoriDodavanjeOpreme { get; set; }
-        public MyICommand DodavanjeOpremeKomanda { get; set; }
 
-        private string nazivOpreme;
-        private string kolicinaOpreme;
-        public string NazivOpreme
+        private void pronadjiOpremuZaDodavanje()
         {
-            get { return nazivOpreme; }
-            set { nazivOpreme = value; OnPropertyChanged("NazivOpreme"); DodavanjeOpremeKomanda.RaiseCanExecuteChanged(); }
+            foreach (Oprema oprema in OpremaServis.Oprema())
+            {
+                if (oprema.Staticka)
+                {
+                    opremaStaticka1.Add(oprema);
+                }
+                else
+                {
+                    OpremaDinamicka.Add(oprema);
+                }
+            }
         }
-        public string KolicinaOpreme
-        {
-            get { return kolicinaOpreme; }
-            set { kolicinaOpreme = value; OnPropertyChanged("KolicinaOpreme"); DodavanjeOpremeKomanda.RaiseCanExecuteChanged(); }
-        }
-
         private bool ValidnaPoljaZaDodavanjeOpreme()
         {
             if (kolicinaOpreme != null && nazivOpreme != null)
@@ -283,37 +356,8 @@ namespace Projekat.ViewModel
             DodajOpremuProzor.Close();
         }
         #endregion
-        #region IzmjeniOpremuViewModel
-        private Oprema izabranaStaticka;
-        private Oprema izabranaDinamicka;
-        private string izmjenaOpremeNaziv;
-        private string izmjenaOpremeKolicina;
-        public static bool aktivnaDinamicka;
-        public string IzmjenaOpremeNaziv
-        {
-            get { return izmjenaOpremeNaziv; }
-            set { izmjenaOpremeNaziv = value; OnPropertyChanged("IzmjenaOpremeNaziv"); PotvrdiIzmjenuOpreme.RaiseCanExecuteChanged(); }
-        }
-        public string IzmjenaOpremeKolicina
-        {
-            get { return izmjenaOpremeKolicina; }
-            set { izmjenaOpremeKolicina = value; OnPropertyChanged("IzmjenaOpremeKolicina"); PotvrdiIzmjenuOpreme.RaiseCanExecuteChanged(); }
-        }
-        public Oprema IzabranaStaticka
-        {
-            get { return izabranaStaticka; }
-            set { izabranaStaticka = value; OnPropertyChanged("IzabranaStaticka"); }
 
-        }
-        public Oprema IzabranaDinamicka
-        {
-            get { return izabranaDinamicka; }
-            set { izabranaDinamicka = value; OnPropertyChanged("IzabranaDinamicka"); }
-        }
-        public MyICommand IzmjeniOpremu { get; set; }
-        public MyICommand OdustaniOdIzmjeneOpreme { get; set; }
-        public MyICommand PotvrdiIzmjenuOpreme { get; set; }
-        Oprema izabranaOprema;
+        #region IzmjeniOpremuViewModel
 
         private void IzmjenaOpreme()
         {
@@ -376,7 +420,7 @@ namespace Projekat.ViewModel
 
         private void izmjeniPrikazOpreme(Oprema izOpreme, Oprema uOpremu)
         {
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
+            foreach (Oprema oprema in OpremaServis.Oprema())
             {
                 if (oprema.IdOpreme == izOpreme.IdOpreme)
                 {
@@ -481,22 +525,9 @@ namespace Projekat.ViewModel
             }
         }
         #endregion
-        #region PrebaciOpremuViewModel
-        public MyICommand PrebaciOpremu { get; set; }
-        public MyICommand OdustaniOdPrebacivanjaDinamicke { get; set; }
-        public MyICommand PrebaciDinamickuKomanda { get; set; }
-        public MyICommand ZatvoriPrebacivanjaDinamicke { get; set; }
-        private string dinamicka;
-        private string maxDinamicka;
-        public string Dinamicka { get { return dinamicka; } set { dinamicka = value; OnPropertyChanged("Dinamicka"); } }
-        public string MaxDinamicka { get { return maxDinamicka; } set { maxDinamicka = value; OnPropertyChanged("MaxDinamicka"); } }
-        private Sala salaDinamicka;
-        public Sala SalaDinamicka
-        {
-            get { return salaDinamicka; }
-            set { salaDinamicka = value; OnPropertyChanged("SalaDinamicka"); PrebaciDinamickuKomanda.RaiseCanExecuteChanged(); }
-        }
 
+        #region PrebaciOpremuViewModel
+        
         private void OtvoriPrebacivanjeOpreme()
         {
             if (izabraniTab == 0)
@@ -586,7 +617,7 @@ namespace Projekat.ViewModel
         private void dodajSale()
         {
             Sale = new ObservableCollection<Sala>();
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (!sala.Namjena.Equals("Skladiste"))
                 {
@@ -597,47 +628,9 @@ namespace Projekat.ViewModel
 
 
         #endregion
+
         #region PrebaciStatickuViewModel
-        private string nazivStaticke;
-        private string upozorenje;
-        public string Upozorenje
-        {
-            get { return upozorenje; }
-            set { upozorenje = value; OnPropertyChanged("Upozorenje"); }
-        }
-        private string maxStaticka;
-        public static bool aktivnaStaticka;
-        public MyICommand OdustaniOdSlanjaStaticke { get; set; }
-        public MyICommand PotvrdiSlanjeStaticke { get; set; }
-        public MyICommand ZatvoriPrebacivanjaStaticke { get; set; }
-        private DateTime izabraniDatum;
-        private Sala salaStaticka;
-        private string termin;
-        public string Termin
-        {
-            get { return termin; }
-            set { termin = value; OnPropertyChanged("Termin"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); }
-        }
-        public Sala SalaStaticka
-        {
-            get { return salaStaticka; }
-            set { salaStaticka = value; OnPropertyChanged("SaleStaticka"); PotvrdiSlanjeStaticke.RaiseCanExecuteChanged(); }
-        }
-        public DateTime IzabraniDatum
-        {
-            get { return izabraniDatum; }
-            set { izabraniDatum = value; OnPropertyChanged("IzabraniDatum"); PromijenioSeDatum(); }
-        }
-        public string MaxStaticka
-        {
-            get { return maxStaticka; }
-            set { maxStaticka = value; OnPropertyChanged("MaxStaticka"); }
-        }
-        public string NazivStaticke
-        {
-            get { return nazivStaticke; }
-            set { nazivStaticke = value; OnPropertyChanged("NazivStaticke"); }
-        }
+        
         private bool provjeriPreostalo(Oprema izabranaOprema)
         {
             if (nadjiDozvoljenuKolicinu(izabranaOprema) == 0)
@@ -653,7 +646,7 @@ namespace Projekat.ViewModel
         private int nadjiDozvoljenuKolicinu(Oprema izabranaOprema)
         {
             int dozvoljenaKolicina = izabranaOprema.Kolicina;
-            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
                 if (premjestaj.izSale.Id == 4 && premjestaj.oprema.IdOpreme == izabranaOprema.IdOpreme)
                 {
@@ -675,8 +668,6 @@ namespace Projekat.ViewModel
                 MaxStaticka = "MAX: " + dozvoljenaKolicinaStaticke.ToString();
                 dodajTerminePocetak();
                 dodajSale();
-                validacija = "";
-                upozorenje = "";
                 izabraniDatum = DateTime.Now.Date;
                 PrebaciStatickuProzor.DataContext = this;
             }
@@ -715,7 +706,7 @@ namespace Projekat.ViewModel
 
         private bool postojiTermin(int termin)
         {
-            foreach (Premjestaj premjestaj in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
                 if (premjestaj.datumIVrijeme.Hour.ToString().Equals(termin.ToString()))
                 {
@@ -832,28 +823,12 @@ namespace Projekat.ViewModel
                 {
                     if (int.Parse(validacija) > dozvoljenaKolicinaStaticke || int.Parse(validacija) <= 0 || salaStaticka == null)
                     {
-                        if (int.Parse(validacija) > dozvoljenaKolicinaStaticke)
-                        {
-                            Upozorenje = "Morate unijeti manji broj";
-                        } else if (int.Parse(validacija) <= 0)
-                        {
-                            Upozorenje = "Morate unijeti veci broj";
-                        }
-                        else
-                        {
-                            Upozorenje = "";
-                        }
                         return false;
                     }
                     else if (int.Parse(validacija) <= dozvoljenaKolicinaStaticke && int.Parse(validacija) > 0 && salaStaticka != null)
                     {
                         return true;
                     }
-                }
-                else
-                {
-                    upozorenje = "Morate unijeti broj";
-                    return false;
                 }
             }
             return false;
@@ -868,28 +843,10 @@ namespace Projekat.ViewModel
         {
             aktivnaStaticka = false;
         }
-        #endregion //NE PRATI IZMJENE STATICKA LISTA OPREMA STATICKA I KADA OBRISEM BROJEVE IZ KOLICINE NE ONEMOGUCI DUGME!
-        #region ObrisiOpremuViewModel
-        public MyICommand ObrisiOpremu { get; set; }
-        public MyICommand OdustaniOdBrisanjaOpreme { get; set; }
-        public MyICommand PotvrdiBrisanjeOpreme { get; set; }
-        private string kolicinaZaBrisanje;
-        private string unesenaKolicinaZaBrisanje;
-        public string UnesenaKolicinaZaBrisanje {
-             get{ return unesenaKolicinaZaBrisanje; }
-            set
-            {
-                unesenaKolicinaZaBrisanje = value;
-                OnPropertyChanged("UnesenaKolicinaZaBrisanje");
-                PotvrdiBrisanjeOpreme.RaiseCanExecuteChanged();
-            }
-        }
-        public string KolicinaZaBrisanje
-        {
-            get { return kolicinaZaBrisanje; }
-            set { kolicinaZaBrisanje = value; OnPropertyChanged("KolicinaZaBrisanje"); }
-        }
+        #endregion 
 
+        #region ObrisiOpremuViewModel
+        
         private bool ValidnaPoljaZaBrisanjeOpreme()
         {
             if (unesenaKolicinaZaBrisanje != null)
@@ -988,7 +945,7 @@ namespace Projekat.ViewModel
         private int nadjiDozvoljenuKolicinuBrisanje(Oprema izabranaOprema)
         {
             int dozvoljenaKolicina = izabranaOprema.Kolicina;
-            foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+            foreach (Premjestaj pm in PremjestajServis.Premjestaji())
             {
                 if (pm.izSale.Id == 4 && pm.oprema.IdOpreme == izabranaOprema.IdOpreme)
                 {
@@ -998,8 +955,8 @@ namespace Projekat.ViewModel
             return dozvoljenaKolicina;
         }
         #endregion
+
         #region ZatvoriSkladisteViewModel
-        public MyICommand ZatvoriSkladisteProzor { get; set; }
         private void DeaktivirajSkladiste()
         {
             OpremaServis.sacuvajIzmjene();

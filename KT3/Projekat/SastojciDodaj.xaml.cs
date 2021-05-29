@@ -10,7 +10,6 @@ namespace Projekat
     /// </summary>
     public partial class SastojciDodaj : Window
     {
-        
         public SastojciDodaj()
         {
             InitializeComponent();

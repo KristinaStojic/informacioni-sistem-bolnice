@@ -19,7 +19,6 @@ namespace Projekat
     /// </summary>
     public partial class PrikazObavjestenja : Window
     {
-        
         public PrikazObavjestenja()
         {
             InitializeComponent();

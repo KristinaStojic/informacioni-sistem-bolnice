@@ -15,7 +15,6 @@ namespace Projekat
     /// </summary>
     public partial class PreraspodjelaStaticke : Window
     {
-
         public PreraspodjelaStaticke()
         {
             InitializeComponent();

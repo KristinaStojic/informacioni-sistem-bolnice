@@ -1,12 +1,8 @@
 ﻿using Projekat.Model;
 using Projekat.Pomoc;
 using Projekat.Servis;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Projekat.ViewModel
 {
@@ -43,7 +39,7 @@ namespace Projekat.ViewModel
         public MyICommand ObrisiLijekKomanda { get; set; }
         public MyICommand ObrisiLijekProzor { get; set; }
         public MyICommand ZatvoriBrisanjeLijekaKomanda { get; set; }
-        
+        public MyICommand ZahtjeviKomanda { get; set; }
         public MyICommand DodajLijekKomanda { get; set; }
         public MyICommand DodajLijekProzor { get; set; }
         public MyICommand DodajSastojakLijekuProzorKomanda { get; set; }
@@ -52,6 +48,46 @@ namespace Projekat.ViewModel
         public MyICommand ZatvoriDodavanjeSastojakaKomanda { get; set; }
         public MyICommand DodajNoviSastojak { get; set; }
         public MyICommand DodajSastojakZatvori { get; set; }
+        public MyICommand IzmjeniLijekKomanda { get; set; }
+        public MyICommand PotvrdiIzmjenuLijekaKomanda { get; set; }
+        public MyICommand ZatvoriIzmjenuLijekaKomanda { get; set; }
+        public MyICommand ZamjenskiLijekoviProzorKomanda { get; set; }
+        public MyICommand IzmjeniSastojakKomanda { get; set; }
+        public MyICommand OdustaniOdIzmjeneSastojka { get; set; }
+        public MyICommand IzmjeniSastojak { get; set; }
+        public MyICommand ZatvoriZamjenskeKomanda { get; set; }
+        public MyICommand ObrisiZamjenskiKomanda { get; set; }
+        public MyICommand PretragaZamjenskihKomanda { get; set; }
+        public MyICommand IzmjeniZamjenskiLijekKomanda { get; set; }
+        public MyICommand OdustaniOdIzmjeneZamjenskog { get; set; }
+        public MyICommand PotvrdiIzmjenuZamjenskog { get; set; }
+        public MyICommand SastojciProzorKomanda { get; set; }
+        public MyICommand ZatvoriSastojkeKomanda { get; set; }
+        public MyICommand DodajSastojakProzorKomanda { get; set; }
+        public MyICommand ZatvoriDodavanjeSastojka { get; set; }
+        public MyICommand PotvrdiDodavanjeSastojka { get; set; }
+        public MyICommand DodajZamjenskiProzor { get; set; }
+        public MyICommand NapustiDodavanjeZamjenskih { get; set; }
+        public MyICommand DodajZamjenski { get; set; }
+        public MyICommand ObrisiSastojak { get; set; }
+        public MyICommand OdbijeniLijekovi { get; set; }
+        public MyICommand ZatvoriOdbijene { get; set; }
+        public MyICommand ObrazlozenjeKomanda { get; set; }
+        public MyICommand ZatvoriObrazlozenje { get; set; }
+        public MyICommand IzmjeniOdbijeniLijek { get; set; }
+        public MyICommand OdustaniOdIzmjeneOdbijenog { get; set; }
+        public MyICommand PotvrdiIzmjenuOdbijenog { get; set; }
+        public MyICommand IzmjeniSastojakOdbijenog { get; set; }
+        public MyICommand ZatvoriSastojkeOdbijenog { get; set; }
+        public MyICommand IzmjeniSastojkeOdbijenogProzor { get; set; }
+        public MyICommand ZatvoriIzmjenuOdbijenogSastojka { get; set; }
+        public MyICommand IzmjeniSastojakOdbijenogLijeka { get; set; }
+        public MyICommand BrisanjeOdbijenogLijeka { get; set; }
+        public MyICommand ObrisiOdbijeniLijek { get; set; }
+        public MyICommand OdustaniOdBrisanjaOdbijenog { get; set; }
+        public MyICommand PonovnoSlanjeZahtjeva { get; set; }
+        public MyICommand OdustaniOdPonovnogSlanjaZahtjeva { get; set; }
+        public MyICommand PonovoPosaljiLijek { get; set; }
 
         private static Lek uneseniLijek;
         private string pretragaLijekova;
@@ -59,11 +95,84 @@ namespace Projekat.ViewModel
         private static string sifraLijeka;
         private static string nazivSastojka;
         private static string kolicinaSastojka;
+        private static string nazivNovogLijeka;
+        private static string sifraNovogLijeka;
         public string NazivLijeka{get { return nazivLijeka; }set { nazivLijeka = value; DodajLijekKomanda.RaiseCanExecuteChanged(); DodajSastojakLijekuProzorKomanda.RaiseCanExecuteChanged(); }}
         public string SifraLijeka{get { return sifraLijeka; }set { sifraLijeka = value; DodajLijekKomanda.RaiseCanExecuteChanged(); DodajSastojakLijekuProzorKomanda.RaiseCanExecuteChanged(); }}
         public string NazivSastojka{get { return nazivSastojka; }set { nazivSastojka = value; DodajNoviSastojak.RaiseCanExecuteChanged(); }}
         public string KolicinaSastojka{get { return kolicinaSastojka; }set { kolicinaSastojka = value; DodajNoviSastojak.RaiseCanExecuteChanged(); }}
         public string PretragaLijekova { get { return pretragaLijekova; } set { pretragaLijekova = value; OnPropertyChanged("PretragaLijekova"); NadjiLijekove(); } }
+        public string NazivNovogLijeka { get { return nazivNovogLijeka; } set { nazivNovogLijeka = value; PotvrdiIzmjenuLijekaKomanda.RaiseCanExecuteChanged(); } }
+        public string SifraNovogLijeka { get { return sifraNovogLijeka; } set { sifraNovogLijeka = value; PotvrdiIzmjenuLijekaKomanda.RaiseCanExecuteChanged(); } }
+        
+        private static Lek izabraniZamjenskiLijek;
+        public Lek IzabraniZamjenskiLijek { get { return izabraniZamjenskiLijek; } set { izabraniZamjenskiLijek = value; } }
+
+        private string pretragaZamjenskih;
+        public string PretragaZamjenskih { get { return pretragaZamjenskih; } set { pretragaZamjenskih = value; OnPropertyChanged("PretragaZamjenskih"); PretraziZamjenske(); } }
+
+        private static Sastojak izabraniSastojak;
+        public Sastojak IzabraniSastojak { get { return izabraniSastojak; } set{ izabraniSastojak = value; } }
+
+        private string tekstZamjenski;
+        public string TekstZamjenski { get { return tekstZamjenski; } set { tekstZamjenski = value; OnPropertyChanged("TekstZamjenski"); } }
+
+        private static string nazivZamjenskog;
+
+        private static string sifraZamjenskog;
+        public string NazivZamjenskog { get { return nazivZamjenskog; } set { nazivZamjenskog = value; OnPropertyChanged("NazivZamjenskog"); PotvrdiIzmjenuZamjenskog.RaiseCanExecuteChanged(); } }
+        public string SifraZamjenskog { get { return sifraZamjenskog; } set { sifraZamjenskog = value; OnPropertyChanged("SifraZamjenskog"); PotvrdiIzmjenuZamjenskog.RaiseCanExecuteChanged(); } }
+
+        private string sastojakNaziv;
+
+        private string sastojakKolicina;
+        public string SastojakNaziv { get { return sastojakNaziv; } set { sastojakNaziv = value; PotvrdiDodavanjeSastojka.RaiseCanExecuteChanged(); } }
+        public string SastojakKolicina { get { return sastojakKolicina; } set { sastojakKolicina = value; PotvrdiDodavanjeSastojka.RaiseCanExecuteChanged(); } }
+
+        private string tekstSastojci;
+        public string TekstSastojci { get { return tekstSastojci; } set { tekstSastojci = value; OnPropertyChanged("TekstSastojci"); } }
+
+        private string sastojciPretraga;
+        public string SastojciPretraga { get { return sastojciPretraga; } set { sastojciPretraga = value; OnPropertyChanged("SastojciPretraga"); PretragaSastojaka(); } }
+        
+        private string tekstZamjenskiLijek;
+
+        private string nazivSastojkaIzmjena;
+
+        private string kolicinaSastojkaIzmjena;
+        public string NazivSastojkaIzmjena { get { return nazivSastojkaIzmjena; } set { nazivSastojkaIzmjena = value; OnPropertyChanged("NazivSastojkaIzmjena"); IzmjeniSastojak.RaiseCanExecuteChanged(); } }
+        public string KolicinaSastojkaIzmjena { get { return kolicinaSastojkaIzmjena; } set { kolicinaSastojkaIzmjena = value; OnPropertyChanged("KolicinaSastojkaIzmjena"); IzmjeniSastojak.RaiseCanExecuteChanged(); } }
+
+        private Lek izabraniZamjenski;
+        public Lek IzabraniZamjenski { get { return izabraniZamjenski; } set { izabraniZamjenski = value; OnPropertyChanged("IzabraniZamjenski"); } }
+        public string TekstZamjenskiLijek { get { return tekstZamjenskiLijek; } set { tekstZamjenskiLijek = value; OnPropertyChanged("TekstZamjenskiLijek"); } }
+        
+        private Sastojak sastojakZaIzmjenu;
+        
+        private string sifraOdbijenog;
+        
+        private string nazivOdbijenog;
+        
+        private string tekstOdbijeni;
+        
+        private string nazivOdbijenogSastojak;
+        
+        private string kolicinaOdbijenogSastojak;
+        public string NazivOdbijenogSastojak { get { return nazivOdbijenogSastojak; } set { nazivOdbijenogSastojak = value; OnPropertyChanged("NazivOdbijenogSastojak"); IzmjeniSastojakOdbijenogLijeka.RaiseCanExecuteChanged(); } }
+        public string KolicinaOdbijenogSastojak { get { return kolicinaOdbijenogSastojak; } set { kolicinaOdbijenogSastojak = value; OnPropertyChanged("KolicinaOdbijenogSastojak"); IzmjeniSastojakOdbijenogLijeka.RaiseCanExecuteChanged(); } }
+        public Sastojak SastojakZaIzmjenu { get { return sastojakZaIzmjenu; } set { sastojakZaIzmjenu = value; OnPropertyChanged("SastojakZaIzmjenu"); } }
+        public string TeksOdbijeni { get { return tekstOdbijeni; } set { tekstOdbijeni = value; OnPropertyChanged("TekstOdbijeni"); } }
+        public string SifraOdbijenog { get { return sifraOdbijenog; } set { sifraOdbijenog = value; OnPropertyChanged("SifraOdbijenog"); PotvrdiIzmjenuOdbijenog.RaiseCanExecuteChanged(); } }
+        public string NazivOdbijenog { get { return nazivOdbijenog; } set { nazivOdbijenog = value; OnPropertyChanged("NazivOdbijenog"); PotvrdiIzmjenuOdbijenog.RaiseCanExecuteChanged(); } }
+
+        private string pretragaOdbijenih;
+        
+        private static Lek izabraniOdbijeniLijek;
+        
+        private string obrazlozenjeTekst;
+        public string ObrazlozenjeTekst { get { return obrazlozenjeTekst; } set { obrazlozenjeTekst = value; OnPropertyChanged("ObrazlozenjeTekst"); } }
+        public Lek IzabraniOdbijeniLijek { get { return izabraniOdbijeniLijek; } set { izabraniOdbijeniLijek = value; } }
+        public string PretragaOdbijenih { get { return pretragaOdbijenih; } set { pretragaOdbijenih = value; OnPropertyChanged("PretragaOdbijenih"); PretraziOdbijene(); } }
 
         private static Lek izabraniLijek;
         public Lek IzabraniLijek {get { return izabraniLijek; }set{izabraniLijek = value;ObrisiLijekKomanda.RaiseCanExecuteChanged();}}
@@ -88,8 +197,7 @@ namespace Projekat.ViewModel
 
         private ObservableCollection<Sastojak> sastojciLijeka;
         public ObservableCollection<Sastojak> SastojciLijeka { get { return sastojciLijeka; } set { sastojciLijeka = value; OnPropertyChanged("SastojciLijeka"); } }
-
-
+     
         #endregion
 
         #region Konstruktor
@@ -125,7 +233,7 @@ namespace Projekat.ViewModel
             PotvrdiDodavanjeSastojka = new MyICommand(DodajSastojakLijeku, ValidnaPoljaZaUnosSastojka);
             ObrisiSastojak = new MyICommand(ObrisiSastojakLijeka);
             IzmjeniSastojakKomanda = new MyICommand(IzmjenaSastojakaProzor);
-            OdustaniOdIzmjeneSastojka = new MyICommand(ZatvoriDodavanjaSastojaka);
+            OdustaniOdIzmjeneSastojka = new MyICommand(ZatvoriIzmjenuSastojaka);
             IzmjeniSastojak = new MyICommand(PotvrdiIzmjenuSastojka, ValidnaPoljaZaIzmjenuSastojka);
             OdbijeniLijekovi = new MyICommand(PrikaziOdbijeneLijekove);
             ZatvoriOdbijene = new MyICommand(ZatvoriOdbijeneProzor);
@@ -153,6 +261,18 @@ namespace Projekat.ViewModel
             OtvoriOAplikaciji = new MyICommand(OtvoriOpis);
             OtvoriIzvjestaj = new MyICommand(PrikaziIzvjestaj);
             OtvoriPomoc = new MyICommand(Pomoc);
+        }
+
+        private void inicijalizujElemente()
+        {
+            Lekovi = new ObservableCollection<Lek>();
+            SastojciLijeka = new ObservableCollection<Sastojak>();
+            ZamjenskiLekovi = new ObservableCollection<Lek>();
+            OdbijeniLekovi = new ObservableCollection<Lek>();
+            foreach (Lek lijek in LekoviServis.Lijekovi())
+            {
+                Lekovi.Add(lijek);
+            }
         }
         #endregion
 
@@ -192,10 +312,14 @@ namespace Projekat.ViewModel
             KomunikacijaViewModel.KomunikacijaProzor.DataContext = new KomunikacijaViewModel();
             LijekoviProzor.Close();
         }
+        #endregion
+
+        #region PretragaViewModel
+
         private void NadjiLijekove()
         {
             Lekovi.Clear();
-            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            foreach (Lek lijek in LekoviServis.Lijekovi())
             {
                 if (lijek.nazivLeka.StartsWith(PretragaLijekova))
                 {
@@ -204,17 +328,7 @@ namespace Projekat.ViewModel
             }
         }
 
-        private void inicijalizujElemente()
-        {
-            Lekovi = new ObservableCollection<Lek>();
-            SastojciLijeka = new ObservableCollection<Sastojak>();
-            ZamjenskiLekovi = new ObservableCollection<Lek>();
-            OdbijeniLekovi = new ObservableCollection<Lek>();
-            foreach (Lek lijek in LekoviServis.Lijekovi())
-            {
-                Lekovi.Add(lijek);
-            }
-        }
+       
         #endregion
 
         #region BrisanjeLijekaViewModel
@@ -273,7 +387,7 @@ namespace Projekat.ViewModel
                     return true;
                 }
             }
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
             {
                 if (zahtjev.lek.sifraLeka.Equals(sifraLijeka))
                 {
@@ -388,7 +502,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region ZahtjeviViewModel
-        public MyICommand ZahtjeviKomanda { get; set; }
 
         private void OtvoriZahtjeve()
         {
@@ -399,10 +512,7 @@ namespace Projekat.ViewModel
         }
         #endregion
 
-        #region IzmjeniLIjekViewModel
-        public MyICommand IzmjeniLijekKomanda { get; set; }
-        public MyICommand PotvrdiIzmjenuLijekaKomanda { get; set; }
-        public MyICommand ZatvoriIzmjenuLijekaKomanda { get; set; }
+        #region IzmjeniLijekViewModel
         private void IzmjeniLijekProzor()
         {
             if (izabraniLijek == null)
@@ -419,21 +529,7 @@ namespace Projekat.ViewModel
             }
         }
 
-
-        private static string nazivNovogLijeka;
-        private static string sifraNovogLijeka;
-        public string NazivNovogLijeka
-        {
-            get { return nazivNovogLijeka; }
-            set { nazivNovogLijeka = value; PotvrdiIzmjenuLijekaKomanda.RaiseCanExecuteChanged(); }
-        }
-
-        public string SifraNovogLijeka
-        {
-            get { return sifraNovogLijeka; }
-            set { sifraNovogLijeka = value; PotvrdiIzmjenuLijekaKomanda.RaiseCanExecuteChanged(); }
-        }
-        private bool ValidnaPoljaZaIzmjenuLijeka()
+         private bool ValidnaPoljaZaIzmjenuLijeka()
         {
             if(sifraNovogLijeka != null && nazivNovogLijeka != null){
                 if (sifraNovogLijeka.Trim().Equals("") || nazivNovogLijeka.Trim().Equals("") || postojiSifraNovogLijeka())
@@ -484,32 +580,7 @@ namespace Projekat.ViewModel
 
         #region ZamjenskiLijekoviViewModel
 
-        public MyICommand ZamjenskiLijekoviProzorKomanda { get; set; }
-        public MyICommand ZatvoriZamjenskeKomanda { get; set; }
-        public MyICommand ObrisiZamjenskiKomanda { get; set; }
-        public MyICommand PretragaZamjenskihKomanda { get; set; }
-
-        private static Lek izabraniZamjenskiLijek;
-        public Lek IzabraniZamjenskiLijek
-        {
-            get { return izabraniZamjenskiLijek; }
-            set { izabraniZamjenskiLijek = value; }
-        }
-
-        private string pretragaZamjenskih;
-        public string PretragaZamjenskih
-        {
-            get { return pretragaZamjenskih; }
-            set { pretragaZamjenskih = value; OnPropertyChanged("PretragaZamjenskih"); PretraziZamjenske(); }
-        }
-
-        private string tekstZamjenski;
-        public string TekstZamjenski
-        {
-            get { return tekstZamjenski; }
-            set { tekstZamjenski = value; OnPropertyChanged("TekstZamjenski"); }
-        }
-        private void OtvoriZamjenskeLijekove()
+         private void OtvoriZamjenskeLijekove()
         {
             if (izabraniLijek != null)
             {
@@ -589,7 +660,7 @@ namespace Projekat.ViewModel
 
         private void pretraziZamjenskeLijekove(int zamjenskiLijek)
         {
-            foreach (Lek zamjenski in LekoviMenadzer.lijekovi)
+            foreach (Lek zamjenski in LekoviServis.Lijekovi())
             {
                 if (zamjenski.idLeka == zamjenskiLijek && zamjenski.nazivLeka.StartsWith(pretragaZamjenskih))
                 {
@@ -601,23 +672,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region IzmjenaZamjenskogLijekaViewModel
-        public MyICommand IzmjeniZamjenskiLijekKomanda { get; set; }
-        public MyICommand OdustaniOdIzmjeneZamjenskog { get; set; }
-        public MyICommand PotvrdiIzmjenuZamjenskog { get; set; }
-
-        private static string nazivZamjenskog;
-        private static string sifraZamjenskog;
-        public string NazivZamjenskog
-        {
-            get { return nazivZamjenskog; }
-            set { nazivZamjenskog = value; OnPropertyChanged("NazivZamjenskog"); PotvrdiIzmjenuZamjenskog.RaiseCanExecuteChanged(); }
-        }
-
-        public string SifraZamjenskog
-        {
-            get { return sifraZamjenskog; }
-            set { sifraZamjenskog = value; OnPropertyChanged("SifraZamjenskog"); PotvrdiIzmjenuZamjenskog.RaiseCanExecuteChanged(); }
-        }
 
         private void IzmjeniZamjenski()
         {
@@ -693,23 +747,6 @@ namespace Projekat.ViewModel
 
         #region SastojciViewModel
 
-        public MyICommand SastojciProzorKomanda { get; set; }
-        public MyICommand ZatvoriSastojkeKomanda { get; set; }
-
-        private string tekstSastojci;
-        public string TekstSastojci
-        {
-            get { return tekstSastojci; }
-            set { tekstSastojci = value; OnPropertyChanged("TekstSastojci"); }
-        }
-
-        private string sastojciPretraga;
-        public string SastojciPretraga
-        {
-            get { return sastojciPretraga; }
-            set { sastojciPretraga = value; OnPropertyChanged("SastojciPretraga"); PretragaSastojaka(); }
-        }
-
         private void OtvoriSastojkeLijeka()
         {
             if (izabraniLijek != null)
@@ -729,7 +766,7 @@ namespace Projekat.ViewModel
         private void dodajSastojkeLijeka()
         {
             SastojciLeka = new ObservableCollection<Sastojak>();
-            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            foreach (Lek lijek in LekoviServis.Lijekovi())
             {
                 if (lijek.idLeka == izabraniLijek.idLeka)
                 {
@@ -769,24 +806,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region DodajSastojak
-        public MyICommand DodajSastojakProzorKomanda { get; set; }
-        public MyICommand ZatvoriDodavanjeSastojka { get; set; }
-        public MyICommand PotvrdiDodavanjeSastojka { get; set; }
-
-        private string sastojakNaziv;
-        private string sastojakKolicina;
-
-        public string SastojakNaziv
-        {
-            get { return sastojakNaziv; }
-            set { sastojakNaziv = value; PotvrdiDodavanjeSastojka.RaiseCanExecuteChanged(); }
-        }
-
-        public string SastojakKolicina
-        {
-            get { return sastojakKolicina; }
-            set { sastojakKolicina = value; PotvrdiDodavanjeSastojka.RaiseCanExecuteChanged(); }
-        }
 
         private void OtvoriDodavanjeSastojaka()
         {
@@ -835,18 +854,8 @@ namespace Projekat.ViewModel
         #endregion
 
         #region ObrisiSastojakViewModel
-        public MyICommand ObrisiSastojak { get; set; }
 
-        private static Sastojak izabraniSastojak;
-        public Sastojak IzabraniSastojak
-        {
-            get { return izabraniSastojak; }
-            set
-            {
-                izabraniSastojak = value;
-            }
-        }
-
+        
         private void ObrisiSastojakLijeka()
         {
             if(izabraniSastojak != null)
@@ -863,25 +872,8 @@ namespace Projekat.ViewModel
         #endregion
 
         #region IzmjeniSastojakViewModel
-        public MyICommand IzmjeniSastojakKomanda { get; set; }
-        public MyICommand OdustaniOdIzmjeneSastojka { get; set; }
-        public MyICommand IzmjeniSastojak { get; set; }
 
-        private string nazivSastojkaIzmjena;
-        private string kolicinaSastojkaIzmjena;
         
-        public string NazivSastojkaIzmjena
-        {
-            get { return nazivSastojkaIzmjena; }
-            set { nazivSastojkaIzmjena = value;  OnPropertyChanged("NazivSastojkaIzmjena"); IzmjeniSastojak.RaiseCanExecuteChanged(); }
-        }
-
-        public string KolicinaSastojkaIzmjena
-        {
-            get { return kolicinaSastojkaIzmjena; }
-            set { kolicinaSastojkaIzmjena = value; OnPropertyChanged("KolicinaSastojkaIzmjena"); IzmjeniSastojak.RaiseCanExecuteChanged(); }
-        }
-
         private void IzmjenaSastojakaProzor()
         {
             if (izabraniSastojak != null)
@@ -908,7 +900,7 @@ namespace Projekat.ViewModel
             IzmjeniSastojakProzor.Close();
         }
 
-        private void ZatvoriDodavanjaSastojaka()
+        private void ZatvoriIzmjenuSastojaka()
         {
             IzmjeniSastojakProzor.Close();
         }
@@ -939,28 +931,7 @@ namespace Projekat.ViewModel
         #endregion
 
         #region OdbijeniLijekovi
-        private string pretragaOdbijenih;
-        private static Lek izabraniOdbijeniLijek;
-        private string obrazlozenjeTekst;
-        public string ObrazlozenjeTekst
-        {
-            get { return obrazlozenjeTekst; }
-            set { obrazlozenjeTekst = value; OnPropertyChanged("ObrazlozenjeTekst"); }
-        }
-        public Lek IzabraniOdbijeniLijek
-        {
-            get { return izabraniOdbijeniLijek;  }
-            set { izabraniOdbijeniLijek = value; }
-        }
-        public string PretragaOdbijenih
-        {
-            get { return pretragaOdbijenih; }
-            set { pretragaOdbijenih = value; OnPropertyChanged("PretragaOdbijenih"); PretraziOdbijene(); }
-        }
-        public MyICommand OdbijeniLijekovi { get; set; }
-        public MyICommand ZatvoriOdbijene { get; set; }
-        public MyICommand ObrazlozenjeKomanda { get; set; }
-        public MyICommand ZatvoriObrazlozenje { get; set; }
+        
         private void PrikaziOdbijeneLijekove()
         {
             OdbijeniLijekoviProzor = new OdbijeniLijekovi();
@@ -977,7 +948,7 @@ namespace Projekat.ViewModel
         private void dodajOdbijene()
         {
             OdbijeniLekovi.Clear();
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
             {
                 if (!zahtjev.odobrenZahtev && zahtjev.obradjenZahtev)
                 {
@@ -989,7 +960,7 @@ namespace Projekat.ViewModel
         private void PretraziOdbijene()
         {
             OdbijeniLekovi.Clear();
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
             {
                 if (!zahtjev.odobrenZahtev && zahtjev.obradjenZahtev && zahtjev.lek.nazivLeka.StartsWith(PretragaOdbijenih))
                 {
@@ -1004,7 +975,7 @@ namespace Projekat.ViewModel
             {
                 ObrazlozenjeProzor = new Obrazlozenje();
                 ObrazlozenjeProzor.Show();
-                foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+                foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
                 {
                     if (zahtjev.lek.idLeka == izabraniOdbijeniLijek.idLeka)
                     {
@@ -1025,52 +996,7 @@ namespace Projekat.ViewModel
         #endregion
 
         #region IzmjenaOdbijenihLijekova
-        public MyICommand IzmjeniOdbijeniLijek { get; set; }
-        public MyICommand OdustaniOdIzmjeneOdbijenog { get; set; }
-        public MyICommand PotvrdiIzmjenuOdbijenog { get; set; }
-        public MyICommand IzmjeniSastojakOdbijenog { get; set; }
-        public MyICommand ZatvoriSastojkeOdbijenog { get; set; }
-        public MyICommand IzmjeniSastojkeOdbijenogProzor { get; set; }
-        public MyICommand ZatvoriIzmjenuOdbijenogSastojka { get; set; }
-        public MyICommand IzmjeniSastojakOdbijenogLijeka { get; set; }
 
-
-        private Sastojak sastojakZaIzmjenu;
-        private string sifraOdbijenog;
-        private string nazivOdbijenog;
-        private string tekstOdbijeni;
-        private string nazivOdbijenogSastojak;
-        private string kolicinaOdbijenogSastojak;
-        public string NazivOdbijenogSastojak
-        {
-            get { return nazivOdbijenogSastojak; }
-            set { nazivOdbijenogSastojak = value; OnPropertyChanged("NazivOdbijenogSastojak"); IzmjeniSastojakOdbijenogLijeka.RaiseCanExecuteChanged(); }
-        }
-        public string KolicinaOdbijenogSastojak
-        {
-            get { return kolicinaOdbijenogSastojak; }
-            set { kolicinaOdbijenogSastojak = value; OnPropertyChanged("KolicinaOdbijenogSastojak"); IzmjeniSastojakOdbijenogLijeka.RaiseCanExecuteChanged(); }
-        }
-        public Sastojak SastojakZaIzmjenu
-        {
-            get { return sastojakZaIzmjenu; }
-            set { sastojakZaIzmjenu = value; OnPropertyChanged("SastojakZaIzmjenu"); }
-        }
-        public string TeksOdbijeni
-        {
-            get { return tekstOdbijeni; }
-            set { tekstOdbijeni = value; OnPropertyChanged("TekstOdbijeni"); }
-        }
-        public string SifraOdbijenog
-        {
-            get { return sifraOdbijenog; }
-            set { sifraOdbijenog = value; OnPropertyChanged("SifraOdbijenog"); PotvrdiIzmjenuOdbijenog.RaiseCanExecuteChanged(); }
-        }
-        public string NazivOdbijenog
-        {
-            get { return nazivOdbijenog; }
-            set { nazivOdbijenog = value; OnPropertyChanged("NazivOdbijenog"); PotvrdiIzmjenuOdbijenog.RaiseCanExecuteChanged(); }
-        }
         private void IzmjeniOdbijeni()
         {
             if(izabraniOdbijeniLijek != null)
@@ -1096,7 +1022,7 @@ namespace Projekat.ViewModel
         {
             Lek lijek = new Lek(izabraniOdbijeniLijek.idLeka, nazivOdbijenog, sifraOdbijenog);
             LekoviServis.IzmjeniOdbijeniLijek(izabraniOdbijeniLijek, lijek);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();
             int idx = OdbijeniLekovi.IndexOf(izabraniOdbijeniLijek);
             OdbijeniLekovi.RemoveAt(idx);
             OdbijeniLekovi.Insert(idx, lijek);
@@ -1129,7 +1055,7 @@ namespace Projekat.ViewModel
                     return true;
                 }
             }
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)//mogu izmjeniti u sifru postojeceg obijenog???
+            foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
             {
                 if (zahtjev.lek.sifraLeka.Equals(sifraOdbijenog) && zahtjev.lek.idLeka != izabraniOdbijeniLijek.idLeka)
                 {
@@ -1152,7 +1078,7 @@ namespace Projekat.ViewModel
         {
             SastojciLijeka = new ObservableCollection<Sastojak>();
 
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
             {
                 if (zahtjev.lek.sifraLeka == izabraniOdbijeniLijek.sifraLeka)
                 {
@@ -1230,9 +1156,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region BrisanjeOdbijenogZahtjeva
-        public MyICommand BrisanjeOdbijenogLijeka { get; set; }
-        public MyICommand ObrisiOdbijeniLijek { get; set; }
-        public MyICommand OdustaniOdBrisanjaOdbijenog { get; set; }
 
 
         private void PotvrdiBrisanjeOdbijenogZahtjeva()
@@ -1257,7 +1180,7 @@ namespace Projekat.ViewModel
 
         private ZahtevZaLekove nadjiIzabraniZahtjev()
         {
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
             {
                 if (zahtjev.lek.sifraLeka.Equals(izabraniOdbijeniLijek.sifraLeka))
                 {
@@ -1269,9 +1192,9 @@ namespace Projekat.ViewModel
 
         private void ukloniZahtjevZaLijek(ZahtevZaLekove izabraniZahtjev)
         {
-            LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
+            LekoviServis.ukloniZahtjev(izabraniZahtjev);
             OdbijeniLekovi.Remove(IzabraniOdbijeniLijek);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();
         }
 
         private void ZatvoriBrisanjeOdbijenog()
@@ -1282,9 +1205,6 @@ namespace Projekat.ViewModel
         #endregion
 
         #region PonovnoSlanjeZahtjeva
-        public MyICommand PonovnoSlanjeZahtjeva { get; set; }
-        public MyICommand OdustaniOdPonovnogSlanjaZahtjeva { get; set; }
-        public MyICommand PonovoPosaljiLijek { get; set; }
 
         private void PonovoPosaljiZahtjev()
         {
@@ -1309,14 +1229,14 @@ namespace Projekat.ViewModel
 
         private void sacuvajIzmjene()
         {
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();
             LekoviServis.sacuvajIzmjene();
             OdbijeniLekovi.Remove(izabraniOdbijeniLijek);
         }
 
         private void napraviNoviZahtjev()
         {
-            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            foreach (ZahtevZaLekove zahtjev in LekoviServis.ZahtjeviZaLijekove())
             {
                 if (zahtjev.lek.sifraLeka == izabraniOdbijeniLijek.sifraLeka)
                 {
@@ -1334,24 +1254,7 @@ namespace Projekat.ViewModel
         #endregion
 
         #region DodajZamjenskiViewModel
-        public MyICommand DodajZamjenskiProzor { get; set; }
-        public MyICommand NapustiDodavanjeZamjenskih { get; set; }
-        public MyICommand DodajZamjenski { get; set; }
-        private string tekstZamjenskiLijek;
-        private Lek izabraniZamjenski;
-        public Lek IzabraniZamjenski {
-            get { return izabraniZamjenski; }
-            set { izabraniZamjenski = value; OnPropertyChanged("IzabraniZamjenski"); }
-        }
-        public string TekstZamjenskiLijek
-        {
-            get { return tekstZamjenskiLijek; }
-            set
-            {
-                tekstZamjenskiLijek = value; OnPropertyChanged("TekstZamjenskiLijek");
-            }
-        }
-        private void OtvoriDodavanjeZamjenskog()
+         private void OtvoriDodavanjeZamjenskog()
         {
             DodavanjeZamjenskogLijekaProzor = new DodajZamjenskiLijek();
             DodavanjeZamjenskogLijekaProzor.Show();

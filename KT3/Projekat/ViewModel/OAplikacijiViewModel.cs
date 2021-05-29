@@ -8,10 +8,9 @@ namespace Projekat.ViewModel
 {
     public class OAplikacijiViewModel : BindableBase
     {
+        #region OAplikacijiViewModel
         public static Window OAplikacijiProzor { get; set; }
-        public OAplikacijiViewModel()
-        {
-
-        }
+        public OAplikacijiViewModel(){}
+        #endregion
     }
 }

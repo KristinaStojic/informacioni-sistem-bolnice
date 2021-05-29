@@ -12,7 +12,6 @@ namespace Projekat
     /// </summary>
     public partial class Sastojci : Window
     {
-
         public Sastojci()
         {
             InitializeComponent();

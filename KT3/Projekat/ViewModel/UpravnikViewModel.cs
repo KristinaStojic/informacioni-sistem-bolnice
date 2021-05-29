@@ -11,18 +11,60 @@ namespace Projekat.ViewModel
 {
     public class UpravnikViewModel : BindableBase
     {
-        #region UpravnikViewModel
-        private ObservableCollection<Obavestenja> obavestenja;
-        private Obavestenja izabranoObavjestenje;
-        private string obavjestenje;
+        #region Promjenljive
+        public MyICommand OdjavaKomanda { get; set; }
+        public MyICommand PrikazObavjestenja { get; set; }
+        public MyICommand ProstorijeProzor { get; set; }
+        public MyICommand NapustiRegistraciju { get; set; }
+        public MyICommand ZahtjeviProzor { get; set; }
+        public MyICommand KomunikacijProzor { get; set; }
+        public MyICommand ZatvoriObavjestenje { get; set; }
+        public MyICommand PrijaviSeKomanda { get; set; }
+        public MyICommand Registracija { get; set; }
+        public MyICommand Upravnik { get; set; }
+        public MyICommand UgasiAplikaciju { get; set; }
+        public MyICommand RegistracijaKlik { get; set; }
+        public MyICommand Logovanje { get; set; }
+        public MyICommand IzvjestajProzor { get; set; }
+        public Window ObavjestenjeProzor { get; set; }
+        public static Window PrijavaProzor { get; set; }
         public static Window UpravnikProzor { get; set; }
         public static Window UpravnikRegistracijaProzor { get; set; }
         public static Window UspjesnaRegistracijaProzor { get; set; }
+
+        private string korisnickoIme;
+
+        private string lozinka;
+
+        private string ime;
+
+        private string prezime;
+
+        private string korisnickoImeRegistracija;
+
+        private string lozinkaRegistracija;
+        public string Ime { get { return ime; } set { ime = value; OnPropertyChanged("Ime"); Registracija.RaiseCanExecuteChanged(); } }
+        public string Prezime { get { return prezime; } set { prezime = value; OnPropertyChanged("Prezime"); Registracija.RaiseCanExecuteChanged(); } }
+        public string KorisnickoImeRegistracija { get { return korisnickoImeRegistracija; } set { korisnickoImeRegistracija = value; OnPropertyChanged("KorisnickoImeRegistracija"); Registracija.RaiseCanExecuteChanged(); } }
+        public string LozinkaRegistracija { get { return lozinkaRegistracija; } set { lozinkaRegistracija = value; OnPropertyChanged("LozinkaRegistracija"); Registracija.RaiseCanExecuteChanged(); } }
+        public string KorisnickoIme { get { return korisnickoIme; } set { korisnickoIme = value; OnPropertyChanged("KorisnickoIme"); } }
+        public string Lozinka { get { return lozinka; } set { lozinka = value; OnPropertyChanged("Lozinka"); } }
+
+        private string obavjestenje;
         public string Obavjestenje { get { return obavjestenje; } set { obavjestenje = value; OnPropertyChanged("Obavjestenje"); } }
+        
+        private Obavestenja izabranoObavjestenje;
         public Obavestenja IzabranoObavjestenje { get { return izabranoObavjestenje; } set { izabranoObavjestenje = value; OnPropertyChanged("IzabranoObavjestenj"); } }
+        
+        private ObservableCollection<Obavestenja> obavestenja;
         public ObservableCollection<Obavestenja> Obavestenja { get { return obavestenja; } set { obavestenja = value; OnPropertyChanged("Obavestenja"); } }
+        #endregion
+
+        #region Konstruktor
         public UpravnikViewModel()
         {
+            korisnickoImeRegistracija = "";
+            lozinkaRegistracija = "";
             OdjavaKomanda = new MyICommand(ZatvoriAplikaciju);
             ProstorijeProzor = new MyICommand(OtvoriProstorije);
             ZahtjeviProzor = new MyICommand(OtvoriZahtjeve);
@@ -36,12 +78,24 @@ namespace Projekat.ViewModel
             Upravnik = new MyICommand(OtvoriUpravnika);
             IzvjestajProzor = new MyICommand(PrikaziIzvjestaj);
             UgasiAplikaciju = new MyICommand(Ugasi);
+            NapustiRegistraciju = new MyICommand(OtvoriPrijavu);
             dodajObavjestenja();
         }
-        public MyICommand RegistracijaKlik { get; set; }
-        public Window ObavjestenjeProzor { get; set; }
-        public MyICommand Logovanje { get; set; }
-        public static Window PrijavaProzor { get; set; }
+
+        private void dodajObavjestenja()
+        {
+            Obavestenja = new ObservableCollection<Obavestenja>();
+            foreach (Obavestenja obavjestenja in ObavestenjaServis.NadjiSvaObavestenja())
+            {
+                if (obavjestenja.Oznaka.Equals("svi") || obavjestenja.Oznaka.Equals("upravnici"))
+                {
+                    Obavestenja.Add(obavjestenja);
+                }
+            }
+        }
+        #endregion
+
+        #region UpravnikViewModel
         private void ZatvoriObavjestenja()
         {
             ObavjestenjeProzor.Close();
@@ -60,28 +114,6 @@ namespace Projekat.ViewModel
                 MessageBox.Show("Morate izabrati obavjestenje!");
             }
         }
-
-        private void dodajObavjestenja()
-        {
-            Obavestenja = new ObservableCollection<Obavestenja>();
-            foreach (Obavestenja obavjestenja in ObavestenjaMenadzer.obavestenja)
-            {
-                if (obavjestenja.Oznaka.Equals("svi") || obavjestenja.Oznaka.Equals("upravnici"))
-                {
-                    Obavestenja.Add(obavjestenja);
-                }
-            }
-        }
-        public MyICommand OdjavaKomanda { get; set; }
-        public MyICommand PrikazObavjestenja { get; set; }
-        public MyICommand ProstorijeProzor { get; set; }
-        public MyICommand ZahtjeviProzor { get; set; }
-        public MyICommand KomunikacijProzor { get; set; }
-        public MyICommand ZatvoriObavjestenje { get; set; }
-        public MyICommand PrijaviSeKomanda { get; set; }
-        public MyICommand Registracija { get; set; }
-        public MyICommand Upravnik { get; set; }
-        public MyICommand UgasiAplikaciju { get; set; }
 
         private void Ugasi()
         {
@@ -111,17 +143,14 @@ namespace Projekat.ViewModel
         }
         private void ZatvoriAplikaciju()
         {
-            korisnickoIme = "";
-            lozinka = "";
+            KorisnickoIme = "";
+            Lozinka = "";
             PrijavaProzor.Show();
             UpravnikProzor.Close();
         }
         #endregion
+
         #region PrijavaUpravnika
-        private string korisnickoIme;
-        private string lozinka;
-        public string KorisnickoIme { get { return korisnickoIme; } set { korisnickoIme = value; OnPropertyChanged("KorisnickoIme"); } }
-        public string Lozinka { get { return lozinka; } set { lozinka = value; OnPropertyChanged("Lozinka"); } }
         private void Prijava()
         {
             foreach(UpravnikModel upravnik in UpravnikServis.NadjiSveUpravnike())
@@ -136,18 +165,14 @@ namespace Projekat.ViewModel
                 }
             }
             Console.WriteLine("DSadasdasdas");
-            MessageBox.Show("Neisptavno korisnicko ime i / ili lozinka");
+            MessageBox.Show("Neispravno korisnicko ime i / ili lozinka");
+            KorisnickoIme = "";
+            Lozinka = "";
         }
+
         #endregion
+
         #region RegistracijaUpravnika
-        private string ime;
-        private string prezime;
-        private string korisnickoImeRegistracija;
-        private string lozinkaRegistracija;
-        public string Ime { get { return ime; } set { ime = value; OnPropertyChanged("Ime"); Registracija.RaiseCanExecuteChanged(); } }
-        public string Prezime { get { return prezime; } set { prezime = value; OnPropertyChanged("Prezime"); Registracija.RaiseCanExecuteChanged(); } }
-        public string KorisnickoImeRegistracija { get { return korisnickoImeRegistracija; } set { korisnickoImeRegistracija = value; OnPropertyChanged("KorisnickoImeRegistracija"); Registracija.RaiseCanExecuteChanged(); } }
-        public string LozinkaRegistracija { get { return lozinkaRegistracija; } set { lozinkaRegistracija = value; OnPropertyChanged("LozinkaRegistracija"); Registracija.RaiseCanExecuteChanged(); } }
         private void RegistrujSe()
         {
             UpravnikModel upravnik = new UpravnikModel(korisnickoImeRegistracija, lozinkaRegistracija);
@@ -161,6 +186,8 @@ namespace Projekat.ViewModel
         {
             PrijavaProzor = new UpravnikPrijava();
             PrijavaProzor.Show();
+            korisnickoIme = "";
+            lozinka = "";
             PrijavaProzor.DataContext = this;
             UspjesnaRegistracijaProzor.Close();
         }
@@ -173,16 +200,27 @@ namespace Projekat.ViewModel
         }
         private bool ValidnaRegistracija()
         {
-            if(ime != null && prezime != null && korisnickoImeRegistracija != null && lozinkaRegistracija != null)
+            if (ime != null && prezime != null && korisnickoImeRegistracija != null && lozinkaRegistracija != null)
             {
-                return true;
+                if (!ime.Trim().Equals("") && !prezime.Trim().Equals("") && !korisnickoImeRegistracija.Trim().Equals("") && !lozinkaRegistracija.Trim().Equals(""))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
+        private void OtvoriPrijavu()
+        {
+            PrijavaProzor = new UpravnikPrijava();
+            PrijavaProzor.Show();
+            PrijavaProzor.DataContext = this;
+            UpravnikRegistracijaProzor.Close();
+        }
         private void OtvoriRegistraciju()
         {
             UpravnikRegistracijaProzor = new UpravnikRegistracija();
@@ -196,8 +234,8 @@ namespace Projekat.ViewModel
         }
 
         #endregion
+
         #region IzvjestajViewModel
-        public MyICommand IzvjestajProzor { get; set; }
         private void PrikaziIzvjestaj()
         {
             IzvjestajViewModel.IzvjestajProzor = new Izvjestaj();

@@ -2,28 +2,62 @@
 using Projekat.Pomoc;
 using Projekat.Servis;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Projekat.ViewModel
 {
     public class ZahtjeviViewModel : BindableBase
     {
-        #region ZahtjeviViewModel
+        #region Promjenljive
         public MyICommand LijekoviProzor { get; set; }
         public MyICommand SkladisteKomanda { get; set; }
         public MyICommand ZatvoriZahtjeveKomanda { get; set; }
         public MyICommand OtvoriSale { get; set; }
+        public MyICommand OtvoriIzvjestaj { get; set; }
+        public MyICommand ObracunPlate { get; set; }
+        public MyICommand ZatvoriFormulu { get; set; }
+        public MyICommand UnesenaFormula { get; set; }
+        public MyICommand ZatvoriObracunPlate { get; set; }
+        public MyICommand OtvoriProstorije { get; set; }
+        public MyICommand OtvoriKomunikacijuPlata { get; set; }
+        public MyICommand OtvoriIzvjestajPlate { get; set; }
+        public MyICommand OtvoriOpis { get; set; }
+        public MyICommand OtvoriPomocPlate { get; set; }
         public MyICommand OtvoriKomunikaciju { get; set; }
         public MyICommand OtvoriOAplikaciji { get; set; }
         public MyICommand OtvoriEvidenciju { get; set; }
+        public MyICommand Evidentiraj { get; set; }
+        public MyICommand PrikaziSaleEvidencija { get; set; }
+        public MyICommand PrikaziKomunikacijuEvidencija { get; set; }
+        public MyICommand PrikaziIzvjestajEvidencija { get; set; }
+        public MyICommand OtvoriOpisEvidencija { get; set; }
+        public MyICommand OtvoriPomocEvidencija { get; set; }
         public MyICommand OtvoriPomoc { get; set; }
+        public MyICommand ZatvoriEvidenciju { get; set; }
         public static Window ZahtjeviProzor { get; set; }
         public static Window PomocProzor { get; set; }
-        
+        public Window FormulaProzor { get; set; }
+        public Window EvidencijaProzor { get; set; }
+        public Window PomocEvidencijaProzor { get; set; }
+        public Window PlateProzor { get; set; }
+        public Window PlatePomocProzor { get; set; }
+
+        private string formulaPlate;
+        public string FormulaPlate { get { return formulaPlate; } set { formulaPlate = value; OnPropertyChanged("FormulaPlate"); UnesenaFormula.RaiseCanExecuteChanged(); } }
+
+        private Oprema izabranaOprema;
+        public Oprema IzabranaOprema { get { return izabranaOprema; } set { izabranaOprema = value; OnPropertyChanged("IzabranaOprema"); } }
+
+        private ObservableCollection<Plata> plate;
+        public ObservableCollection<Plata> Plate { get { return plate; } set { plate = value; OnPropertyChanged("Plate"); } }
+       
+        private ObservableCollection<Oprema> utrosenaOprema;
+        public ObservableCollection<Oprema> UtrosenaOprema { get { return utrosenaOprema; } set { utrosenaOprema = value; OnPropertyChanged("UtrosenaOprema"); } }
+
+        #endregion
+
+        #region Konstruktor
         public ZahtjeviViewModel()
         {
             LijekoviProzor = new MyICommand(OtvoriLijekove);
@@ -52,23 +86,10 @@ namespace Projekat.ViewModel
             OtvoriPomoc = new MyICommand(PrikaziPomoc);
             OtvoriPomocPlate = new MyICommand(PrikaziPomocPlate);
         }
-        private string formulaPlate;
-        public string FormulaPlate { get { return formulaPlate; } set { formulaPlate = value; OnPropertyChanged("FormulaPlate");UnesenaFormula.RaiseCanExecuteChanged(); } }
-        private bool ValidnoUnesenaFormula()
-        {
-            if(formulaPlate != null)
-            {
-                if (formulaPlate.Trim().Equals(""))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        #endregion
+
+        #region ZahtjeviViewModel
+
         private void PrikaziPomoc()
         {
             PomocProzor = new ZahtjeviPomoc();
@@ -96,7 +117,7 @@ namespace Projekat.ViewModel
         {
             KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
             KomunikacijaViewModel.KomunikacijaProzor.Show();
-            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new Komunikacija();
+            KomunikacijaViewModel.KomunikacijaProzor.DataContext = new KomunikacijaViewModel();
             ZahtjeviProzor.Close();
         }
         private void PrikaziSale()
@@ -114,6 +135,7 @@ namespace Projekat.ViewModel
             ZahtjeviProzor.Close();
         }
         #endregion
+
         #region LijekoviViewModel
         private void OtvoriLijekove()
         {
@@ -123,6 +145,7 @@ namespace Projekat.ViewModel
             ZahtjeviProzor.Close();
         }
         #endregion
+
         #region SkladisteViewModel
         private void OtvoriSkladiste()
         {
@@ -138,8 +161,8 @@ namespace Projekat.ViewModel
             catch (Exception ex) { Console.WriteLine(ex.Data); }
         }
         #endregion
+
         #region OtvoriIzvjestajViewModel
-        public MyICommand OtvoriIzvjestaj { get; set; }
 
         private void OtvaranjeIzvjestaja()
         {
@@ -150,21 +173,8 @@ namespace Projekat.ViewModel
         }
 
         #endregion
+
         #region ObracunPlateViewModel
-        public MyICommand ObracunPlate { get; set; }
-        public MyICommand ZatvoriFormulu { get; set; }
-        public MyICommand UnesenaFormula { get; set; }
-        public MyICommand ZatvoriObracunPlate { get; set; }
-        public MyICommand OtvoriProstorije { get; set; }
-        public MyICommand OtvoriKomunikacijuPlata { get; set; }
-        public MyICommand OtvoriIzvjestajPlate { get; set; }
-        public MyICommand OtvoriOpis { get; set; }
-        public MyICommand OtvoriPomocPlate { get; set; }
-        public Window FormulaProzor { get; set; }
-        public Window PlateProzor { get; set; }
-        public Window PlatePomocProzor { get; set; }
-        private ObservableCollection<Plata> plate;
-        public ObservableCollection<Plata> Plate { get { return plate; }set { plate = value; OnPropertyChanged("Plate"); } }
         private void PrikaziPomocPlate()
         {
             PlatePomocProzor = new PlatePomoc();
@@ -200,7 +210,6 @@ namespace Projekat.ViewModel
             OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
             OAplikacijiViewModel.OAplikacijiProzor.Show();
             OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
-            PlateProzor.Close();
         }
         private void PrikazProstorija()
         {
@@ -229,21 +238,26 @@ namespace Projekat.ViewModel
             ZahtjeviProzor.DataContext = this;
         }
 
+        private bool ValidnoUnesenaFormula()
+        {
+            if (formulaPlate != null)
+            {
+                if (formulaPlate.Trim().Equals(""))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         #endregion
+
         #region EvidencijaUtrosenogMaterijalaViewModel
-        public MyICommand ZatvoriEvidenciju { get; set; }
-        public Window EvidencijaProzor { get; set; }
-        public Window PomocEvidencijaProzor { get; set; }
-        private ObservableCollection<Oprema> utrosenaOprema;
-        public ObservableCollection<Oprema> UtrosenaOprema { get { return utrosenaOprema; } set { utrosenaOprema = value; OnPropertyChanged("UtrosenaOprema"); } }
-        private Oprema izabranaOprema;
-        public Oprema IzabranaOprema { get { return izabranaOprema; } set { izabranaOprema = value; OnPropertyChanged("IzabranaOprema"); } }
-        public MyICommand Evidentiraj { get; set; }
-        public MyICommand PrikaziSaleEvidencija { get; set; }
-        public MyICommand PrikaziKomunikacijuEvidencija { get; set; }
-        public MyICommand PrikaziIzvjestajEvidencija { get; set; }
-        public MyICommand OtvoriOpisEvidencija { get; set; }
-        public MyICommand OtvoriPomocEvidencija { get; set; }
+         
         private void OtvoriKomunikacijuEvidencija()
         {
             KomunikacijaViewModel.KomunikacijaProzor = new Komunikacija();
@@ -262,7 +276,6 @@ namespace Projekat.ViewModel
             OAplikacijiViewModel.OAplikacijiProzor = new OAplikaciji();
             OAplikacijiViewModel.OAplikacijiProzor.Show();
             OAplikacijiViewModel.OAplikacijiProzor.DataContext = new OAplikacijiViewModel();
-            EvidencijaProzor.Close();
         }
         private void ZatvoriIzmjenuSkladista()
         {

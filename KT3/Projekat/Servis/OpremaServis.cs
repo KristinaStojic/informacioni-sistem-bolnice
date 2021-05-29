@@ -16,9 +16,15 @@ namespace Projekat.Servis
         {
             return OpremaMenadzer.NadjiSvuOpremu();
         }
-
         public static List<Oprema> Oprema()
         {
+            foreach(Oprema oprema in OpremaMenadzer.oprema.ToArray())
+            {
+                if(oprema.Kolicina == 0)
+                {
+                    OpremaMenadzer.oprema.Remove(oprema);
+                }
+            }
             return OpremaMenadzer.oprema;
         }
 

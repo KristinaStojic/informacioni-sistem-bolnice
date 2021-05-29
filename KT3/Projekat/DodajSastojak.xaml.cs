@@ -10,11 +10,9 @@ namespace Projekat
     /// </summary>
     public partial class DodajSastojak : Window
     {
-
         public DodajSastojak()
         {
             InitializeComponent();
         }
-
     }
 }
