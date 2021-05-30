@@ -34,7 +34,7 @@ namespace Projekat
             set;
         }
 
-
+        
         public ChartValues<int> ukupnoPregleda
         {
             get;set;
@@ -77,34 +77,16 @@ namespace Projekat
             foreach (Termin t in TerminMenadzer.termini)
             {
 
-
-                if (t.Lekar.IdLekara == idLekara) //Petar Nebojsic
+                if (t.Lekar.IdLekara == idLekara)
                 {
                     Termini.Add(t);
-                    int brPregleda = t.Lekar.BrojPregleda; 
-                    int brOperacija = t.Lekar.BrojOperacija; 
+                    //int brPregleda = t.Lekar.BrojPregleda; 
+                    //int brOperacija = t.Lekar.BrojOperacija; 
                     //int br = 10;
-                    this.ukupnoPregleda = new ChartValues<int>() { brPregleda };
-                    this.ukupnoOperacija = new ChartValues<int>() { brOperacija };
+                    this.ukupnoPregleda = new ChartValues<int>() { t.Lekar.BrojPregleda };
+                    this.ukupnoOperacija = new ChartValues<int>() { t.Lekar.BrojOperacija };
                 }
-                /*if (t.Lekar.IdLekara == 2) //Milos Dragojevic
-                {
-                    Termini.Add(t);
-                }*/
-                /*if (t.Lekar.IdLekara == 3) //Petar Milosevic
-                {
-                    Termini.Add(t);
-                } */
-                /*if (t.Lekar.IdLekara == 4) //Dejan Milosevic
-                {
-                    Termini.Add(t);
-                }*/
-                /*if (t.Lekar.IdLekara == 5) //Isidora Isidorovic
-                {
-                    Termini.Add(t);
-                }*/
-
-
+               
             }
 
 

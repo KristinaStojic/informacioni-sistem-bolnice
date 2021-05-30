@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,7 +54,7 @@ namespace Projekat
         private void dodajLekoveUTabelu()
         {
             TabelaLekova = new ObservableCollection<Lek>();
-            foreach (Lek lek in LekoviMenadzer.lijekovi)
+            foreach (Lek lek in LekoviServis.Lijekovi())
             {
                 TabelaLekova.Add(lek);
             }
@@ -221,7 +222,7 @@ namespace Projekat
 
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
             TabelaZahteva.Remove(zaBrisanje);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();
         }
     }
 }

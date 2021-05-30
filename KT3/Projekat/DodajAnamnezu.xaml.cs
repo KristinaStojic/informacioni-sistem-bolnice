@@ -23,6 +23,7 @@ namespace Projekat
     {
         public Pacijent pacijent;
         public Termin termin;
+        public bool popunjeno = false;
         public DodajAnamnezu(Pacijent izabraniPacijent, Termin Ntermin)
         {
             InitializeComponent();
@@ -36,17 +37,24 @@ namespace Projekat
         
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
-                int brojAnamneze = ZdravstveniKartonServis.GenerisanjeIdAnamneze(pacijent.IdPacijenta);          
+            if(popunjeno == true)
+            {
+                int brojAnamneze = ZdravstveniKartonServis.GenerisanjeIdAnamneze(pacijent.IdPacijenta);
                 String datum = NadjiDatumPregleda();
                 string bolest = bol.Text;
                 string terapija = terap.Text;
 
-                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, datum, bolest, terapija,termin.Lekar.IdLekara, termin.IdTermin); 
+                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, datum, bolest, terapija, termin.Lekar.IdLekara, termin.IdTermin);
                 ZdravstveniKartonServis.DodajAnamnezu(anamneza);
 
 
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Popunite sva polja!");
+            }
+                
         }
 
         private string NadjiDatumPregleda()
@@ -78,6 +86,41 @@ namespace Projekat
             {
                 Button_Click_1(sender, e);
             }
-        } 
+        }
+
+        private void terap_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void bol_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.terap.Text != null)
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.potvrdi.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.terap.Text.Trim().Equals("") || this.bol.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = false;
+            }
+            else if (!this.terap.Text.Trim().Equals("") && !this.bol.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = true;
+                popunjeno = true;
+            }
+        }
+        
     }
 }

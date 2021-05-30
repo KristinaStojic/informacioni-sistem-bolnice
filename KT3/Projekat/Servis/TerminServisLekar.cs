@@ -33,5 +33,15 @@ namespace Projekat.Servis
             TerminMenadzer.sacuvajIzmene();
         }
 
+        public static int GenerisanjeIdTermina()
+        {
+            return TerminMenadzer.GenerisanjeIdTermina();
+        }
+
+        public static List<Termin> termini()
+        {
+            return TerminMenadzer.termini;
+        }
+
     }
 }

@@ -95,7 +95,7 @@ namespace Projekat
 
         private void popuniTabelePodacima()
         {
-            this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
@@ -105,7 +105,7 @@ namespace Projekat
         }
         private void popuniSale()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 prostorije.Items.Add(s.Id);
             }
@@ -489,7 +489,7 @@ namespace Projekat
 
         private void IzbaciZauzeteTermineLekara()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -526,7 +526,7 @@ namespace Projekat
         }
         private void IzbaciZauzeteTerminePacijenata()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -619,7 +619,7 @@ namespace Projekat
 
         private void dodajSaleZaPregled()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled) && !s.Namjena.Equals("Skladiste"))
                 {
@@ -633,7 +633,7 @@ namespace Projekat
 
         private void dodajSaleZaOperacije()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 if (s.TipSale.Equals(tipSale.OperacionaSala))
                 {
@@ -695,7 +695,7 @@ namespace Projekat
                     hitnaOperacija = true;
                 }
 
-                t = new Termin(TerminMenadzer.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent, hitnaOperacija);
+                t = new Termin(TerminServisLekar.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent, hitnaOperacija);
 
 
                 if (Sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
@@ -705,7 +705,7 @@ namespace Projekat
                     Sala.zauzetiTermini.Add(z);
 
                     // za svaki termin koji je zakazan u istoj prostoriji s, dodati to novo zauzece u zauzeca te prostorije
-                    foreach (Termin t1 in TerminMenadzer.termini)
+                    foreach (Termin t1 in TerminServisLekar.termini())
                     {
                         if (t1.Prostorija.Id == Sala.Id)
                         {

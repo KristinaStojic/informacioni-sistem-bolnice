@@ -34,13 +34,13 @@ namespace Projekat
         }
         private void PopuniPodatkeOAlergenu(Alergeni izabraniAlergen)
         {
+
             List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {
                     this.naziv.Text = izabraniAlergen.NazivSastojka;
-                    this.sifra.Text = izabraniAlergen.SifraSastojka;
                     this.nuspojava.Text = izabraniAlergen.NuspojavaNaNastojak;
                     this.vreme.Text = izabraniAlergen.VremeReakcije;
                 }

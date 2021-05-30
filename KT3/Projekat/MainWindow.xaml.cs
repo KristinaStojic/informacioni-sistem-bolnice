@@ -42,7 +42,7 @@ namespace Projekat
             ObavestenjaServis.NadjiSvaObavestenja();
             LekariServis.NadjiSveZahteve();
             LekariServis.NadjiSveLekare();
-            LekoviMenadzer.NadjiSveZahteve();
+            LekoviServis.NadjiSveZahteve();
 
             /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
@@ -63,13 +63,14 @@ namespace Projekat
             lekovi.Add(new Lek(4, "Andol", "M4M"));
             lekovi.Add(new Lek(5, "Sterpsils", "K5S"));
 
+            /*
             alergeni = new ObservableCollection<Alergeni>();
             alergeni.Add(new Alergeni(1, "Paracetamol", "P2L"));
             alergeni.Add(new Alergeni(2, "Brufen", "B1E"));
             alergeni.Add(new Alergeni(3, "Pentraxil", "R24"));
             alergeni.Add(new Alergeni(4, "Andol", "M4M"));
             alergeni.Add(new Alergeni(5, "Sterpsils", "K5S"));
-
+            */
             zahtevi = new ObservableCollection<ZahtevZaLekove>();
             zahtevi.Add(new ZahtevZaLekove(1, "Tylolhot", "T32", "11/04/2021", false));
             zahtevi.Add(new ZahtevZaLekove(2, "Vitamic C", "VC4", "10/04/2021", false));

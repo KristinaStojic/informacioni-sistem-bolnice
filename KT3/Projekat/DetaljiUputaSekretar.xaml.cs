@@ -41,6 +41,7 @@ namespace Projekat
 
         private void NadjiPacijenta(int idPacijenta)
         {
+
             List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
             foreach (Pacijent pacijent in pacijenti)
             {

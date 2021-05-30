@@ -48,7 +48,6 @@ namespace Projekat
             {
                 Sastojak item = (Sastojak)nadjiAlergen.SelectedItems[0];
                 naziv.Text = item.naziv;
-                sifra.Text = item.kolicina.ToString();
             }
         }
 
@@ -71,12 +70,11 @@ namespace Projekat
             {
                 int idAlergena = ZdravstveniKartonServis.GenerisanjeIdAlergena(pacijent.IdPacijenta);
                 String nazivLeka = naziv.Text;
-                String sifraLeka = sifra.Text;
                 String Nuspojava = nuspojava.Text;
                 String vremeNuspojave = vreme.Text;
 
 
-                Alergeni alergen = new Alergeni(idAlergena, pacijent.IdPacijenta, nazivLeka, sifraLeka, Nuspojava, vremeNuspojave);
+                Alergeni alergen = new Alergeni(idAlergena, pacijent.IdPacijenta, nazivLeka,Nuspojava, vremeNuspojave);
                 ZdravstveniKartonServis.DodajAlergen(alergen);
 
                 TerminServisLekar.sacuvajIzmene();

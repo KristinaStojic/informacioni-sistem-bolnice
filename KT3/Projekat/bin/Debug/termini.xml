@@ -12,8 +12,11 @@
       <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
       <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
-      <zahteviZaOdmor />
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>3</IdPacijenta>
@@ -33,6 +36,9 @@
         <Anamneze />
         <Alergeni />
         <Uputi />
+        <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
       </Karton>
       <Maloletnik>false</Maloletnik>
       <JmbgStaratelja>0</JmbgStaratelja>
@@ -128,8 +134,11 @@
       <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
       <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
-      <zahteviZaOdmor />
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>1</IdPacijenta>
@@ -151,8 +160,11 @@
         <BrojTelefona>0</BrojTelefona>
         <specijalizacija>Opsta_praksa</specijalizacija>
         <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-        <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
-        <zahteviZaOdmor />
+        <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+        <ZahteviZaOdmor />
+        <RadniDani />
+        <BrojPregleda>0</BrojPregleda>
+        <BrojOperacija>0</BrojOperacija>
       </IzabraniLekar>
       <Karton>
         <IdPacijenta>1</IdPacijenta>
@@ -194,6 +206,9 @@
         </Anamneze>
         <Alergeni />
         <Uputi />
+        <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
       </Karton>
       <Maloletnik>false</Maloletnik>
       <JmbgStaratelja>0</JmbgStaratelja>
@@ -269,8 +284,11 @@
       <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
       <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
-      <zahteviZaOdmor />
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>5</IdPacijenta>
@@ -344,6 +362,9 @@
         </Anamneze>
         <Alergeni />
         <Uputi />
+        <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
       </Karton>
       <Maloletnik>true</Maloletnik>
       <JmbgStaratelja>99</JmbgStaratelja>
@@ -425,8 +446,11 @@
       <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
       <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniiDaniGodisnjegOdmora>0</ZahtevaniiDaniGodisnjegOdmora>
-      <zahteviZaOdmor />
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </Lekar>
     <Pacijent>
       <IdPacijenta>4</IdPacijenta>
@@ -486,6 +510,9 @@
           </Alergeni>
         </Alergeni>
         <Uputi />
+        <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
       </Karton>
       <Maloletnik>false</Maloletnik>
       <JmbgStaratelja>0</JmbgStaratelja>
