@@ -38,7 +38,8 @@ namespace Projekat
             this.DataContext = this;
             PacijentiTabela = new ObservableCollection<Pacijent>();
 
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 PacijentiTabela.Add(p);
             }
@@ -260,7 +261,15 @@ namespace Projekat
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
             {
                 Nazad_Click(sender, e);
-            }           
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                //this.MoveFocus();
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                pretraga.Focusable = true;
+            }
         }
 
     }

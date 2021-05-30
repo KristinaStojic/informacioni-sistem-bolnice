@@ -39,7 +39,8 @@ namespace Projekat
             this.DataContext = this;
 
             TabelaUputa = new ObservableCollection<Uput>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -73,7 +74,9 @@ namespace Projekat
                 zakazivanje.lekari.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
             }
             zakazivanje.tip.SelectedIndex = 1;
-            foreach (Sala s in SaleMenadzer.sale)
+
+            List<Sala> sale = SaleServis.NadjiSveSale();
+            foreach (Sala s in sale)
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled) && !s.Namjena.Equals("Skladiste"))
                 {

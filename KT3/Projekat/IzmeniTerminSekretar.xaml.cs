@@ -39,11 +39,13 @@ namespace Projekat
             InitializeComponent();
             this.termin = izabraniTermin;
 
-            this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            this.listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
+            List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
+            this.listaLekara.ItemsSource = lekariLista;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
@@ -72,9 +74,10 @@ namespace Projekat
                 lekari.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 Lekar = izabraniTermin.Lekar;
 
-                for (int i = 0; i < LekariMenadzer.lekari.Count; i++)
+                List<Lekar> lekariListaIzServisa = LekariServis.NadjiSveLekare();
+                for (int i = 0; i < lekariListaIzServisa.Count; i++)
                 {
-                    if (LekariMenadzer.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
+                    if (lekariListaIzServisa[i].IdLekara == izabraniTermin.Lekar.IdLekara)
                     {
                         listaLekara.SelectedIndex = i;
                     }
@@ -83,10 +86,10 @@ namespace Projekat
                 // pacijent
                 pacijenti.Text = izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta;
                 Pacijent = izabraniTermin.Pacijent;
-
-                for (int j = 0; j < PacijentiMenadzer.pacijenti.Count; j++)
+                List<Pacijent> pacijentiListaIzServisa = PacijentiServis.PronadjiSve();
+                for (int j = 0; j < pacijentiListaIzServisa.Count; j++)
                 {
-                    if (PacijentiMenadzer.pacijenti[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
+                    if (pacijentiListaIzServisa[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
                     {
                         listaPacijenata.SelectedIndex = j;
                     }
@@ -97,8 +100,9 @@ namespace Projekat
                 if (izabraniTermin.tipTermina.Equals(TipTermina.Pregled))
                 {
                     tip.SelectedIndex = 0;
-                    
-                    foreach (Sala s in SaleMenadzer.sale)
+
+                    List<Sala> sale = SaleServis.NadjiSveSale();
+                    foreach (Sala s in sale)
                     {
                         if (s.TipSale.Equals(tipSale.SalaZaPregled))
                         {
@@ -115,7 +119,8 @@ namespace Projekat
                 {
                     tip.SelectedIndex = 1;
 
-                    foreach (Sala s in SaleMenadzer.sale)
+                    List<Sala> sale = SaleServis.NadjiSveSale();
+                    foreach (Sala s in sale)
                     {
                         if (s.TipSale.Equals(tipSale.OperacionaSala))
                         {
@@ -173,7 +178,8 @@ namespace Projekat
         // azuriranje liste pacijenata prilikom dodavanja guest pacijenta
         public void AzurirajListuPacijenata()
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            foreach (Pacijent pacijent in pacijentiLista)
             {
                 AzuriranaLista.Add(pacijent);
             }
@@ -286,7 +292,8 @@ namespace Projekat
                     }
                 }
                 // slobodni termini lekara
-                foreach (Sala s in SaleMenadzer.sale)
+                List<Sala> sale = SaleServis.NadjiSveSale();
+                foreach (Sala s in sale)
                 {
                     foreach (ZauzeceSale z in s.zauzetiTermini)
                     {
@@ -338,7 +345,7 @@ namespace Projekat
                     }
                 }
                 // slobodni termini pacijenta - pacijent ne moze biti na istim mestima u isto vreme
-                foreach (Sala s in SaleMenadzer.sale)
+                foreach (Sala s in sale)
                 {
                     foreach (ZauzeceSale z in s.zauzetiTermini)
                     {
@@ -418,7 +425,8 @@ namespace Projekat
 
             if (tip.SelectedIndex == 0) // pregled
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                List<Sala> sale = SaleServis.NadjiSveSale();
+                foreach (Sala s in sale)
                 {
                     if (s.TipSale.Equals(tipSale.SalaZaPregled))
                     {
@@ -431,7 +439,8 @@ namespace Projekat
             }
             else if (tip.SelectedIndex == 1) // operacija
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                List<Sala> sale = SaleServis.NadjiSveSale();
+                foreach (Sala s in sale)
                 {
                     if (s.TipSale.Equals(tipSale.OperacionaSala))
                     {
@@ -535,11 +544,13 @@ namespace Projekat
             string[] vpt = termin.VremePocetka.Split(':');
             string[] vkt = termin.VremeKraja.Split(':');
 
-            foreach (Termin t in TerminMenadzer.termini)
+            List<Termin> terminiLista = TerminServis.NadjiSveTermine();
+            foreach (Termin t in terminiLista)
             {
                 if (termin.IdTermin == t.IdTermin)
                 {
-                    foreach (Sala sala in SaleMenadzer.sale)
+                    List<Sala> sale = SaleServis.NadjiSveSale();
+                    foreach (Sala sala in sale)
                     {
                         if (sala.Id == termin.Prostorija.Id)
                         {
@@ -563,7 +574,8 @@ namespace Projekat
             // ako je prostorija izmenjena
             if (termin.Prostorija.Id != izmenjeniTermin.Prostorija.Id)
             {
-                foreach (Termin t in TerminMenadzer.termini)
+                List<Termin> terminiListaIzServisa = TerminServis.NadjiSveTermine();
+                foreach (Termin t in terminiListaIzServisa)
                 {
                     if (t.Prostorija.Id == termin.Prostorija.Id)
                     {

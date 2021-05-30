@@ -30,7 +30,8 @@ namespace Projekat
             InitializeComponent();
             obavestenje = selektovanoObavestenje;
 
-            this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            this.listaPacijenata.ItemsSource = pacijenti;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilter;
 

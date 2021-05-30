@@ -35,6 +35,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             TerminiSekretar = new ObservableCollection<Termin>();
+            //List<Termin> terminiLista = TerminiSekretarServis.NadjiSveTermine();
             foreach (Termin t in TerminMenadzer.termini)
             {
                 TerminiSekretar.Add(t);

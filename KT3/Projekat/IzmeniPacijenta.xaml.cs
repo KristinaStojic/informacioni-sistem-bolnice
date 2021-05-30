@@ -170,7 +170,8 @@ namespace Projekat
                     jmbgStaratelja.IsEnabled = false;
                 }
 
-                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true 
+                    && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
                 {
                     potvrdi.IsEnabled = true;
                 }
@@ -206,7 +207,8 @@ namespace Projekat
             else
             {
                 flag1 = true;
-                if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                     || (flag1 == true && flag2 == true && flag6 == true && statusPacijenta.Text.Equals("GUEST")))
                 {
                     potvrdi.IsEnabled = true;
@@ -224,7 +226,8 @@ namespace Projekat
             else
             {
                 flag2 = true;
-                if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                     || (flag1 == true && flag2 == true && flag6 == true && statusPacijenta.Text.Equals("GUEST")))
                 {
                     potvrdi.IsEnabled = true;
@@ -242,7 +245,8 @@ namespace Projekat
             else
             {
                 flag3 = true;
-                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                 {
                     potvrdi.IsEnabled = true;
                 }
@@ -259,7 +263,8 @@ namespace Projekat
             else
             {
                 flag4 = true;
-                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                 {
                     potvrdi.IsEnabled = true;
                 }
@@ -276,7 +281,8 @@ namespace Projekat
             else
             {
                 flag5 = true;
-                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                 {
                     potvrdi.IsEnabled = true;
                 }
@@ -299,7 +305,8 @@ namespace Projekat
                     {
                         validacijaJmbg.Visibility = Visibility.Hidden;
                         flag6 = true;
-                        if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                        if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                            && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                             || (flag1 == true && flag2 == true && flag6 == true && statusPacijenta.Text.Equals("GUEST")))
                         {
                             potvrdi.IsEnabled = true;
@@ -337,7 +344,8 @@ namespace Projekat
                     {
                         validacijaBrojTelefona.Visibility = Visibility.Hidden;
                         flag7 = true;
-                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                            && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                         {
                             potvrdi.IsEnabled = true;
                         }
@@ -374,7 +382,8 @@ namespace Projekat
                     {
                         validacijaJmbgStaratelja.Visibility = Visibility.Hidden;
                         flag8 = true;
-                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                            && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
                         {
                             potvrdi.IsEnabled = true;
                         }

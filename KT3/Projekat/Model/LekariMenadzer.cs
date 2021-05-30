@@ -64,6 +64,7 @@ namespace Model
                 if (zahtevi[i].lekar.IdLekara == lekar.IdLekara)
                 {
                     zahtevi.RemoveAt(i);
+                    i--;
                     sacuvajIzmjeneZahteva();
                 }
             }
@@ -73,13 +74,20 @@ namespace Model
         {
             for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
             {
-                for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.Count; j++)
+                if (PacijentiMenadzer.pacijenti[i].Karton == null)
                 {
-                    if (PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti[j].IdLekara == lekar.IdLekara)
+                    return;
+                }
+                else 
+                { 
+                    for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.Count; j++)
                     {
-                        PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.RemoveAt(j);
-                        j--;
-                        PacijentiServis.SacuvajIzmenePacijenta();
+                        if (PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti[j].IdLekara == lekar.IdLekara)
+                        {
+                            PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.RemoveAt(j);
+                            j--;
+                            PacijentiServis.SacuvajIzmenePacijenta();
+                        }
                     }
                 }
             }
@@ -88,15 +96,22 @@ namespace Model
         public static void ObrisiUpute(Lekar lekar)
         {
             for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
-            { 
-                for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.Uputi.Count; j++)
+            {
+                if (PacijentiMenadzer.pacijenti[i].Karton == null)
                 {
-                    if (PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKodKogSeUpucuje == lekar.IdLekara 
-                        || PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKojiIzdajeUput == lekar.IdLekara)
+                    return;
+                }
+                else
+                { 
+                    for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.Uputi.Count; j++)
                     {
-                        PacijentiMenadzer.pacijenti[i].Karton.Uputi.RemoveAt(j);
-                        j--;
-                        PacijentiServis.SacuvajIzmenePacijenta();
+                        if (PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKodKogSeUpucuje == lekar.IdLekara
+                            || PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKojiIzdajeUput == lekar.IdLekara)
+                        {
+                            PacijentiMenadzer.pacijenti[i].Karton.Uputi.RemoveAt(j);
+                            j--;
+                            PacijentiServis.SacuvajIzmenePacijenta();
+                        }
                     }
                 }
             }
@@ -194,28 +209,23 @@ namespace Model
         {
             bool pomocna = false;
             int id = 1;
-            foreach (Lekar lekar in lekari)
-            {
-                if (lekar.IdLekara == idLekara)
-                {
-                    for (id = 1; id <= lekar.ZahteviZaOdmor.Count; id++)
-                    {
-                        foreach (int z in lekar.ZahteviZaOdmor)
-                        {
-                            if (z == id)
-                            {
-                                pomocna = true;
-                                break;
-                            }
-                        }
 
-                        if (!pomocna)
-                        {
-                            return id;
-                        }
-                        pomocna = false;
+            for (id = 1; id <= zahtevi.Count; id++)
+            {
+                foreach (ZahtevZaGodisnji zahtev in zahtevi)
+                {
+                    if (zahtev.idZahteva.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
                     }
                 }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
             }
 
             return id;

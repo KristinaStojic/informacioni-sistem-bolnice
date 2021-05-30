@@ -33,12 +33,13 @@ namespace Projekat
             listaPacijenata.IsEnabled = false;
             pacijenti.IsEnabled = false;
 
-            this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            this.listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
-            view.Filter = UserFilter;
+            view.Filter = PretragaPacijenata;
         }
 
-        private bool UserFilter(object item)
+        private bool PretragaPacijenata(object item)
         {
             if (String.IsNullOrEmpty(pretraga.Text))
             {

@@ -38,7 +38,8 @@ namespace Projekat
         {
             pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
             Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, statusNaloga.Guest);
-            PacijentiMenadzer.pacijenti.Add(guestPacijent);
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            pacijenti.Add(guestPacijent);
             PacijentiServis.SacuvajIzmenePacijenta();
 
             izmenaTermina.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
