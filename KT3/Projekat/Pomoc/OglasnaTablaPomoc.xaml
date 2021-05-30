@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="OglasnaTablaPomoc" Height="410" Width="380" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="OglasnaTablaPomoc" Height="430" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Background="#FFE7F6F7" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="37.6"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Margin="331.6,2,-31.4,-39" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+        <Button Margin="556.6,1.6,-38.4,-35.6" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
             <Button.Background>
                 <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
             </Button.Background>
@@ -30,25 +30,32 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Grid>
-                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-8,0,-5,-0.4" />
+                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-9,-1,-4,0.4" />
                 <TextBlock Height="0"/>
             </Grid>
         </Button>
-        <TextBlock Margin="52.6,13,51,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="299" Grid.Column="1" FontSize="15">
-            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold" /><LineBreak/>
+        <TextBlock Margin="23.6,28,261,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="207" Grid.Column="1" FontSize="15">
+            <Run Text="Opšte prečice:" FontStyle="Italic" FontSize="18" FontWeight="DemiBold" /><LineBreak/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
             <Run Text="CTRL + D - Dodaj obaveštenje"/><LineBreak/>
             <Run Text="CTRL + I - Izmeni obaveštenje"/><LineBreak/>
             <Run Text="CTRL + O - Obriši obaveštenje"/><LineBreak/>
             <Run Text="     - Ulaz u listu"/><LineBreak/>
             <Run Text="CTRL + X - X na detaljnom uvidu termina"/><LineBreak/>
-            <LineBreak/>
-            <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
+        </TextBlock >
+        <TextBlock  Margin="320.6,29,23,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="186" Grid.Column="1" FontSize="15">  
+            <Run Text="Unutar menija, mogu se koristiti" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
             <Run Text="ALT + L - "/><Run Text="Lekari"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
             <Run Text="ALT + P - Pomoć"/><LineBreak/>
+        </TextBlock>
+        <TextBlock Margin="28.6,232,35,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Height="111" VerticalAlignment="Top">
+            <Run Text="Pomoć" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
+            <Run Text="Unutar ovog prozora moguć je uvid u listi svih obaveštenja. Postoje opcije za"/> <Run Text="dodavanje, izmenu i brisanje" FontWeight="DemiBold"/> 
+            <Run Text="obaveštenja."> </Run>
+            <LineBreak/>
         </TextBlock>
     </Grid>
 </Window>

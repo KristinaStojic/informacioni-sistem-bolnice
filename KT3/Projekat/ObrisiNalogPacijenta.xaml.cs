@@ -21,16 +21,19 @@ namespace Projekat
     public partial class ObrisiNalogPacijenta : Window
     {
         Pacijent pacijent;
-        public ObrisiNalogPacijenta(Pacijent zaBrisanje)
+        PrikaziPacijenta prikaz;
+        public ObrisiNalogPacijenta(Pacijent zaBrisanje, PrikaziPacijenta p)
         {
             InitializeComponent();
             pacijent = zaBrisanje;
+            prikaz = p;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PacijentiServis.ObrisiNalog(pacijent);
             this.Close();
+            prikaz.zatvoreno = true;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

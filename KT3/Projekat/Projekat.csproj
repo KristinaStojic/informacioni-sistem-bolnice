@@ -368,6 +368,9 @@
     <Compile Include="Pomoc\EvidencijaPomoc.xaml.cs">
       <DependentUpon>EvidencijaPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\HelpWizard.xaml.cs">
+      <DependentUpon>HelpWizard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\IzvjestajPomoc.xaml.cs">
       <DependentUpon>IzvjestajPomoc.xaml</DependentUpon>
     </Compile>
@@ -968,6 +971,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\HelpWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\IzvjestajPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1447,6 +1454,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="slike\magic-wand.png" />
+    <Resource Include="slike\patient.png" />
+    <Resource Include="slike\medical.png" />
+    <Resource Include="slike\noticeboard.png" />
     <Content Include="Video\PomocZaEvidenciju.mp4" />
     <Content Include="Video\PomocZaPlate.mp4" />
     <Content Include="Video\PomocZaZahtjeve.mp4" />

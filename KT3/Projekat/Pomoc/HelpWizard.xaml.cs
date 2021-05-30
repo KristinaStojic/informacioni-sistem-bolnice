@@ -14,29 +14,42 @@ using System.Windows.Shapes;
 namespace Projekat.Pomoc
 {
     /// <summary>
-    /// Interaction logic for PrikaziTerminSekretarPomoc.xaml
+    /// Interaction logic for HelpWizard.xaml
     /// </summary>
-    public partial class PrikaziTerminSekretarPomoc : Window
+    public partial class HelpWizard : Window
     {
-        public PrikaziTerminSekretarPomoc()
+        public HelpWizard()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Nastavi_Click(object sender, RoutedEventArgs e)
+        {
+            // zakazivanje hitnog termina
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click(sender, e);
+                Nazad_Click(sender, e);
             }
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                Button_Click(sender, e);
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nastavi_Click(sender, e);
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nastavi_Click(sender, e);
             }
         }
     }

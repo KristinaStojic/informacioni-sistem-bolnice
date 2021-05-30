@@ -177,49 +177,6 @@ namespace Projekat
             this.Close();
         }
 
-        private void Detalji_alergena_Click(object sender, RoutedEventArgs e)
-        {
-            Alergeni izabraniAlergen = (Alergeni)dataGridAlergeni.SelectedItem;
-            if (izabraniAlergen != null)
-            {
-
-                DetaljiAlergenaSekretar detaljiAlergena = new DetaljiAlergenaSekretar(izabraniAlergen, pacijent);
-                detaljiAlergena.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijedan alergen!");
-            }
-        }
-
-        private void Detalji_anamneze_Click(object sender, RoutedEventArgs e)
-        {
-            Anamneza izabranaAnamneza = (Anamneza)dataGridAnamneze.SelectedItem;
-            if (izabranaAnamneza != null)
-            {
-                DetaljiAnamnezeSekretar detaljiAnamneze = new DetaljiAnamnezeSekretar(izabranaAnamneza, pacijent);
-                detaljiAnamneze.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijednu anamnezu!");
-            }
-        }
-
-        private void Detalji_uputa_Click(object sender, RoutedEventArgs e)
-        {
-            Uput izabraniUput = (Uput)dataGridUputi.SelectedItem;
-            if (izabraniUput != null)
-            {
-                DetaljiUputaSekretar detaljiUputa = new DetaljiUputaSekretar(izabraniUput);
-                detaljiUputa.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijedan uput!");
-            }
-        }
-
         private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
             ZdravstveniKartonSekretarPomoc pomoc = new ZdravstveniKartonSekretarPomoc();
