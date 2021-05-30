@@ -281,6 +281,7 @@
     <Compile Include="Model\UpravnikMenadzer.cs" />
     <Compile Include="Model\Uput.cs" />
     <Compile Include="Model\Validacija.cs" />
+    <Compile Include="Model\ValidacijaLekar.cs" />
     <Compile Include="Model\ValidacijaSekretar.cs" />
     <Compile Include="Model\ZahtevZaGodisnji.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />

@@ -38,7 +38,7 @@
         <Label Content="Datum propisivanja leka" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="30" Width="183" FontSize="16"/>
         <Label Content="Naziv leka" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>
         <!--pretraga-->
-        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="pretraga"  BorderBrush="Black" TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
         <!--lista lekova-->
         <ListView x:Name="nadjiLek" Grid.Column="1" Height="130" Margin="21,10,18,0" Grid.Row="7" VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single">
@@ -51,28 +51,31 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="dani"  TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="kolicina"  TextChanged="pretraga_TextChanged" Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name ="sati" HorizontalAlignment="Left" Height="24" Margin="17,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Grid.Column="2" Grid.Row="12"/>
-        <TextBox x:Name ="min" HorizontalAlignment="Left" Height="24" Margin="106,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Grid.Column="2" Grid.Row="12"/>
+        <TextBox x:Name="dani" TextChanged="dani_TextChanged" BorderBrush="Black" Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="10" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="kolicina" TextChanged="kolicina_TextChanged"  BorderBrush="Black"  Grid.Column="2" Height="30" Margin="17,10,19,0" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name ="sati"  BorderBrush="Black" TextChanged="sati_TextChanged" HorizontalAlignment="Left" Height="24" Margin="17,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Grid.Column="2" Grid.Row="12"/>
+        <TextBox x:Name ="min"  BorderBrush="Black" TextChanged="min_TextChanged" HorizontalAlignment="Left" Height="24" Margin="106,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Grid.Column="2" Grid.Row="12"/>
 
-        <TextBox x:Name="nazivSifra" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" />
-        <TextBox x:Name="lekar" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="18,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" IsEnabled="False"/>
-        <TextBox x:Name="jmbg" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
-        <TextBox x:Name="pacijentIme" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
+        <TextBox x:Name="nazivSifra" TextChanged="nazivSifra_TextChanged" BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" />
+        <TextBox x:Name="lekar"  BorderBrush="Black" Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="18,10,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" IsEnabled="False"/>
+        <TextBox x:Name="jmbg"  BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
+        <TextBox x:Name="pacijentIme" Grid.Column="2" BorderBrush="Black" Height="30" Margin="18,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
         <DatePicker Name="datum" Grid.Column="2" Margin="18,10,18,0" Grid.Row="4" VerticalAlignment="Top" Height="30" IsEnabled="False"/>
-        <GroupBox Header="Korišćenje leka" HorizontalAlignment="Left" Height="163" Grid.RowSpan="5" VerticalAlignment="Top" Width="375" Grid.Column="1" Margin="21,0,0,0" Grid.Row="9" Grid.ColumnSpan="2" BorderBrush="Black"/>
-        <Button Content="Sačuvaj" Background="#FF6895C5" Grid.Column="1" Margin="57.2,10,55.8,0" Grid.Row="14" Width="91" Height="29" Click="Button_Click" VerticalAlignment="Top"/>
+        <GroupBox Header="Korišćenje leka" HorizontalAlignment="Left" Height="163" Grid.RowSpan="5" VerticalAlignment="Top" Width="377" Margin="18.2,6,0,0" Grid.Row="9" BorderBrush="Black" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button Name="potvrdi" Content="Sačuvaj" Background="#FF6895C5" Grid.Column="1" Margin="57.2,10,55.8,0" Grid.Row="14" Width="91" Height="29" Click="Button_Click" VerticalAlignment="Top"/>
         <Button Content="Odustani" Background="#FF6895C5" Grid.Column="2" Margin="57,11,56,0" Grid.Row="14"  Width="91" Height="29" RenderTransformOrigin="0.5,0.503" Click="Button_Click_1"/>
         <Label Content="Koliko dana se koristi lek" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="10" VerticalAlignment="Top" Height="30" Width="183" FontSize="16"/>
         <Label Content="Koliko puta na dan" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="11" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>
         <Label Content="Početak terapije" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" Grid.Row="12" VerticalAlignment="Top" Height="30" Width="162" FontSize="16"/>
-        
+
         <Label Content="h" HorizontalAlignment="Left" Margin="73,10,0,0" VerticalAlignment="Top" Width="22" Grid.Column="2" Grid.Row="12"/>
         <Label Content="min" HorizontalAlignment="Left" Margin="156,10,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="0.318,0.615" Grid.Column="2" Grid.Row="12"/>
 
 
-
+        <TextBox  x:Name="validacijaDani" Text="Potrebno je uneti broj!" Background="LightSkyBlue" Foreground="Red" Grid.Column="2" Grid.Row="10" Margin="18.2,39,19.8,0"  Height="11" VerticalAlignment="Top" FontSize="10" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2"/>
+        <TextBox  x:Name="validacijaKolicina" Text="Potrebno je uneti broj od 1 do 10!" Background="LightSkyBlue" Foreground="Red" Grid.Column="2" Grid.Row="11" Margin="18.2,39,19.8,0"  Height="11" VerticalAlignment="Top" FontSize="10" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2"/>
+        <TextBox  x:Name="validacijaSati" Text="Potrebno je uneti broj od 0 do 24!" Background="LightSkyBlue" Foreground="Red" Grid.Column="2" Grid.Row="12" Margin="18.2,36,18.8,0"  Height="14" VerticalAlignment="Top" FontSize="10" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2"/>
+        <TextBox  x:Name="validacijaMinuti" Text="Potrebno je uneti broj od 0 do 60!" Background="LightSkyBlue" Foreground="Red" Grid.Column="2" Grid.Row="12" Margin="17.2,36,19.8,0"  Height="14" VerticalAlignment="Top" FontSize="10" BorderBrush="Transparent" BorderThickness="0" IsReadOnly="True" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>
