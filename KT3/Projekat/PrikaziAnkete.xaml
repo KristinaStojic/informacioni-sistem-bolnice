@@ -20,16 +20,18 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,87">
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,0">
             <Grid  Margin="0,0,0,0" Height="450">
-                <StackPanel Margin="0,0,0,128" >
-                    <StackPanel  Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
+                <StackPanel Margin="0,0,0,0" >
+                    <StackPanel x:Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" 
+                            Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="0">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                            <TextBlock Text="ZDRAVO" Name="zdravo" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic"
+                                   Style="{DynamicResource ZdravoText}"/>
                         </StackPanel>
-                        <StackPanel Height="40" Width="100" Margin="540, 0, 0, 0" HorizontalAlignment="Right" Orientation="Horizontal">
-                            <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
+                        <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+                            <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
                                 <MenuItem Name="podaci" >
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />

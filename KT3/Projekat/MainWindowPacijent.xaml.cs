@@ -30,7 +30,6 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // TODO
             TerminServis.sacuvajIzmene();
             ObavestenjaServis.sacuvajIzmene();
             MalicioznoPonasanjeServis.sacuvajIzmene();

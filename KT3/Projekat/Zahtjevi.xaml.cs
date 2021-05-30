@@ -16,12 +16,6 @@ namespace Projekat
         {
             InitializeComponent();
         }
-        
-        private void Pomoc_Click(object sender, RoutedEventArgs e)
-        {
-            ZahtjeviPomoc zahtjeviPomoc = new ZahtjeviPomoc();
-            zahtjeviPomoc.Show();
-        }
 
     }
 }

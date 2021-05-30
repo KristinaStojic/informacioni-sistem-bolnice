@@ -29,6 +29,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button Width="150" Height="50" Margin="190,30,0,0" Content="Dodaj lijekove" Background="CadetBlue" Command="{Binding DodajZamjenski}"/>
+        <Button Width="150" Height="50" Margin="190,30,0,0" Content="Dodaj lijek" Background="CadetBlue" Command="{Binding DodajZamjenski}"/>
     </StackPanel>
 </Window>

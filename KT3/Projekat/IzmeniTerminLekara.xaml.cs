@@ -61,8 +61,10 @@ namespace Projekat
             this.termin = izabraniTermin;
            
 
-
             this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+          
+
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 

@@ -17,6 +17,11 @@ namespace Projekat.Model
             fileStream.Close();
         }
 
+        public static List<Obavestenja> SvaObavestenja()
+        {
+            return obavestenja;
+        }
+
         public static List<Obavestenja> NadjiSvaObavestenja()
         {
             if (File.ReadAllText("obavestenja.xml").Trim().Equals(""))
@@ -72,7 +77,10 @@ namespace Projekat.Model
                 if (obavestenja[i].IdObavestenja == obavestenje.IdObavestenja)
                 {
                     obavestenja.RemoveAt(i);
-                    OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
+                    if (OglasnaTabla.oglasnaTabla == null)
+                    {
+                        OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
+                    }
                     OglasnaTabla.oglasnaTabla.Remove(obavestenje);
                 }
             }

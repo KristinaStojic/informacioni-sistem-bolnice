@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PrikaziLekarePomoc" Height="455" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="PrikaziLekarePomoc" Height="520" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FFE7F6F7" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="37.6"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Margin="339.6,5.4,-34,-42.4" BorderBrush="Transparent" Click="Nazad_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+        <Button Margin="557.6,8.6,-31.4,-43.6" BorderBrush="Transparent" Click="Nazad_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
             <Button.Background>
                 <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
             </Button.Background>
@@ -30,13 +30,13 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Grid>
-                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-7,0,-6,-0.4" />
+                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-7,2,-6,-2.4" />
                 <TextBlock Height="0"/>
             </Grid>
         </Button>
 
-        <TextBlock Margin="54.6,5,41.4,29.6" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
-            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
+        <TextBlock Margin="30.6,12,261,147.8" TextWrapping="Wrap" Grid.Column="1" FontSize="15">
+            <Run Text="Opšte prečice:" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
             <Run Text="CTRL + D - Dodaj lekara"/><LineBreak/>
             <Run Text="CTRL + I - Izmeni lekara"/><LineBreak/>
@@ -46,12 +46,23 @@
             <Run Text="     - Ulaz u tabelu"/><LineBreak/>
             <Run Text="     - Polje za pretragu lekara"/><LineBreak/>
             <Run Text="CTRL + X - X na detaljnom uvidu informacija o lekaru"/><LineBreak/>
-            <LineBreak/>
-            <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
+        </TextBlock>
+        <TextBlock  Margin="327.6,12,12,234.8" TextWrapping="Wrap" Grid.Column="1" FontSize="15">
+        <Run Text="Unutar menija, mogu se koristiti" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
             <Run Text="ALT + P - Pomoć"/><LineBreak/>
+        </TextBlock>
+
+        <TextBlock Margin="30.6,278,33,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Height="155" VerticalAlignment="Top" Grid.RowSpan="2">
+            <Run Text="Pomoć" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
+            <Run Text="Unutar ovog prozora moguć je uvid u listi svih lekara. Postoje opcije za"/> <Run Text="dodavanje, izmenu i brisanje" FontWeight="DemiBold"/> 
+            <Run Text="izabranog lekara. Nakon selektovanja željenog lekara, u donjem desnom uglu nalazi se dugme čijim se klikom otvara"/> 
+            <Run Text="prozor za određivanje radnog vremena" FontWeight="DemiBold"/> 
+            <Run Text="tog lekara."/><LineBreak/> 
+            <Run Text="Postoji i opcija za "/> <Run Text="odobravanje zahteva za godišnji odmor lekara." FontWeight="DemiBold" />
+            <LineBreak/>
         </TextBlock>
     </Grid>
 </Window>

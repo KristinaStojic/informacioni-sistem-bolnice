@@ -506,6 +506,15 @@
                     najefikasniji oporavak zdravlja i podstiče na zdrav život svakog pacijenta.
                     Registujte se u najbližem kliničkom centru i iskoristite mogućnosti koje Vam nudi Zdravo korporacija.</value>
   </data>
+  <data name="valDatum" xml:space="preserve">
+    <value>Izaberite datum</value>
+  </data>
+  <data name="valSadrzaj" xml:space="preserve">
+    <value>Unesite sadržaj obaveštenja</value>
+  </data>
+  <data name="valVreme" xml:space="preserve">
+    <value>Uneti vreme u formatu HH:mm</value>
+  </data>
   <data name="Vreme" xml:space="preserve">
     <value>Vreme</value>
   </data>

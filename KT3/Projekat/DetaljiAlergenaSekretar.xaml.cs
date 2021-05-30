@@ -34,7 +34,9 @@ namespace Projekat
         }
         private void PopuniPodatkeOAlergenu(Alergeni izabraniAlergen)
         {
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {

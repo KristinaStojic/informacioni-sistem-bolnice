@@ -13,8 +13,6 @@ namespace Projekat
         public IzmjeniSastojak()
         {
             InitializeComponent();
-        }
-
-     
+        }    
     }
 }

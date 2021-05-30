@@ -107,7 +107,20 @@ namespace Projekat
             {
                 this.Close();
             }
+            else if (e.Key == Key.W && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Wizard_Click(sender, e);
+            }
+            else if (e.Key == Key.W && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Wizard_Click(sender, e);
+            }
         }
 
+        private void Wizard_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWizard help = new HelpWizard();
+            help.Show();
+        }
     }
 }

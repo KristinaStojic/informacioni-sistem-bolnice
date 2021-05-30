@@ -16,7 +16,6 @@ namespace Projekat.ViewModel
         public Window DodajLekaraProzor { get; set; }
         public Window IzmeniLekaraProzor { get; set; }
         public Window BrisanjeLekaraProzor { get; set; }
-       // public Window ZahteviZaGodisnjiOdmorProzor { get; set; }
 
         private ObservableCollection<Lekar> lekari;
         public ObservableCollection<Lekar> Lekari 
@@ -44,15 +43,14 @@ namespace Projekat.ViewModel
             PotvrdiBrisanjeLekara = new MyICommand(ObrisiIzabranogLekara);
             OdustaniOdBrisanjaLekara = new MyICommand(ZatvoriBrisanjeLekara);
 
-           // ZahteviZaGodisnjiOdmorKomanda = new MyICommand(OtvoriZahteveZaGodisnjOdmor);
-
             DodajLekare();
         }
 
         private void DodajLekare()
         {
             Lekari = new ObservableCollection<Lekar>();
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
+            foreach (Lekar lekar in lekariLista)
             {
                 Lekari.Add(lekar);
             }
@@ -282,18 +280,5 @@ namespace Projekat.ViewModel
 
         #endregion
 
-        #region ZahteviZaGodisnjiOdmorViewModel
-
-       // public MyICommand ZahteviZaGodisnjiOdmorKomanda { get; set; }
-     /* private void OtvoriZahteveZaGodisnjOdmor()
-        {
-            ZahteviZaGodisnjiOdmorProzor = new OdobravanjeGodisnjegOdmora();
-            ZahteviZaGodisnjiOdmorProzor.Show();
-        }*/
-
-        #endregion
-
-        #region PretragaLekaraViewModel
-        #endregion
     }
 }

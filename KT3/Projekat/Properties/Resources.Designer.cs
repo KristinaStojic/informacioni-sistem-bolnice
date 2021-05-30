@@ -1224,6 +1224,33 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Izaberite datum.
+        /// </summary>
+        public static string valDatum {
+            get {
+                return ResourceManager.GetString("valDatum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unesite sadržaj obaveštenja.
+        /// </summary>
+        public static string valSadrzaj {
+            get {
+                return ResourceManager.GetString("valSadrzaj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uneti vreme u formatu HH:mm.
+        /// </summary>
+        public static string valVreme {
+            get {
+                return ResourceManager.GetString("valVreme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vreme.
         /// </summary>
         public static string Vreme {

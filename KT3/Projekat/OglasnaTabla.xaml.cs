@@ -33,7 +33,8 @@ namespace Projekat
             oglasnaTabla = new ObservableCollection<Obavestenja>();
             listView.ItemsSource = oglasnaTabla;
 
-            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja)
+            List<Obavestenja> obavestenja = ObavestenjaServis.NadjiSvaObavestenja();
+            foreach (Obavestenja obavestenje in obavestenja)
             { 
                 if (obavestenje.Notifikacija == false)
                 {
@@ -123,11 +124,12 @@ namespace Projekat
         private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             flag = true;
-            canvas.Visibility = Visibility.Hidden;
-
+            
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
             if (selektovanoObavestenje != null)
             {
+                canvas.Visibility = Visibility.Hidden;
+                okvir.Visibility = Visibility.Hidden;
                 ObrisiObavestenjeSekretar brisanje = new ObrisiObavestenjeSekretar(selektovanoObavestenje);
                 brisanje.Show();
             }

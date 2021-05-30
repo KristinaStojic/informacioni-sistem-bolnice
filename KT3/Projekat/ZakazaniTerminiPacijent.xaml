@@ -106,9 +106,9 @@
                     <TextBlock Text="{namespace:Loc Godina}" Margin="2"/>
                     <ComboBox x:Name="cboYear" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90" FontSize="15" >
                         <ComboBoxItem Content="2021" IsSelected="True"/>
-                        <!--ComboBoxItem Content="2022"/>
+                        <ComboBoxItem Content="2022"/>
                         <ComboBoxItem Content="2023"/>
-                        <ComboBoxItem Content="2024"/-->
+                        <ComboBoxItem Content="2024"/>
                     </ComboBox>
 
                 </StackPanel>

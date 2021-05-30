@@ -6,7 +6,7 @@
       xmlns:ns="clr-namespace:Projekat.Lokalizacija"
       xmlns:local="clr-namespace:Projekat"
       mc:Ignorable="d" 
-      Title="LicniPodaciPacijenta" Height="600" Width="800" FontSize="15" Background="{DynamicResource BackgroundColor}">
+      Title="LicniPodaciPacijenta" Height="650" Width="800" FontSize="15" Background="{DynamicResource BackgroundColor}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -65,102 +65,103 @@
             </TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <Grid Background="#FFF9F7F7" Margin="0, 30, 0,0" RenderTransformOrigin="0.274,0.337">
+            <Grid Background="#FFF9F7F7" Margin="0,30,0,0" RenderTransformOrigin="0.274,0.337" Height="525">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="71*"/>
                     <ColumnDefinition Width="51*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" Margin="70,0,69.5,342.5">
-                    <Label Content="{ns:Loc Ime}" Margin="0,10" FontSize="15" HorizontalAlignment="Right" Width="35"/>
-                    <TextBox x:Name="ime" IsEnabled="False"
-                                            HorizontalAlignment="Center" Height="25" Margin="40,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" />
+                <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" Margin="104,0,103,460" Width="145" Height="50">
+                    <Label Content="{ns:Loc Ime}" Margin="0" FontSize="13" HorizontalAlignment="Right" Width="145" Height="25" RenderTransformOrigin="0.5,0.5">
+                    </Label>
+                    <TextBox x:Name="ime" IsEnabled="False" HorizontalAlignment="Center" TextWrapping="Wrap"  Width="145" Height="25" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="70,45,69.5,337.5">
-                    <Label Content="{ns:Loc Prezime}" Margin="0,0,0,0" FontSize="15" HorizontalAlignment="Right" Width="63" Height="28" VerticalAlignment="Bottom"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="104,52,103,413" Height="50">
+                    <Label Content="{ns:Loc Prezime}" Margin="0,0,0,0" FontSize="13" HorizontalAlignment="Right" Width="145" Height="25" VerticalAlignment="Bottom"/>
                     <TextBox x:Name="prezime" IsEnabled="False"
-                                            HorizontalAlignment="Center" Height="25" Margin="12,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Center" Height="25" Margin="0,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="76,80,70.5,301.5">
-                    <Label Content="{ns:Loc JmbgPacijenta}" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="54"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="104,107,103,358" Width="145" Height="50">
+                    <Label Content="{ns:Loc JmbgPacijenta}" Margin="0,0,0,0" FontSize="13" HorizontalAlignment="Center" Width="145" Height="25"/>
                     <TextBox x:Name="jmbg" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="82,115,69.5,266.5">
-                    <Label Content="{ns:Loc Pol}" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="48"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="104,160,103,305" Height="53">
+                    <Label Content="{ns:Loc Pol}" Margin="0,0,0,2" FontSize="13" HorizontalAlignment="Center" Width="145" Height="25"/>
                     <TextBox x:Name="poltxt" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="35,148,65.5,233.5" Width="254">
-                    <Label Content="{ns:Loc BrojTelefona}" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="95"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="103,215,104,250" Width="145" Height="52">
+                    <Label Content="{ns:Loc BrojTelefona}" Margin="0,0,0,2" FontSize="13" HorizontalAlignment="Center" Width="145" Height="25"/>
                     <TextBox x:Name="brojTel" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="78,185,64.5,196.5" Width="212">
-                    <Label Content="E-mail" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="52"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="104,329,103,146" Width="145" Height="50">
+                    <Label Content="E-mail" Margin="0,0,0,0" FontSize="13" HorizontalAlignment="Center" Width="145" Height="25"/>
                     <TextBox x:Name="email" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="71,224,65.5,157.5" Width="218">
-                    <Label Content="{ns:Loc Adresa}" Margin="0,0,0,2" FontSize="15" HorizontalAlignment="Center" Width="59"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="104,274,103,201" Width="145" Height="50">
+                    <Label Content="{ns:Loc Adresa}" Margin="0,0,0,0" FontSize="13" HorizontalAlignment="Center" Width="145" Height="25"/>
                     <TextBox x:Name="adresa" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Left" Height="25" Margin="0,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" />
                 </StackPanel>
                 <!-- TODO : COMBO BOX OVDE ZA BRACNO STANJE-->
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="29,261,63.5,120.5" Width="262">
-                    <Label Content="{ns:Loc BracnoStanje}" FontSize="15" HorizontalAlignment="Center" Width="101"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="103,384,104,91" Width="145" Height="50">
+                    <Label Content="{ns:Loc BracnoStanje}" FontSize="13" HorizontalAlignment="Right" Width="145" Height="25" Margin="0,0,0,0"/>
                     <TextBox x:Name="bracStanje" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Left" Height="25" TextWrapping="Wrap"  VerticalAlignment="Top" Width="144" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="52,300,64.5,81.5" Width="238">
-                    <Label Content="{ns:Loc Zanimanje}" FontSize="15" HorizontalAlignment="Center" Width="78"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="103,439,105,36" Width="144" Height="50">
+                    <Label Content="{ns:Loc Zanimanje}" FontSize="13" HorizontalAlignment="Center" Width="145" Height="25"/>
                     <TextBox x:Name="zanimanje" IsEnabled="False"
-                                            HorizontalAlignment="Left" Height="25" Margin="15,2,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="135" />
+                                            HorizontalAlignment="Left" Height="25" Margin="0,0,-1,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="30,340,64.5,41.5" Width="260">
-                    <Label Content="{ns:Loc IzabraniLekar}" FontSize="15" HorizontalAlignment="Center" Width="100"/>
-                    <ComboBox IsEnabled="False" Width="135" Height="25" x:Name="lekar" Margin="15,0,0,0" />
+                <StackPanel HorizontalAlignment="Center" Orientation="Vertical"  Width="147" Height="53" Grid.Column="1" Margin="45,324,61,148">
+                    <Label Content="{ns:Loc IzabraniLekar}" FontSize="13" HorizontalAlignment="Center" Width="145" Height="25" Margin="1,0"/>
+                    <ComboBox IsEnabled="False" Height="25" x:Name="lekar" Width="144" Margin="2,1,1,1"/>
                 </StackPanel>
 
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="178,0,176.5,0.5"/>
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Height="100" Width="100" Margin="51.5,35,70,226.5">
-                    <Image Grid.Column="1" Margin="5,5,5, 5" Source="slike\menager.jpg" />
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Height="100" Width="100" Margin="67,75,86,350">
+                    <Image Grid.Column="1" Margin="5" Source="slike\menager.jpg" />
                 </Border>
-                <Label Content="{ns:Loc KorisnickoIme}" HorizontalAlignment="Left" Height="29" Width="114" VerticalAlignment="Bottom" Margin="41.5,0,0,209.5" FontWeight="Bold" Grid.Column="1"/>
+                <Label Content="{ns:Loc KorisnickoIme}" HorizontalAlignment="Left" FontSize="13" Height="25" Width="114" VerticalAlignment="Bottom" Margin="45,0,0,285" FontWeight="Bold" Grid.Column="1"/>
                 <Button x:Name="izmeniBtn"
                                             Content="{ns:Loc IzmenitePodatke}"
                                             Grid.Column="1" 
                                             Height="30" 
-                                            Margin="33.5,341,46,39.5" 
+                                            Margin="37,405,43,90" 
                                             Click="izmeniBtn_Click" 
                                             Style="{DynamicResource ButtonStyle2}"/>
                 <Button x:Name="sacuvajIzmene"
                                             Content="{ns:Loc Potvrdi}" 
                                             Grid.Column="1" 
                                             Height="30" 
-                                            Margin="18.5,341,141,39.5" 
+                                            Margin="21,405,138,90" 
                                             Click="sacuvajIzmene_Click" 
                                             Style="{DynamicResource ButtonStyle2}"/>
                 <Button x:Name="odustani" 
                                             Content="{ns:Loc Odustani}"
                                             Grid.Column="1" 
                                             Height="30" 
-                                            Margin="121.5,341,36,39.5" 
+                                            Margin="125,405,33,90" 
                                             Click="odustani_Click" 
                                             Style="{DynamicResource ButtonStyle2}"/>
                 <Label Content="{ns:Loc Lozinka}"
                                            HorizontalAlignment="Left" 
-                                           Height="28" Width="114" 
+                                           Height="25" Width="114" 
                                            VerticalAlignment="Bottom" 
-                                           Margin="45.5,0,0,153.5"
-                                           FontWeight="Bold" 
+                                           Margin="45,0,0,230"
+                                           FontWeight="Bold"
+                                            FontSize="13"
                                            Grid.Column="1"/>
                 <PasswordBox x:Name="lozinka" 
                                                  IsEnabled="False" 
                                                  HorizontalAlignment="Left"
                                                  Height="25" Width="146" 
                                                  Grid.Column="1" 
-                                                 Margin="43.5,257,0,128.5">
+                                                 Margin="45,295,0,205">
                     <PasswordBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1"/>
@@ -173,8 +174,8 @@
                 <TextBox x:Name="korisnickoIme"
                                              IsEnabled="False" 
                                              HorizontalAlignment="Left" 
-                                             Width="146" Grid.Column="1" 
-                                             Margin="43.5,202,0,183.5"/>
+                                             Width="146" Height="25" Grid.Column="1" 
+                                             Margin="45,240,0,260"/>
             </Grid>
         </StackPanel>
     </Grid>

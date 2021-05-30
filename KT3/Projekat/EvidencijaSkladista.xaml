@@ -1,0 +1,46 @@
+﻿<Window x:Class="Projekat.EvidencijaSkladista"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
+        mc:Ignorable="d"
+        Title="Izmjena skladista" Height="450" Width="400" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:ZahtjeviViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriEvidenciju}"></KeyBinding>
+        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding PrikaziSaleEvidencija}"></KeyBinding>
+        <KeyBinding Key="K" Modifiers="Ctrl" Command="{Binding PrikaziKomunikacijuEvidencija}"></KeyBinding>
+        <KeyBinding Key="V" Modifiers="Ctrl" Command="{Binding PrikaziIzvjestajEvidencija}"></KeyBinding>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{Binding OtvoriOpisEvidencija}"></KeyBinding>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding OtvoriPomocEvidencija}"></KeyBinding>
+    </Window.InputBindings>
+    <StackPanel>
+        <Menu DockPanel.Dock="Top" Background="CadetBlue">
+            <MenuItem Header="Navigacija" FontSize="15">
+                <MenuItem Header="Prostorije" Command="{Binding PrikaziSaleEvidencija}" FontSize="15" InputGestureText="Ctrl + T"></MenuItem>
+                <MenuItem Header="Komunikacija" FontSize="15" Command="{Binding PrikaziKomunikacijuEvidencija}" InputGestureText="Ctrl + K"></MenuItem>
+                <MenuItem Header="Izvjestaj" FontSize="15" Command="{Binding PrikaziIzvjestajEvidencija}" InputGestureText="Ctrl + V"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Pomoc" FontSize="15">
+                <MenuItem Header="Pomoc" FontSize="15" Command="{Binding OtvoriPomocEvidencija}" InputGestureText="Ctrl + H"></MenuItem>
+                <MenuItem Header="O aplikaciji" Command="{Binding OtvoriOpisEvidencija}" InputGestureText="Ctrl + A" FontSize="15" ></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Button  ToolTip="Nazad, Ctrl + N" Command="{Binding ZatvoriEvidenciju}" Margin="10, 10, 10, 10" HorizontalAlignment="Left" Background="LightSteelBlue" BorderBrush="LightSteelBlue">
+            <Image Source="slike/back.png" Width="30" Height="30"></Image>
+        </Button>
+        <TextBlock FontSize="20" Margin="20, 0, 0, 0">Spisak utrosenih materijala:</TextBlock>
+        <DataGrid SelectionUnit="FullRow" x:Name="dataGridLijekovi" ItemsSource="{Binding UtrosenaOprema, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding IzabranaOprema, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
+                      SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
+                      Height="230" Margin="0,20,0,0" VerticalAlignment="Center" Width="300">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv:                         " Binding="{Binding NazivOpreme}"/>
+                <DataGridTextColumn Header="Kolicina:                      " Binding="{Binding Kolicina}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Width="100" Height="35" Background="CadetBlue" Margin="150, 15, 0, 0" Command="{Binding Evidentiraj}">Evidentiraj</Button>
+    </StackPanel>
+</Window>

@@ -95,22 +95,50 @@ namespace Model
             }
         }
 
-        public static void ObrisiNalog(Pacijent nalog)
+        public static void ObrisiObavestenjaPacijenta(Pacijent nalog)
         {
-            // obrisi iz obavestenja
-            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja.ToList())
+            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja.ToList())
             {
-                if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count == 1)
+                if (obavestenje.ListaIdPacijenata.Contains(nalog.IdPacijenta) && obavestenje.ListaIdPacijenata.Count == 1)
                 {
-                    ObavestenjaServis.ObrisiObavestenje(o);
+                    ObavestenjaServis.ObrisiObavestenje(obavestenje);
                     ObavestenjaServis.sacuvajIzmene();
                 }
-                else if (o.ListaIdPacijenata.Contains(nalog.IdPacijenta) && o.ListaIdPacijenata.Count > 1)
+                else if (obavestenje.ListaIdPacijenata.Contains(nalog.IdPacijenta) && obavestenje.ListaIdPacijenata.Count > 1)
                 {
-                    o.ListaIdPacijenata.Remove(nalog.IdPacijenta);
+                    obavestenje.ListaIdPacijenata.Remove(nalog.IdPacijenta);
                     ObavestenjaServis.sacuvajIzmene();
                 }
             }
+        }
+
+        private static void ObrisiTerminePacijenta(Pacijent nalog)
+        {
+            for (int j = 0; j < TerminMenadzer.termini.Count; j++)
+            {
+                if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
+                {
+                    ObrisiZauzecaSala(j);
+                    TerminMenadzer.termini.RemoveAt(j);
+                    j--;
+                }
+            }
+        }
+
+        private static void ObrisiZauzecaSala(int j)
+        {
+            foreach (Sala s in SaleMenadzer.sale)
+            {
+                if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
+                {
+                    s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
+                }
+            }
+        }
+
+        public static void ObrisiNalog(Pacijent nalog)
+        {
+            ObrisiObavestenjaPacijenta(nalog);            
 
             for (int i = 0; i < pacijenti.Count; i++)
             {
@@ -118,24 +146,8 @@ namespace Model
                 {
                     pacijenti.RemoveAt(i);
                     PrikaziPacijenta.PacijentiTabela.Remove(nalog);
-                    
-                    for (int j = 0; j < TerminMenadzer.termini.Count; j++)
-                    {
-                        if (TerminMenadzer.termini[j].Pacijent.IdPacijenta == nalog.IdPacijenta)
-                        {   
-                            foreach (Sala s in SaleMenadzer.sale)
-                            {
-                                if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
-                                {
-                                    s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
-                                    //SaleMenadzer.sacuvajIzmjene();
-                                }
-                            }
 
-                            TerminMenadzer.termini.RemoveAt(j);
-                            j--;
-                        }
-                    }
+                    ObrisiTerminePacijenta(nalog);
                 }
             }
             SacuvajIzmenePacijenta();

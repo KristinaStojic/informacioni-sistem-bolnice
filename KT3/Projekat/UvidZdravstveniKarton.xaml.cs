@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using Projekat.Servis;
 
 namespace Projekat
@@ -87,7 +88,8 @@ namespace Projekat
         private void PopuniTabeluRecepata() 
         {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -102,7 +104,8 @@ namespace Projekat
         private void PopuniTabeluAnamneza()
         {
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -117,7 +120,8 @@ namespace Projekat
         private void PopuniTabeluAlergena()
         {
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -132,7 +136,8 @@ namespace Projekat
         private void PopuniTabeluUputa() 
         {
             TabelaUputa = new ObservableCollection<Uput>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -172,48 +177,70 @@ namespace Projekat
             this.Close();
         }
 
-        private void Detalji_alergena_Click(object sender, RoutedEventArgs e)
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
         {
-            Alergeni izabraniAlergen = (Alergeni)dataGridAlergeni.SelectedItem;
-            if (izabraniAlergen != null)
-            {
-
-                DetaljiAlergenaSekretar detaljiAlergena = new DetaljiAlergenaSekretar(izabraniAlergen, pacijent);
-                detaljiAlergena.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijedan alergen!");
-            }
+            ZdravstveniKartonSekretarPomoc pomoc = new ZdravstveniKartonSekretarPomoc();
+            pomoc.Show();
         }
 
-        private void Detalji_anamneze_Click(object sender, RoutedEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            Anamneza izabranaAnamneza = (Anamneza)dataGridAnamneze.SelectedItem;
-            if (izabranaAnamneza != null)
+            if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                DetaljiAnamnezeSekretar detaljiAnamneze = new DetaljiAnamnezeSekretar(izabranaAnamneza, pacijent);
-                detaljiAnamneze.Show();
+                licniPodaci.IsSelected = true;
             }
-            else
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                MessageBox.Show("Niste selektovali nijednu anamnezu!");
+                licniPodaci.IsSelected = true;
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                anamneza.IsSelected = true;
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                anamneza.IsSelected = true;
+            }
+            else if (e.Key == Key.A && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                alergeni.IsSelected = true;
+            }
+            else if (e.Key == Key.A && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                alergeni.IsSelected = true;
+            }
+            else if (e.Key == Key.R && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                recepti.IsSelected = true;
+            }
+            else if (e.Key == Key.R && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                recepti.IsSelected = true;
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                uputi.IsSelected = true;
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                uputi.IsSelected = true;
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pomoc_Click(sender, e);
             }
         }
-
-        private void Detalji_uputa_Click(object sender, RoutedEventArgs e)
-        {
-            Uput izabraniUput = (Uput)dataGridUputi.SelectedItem;
-            if (izabraniUput != null)
-            {
-                DetaljiUputaSekretar detaljiUputa = new DetaljiUputaSekretar(izabraniUput);
-                detaljiUputa.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijedan uput!");
-            }
-        }
-
     }
 }

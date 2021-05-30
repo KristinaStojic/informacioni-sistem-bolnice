@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="Pomoc" Height="360" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Pomoc" Height="485" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown" Background="#FFE7F6F7">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="43.2"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Margin="340.6,6.2,-35,-43.2" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+        <Button Margin="363.6,10.2,-44.4,-49.2" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
             <Button.Background>
                 <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
             </Button.Background>
@@ -34,18 +34,22 @@
                 <TextBlock Height="0"/>
             </Grid>
         </Button>
-        <TextBlock Margin="33.6,19,26.4,22.4" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
-            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
+        <TextBlock Margin="33.6,5,26,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2" Height="414" VerticalAlignment="Top">
+            <Run Text="Opšte prečice:" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
             <Run Text="CTRL + M - Otvori menu"/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
             <Run Text="CTRL + P - Pomoć"/><LineBreak/>
             <Run Text="CTRL + L - Izloguj se"/><LineBreak/>
+            <Run Text="CTRL + W - Pokretanje help wizard-a"/><LineBreak/>
             <LineBreak/>
-            <Run Text="Nakon što je meni otvoren, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
+            <Run Text="Nakon što je meni otvoren, mogu se koristiti" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
             <Run Text="ALT + L - "/><Run Text="Lekari"/><LineBreak/>
-            <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
+            <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/><LineBreak/>
+            <Run Text="Za celu aplikaciju:" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
+            <Run Text="CTRL + N - "/><Run Text="Zatvaranje dijaloga"/><LineBreak/>
+            <Run Text="ALT + P - "/><Run Text="Otvaranje pomoći"/><LineBreak/>
         </TextBlock>
     </Grid>
 </Window>

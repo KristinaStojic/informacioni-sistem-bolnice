@@ -506,6 +506,15 @@
                      the most effective recovery of health and encourages a healthy life of each patient.
                      Register at the nearest clinical center and take advantage of the opportunities offered by the Zdravo Corporation.</value>
   </data>
+  <data name="valDatum" xml:space="preserve">
+    <value>Selecet a date</value>
+  </data>
+  <data name="valSadrzaj" xml:space="preserve">
+    <value>Enter the content of the notification</value>
+  </data>
+  <data name="valVreme" xml:space="preserve">
+    <value>Enter the time in the format HH:mm</value>
+  </data>
   <data name="Vreme" xml:space="preserve">
     <value>Time</value>
   </data>

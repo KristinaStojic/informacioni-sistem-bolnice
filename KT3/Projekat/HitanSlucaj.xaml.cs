@@ -64,7 +64,8 @@ namespace Projekat
         {
             InitializeComponent();
 
-            listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView prikazPacijenata = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             prikazPacijenata.Filter = PretragaPacijenta;
 
@@ -490,7 +491,8 @@ namespace Projekat
 
         private bool LekarNijeNaGodisnjemOdmoru(int idLekara)
         {
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            List<Lekar> lekari = LekariServis.NadjiSveLekare();
+            foreach (Lekar lekar in lekari)
             { 
                 if (lekar.IdLekara == idLekara)
                 {
@@ -519,8 +521,8 @@ namespace Projekat
             }
 
             ObservableCollection<string> SlobodnoVremePocetka = InicijalizujListuTermina();
-
-            foreach (Sala sala in SaleMenadzer.sale)
+            List<Sala> sale = SaleServis.NadjiSveSale();
+            foreach (Sala sala in sale)
             {
                 foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
                 {
@@ -758,7 +760,8 @@ namespace Projekat
 
         public void AzurirajListuPacijenata()
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            foreach (Pacijent pacijent in pacijentiLista)
             {
                 AzuriranaLista.Add(pacijent);
             }

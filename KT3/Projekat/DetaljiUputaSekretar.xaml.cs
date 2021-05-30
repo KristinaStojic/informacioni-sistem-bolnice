@@ -41,7 +41,9 @@ namespace Projekat
 
         private void NadjiPacijenta(int idPacijenta)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent pacijent in pacijenti)
             {
                 if (pacijent.IdPacijenta == idPacijenta)
                 {
@@ -54,7 +56,8 @@ namespace Projekat
 
         private void NadjiLekaraKojiIzdajeUput(Uput izabraniUput)
         {
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            List<Lekar> lekari = LekariServis.NadjiSveLekare();
+            foreach (Lekar lekar in lekari)
             {
                 if (lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -65,7 +68,8 @@ namespace Projekat
 
         private void NadjiLekaraSpecijalistu(Uput izabraniUput)
         {
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            List<Lekar> lekari = LekariServis.NadjiSveLekare();
+            foreach (Lekar lekar in lekari)
             {
                 if (lekar.IdLekara == izabraniUput.IdLekaraKodKogSeUpucuje)
                 {

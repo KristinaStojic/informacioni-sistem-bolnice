@@ -92,7 +92,7 @@
                             <TabItem Header="{namespace:Loc LekarskiRecepti}" ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
                                 <StackPanel Orientation="Vertical">
                                     <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" 
-                                          FontFamily="Segoe UI" FontSize="16" Height="380" Margin="0,0,0,10">
+                                          FontFamily="Segoe UI" FontSize="16" Height="350" Margin="0,0,0,20">
                                         <ListView.View>
                                             <GridView>
                                                 <GridViewColumn Width="35" >

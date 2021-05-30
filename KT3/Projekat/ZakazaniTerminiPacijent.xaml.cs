@@ -133,18 +133,14 @@ namespace Projekat
             Page izmeniTermin = new ZakazaniTerminiPacijentDatum(idPacijent);
             this.NavigationService.Navigate(izmeniTermin);
         }
-
-
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.odjava_Click(this);
         }
-
         public void karton_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.karton_Click(this, idPacijent);
         }
-
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.zakazi_Click(this, idPacijent);
@@ -153,32 +149,26 @@ namespace Projekat
         {
             PacijentPagesServis.uvid_Click(this, idPacijent);
         }
-
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.pocetna_Click(this, idPacijent);
         }
-
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.anketa_Click(this, idPacijent);
         }
-
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
         }
-
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.Korisnik_Click(this, idPacijent);
         }
-
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
             PacijentPagesServis.Jezik_Click(Jezik);
         }
-
         private void RefreshCalendar()
         {
             if (cboYear.SelectedItem == null) return;
@@ -195,18 +185,16 @@ namespace Projekat
             DodajZakazaneTermineNaKalendar();
 
         }
-
         private void Kalendar_DayChanged(object sender, MyCalendar.Calendar.DayChangedEventArgs e)
         {
             Console.WriteLine("Pozvana metoda daychanged");
 
-        }
 
+        }
         private void Kalendar_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-           
+            MessageBox.Show(Kalendar.Days[0].ToString());
         }
-
         private void cboMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DodajZakazaneTermineNaKalendar();
