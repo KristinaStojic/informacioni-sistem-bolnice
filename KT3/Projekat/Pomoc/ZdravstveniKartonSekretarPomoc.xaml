@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="ZdravstveniKartonSekretarPomoc" Height="410" Width="380" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="ZdravstveniKartonSekretarPomoc" Height="480" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown" Background="#FFE7F6F7">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="37.6"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Margin="331.6,2,-31.4,-39" BorderBrush="Transparent" Click="Nazad_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+        <Button Margin="347.6,34.2,-47.4,-33.6" BorderBrush="Transparent" Click="Nazad_Click" Grid.Column="1" Grid.Row="1" FontSize="15" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Button.Background>
                 <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
             </Button.Background>
@@ -30,18 +30,24 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <Grid>
-                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-8,0,-5,-0.4" />
+                <Image Source="/slike/right-arrow2.png" Width="65" RenderTransformOrigin="0.415,1.073" HorizontalAlignment="Right" Margin="-8,-1,-5,0.6" />
                 <TextBlock Height="0"/>
             </Grid>
         </Button>
-        <TextBlock Margin="52.6,13,51,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="299" Grid.Column="1" FontSize="15">
-            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold" /><LineBreak/>
+        <TextBlock Margin="36.6,13,67,0" TextWrapping="Wrap"  VerticalAlignment="Top" Height="176" Grid.Column="1" FontSize="15">
+            <Run Text="Opšte prečice:" FontSize="18" FontStyle="Italic" FontWeight="DemiBold" /><LineBreak/><LineBreak/>
             <Run Text="CTRL + L - Tab lični podaci "/><LineBreak/>
             <Run Text="CTRL + M - Tab anamneze"/><LineBreak/>
             <Run Text="CTRL + A - Tab alergeni"/><LineBreak/>
             <Run Text="CTRL + U - Tab uputi"/><LineBreak/>
             <Run Text="CTRL + R - Tab recepti"/><LineBreak/>
             <Run Text="CTRL + N - Nazad"/><LineBreak/>
+            <LineBreak/>
+        </TextBlock>
+        <TextBlock Margin="36.6,205,27,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Height="145" VerticalAlignment="Top">
+            <Run Text="Pomoć" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
+            <Run Text="Unutar ovog prozora moguć je uvid u zdravstveni karton selektovanog pacijenata. Postoje tabovi za"/> <Run Text="lične podatke, anamneze, alergene, upute i recepte" FontWeight="DemiBold"/>  
+            <Run Text="izabranog pacijenta."/>
             <LineBreak/>
         </TextBlock>
 

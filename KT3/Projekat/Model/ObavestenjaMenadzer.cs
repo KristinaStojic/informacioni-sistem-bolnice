@@ -77,7 +77,10 @@ namespace Projekat.Model
                 if (obavestenja[i].IdObavestenja == obavestenje.IdObavestenja)
                 {
                     obavestenja.RemoveAt(i);
-                    //OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
+                    if (OglasnaTabla.oglasnaTabla == null)
+                    {
+                        OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
+                    }
                     OglasnaTabla.oglasnaTabla.Remove(obavestenje);
                 }
             }
