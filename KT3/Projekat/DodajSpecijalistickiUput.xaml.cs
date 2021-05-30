@@ -29,6 +29,11 @@ namespace Projekat
         public bool flagNapomenaSpec = false;
         public bool flagLekarSpec = false;
         public bool popunjeno = false;
+
+        public bool flagNapomenaBolnicko = false;
+        public bool flagPoc = false;
+        public bool flagKraj = false;
+        public bool popunjenoBolnicko = false;
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -197,6 +202,32 @@ namespace Projekat
             }
 
             nadjiSlobodneSobe();
+
+            postaviDugmeBolnicko();
+        }
+
+        private void postaviDugmeBolnicko()
+        {
+            if (this.datumPocetka.Text != null || this.datumKraja.Text != null || this.napomenaPregelda.Text != null)
+            {
+                izvrsiPostavljanjeBolnicko();
+            }
+            else
+            {
+                this.potvrdiBolnicko.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanjeBolnicko()
+        {
+            if (this.datumPocetka.Text.Trim().Equals("") || this.datumKraja.Text.Trim().Equals("") || this.napomenaPregelda.Text.Trim().Equals(""))
+            {
+                this.potvrdiBolnicko.IsEnabled = false;
+            }
+            else if (!this.datumPocetka.Text.Trim().Equals("") && !this.datumPocetka.Text.Trim().Equals("") && !this.napomenaPregelda.Text.Trim().Equals(""))
+            {
+                this.potvrdiBolnicko.IsEnabled = true;
+                popunjeno = true;
+            }
         }
 
         private void nadjiSlobodneSobe()
@@ -216,6 +247,8 @@ namespace Projekat
 
         private void PotvrdiLecenje_Click(object sender, RoutedEventArgs e)
         {
+            DateTime kraj = (DateTime)this.datumKraja.SelectedDate;
+            DateTime pocetak = (DateTime)this.datumPocetka.SelectedDate;
             if (popunjeno == true)
             {
                 int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
@@ -228,11 +261,15 @@ namespace Projekat
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
                 ZdravstveniKartonServis.DodajUput(noviUput);
-
+                
                 TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
+            }
+            else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
+            {
+                MessageBox.Show("Niste uneli ispravne datume!");
             }
             else
             {
@@ -370,6 +407,16 @@ namespace Projekat
                 this.potvrdiSpec.IsEnabled = true;
                 popunjeno = true;
             }
+        }
+
+        private void datumKraja_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            postaviDugmeBolnicko();
+        }
+
+        private void napomenaPregelda_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugmeBolnicko();
         }
     }
 }

@@ -103,7 +103,6 @@ namespace Projekat
 
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, datumPregleda, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
                 recept.IdLekara = termin.Lekar.IdLekara;
-                MessageBox.Show(termin.Lekar.IdLekara.ToString());
                 ZdravstveniKartonServis.DodajRecept(recept);
 
                 PosaljiObavestenjeOTerapiji(recept);
