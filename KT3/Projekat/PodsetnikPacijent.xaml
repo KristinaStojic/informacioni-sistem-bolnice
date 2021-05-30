@@ -79,7 +79,10 @@
                             <DatePicker Name="Datum" Width="174" Margin="8, 0, 0, 0">
                             </DatePicker>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
+                        <TextBox  x:Name="valDatum" Text="{namespace:Loc valDatum}" Background="Transparent" 
+                                  Foreground="Red" Visibility="Hidden" Height="15" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                  IsEnabled="False" BorderBrush="Transparent" FontSize="10" IsReadOnly="True" Margin="20, 0, 0, 0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
                             <Label Content="{namespace:Loc Vreme}" Foreground="{DynamicResource TextColor}"/>
                             <!-- Vratiti na combo - HCI 
                         <ComboBox Name="Vreme" Width="175" Margin="10, 0, 0, 0">
@@ -88,16 +91,22 @@
                             <ComboBoxItem Content="15:00"/>
                             <ComboBoxItem Content="20:00"/>
                         </ComboBox> -->
-                            <TextBox x:Name="Vreme" Width="175" Margin="10, 0, 0, 0"/>
+                            <TextBox x:Name="Vreme" Width="175" Margin="10, 0, 0, 0">
+                            </TextBox>
                         </StackPanel>
+                        <TextBox  x:Name="valVreme" Text="{namespace:Loc valVreme}" Background="Transparent" 
+                                  Foreground="Red" Visibility="Hidden" Height="15" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                  IsEnabled="False" BorderBrush="Transparent" FontSize="10" IsReadOnly="True" Margin="20, 0, 0, 0"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                             <Label Content="{namespace:Loc SadrzajObavestenja}" Foreground="{DynamicResource TextColor}"></Label>
-                            <TextBox x:Name="SadrzajPodsetnika"
-                                 Width="175"
+                            <TextBox x:Name="SadrzajPodsetnika" Width="175"
                                  Height="80"
                                  TextWrapping="Wrap"
                                  Margin="8,0, 0, 0"/>
                         </StackPanel>
+                        <TextBox  x:Name="valSadrzaj" Text="{namespace:Loc valSadrzaj}" Background="Transparent" 
+                                  Foreground="Red" Visibility="Hidden" Height="15" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                  IsEnabled="False" BorderBrush="Transparent" FontSize="10" IsReadOnly="True" Margin="20, 0, 0, 0"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 10">
                             <Button Content="{namespace:Loc Dodaj}"
                                 Width="90"
@@ -109,34 +118,7 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <Label Content="{namespace:Loc Podsetnici}" HorizontalAlignment="Center" Margin="0, 20, 0, 05"
-                           FontSize="14" Foreground="{DynamicResource TextColor}" FontWeight="Bold"/>
-                    <StackPanel>
-                        <ListView Margin="120, 0, 120, 0" Height="180" x:Name="Podsetnici">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Width="30" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <!--Button  HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle2}"
-                                                                 Content="ℹ︎" FontSize="14" Click="Button_Click_1"/-->
-                                                <CheckBox HorizontalAlignment="Center" IsChecked="False"/>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                <GridViewColumn Width="120" Header="{namespace:Loc Datum}" x:Name="datum" DisplayMemberBinding="{Binding Datum}"/>
-                                <GridViewColumn Width="180" Header="{namespace:Loc SadrzajObavestenja}" x:Name="sadrzaj">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding SadrzajObavestenja}" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </StackPanel>
-                </StackPanel>
+            </StackPanel>
         </Grid>
     </StackPanel>
 </Page>

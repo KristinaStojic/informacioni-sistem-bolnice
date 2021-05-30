@@ -45,7 +45,7 @@ namespace Projekat
             thread = new Thread(izvrsiNit);
             thread.Start();
 
-            Termini = TerminServis.DodajTerminePacijenta(idPacijent);
+            //Termini = TerminServis.DodajTerminePacijenta(idPacijent);
             ObavestenjaPacijent = ObavestenjaServis.DodajObavestenja(idPacijent);
 
             this.SvetlaTema.IsEnabled = false;

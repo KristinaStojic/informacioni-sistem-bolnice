@@ -187,6 +187,5 @@ namespace Projekat
              }*/
             PacijentPagesServis.Jezik_Click(Jezik);
         }
-
     }
 }

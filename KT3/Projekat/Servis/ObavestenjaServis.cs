@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Projekat.Servis
@@ -86,6 +87,11 @@ namespace Projekat.Servis
             return selektovaniPacijentiId;
         }
 
+        public static List<Obavestenja> SvaObavestenja()
+        {
+            return ObavestenjaMenadzer.SvaObavestenja();
+        }
+
         public static string PopuniNamenuObavestenja(Obavestenja selektovanoObavestenje) 
         {
             string namena = "";
@@ -153,6 +159,12 @@ namespace Projekat.Servis
             return ObavestenjaMenadzer.PronadjiObavestenjaPoIdPacijenta(idPacijent);
         }
 
+        public static List<Obavestenja> PronadjiSvaObavestenja()
+        {
+            List<Obavestenja> obavestenja = ObavestenjaMenadzer.obavestenja;
+            return obavestenja;
+        }
+
         public static void DodajPodsetnikePacijenta(ObservableCollection<Obavestenja> obavestenjaPodsetnici, int idPacijent)
         {
             foreach (Obavestenja obavestenje in PronadjiObavestenjaPoIdPacijenta(idPacijent))
@@ -174,6 +186,14 @@ namespace Projekat.Servis
             ObservableCollection<Obavestenja> ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
             foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja)
             {
+                
+                if (obavestenje.ListaIdPacijenata.Contains(idPacijent) || obavestenje.Oznaka.Equals("pacijenti") || obavestenje.Oznaka.Equals("svi"))
+                {
+                    if (!(obavestenje.TipObavestenja.Equals("Terapija") || obavestenje.TipObavestenja.Equals("Podsetnik")))
+                    {
+                        ObavestenjaPacijent.Add(obavestenje);
+                    }
+                }
                 if (obavestenje.ListaIdPacijenata.Contains(idPacijent))
                 {
                     if (obavestenje.TipObavestenja.Equals("Terapija") || obavestenje.TipObavestenja.Equals("Podsetnik"))
@@ -181,21 +201,23 @@ namespace Projekat.Servis
                         DodajStaraObavestenjaZaTerapijePodsetnike(obavestenje, ObavestenjaPacijent);
                     }
                 }
-                
-                if (obavestenje.ListaIdPacijenata.Contains(idPacijent) || obavestenje.Oznaka.Equals("pacijenti") || obavestenje.Oznaka.Equals("svi"))
-                {
-                    ObavestenjaPacijent.Add(obavestenje);
-                }
-               
             }
             return ObavestenjaPacijent;
         }
         private static void DodajStaraObavestenjaZaTerapijePodsetnike(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
-            DateTime dt = DateTime.Parse(obavestenje.Datum);
-            if (dt.Date <= DateTime.Now.Date)
+            DateTime datumObavestenja = DateTime.Parse(obavestenje.Datum);
+            if (datumObavestenja.Date > DateTime.Now.Date) return;
+            if (datumObavestenja.Date == DateTime.Now.Date)
             {
-                if (dt.TimeOfDay <= DateTime.Now.TimeOfDay)
+                if (datumObavestenja.TimeOfDay <= DateTime.Now.TimeOfDay && !ObavestenjaPacijent.Contains(obavestenje))
+                {
+                    ObavestenjaPacijent.Add(obavestenje);
+                }
+            }
+            if (datumObavestenja.Date < DateTime.Now.Date)
+            {
+                if (!ObavestenjaPacijent.Contains(obavestenje))
                 {
                     ObavestenjaPacijent.Add(obavestenje);
                 }
@@ -224,11 +246,10 @@ namespace Projekat.Servis
                             }
                             ObavestenjaPacijent.Add(novoObavestenje);
                             string sadrzajObavestenja = novoObavestenje.SadrzajObavestenja;
-                            //return true;
+                            MessageBox.Show(novoObavestenje.TipObavestenja + ": " + sadrzajObavestenja, "Novo obaveštenje");
                         }
                     }
                 }
-                //return false;
            });
         }
 
@@ -241,7 +262,6 @@ namespace Projekat.Servis
             }
         }
 
-        // obavestenja servis
         private static Obavestenja PronadjiSledeceObavestenje(string datum, int idPacijent, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
             foreach (Obavestenja o in ObavestenjaServis.NadjiSvaObavestenja())
@@ -256,7 +276,6 @@ namespace Projekat.Servis
             }
             return null;
         }
-        // obavestenja servis
         private static bool ProveriObjavljenaObavestenja(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
             foreach (Obavestenja o in ObavestenjaPacijent)
@@ -268,6 +287,8 @@ namespace Projekat.Servis
             }
             return false;
         }
+
+      
         #endregion
 
 
