@@ -232,8 +232,8 @@ namespace Projekat
 
         private void nadjiSlobodneSobe()
         {
-
-            foreach(Sala sala in SaleMenadzer.sale)
+            slobodneSobe.Items.Clear();
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (sala.TipSale.Equals(tipSale.SalaZaLezanje))  
                 {
@@ -353,7 +353,7 @@ namespace Projekat
             
         private void datumKraja_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            var dp = sender as DatePicker;
+           /* var dp = sender as DatePicker;
             if (dp == null) return;
             if (!dp.SelectedDate.HasValue) return;
 
@@ -367,7 +367,7 @@ namespace Projekat
             {
                 e.Handled = true;
                 dp.SetValue(DatePicker.SelectedDateProperty, date.AddDays(-1));
-            }
+            }*/
         }
 
         private void laboratorija_KeyDown(object sender, KeyEventArgs e)

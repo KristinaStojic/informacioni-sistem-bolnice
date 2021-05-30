@@ -38,7 +38,7 @@ namespace Projekat
         }
         private void PopuniPodatkeOAlergenu(Alergeni izabraniAlergen)
         {
-            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pac in PacijentiServis.pacijenti())
             {
                 if (pac.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {

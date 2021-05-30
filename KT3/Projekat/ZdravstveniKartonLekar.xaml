@@ -6,7 +6,11 @@
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
+        xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         Title="ZdravstveniKartonLekar" Height="677" Width="870" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
+    <!--<Window.DataContext>
+        <viewmodel:ZdravstveniKartonViewModel/>
+    </Window.DataContext>-->
     <Grid  Background="LightSkyBlue">
         <StackPanel>
 
@@ -67,7 +71,8 @@
                     <TabItem Header="Anamneza" Width="100" x:Name="anamneze" KeyDown="anamneze_KeyDown">
                         <Grid>
                             <Label Content="Anamneze" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
-                            <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True"  
+                            <!--SelectedItem="{Binding IzabraniPacijent}"-->
+                            <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"  
                         SelectionMode="Single" AutoGenerateColumns="False" 
                         Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
                                 <DataGrid.Columns >
@@ -77,7 +82,8 @@
                             </DataGrid>
                             <Button   Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Nova anamneza" HorizontalAlignment="Left" Margin="242,470,0,0" VerticalAlignment="Top"  Width="129" Height="36" Click="Button_Click" RenderTransformOrigin="0.706,4.291"/>
                             <Button Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Detalji" HorizontalAlignment="Left" Margin="48,470,0,0" VerticalAlignment="Top" Width="129" Height="36" Click="Button_Click_1"/>
-                            <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Izveštaj" Margin="432,470,243,0" VerticalAlignment="Top" Height="36" RenderTransformOrigin="0.706,4.291"/>
+                            <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Izveštaj" Click="Izvestaj_Anamneze"  Margin="432,470,243,0" VerticalAlignment="Top" Height="36" RenderTransformOrigin="0.706,4.291"/>
+                            <!--Command="{Binding GenerisiIzvestajAnamnezeKomanda}"-->
                             <Button  Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Content="Nazad" HorizontalAlignment="Left" Margin="623,470,0,0" VerticalAlignment="Top"  Width="129" Height="36" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>
                             <TextBlock HorizontalAlignment="Left" Margin="627,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="125" FontSize="16" RenderTransformOrigin="0.394,0.688">
                                 <Hyperlink Click="Anamneza_Click">
@@ -90,7 +96,8 @@
 
                         <Grid>
                             <Label Content="Recepti" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
-                            <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
+                            <!--SelectedItem="{Binding IzabraniPacijent}"-->
+                            <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
                                 SelectionMode="Single" AutoGenerateColumns="False" 
                                  Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13" Visibility="Visible">
                                 <DataGrid.Columns >
@@ -102,7 +109,8 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                             <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Click="Button_Click_3" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
-                            <Button Content="Izvestaj" VerticalAlignment="Top" Margin="337,471,336,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
+                            <Button Content="Izvestaj" Click="Izvestaj_Recepti" VerticalAlignment="Top" Margin="337,471,336,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" />
+                            <!--Command="{Binding GenerisiIzvestajRecepataKomanda}" -->
                             <Button Content="Nazad" VerticalAlignment="Top" Margin="623,471,50,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
                             <TextBlock HorizontalAlignment="Left" Margin="625,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="125" FontSize="16" RenderTransformOrigin="0.394,0.688">
                                 <Hyperlink Click="Recepti_Pomoc">
@@ -114,8 +122,8 @@
                     <TabItem Header="Uputi" Width="100" x:Name="uputi" KeyDown="uputi_KeyDown">
                         <Grid>
                             <Label Content="Uputi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
-
-                            <DataGrid x:Name="dataGridUputi"  IsReadOnly="True"  ItemsSource="{Binding TabelaUputa}"
+                            <!--SelectedItem="{Binding IzabraniPacijent}"-->
+                            <DataGrid x:Name="dataGridUputi"  IsReadOnly="True"  ItemsSource="{Binding TabelaUputa, UpdateSourceTrigger=PropertyChanged}"
                         SelectionMode="Single" AutoGenerateColumns="False" 
                         Margin="50,56,338,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
                                 <DataGrid.Columns >
@@ -132,8 +140,7 @@
                                 Pomoć?(CTRL+H)
                             </Hyperlink>
                             </TextBlock>
-
-                            <!-- Grafikon -->
+                           
                             <Wpf:PieChart 
                             HorizontalAlignment="Center" 
                             Height="265"
@@ -143,17 +150,14 @@
                             LegendLocation="Bottom"
                             >
 
-                                <!-- Parcad u grafikonu.-->
                                 <Wpf:PieChart.Series>
-                                    <Wpf:PieSeries Title="Laboratorija" DataLabels="True" Values="{Binding ukupnoLaboratorija }" LabelPoint="{Binding LabelPoint}"/>
-                                    <Wpf:PieSeries Title="Specijalistički pregled" DataLabels="True" Values="{Binding ukupnoSpecijalisticki }" LabelPoint="{Binding LabelPoint}"/>
-                                    <Wpf:PieSeries Title="Bolničko lečenje" DataLabels="True" Values="{Binding ukupnoStacionarno }" LabelPoint="{Binding LabelPoint}"/>
+                                    <Wpf:PieSeries Title="Laboratorija" DataLabels="True" Values="{Binding UkupnoLaboratorija }" LabelPoint="{Binding LabelPoint}"/>
+                                    <Wpf:PieSeries Title="Specijalistički pregled" DataLabels="True" Values="{Binding UkupnoSpecijalisticki }" LabelPoint="{Binding LabelPoint}"/>
+                                    <Wpf:PieSeries Title="Bolničko lečenje" DataLabels="True" Values="{Binding UkupnoStacionarno }" LabelPoint="{Binding LabelPoint}"/>
                                 </Wpf:PieChart.Series>
-                                <!-- Kraj parcadi u grafikonu -->
 
                             </Wpf:PieChart>
-                            <!-- Kraj grafikona.-->
-
+                            
                             <Label Content="Grafikon 2. Tipovi uputa" Margin="562,409,74,91" FontSize="14"/>
 
                         </Grid>
@@ -163,8 +167,8 @@
 
                         <Grid>
                             <Label Content="Spisak sastojaka koje pacijent ne sme da koristi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
-
-                            <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena}"
+                            <!--SelectedItem="{Binding IzabraniPacijent}"-->
+                            <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena, UpdateSourceTrigger=PropertyChanged}"
                         SelectionMode="Single" AutoGenerateColumns="False" 
                         Margin="50,56,50.2,0" VerticalAlignment="Top" Height="387" GridLinesVisibility="All" Background="#FFA3C8DE" FontSize="13">
                                 <DataGrid.Columns >

@@ -38,5 +38,10 @@ namespace Projekat.Servis
             return TerminMenadzer.GenerisanjeIdTermina();
         }
 
+        public static List<Termin> termini()
+        {
+            return TerminMenadzer.termini;
+        }
+
     }
 }

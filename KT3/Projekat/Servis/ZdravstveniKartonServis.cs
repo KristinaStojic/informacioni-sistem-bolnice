@@ -66,7 +66,7 @@ namespace Projekat.Servis
 
             dozvoljeniLekovi = nadjiDozvoljeneLekove();
 
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if (idSelektovanogPacijenta == pacijent.IdPacijenta)
                 {                 
@@ -82,7 +82,7 @@ namespace Projekat.Servis
         {
             List<Lek> dozvoljeniLekovi = new List<Lek>();
 
-            foreach (Lek lek in LekoviMenadzer.lijekovi)
+            foreach (Lek lek in LekoviServis.Lijekovi())
             {
                dozvoljeniLekovi.Add(lek);
             }
@@ -92,7 +92,7 @@ namespace Projekat.Servis
 
         private static void izbaciZabranjeneLekove(List<Lek> dozvoljeniLekovi, Pacijent pacijent)
         {
-            foreach (Lek lek in LekoviMenadzer.lijekovi.ToArray())
+            foreach (Lek lek in LekoviServis.Lijekovi().ToArray())
             {
                 foreach (Alergeni alergen in pacijent.Karton.Alergeni.ToArray())
                 {

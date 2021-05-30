@@ -54,7 +54,7 @@ namespace Projekat
         private void dodajLekoveUTabelu()
         {
             TabelaLekova = new ObservableCollection<Lek>();
-            foreach (Lek lek in LekoviMenadzer.lijekovi)
+            foreach (Lek lek in LekoviServis.Lijekovi())
             {
                 TabelaLekova.Add(lek);
             }

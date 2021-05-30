@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace Projekat
             this.DataContext = this;
             this.pacijent = izabraniPacijent;
             this.termin = termin;
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent p in PacijentiServis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {

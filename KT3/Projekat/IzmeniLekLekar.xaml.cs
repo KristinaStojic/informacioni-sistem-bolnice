@@ -72,7 +72,7 @@ namespace Projekat
 
         private bool postojiSifraLijeka()
         {
-            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            foreach (Lek lijek in LekoviServis.Lijekovi())
             {
                 if (lijek.sifraLeka == this.sifra.Text && lijek.idLeka != this.izabraniLek.idLeka)
                 {

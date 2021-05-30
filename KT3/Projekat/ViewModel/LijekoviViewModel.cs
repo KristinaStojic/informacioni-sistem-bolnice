@@ -161,7 +161,7 @@ namespace Projekat.ViewModel
         private void NadjiLijekove()
         {
             Lekovi.Clear();
-            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            foreach (Lek lijek in LekoviServis.Lijekovi())
             {
                 if (lijek.nazivLeka.StartsWith(PretragaLijekova))
                 {
@@ -608,7 +608,7 @@ namespace Projekat.ViewModel
 
         private void pretraziZamjenskeLijekove(int zamjenskiLijek)
         {
-            foreach (Lek zamjenski in LekoviMenadzer.lijekovi)
+            foreach (Lek zamjenski in LekoviServis.Lijekovi())
             {
                 if (zamjenski.idLeka == zamjenskiLijek && zamjenski.nazivLeka.StartsWith(pretragaZamjenskih))
                 {
@@ -748,7 +748,7 @@ namespace Projekat.ViewModel
         private void dodajSastojkeLijeka()
         {
             SastojciLeka = new ObservableCollection<Sastojak>();
-            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            foreach (Lek lijek in LekoviServis.Lijekovi())
             {
                 if (lijek.idLeka == izabraniLijek.idLeka)
                 {

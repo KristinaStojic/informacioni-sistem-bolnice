@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -40,7 +41,7 @@ namespace Projekat
 
         private void NadjiPacijenta(int idPacijenta)
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if (pacijent.IdPacijenta == idPacijenta)
                 {

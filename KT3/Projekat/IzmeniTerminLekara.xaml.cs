@@ -62,7 +62,7 @@ namespace Projekat
            
 
 
-            this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
@@ -102,9 +102,9 @@ namespace Projekat
                 pacijent.Text = izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta;
                 Pacijent = izabraniTermin.Pacijent;
 
-                for (int j = 0; j < PacijentiMenadzer.pacijenti.Count; j++)
+                for (int j = 0; j < PacijentiServis.pacijenti().Count; j++)
                 {
-                    if (PacijentiMenadzer.pacijenti[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
+                    if (PacijentiServis.pacijenti()[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
                     {
                         listaPacijenata.SelectedIndex = j;
                     }
@@ -116,7 +116,7 @@ namespace Projekat
                 {
                     tipPregleda.SelectedIndex = 0;
 
-                    foreach (Sala s in SaleMenadzer.sale)
+                    foreach (Sala s in SaleServis.Sale())
                     {
                         if (s.TipSale.Equals(tipSale.SalaZaPregled))
                         {
@@ -133,7 +133,7 @@ namespace Projekat
                 {
                     tipPregleda.SelectedIndex = 1;
 
-                    foreach (Sala s in SaleMenadzer.sale)
+                    foreach (Sala s in SaleServis.Sale())
                     {
                         if (s.TipSale.Equals(tipSale.OperacionaSala))
                         {
@@ -573,7 +573,7 @@ namespace Projekat
 
         private void IzbaciZauzeteTermineLekara()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -610,7 +610,7 @@ namespace Projekat
         }
         private void IzbaciZauzeteTerminePacijenata()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -702,7 +702,7 @@ namespace Projekat
 
         private void dodajSaleZaPregled()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 if (s.TipSale.Equals(tipSale.SalaZaPregled))
                 {
@@ -716,7 +716,7 @@ namespace Projekat
 
         private void dodajSaleZaOperacije()
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleServis.Sale())
             {
                 if (s.TipSale.Equals(tipSale.OperacionaSala))
                 {
@@ -943,11 +943,11 @@ namespace Projekat
             string[] vpt = termin.VremePocetka.Split(':');
             string[] vkt = termin.VremeKraja.Split(':');
 
-            foreach (Termin t in TerminMenadzer.termini)
+            foreach (Termin t in TerminServisLekar.termini())
             {
                 if (termin.IdTermin == t.IdTermin)
                 {
-                    foreach (Sala sala in SaleMenadzer.sale)
+                    foreach (Sala sala in SaleServis.Sale())
                     {
                         if (sala.Id == termin.Prostorija.Id)
                         {
@@ -971,7 +971,7 @@ namespace Projekat
             // ako je prostorija izmenjena
             if (termin.Prostorija.Id != izmenjeniTermin.Prostorija.Id)
             {
-                foreach (Termin t in TerminMenadzer.termini)
+                foreach (Termin t in TerminServisLekar.termini())
                 {
                     if (t.Prostorija.Id == termin.Prostorija.Id)
                     {

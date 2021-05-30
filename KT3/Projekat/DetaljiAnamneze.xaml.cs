@@ -37,7 +37,7 @@ namespace Projekat
         {
             this.stara = izabranaAnamneza;
         
-            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pac in PacijentiServis.pacijenti())
             {
                 if (pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
                 {
