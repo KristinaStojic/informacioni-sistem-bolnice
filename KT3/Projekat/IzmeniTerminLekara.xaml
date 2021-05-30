@@ -106,10 +106,10 @@
         <ComboBox HorizontalAlignment="Left" Name = "vkk" Grid.Row="9" Margin="18.2,10,0,0" Width="168" SelectedIndex="0" Height="30" SelectionChanged="vkk_SelectionChanged" Grid.Column="2" IsKeyboardFocusedChanged="vkk_IsKeyboardFocusedChanged"/>
         
         <!--sacuvaj-->
-        <Button Grid.Row="10" Margin="56.2,16,56.8,11.6" Click="Button_Click_2" Content="Potvrdi" Width="91" Grid.Column="1"/>
+        <Button Grid.Row="10" Margin="56.2,16,56.8,11.6" Click="Button_Click_2" Content="Potvrdi" Width="91" Grid.Column="1" BorderBrush="White" Foreground="White" Background="#FF6895C5"/>
         
         <!--odustani-->
-        <Button Grid.Row="10"  Margin="56.2,16,56.8,11.6" Click="Button_Click_3" Content="Odustani" Width="91" Grid.Column="2"/>
+        <Button Grid.Row="10"  Margin="56.2,16,56.8,11.6" Click="Button_Click_3" Content="Odustani" Width="91" Grid.Column="2" BorderBrush="White" Foreground="White" Background="#FF6895C5"/>
 
 
 

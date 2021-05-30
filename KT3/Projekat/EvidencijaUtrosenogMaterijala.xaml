@@ -33,15 +33,15 @@
         <Label Content="Datum evidentiranja" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Height="30" Width="162" Margin="18,10,0,0" FontSize="16"/>
         <Label Content="Prostorija" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" Height="30" Width="162" Margin="18,10,0,0" FontSize="16"/>
         <!--sacuvaj-->
-        <Button Grid.Row="10" Margin="58,9,55,0" Click="Button_Click_2" Content="Potvrdi" Width="91" Grid.Column="1"/>
+        <Button Grid.Row="10" Margin="58,9,55,0" Click="Button_Click_2" Content="Potvrdi" Width="91" Grid.Column="1" BorderBrush="White" Foreground="White" Background="#FF6895C5"/>
         <!--odustani-->
-        <Button Grid.Row="10"  Margin="56,9,57,0" Click="Button_Click_3" Content="Odustani" Width="91" Grid.Column="2"/>
-        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="ime" IsEnabled="False"/>
-        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime" IsEnabled="False"/>
-        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="16,15,0,0" Grid.Row="3" VerticalAlignment="Top" Width="170" Name="datum"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Grid.Column="2" Margin="16,10,0,0" Grid.Row="4" Height="30" Name="prostorija"/>
-        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime_Copy1" IsEnabled="True"/>
-        <TextBox Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime_Copy" IsEnabled="True"/>
+        <Button Grid.Row="10"  Margin="56,9,57,0" Click="Button_Click_3" Content="Odustani" Width="91" Grid.Column="2" BorderBrush="White" Foreground="White" Background="#FF6895C5"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="ime" IsEnabled="False"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime" IsEnabled="False"/>
+        <DatePicker BorderBrush="Black" Grid.Column="2" HorizontalAlignment="Left" Margin="16,15,0,0" Grid.Row="3" VerticalAlignment="Top" Width="170" Name="datum"/>
+        <ComboBox BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Width="170" Grid.Column="2" Margin="16,10,0,0" Grid.Row="4" Height="30" Name="prostorija"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime_Copy1" IsEnabled="True"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="16,10,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="prezime_Copy" IsEnabled="True"/>
         <Label Content="Naziv materijala" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" Height="30" Width="162" Margin="18,10,0,0" FontSize="16"/>
         <Label Content="Potrošena količina" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" Height="30" Width="162" Margin="18,10,0,0" FontSize="16"/>
         <ListView x:Name="materijali" Grid.Column="1" HorizontalAlignment="Left" Height="155" Margin="18,24,0,0" Grid.Row="7" Grid.RowSpan="3" VerticalAlignment="Top" Width="372" Grid.ColumnSpan="2">

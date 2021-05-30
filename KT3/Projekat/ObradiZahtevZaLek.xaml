@@ -37,10 +37,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Odobri lek" Grid.Column="1" Margin="80,0,30,0" Grid.Row="5" VerticalAlignment="Top" Height="36" Click="Button_Odobri"/>
-        <Button Content="Odbij lek" Grid.Column="2" Margin="30,0,80,0" Grid.Row="5" VerticalAlignment="Top" Height="36" Click="Button_Odbij"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Name="sifra"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Name="naziv"/>
-        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="18,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="168" Height="30" IsEnabled="False" Name="datum"/>
+        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Odobri lek" Grid.Column="1" Margin="80,0,30,0" Grid.Row="5" VerticalAlignment="Top" Height="36" Click="Button_Odobri"/>
+        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Odbij lek" Grid.Column="2" Margin="30,0,80,0" Grid.Row="5" VerticalAlignment="Top" Height="36" Click="Button_Odbij"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Name="sifra"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,10,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" Name="naziv"/>
+        <DatePicker BorderBrush="Black" Grid.Column="2" HorizontalAlignment="Left" Margin="18,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="168" Height="30" IsEnabled="False" Name="datum"/>
     </Grid>
 </Window>

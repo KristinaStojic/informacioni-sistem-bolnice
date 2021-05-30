@@ -63,20 +63,20 @@
 
         <Border  BorderBrush="DarkRed"  BorderThickness="1" HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="301" Margin="925,97,0,0">
         </Border>
-        <Image Source="slike/dodaj.png" Width="44" HorizontalAlignment="Center" Margin="75,607,1161,45" RenderTransformOrigin="0.467,-0.13"/>
-        <Image Source="slike/izmeni.png" Width="38" HorizontalAlignment="Center" Margin="243,606,999,46" RenderTransformOrigin="0.574,0.51"/>
-        <Image Source="slike/delete.png" Width="39" HorizontalAlignment="Center" Margin="411,607,830,46" RenderTransformOrigin="0.574,0.51"/>
-        <Image Source="slike/covek.png" Width="32" HorizontalAlignment="Center" Margin="577,552,671,-6" RenderTransformOrigin="0.574,0.51"/>
-        <Image Source="slike/nazadd.png" Width="41" HorizontalAlignment="Center" Margin="745,607,494,51" RenderTransformOrigin="0.568,0.423"/>
+        <Image Source="slike/dodaj.png" Width="44" HorizontalAlignment="Center" Margin="68,603,1167.6,49.4" RenderTransformOrigin="0.467,-0.13"/>
+        <Image Source="slike/izmeni.png" Width="38" HorizontalAlignment="Center" Margin="236,603,1005.6,49.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="slike/delete.png" Width="39" HorizontalAlignment="Center" Margin="403,604,837.6,49.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="slike/covek.png" Width="40" HorizontalAlignment="Center" Margin="566,603,673.6,49.4" RenderTransformOrigin="0.574,0.51"/>
+        <Image Source="slike/nazadd.png" Width="40" HorizontalAlignment="Center" Margin="734,603,505.6,49.4" RenderTransformOrigin="0.568,0.423"/>
         <TextBlock HorizontalAlignment="Left" Margin="1097,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="129" FontSize="16">
             <Hyperlink Click="Hyperlink_Click">
 Pomoć?(CTRL+H)
             </Hyperlink>
         </TextBlock>
 
-        
-            <!-- Grafikon -->
-            <Wpf:PieChart 
+
+        <!-- Grafikon -->
+        <Wpf:PieChart 
                     HorizontalAlignment="Center" 
                     Height="254"
                     Width="200"
@@ -85,14 +85,14 @@ Pomoć?(CTRL+H)
                     LegendLocation="Bottom"
                     >
 
-                <!-- Parcad u grafikonu.-->
-                <Wpf:PieChart.Series>
+            <!-- Parcad u grafikonu.-->
+            <Wpf:PieChart.Series>
                 <Wpf:PieSeries Title="Pregledi" DataLabels="True" Values="{Binding ukupnoPregleda }" LabelPoint="{Binding LabelPoint}"/>
                 <Wpf:PieSeries Title="Operacije" DataLabels="True" Values="{Binding ukupnoOperacija }" LabelPoint="{Binding LabelPoint}"/>
             </Wpf:PieChart.Series>
-                <!-- Kraj parcadi u grafikonu -->
+            <!-- Kraj parcadi u grafikonu -->
 
-            </Wpf:PieChart>
+        </Wpf:PieChart>
         <Label Content="Grafikon 1. Tipovi termina" Margin="1000,430,99,231" FontSize="14"/>
         <!-- Kraj grafikona.-->
 
