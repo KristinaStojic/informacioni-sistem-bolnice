@@ -7,36 +7,9 @@
         mc:Ignorable="d"
         Title="OdobravanjeGodisnjegOdmora" Height="520" Width="820" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <TabControl Name="tabovi" TabStripPlacement="Top" Background="#FFE7F6F7" Margin="0,10,-0.4,0.4">
-            <TabControl.Resources>
-                <Style TargetType="TabItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                                <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
-                                    <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="10,2"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="Border" Property="Background" Value="#FFA3DADE" />
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TabControl.Resources>
-            <TabItem Header="Zahtevi za procesiranje" IsSelected="True" Height="25" Margin="9,0,-9,-0.2" Width="150">
                 <Grid>
                     <Label Content="Izberite zahtev lekara kome zelite da odobrite ili odbijete godisnji odmor:" FontSize="17" HorizontalAlignment="Left" Margin="24,18,0,0" VerticalAlignment="Top"/>
-                    <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding TabelaZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="23,64,23,104" 
+                    <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding TabelaZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="15,64,15.6,104.4" 
                            AutoGenerateColumns="False" FontSize="14">
                         <DataGrid.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -45,18 +18,18 @@
                             </LinearGradientBrush>
                         </DataGrid.Background>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Width="25" Binding="{Binding lekar.IdLekara}"/>
+                            <DataGridTextColumn Header="ID" Width="25" Binding="{Binding idZahteva}"/>
                             <DataGridTextColumn Header="       Ime lekara" Width="125" Binding="{Binding lekar.ImeLek}"/>
                             <DataGridTextColumn Header="     Prezime lekara" Width="135" Binding="{Binding lekar.PrezimeLek}"/>
                             <DataGridTextColumn Header="            JMBG" Width="130" Binding="{Binding lekar.Jmbg}"/>
-                            <DataGridTextColumn Header="     Raspolozivo &#x0a;  slobodnih dana" Width="120"  Binding="{Binding lekar.SlobodniDaniGodisnjegOdmora}"/>
-                            <DataGridTextColumn Header="      Zahtevano &#x0a;  slobodnih dana" Width="120" Binding="{Binding brojDanaOdmora}"/>
+                    <DataGridTextColumn Header="   Datum početka &#x0a;  godišnjeg odmora" Width="135"  Binding="{Binding pocetakOdmora}"/>
+                    <DataGridTextColumn Header="      Datum kraja &#x0a; godišnjeg odmora" Width="135" Binding="{Binding krajOdmora}"/>
                             <DataGridTextColumn Header="     Status &#x0a;    zahteva" Width="*" Binding="{Binding odobren}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Odobri zahtev" HorizontalAlignment="Left" Margin="206,366,0,0" VerticalAlignment="Top" Width="179" Height="51" Click="Odobri_Click" FontSize="17" Background="#FFA3DADE"/>
-                    <Button Content="Odbij zahtev" Margin="405,366,224,0" VerticalAlignment="Top" Height="51" Click="Odbij_Click" FontSize="17" Background="#FFA3DADE"/>
-                    <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="728,367,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Nazad_Click">
+                    <Button Content="Odobri zahtev" HorizontalAlignment="Left" Margin="204,410,0,0" VerticalAlignment="Top" Width="179" Height="51" Click="Odobri_Click" FontSize="17" Background="#FFA3DADE"/>
+                    <Button Content="Odbij zahtev" Margin="415,410,213.6,0" VerticalAlignment="Top" Height="51" Click="Odbij_Click" FontSize="17" Background="#FFA3DADE"/>
+                    <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="727,410,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Nazad_Click">
                         <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                             <Image.RenderTransform>
                                 <TransformGroup>
@@ -69,8 +42,7 @@
                         </Image>
                     </Button>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Procesirani zahtevi" IsSelected="True" Height="25" Margin="10.6,0,-10.2,-0.2" Width="150">
+        <!--    <TabItem Header="Procesirani zahtevi" IsSelected="True" Height="25" Margin="10.6,0,-10.2,-0.2" Width="150">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="87*"/>
@@ -106,7 +78,6 @@
                         </Image>
                     </Button>
                 </Grid>
-            </TabItem>
-        </TabControl>
+            </TabItem> -->
     </Grid>
 </Window>

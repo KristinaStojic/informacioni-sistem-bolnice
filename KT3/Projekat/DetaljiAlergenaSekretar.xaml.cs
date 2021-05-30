@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -33,7 +34,8 @@ namespace Projekat
         }
         private void PopuniPodatkeOAlergenu(Alergeni izabraniAlergen)
         {
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {

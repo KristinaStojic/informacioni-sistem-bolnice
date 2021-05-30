@@ -145,7 +145,7 @@ namespace Projekat.Servis
             return namena;
         }
 
-    #endregion
+        #endregion
 
         #region Obavestenja Pacijent
         public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)

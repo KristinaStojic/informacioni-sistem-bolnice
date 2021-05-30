@@ -41,7 +41,7 @@
             <Run Text="CTRL + I - Izmeni pacijenta"/><LineBreak/>
             <Run Text="CTRL + O - Obriši pacijenta"/><LineBreak/>
             <Run Text="     - Ulaz u tabelu"/><LineBreak/>
-            <Run Text="     - Polje za pretragu pacijenata"/><LineBreak/>
+            <Run Text="CTRL + S - Polje za pretragu pacijenata"/><LineBreak/>
             <Run Text="CTRL + X - X na detaljnom uvidu termina"/><LineBreak/>
             <Run Text="CTRL + U - Uvid u zdravstveni karton"/><LineBreak/>
             <LineBreak/>

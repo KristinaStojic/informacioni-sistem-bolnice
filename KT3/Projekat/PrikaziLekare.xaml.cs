@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Pomoc;
 using Projekat.Servis;
+using Projekat.ViewModel;
 
 namespace Projekat
 {
@@ -39,13 +40,13 @@ namespace Projekat
             foreach (Lekar l in LekariMenadzer.lekari)
             {
                 Lekari.Add(l);
-            }
+           }
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Lekari);
-            view.Filter = UserFilterLekari; */
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(LekarViewModel.lekari);
+            view.Filter = UserFilterLekari;  */
         }
 
-        /*
+      /*  
         private bool UserFilterLekari(object item)
         {
             if (String.IsNullOrEmpty(pretraga.Text))
@@ -60,7 +61,7 @@ namespace Projekat
                           || ((item as Lekar).specijalizacija.ToString().IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
         }
-
+        
         private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             DodajLekara lekar = new DodajLekara();
@@ -176,12 +177,12 @@ namespace Projekat
                 }
             }
         }
-        
-        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
+    */    
+     /*   private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(Lekari).Refresh();
-        }
-        */
+            CollectionViewSource.GetDefaultView(LekarViewModel.lekari).Refresh();
+        } */
+        
         private void Radno_vreme_Click(object sender, RoutedEventArgs e)
         {
             Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;

@@ -422,6 +422,9 @@
     <Compile Include="Pomoc\ZdravstveniKartonPomoc.xaml.cs">
       <DependentUpon>ZdravstveniKartonPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\ZdravstveniKartonSekretarPomoc.xaml.cs">
+      <DependentUpon>ZdravstveniKartonSekretarPomoc.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PotvrdaSlanjaZahtjeva.xaml.cs">
       <DependentUpon>PotvrdaSlanjaZahtjeva.xaml</DependentUpon>
     </Compile>
@@ -1034,6 +1037,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\ZdravstveniKartonPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\ZdravstveniKartonSekretarPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
