@@ -32,30 +32,76 @@ namespace Projekat
             this.odustani.Visibility = Visibility.Hidden;
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
-            /* LEKARI OPSTE PRAKSE */
             this.lekar.ItemsSource = LekariServis.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
-            InicijalizujLicnePodatke();
-            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            InicijalizujLicnePodatke(prijavljeniPacijent);
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
 
         }
 
-        private void InicijalizujLicnePodatke()
+        private void InicijalizujLicnePodatke(Pacijent prijavljeniPacijent)
         {
-            this.ime.Text = prijavljeniPacijent.ImePacijenta;
+            this.Ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
-
-            this.poltxt.Text = PacijentiServis.OdrediPolPacijenta(prijavljeniPacijent);
+            InicijalizujPolPacijenta(prijavljeniPacijent);
             this.brojTel.Text = prijavljeniPacijent.BrojTelefona.ToString();
             this.email.Text = prijavljeniPacijent.Email;
             this.adresa.Text = prijavljeniPacijent.AdresaStanovanja;
-            this.bracStanje.Text = prijavljeniPacijent.BracnoStanje.ToString();
+            InicijalizujBracnoStanjePacijenta(prijavljeniPacijent);
             this.zanimanje.Text = prijavljeniPacijent.Zanimanje;
+            InicijalizujIzabranogLekaraPacijenta(prijavljeniPacijent);
+            this.pacijent.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+        }
+
+        private void InicijalizujBracnoStanjePacijenta(Pacijent prijavljeniPacijent)
+        {
+            string bracno = prijavljeniPacijent.BracnoStanje.ToString();
+            if (bracno.Equals("Neozenjen") || bracno.Equals("Neudata"))
+            {
+                this.bracStanje.SelectedIndex = 0;
+                return;
+            }
+            else if (bracno.Equals("Ozenjen") || bracno.Equals("Udata"))
+            {
+                this.bracStanje.SelectedIndex = 1;
+                return;
+            }
+            else if (bracno.Equals("Razveden") || bracno.Equals("Razvedena"))
+            {
+                this.bracStanje.SelectedIndex = 2;
+                return;
+            }
+            else if (bracno.Equals("Udovac") || bracno.Equals("Udovica"))
+            {
+                this.bracStanje.SelectedIndex = 3;
+                return;
+            }
+            else
+            {
+                this.bracStanje.SelectedIndex = 4;
+                return;
+            }
+        }
+
+        private void InicijalizujIzabranogLekaraPacijenta(Pacijent prijavljeniPacijent)
+        {
             if (prijavljeniPacijent.IzabraniLekar != null)
             {
                 this.lekar.Text = prijavljeniPacijent.IzabraniLekar.ToString();
             }
-            this.pacijent.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+        }
+
+        private void InicijalizujPolPacijenta(Pacijent prijavljeniPacijent)
+        {
+            string polPacijent = PacijentiServis.OdrediPolPacijenta(prijavljeniPacijent);
+            if (polPacijent.Equals("M"))
+            {
+                this.poltxt.SelectedIndex = 0;
+            }
+            else
+            {
+                this.poltxt.SelectedIndex = 1;
+            }
         }
 
         private void izmeniBtn_Click(object sender, RoutedEventArgs e)
@@ -66,15 +112,28 @@ namespace Projekat
         private void odustani_Click(object sender, RoutedEventArgs e)
         {
             PromeniVidljivostKomponentiPosleIzmene();
+            InicijalizujLicnePodatke(prijavljeniPacijent);
         }
 
         private void sacuvajIzmene_Click(object sender, RoutedEventArgs e)
         {
 
-            string ime = this.ime.Text;
+            string ime = this.Ime.Text;
             string prezime = this.prezime.Text;
-            int jmbg = int.Parse(this.jmbg.Text);
-            pol polPacijenta = PacijentiServis.IzmeniPolPacijenta(this.poltxt.Text);
+            long jmbg = long.Parse(this.jmbg.Text);
+            //pol polPacijenta = PacijentiServis.IzmeniPolPacijenta(this.poltxt.Text);
+            pol polPacijenta = prijavljeniPacijent.Pol;
+            if (this.poltxt != null)
+            {
+                if (poltxt.SelectedItem.Equals("Muški"))
+                {
+                    polPacijenta = pol.M;
+                }
+                if (poltxt.SelectedItem.Equals("Ženski"))
+                {
+                    polPacijenta = pol.Z;
+                }
+            }
             long brTel = long.Parse(this.brojTel.Text);
             string eMail = this.email.Text;
             string adresa = this.adresa.Text;
@@ -94,7 +153,7 @@ namespace Projekat
 
         private void PromeniVidljivostKomponentiPosleIzmene()
         {
-            this.ime.IsEnabled = false;
+            this.Ime.IsEnabled = false;
             this.prezime.IsEnabled = false;
             this.jmbg.IsEnabled = false;
             this.poltxt.IsEnabled = false;
@@ -116,7 +175,7 @@ namespace Projekat
             this.sacuvajIzmene.Visibility = Visibility.Visible;
             this.odustani.Visibility = Visibility.Visible;
 
-            this.ime.IsEnabled = true;
+            this.Ime.IsEnabled = true;
             this.prezime.IsEnabled = true;
             this.jmbg.IsEnabled = true;
             this.poltxt.IsEnabled = true;
@@ -130,62 +189,172 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
-            PacijentPagesServis.odjava_Click(this);
+            PacijentWebStranice.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.karton_Click(this, idPacijent);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.zakazi_Click(this, idPacijent);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.uvid_Click(this, idPacijent);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.pocetna_Click(this, idPacijent);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.anketa_Click(this, idPacijent);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
       
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.Korisnik_Click(this, idPacijent);
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
         }
 
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
 
         }
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /* var app = (App)Application.Current;
-             string eng = "en-US";
-             string srb = "sr-LATN";
-             MenuItem mi = (MenuItem)sender;
-             if (mi.Header.Equals("en-US"))
-             {
-                 mi.Header = "sr-LATN";
-                 app.ChangeLanguage(eng);
-             }
-             else
-             {
-                 mi.Header = "en-US";
-                 app.ChangeLanguage(srb);
-             }*/
-            PacijentPagesServis.Jezik_Click(Jezik);
+            PacijentWebStranice.Jezik_Click(Jezik);
         }
+        #region Validacija licnih podataka
+
+        public bool ProveraCifara(string tekst)
+        {
+            foreach (char karakter in tekst)
+            {
+                if (!(karakter >= '0' && karakter <= '9'))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void prezime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (prezime.Text == null || prezime.Text.Equals(""))
+            {
+                valPrezime.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                return;
+            }
+            sacuvajIzmene.IsEnabled = true;
+            valPrezime.Visibility = Visibility.Hidden;
+        }
+        private void Ime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (Ime.Text == null || Ime.Text.Equals(""))
+            {
+                valIme.Visibility = Visibility.Visible;
+               sacuvajIzmene.IsEnabled = false;
+                return;
+            }
+            sacuvajIzmene.IsEnabled = true;
+            valIme.Visibility = Visibility.Hidden;
+        }
+
+        #endregion
+        private void jmbg_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!ProveraCifara(jmbg.Text) || jmbg.Text == "")
+            {
+                valJmbg.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                if (jmbg.Text.Length < 9 || jmbg.Text.Length > 13)
+                {
+                    valJmbg.Visibility = Visibility.Hidden;
+                    valJmbgDuzina.Visibility = Visibility.Visible;
+                    sacuvajIzmene.IsEnabled = false;
+                }
+                return;
+            }
+            if (jmbg.Text.Length < 9 || jmbg.Text.Length > 13)
+            {
+                valJmbg.Visibility = Visibility.Hidden;
+                valJmbgDuzina.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                return;
+            }
+            sacuvajIzmene.IsEnabled = true;
+            valJmbg.Visibility = Visibility.Hidden;
+            valJmbgDuzina.Visibility = Visibility.Hidden;
+        }
+
+        private void brojTel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!ProveraCifara(brojTel.Text) || brojTel.Text == null)
+            {
+                valTelefon.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                if (brojTel.Text.Length < 9 || brojTel.Text.Length > 13)
+                {
+                    valTelefon.Visibility = Visibility.Hidden;
+                    valTelefonDuzina.Visibility = Visibility.Visible;
+                    sacuvajIzmene.IsEnabled = false;
+                }
+                return;
+            }
+            if (brojTel.Text.Length < 9 || brojTel.Text.Length > 13)
+            {
+                valTelefon.Visibility = Visibility.Hidden;
+                valTelefonDuzina.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                return;
+            }
+            sacuvajIzmene.IsEnabled = true;
+            valTelefon.Visibility = Visibility.Hidden;
+            valTelefonDuzina.Visibility = Visibility.Hidden;
+        }
+
+        private void adresa_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (adresa.Text == null || adresa.Text.Equals(""))
+            {
+                valAdresa.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                return;
+            }
+            sacuvajIzmene.IsEnabled = true;
+            valAdresa.Visibility = Visibility.Hidden;
+        }
+
+        private void email_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (email.Text == null || email.Text.Equals(""))
+            {
+                valEmail.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                return;
+            }
+            sacuvajIzmene.IsEnabled = true;
+            valEmail.Visibility = Visibility.Hidden;
+        }
+
+        private void zanimanje_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (zanimanje.Text == null || zanimanje.Text.Equals(""))
+            {
+                valZanimanje.Visibility = Visibility.Visible;
+                sacuvajIzmene.IsEnabled = false;
+                return;
+            }
+            sacuvajIzmene.IsEnabled = true;
+            valZanimanje.Visibility = Visibility.Hidden;
+        }
+
+    
     }
 }

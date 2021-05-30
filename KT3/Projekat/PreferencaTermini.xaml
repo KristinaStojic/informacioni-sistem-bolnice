@@ -72,9 +72,11 @@
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top"  Grid.Row="1" Margin="0, 10, 0, 0" >
             <Label Content="{ns:Loc LblPreporuceniTermini}" HorizontalAlignment="Center" Foreground="{DynamicResource TextColor}"
                    Margin="0, 20, 0, 10" FontWeight="Bold"/>
-            <DataGrid Height="336" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Termini}" 
-                      SelectionChanged="preferencaGrid_SelectionChanged" Grid.Column="1" Grid.Row="1"
-                  IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  Margin="0, 0, 0, 20"
+            <!-- Label Content="{ns:Loc lblPodnaslov}" Margin="0,5,0,0" HorizontalAlignment="Center"/>
+            <Calendar Height="176" x:Name="kalendarPreferenca" HorizontalAlignment="Center" /-->
+            <DataGrid Height="251" Width="500" x:Name="preferencaGrid" ItemsSource="{Binding Termini}" 
+                      Grid.Column="1" Grid.Row="1"
+                      IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalAlignment="Center"  Margin="0, 0, 0, 20"
                       AutoGenerateColumns="False"  BorderBrush="#FF276678" VerticalAlignment="Center" Foreground="Black" Background="#FFF9F7F7" >
                 <DataGrid.Columns >
                     <DataGridTextColumn Header="{ns:Loc Datum}" Binding="{Binding Datum}" Width="100" />

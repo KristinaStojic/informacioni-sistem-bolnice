@@ -34,7 +34,7 @@ namespace Projekat
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         
@@ -83,40 +83,40 @@ namespace Projekat
         {
             /*Page odjava = new PrijavaPacijent();
             this.NavigationService.Navigate(odjava);*/
-            PacijentPagesServis.odjava_Click(this);
+            PacijentWebStranice.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.karton_Click(this, idPacijent);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.zakazi_Click(this, idPacijent);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.uvid_Click(this, idPacijent);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.pocetna_Click(this, idPacijent);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
 
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.anketa_Click(this, idPacijent);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
         }
 
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.Korisnik_Click(this, idPacijent);
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
         }
 
         private void nazad_Click(object sender, RoutedEventArgs e)
@@ -144,7 +144,7 @@ namespace Projekat
                 mi.Header = "en-US";
                 app.ChangeLanguage(srb);
             }*/
-            PacijentPagesServis.Jezik_Click(Jezik);
+            PacijentWebStranice.Jezik_Click(Jezik);
 
         }
 

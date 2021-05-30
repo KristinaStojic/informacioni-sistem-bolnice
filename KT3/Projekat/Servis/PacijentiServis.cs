@@ -66,52 +66,62 @@ namespace Projekat.Servis
         public static bracnoStanje OdrediBracnoStanjePacijenta(pol polPacijenta, string txtBracnoStanje)
         {
             bracnoStanje BracnoStanje = bracnoStanje.Neodredjeno;
-            if (polPacijenta.Equals("M"))
+            if (txtBracnoStanje.Equals("Oženjen/Udata") || txtBracnoStanje.Equals("Married"))
             {
-                if (txtBracnoStanje.Equals("Ozenjen"))
+                if (polPacijenta.Equals("M"))
                 {
                     BracnoStanje = bracnoStanje.Ozenjen;
                     return BracnoStanje;
                 }
-                else if (txtBracnoStanje.Equals("Neoznjen"))
-                {
-                    BracnoStanje = bracnoStanje.Neozenjen;
-                }
-                else if (txtBracnoStanje.Equals("Udovac"))
-                {
-                    BracnoStanje = bracnoStanje.Udovac;
-                }
-                else if (txtBracnoStanje.Equals("Razveden"))
-                {
-                    BracnoStanje = bracnoStanje.Razveden;
-                }
-                else if (txtBracnoStanje.Equals("Neodredjeno"))
-                {
-                    BracnoStanje = bracnoStanje.Neodredjeno;
-                }
-            }
-            else
-            {
-                if (txtBracnoStanje.Equals("Udata"))
+                else
                 {
                     BracnoStanje = bracnoStanje.Udata;
+                    return BracnoStanje;
                 }
-                else if (txtBracnoStanje.Equals("Neudata"))
+            }
+            else if (txtBracnoStanje.Equals("Neoženjen/Neudata") || txtBracnoStanje.Equals("Unmarried"))
+            {
+                if (polPacijenta.Equals("M"))
+                {
+                    BracnoStanje = bracnoStanje.Neozenjen;
+                    return BracnoStanje;
+                }
+                else
                 {
                     BracnoStanje = bracnoStanje.Neudata;
+                    return BracnoStanje;
                 }
-                else if (txtBracnoStanje.Equals("Udovica"))
+            }
+            else if (txtBracnoStanje.Equals("Udovac/Udovica") || txtBracnoStanje.Equals("Widow"))
+            {
+                if (polPacijenta.Equals("M"))
+                {
+                    BracnoStanje = bracnoStanje.Udovac;
+                    return BracnoStanje;
+                }
+                else
                 {
                     BracnoStanje = bracnoStanje.Udovica;
+                    return BracnoStanje;
                 }
-                else if (txtBracnoStanje.Equals("Razvedena"))
+            }
+            else if (txtBracnoStanje.Equals("Razveden/Razvedena") || txtBracnoStanje.Equals("Divorced"))
+            {
+                if (polPacijenta.Equals("M"))
+                {
+                    BracnoStanje = bracnoStanje.Razveden;
+                    return BracnoStanje;
+                }
+                else
                 {
                     BracnoStanje = bracnoStanje.Razvedena;
+                    return BracnoStanje;
                 }
-                else if (txtBracnoStanje.Equals("Neodredjeno"))
-                {
-                    BracnoStanje = bracnoStanje.Neodredjeno;
-                }
+            }
+            else if (txtBracnoStanje.Equals("Neodređeno") || txtBracnoStanje.Equals("Indefinitely"))
+            {
+                BracnoStanje = bracnoStanje.Neodredjeno;
+                return BracnoStanje;
             }
             return BracnoStanje;
         }
@@ -119,7 +129,7 @@ namespace Projekat.Servis
         public static string OdrediPolPacijenta(Pacijent prijavljeniPacijent)
         {
             string txtPol;
-            if (prijavljeniPacijent.Pol.Equals("M"))
+            if (prijavljeniPacijent.Pol.ToString().Equals("M"))
                 txtPol = "M";
             else
                 txtPol = "Z";

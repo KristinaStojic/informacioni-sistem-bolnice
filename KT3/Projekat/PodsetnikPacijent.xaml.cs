@@ -19,50 +19,19 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for PodsetnikPacijent.xaml
-    /// </summary>
-    public partial class PodsetnikPacijent : Page, INotifyPropertyChanged
+    public partial class PodsetnikPacijent : Page
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent; 
-        //*
-        public static bool aktivan;
-        public int validacija;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-        public int Validacija
-        {
-            get
-            {
-                return validacija;
-            }
-            set
-            {
-                if (value != validacija)
-                {
-                    validacija = value;
-                    OnPropertyChanged("Validacija");
-                }
-            }
-        }
-
         public PodsetnikPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-
+            Datum.BlackoutDates.AddDatesInPast();
         }
 
         private void DodajPodsetnik_Click(object sender, RoutedEventArgs e)
@@ -151,35 +120,35 @@ namespace Projekat
         {
             /*Page odjava = new PrijavaPacijent();
             this.NavigationService.Navigate(odjava);*/
-            PacijentPagesServis.odjava_Click(this);
+            PacijentWebStranice.odjava_Click(this);
         }
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.karton_Click(this, idPacijent);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.zakazi_Click(this, idPacijent);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.uvid_Click(this, idPacijent);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.pocetna_Click(this, idPacijent);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
         }
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.Korisnik_Click(this, idPacijent);
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
         }
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.anketa_Click(this, idPacijent);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
@@ -198,7 +167,7 @@ namespace Projekat
                  mi.Header = "en-US";
                  app.ChangeLanguage(srb);
              }*/
-            PacijentPagesServis.Jezik_Click(Jezik);
+            PacijentWebStranice.Jezik_Click(Jezik);
 
         }
 
