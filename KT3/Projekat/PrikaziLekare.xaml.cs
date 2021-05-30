@@ -146,38 +146,19 @@ namespace Projekat
             // TODO: sacuvati sve ?
             LekariServis.SacuvajIzmeneLekara();
         }
-
+        */
         private void TabelaLekara_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (flag == false)
-            {
+            //if (flag == false)
+            //{
                 canvas2.Visibility = Visibility.Visible;
-            }
+            //}
 
             Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;
 
-            if (selektovaniLekar != null)
-            {
-                ime.Text = selektovaniLekar.ImeLek;
-                prezime.Text = selektovaniLekar.PrezimeLek;
-                jmbg.Text = selektovaniLekar.Jmbg.ToString();
-                telefon.Text = selektovaniLekar.BrojTelefona.ToString();
-                email.Text = selektovaniLekar.Email;
-                adresa.Text = selektovaniLekar.AdresaStanovanja;
-                specijalizacija.Text = selektovaniLekar.specijalizacija.ToString();
-                if (selektovaniLekar.RadniDani.Count > 0)
-                {
-                    vreme_pocetka.Text = selektovaniLekar.RadniDani[0].VremePocetka;
-                    vreme_kraja.Text = selektovaniLekar.RadniDani[0].VremeKraja;
-                }
-                else
-                {                
-                    vreme_pocetka.Text = "";
-                    vreme_kraja.Text = "";
-                }
-            }
+            
         }
-    */    
+       
      /*   private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(LekarViewModel.lekari).Refresh();

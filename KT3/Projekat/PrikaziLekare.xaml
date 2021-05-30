@@ -58,6 +58,9 @@
                     </Style.Triggers>
                 </Style>
             </TextBox.Style>
+            <TextBox.Text>
+                <Binding Path="PretragaTextBox" UpdateSourceTrigger="PropertyChanged"></Binding>
+            </TextBox.Text>
         </TextBox>
 
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="691" Grid.RowSpan="5" StrokeThickness="0" VerticalAlignment="Top" Width="424" Margin="0.4,0,-0.4,0" Grid.Column="4" Grid.ColumnSpan="2"/>
