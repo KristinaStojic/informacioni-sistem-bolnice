@@ -48,17 +48,17 @@
         <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,435,0,0" FontSize="18" Height="36" Width="63"/>
         <Label Content="Adresa stanovanja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,516,0,0" FontSize="18" Height="35" Width="162"/>
         <Label Content="Specijalizacija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,599,0,0" FontSize="18" Height="35" Width="123"/>
-        <Image Source="slike/stethoscope.png" Margin="118,125,456,502" Grid.Column="1"></Image>
-        <Image Source="slike/lek.png" Margin="115,232,459,395" Grid.Column="1"></Image>
-        <Image Source="slike/odmor.png" Margin="118,348,456,279" Grid.Column="1"></Image>
-        <Image Source="slike/izmeni.png" Margin="118,460,456,167" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
-        <Image Source="slike/obavestenja.png" Margin="115,570,459,57" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
-        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,121,68,535" IsEnabled="False" Name="ime" FontSize="18"/>
-        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,198,68,458" IsEnabled="False" Name="prezime" FontSize="18"/>
-        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,278,68,378" IsEnabled="False" Name="jmbg" FontSize="18"/>
-        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,354,68,302" IsEnabled="False" Name="telefon" FontSize="18"/>
-        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,435,68,220" IsEnabled="False" Name="email" FontSize="18" />
-        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,516,68,140" IsEnabled="False" Name="adresa" FontSize="18"/>
-        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,599,68,57"  IsEnabled="False" Name="specijalizacija" FontSize="18"/>
+        <Image Source="slike/stethoscope.png" Margin="118,121,455.6,506.4" Grid.Column="1"></Image>
+        <Image Source="slike/lek.png" Margin="118,232,455.6,395.4" Grid.Column="1"></Image>
+        <Image Source="slike/odmor.png" Margin="118,345,455.6,282.4" Grid.Column="1"></Image>
+        <Image Source="slike/izmeni.png" Margin="118,453,455.6,174.4" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
+        <Image Source="slike/obavestenja.png" Margin="118,566,455.6,61.4" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,121,68,535" IsEnabled="False" Name="ime" FontSize="18" BorderBrush="Black"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,198,68,458" IsEnabled="False" Name="prezime" FontSize="18" BorderBrush="Black"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,278,68,378" IsEnabled="False" Name="jmbg" FontSize="18" BorderBrush="Black"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,354,68,302" IsEnabled="False" Name="telefon" FontSize="18" BorderBrush="Black"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,435,68,220" IsEnabled="False" Name="email" FontSize="18"  BorderBrush="Black"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,516,68,140" IsEnabled="False" Name="adresa" FontSize="18" BorderBrush="Black"/>
+        <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,599,68,57"  IsEnabled="False" Name="specijalizacija" FontSize="18" BorderBrush="Black"/>
     </Grid>
 </Window>

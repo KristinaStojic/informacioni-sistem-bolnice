@@ -38,7 +38,6 @@ namespace Projekat
                 if (p.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {
                     this.naziv.Text = izabraniAlergen.NazivSastojka;
-                    this.sifra.Text = izabraniAlergen.SifraSastojka;
                     this.nuspojava.Text = izabraniAlergen.NuspojavaNaNastojak;
                     this.vreme.Text = izabraniAlergen.VremeReakcije;
                 }

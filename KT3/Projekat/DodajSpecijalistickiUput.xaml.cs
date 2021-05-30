@@ -26,11 +26,17 @@ namespace Projekat
         public string formatiranDatum;
         public Sala Soba;
         public Krevet Krevet;
+        public bool flagNapomenaSpec = false;
+        public bool flagLekarSpec = false;
+        public bool popunjeno = false;
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
+            this.potvrdiBolnicko.IsEnabled = false;
+            this.potvrdiLab.IsEnabled = false;
+            this.potvrdiSpec.IsEnabled = false;
             PopuniPodatkePacijentaZaSpecijalistickiUput();
             PopuniPodatkePacijentaZaBolnickoLecenje();
 
@@ -210,7 +216,7 @@ namespace Projekat
 
         private void PotvrdiLecenje_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (popunjeno == true)
             {
                 int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaPregelda.Text;
@@ -228,9 +234,9 @@ namespace Projekat
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }
-            catch (System.Exception)
+            else
             {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Popunite sva polja!");
             }
         }
 
@@ -324,6 +330,45 @@ namespace Projekat
             {
                 e.Handled = true;
                 dp.SetValue(DatePicker.SelectedDateProperty, date.AddDays(-1));
+            }
+        }
+
+        private void laboratorija_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void lekar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void napomena_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.specijalista.Text != null || this.napomena.Text != null)
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.potvrdiSpec.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.specijalista.Text.Trim().Equals("") || this.napomena.Text.Trim().Equals(""))
+            {
+                this.potvrdiSpec.IsEnabled = false;
+            }
+            else if (!this.specijalista.Text.Trim().Equals("") && !this.napomena.Text.Trim().Equals(""))
+            {
+                this.potvrdiSpec.IsEnabled = true;
+                popunjeno = true;
             }
         }
     }

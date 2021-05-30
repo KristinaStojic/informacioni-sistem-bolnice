@@ -5,18 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajAlergene" Height="651" Width="442" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="DodajAlergene" Height="570" Width="442" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="54"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -25,27 +30,48 @@
             <ColumnDefinition Width="204"/>
             <ColumnDefinition Width="73*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Šifra sastojka" Grid.Column="1" Margin="21.4,10,20.6,0" Grid.Row="1" VerticalAlignment="Top" Height="30"/>
-        <Label Content="Naziv sastojka" Grid.Column="1" HorizontalAlignment="Left" Margin="21.4,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="30" Width="162"/>
-        <Label Content="Nuspojava na sastojak" Grid.Column="1" HorizontalAlignment="Left" Margin="21.4,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="30" Width="162"/>
-        <Label Content="Vreme nakon kog se desila&#xD;&#xA;nuspojava" Grid.Column="1" HorizontalAlignment="Left" Margin="21.4,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="48" Width="173" Grid.RowSpan="2"/>
-        <Label Content="Pretražite sastojak" Grid.Column="1" HorizontalAlignment="Left" Margin="21.4,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="30" Width="162"/>
+        <Label Content="Naziv sastojka" FontSize="16" Grid.Column="1" Margin="21.4,10,20.6,0" Grid.Row="1" VerticalAlignment="Top" Height="30"/>
+        <Label Content="Nuspojava na sastojak" FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Margin="21.4,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="30" Width="173"/>
+        <Label Content="Vreme nakon kog se&#xD;&#xA; desila nuspojava" FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Margin="21.4,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="54" Width="173" Grid.RowSpan="2"/>
+        <Label Content="Pretražite sastojak" FontSize="16" Grid.Column="1" HorizontalAlignment="Left" Margin="21.4,5,0,0" Grid.Row="8" VerticalAlignment="Top" Height="30" Width="162"/>
 
 
-        <ListView x:Name="nadjiAlergen" Grid.Column="1" Height="130" Margin="21.4,10.4,17.6,0" Grid.Row="6" VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single" Grid.RowSpan="2">
+        <ListView x:Name="nadjiAlergen" Grid.Column="1" Height="120" Margin="21.4,12,20.6,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionChanged="ListView_SelectionChanged" SelectionMode="Single" Grid.RowSpan="4">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Naziv" DisplayMemberBinding="{Binding naziv}"
-                                    Width="364"/>
+                                    Width="365"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Sacuvaj" Grid.Column="1" Margin="57.4,25.4,55.6,0" Grid.Row="7" VerticalAlignment="Top" Height="29" Background="#FF6895C5" Click="Button_Click"/>
-        <Button Content="Odustani" Grid.Column="2" Margin="55.4,25.4,57.6,0" Grid.Row="7" VerticalAlignment="Top" Height="29" Background="#FF6895C5"/>
-        <TextBox  Name="sifra" Grid.Column="2"  Height="30" Margin="21.4,10,20.6,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
-        <TextBox  Name="naziv" Grid.Column="2"  Height="30" Margin="21.4,10.6,20.6,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
-        <TextBox  Name="nuspojava" Grid.Column="2"  Height="100" Margin="21.4,10,20.6,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox  Name="vreme" Grid.Column="2"  Height="100" Margin="21.4,10,20.6,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox  Name="pretraga" Grid.Column="2"  Height="30" Margin="21.4,10,20.6,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="pretraga_TextChanged"/>
+        <Button Content="Sacuvaj" Grid.Column="1" Margin="57.4,29,55.6,0" Grid.Row="12" VerticalAlignment="Top" Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Click="Button_Click" Grid.RowSpan="2"/>
+        <Button Content="Odustani" Grid.Column="2" Margin="55.4,29,57.6,0" Grid.Row="12" VerticalAlignment="Top" Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.RowSpan="2"/>
+        <TextBox BorderBrush="Black" Name="naziv" Grid.Column="2"  Height="30" Margin="21.4,10,20.6,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
+        <TextBox BorderBrush="Black" Name="nuspojava" Grid.Column="2" Margin="21.4,10,20.6,10" Grid.Row="2" TextWrapping="Wrap" Grid.RowSpan="3"/>
+        <TextBox BorderBrush="Black"  Name="vreme" Grid.Column="2"  Height="100" Margin="21.4,10,20.6,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="3"/>
+        <TextBox  BorderBrush="black" Name="pretraga" Grid.Column="2"  Height="30" Margin="21.4,5,20.6,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="pretraga_TextChanged">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Pretražite po nazivu ili šifri" Foreground="AliceBlue" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
     </Grid>
 </Window>
