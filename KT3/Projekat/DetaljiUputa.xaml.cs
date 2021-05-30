@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +65,7 @@ namespace Projekat
         }
         private void NadjiPacijenta(int idPacijenta)
         {
-            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if(pacijent.IdPacijenta == idPacijenta)
                 {
@@ -75,7 +76,7 @@ namespace Projekat
             }
         }private void NadjiPacijentaBolnickoLecenje(int idPacijenta)
         {
-            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if(pacijent.IdPacijenta == idPacijenta)
                 {

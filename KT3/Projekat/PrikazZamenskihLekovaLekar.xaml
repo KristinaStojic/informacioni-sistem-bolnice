@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazZamenskihLekovaLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" >
+        Title="PrikazZamenskihLekovaLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="350"/>
@@ -20,9 +20,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Name="tekst"  FontWeight="Black" FontSize="15" Margin="0, 25, 0, 0" HorizontalAlignment="Center"></TextBlock>
-        <Button   Background="#FF6895C5" Content="Izmeni lek" HorizontalAlignment="Left" Margin="143,20,0,0" VerticalAlignment="Top"  Width="94" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Izmeni"/>
-        <Button Background="#FF6895C5" Content="Dodaj lek" HorizontalAlignment="Left" Margin="27,20,0,0" VerticalAlignment="Top" Width="93" Height="27" Click="Button_Dodaj" Grid.Row="1"/>
-        <Button  Background="#FF6895C5" Content="Obriši lek" HorizontalAlignment="Left" Margin="257,20,0,0" VerticalAlignment="Top"  Width="93" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Obrisi"/>
-        <Button  Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="373,20,0,0" VerticalAlignment="Top"  Width="93" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Nazad"/>
+        <Button   BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Izmeni lek" HorizontalAlignment="Left" Margin="143,20,0,0" VerticalAlignment="Top"  Width="94" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Izmeni"/>
+        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Dodaj lek" HorizontalAlignment="Left" Margin="27,20,0,0" VerticalAlignment="Top" Width="93" Height="27" Click="Button_Dodaj" Grid.Row="1"/>
+        <Button  BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Obriši lek" HorizontalAlignment="Left" Margin="257,20,0,0" VerticalAlignment="Top"  Width="93" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Obrisi"/>
+        <Button  BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Nazad" HorizontalAlignment="Left" Margin="373,20,0,0" VerticalAlignment="Top"  Width="93" Height="27" RenderTransformOrigin="0.706,4.291" Grid.Row="1" Click="Button_Nazad"/>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PrikaziTerminSekretarPomoc" Height="455" Width="390" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="PrikaziTerminSekretarPomoc" Height="500" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FFE7F6F7" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="37.6"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Margin="339.6,5.4,-34,-42.4" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
+        <Button Margin="558.6,5.6,-46.4,-42.6" BorderBrush="Transparent" Click="Button_Click" Grid.Column="1" Grid.Row="2" FontSize="15" Grid.ColumnSpan="2">
             <Button.Background>
                 <SolidColorBrush Color="#FFDBE2EF" Opacity="0"/>
             </Button.Background>
@@ -35,8 +35,8 @@
             </Grid>
         </Button>
 
-        <TextBlock Margin="54.6,5,41.4,29.6" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2">
-            <Run Text="Opšte prečice:" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/>
+        <TextBlock Margin="30.6,21,257,130.8" TextWrapping="Wrap" Grid.Column="1" FontSize="15">
+            <Run Text="Opšte prečice:" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
             <Run Text="CTRL + Z - Zakaži termin"/><LineBreak/>
             <Run Text="CTRL + I - Izmeni termin"/><LineBreak/>
@@ -46,13 +46,23 @@
             <Run Text="     - Polje za pretragu termin"/><LineBreak/>
             <Run Text="CTRL + X - X na detaljnom uvidu termina"/><LineBreak/>
             <Run Text="CTRL + U - Uvid u zdravstveni karton"/><LineBreak/>
-            <LineBreak/>
-            <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/>
+        </TextBlock>
+        <TextBlock Margin="319.6,22,23,197.8" TextWrapping="Wrap" Grid.Column="1" FontSize="15">
+        <Run Text="Unutar menija, mogu se koristiti" FontStyle="Italic" FontSize="18" FontWeight="DemiBold"/><Run Text=":"/><LineBreak/><LineBreak/>
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
             <Run Text="ALT + L - "/><Run Text="Lekari"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
             <Run Text="ALT + P - Pomoć"/><LineBreak/>
+        </TextBlock>
+        <TextBlock Margin="30.6,265,33,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Height="145" VerticalAlignment="Top">
+            <Run Text="Pomoć" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
+            <Run Text="Unutar ovog prozora moguć je uvid u listi svih termina. Postoje opcije za"/> <Run Text="zakazivanje, izmenu i otkazivanje" FontWeight="DemiBold"/> 
+            <Run Text="izabranog termina. Nakon selektovanja željenog termina, u donjem desnom uglu nalazi se dugme čijim se klikom otvara"/> 
+            <Run Text="zdravstveni karton" FontWeight="DemiBold"/> 
+            <Run Text="tog pacijenta."/><LineBreak/> 
+            <Run Text="Pored toga, postoji i opcija za"/> <Run Text="zakazivanje hitnog termina." FontWeight="DemiBold"></Run>
+            <LineBreak/>
         </TextBlock>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DetaljiUputa" Height="700" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
+        Title="DetaljiUputa" Height="700" Width="600" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <StackPanel>
 

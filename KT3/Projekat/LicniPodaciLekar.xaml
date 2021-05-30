@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="LicniPodaciLekar" Height="541" Width="442" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Background="LightSkyBlue">
+        Title="LicniPodaciLekar" Height="541" Width="442" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Background="LightSkyBlue" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70*"/>
@@ -36,16 +36,16 @@
         <Label Content="E-mail" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="7" Width="180" FontSize="16"/>
         <Label Content="Adresa stanovanja" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="8" Width="180" FontSize="16"/>
         <Label Content="Specijalizacija" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="9" Width="180" FontSize="16"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Name="korIme"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Name="sifra"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Name="ime"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Name="prezime"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Name="jmbg"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Name="telefon"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Name="email"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" Name="adresa"/>
-        <TextBox Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" Name="specijalizacija"/>
-        <Button Content="Sačuvaj" Grid.Column="1" Margin="51,43,58,0" Grid.Row="10" VerticalAlignment="Top" Height="32" Foreground="White" Background="#FF6895C5" Click="Button_Click_1"/>
-        <Button Content="Odustani" Grid.Column="2" Margin="58,43,50,0" Grid.Row="10" VerticalAlignment="Top" Height="32" Foreground="White" Background="#FF6895C5" Click="Button_Click"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Name="korIme"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Name="sifra"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Name="ime"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Name="prezime"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Name="jmbg"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Name="telefon"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Name="email"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" Name="adresa"/>
+        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" Name="specijalizacija"/>
+        <Button Content="Sačuvaj" Grid.Column="1" Margin="51,43,58,0" Grid.Row="10" VerticalAlignment="Top" Height="32" BorderBrush="White" Foreground="White" Background="#FF6895C5" Click="Button_Click_1"/>
+        <Button Content="Odustani" Grid.Column="2" Margin="58,43,50,0" Grid.Row="10" VerticalAlignment="Top" Height="32" BorderBrush="White" Foreground="White" Background="#FF6895C5" Click="Button_Click"/>
     </Grid>
 </Window>

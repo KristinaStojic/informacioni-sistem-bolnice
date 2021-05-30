@@ -26,6 +26,7 @@ namespace Projekat
     public partial class PrikaziPacijenta : Window
     {
         private bool flag = false;
+        public bool zatvoreno = false;
         public static ObservableCollection<Pacijent> PacijentiTabela
         {
             get;
@@ -38,7 +39,8 @@ namespace Projekat
             this.DataContext = this;
             PacijentiTabela = new ObservableCollection<Pacijent>();
 
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 PacijentiTabela.Add(p);
             }
@@ -93,20 +95,24 @@ namespace Projekat
         
         private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
-            flag = true;
+            //flag = true;
             Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
             informacijePacijenta.Visibility = Visibility.Hidden;
 
             if (zaBrisanje != null)
             {
-                ObrisiNalogPacijenta brisanje = new ObrisiNalogPacijenta(zaBrisanje);
+                ObrisiNalogPacijenta brisanje = new ObrisiNalogPacijenta(zaBrisanje, this);
                 brisanje.Show();
             }
-            else 
+            else
             {
                 MessageBox.Show("Niste selektovali pacijenta kojeg zelite da obrisete!");
             }
-            flag = false;
+            
+            if (PacijentiTabela.Count != 0 && zatvoreno == true)
+            {
+                TabelaPacijenata.SelectedIndex = 0;
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -144,12 +150,14 @@ namespace Projekat
 
         private void TabelaPacijenata_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (flag == false)
-            {
-                informacijePacijenta.Visibility = Visibility.Visible;
-            }
-
+            //if (flag == false)
+           // {
+           //     informacijePacijenta.Visibility = Visibility.Visible;
+           // }
+            flag = false;
+            
             Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
+            informacijePacijenta.Visibility = Visibility.Visible;
             if (p != null)
             {
                 ime.Text = p.ImePacijenta;
@@ -260,7 +268,24 @@ namespace Projekat
             else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
             {
                 Nazad_Click(sender, e);
-            }           
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                //this.MoveFocus();
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                pretraga.Focusable = true;
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+
         }
 
     }

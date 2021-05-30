@@ -28,39 +28,17 @@ namespace Projekat
             set;
         }
 
-        public static ObservableCollection<ZahtevZaGodisnji> TabelaProcesiranihZahteva
-        {
-            get;
-            set;
-        }
-
         public OdobravanjeGodisnjegOdmora()
         {
             InitializeComponent();
             this.DataContext = this;
-            DodajZahteveUTabelu();
+            LekariServis.DodajZahteveUTabelu();
         }
 
-        private void DodajZahteveUTabelu()
-        {
-            TabelaZahteva = new ObservableCollection<ZahtevZaGodisnji>();
-            TabelaProcesiranihZahteva = new ObservableCollection<ZahtevZaGodisnji>();
-
-            foreach (ZahtevZaGodisnji zahtev in LekariMenadzer.zahtevi)
-            {
-                if (zahtev.odobren.Equals(StatusZahteva.NA_CEKANJU))
-                {
-                    TabelaZahteva.Add(zahtev);
-                }
-                else
-                {
-                    TabelaProcesiranihZahteva.Add(zahtev);
-                }
-            }
-        }
         private void Odobri_Click(object sender, RoutedEventArgs e)
         {
             ZahtevZaGodisnji izabraniZahtev = (ZahtevZaGodisnji)TabelaLekara.SelectedItem;
+            int indeks = TabelaLekara.SelectedIndex;
 
             if (izabraniZahtev == null)
             {
@@ -68,53 +46,14 @@ namespace Projekat
             }
             else
             {
-                OdobriZahtevZaGodisnji(izabraniZahtev);
+                LekariServis.OdobriZahtevZaGodisnji(izabraniZahtev, indeks);
             }
         }
-
-        private void OdobriZahtevZaGodisnji(ZahtevZaGodisnji izabraniZahtev)
-        {
-            foreach (ZahtevZaGodisnji zahtev in LekariMenadzer.zahtevi)
-            {
-                if (zahtev.idZahteva == izabraniZahtev.idZahteva)
-                {
-                    zahtev.odobren = StatusZahteva.ODOBREN;
-                    PremestiZahtevNakonProcesiranja(zahtev);
-                    OduzmiSlobodneDaneLekaru(zahtev);
-                    LekariServis.sacuvajIzmjeneZahteva();
-                }
-            }
-        }
-
-        private void OduzmiSlobodneDaneLekaru(ZahtevZaGodisnji zahtev) 
-        {
-            foreach (Lekar lekar in LekariMenadzer.lekari)
-            {
-                if (lekar.IdLekara == zahtev.lekar.IdLekara)
-                {  
-                    OznaciLekarimaGodisnjiOdmor(lekar, zahtev);
-                    lekar.SlobodniDaniGodisnjegOdmora -= zahtev.brojDanaOdmora;
-                    LekariServis.SacuvajIzmeneLekara();
-                }
-            }
-        }
-
-        private void OznaciLekarimaGodisnjiOdmor(Lekar lekar, ZahtevZaGodisnji zahtev)
-        {
-            foreach (RadniDan dan in lekar.RadniDani)
-            {
-                if ((DateTime.Parse(zahtev.pocetakOdmora) <= DateTime.Parse(dan.Datum)) &&
-                     (DateTime.Parse(zahtev.krajOdmora) >= DateTime.Parse(dan.Datum)))
-                {
-                    dan.NaGodisnjemOdmoru = true;
-                    LekariServis.SacuvajIzmeneLekara();
-                }
-            }
-        }
-
+       
         private void Odbij_Click(object sender, RoutedEventArgs e)
         {
             ZahtevZaGodisnji izabraniZahtev = (ZahtevZaGodisnji)TabelaLekara.SelectedItem;
+            int indeks = TabelaLekara.SelectedIndex;
 
             if (izabraniZahtev == null)
             {
@@ -122,28 +61,8 @@ namespace Projekat
             }
             else
             {
-                OdbijZahtevZaGodisnji(izabraniZahtev);
+                LekariServis.OdbijZahtevZaGodisnji(izabraniZahtev, indeks);
             }
-        }
-
-        private void OdbijZahtevZaGodisnji(ZahtevZaGodisnji izabraniZahtev)
-        {
-            foreach (ZahtevZaGodisnji zahtev in LekariMenadzer.zahtevi)
-            {
-                if (zahtev.idZahteva == izabraniZahtev.idZahteva)
-                {
-                    zahtev.odobren = StatusZahteva.ODBIJEN;
-                    PremestiZahtevNakonProcesiranja(zahtev);
-                    LekariServis.sacuvajIzmjeneZahteva();
-                }
-            }
-        }
-
-        private void PremestiZahtevNakonProcesiranja(ZahtevZaGodisnji zahtev)
-        {
-            TabelaZahteva.Remove(zahtev);
-            LekariServis.sacuvajIzmjeneZahteva();
-            TabelaProcesiranihZahteva.Add(zahtev);
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)

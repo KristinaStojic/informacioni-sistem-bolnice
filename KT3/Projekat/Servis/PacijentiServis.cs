@@ -301,5 +301,10 @@ namespace Projekat.Servis
         }
 
         #endregion
+
+        public static List<Pacijent> pacijenti()
+        {
+            return PacijentiMenadzer.pacijenti;
+        }
     }
 }

@@ -24,14 +24,23 @@ namespace Projekat
     {
         Pacijent pacijent;
         Termin termin;
+        public bool flagDani = false;
+        public bool flagKolicina = false;
+        public bool flagSati = false;
+        public bool flagMinuti = false;
+        public bool flagLek = false;
         public DodajRecept(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
-
+            potvrdi.IsEnabled = false;
             PopuniPodatkePacijenta(izabraniPacijent);
-           
+            validacijaDani.Visibility = Visibility.Hidden;
+            validacijaKolicina.Visibility = Visibility.Hidden;
+            validacijaMinuti.Visibility = Visibility.Hidden;
+            validacijaSati.Visibility = Visibility.Hidden;
+
         }
 
         private void PopuniPodatkePacijenta(Pacijent izabraniPacijent)
@@ -94,7 +103,6 @@ namespace Projekat
 
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, datumPregleda, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
                 recept.IdLekara = termin.Lekar.IdLekara;
-                MessageBox.Show(termin.Lekar.IdLekara.ToString());
                 ZdravstveniKartonServis.DodajRecept(recept);
 
                 PosaljiObavestenjeOTerapiji(recept);
@@ -164,6 +172,174 @@ namespace Projekat
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
                 Button_Click_1(sender, e);
+            }
+        }
+
+        private void dani_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flagDani = false;
+                potvrdi.IsEnabled = false;
+
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(dani.Text, out result))
+                {
+                    if (dani.Text.Length >= 0 & dani.Text.Length <= 10)
+                    {
+                        validacijaDani.Visibility = Visibility.Hidden;
+                        flagDani = true;
+                        if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
+                            
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flagDani = false;
+                        validacijaDani.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flagDani = false;
+                    validacijaDani.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flagKolicina = false;
+                potvrdi.IsEnabled = false;
+
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(kolicina.Text, out result))
+                {
+                    int kol = Int32.Parse(kolicina.Text);
+                    if (kol >= 0 & kol <= 10)
+                    {
+                        validacijaKolicina.Visibility = Visibility.Hidden;
+                        flagKolicina = true;
+                        if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
+
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flagKolicina = false;
+                        validacijaKolicina.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flagKolicina = false;
+                    validacijaKolicina.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        
+        private void sati_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flagKolicina = false;
+                potvrdi.IsEnabled = false;
+
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(sati.Text, out result))
+                {
+                    int sat = Int32.Parse(sati.Text);
+                    if (sat >= 0 & sat <= 24)
+                    {
+                        validacijaSati.Visibility = Visibility.Hidden;
+                        flagSati = true;
+                        if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
+
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flagSati = false;
+                        validacijaSati.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flagSati = false;
+                    validacijaSati.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void min_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flagMinuti = false;
+                potvrdi.IsEnabled = false;
+
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(min.Text, out result))
+                {
+                    int minut = Int32.Parse(min.Text);
+                    if (minut >= 0 & minut <= 60)
+                    {
+                        validacijaMinuti.Visibility = Visibility.Hidden;
+                        flagMinuti = true;
+                        if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flagMinuti = false;
+                        validacijaMinuti.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flagMinuti = false;
+                    validacijaMinuti.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void nazivSifra_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            flagLek = true;
+            if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
+            {
+                potvrdi.IsEnabled = true;
             }
         }
     }

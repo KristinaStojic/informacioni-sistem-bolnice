@@ -8,7 +8,7 @@
         Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Image Source="slike/medical-symbol.png" Margin="143,131,732.6,237.4"/>
-        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="525" StrokeThickness="0" VerticalAlignment="Top" Width="477" Margin="701,81,0,0"/>
+        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="507" StrokeThickness="0" VerticalAlignment="Top" Width="477" Margin="701,81,0,0"/>
 
         <Button Margin="27,596,1164.6,25.4" Click="Nazad_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <Button.RenderTransform>
@@ -24,6 +24,14 @@
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
+
+        <Button Margin="1094,588,102.6,26.4" Click="Wizard_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+            <StackPanel>
+                <Image Source="slike/magic-wand.png" Height="70" Width="77" RenderTransformOrigin="0.415,1.073" />
+                <TextBlock Height="0"/>
+            </StackPanel>
+        </Button>
+
         <Button HorizontalAlignment="Left" Margin="1138,669,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFA3DADE" Visibility="Hidden"/>
         <Button HorizontalAlignment="Left" Margin="1185,669,0,4.4" Width="36" Background="#FF5DBFC5" Visibility="Hidden"/>
         <Button HorizontalAlignment="Left" Margin="1094,670,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFE7F6F7" Visibility="Hidden"/>

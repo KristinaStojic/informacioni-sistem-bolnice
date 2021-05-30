@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,7 +41,7 @@ namespace Projekat
         private void DodajZamenskeLekove(Lek lek)
         {
             TabelaZamenskihLekova = new ObservableCollection<Lek>();
-            foreach (Lek l in LekoviMenadzer.lijekovi)
+            foreach (Lek l in LekoviServis.Lijekovi())
             {
                 if (lek.idLeka == l.idLeka)
                 {
@@ -48,7 +49,7 @@ namespace Projekat
                     {
                         foreach (int zamjenskiLijek in l.zamenskiLekovi)
                         {
-                            foreach (Lek zamjenski in LekoviMenadzer.lijekovi)
+                            foreach (Lek zamjenski in LekoviServis.Lijekovi())
                             {
                                 if (zamjenski.idLeka == zamjenskiLijek)
                                 {

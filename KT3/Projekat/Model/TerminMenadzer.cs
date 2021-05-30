@@ -309,7 +309,7 @@ namespace Model
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
 
-                    foreach (Sala s in SaleMenadzer.sale)
+                    foreach (Sala s in SaleServis.Sale())
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
