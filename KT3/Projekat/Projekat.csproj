@@ -92,7 +92,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -527,7 +526,7 @@
     <Compile Include="Servis\ObavestenjaServis.cs" />
     <Compile Include="Servis\OpremaServis.cs" />
     <Compile Include="Servis\PacijentiServis.cs" />
-    <Compile Include="Servis\PacijentPagesServis.cs" />
+    <Compile Include="PacijentWebStranice.cs" />
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
     <Compile Include="Servis\TerminiSekretarServis.cs" />

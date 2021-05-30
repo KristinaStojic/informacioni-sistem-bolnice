@@ -273,6 +273,9 @@
   <data name="KorisnickoIme" xml:space="preserve">
     <value>Korisničko ime</value>
   </data>
+  <data name="lblPodnaslov" xml:space="preserve">
+    <value>Izaberite datum i odaberite jedan od preporucenih termina</value>
+  </data>
   <data name="LblPreporuceniTermini" xml:space="preserve">
     <value>📆 Preporučeni termini</value>
   </data>
@@ -306,6 +309,9 @@
   <data name="Modifikacija" xml:space="preserve">
     <value>Modifikuj termine</value>
   </data>
+  <data name="Muski" xml:space="preserve">
+    <value>Muški</value>
+  </data>
   <data name="Napomena" xml:space="preserve">
     <value>Napomena</value>
   </data>
@@ -326,6 +332,9 @@
   </data>
   <data name="Ne" xml:space="preserve">
     <value>Ne</value>
+  </data>
+  <data name="Neozenjen" xml:space="preserve">
+    <value>Neoženjen/Neudata</value>
   </data>
   <data name="NoviPodsetnik" xml:space="preserve">
     <value>Novi podsetnik</value>
@@ -353,6 +362,9 @@
   </data>
   <data name="OtkaziTermin" xml:space="preserve">
     <value>Otkaži termin</value>
+  </data>
+  <data name="Ozenjen" xml:space="preserve">
+    <value>Oženjen/Udata</value>
   </data>
   <data name="PacijentPodaci" xml:space="preserve">
     <value>Pacijent</value>
@@ -419,6 +431,9 @@
   </data>
   <data name="Prvo" xml:space="preserve">
     <value>1. Kako biste ocenili strucnost lekara u svom radu?</value>
+  </data>
+  <data name="Razveden" xml:space="preserve">
+    <value>Razveden/Razvedena</value>
   </data>
   <data name="Recept" xml:space="preserve">
     <value>Recept</value>
@@ -492,6 +507,9 @@
   <data name="Tri" xml:space="preserve">
     <value>3. Kako biste ocenili odnos cena i usluga u Zdravo korporaciji?</value>
   </data>
+  <data name="Udovac" xml:space="preserve">
+    <value>Neodređeno</value>
+  </data>
   <data name="UpitZaBrisanje" xml:space="preserve">
     <value>Da li ste sigurni da zelite da otkazete odabrani termin?</value>
   </data>
@@ -506,8 +524,23 @@
                     najefikasniji oporavak zdravlja i podstiče na zdrav život svakog pacijenta.
                     Registujte se u najbližem kliničkom centru i iskoristite mogućnosti koje Vam nudi Zdravo korporacija.</value>
   </data>
+  <data name="valAdresa" xml:space="preserve">
+    <value>Popunite polje</value>
+  </data>
   <data name="valDatum" xml:space="preserve">
     <value>Izaberite datum</value>
+  </data>
+  <data name="valIme" xml:space="preserve">
+    <value>Unesite ime</value>
+  </data>
+  <data name="valJmbg" xml:space="preserve">
+    <value>Dozvoljene su samo cifre</value>
+  </data>
+  <data name="valJmbgDuzina" xml:space="preserve">
+    <value>Duzina mora biti od 9 do 13 cifara</value>
+  </data>
+  <data name="valPrezime" xml:space="preserve">
+    <value>Unesite prezime</value>
   </data>
   <data name="valSadrzaj" xml:space="preserve">
     <value>Unesite sadržaj obaveštenja</value>
@@ -529,5 +562,8 @@
   </data>
   <data name="Zanimanje" xml:space="preserve">
     <value>Zanimanje</value>
+  </data>
+  <data name="Zenski" xml:space="preserve">
+    <value>Ženski</value>
   </data>
 </root>

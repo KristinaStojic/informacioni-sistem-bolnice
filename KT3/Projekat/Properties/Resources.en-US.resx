@@ -300,11 +300,17 @@
   <data name="Lozinka" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="lvlPodnaslov" xml:space="preserve">
+    <value>Select a date and select one of the recommended appointments</value>
+  </data>
   <data name="Mesec" xml:space="preserve">
     <value>Month</value>
   </data>
   <data name="Modifikacija" xml:space="preserve">
     <value>Modify appointments</value>
+  </data>
+  <data name="Muski" xml:space="preserve">
+    <value>Male</value>
   </data>
   <data name="Napomena" xml:space="preserve">
     <value>Note</value>
@@ -326,6 +332,12 @@
   </data>
   <data name="Ne" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="Neodredjeno" xml:space="preserve">
+    <value>Indefinitely</value>
+  </data>
+  <data name="Neozenjen" xml:space="preserve">
+    <value>Unmarried</value>
   </data>
   <data name="NoviPodsetnik" xml:space="preserve">
     <value>New reminder</value>
@@ -353,6 +365,9 @@
   </data>
   <data name="OtkaziTermin" xml:space="preserve">
     <value>Cancel appointment</value>
+  </data>
+  <data name="Ozenjen" xml:space="preserve">
+    <value>Married</value>
   </data>
   <data name="PacijentPodaci" xml:space="preserve">
     <value>Patient</value>
@@ -419,6 +434,9 @@
   </data>
   <data name="Prvo" xml:space="preserve">
     <value>1. How would you assess the expertise of doctors in your work?</value>
+  </data>
+  <data name="Razveden" xml:space="preserve">
+    <value>Divorced</value>
   </data>
   <data name="Recept" xml:space="preserve">
     <value>Prescription</value>
@@ -492,6 +510,9 @@
   <data name="Tri" xml:space="preserve">
     <value>3. How would you rate the price-performance ratio at Zdravo Corporation?</value>
   </data>
+  <data name="Udovac" xml:space="preserve">
+    <value>Widow</value>
+  </data>
   <data name="UpitZaBrisanje" xml:space="preserve">
     <value>Do you want to cancel the selected appointment?</value>
   </data>
@@ -506,8 +527,23 @@
                      the most effective recovery of health and encourages a healthy life of each patient.
                      Register at the nearest clinical center and take advantage of the opportunities offered by the Zdravo Corporation.</value>
   </data>
+  <data name="valAdresa" xml:space="preserve">
+    <value>Fill in the field</value>
+  </data>
   <data name="valDatum" xml:space="preserve">
     <value>Selecet a date</value>
+  </data>
+  <data name="valIme" xml:space="preserve">
+    <value>Enter a name</value>
+  </data>
+  <data name="valJmbg" xml:space="preserve">
+    <value>Only numbers are allowed</value>
+  </data>
+  <data name="valJmbgDuzina" xml:space="preserve">
+    <value>Length must be between 9 and 13 digits</value>
+  </data>
+  <data name="valPrezime" xml:space="preserve">
+    <value>Enter a lastname</value>
   </data>
   <data name="valSadrzaj" xml:space="preserve">
     <value>Enter the content of the notification</value>
@@ -529,5 +565,8 @@
   </data>
   <data name="Zanimanje" xml:space="preserve">
     <value>Profession</value>
+  </data>
+  <data name="Zenski" xml:space="preserve">
+    <value>Female</value>
   </data>
 </root>
