@@ -35,10 +35,8 @@ namespace Projekat
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-            
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            
         }
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)

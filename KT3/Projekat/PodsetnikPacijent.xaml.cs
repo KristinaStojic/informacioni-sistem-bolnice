@@ -19,38 +19,10 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    public partial class PodsetnikPacijent : Page, INotifyPropertyChanged
+    public partial class PodsetnikPacijent : Page
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent; 
-        //*
-        public static bool aktivan;
-        public int validacija;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-        public int Validacija
-        {
-            get
-            {
-                return validacija;
-            }
-            set
-            {
-                if (value != validacija)
-                {
-                    validacija = value;
-                    OnPropertyChanged("Validacija");
-                }
-            }
-        }
-
         public PodsetnikPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -59,7 +31,7 @@ namespace Projekat
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-
+            Datum.BlackoutDates.AddDatesInPast();
         }
 
         private void DodajPodsetnik_Click(object sender, RoutedEventArgs e)
