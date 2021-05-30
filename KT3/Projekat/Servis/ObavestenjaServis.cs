@@ -206,11 +206,18 @@ namespace Projekat.Servis
         }
         private static void DodajStaraObavestenjaZaTerapijePodsetnike(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
-            DateTime dt = DateTime.Parse(obavestenje.Datum);
-            if (dt.Date > DateTime.Now.Date) return;
-            if (dt.Date <= DateTime.Now.Date)
+            DateTime datumObavestenja = DateTime.Parse(obavestenje.Datum);
+            if (datumObavestenja.Date > DateTime.Now.Date) return;
+            if (datumObavestenja.Date == DateTime.Now.Date)
             {
-                if (dt.TimeOfDay <= DateTime.Now.TimeOfDay && !ObavestenjaPacijent.Contains(obavestenje))
+                if (datumObavestenja.TimeOfDay <= DateTime.Now.TimeOfDay && !ObavestenjaPacijent.Contains(obavestenje))
+                {
+                    ObavestenjaPacijent.Add(obavestenje);
+                }
+            }
+            if (datumObavestenja.Date < DateTime.Now.Date)
+            {
+                if (!ObavestenjaPacijent.Contains(obavestenje))
                 {
                     ObavestenjaPacijent.Add(obavestenje);
                 }
@@ -255,7 +262,6 @@ namespace Projekat.Servis
             }
         }
 
-        // obavestenja servis
         private static Obavestenja PronadjiSledeceObavestenje(string datum, int idPacijent, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
             foreach (Obavestenja o in ObavestenjaServis.NadjiSvaObavestenja())
@@ -270,7 +276,6 @@ namespace Projekat.Servis
             }
             return null;
         }
-        // obavestenja servis
         private static bool ProveriObjavljenaObavestenja(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
             foreach (Obavestenja o in ObavestenjaPacijent)
