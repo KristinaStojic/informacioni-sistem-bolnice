@@ -78,13 +78,18 @@ namespace Projekat
             
         }
 
-        // obavestenja servis
         private void UvidObavestenje_Click(object sender, RoutedEventArgs e)
         {
             Obavestenja obavestenje = (Obavestenja)obavestenja.SelectedItem;
-            if(obavestenje != null)
+            if (Jezik.Header.Equals("_en-US"))
             {
-                MessageBox.Show("Bice implementirano");
+                string informacijeObavestenjeSrp = "Sadržaj: " + obavestenje.SadrzajObavestenja + "\nDatum: " + obavestenje.Datum;
+                MessageBox.Show(informacijeObavestenjeSrp, obavestenje.TipObavestenja, MessageBoxButton.OKCancel);
+            }
+            else
+            {
+                string informacijeObavestnjeEng = "Content: " + obavestenje.SadrzajObavestenja + "\nDate: " + obavestenje.Datum;
+                MessageBox.Show(informacijeObavestnjeEng, obavestenje.TipObavestenja, MessageBoxButton.OKCancel);
             }
         }
 

@@ -34,10 +34,14 @@ namespace Projekat
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            InicijalizujKalendar();
+        }
+
+        private void InicijalizujKalendar()
+        {
             PostaviZaglavljeKalendara();
             cboMonth.SelectionChanged += (o, e) => RefreshCalendar();
             cboYear.SelectionChanged += (o, e) => RefreshCalendar();
-
             string datum = DateTime.Now.Date.ToString("MM/dd/yyyy").Split(' ')[0];
             int mesec = Int32.Parse(datum.Split('/')[0]);
             cboMonth.SelectedIndex = mesec - 1;
@@ -186,13 +190,13 @@ namespace Projekat
         }
         private void Kalendar_DayChanged(object sender, MyCalendar.Calendar.DayChangedEventArgs e)
         {
-            Console.WriteLine("Pozvana metoda daychanged");
+            //Console.WriteLine("Pozvana metoda daychanged");
 
 
         }
         private void Kalendar_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(Kalendar.Days[0].ToString());
+           // MessageBox.Show(Kalendar.Days[0].ToString());
         }
         private void cboMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
