@@ -20,7 +20,6 @@ namespace Projekat
 {
     public partial class ZakazaniTerminiPacijent : Page
     {
-        private int colNum = 0;
         public static ObservableCollection<Termin> Termini { get; set; }
         public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
@@ -34,11 +33,15 @@ namespace Projekat
             Termini = TerminServis.PronadjiTerminPoIdPacijenta(idPacijent);
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            InicijalizujKalendar();
+        }
+
+        private void InicijalizujKalendar()
+        {
             PostaviZaglavljeKalendara();
             cboMonth.SelectionChanged += (o, e) => RefreshCalendar();
             cboYear.SelectionChanged += (o, e) => RefreshCalendar();
-
             string datum = DateTime.Now.Date.ToString("MM/dd/yyyy").Split(' ')[0];
             int mesec = Int32.Parse(datum.Split('/')[0]);
             cboMonth.SelectedIndex = mesec - 1;
@@ -135,39 +138,39 @@ namespace Projekat
         }
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.odjava_Click(this);
+            PacijentWebStranice.odjava_Click(this);
         }
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.karton_Click(this, idPacijent);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.zakazi_Click(this, idPacijent);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.uvid_Click(this, idPacijent);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.pocetna_Click(this, idPacijent);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.anketa_Click(this, idPacijent);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
         }
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.Korisnik_Click(this, idPacijent);
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
         }
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.Jezik_Click(Jezik);
+            PacijentWebStranice.Jezik_Click(Jezik);
         }
         private void RefreshCalendar()
         {
@@ -187,13 +190,13 @@ namespace Projekat
         }
         private void Kalendar_DayChanged(object sender, MyCalendar.Calendar.DayChangedEventArgs e)
         {
-            Console.WriteLine("Pozvana metoda daychanged");
+            //Console.WriteLine("Pozvana metoda daychanged");
 
 
         }
         private void Kalendar_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(Kalendar.Days[0].ToString());
+           // MessageBox.Show(Kalendar.Days[0].ToString());
         }
         private void cboMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

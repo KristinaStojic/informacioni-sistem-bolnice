@@ -16,17 +16,31 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Tables;
+using System.Data;
+using System.Drawing;
+using System.ComponentModel;
+using Projekat.Servis;
 
 namespace Projekat
 {
     /// <summary>
     /// Interaction logic for ZdravstveniKartonLekar.xaml
     /// </summary>
-    public partial class ZdravstveniKartonLekar : Window
+    public partial class ZdravstveniKartonLekar : Window, INotifyPropertyChanged
     {
         public Pacijent pacijent;
         public Termin termin;
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
         public static ObservableCollection<LekarskiRecept> PrikazRecepata
         {
             get;
@@ -48,18 +62,35 @@ namespace Projekat
             get;
             set;
         }
-        public  ChartValues<int> ukupnoLaboratorija
+        public  ChartValues<int> ukupnoLaboratorija;
+        public  ChartValues<int> UkupnoLaboratorija
         {
-            get; set;
+            get { return ukupnoLaboratorija; }
+            set
+            {
+                ukupnoLaboratorija = value;
+                OnPropertyChanged("UkupnoLaboratorija");
+            }
         }
-
-        public  ChartValues<int> ukupnoSpecijalisticki
+        public  ChartValues<int> ukupnoSpecijalisticki;
+        public  ChartValues<int> UkupnoSpecijalisticki
         {
-            get; set;
+            get { return ukupnoSpecijalisticki; }
+            set
+            {
+                ukupnoSpecijalisticki = value;
+                OnPropertyChanged("UkupnoSpecijalisticki");
+            }
         }
-        public  ChartValues<int> ukupnoStacionarno
+        public ChartValues<int> ukupnoStacionarno;
+        public  ChartValues<int> UkupnoStacionarno
         {
-            get; set;
+            get { return ukupnoStacionarno; }
+            set
+            {
+                ukupnoStacionarno = value;
+                OnPropertyChanged("UkupnoStacionarno");
+            }
         }
 
         public Func<ChartPoint, string> LabelPoint { get; set; }
@@ -81,18 +112,23 @@ namespace Projekat
             }
 
         }
-        private void PopuniLicnePodatkePacijenta(Pacijent izabraniNalog)
+        public void PostaviDeloveGrafika(Pacijent izabraniNalog)
         {
-            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
-                if(pacijent.IdPacijenta == izabraniNalog.IdPacijenta)
+                if (pacijent.IdPacijenta == izabraniNalog.IdPacijenta)
                 {
-                    this.ukupnoLaboratorija = new ChartValues<int>() { pacijent.Karton.brojLaboratorijskihUputa};
-                    this.ukupnoSpecijalisticki = new ChartValues<int>() { pacijent.Karton.brojSpecijalistickihUputa};
-                    this.ukupnoStacionarno = new ChartValues<int>() { pacijent.Karton.brojBolnickihUputa};
+                    this.UkupnoLaboratorija = new ChartValues<int>() { pacijent.Karton.brojLaboratorijskihUputa };
+                    this.UkupnoSpecijalisticki = new ChartValues<int>() { pacijent.Karton.brojSpecijalistickihUputa };
+                    this.UkupnoStacionarno = new ChartValues<int>() { pacijent.Karton.brojBolnickihUputa };
                 }
             }
-            
+
+        }
+        private void PopuniLicnePodatkePacijenta(Pacijent izabraniNalog)
+        {
+
+            PostaviDeloveGrafika(izabraniNalog);
 
             ime.Text = izabraniNalog.ImePacijenta;
             prezime.Text = izabraniNalog.PrezimePacijenta;
@@ -167,7 +203,7 @@ namespace Projekat
         private void PopuniTabelePodacima()
         {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent p in PacijentiServis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -180,7 +216,7 @@ namespace Projekat
 
 
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent p in PacijentiServis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -192,7 +228,7 @@ namespace Projekat
             }
 
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent p in PacijentiServis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -204,7 +240,7 @@ namespace Projekat
             }
 
             TabelaUputa = new ObservableCollection<Uput>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent p in PacijentiServis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -435,6 +471,104 @@ namespace Projekat
             {
                 Uputi_Pomoc(sender, e);
             }
+        }
+
+        private void Izvestaj_Recepti(object sender, RoutedEventArgs e)
+        {
+            using (PdfDocument doc = new PdfDocument())
+            {
+                //Add a page to the document
+                PdfPage page = doc.Pages.Add();
+
+                // Create a PdfLightTable.
+                PdfLightTable pdfLightTable = new PdfLightTable();
+
+                // Initialize DataTable to assign as DateSource to the light table.
+                DataTable table = new DataTable();
+
+                //Include columns to the DataTable.
+                table.Columns.Add("Pacijent");
+
+                table.Columns.Add("Datum izdavanja");
+
+                table.Columns.Add("Naziv leka");
+                table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja recepta", "Naziv leka" });
+                //Include rows to the DataTable.
+                foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+                {
+                    if (pacijent.Karton.LekarskiRecepti != null)
+                    {
+                        foreach (LekarskiRecept recept in pacijent.Karton.LekarskiRecepti)
+                        {
+                            table.Rows.Add(new string[] { pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta, recept.DatumPropisivanjaLeka, recept.NazivLeka });
+                        }
+                    }
+
+
+                }
+
+
+                //Assign data source.
+                pdfLightTable.DataSource = table;
+
+                //Draw PdfLightTable.
+                pdfLightTable.Draw(page, new PointF(0, 0));
+
+                //Save the document
+                doc.Save("C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajRecepata.pdf");
+
+                doc.Close();
+            }
+            MessageBox.Show("PDF fajl uspesno izgenerisan!");
+        }
+
+        private void Izvestaj_Anamneze(object sender, RoutedEventArgs e)
+        {
+            using (PdfDocument doc = new PdfDocument())
+            {
+                //Add a page to the document
+                PdfPage page = doc.Pages.Add();
+
+                // Create a PdfLightTable.
+                PdfLightTable pdfLightTable = new PdfLightTable();
+
+                // Initialize DataTable to assign as DateSource to the light table.
+                DataTable table = new DataTable();
+
+                //Include columns to the DataTable.
+                table.Columns.Add("Pacijent");
+
+                table.Columns.Add("Datum izdavanja");
+
+                table.Columns.Add("Naziv leka");
+                table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja anamneze", "Lekar koji je izdao anamnezu" });
+                //Include rows to the DataTable.
+                foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+                {
+                    if (pacijent.Karton.Anamneze != null)
+                    {
+                        foreach (Anamneza anamneza in pacijent.Karton.Anamneze)
+                        {
+                            table.Rows.Add(new string[] { pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta, anamneza.Datum, anamneza.ImePrezimeLekara });
+                        }
+                    }
+
+
+                }
+
+
+                //Assign data source.
+                pdfLightTable.DataSource = table;
+
+                //Draw PdfLightTable.
+                pdfLightTable.Draw(page, new PointF(0, 0));
+
+                //Save the document
+                doc.Save("C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajAnamneza.pdf");
+
+                doc.Close();
+            }
+            MessageBox.Show("PDF fajl uspesno izgenerisan!");
         }
     }
 }

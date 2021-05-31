@@ -77,7 +77,7 @@ namespace Projekat.Servis
         }
         public static void dodajZahtjev(Lek lijek)
         {
-            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviMenadzer.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString("d"), false);
+            ZahtevZaLekove zahtjev = new ZahtevZaLekove(LekoviServis.GenerisanjeIdZahtjeva(), lijek, DateTime.Now.Date.ToString("d"), false);
             LekoviMenadzer.zahteviZaLekove.Add(zahtjev);
             LekoviMenadzer.sacuvajIzmeneZahteva();
             LekoviMenadzer.sacuvajIzmeneZahteva();
@@ -128,6 +128,15 @@ namespace Projekat.Servis
             return LekoviMenadzer.GenerisanjeIdZahtjeva();
         }
 
+        public static List<ZahtevZaLekove> NadjiSveZahteve()
+        {
+            return LekoviMenadzer.NadjiSveZahteve();
+        }
+
+        public static void sacuvajIzmeneZahteva()
+        {
+            LekoviMenadzer.sacuvajIzmeneZahteva();
+        }
         public static void ukloniZahtjev(ZahtevZaLekove izabraniZahtjev)
         {
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);

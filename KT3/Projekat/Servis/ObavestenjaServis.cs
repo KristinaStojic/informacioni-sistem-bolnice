@@ -228,29 +228,37 @@ namespace Projekat.Servis
         {
             App.Current.Dispatcher.Invoke((Action)delegate
             {
-                // TODO: CLEAN CODE i ispraviti
                 foreach (Obavestenja obavestenje in ObavestenjaServis.PronadjiObavestenjaPoIdPacijenta(idPacijent))
                 {
                     DateTime datumObavestenja = DateTime.Parse(obavestenje.Datum);
-                    string trenutnoVreme = DateTime.Now.ToString("MM/dd/yyyy HH:mm"); // HH:mm
-                    string vremeZaTerapiju = datumObavestenja.ToString("MM/dd/yyyy HH:mm");
+                    string trenutnoVreme = FormatirajDatum(DateTime.Now); 
+                    string vremeZaTerapiju = FormatirajDatum(datumObavestenja);
                     if (vremeZaTerapiju.Equals(trenutnoVreme))
                     {
-                        bool postojeNovaObavestenja = ProveriObjavljenaObavestenja(obavestenje, ObavestenjaPacijent);
-                        if (!postojeNovaObavestenja)
+                        if (!ProveriObjavljenaObavestenja(obavestenje, ObavestenjaPacijent))
                         {
-                            Obavestenja novoObavestenje = PronadjiSledeceObavestenje(datumObavestenja.ToString("MM/dd/yyyy HH:mm"), idPacijent, ObavestenjaPacijent);
-                            if (novoObavestenje == null)
-                            {
-                                return;
-                            }
-                            ObavestenjaPacijent.Add(novoObavestenje);
-                            string sadrzajObavestenja = novoObavestenje.SadrzajObavestenja;
-                            MessageBox.Show(novoObavestenje.TipObavestenja + ": " + sadrzajObavestenja, "Novo obaveštenje");
+                            DodajNovoObavestenje(idPacijent, ObavestenjaPacijent, datumObavestenja);
                         }
                     }
                 }
-           });
+            });
+        }
+
+        private static string FormatirajDatum(DateTime datum)
+        {
+            return datum.ToString("MM/dd/yyyy HH:mm");
+        }
+
+        private static void DodajNovoObavestenje(int idPacijent, ObservableCollection<Obavestenja> ObavestenjaPacijent, DateTime datumObavestenja)
+        {
+            Obavestenja novoObavestenje = PronadjiSledeceObavestenje(datumObavestenja.ToString("MM/dd/yyyy HH:mm"), idPacijent, ObavestenjaPacijent);
+            if (novoObavestenje == null)
+            {
+                return;
+            }
+            ObavestenjaPacijent.Add(novoObavestenje);
+            string sadrzajObavestenja = novoObavestenje.SadrzajObavestenja;
+            MessageBox.Show(novoObavestenje.TipObavestenja + ": " + sadrzajObavestenja, "Novo obaveštenje");
         }
 
         public static void ObrisiSelektovanoObavestenje(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)

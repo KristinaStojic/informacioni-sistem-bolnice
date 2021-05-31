@@ -56,7 +56,7 @@ namespace Projekat
                 mi.Header = "Svetla";
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
             }*/
-            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
 
 
         }
@@ -78,7 +78,7 @@ namespace Projekat
                 mi.Header = "en-US";
                 app.ChangeLanguage(srb);
             }*/
-            PacijentPagesServis.Jezik_Click(Jezik);
+            PacijentWebStranice.Jezik_Click(Jezik);
 
         }
 

@@ -26,11 +26,22 @@ namespace Projekat
         public string formatiranDatum;
         public Sala Soba;
         public Krevet Krevet;
+        public bool flagNapomenaSpec = false;
+        public bool flagLekarSpec = false;
+        public bool popunjeno = false;
+
+        public bool flagNapomenaBolnicko = false;
+        public bool flagPoc = false;
+        public bool flagKraj = false;
+        public bool popunjenoBolnicko = false;
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
+            this.potvrdiBolnicko.IsEnabled = false;
+            this.potvrdiLab.IsEnabled = false;
+            this.potvrdiSpec.IsEnabled = false;
             PopuniPodatkePacijentaZaSpecijalistickiUput();
             PopuniPodatkePacijentaZaBolnickoLecenje();
 
@@ -88,7 +99,7 @@ namespace Projekat
         {
             try
             {
-                int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
                 int idSpecijaliste = NadjiIDSpecijaliste();
                 string datum = NadjiDatum();
@@ -191,12 +202,38 @@ namespace Projekat
             }
 
             nadjiSlobodneSobe();
+
+            postaviDugmeBolnicko();
+        }
+
+        private void postaviDugmeBolnicko()
+        {
+            if (this.datumPocetka.Text != null || this.datumKraja.Text != null || this.napomenaPregelda.Text != null)
+            {
+                izvrsiPostavljanjeBolnicko();
+            }
+            else
+            {
+                this.potvrdiBolnicko.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanjeBolnicko()
+        {
+            if (this.datumPocetka.Text.Trim().Equals("") || this.datumKraja.Text.Trim().Equals("") || this.napomenaPregelda.Text.Trim().Equals(""))
+            {
+                this.potvrdiBolnicko.IsEnabled = false;
+            }
+            else if (!this.datumPocetka.Text.Trim().Equals("") && !this.datumPocetka.Text.Trim().Equals("") && !this.napomenaPregelda.Text.Trim().Equals(""))
+            {
+                this.potvrdiBolnicko.IsEnabled = true;
+                popunjeno = true;
+            }
         }
 
         private void nadjiSlobodneSobe()
         {
-
-            foreach(Sala sala in SaleMenadzer.sale)
+            slobodneSobe.Items.Clear();
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (sala.TipSale.Equals(tipSale.SalaZaLezanje))  
                 {
@@ -210,9 +247,11 @@ namespace Projekat
 
         private void PotvrdiLecenje_Click(object sender, RoutedEventArgs e)
         {
-            try
+            DateTime kraj = (DateTime)this.datumKraja.SelectedDate;
+            DateTime pocetak = (DateTime)this.datumPocetka.SelectedDate;
+            if (popunjeno == true)
             {
-                int idUputa = ZdravstveniKartonMenadzer.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaPregelda.Text;
                 string datumPocetka = NadjiDatumPocetkaLecenja();
                 string datumKraja = NadjiDatumKrajaLecenja();
@@ -222,15 +261,19 @@ namespace Projekat
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
                 ZdravstveniKartonServis.DodajUput(noviUput);
-
+                
                 TerminServisLekar.sacuvajIzmene();
                 PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }
-            catch (System.Exception)
+            else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
             {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Niste uneli ispravne datume!");
+            }
+            else
+            {
+                MessageBox.Show("Popunite sva polja!");
             }
         }
 
@@ -310,7 +353,7 @@ namespace Projekat
             
         private void datumKraja_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            var dp = sender as DatePicker;
+           /* var dp = sender as DatePicker;
             if (dp == null) return;
             if (!dp.SelectedDate.HasValue) return;
 
@@ -324,7 +367,56 @@ namespace Projekat
             {
                 e.Handled = true;
                 dp.SetValue(DatePicker.SelectedDateProperty, date.AddDays(-1));
+            }*/
+        }
+
+        private void laboratorija_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void lekar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void napomena_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.specijalista.Text != null || this.napomena.Text != null)
+            {
+                izvrsiPostavljanje();
             }
+            else
+            {
+                this.potvrdiSpec.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.specijalista.Text.Trim().Equals("") || this.napomena.Text.Trim().Equals(""))
+            {
+                this.potvrdiSpec.IsEnabled = false;
+            }
+            else if (!this.specijalista.Text.Trim().Equals("") && !this.napomena.Text.Trim().Equals(""))
+            {
+                this.potvrdiSpec.IsEnabled = true;
+                popunjeno = true;
+            }
+        }
+
+        private void datumKraja_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            postaviDugmeBolnicko();
+        }
+
+        private void napomenaPregelda_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugmeBolnicko();
         }
     }
 }

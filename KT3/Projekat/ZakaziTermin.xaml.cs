@@ -26,25 +26,22 @@ namespace Projekat
         private List<Sala> SaleZaPreglede;
         private Sala prvaSlobodnaSala;
         private static Pacijent prijavljeniPacijent;
-        private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
         private static ObservableCollection<Uput> UputiPacijenta { get; set; }
-        private static bool selektovanUput;
+        private static bool jeSelektovanUput;
         private static Termin termin;
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
-            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
-            PacijentPagesServis.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-            
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)
         {
-            //datum.BlackoutDates.AddDatesInPast();
+            datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
@@ -52,14 +49,13 @@ namespace Projekat
             UputiPacijenta = new ObservableCollection<Uput>();
             DodajUputePacijenta(UputiPacijenta, idPacijent);
             comboUputi.ItemsSource = UputiPacijenta;
-            selektovanUput = false;
+            jeSelektovanUput = false;
         }
 
         private static void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
         {
-
             // TODO: ispraviti na ZdravstveniKartonServis
-            foreach (Uput uput in ZdravstveniKartonMenadzer.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
+            foreach (Uput uput in ZdravstveniKartonServis.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
             {
                 uputiPacijenta.Add(uput);
             }
@@ -78,16 +74,30 @@ namespace Projekat
         {
             try
             {
-                if (comboUputi.Text.Equals("Specijalistički pregled") && !selektovanUput)
+                if (comboUputi.Text.Equals("Specijalistički pregled") && !jeSelektovanUput)
                 {
                     MessageBox.Show("Izaberite uput za koji želite da zakažene specijalistički pregled", "Uput", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                if (datum.SelectedDate == null)
+                {
+                    valDatum.Visibility = Visibility.Visible;
+                    return;
+                }
+                if(vpp.SelectedItem == null)
+                {
+                    valVreme.Visibility = Visibility.Visible;
+                    return;
+                }
+                if (combo.SelectedItem == null)
+                {
+                    valTipTermina.Visibility = Visibility.Visible;
                     return;
                 }
                 PokupiPodatkeZaZakazivanjeTermina();
                 Page uvid = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvid);
             }
-            // TODO: odraditi i preko validacije
             catch (System.Exception)
             {
                 MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -152,7 +162,7 @@ namespace Projekat
         {
             try
             {
-                if (comboUputi.Text.Equals("Specijalistički pregled") && !selektovanUput)
+                if (comboUputi.Text.Equals("Specijalistički pregled") && !jeSelektovanUput)
                 {
                     MessageBox.Show("Izaberite uput za koji želite da zakažene specijalistički pregled", "Uput", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
@@ -172,35 +182,35 @@ namespace Projekat
         {
             /*Page odjava = new PrijavaPacijent();
             this.NavigationService.Navigate(odjava);*/
-            PacijentPagesServis.odjava_Click(this);
+            PacijentWebStranice.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.karton_Click(this, idPacijent);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.zakazi_Click(this, idPacijent);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.uvid_Click(this, idPacijent);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.pocetna_Click(this, idPacijent);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.anketa_Click(this, idPacijent);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
 
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.PromeniTemu(SvetlaTema, tamnaTema);
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
         }
 
         private void Korisnik_Click(object sender, RoutedEventArgs e)
@@ -223,7 +233,7 @@ namespace Projekat
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            PacijentPagesServis.Jezik_Click(Jezik);
+            PacijentWebStranice.Jezik_Click(Jezik);
 
         }
 

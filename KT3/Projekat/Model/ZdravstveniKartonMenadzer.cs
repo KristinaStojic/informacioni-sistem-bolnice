@@ -1,4 +1,6 @@
-﻿using Model;
+﻿using LiveCharts;
+using Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,11 +15,16 @@ namespace Projekat.Model
         public static List<ZdravstveniKarton> kartoni = new List<ZdravstveniKarton>();
         public static List<LekarskiRecept> recepti = new List<LekarskiRecept>();
 
+        public static List<ZdravstveniKarton> nadjiKartone()
+        {
+            return kartoni;
+        }
+
         public static int GenerisanjeIdRecepta(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach(Pacijent pac in PacijentiServis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -50,7 +57,7 @@ namespace Projekat.Model
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach(Pacijent pac in PacijentiServis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -82,7 +89,7 @@ namespace Projekat.Model
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach(Pacijent pac in PacijentiServis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -112,7 +119,7 @@ namespace Projekat.Model
 
         public static void DodajRecept(LekarskiRecept recept)
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if(pacijent.IdPacijenta == recept.idPacijenta)
                 {                    
@@ -125,7 +132,7 @@ namespace Projekat.Model
         
         public static void DodajAnamnezu(Anamneza anamneza)  
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if(pacijent.IdPacijenta == anamneza.IdPacijenta)
                 {                    
@@ -137,7 +144,7 @@ namespace Projekat.Model
 
         public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
         {
-            foreach(Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if(pacijent.IdPacijenta == stara.IdPacijenta)
                 {
@@ -161,7 +168,7 @@ namespace Projekat.Model
 
         public static void DodajAlergen(Alergeni alergen)  
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if (pacijent.IdPacijenta == alergen.IdPacijenta)
                 {
@@ -173,7 +180,7 @@ namespace Projekat.Model
 
         public static void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if (pacijent.IdPacijenta == stariAlergen.IdPacijenta)
                 {
@@ -201,7 +208,7 @@ namespace Projekat.Model
         {
             int idUputa = 1;
 
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if (pacijent.IdPacijenta == idPacijenta)
                 {
@@ -235,14 +242,15 @@ namespace Projekat.Model
 
         public static void DodajUput(Uput uput)
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
             {
                 if (pacijent.IdPacijenta == uput.idPacijenta)
                 {
                     pacijent.Karton.Uputi.Add(uput);
                     if (uput.TipUputa.Equals(tipUputa.Laboratorija))
                     {
-                        pacijent.Karton.brojLaboratorijskihUputa++;                     
+                        pacijent.Karton.brojLaboratorijskihUputa++;   
+                        
                     } 
                     else if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
                     {
@@ -253,6 +261,12 @@ namespace Projekat.Model
                         pacijent.Karton.brojBolnickihUputa++;
                     }
                     ZdravstveniKartonLekar.TabelaUputa.Add(uput);
+                    //ZdravstveniKartonLekar.PostaviDeloveGrafika(pacijent);
+                    /*ZdravstveniKartonLekar.UkupnoLaboratorija = new ChartValues<int>() { pacijent.Karton.brojLaboratorijskihUputa };
+                    ZdravstveniKartonLekar.UkupnoSpecijalisticki = new ChartValues<int>() { pacijent.Karton.brojSpecijalistickihUputa };
+                    ZdravstveniKartonLekar.UkupnoStacionarno = new ChartValues<int>() { pacijent.Karton.brojBolnickihUputa };*/
+                    
+
                 }
             }
         }
@@ -263,7 +277,7 @@ namespace Projekat.Model
             Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijenta);
             foreach(Uput uput in pacijent.Karton.Uputi)
             {
-                // TODO: moze i labr upute i za stacionarno lecenje
+                // TODO: moze i za lab. upute i za stacionarno lecenje
                 if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
                 {
                     specijalistickiUputiPacijenta.Add(uput);

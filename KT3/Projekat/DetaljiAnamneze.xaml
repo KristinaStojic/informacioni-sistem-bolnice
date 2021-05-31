@@ -5,17 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DetaljiAnamneze" Height="570" Width="442" KeyDown="Grid_KeyDown" WindowStartupLocation="CenterScreen">
+        Title="DetaljiAnamneze" Height="570" Width="442" KeyDown="Grid_KeyDown" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,-6.8,-5"  Background="LightSkyBlue">
-        <Label Content="Datum" HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
-        <DatePicker Name ="datum" HorizontalAlignment="Left" Margin="216,49,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.871,0.065" Width="169"/>
-        <TextBox Name="lekar" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,107,0,0" IsEnabled="False"/>
-        <Label Content="Lekar" HorizontalAlignment="Left" Margin="31,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
-        <TextBox Name ="bolest" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,168,0,0"/>
-        <Label Content="Opis bolesti" HorizontalAlignment="Left" Margin="31,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
-        <TextBox Name ="terapija" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,334,0,0"/>
-        <Label Content="Terapija" HorizontalAlignment="Left" Margin="31,334,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
-        <Button Background="#FF6895C5" Content="Sacuvaj" HorizontalAlignment="Left" Margin="128,491,0,0" VerticalAlignment="Top" Height="29" Width="73" Click="Button_Click"/>
-        <Button Background="#FF6895C5" Content="Odustani" HorizontalAlignment="Left" Margin="245,491,0,0" VerticalAlignment="Top" Height="29" Width="73" Click="Button_Click_1"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="204"/>
+            <ColumnDefinition Width="204"/>
+            <ColumnDefinition Width="73*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Datum" FontSize="16" Margin="20.2,10,22.8,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Grid.Column="1" Height="30" Grid.Row="1"/>
+        <DatePicker Name ="datum" BorderBrush="Black" Margin="18.2,10,18.8,0" VerticalAlignment="Top" RenderTransformOrigin="-0.871,0.065" Grid.Column="2" Height="27" Grid.Row="1" IsEnabled="False"/>
+        <TextBox Name="lekar"  BorderBrush="Black" HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Margin="18.2,10,0,0" IsEnabled="False" Grid.Column="2" Grid.Row="3"/>
+        <Label Content="Lekar" FontSize="16" HorizontalAlignment="Left" Margin="20.2,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="161" Grid.Column="1" Height="30" Grid.Row="3"/>
+        <TextBox Name ="bol" TextChanged="bol_TextChanged" BorderBrush="Black" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="167" Margin="18.2,10,0,0" Grid.Column="2" Grid.Row="5" Grid.RowSpan="3"/>
+        <Label Content="Opis bolesti" FontSize="16" HorizontalAlignment="Left" Margin="20.2,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="161" Grid.Column="1" Height="33" Grid.Row="5" Grid.RowSpan="2"/>
+        <TextBox Name ="terap" TextChanged="terap_TextChanged" BorderBrush="Black" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="18.2,10,0,0" Grid.Column="2" Grid.Row="9" Grid.RowSpan="3"/>
+        <Label Content="Terapija" FontSize="16" HorizontalAlignment="Left" Margin="20.2,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.516,0.5" Width="161" Grid.Column="1" Height="30" Grid.Row="9"/>
+        <Button Name="potvrdi" BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Sacuvaj" Margin="56.2,0,56.8,0" VerticalAlignment="Top" Height="29" Click="Button_Click" Grid.Column="1" Grid.Row="13"/>
+        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Odustani" Margin="56.2,39,56.8,0" VerticalAlignment="Top" Height="29" Click="Button_Click_1" Grid.Column="2" Grid.Row="12" Grid.RowSpan="2"/>
     </Grid>
 </Window>

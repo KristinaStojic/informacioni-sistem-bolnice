@@ -47,7 +47,7 @@ namespace Projekat
             Lek lek = new Lek(LekoviServis.GenerisanjeIdLijeka(), zahtev.nazivLeka,zahtev.sifraLeka, zahtev.lek.zamenskiLekovi, zahtev.lek.sastojci);
             LekoviServis.DodajLijek(lek);
             LekoviServis.izmeniZahtev(zahtev);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();
             this.Close();
         }
     }
