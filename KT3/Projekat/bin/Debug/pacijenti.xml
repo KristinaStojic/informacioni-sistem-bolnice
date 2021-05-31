@@ -13,10 +13,16 @@
     <Zanimanje>student</Zanimanje>
     <BracnoStanje>Neozenjen</BracnoStanje>
     <IzabraniLekar>
-      <IdLekara>1</IdLekara>
-      <ImeLek>Petar</ImeLek>
-      <PrezimeLek>Nebojsic</PrezimeLek>
+      <IdLekara>0</IdLekara>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </IzabraniLekar>
     <Karton>
       <IdPacijenta>1</IdPacijenta>
@@ -67,28 +73,10 @@
           <VremeReakcije>7 dana</VremeReakcije>
         </Alergeni>
       </Alergeni>
-      <Uputi>
-        <Uput>
-          <IdUputa>1</IdUputa>
-          <idPacijenta>1</idPacijenta>
-          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
-          <IdLekaraKodKogSeUpucuje>7</IdLekaraKodKogSeUpucuje>
-          <datumIzdavanja>06/04/2021</datumIzdavanja>
-          <opisPregleda>Hitno</opisPregleda>
-          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
-          <TipUputa>SpecijallistickiPregled</TipUputa>
-        </Uput>
-        <Uput>
-          <IdUputa>2</IdUputa>
-          <idPacijenta>1</idPacijenta>
-          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
-          <IdLekaraKodKogSeUpucuje>8</IdLekaraKodKogSeUpucuje>
-          <datumIzdavanja>06/04/2021</datumIzdavanja>
-          <opisPregleda>Hitno</opisPregleda>
-          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
-          <TipUputa>SpecijallistickiPregled</TipUputa>
-        </Uput>
-      </Uputi>
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -106,10 +94,16 @@
     <Zanimanje>student</Zanimanje>
     <BracnoStanje>Neodredjeno</BracnoStanje>
     <IzabraniLekar>
-      <IdLekara>1</IdLekara>
-      <ImeLek>Petar</ImeLek>
-      <PrezimeLek>Nebojsic</PrezimeLek>
+      <IdLekara>0</IdLekara>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </IzabraniLekar>
     <Karton>
       <IdPacijenta>2</IdPacijenta>
@@ -151,6 +145,9 @@
       <Anamneze />
       <Alergeni />
       <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -171,7 +168,15 @@
       <IdLekara>9</IdLekara>
       <ImeLek>Igor</ImeLek>
       <PrezimeLek>Ivanovic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </IzabraniLekar>
     <Karton>
       <IdPacijenta>4</IdPacijenta>
@@ -208,6 +213,9 @@
         </Alergeni>
       </Alergeni>
       <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -228,7 +236,15 @@
       <IdLekara>2</IdLekara>
       <ImeLek>Milos</ImeLek>
       <PrezimeLek>Dragojevic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </IzabraniLekar>
     <Karton>
       <IdPacijenta>5</IdPacijenta>
@@ -267,18 +283,10 @@
           <VremeReakcije>3 dana</VremeReakcije>
         </Alergeni>
       </Alergeni>
-      <Uputi>
-        <Uput>
-          <IdUputa>1</IdUputa>
-          <idPacijenta>5</idPacijenta>
-          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
-          <IdLekaraKodKogSeUpucuje>7</IdLekaraKodKogSeUpucuje>
-          <datumIzdavanja>06/09/2021</datumIzdavanja>
-          <opisPregleda>Hitno</opisPregleda>
-          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
-          <TipUputa>SpecijallistickiPregled</TipUputa>
-        </Uput>
-      </Uputi>
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>true</Maloletnik>
     <JmbgStaratelja>99</JmbgStaratelja>
@@ -299,7 +307,15 @@
       <IdLekara>2</IdLekara>
       <ImeLek>Milos</ImeLek>
       <PrezimeLek>Dragojevic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </IzabraniLekar>
     <Karton>
       <IdPacijenta>6</IdPacijenta>
@@ -341,6 +357,9 @@
       <Anamneze />
       <Alergeni />
       <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -361,45 +380,19 @@
       <IdLekara>2</IdLekara>
       <ImeLek>Milos</ImeLek>
       <PrezimeLek>Dragojevic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </IzabraniLekar>
     <Karton>
       <IdPacijenta>3</IdPacijenta>
-      <LekarskiRecepti>
-        <LekarskiRecept>
-          <IdRecepta>1</IdRecepta>
-          <idPacijenta>3</idPacijenta>
-          <IdLekara>1</IdLekara>
-          <NazivLeka>brufen</NazivLeka>
-          <DatumPropisivanjaLeka>05/21/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
-          <DnevnaKolicina>2</DnevnaKolicina>
-          <PocetakKoriscenja>15:00</PocetakKoriscenja>
-          <UzimanjeTerapije>
-            <dateTime>2021-05-21T15:00:00</dateTime>
-            <dateTime>2021-05-21T17:00:00</dateTime>
-            <dateTime>2021-05-21T19:00:00</dateTime>
-            <dateTime>2021-05-21T21:00:00</dateTime>
-            <dateTime>2021-05-21T23:00:00</dateTime>
-            <dateTime>2021-05-22T01:00:00</dateTime>
-            <dateTime>2021-05-22T03:00:00</dateTime>
-            <dateTime>2021-05-22T05:00:00</dateTime>
-            <dateTime>2021-05-22T07:00:00</dateTime>
-            <dateTime>2021-05-22T09:00:00</dateTime>
-            <dateTime>2021-05-22T11:00:00</dateTime>
-            <dateTime>2021-05-22T13:00:00</dateTime>
-            <dateTime>2021-05-22T15:00:00</dateTime>
-            <dateTime>2021-05-22T17:00:00</dateTime>
-            <dateTime>2021-05-22T19:00:00</dateTime>
-            <dateTime>2021-05-22T21:00:00</dateTime>
-            <dateTime>2021-05-22T23:00:00</dateTime>
-            <dateTime>2021-05-23T01:00:00</dateTime>
-            <dateTime>2021-05-23T03:00:00</dateTime>
-            <dateTime>2021-05-23T05:00:00</dateTime>
-            <dateTime>2021-05-23T07:00:00</dateTime>
-          </UzimanjeTerapije>
-        </LekarskiRecept>
-      </LekarskiRecepti>
+      <LekarskiRecepti />
       <Anamneze />
       <Alergeni>
         <Alergeni>
@@ -411,18 +404,10 @@
           <VremeReakcije>mesec dana</VremeReakcije>
         </Alergeni>
       </Alergeni>
-      <Uputi>
-        <Uput>
-          <IdUputa>1</IdUputa>
-          <idPacijenta>3</idPacijenta>
-          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
-          <IdLekaraKodKogSeUpucuje>7</IdLekaraKodKogSeUpucuje>
-          <datumIzdavanja>05/21/2021</datumIzdavanja>
-          <opisPregleda>Hitno</opisPregleda>
-          <brojDanaZadrzavanja>0</brojDanaZadrzavanja>
-          <TipUputa>SpecijallistickiPregled</TipUputa>
-        </Uput>
-      </Uputi>
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>

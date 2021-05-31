@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using Model;
 using Projekat.Servis;
 
@@ -17,15 +19,47 @@ namespace Projekat.ViewModel
         public Window IzmeniLekaraProzor { get; set; }
         public Window BrisanjeLekaraProzor { get; set; }
 
-        private ObservableCollection<Lekar> lekari;
-        public ObservableCollection<Lekar> Lekari 
+        private ICollectionView lekari;
+        public ICollectionView Lekari 
         {
             get { return lekari; } 
             set { lekari = value; OnPropertyChanged("Lekari"); } 
         }
+
         public MyICommand ZatvoriLekara { get; set; }
         public MyICommand JmbgLostFocus { get; set; }
         public MyICommand OtvoriPrikazSaStrane { get; set; }
+        
+        private string pretragaTextBox;
+        public string PretragaTextBox
+        {
+            get { return pretragaTextBox; }
+            set 
+            {
+                pretragaTextBox = value;
+
+                ICollectionView view = new CollectionViewSource { Source = LekariServis.NadjiSveLekare()}.View;
+                view.Filter = null;
+                view.Filter = delegate (object item)
+                {
+                    if (String.IsNullOrEmpty(pretragaTextBox))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return ((item as Lekar).ImeLek.IndexOf(pretragaTextBox, StringComparison.OrdinalIgnoreCase) >= 0)
+                            || ((item as Lekar).PrezimeLek.IndexOf(pretragaTextBox, StringComparison.OrdinalIgnoreCase) >= 0)
+                               || ((item as Lekar).Jmbg.ToString().IndexOf(pretragaTextBox, StringComparison.OrdinalIgnoreCase) >= 0)
+                                  || ((item as Lekar).specijalizacija.ToString().IndexOf(pretragaTextBox, StringComparison.OrdinalIgnoreCase) >= 0);
+                    }
+                };
+
+                Lekari = view;
+                OnPropertyChanged("PretragaTextBox"); 
+            }
+        }
+
 
         public LekarViewModel()
         {
@@ -48,12 +82,12 @@ namespace Projekat.ViewModel
 
         private void DodajLekare()
         {
-            Lekari = new ObservableCollection<Lekar>();
-            List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
+            Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
+           /* List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
             foreach (Lekar lekar in lekariLista)
             {
                 Lekari.Add(lekar);
-            }
+            }*/
         }
 
         private void Zatvori()
@@ -101,7 +135,8 @@ namespace Projekat.ViewModel
         {
             Lekar lekar = new Lekar(LekariServis.GenerisanjeIdLekara(), imeLekaraDodavanje, prezimeLekaraDodavanje, long.Parse(jmbgLekaraDodavanje), long.Parse(brojTelefonaDodavanje), emailDodavanje, adresaDodavanje, specijalizacijaDodavanje);
             LekariServis.DodajLekara(lekar);
-            Lekari.Add(lekar);
+            Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
+            //Lekari.Add(lekar);
             DodajLekaraProzor.Close();
         }
 
@@ -214,9 +249,10 @@ namespace Projekat.ViewModel
             Lekar noviLekar = new Lekar(izabraniLekar.IdLekara, imeLekaraIzmena, prezimeLekaraIzmena, long.Parse(jmbgLekaraIzmena), long.Parse(brojTelefonaIzmena), emailIzmena, adresaIzmena, specijalizacijaIzmena);
             LekariServis.IzmeniLekara(izabraniLekar, noviLekar);
 
-            int idx = Lekari.IndexOf(izabraniLekar);
-            Lekari.RemoveAt(idx);
-            Lekari.Insert(idx, noviLekar);
+            Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare()}.View;
+            //int idx = Lekari.IndexOf(izabraniLekar);
+            //Lekari.RemoveAt(idx);
+            //Lekari.Insert(idx, noviLekar);
 
             IzmeniLekaraProzor.Close();
         }
@@ -269,7 +305,8 @@ namespace Projekat.ViewModel
         private void ObrisiIzabranogLekara()
         {
             LekariServis.ObrisiLekara(izabraniLekar);
-            Lekari.Remove(izabraniLekar);
+            Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
+            //Lekari.Remove(izabraniLekar);
             BrisanjeLekaraProzor.Close();
         }
 
