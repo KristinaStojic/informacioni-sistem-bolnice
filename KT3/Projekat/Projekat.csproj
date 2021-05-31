@@ -261,6 +261,9 @@
     <Compile Include="Komunikacija.xaml.cs">
       <DependentUpon>Komunikacija.xaml</DependentUpon>
     </Compile>
+    <Compile Include="KomunikacijaSekretar.xaml.cs">
+      <DependentUpon>KomunikacijaSekretar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LicniPodaciLekar.xaml.cs">
       <DependentUpon>LicniPodaciLekar.xaml</DependentUpon>
     </Compile>
@@ -388,6 +391,9 @@
     </Compile>
     <Compile Include="Pomoc\KomunikacijaPomoc.xaml.cs">
       <DependentUpon>KomunikacijaPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\KomunikacijaSekretarPomoc.xaml.cs">
+      <DependentUpon>KomunikacijaSekretarPomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\LijekoviPomoc.xaml.cs">
       <DependentUpon>LijekoviPomoc.xaml</DependentUpon>
@@ -845,6 +851,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="KomunikacijaSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LicniPodaciLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -993,6 +1003,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\KomunikacijaPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\KomunikacijaSekretarPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1471,6 +1485,7 @@
     <Resource Include="slike\patient.png" />
     <Resource Include="slike\medical.png" />
     <Resource Include="slike\noticeboard.png" />
+    <Resource Include="slike\chat.png" />
     <Content Include="Video\PomocZaEvidenciju.mp4" />
     <Content Include="Video\PomocZaPlate.mp4" />
     <Content Include="Video\PomocZaZahtjeve.mp4" />

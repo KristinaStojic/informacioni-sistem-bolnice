@@ -5,27 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="HelpWizard" Height="510" Width="850" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFE7F6F7" KeyDown="Window_KeyDown">
+        Title="HelpWizard" Height="510" Width="1070" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFE7F6F7" KeyDown="Window_KeyDown">
     <Grid>
-        <Label Margin="298,16,296.2,418.8" FontSize="20">Dobrodošli u Help Wizard!</Label>
-        <Label Margin="139,435,166.2,9.8" FontSize="14">Ukoliko želite da nastavite, pritisnite CTRL + S, da biste izašli, pritisnite CTRL + N</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="245*"/>
+            <RowDefinition Height="236*"/>
+        </Grid.RowDefinitions>
+        <Label Margin="417,19,398,179.8" FontSize="20">Dobrodošli u Help Wizard!</Label>
+        <Label Margin="139,190.2,166,9.8" FontSize="14" Grid.Row="1">Ukoliko želite da nastavite, pritisnite CTRL + S, da biste izašli, pritisnite CTRL + N</Label>
 
-        <Label Margin="51,84,700.2,350.8" FontSize="20">Pacijenti</Label>
-        <Label Margin="275,84,479.2,350.8" FontSize="20">Lekari</Label>
-        <Label Margin="484,84,262.2,350.8" FontSize="20">Termini</Label>
-        <Label Margin="663,84,23.2,350.8" FontSize="20">Oglasna tabla</Label>
-        <Rectangle Fill="Transparent" HorizontalAlignment="Left" Height="323" Margin="210,72,0,0" Stroke="#FF18A3AC" VerticalAlignment="Top" Width="2"/>
-        <Rectangle Fill="Transparent" Height="323" Margin="421,72,0,0" Stroke="#FF18A3AC" VerticalAlignment="Top" HorizontalAlignment="Left" Width="2"/>
-        <Rectangle Fill="Transparent" Height="323" Margin="631,72,0,0" Stroke="#FF18A3AC" VerticalAlignment="Top" HorizontalAlignment="Left" Width="2"/>
+        <Label Margin="55,84,905,114.8" FontSize="20">Pacijenti</Label>
+        <Label Margin="281,84,714,114.8" FontSize="20">Lekari</Label>
+        <Label Margin="492,84,488,114.8" FontSize="20">Termini</Label>
+        <Label Margin="681,84,245,114.8" FontSize="20">Oglasna tabla</Label>
+        <Label Margin="893,84,33,114.8" FontSize="20">Komunikacija</Label>
 
-        <TextBlock FontSize="14" Margin="33,214,627.2,95.8">
+        <Rectangle Fill="Transparent" HorizontalAlignment="Left" Height="323" Margin="214,72,0,0" Stroke="#FF18A3AC" VerticalAlignment="Top" Width="2" Grid.RowSpan="2"/>
+        <Rectangle Fill="Transparent" Height="323" Margin="429,72,0,0" Stroke="#FF18A3AC" VerticalAlignment="Top" HorizontalAlignment="Left" Width="2" Grid.RowSpan="2"/>
+        <Rectangle Fill="Transparent" Height="323" Margin="643,72,0,0" Stroke="#FF18A3AC" VerticalAlignment="Top" HorizontalAlignment="Left" Width="2" Grid.RowSpan="2"/>
+        <Rectangle Fill="Transparent" Height="323" Margin="857,72,0,0" Stroke="#FF18A3AC" VerticalAlignment="Top" HorizontalAlignment="Left" Width="2" Grid.RowSpan="2"/>
+
+        <TextBlock FontSize="14" Margin="35,214,853,95.8" Grid.RowSpan="2">
             Kreiranje, izmena i brisanje <LineBreak/>
             naloga pacijenata <LineBreak/> <LineBreak/>
             Uvid u zdravstveni karton  <LineBreak/> pacijenta <LineBreak/><LineBreak/>
             Pretraga pacijenata
         </TextBlock>
 
-        <TextBlock FontSize="14" Margin="451,214,220.2,71.8">
+        <TextBlock FontSize="14" Margin="465,214,417,71.8" Grid.RowSpan="2">
             Zakazivanje, izmena i <LineBreak/>
              otkazivanje termina <LineBreak/> <LineBreak/>
             Zakazivanje hitnog termina <LineBreak/><LineBreak/>
@@ -33,7 +40,7 @@
             Pretraga termina
         </TextBlock>
 
-        <TextBlock FontSize="14" Margin="235,212,424.2,73.8">
+        <TextBlock FontSize="14" Margin="245,211,630,74.8" Grid.RowSpan="2">
             Kreiranje, izmena i brisanje<LineBreak/>
              lekara <LineBreak/> <LineBreak/>
             Određivanje radnog vremena <LineBreak/><LineBreak/>
@@ -41,56 +48,70 @@
             Pretraga lekara
         </TextBlock>
 
-        <TextBlock FontSize="14" Margin="662,210,11.2,75.8">
+        <TextBlock FontSize="14" Margin="678,210,206,75.8" Grid.RowSpan="2">
             Kreiranje, izmena i brisanje<LineBreak/>
              obaveštenja <LineBreak/> <LineBreak/>
             Obaveštenja mogu biti <LineBreak/> namenjena svima, svim <LineBreak/> upravnicima, svim lekarima, <LineBreak/> svim pacijentima ili <LineBreak/>specifičnim pacijentima
-
         </TextBlock>
 
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="12,212,815.2,240.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="12,267,815.2,185.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="12,323,815.2,129.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="215,264,612.2,188.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="215,212,612.2,240.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="215,300,612.2,152.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="215,357,612.2,95.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="638,263,189.2,189.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="638,208,189.2,244.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="429,212,398.2,240.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="429,266,398.2,186.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="429,304,398.2,148.8" />
-        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="429,359,398.2,93.8" />
+        <TextBlock FontSize="14" Margin="894,210,33,217.8" Grid.RowSpan="2">
+            Kreiranje i brisanje<LineBreak/>
+             mejlova <LineBreak/> <LineBreak/>
+        </TextBlock>
 
-        <Button Margin="43,125,700.2,284.8" Click="Nazad_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="8,212,1035,4.8" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="8,23.2,1035,184.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="8,77.2,1035,130.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="219,211,824,5.8" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="219,19.2,824,188.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="219,61.2,824,146.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="219,108.2,824,99.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="434,212,609,4.8" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="434,20.2,609,187.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="434,63.2,609,144.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="434,111.2,609,96.8" Grid.Row="1" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="866,209,177,7.8" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="651,209,392,7.8" />
+        <Image Source="/slike/right-arrow1.png" RenderTransformOrigin="0.415,1.073" Margin="651,19.2,392,188.8" Grid.Row="1" />
+
+
+        <Button Margin="43,125,909,48.8" Click="Nazad_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <StackPanel>
                 <Image Source="/slike/patient.png" Height="58" Width="72" RenderTransformOrigin="0.415,1.073" />
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
 
-        <Button Margin="263,125,479.2,284.8" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+        <Button Margin="263,125,700,48.8" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <StackPanel>
                 <Image Source="/slike/stethoscope.png" Height="58" Width="72" RenderTransformOrigin="0.415,1.073" />
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
 
-        <Button Margin="481,125,277.2,284.8" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+        <Button Margin="485,125,492,48.8" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <StackPanel>
                 <Image Source="/slike/medical.png" Height="58" Width="72" RenderTransformOrigin="0.415,1.073" />
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
 
-        <Button Margin="684,125,67.2,284.8" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+        <Button Margin="696,125,284,48.8" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <StackPanel>
                 <Image Source="/slike/noticeboard.png" Height="58" Width="72" RenderTransformOrigin="0.415,1.073" />
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
 
-        <Button Margin="754,402,11.2,8.8" Click="Nazad_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+        <Button Margin="907,125,73,48.8" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+            <StackPanel>
+                <Image Source="/slike/chat.png" Height="58" Width="72" RenderTransformOrigin="0.415,1.073" />
+                <TextBlock Height="0"/>
+            </StackPanel>
+        </Button>
+
+        <Button Margin="969,158.2,11,8.8" Click="Nazad_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>
@@ -104,7 +125,7 @@
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
-        <Button Content="Nastavi" Click="Nastavi_Click" FontSize="14" Background="#FFA3DADE" HorizontalAlignment="Left" Height="37" Margin="29,424,0,0" VerticalAlignment="Top" Width="101"/>
+        <Button Content="Nastavi" Click="Nastavi_Click" FontSize="14" Background="#FFA3DADE" HorizontalAlignment="Left" Height="37" Margin="29,179.2,0,0" VerticalAlignment="Top" Width="101" Grid.Row="1"/>
 
     </Grid>
 </Window>

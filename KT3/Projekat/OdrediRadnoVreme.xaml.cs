@@ -46,6 +46,13 @@ namespace Projekat
             potvrdi.IsEnabled = false;
             pocetak.IsEnabled = false;
             kraj.IsEnabled = false;
+
+            if (lekar.RadniDani.Count > 0)
+            {
+                datumi.Text = lekar.RadniDani[0].Datum;
+                dodeljenPocetak.Text = lekar.RadniDani[0].VremePocetka;
+                dodeljenKraj.Text = lekar.RadniDani[0].VremeKraja;
+            }
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -113,6 +120,25 @@ namespace Projekat
             else
             {
                 pocetak.IsEnabled = false;
+            }
+        }
+
+        private void Pocetak_LostFocus(object sender, RoutedEventArgs e)
+        {
+            dodeljenPocetak.Text = pocetak.Text;
+        }
+
+        private void Kraj_LostFocus(object sender, RoutedEventArgs e)
+        {
+            dodeljenKraj.Text = kraj.Text;
+        }
+
+        private void Kalendar_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (kalendar.SelectedDate != null)
+            {
+                DateTime datum = (DateTime)kalendar.SelectedDate;
+                datumi.Text = datum.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             }
         }
     }

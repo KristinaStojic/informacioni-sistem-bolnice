@@ -228,5 +228,12 @@ namespace Projekat
             }
             // TODO: polje za pretragu
         }
+
+        private void Komunikacija_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            KomunikacijaSekretar komunikacija = new KomunikacijaSekretar();
+            komunikacija.Show();
+        }
     }
 }

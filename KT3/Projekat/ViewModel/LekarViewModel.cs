@@ -28,7 +28,6 @@ namespace Projekat.ViewModel
 
         public MyICommand ZatvoriLekara { get; set; }
         public MyICommand JmbgLostFocus { get; set; }
-        public MyICommand OtvoriPrikazSaStrane { get; set; }
         
         private string pretragaTextBox;
         public string PretragaTextBox
