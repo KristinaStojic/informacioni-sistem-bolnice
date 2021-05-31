@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajZamenskiLekLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue">
+        Title="DodajZamenskiLekLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" ResizeMode="NoResize">
     <StackPanel>
         <StackPanel>
             <TextBlock Name="tekst"  FontWeight="Black" FontSize="15" Margin="0, 25, 0, 0" HorizontalAlignment="Center"></TextBlock>
@@ -20,7 +20,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button  Width="94" Height="27" Margin="284,15,110,0" Content="Odustani" Click="Button_Odustani" Background="#FF6895C5"/>
-        <Button  Width="94" Height="27" Margin="114,-27,280,0" Content="Sacuvaj" Click="Button_Potvrdi" Background="#FF6895C5"/>
+        <Button  Width="94" Height="27" Margin="284,15,110,0" Content="Odustani" Click="Button_Odustani" BorderBrush="White" Foreground="White" Background="#FF6895C5"/>
+        <Button  Width="94" Height="27" Margin="114,-27,280,0" Content="Sacuvaj" Click="Button_Potvrdi" BorderBrush="White" Foreground="White" Background="#FF6895C5"/>
     </StackPanel>
 </Window>

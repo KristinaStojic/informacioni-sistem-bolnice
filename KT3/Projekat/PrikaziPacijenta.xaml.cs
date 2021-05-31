@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -24,18 +26,21 @@ namespace Projekat
     public partial class PrikaziPacijenta : Window
     {
         private bool flag = false;
+        public bool zatvoreno = false;
         public static ObservableCollection<Pacijent> PacijentiTabela
         {
             get;
             set;
         }
+
         public PrikaziPacijenta()
         {
             InitializeComponent();
             this.DataContext = this;
             PacijentiTabela = new ObservableCollection<Pacijent>();
 
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 PacijentiTabela.Add(p);
             }
@@ -58,25 +63,22 @@ namespace Projekat
             }
         }
 
-        // nazad
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            PacijentiServis.SacuvajIzmenePacijenta();
+            SaleServis.sacuvajIzmjene();
             this.Close();
             Sekretar s = new Sekretar();
             s.Show();
         }
 
-        // dodavanje
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             DodajPacijenta dodavanje = new DodajPacijenta();
             dodavanje.Show();
         }
 
-        // izmena
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Izmeni_Click(object sender, RoutedEventArgs e)
         {
             Pacijent zaIzmenu = (Pacijent)TabelaPacijenata.SelectedItem;
 
@@ -91,28 +93,35 @@ namespace Projekat
             }
         }
         
-        // brisanje
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
-            flag = true;
-            var zaBrisanje = TabelaPacijenata.SelectedItem;
-            canvas2.Visibility = Visibility.Hidden;
+            //flag = true;
+            Pacijent zaBrisanje = (Pacijent)TabelaPacijenata.SelectedItem;
+            informacijePacijenta.Visibility = Visibility.Hidden;
 
             if (zaBrisanje != null)
             {
-                PacijentiMenadzer.ObrisiNalog((Pacijent)zaBrisanje);
+                ObrisiNalogPacijenta brisanje = new ObrisiNalogPacijenta(zaBrisanje, this);
+                brisanje.Show();
             }
-            flag = false;
+            else
+            {
+                MessageBox.Show("Niste selektovali pacijenta kojeg zelite da obrisete!");
+            }
+            
+            if (PacijentiTabela.Count != 0 && zatvoreno == true)
+            {
+                TabelaPacijenata.SelectedIndex = 0;
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            PacijentiServis.SacuvajIzmenePacijenta();
+            SaleServis.sacuvajIzmjene();
         }
 
-        // otvaranje zdravstvenog kartona pacijenta (uvid u zdravstveni karton)
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Zdravstveni_karton_Click(object sender, RoutedEventArgs e)
         {
             Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
 
@@ -134,21 +143,21 @@ namespace Projekat
             }
         }
 
-        // X na prikazu naloga pacijenta
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
         {
-            canvas2.Visibility = Visibility.Hidden;
+            informacijePacijenta.Visibility = Visibility.Hidden;
         }
 
         private void TabelaPacijenata_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (flag == false)
-            {
-                canvas2.Visibility = Visibility.Visible;
-            }
-
+            //if (flag == false)
+           // {
+           //     informacijePacijenta.Visibility = Visibility.Visible;
+           // }
+            flag = false;
+            
             Pacijent p = (Pacijent)TabelaPacijenata.SelectedItem;
-
+            informacijePacijenta.Visibility = Visibility.Visible;
             if (p != null)
             {
                 ime.Text = p.ImePacijenta;
@@ -175,28 +184,109 @@ namespace Projekat
             }
         }
 
-        // button termini
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void Termini_Click(object sender, RoutedEventArgs e)
         {
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            PacijentiServis.SacuvajIzmenePacijenta();
+            SaleServis.sacuvajIzmjene();
 
             this.Close();
             PrikaziTerminSekretar p = new PrikaziTerminSekretar();
             p.Show();
         }
 
-        // oglasna tabla
-        private void Button_Click_7(object sender, RoutedEventArgs e)
+        private void Oglasna_tabla_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             OglasnaTabla o = new OglasnaTabla();
             o.Show();
         }
 
-        private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        private void Lekari_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PrikaziLekare prikaz = new PrikaziLekare();
+            prikaz.Show();
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            PrikaziPacijentaPomoc pomoc = new PrikaziPacijentaPomoc();
+            pomoc.Show();
+        }
+
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(PacijentiTabela).Refresh();
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Dodaj_Click(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Dodaj_Click(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Izmeni_Click(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Izmeni_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Obrisi_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Obrisi_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Napusti_uvid_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Napusti_uvid_Click(sender, e);
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Zdravstveni_karton_Click(sender, e);
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Zdravstveni_karton_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                //this.MoveFocus();
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                pretraga.Focusable = true;
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+
+        }
+
     }
 }

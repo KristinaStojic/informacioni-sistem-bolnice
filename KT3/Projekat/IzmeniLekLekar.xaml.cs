@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Projekat
             string sifraLeka = this.sifra.Text;
             string nazivLeka = this.naziv.Text;
             Lek noviLek = new Lek(izabraniLek.idLeka, nazivLeka, sifraLeka);
-            LekoviMenadzer.IzmeniLekoveLekar(izabraniLek, noviLek);
+            LekoviServis.IzmeniLekoveLekar(izabraniLek, noviLek);
             this.Close();
         }
 
@@ -71,7 +72,7 @@ namespace Projekat
 
         private bool postojiSifraLijeka()
         {
-            foreach (Lek lijek in LekoviMenadzer.lijekovi)
+            foreach (Lek lijek in LekoviServis.Lijekovi())
             {
                 if (lijek.sifraLeka == this.sifra.Text && lijek.idLeka != this.izabraniLek.idLeka)
                 {

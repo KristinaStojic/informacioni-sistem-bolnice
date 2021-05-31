@@ -3,18 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Brisanje opreme" Height="140" Width="299" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+        Title="Brisanje opreme" Height="140" Width="299" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:SkladisteViewModel/>
+    </Window.DataContext>
     <Grid>
-        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Name="maks" Margin="0, 0, 20, 0"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Name="maks" Margin="0, 0, 20, 0" Text="{Binding KolicinaZaBrisanje}"></TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock FontSize="15" VerticalAlignment="Top" Margin="5, 20, 0, 0">Unesite kolicinu:</TextBlock>
-            <TextBox HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20, 20, 0, 0" Width="139" Height="27" Name="kolicina" TextChanged="kolicina_TextChanged"></TextBox>
+            <TextBox HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20, 20, 0, 0" Width="139" Height="27" Name="kolicina" Text="{Binding UnesenaKolicinaZaBrisanje, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Width="80" Height="27" Margin="55, 50, 20, 0" Click="Button_Click_1" Background="CadetBlue" Name="Potvrdi">Potvrdi</Button>
-            <Button Width="80" Height="27"  Margin="0, 50, 20, 0" Click="Button_Click" Background="CadetBlue">Odustani</Button>
+            <Button Width="80" Height="27" Margin="55, 50, 20, 0" Command="{Binding PotvrdiBrisanjeOpreme}" Background="CadetBlue" Name="Potvrdi">Potvrdi</Button>
+            <Button Width="80" Height="27"  Margin="0, 50, 20, 0" Command="{Binding OdustaniOdBrisanjaOpreme}" Background="CadetBlue">Odustani</Button>
         </StackPanel>
     </Grid>
 </Window>

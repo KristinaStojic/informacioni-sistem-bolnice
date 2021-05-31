@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,28 +23,38 @@ namespace Projekat
     {
         public Pacijent pacijent;
         public Termin termin;
-        public DodajAnamnezu(Pacijent izabraniPacijent, Termin termin)
+        public bool popunjeno = false;
+        public DodajAnamnezu(Pacijent izabraniPacijent, Termin Ntermin)
         {
             InitializeComponent();
+            //PopuniPodatkePacijenta();
             this.pacijent = izabraniPacijent;
-            this.termin = termin;
+            this.termin = Ntermin;
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             this.datum.SelectedDate = DateTime.Parse(termin.Datum);
         }
 
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-           
-                int brojAnamneze = ZdravstveniKartonMenadzer.GenerisanjeIdAnamneze(pacijent.IdPacijenta);          
+            if(popunjeno == true)
+            {
+                int brojAnamneze = ZdravstveniKartonServis.GenerisanjeIdAnamneze(pacijent.IdPacijenta);
                 String datum = NadjiDatumPregleda();
                 string bolest = bol.Text;
                 string terapija = terap.Text;
 
-                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, datum, bolest, terapija,termin.Lekar.IdLekara); 
-                ZdravstveniKartonMenadzer.DodajAnamnezu(anamneza);
+                Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, datum, bolest, terapija, termin.Lekar.IdLekara, termin.IdTermin);
+                ZdravstveniKartonServis.DodajAnamnezu(anamneza);
 
 
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Popunite sva polja!");
+            }
+                
         }
 
         private string NadjiDatumPregleda()
@@ -64,5 +75,52 @@ namespace Projekat
         {
             this.Close();
         }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Sacuvaj
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
+            {
+                Button_Click_1(sender, e);
+            }
+        }
+
+        private void terap_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void bol_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.terap.Text != null)
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.potvrdi.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.terap.Text.Trim().Equals("") || this.bol.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = false;
+            }
+            else if (!this.terap.Text.Trim().Equals("") && !this.bol.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = true;
+                popunjeno = true;
+            }
+        }
+        
     }
 }

@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -40,6 +42,12 @@ namespace Projekat
             set;
         }
 
+        public static ObservableCollection<Uput> TabelaUputa
+        {
+            get;
+            set;
+        }
+
         public UvidZdravstveniKarton(Pacijent izabraniNalog)
         {
             InitializeComponent();
@@ -48,73 +56,40 @@ namespace Projekat
 
             if (izabraniNalog != null)
             {
-                ime.Text = izabraniNalog.ImePacijenta;
-                prezime.Text = izabraniNalog.PrezimePacijenta;
-                jmbg.Text = izabraniNalog.Jmbg.ToString();
-
-                if (izabraniNalog.Pol.Equals(pol.M))
-                {
-                    combo2.SelectedIndex = 0;
-                }
-                else if (izabraniNalog.Pol.Equals(pol.Z))
-                {
-                    combo2.SelectedIndex = 1;
-                }
-
-                if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
-                {
-                    combo.SelectedIndex = 0;
-                }
-                else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest))
-                {
-                    combo.SelectedIndex = 1;
-                }
-
-                brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
-                email.Text = izabraniNalog.Email;
-                adresa.Text = izabraniNalog.AdresaStanovanja;
-                zanimanje.Text = izabraniNalog.Zanimanje;
-
-                if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neudata))
-                {
-                    combo3.SelectedIndex = 0;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Ozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udata))
-                {
-                    combo3.SelectedIndex = 1;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovac) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovica))
-                {
-                    combo3.SelectedIndex = 2;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razveden) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razvedena))
-                {
-                    combo3.SelectedIndex = 3;
-                }
-
-                ime.IsEnabled = false;
-                prezime.IsEnabled = false;
-                jmbg.IsEnabled = false;
-                combo.IsEnabled = false;
-                combo2.IsEnabled = false;
-                brojTelefona.IsEnabled = false;
-                email.IsEnabled = false;
-                adresa.IsEnabled = false;
-                combo3.IsEnabled = false;
-                zanimanje.IsEnabled = false;
-
-                if (izabraniNalog.Maloletnik == true)
-                {
-                    maloletnik.IsChecked = true;
-                }
-                else
-                {
-                    maloletnik.IsChecked = false;
-                }
+                PopuniPoljaZdravstvenogKartona(izabraniNalog);
+                OnemoguciIzmenuPolja(izabraniNalog);
             }
 
+            PopuniTabeluRecepata();
+            PopuniTabeluAnamneza();
+            PopuniTabeluAlergena();
+            PopuniTabeluUputa();           
+        }
+
+        private void PopuniPoljaZdravstvenogKartona(Pacijent izabraniNalog)
+        {
+            ime.Text = izabraniNalog.ImePacijenta;
+            prezime.Text = izabraniNalog.PrezimePacijenta;
+            jmbg.Text = izabraniNalog.Jmbg.ToString();
+            brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
+            email.Text = izabraniNalog.Email;
+            adresa.Text = izabraniNalog.AdresaStanovanja;
+            zanimanje.Text = izabraniNalog.Zanimanje;
+            polPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksPola(izabraniNalog);
+            bracnoStanjePacijenta.SelectedIndex = PacijentiServis.UcitajIndeksBracnogStanja(izabraniNalog);
+            statusPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksStatusaNaloga(izabraniNalog);
+
+            if (izabraniNalog.IzabraniLekar != null)
+            {
+                lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
+            }
+        }
+
+        private void PopuniTabeluRecepata() 
+        {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -124,9 +99,13 @@ namespace Projekat
                     }
                 }
             }
+        }
 
+        private void PopuniTabeluAnamneza()
+        {
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -136,9 +115,13 @@ namespace Projekat
                     }
                 }
             }
+        }
 
+        private void PopuniTabeluAlergena()
+        {
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -148,39 +131,116 @@ namespace Projekat
                     }
                 }
             }
+        }
 
-            // izabrani lekar
-            if (izabraniNalog.IzabraniLekar != null)
+        private void PopuniTabeluUputa() 
+        {
+            TabelaUputa = new ObservableCollection<Uput>();
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in pacijenti)
             {
-                lekar.Text = izabraniNalog.IzabraniLekar.ImeLek + " " + izabraniNalog.IzabraniLekar.PrezimeLek;
+                if (p.IdPacijenta == pacijent.IdPacijenta)
+                {
+                    foreach (Uput uput in p.Karton.Uputi)
+                    {
+                        TabelaUputa.Add(uput);
+                    }
+                }
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OnemoguciIzmenuPolja(Pacijent izabraniNalog)
         {
-            this.Hide();
-        }
+            ime.IsEnabled = false;
+            prezime.IsEnabled = false;
+            jmbg.IsEnabled = false;
+            statusPacijenta.IsEnabled = false;
+            polPacijenta.IsEnabled = false;
+            brojTelefona.IsEnabled = false;
+            email.IsEnabled = false;
+            adresa.IsEnabled = false;
+            bracnoStanjePacijenta.IsEnabled = false;
+            zanimanje.IsEnabled = false;
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        // detalji anamneze
-        /*private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Anamneza izabranaAnamneza = (Anamneza)dataGridAnamneze.SelectedItem;
-
-            if (izabranaAnamneza != null)
+            if (izabraniNalog.Maloletnik == true)
             {
-
-                DetaljiAnamneze da = new DetaljiAnamneze(izabranaAnamneza, termin);
-                da.Show();
+                maloletnik.IsChecked = true;
             }
             else
             {
-                MessageBox.Show("Niste selektovali nijednu anamnezu!");
+                maloletnik.IsChecked = false;
             }
-        }*/
+        }
+
+        private void Nazad_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            ZdravstveniKartonSekretarPomoc pomoc = new ZdravstveniKartonSekretarPomoc();
+            pomoc.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                licniPodaci.IsSelected = true;
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                licniPodaci.IsSelected = true;
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                anamneza.IsSelected = true;
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                anamneza.IsSelected = true;
+            }
+            else if (e.Key == Key.A && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                alergeni.IsSelected = true;
+            }
+            else if (e.Key == Key.A && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                alergeni.IsSelected = true;
+            }
+            else if (e.Key == Key.R && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                recepti.IsSelected = true;
+            }
+            else if (e.Key == Key.R && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                recepti.IsSelected = true;
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                uputi.IsSelected = true;
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                uputi.IsSelected = true;
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pomoc_Click(sender, e);
+            }
+        }
     }
 }

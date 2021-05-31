@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -22,8 +23,7 @@ namespace Projekat
     /// </summary>
     public partial class IzmeniTerminSekretar : Window
     {
-        public Termin termin; // ucitani termin
-
+        public Termin termin; 
         public List<Pacijent> AzuriranaLista = new List<Pacijent>();
         public Pacijent Pacijent;
         public Lekar Lekar;
@@ -39,11 +39,13 @@ namespace Projekat
             InitializeComponent();
             this.termin = izabraniTermin;
 
-            this.listaPacijenata.ItemsSource = PacijentiMenadzer.pacijenti;
+            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            this.listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = MainWindow.lekari;
+            List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
+            this.listaLekara.ItemsSource = lekariLista;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
@@ -65,16 +67,17 @@ namespace Projekat
 
                 // vreme
                 vremePocetka.SelectedItem = izabraniTermin.VremePocetka;
-                PocetnoVreme = vremePocetka.Text;        // ?
+                PocetnoVreme = vremePocetka.Text;       
                 vremeKraja.SelectedItem = izabraniTermin.VremeKraja;
 
                 // lekar
                 lekari.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 Lekar = izabraniTermin.Lekar;
 
-                for (int i = 0; i < MainWindow.lekari.Count; i++)
+                List<Lekar> lekariListaIzServisa = LekariServis.NadjiSveLekare();
+                for (int i = 0; i < lekariListaIzServisa.Count; i++)
                 {
-                    if (MainWindow.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
+                    if (lekariListaIzServisa[i].IdLekara == izabraniTermin.Lekar.IdLekara)
                     {
                         listaLekara.SelectedIndex = i;
                     }
@@ -83,10 +86,10 @@ namespace Projekat
                 // pacijent
                 pacijenti.Text = izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta;
                 Pacijent = izabraniTermin.Pacijent;
-
-                for (int j = 0; j < PacijentiMenadzer.pacijenti.Count; j++)
+                List<Pacijent> pacijentiListaIzServisa = PacijentiServis.PronadjiSve();
+                for (int j = 0; j < pacijentiListaIzServisa.Count; j++)
                 {
-                    if (PacijentiMenadzer.pacijenti[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
+                    if (pacijentiListaIzServisa[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
                     {
                         listaPacijenata.SelectedIndex = j;
                     }
@@ -97,8 +100,9 @@ namespace Projekat
                 if (izabraniTermin.tipTermina.Equals(TipTermina.Pregled))
                 {
                     tip.SelectedIndex = 0;
-                    
-                    foreach (Sala s in SaleMenadzer.sale)
+
+                    List<Sala> sale = SaleServis.NadjiSveSale();
+                    foreach (Sala s in sale)
                     {
                         if (s.TipSale.Equals(tipSale.SalaZaPregled))
                         {
@@ -115,7 +119,8 @@ namespace Projekat
                 {
                     tip.SelectedIndex = 1;
 
-                    foreach (Sala s in SaleMenadzer.sale)
+                    List<Sala> sale = SaleServis.NadjiSveSale();
+                    foreach (Sala s in sale)
                     {
                         if (s.TipSale.Equals(tipSale.OperacionaSala))
                         {
@@ -139,7 +144,7 @@ namespace Projekat
                 datum.SelectedDate = DateTime.Parse(izabraniTermin.Datum);
             }
 
-            datum.BlackoutDates.AddDatesInPast();   // ne mogu se menjati termini koji su prosli, za njih ovo javlja error - TODO: handle exception
+           // datum.BlackoutDates.AddDatesInPast();   // ne mogu se menjati termini koji su prosli, za njih ovo javlja error - TODO: handle exception
         }
 
         private bool UserFilterPacijenti(object item)
@@ -173,7 +178,8 @@ namespace Projekat
         // azuriranje liste pacijenata prilikom dodavanja guest pacijenta
         public void AzurirajListuPacijenata()
         {
-            foreach (Pacijent pacijent in PacijentiMenadzer.pacijenti)
+            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            foreach (Pacijent pacijent in pacijentiLista)
             {
                 AzuriranaLista.Add(pacijent);
             }
@@ -183,13 +189,13 @@ namespace Projekat
             listaPacijenata.SelectedIndex = duzina - 1;
         }
 
-        private void pretraga_TextChanged(object sender, TextChangedEventArgs e)
+        private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource).Refresh();
             CollectionViewSource.GetDefaultView(listaLekara.ItemsSource).Refresh();
         }
 
-        private void listaPacijenata_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void ListaPacijenata_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (listaPacijenata.SelectedItem != null)
             {
@@ -198,7 +204,7 @@ namespace Projekat
             }
         }
 
-        private void listaLekara_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void ListaLekara_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (listaLekara.SelectedItem != null)
             {
@@ -235,16 +241,16 @@ namespace Projekat
 
             if (prostorije.SelectedItem != null)
             {
-                Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+                Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             }
 
             if (Sala != null)
             {
                 foreach (ZauzeceSale z in Sala.zauzetiTermini)
                 {
-                    if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                    if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                     {
-                        Termin t = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                        Termin t = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                         if (z.datumPocetkaTermina.Equals(dat))
                         {
@@ -286,15 +292,16 @@ namespace Projekat
                     }
                 }
                 // slobodni termini lekara
-                foreach (Sala s in SaleMenadzer.sale)
+                List<Sala> sale = SaleServis.NadjiSveSale();
+                foreach (Sala s in sale)
                 {
                     foreach (ZauzeceSale z in s.zauzetiTermini)
                     {
                         if (z.datumPocetkaTermina.Equals(dat)) // za selektovani datum gledamo zauzetost selektovanog lekara
                         {
-                            if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                            if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                             {
-                                Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                                Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                                 if (pomocna.Lekar.IdLekara == Lekar.IdLekara)
                                 {
@@ -338,15 +345,15 @@ namespace Projekat
                     }
                 }
                 // slobodni termini pacijenta - pacijent ne moze biti na istim mestima u isto vreme
-                foreach (Sala s in SaleMenadzer.sale)
+                foreach (Sala s in sale)
                 {
                     foreach (ZauzeceSale z in s.zauzetiTermini)
                     {
                         if (z.datumPocetkaTermina.Equals(dat)) // za selektovani datum gledamo zauzetost selektovanog lekara
                         {
-                            if (TerminMenadzer.NadjiTerminPoId(z.idTermina) != null)
+                            if (TerminiSekretarServis.NadjiTerminPoId(z.idTermina) != null)
                             {
-                                Termin pomocna = TerminMenadzer.NadjiTerminPoId(z.idTermina);
+                                Termin pomocna = TerminiSekretarServis.NadjiTerminPoId(z.idTermina);
 
                                 if (pomocna.Pacijent.IdPacijenta == Pacijent.IdPacijenta)
                                 {
@@ -397,7 +404,7 @@ namespace Projekat
             }
         }
 
-        private void datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void Datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             DateTime? selectedDate = datum.SelectedDate;
             if (selectedDate.HasValue)
@@ -409,16 +416,17 @@ namespace Projekat
             //vremeKraja.ItemsSource = SlobodnoVremeKraja;
 
             //IzbaciDanasnjeProsleTermine();            
-            //IzbaciZauzeteTermine();               // --------------------------------------ne radi za izmenu
+            //IzbaciZauzeteTermine();  
         }
 
-        private void tip_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)  // tip_SelectionChanged
+        private void Tip_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)  // tip_SelectionChanged
         {
             prostorije.Items.Clear();
 
             if (tip.SelectedIndex == 0) // pregled
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                List<Sala> sale = SaleServis.NadjiSveSale();
+                foreach (Sala s in sale)
                 {
                     if (s.TipSale.Equals(tipSale.SalaZaPregled))
                     {
@@ -431,7 +439,8 @@ namespace Projekat
             }
             else if (tip.SelectedIndex == 1) // operacija
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                List<Sala> sale = SaleServis.NadjiSveSale();
+                foreach (Sala s in sale)
                 {
                     if (s.TipSale.Equals(tipSale.OperacionaSala))
                     {
@@ -446,7 +455,7 @@ namespace Projekat
             prostorije.SelectedIndex = 0;
         }
 
-        private void vremeKraja_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void VremeKraja_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             string[] pocetak = PocetnoVreme.Split(':');
             string pocetakSati = pocetak[0];
@@ -473,27 +482,24 @@ namespace Projekat
             vremeKraja.ItemsSource = SlobodnoVremeKraja;
         }
 
-        private void vremePocetka_LostFocus(object sender, RoutedEventArgs e)
+        private void VremePocetka_LostFocus(object sender, RoutedEventArgs e)
         {
             PocetnoVreme = vremePocetka.Text;                
             vremeKraja.ItemsSource = SlobodnoVremeKraja;
         }
 
-        // pravljenje guest naloga
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Guest_nalog_Click(object sender, RoutedEventArgs e)
         {
             DodajPacijentaGuestIzmeni dodavanje = new DodajPacijentaGuestIzmeni(this);
             dodavanje.Show();
         }
 
-        // odustani
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        // potvrdi
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             // vreme pocetka i kraja
             string vp = vremePocetka.Text;
@@ -527,10 +533,10 @@ namespace Projekat
 
             Lekar = (Lekar)listaLekara.SelectedItem;
             Pacijent = (Pacijent)listaPacijenata.SelectedItem;
-            Sala = SaleMenadzer.NadjiSaluPoId((int)prostorije.SelectedItem);
+            Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
 
-            Lekar l = MainWindow.PronadjiPoId(Lekar.IdLekara);
-            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(Pacijent.IdPacijenta);
+            Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
+            Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
             Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 
             //
@@ -538,11 +544,13 @@ namespace Projekat
             string[] vpt = termin.VremePocetka.Split(':');
             string[] vkt = termin.VremeKraja.Split(':');
 
-            foreach (Termin t in TerminMenadzer.termini)
+            List<Termin> terminiLista = TerminServis.NadjiSveTermine();
+            foreach (Termin t in terminiLista)
             {
                 if (termin.IdTermin == t.IdTermin)
                 {
-                    foreach (Sala sala in SaleMenadzer.sale)
+                    List<Sala> sale = SaleServis.NadjiSveSale();
+                    foreach (Sala sala in sale)
                     {
                         if (sala.Id == termin.Prostorija.Id)
                         {
@@ -555,7 +563,7 @@ namespace Projekat
                                 if (zauzece1.datumPocetkaTermina.Equals(termin.Datum) && zauzece1.idTermina == termin.IdTermin && zauzecePocetak1[0].Equals(vpt[0]) && zauzecePocetak1[1].Equals(vpt[1]) && zauzeceKraj1[0].Equals(vkt[0]) && zauzeceKraj1[1].Equals(vkt[1]))
                                 {
                                     sala.zauzetiTermini.Remove(zauzece1);
-                                    SaleMenadzer.sacuvajIzmjene();
+                                    SaleServis.sacuvajIzmjene();
                                 }
                             }
                         }
@@ -566,33 +574,32 @@ namespace Projekat
             // ako je prostorija izmenjena
             if (termin.Prostorija.Id != izmenjeniTermin.Prostorija.Id)
             {
-                foreach (Termin t in TerminMenadzer.termini)
+                List<Termin> terminiListaIzServisa = TerminServis.NadjiSveTermine();
+                foreach (Termin t in terminiListaIzServisa)
                 {
                     if (t.Prostorija.Id == termin.Prostorija.Id)
                     {
-                        t.Prostorija = SaleMenadzer.NadjiSaluPoId(termin.Prostorija.Id);
+                        t.Prostorija = SaleServis.NadjiSaluPoId(termin.Prostorija.Id);
                     }
                 }
             }
 
-            TerminMenadzer.IzmeniTerminSekretar(termin, izmenjeniTermin);
+            TerminiSekretarServis.IzmeniTerminSekretar(termin, izmenjeniTermin);
             ZauzeceSale z = new ZauzeceSale(vp, vk, dat, termin.IdTermin);
             Sala.zauzetiTermini.Add(z);
 
-            TerminMenadzer.sacuvajIzmene();
-            SaleMenadzer.sacuvajIzmjene();
+            TerminiSekretarServis.sacuvajIzmene();
+            SaleServis.sacuvajIzmjene();
 
             this.Close();
         }
 
-        // pacijenti list view
         private void Pretraga_Pacijenata(object sender, RoutedEventArgs e)
         {
             listaPacijenata.Visibility = Visibility.Visible;
             listaLekara.Visibility = Visibility.Hidden;
         }
 
-        // lekari list view
         private void Pretraga_Lekara(object sender, RoutedEventArgs e)
         {
             listaLekara.Visibility = Visibility.Visible;

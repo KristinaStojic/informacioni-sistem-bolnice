@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,7 +37,7 @@ namespace Projekat
 
         private void PopuniPodatkePacijenta()
         {
-            this.nadjiAlergen.ItemsSource = LekoviMenadzer.NadjiSveSastojke();
+            this.nadjiAlergen.ItemsSource = LekoviServis.NadjiSveSastojke();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiAlergen.ItemsSource);
             view.Filter = UserFilter;
         }
@@ -47,7 +48,6 @@ namespace Projekat
             {
                 Sastojak item = (Sastojak)nadjiAlergen.SelectedItems[0];
                 naziv.Text = item.naziv;
-                sifra.Text = item.kolicina.ToString();
             }
         }
 
@@ -68,19 +68,18 @@ namespace Projekat
         {
             try
             {
-                int idAlergena = ZdravstveniKartonMenadzer.GenerisanjeIdAlergena(pacijent.IdPacijenta);
+                int idAlergena = ZdravstveniKartonServis.GenerisanjeIdAlergena(pacijent.IdPacijenta);
                 String nazivLeka = naziv.Text;
-                String sifraLeka = sifra.Text;
                 String Nuspojava = nuspojava.Text;
                 String vremeNuspojave = vreme.Text;
 
 
-                Alergeni alergen = new Alergeni(idAlergena, pacijent.IdPacijenta, nazivLeka, sifraLeka, Nuspojava, vremeNuspojave);
-                ZdravstveniKartonMenadzer.DodajAlergen(alergen);
+                Alergeni alergen = new Alergeni(idAlergena, pacijent.IdPacijenta, nazivLeka,Nuspojava, vremeNuspojave);
+                ZdravstveniKartonServis.DodajAlergen(alergen);
 
-                TerminMenadzer.sacuvajIzmene();
-                PacijentiMenadzer.SacuvajIzmenePacijenta();
-                SaleMenadzer.sacuvajIzmjene();
+                TerminServisLekar.sacuvajIzmene();
+                PacijentiServis.SacuvajIzmenePacijenta();
+                SaleServis.sacuvajIzmjene();
 
                 this.Close();
             }

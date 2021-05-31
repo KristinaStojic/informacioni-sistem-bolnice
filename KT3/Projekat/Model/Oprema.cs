@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Projekat.Servis;
+using System;
+using System.ComponentModel;
 
 
 namespace Projekat.Model
@@ -14,6 +16,18 @@ namespace Projekat.Model
             }
         }
 
+        private static event EventHandler<PropertyChangedEventArgs> staticPC
+                                                     = delegate { };
+        public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged
+        {
+            add { staticPC += value; }
+            remove { staticPC -= value; }
+        }
+        protected static void OnStaticPropertyChanged(string propertyName)
+        {
+            staticPC(null, new PropertyChangedEventArgs(propertyName));
+        }
+
         public string NazivOpreme { get; set; }
         public int Kolicina { get; set; }
         public bool Staticka { get; set; }
@@ -21,7 +35,7 @@ namespace Projekat.Model
 
         public Oprema(string naziv, int kolicina, bool staticka)
         {
-            this.IdOpreme = OpremaMenadzer.GenerisanjeIdOpreme();
+            this.IdOpreme = OpremaServis.GenerisanjeIdOpreme();
             this.NazivOpreme = naziv;
             this.Kolicina = kolicina;
             this.Staticka = staticka;

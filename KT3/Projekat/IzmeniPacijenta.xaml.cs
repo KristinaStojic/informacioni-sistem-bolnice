@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -20,229 +22,387 @@ namespace Projekat
     /// </summary>
     public partial class IzmeniPacijenta : Window
     {
+        public bool flag1 = false;
+        public bool flag2 = false;
+        public bool flag3 = false;
+        public bool flag4 = false;
+        public bool flag5 = false;
+        public bool flag6 = false;
+        public bool flag7 = false;
+        public bool flag8 = true;
         public Pacijent pacijent;
+
         public IzmeniPacijenta(Pacijent izabraniNalog)
         {
             InitializeComponent();
             this.pacijent = izabraniNalog;
+            this.DataContext = this;
+
             if (izabraniNalog != null) 
             {
-                ime.Text = izabraniNalog.ImePacijenta;
-                prezime.Text = izabraniNalog.PrezimePacijenta;
-                jmbg.Text = izabraniNalog.Jmbg.ToString();
+                PopuniPoljaForme(izabraniNalog);
+            }
+        }
+
+        private void PopuniPoljaForme(Pacijent izabraniNalog)
+        {
+            ime.Text = izabraniNalog.ImePacijenta;
+            prezime.Text = izabraniNalog.PrezimePacijenta;
+            jmbg.Text = izabraniNalog.Jmbg.ToString();
+            brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
+            email.Text = izabraniNalog.Email;
+            adresa.Text = izabraniNalog.AdresaStanovanja;
+            zanimanje.Text = izabraniNalog.Zanimanje;
+            polPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksPola(izabraniNalog);
+            bracnoStanjePacijenta.SelectedIndex = PacijentiServis.UcitajIndeksBracnogStanja(izabraniNalog);
+
+            OnemoguciPoljaZaGuestNalog(izabraniNalog);
+            OmoguciPoljaZaMaloletnika(izabraniNalog);
+
+            validacijaJmbg.Visibility = Visibility.Hidden;
+            validacijaBrojTelefona.Visibility = Visibility.Hidden;
+            validacijaJmbgStaratelja.Visibility = Visibility.Hidden;
+            potvrdi.IsEnabled = true;
+        }
+
+        public void OmoguciPoljaZaMaloletnika(Pacijent izabraniNalog)
+        {
+            if (izabraniNalog.Maloletnik == true)
+            {
+                maloletnik.IsChecked = true;
+                jmbgStaratelja.IsEnabled = true;
                 jmbgStaratelja.Text = izabraniNalog.JmbgStaratelja.ToString();
-
-                if (izabraniNalog.Pol.Equals(pol.M))
-                {
-                    combo2.SelectedIndex = 0;
-                } 
-                else if (izabraniNalog.Pol.Equals(pol.Z))
-                {
-                    combo2.SelectedIndex = 1;
-                }
-               
-                if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
-                {
-                    combo.SelectedIndex = 0;
-                    combo.IsEnabled = false;
-
-                    brojTelefona.IsEnabled = true;
-                    email.IsEnabled = true;
-                    adresa.IsEnabled = true;
-                    combo3.IsEnabled = true;
-                    zanimanje.IsEnabled = true;
-
-                }
-                else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest)) 
-                {
-                    combo.SelectedIndex = 1;
-
-                    brojTelefona.IsEnabled = false;
-                    email.IsEnabled = false;
-                    adresa.IsEnabled = false;
-                    combo3.IsEnabled = false;
-                    zanimanje.IsEnabled = false;
-                }
-
-                brojTelefona.Text = izabraniNalog.BrojTelefona.ToString();
-                email.Text = izabraniNalog.Email;
-                adresa.Text = izabraniNalog.AdresaStanovanja;
-                zanimanje.Text = izabraniNalog.Zanimanje;
-
-                if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Neudata))
-                {
-                    combo3.SelectedIndex = 0;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Ozenjen) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udata))
-                {
-                    combo3.SelectedIndex = 1;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovac) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Udovica))
-                {
-                    combo3.SelectedIndex = 2;
-                }
-                else if (izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razveden) || izabraniNalog.BracnoStanje.Equals(bracnoStanje.Razvedena))
-                {
-                    combo3.SelectedIndex = 3;
-                }
-                else
-                {
-                    combo3.SelectedIndex = 4;
-                }
-
-                if (izabraniNalog.Maloletnik == true)
-                {
-                    maloletnik.IsChecked = true;
-                }
-                else
-                {
-                    maloletnik.IsChecked = false;
-                    jmbgStaratelja.IsEnabled = false;
-                }
+            }
+            else
+            {
+                maloletnik.IsChecked = false;
+                jmbgStaratelja.IsEnabled = false;
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void OnemoguciPoljaZaGuestNalog(Pacijent izabraniNalog)
         {
-            statusNaloga status;
-            pol pol;
-            bracnoStanje brStanje;
-            bool maloletnoLice;
-            int staratelj;
-
-            if (combo2.Text.Equals("M"))
+            if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Stalni))
             {
-                pol = pol.M;
+                statusPacijenta.SelectedIndex = 0;
+                statusPacijenta.IsEnabled = false;
+                brojTelefona.IsEnabled = true;
+                email.IsEnabled = true;
+                adresa.IsEnabled = true;
+                bracnoStanjePacijenta.IsEnabled = true;
+                zanimanje.IsEnabled = true;
+            }
+            else if (izabraniNalog.StatusNaloga.Equals(statusNaloga.Guest))
+            {
+                statusPacijenta.SelectedIndex = 1;
+                statusPacijenta.IsEnabled = true;
+                brojTelefona.IsEnabled = false;
+                email.IsEnabled = false;
+                adresa.IsEnabled = false;
+                bracnoStanjePacijenta.IsEnabled = false;
+                zanimanje.IsEnabled = false;
+            }
+        }
+
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            statusNaloga status = PacijentiServis.OdrediStatusNaloga(statusPacijenta.Text);
+            pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
+            bracnoStanje brStanje = PacijentiServis.OdreditiBracnoStanje(bracnoStanjePacijenta.SelectedIndex, polPacijenta.Text);
+            bool maloletnoLice = PacijentiServis.MaloletnoLice((bool)maloletnik.IsChecked);
+            long staratelj = PacijentiServis.OdrediJmbgStaratelja(jmbgStaratelja.Text);
+
+            if (statusPacijenta.SelectedIndex == 0) // stalan nalog
+            {
+                Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
             }
             else
             {
-                pol = pol.Z;
-            }
-
-            if ((bool)maloletnik.IsChecked)
-            {
-                Console.WriteLine("cekirano");
-                maloletnoLice = true;
-            }
-            else
-            {
-                maloletnoLice = false;
-            }
-
-            if (jmbgStaratelja.Text.Equals(""))
-            {
-                staratelj = 0;
-            }
-            else
-            {
-                staratelj = Convert.ToInt32(jmbgStaratelja.Text);
-            }
-
-            // za stalan nalog    
-            if (combo.SelectedIndex == 0)
-            {
-                status = statusNaloga.Stalni;
-
-                if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Neudata;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-                else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Udata;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-                else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Udovica;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-                else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("Z"))
-                {
-                    brStanje = bracnoStanje.Razvedena;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-
-                if (combo3.Text.Equals("Neozenjen/Neudata") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Neozenjen;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-                else if (combo3.Text.Equals("Ozenjen/Udata") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Ozenjen;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-                else if (combo3.Text.Equals("Udovac/Udovica") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Udovac;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }
-                else if (combo3.Text.Equals("Razveden/Razvedena") && combo2.Text.Equals("M"))
-                {
-                    brStanje = bracnoStanje.Razveden;
-                    Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                    PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent);
-                }   
-            }
-            else // za guest nalog
-            {
-                status = statusNaloga.Guest;      
-                Pacijent noviPacijent1 = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, int.Parse(jmbg.Text), pol, status);
-                noviPacijent1.BracnoStanje = bracnoStanje.Neodredjeno;
-                PacijentiMenadzer.IzmeniNalog(pacijent, noviPacijent1);    
+                Pacijent guestPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
+                PacijentiServis.IzmeniNalog(pacijent, guestPacijent);    
             }
 
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void combo_LostFocus(object sender, RoutedEventArgs e)
+        private void Combo_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (combo.Text.Equals("GUEST"))
+            if (statusPacijenta.Text.Equals("GUEST"))
             {
                 brojTelefona.IsEnabled = false;
                 email.IsEnabled = false;
                 adresa.IsEnabled = false; 
                 zanimanje.IsEnabled = false;
-                combo3.IsEnabled = false;
+                bracnoStanjePacijenta.IsEnabled = false;
                 maloletnik.IsEnabled = false;
                 jmbgStaratelja.IsEnabled = false;
+
+                if (flag1 == true && flag2 == true && flag6 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
-            else if (combo.Text.Equals("STALAN"))
+            else if (statusPacijenta.Text.Equals("STALAN"))
             {
                 brojTelefona.IsEnabled = true;
                 email.IsEnabled = true;
                 adresa.IsEnabled = true;
                 zanimanje.IsEnabled = true;
-                combo3.IsEnabled = true;
+                bracnoStanjePacijenta.IsEnabled = true;
                 maloletnik.IsEnabled = true;
-                jmbgStaratelja.IsEnabled = true;
+
+                if ((bool)maloletnik.IsChecked)
+                {
+                    jmbgStaratelja.IsEnabled = true;
+                }
+                else
+                {
+                    jmbgStaratelja.IsEnabled = false;
+                }
+
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true 
+                    && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
         }
 
-        private void maloletnik_LostFocus(object sender, RoutedEventArgs e)
+        private void Maloletnik_LostFocus(object sender, RoutedEventArgs e)
         {
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
+                flag8 = false;
+                potvrdi.IsEnabled = false;
             }
             else
             {
                 jmbgStaratelja.IsEnabled = false;
+                flag8 = true;
             }
         }
+
+        private void Ime_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag1 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag1 = true;
+                if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                    || (flag1 == true && flag2 == true && flag6 == true && statusPacijenta.Text.Equals("GUEST")))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Prezime_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag2 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag2 = true;
+                if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                    || (flag1 == true && flag2 == true && flag6 == true && statusPacijenta.Text.Equals("GUEST")))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Adresa_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag3 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag3 = true;
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Email_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag4 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag4 = true;
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Zanimanje_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag5 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag5 = true;
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                    && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Jmbg_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag6 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(jmbg.Text, out result))
+                {
+                    if (jmbg.Text.Length >= 9 && jmbg.Text.Length <= 13)
+                    {
+                        validacijaJmbg.Visibility = Visibility.Hidden;
+                        flag6 = true;
+                        if ((flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                            && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                            || (flag1 == true && flag2 == true && flag6 == true && statusPacijenta.Text.Equals("GUEST")))
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flag6 = false;
+                        validacijaJmbg.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flag6 = false;
+                    validacijaJmbg.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void BrojTelefona_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag7 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(brojTelefona.Text, out result))
+                {
+                    if (brojTelefona.Text.Length >= 6 && brojTelefona.Text.Length <= 10)
+                    {
+                        validacijaBrojTelefona.Visibility = Visibility.Hidden;
+                        flag7 = true;
+                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                            && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flag7 = false;
+                        validacijaBrojTelefona.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flag7 = false;
+                    validacijaBrojTelefona.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
+        private void JmbgStaratelja_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag8 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(jmbgStaratelja.Text, out result))
+                {
+                    if (jmbgStaratelja.Text.Length >= 9 && jmbgStaratelja.Text.Length <= 13)
+                    {
+                        validacijaJmbgStaratelja.Visibility = Visibility.Hidden;
+                        flag8 = true;
+                        if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true 
+                            && flag6 == true && flag7 == true && flag8 == true && statusPacijenta.Text.Equals("STALAN"))
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flag8 = false;
+                        validacijaJmbgStaratelja.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flag8 = false;
+                    validacijaJmbgStaratelja.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
+            }
+        }
+
     }
 }

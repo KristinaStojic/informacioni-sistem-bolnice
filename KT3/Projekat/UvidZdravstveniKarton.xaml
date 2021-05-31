@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="UvidZdravstveniKarton" Height="678" Width="860" WindowStartupLocation="CenterScreen">
+        Title="UvidZdravstveniKarton" Height="678" Width="860" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid Margin="0,0,-6,1">
         <Label Content="Zdravstveni karton" VerticalAlignment="Top" Height="31" Width="166" FontWeight="Bold" FontSize="17" Margin="347,10,346.6,0"/>
         <StackPanel>
@@ -36,8 +36,11 @@
                             </Setter>
                         </Style>
                     </TabControl.Resources>
-                    <TabItem Header="Lični podaci" Width="100" IsSelected="True" Height="25" >
+                    <TabItem Header="Lični podaci" x:Name="licniPodaci" Width="100" IsSelected="True" Height="25">
                         <Grid>
+                            <TextBlock Margin="612,6,0,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" FontSize="20" HorizontalAlignment="Left" Width="165">
+                                <Hyperlink Click="Pomoc_Click"> Pomoć? (Ctrl + P) </Hyperlink>
+                            </TextBlock>
                             <GroupBox Header="Lični podaci" HorizontalAlignment="Left" Height="489" Margin="19,26,0,0" VerticalAlignment="Top" Width="421" FontSize="14">
                             </GroupBox>
                             <Label Grid.Row="0" FontSize="15" VerticalContentAlignment="Center" Content="Ime pacijenta:" Margin="53,69,634.2,441" Height="30"/>
@@ -54,20 +57,19 @@
                             <TextBox x:Name="ime" Grid.Row="0" Margin="235,71,382.2,437" IsReadOnly="True" />
                             <TextBox x:Name="prezime" Margin="235,110,382.2,397" IsReadOnly="True"/>
                             <TextBox  x:Name="jmbg" Margin="235,152,382.2,355" IsReadOnly="True"/>
-                            <ComboBox x:Name="combo2"  Margin="235,189,382.2,317" IsReadOnly="True" IsEnabled="False" Height="30">
+                            <ComboBox x:Name="polPacijenta"  Margin="235,189,382.2,317" IsReadOnly="True" IsEnabled="False" Height="30">
                                 <ComboBoxItem Content="M"/>
                                 <ComboBoxItem Content="Z"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo"  Margin="235,229,382.2,274" SelectedIndex="0" IsReadOnly="True">
+                            <ComboBox x:Name="statusPacijenta"  Margin="235,229,382.2,274" SelectedIndex="0" IsReadOnly="True">
                                 <ComboBoxItem Content="STALAN"/>
                                 <ComboBoxItem Content="GUEST"/>
                             </ComboBox>
-                            <ComboBox x:Name="combo3"  Margin="235,399,382.2,107" IsReadOnly="True" IsEnabled="False"  Height="30">
+                            <ComboBox x:Name="bracnoStanjePacijenta"  Margin="235,399,382.2,107" IsReadOnly="True" IsEnabled="False"  Height="30">
                                 <ComboBoxItem Content="Neozenjen/Neudata"/>
                                 <ComboBoxItem Content="Ozenjen/Udata"/>
                                 <ComboBoxItem Content="Udovac/Udovica"/>
                                 <ComboBoxItem Content="Razveden/Razvedena"/>
-                                <ComboBoxItem Content="Neodredjeno"/>
                             </ComboBox>
                             <TextBox x:Name="brojTelefona" Margin="235,274,382.2,233" IsReadOnly="True"/>
                             <TextBox x:Name="email" Margin="235,316,382.2,191" IsReadOnly="True"/>
@@ -82,7 +84,7 @@
                             <GroupBox Header="Fotografija" HorizontalAlignment="Left" Height="193" Margin="465,26,0,0" VerticalAlignment="Top" Width="312" FontSize="14">
                                 <Image Source="slike/osoba.jpg" Width="108" HorizontalAlignment="Center" Margin="94,18,98,31" RenderTransformOrigin="0.475,0.468"/>
                             </GroupBox>
-                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="711,466,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Button_Click">
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="711,466,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Nazad_Click">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -97,12 +99,15 @@
                             <CheckBox x:Name="maloletnik" HorizontalAlignment="Left" Margin="235,487,0,0" VerticalAlignment="Top" FontSize="14" IsEnabled="False"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Anamneza" Width="100">
+                    <TabItem Header="Anamneza" x:Name="anamneza" Width="100">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="241*"/>
                                 <ColumnDefinition Width="550*"/>
                             </Grid.ColumnDefinitions>
+                            <TextBlock Margin="327.2,20,58.2,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" FontSize="20" Grid.Column="1">
+                                <Hyperlink Click="Pomoc_Click"> Pomoć? (Ctrl + P) </Hyperlink>
+                            </TextBlock>
                             <Label Content="Anamneze" HorizontalAlignment="Left" Margin="52,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#FF918A8A"/>
                             <DataGrid x:Name="dataGridAnamneze" ItemsSource="{Binding TabelaAnamneza}" IsReadOnly="True" 
                         SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
@@ -113,7 +118,7 @@
                                     <DataGridTextColumn Header="Lekar koji je kreirao anamnezu" Binding="{Binding ImePrezimeLekara}" Width="375"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="447.2,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click" Grid.Column="1">
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="447.2,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click" Grid.Column="1">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -127,21 +132,23 @@
                             </Button>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Alergeni" Width="100">
+                    <TabItem Header="Alergeni" x:Name="alergeni" Width="100">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="121*"/>
                                 <ColumnDefinition Width="670*"/>
                             </Grid.ColumnDefinitions>
+                            <TextBlock Margin="446.2,20,34.2,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" FontSize="20" Grid.Column="1">
+                                <Hyperlink Click="Pomoc_Click"> Pomoć? (Ctrl + P) </Hyperlink>
+                            </TextBlock>
                             <Label Content="Spisak lekova koje pacijent ne sme da koristi" Foreground="#FF918A8A" HorizontalAlignment="Left" Margin="52,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Grid.ColumnSpan="2"/>
                             <DataGrid x:Name="dataGridAlergeni"  IsReadOnly="True"  ItemsSource="{Binding TabelaAlergena}"
                                 SelectionMode="Single" AutoGenerateColumns="False" Margin="52,64,48.2,0" VerticalAlignment="Top"  Height="387" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Grid.ColumnSpan="2">
                                 <DataGrid.Columns >
-                                    <DataGridTextColumn Header="Šifra leka" Width="320"  Binding="{Binding SifraLeka}" />
-                                    <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding NazivLeka}"/>
+                                    <DataGridTextColumn Header="Naziv leka" Width="300*"  Binding="{Binding NazivSastojka}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Background="Transparent" HorizontalAlignment="Right" BorderBrush="Transparent" Margin="0,466,48.2,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click" Grid.Column="1">
+                            <Button Background="Transparent" HorizontalAlignment="Right" BorderBrush="Transparent" Margin="0,466,48.2,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click" Grid.Column="1">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -155,8 +162,11 @@
                             </Button>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Recepti" Width="100" Height="25">
+                    <TabItem Header="Recepti" x:Name="recepti" Width="100" Height="25">
                         <Grid>
+                            <TextBlock Margin="569,20,36.2,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" FontSize="20">
+                                <Hyperlink Click="Pomoc_Click"> Pomoć? (Ctrl + P) </Hyperlink>
+                            </TextBlock>
                             <Label Content="Recepti" Foreground="#FF918A8A" HorizontalAlignment="Left" Margin="52,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
                             <DataGrid x:Name="dataGridTermini" ItemsSource="{Binding PrikazRecepata}" IsReadOnly="True" 
                                 SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
@@ -170,7 +180,7 @@
                                     <DataGridTextColumn Header="Dnevna kolicina" Binding="{Binding DnevnaKolicina}"  Width="120"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="689,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Button_Click">
+                            <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="689,466,0,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click">
                                 <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
                                     <Image.RenderTransform>
                                         <TransformGroup>
@@ -184,7 +194,33 @@
                             </Button>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Uputi" Width="100">
+                    <TabItem Header="Uputi" x:Name="uputi" Width="100">
+                        <Grid>
+                            <Label Content="Uputi" Foreground="#FF918A8A" HorizontalAlignment="Left" Margin="50,16,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+                            <TextBlock Margin="566,20,40.2,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" FontSize="20">
+                                <Hyperlink Click="Pomoc_Click"> Pomoć? (Ctrl + P) </Hyperlink>
+                            </TextBlock>
+                            <DataGrid x:Name="dataGridUputi" ItemsSource="{Binding TabelaUputa}" IsReadOnly="True" 
+                                SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
+                                 Margin="52,64,0,0" VerticalAlignment="Top" Height="387" Width="691" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Visibility="Visible">
+                                <DataGrid.Columns >
+                                    <DataGridTextColumn Header="Datum izdavanja" Width="170" Binding="{Binding datumIzdavanja}" />
+                                    <DataGridTextColumn Header="Tip uputa" Width="180*" Binding="{Binding}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button Background="Transparent" HorizontalAlignment="Right" BorderBrush="Transparent" Margin="0,466,48.2,0" VerticalAlignment="Top" Width="54" Height="49" Click="Nazad_Click" Grid.Column="1">
+                                <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="180.232"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Image.RenderTransform>
+                                </Image>
+                            </Button>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Border>

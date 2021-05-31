@@ -1,0 +1,20 @@
+﻿<Window x:Class="Projekat.DetaljiAlergenaSekretar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat"
+        mc:Ignorable="d"
+        Title="DetaljiAlergenaSekretar" Height="490" Width="442" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Šifra leka" HorizontalAlignment="Left" Margin="31,47,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
+        <TextBox Name="naziv" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,88,0,0" IsEnabled="False"/>
+        <Label Content="Naziv leka" HorizontalAlignment="Left" Margin="31,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
+        <TextBox Name ="nuspojava" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,129,0,0"/>
+        <Label Content="Nuspojava na lek" HorizontalAlignment="Left" Margin="31,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="141"/>
+        <TextBox Name ="vreme" HorizontalAlignment="Left" Height="110" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,263,0,0"/>
+        <Label Content="Nakon koliko vremena se &#xD;&#xA;pojavila nuspojava" HorizontalAlignment="Left" Margin="31,253,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="147"/>
+        <Button Background="#FFA3DADE" Content="Nazad" HorizontalAlignment="Left" Margin="269,399,0,0" VerticalAlignment="Top" Height="39" Width="116" Click="Nazad_Click"/>
+        <TextBox x:Name="sifra" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" Margin="216,50,0,0" IsEnabled="False"/>
+    </Grid>
+</Window>

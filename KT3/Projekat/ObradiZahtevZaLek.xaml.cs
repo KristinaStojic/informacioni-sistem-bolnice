@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Projekat
             InitializeComponent();
             this.DataContext = this;
             this.zahtev = izabraniZahtev;
-            this.spisakSastojaka.ItemsSource = LekoviMenadzer.nadjiSastojke(izabraniZahtev);
+            this.spisakSastojaka.ItemsSource = LekoviServis.nadjiSastojke(izabraniZahtev);
             this.datum.SelectedDate = DateTime.Parse(izabraniZahtev.datumSlanjaZahteva);
             this.naziv.Text = izabraniZahtev.nazivLeka;
             this.sifra.Text = izabraniZahtev.sifraLeka;
@@ -43,10 +44,10 @@ namespace Projekat
         {
             zahtev.odobrenZahtev = true;
             zahtev.obradjenZahtev = true;
-            Lek lek = new Lek(LekoviMenadzer.GenerisanjeIdLijeka(), zahtev.nazivLeka,zahtev.sifraLeka, zahtev.lek.zamenskiLekovi, zahtev.lek.sastojci);
-            LekoviMenadzer.DodajLijek(lek);
-            LekoviMenadzer.izmeniZahtev(zahtev);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            Lek lek = new Lek(LekoviServis.GenerisanjeIdLijeka(), zahtev.nazivLeka,zahtev.sifraLeka, zahtev.lek.zamenskiLekovi, zahtev.lek.sastojci);
+            LekoviServis.DodajLijek(lek);
+            LekoviServis.izmeniZahtev(zahtev);
+            LekoviServis.sacuvajIzmeneZahteva();
             this.Close();
         }
     }

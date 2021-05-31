@@ -1,5 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
+using Projekat.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,19 +29,22 @@ namespace Projekat
         public static ObservableCollection<Lek> lekovi;
         public static ObservableCollection<Alergeni> alergeni;
         public static ObservableCollection<ZahtevZaLekove> zahtevi;
+        public static ObservableCollection<Krevet> kreveti;
         public MainWindow()
         {
             InitializeComponent();
-            SaleMenadzer.NadjiSveSale();
-            OpremaMenadzer.NadjiSvuOpremu();
-            LekoviMenadzer.NadjiSveLijekove();
-            PremjestajMenadzer.NadjiSvePremjestaje();
-            TerminMenadzer.NadjiSveTermine();
-            PacijentiMenadzer.PronadjiSve();
-            ObavestenjaMenadzer.NadjiSvaObavestenja();
-            LekoviMenadzer.NadjiSveZahteve();
+            TerminServis.NadjiSveTermine();
+            SaleServis.NadjiSveSale();
+            OpremaServis.NadjiSvuOpremu();
+            LekoviServis.NadjiSveLijekove();
+            PremjestajServis.NadjiSvePremjestaje();
+            PacijentiServis.PronadjiSve();
+            ObavestenjaServis.NadjiSvaObavestenja();
+            LekariServis.NadjiSveZahteve();
+            LekariServis.NadjiSveLekare();
+            LekoviServis.NadjiSveZahteve();
 
-            lekari = new ObservableCollection<Lekar>();
+            /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
             lekari.Add(new Lekar() {IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa });
             lekari.Add(new Lekar() {IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
@@ -48,7 +53,7 @@ namespace Projekat
             lekari.Add(new Lekar() {IdLekara = 6, ImeLek = "Jagoda", PrezimeLek = "Jagodic", specijalizacija = Specijalizacija.Ortopedija });
             lekari.Add(new Lekar() {IdLekara = 7, ImeLek = "Jovana", PrezimeLek = "Jovanovic", specijalizacija = Specijalizacija.Akuserstvo });
             lekari.Add(new Lekar() { IdLekara = 8, ImeLek = "Ivan", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Hirurgija });
-            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });
+            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });*/
 
 
             lekovi = new ObservableCollection<Lek>();
@@ -58,61 +63,62 @@ namespace Projekat
             lekovi.Add(new Lek(4, "Andol", "M4M"));
             lekovi.Add(new Lek(5, "Sterpsils", "K5S"));
 
+            /*
             alergeni = new ObservableCollection<Alergeni>();
             alergeni.Add(new Alergeni(1, "Paracetamol", "P2L"));
             alergeni.Add(new Alergeni(2, "Brufen", "B1E"));
             alergeni.Add(new Alergeni(3, "Pentraxil", "R24"));
             alergeni.Add(new Alergeni(4, "Andol", "M4M"));
             alergeni.Add(new Alergeni(5, "Sterpsils", "K5S"));
-
+            */
             zahtevi = new ObservableCollection<ZahtevZaLekove>();
             zahtevi.Add(new ZahtevZaLekove(1, "Tylolhot", "T32", "11/04/2021", false));
             zahtevi.Add(new ZahtevZaLekove(2, "Vitamic C", "VC4", "10/04/2021", false));
             zahtevi.Add(new ZahtevZaLekove(3, "Panklav", "PKL", "12/04/2021", false));
 
-        }
+            kreveti = new ObservableCollection<Krevet>();
+            /*kreveti.Add(new Krevet(1., 6, false));
+            kreveti.Add(new Krevet(2, 6, true));
+            kreveti.Add(new Krevet(3, 6, false));
+            kreveti.Add(new Krevet(4, 6, false));
+            kreveti.Add(new Krevet(5, 5, true));
+            kreveti.Add(new Krevet(6, 5, true));
+            kreveti.Add(new Krevet(7, 5, false));
+            kreveti.Add(new Krevet(8, 5, false));
 
-        //ovo ce biti u LekariMenadzer-u
-        public static Lekar PronadjiPoId(int id)
-        {
-            foreach (Lekar p in lekari)
+            foreach(Krevet k in kreveti)
             {
-                if (p.IdLekara == id)
+                Console.WriteLine(k.IdKreveta + " " + k.IdSobe + " " + k.Zauzet);
+                foreach(Sala s in SaleMenadzer.sale)
                 {
-                    return p;
+                    if(k.IdSobe == s.Id)
+                    {
+                        s.Kreveti.Add(k);
+                    }
                 }
-            }
-            return null;
+            }*/
+
+            
 
         }
-
-        public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija oblastSpecijalizacije)
-        {
-            List<Lekar> specijalizovaniLekari = new List<Lekar>();
-
-            foreach (Lekar lekar in lekari)
-            {
-                if (lekar.specijalizacija.Equals(oblastSpecijalizacije))
-                {
-                    specijalizovaniLekari.Add(lekar);
-                }
-            }
-            return specijalizovaniLekari;
-        }
-        //------------------------------------------------------------------------------------
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Upravnik w1 = new Upravnik();
-            w1.Show();
-            //this.Hide();
+            /*UpravnikViewModel.UpravnikProzor = new Upravnik();
+            UpravnikViewModel.UpravnikProzor.Show();
+            UpravnikViewModel.UpravnikProzor.DataContext = new UpravnikViewModel();*/
+            UpravnikViewModel.PrijavaProzor = new UpravnikPrijava();
+            UpravnikViewModel.PrijavaProzor.Show();
+            UpravnikViewModel.PrijavaProzor.DataContext = new UpravnikViewModel();
+            this.Hide();
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-           
-            PocetnaStrana w1 = new PocetnaStrana();
-           // PrikazTerminaLekar w1 = new PrikazTerminaLekar();
+
+            //PocetnaStrana w1 = new PocetnaStrana();
+            PrijavaLekar w1 = new PrijavaLekar();
             w1.Show();
             //this.Close();
         }
@@ -127,7 +133,7 @@ namespace Projekat
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-             Sekretar s = new Sekretar();
+             SekretarPrijava s = new SekretarPrijava();
              s.Show();
            // this.Close();
         }
@@ -151,10 +157,10 @@ namespace Projekat
             {
                 Button_Click_2(sender, e);
             }
-            /*else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //sekretar
+            else if ( (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) || (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl)) ) //sekretar
             {
                 Button_Click_3(sender, e);
-            }*/
+            }
         }
     }
 }

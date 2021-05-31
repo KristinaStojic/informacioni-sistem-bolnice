@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,7 +54,7 @@ namespace Projekat
         private void dodajLekoveUTabelu()
         {
             TabelaLekova = new ObservableCollection<Lek>();
-            foreach (Lek lek in LekoviMenadzer.lijekovi)
+            foreach (Lek lek in LekoviServis.Lijekovi())
             {
                 TabelaLekova.Add(lek);
             }
@@ -151,7 +152,7 @@ namespace Projekat
             if (zahtevi.IsSelected == true)
             {
 
-                if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+                if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
                 {
                     Button_Obradi(sender, e);
                 }
@@ -159,11 +160,10 @@ namespace Projekat
                 {
                     Button_Click_1(sender, e);
                 }
-                /*else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+                else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
                 {
-                    dataGridZahtevi.SelectedIndex = 0;
-                    fokus na tabelu
-                }*/
+                    Button_Obrisi(sender, e);
+                }
             }
         }
 
@@ -222,7 +222,7 @@ namespace Projekat
 
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
             TabelaZahteva.Remove(zaBrisanje);
-            LekoviMenadzer.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();
         }
     }
 }

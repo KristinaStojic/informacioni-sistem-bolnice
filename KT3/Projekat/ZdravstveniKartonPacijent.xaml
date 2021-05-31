@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
         mc:Ignorable="d"
         Title="Zdravstveni karton" Height="600" Width="800" FontSize="15" Background="{DynamicResource BackgroundColor}">
     <ScrollViewer>
@@ -25,37 +26,37 @@
                                         <MenuItem.Icon>
                                             <Image Source="/slike/user.png" />
                                         </MenuItem.Icon>
-                                        <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
+                                        <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                         <Separator/>
-                                        <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                        <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                         <Separator/>
-                                        <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                        <MenuItem Header="_sr" />
-                                        <MenuItem Header="_en"/>
+                                        <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                        <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                         <Separator />
-                                        <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                        <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu"/>
+                                        <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                        <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                        <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                         <Separator />
-                                        <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                                        <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                                     </MenuItem>
                                 </Menu>
                             </StackPanel>
                         </StackPanel>
                         <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                <Hyperlink Name="pocetna" Click="pocetna_Click">
-                    <Run Text="Početna stranica"/>
+                <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                    <Run Text="{namespace:Loc Pocetna}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="zakazi" Click="zakazi_Click">
-                    <Run Text="Zakažite termin"/>
+                    <Run Text="{namespace:Loc ZakaziTermin}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="uvid" Click="uvid_Click">
-                    <Run Text="Uvid u zakazane termine"/>
+                    <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
                 </Hyperlink>
                 <Run Text=" "/>
                 <Hyperlink Name="karton" Click="karton_Click">
-                    <Run Text="Zdravstveni karton"/>
+                    <Run Text="{namespace:Loc Karton}"/>
                 </Hyperlink>
                         </TextBlock>
                         <TabControl x:Name="tab" HorizontalAlignment="Left"
@@ -88,36 +89,40 @@
                                 </Style>
                             </TabControl.Resources>
 
-                            <TabItem Header="Lekarski recepti" 
-                            ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
-                                <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="16" Margin="0,-2,0,0.5">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Width="35" >
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <Button  HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle2}"
+                            <TabItem Header="{namespace:Loc LekarskiRecepti}" ToolTip="Uvid u lekarske recepte" x:Name="recepti" FontSize="15" FontFamily="Arial">
+                                <StackPanel Orientation="Vertical">
+                                    <ListView x:Name="tabelaRecepata" SelectionChanged="ListView_SelectionChanged" Background="#f9f7f7" 
+                                          FontFamily="Segoe UI" FontSize="16" Height="350" Margin="0,0,0,20">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Width="35" >
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Button  HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle2}"
                                                                  Content="ℹ︎" FontSize="14" Click="Button_Click_1"/>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Header="Naziv leka" 
-                                                Width="110" DisplayMemberBinding="{Binding NazivLeka}"/>
-                                            <GridViewColumn Header="Datum" 
-                                                Width="100" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
-                                            <GridViewColumn Header="Početak korišćenja" 
-                                                Width="150" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
-                                            <GridViewColumn Header="Broj dana" Width="80"
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="{namespace:Loc NazivLeka}" 
+                                                Width="120" DisplayMemberBinding="{Binding NazivLeka}"/>
+                                                <GridViewColumn Header="{namespace:Loc Datum}" 
+                                                Width="95" DisplayMemberBinding="{Binding DatumPropisivanjaLeka}"/>
+                                                <GridViewColumn Header="{namespace:Loc PocetakTerapije}" 
+                                                Width="145" DisplayMemberBinding="{Binding PocetakKoriscenja}"/>
+                                                <GridViewColumn Header="{namespace:Loc BrojDana2}" Width="80"
                                                 DisplayMemberBinding="{Binding BrojDanaKoriscenja}"/>
-                                            <GridViewColumn Header="Dnevna kolicina" Width="120"
+                                                <GridViewColumn Header="{namespace:Loc DnevnoUzimanje}" Width="126"
                                             DisplayMemberBinding="{Binding DnevnaKolicina}"/>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <Button HorizontalAlignment="Center" Height="30" Width="100" Content="{namespace:Loc Izvestaj}" Style="{DynamicResource ButtonStyle2}" Name="Izvestaj" Click="Izvestaj_Click"/>
+                                </StackPanel>
                             </TabItem>
 
-                            <TabItem Header="Istorija bolesti" x:Name="istorijaBolesti" FontSize="16" >
-                                <ListView x:Name="prikazAnamnezi" SelectionChanged="prikazAnamnezi_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="16" Margin="0">
+                            <TabItem Header="{namespace:Loc Anamneze}" x:Name="istorijaBolesti" FontSize="16" >
+                                <ListView x:Name="prikazAnamnezi" SelectionChanged="prikazAnamnezi_SelectionChanged" Background="#f9f7f7"
+                                          FontFamily="Segoe UI" FontSize="16" Margin="0">
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Width="35">
@@ -128,23 +133,26 @@
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
-                                            <GridViewColumn Header="Datum" Width="130" 
+                                            <GridViewColumn Header="{namespace:Loc Datum}" Width="130" 
                                             DisplayMemberBinding="{Binding Datum}"/>
-                                            <GridViewColumn Header="Anamneza" Width="435" 
+                                            <GridViewColumn Header="{namespace:Loc Anamneza}" Width="435" 
                                             DisplayMemberBinding="{Binding OpisBolesti}"/>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
                             </TabItem>
 
-                            <TabItem Header="Lekarski uputi" x:Name="uputi" FontSize="16">
-                                <ListView x:Name="prikazUputa" SelectionChanged="prikazUputa_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="16" Margin="0,0,0,0.5">
+                            <TabItem Header="{namespace:Loc LekarskiUputi}" x:Name="uputi" FontSize="16">
+                                <ListView x:Name="prikazUputa" SelectionChanged="prikazUputa_SelectionChanged" Background="#f9f7f7" 
+                                          FontFamily="Segoe UI" FontSize="16" Margin="0,0,0,0" ItemsSource="{Binding uputiPacijenta}">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="Datum" DisplayMemberBinding="{Binding datumIzdavanja}"
+                                            <GridViewColumn Header="{namespace:Loc Datum}" DisplayMemberBinding="{Binding datumIzdavanja}"
+                                                            Width="100"/>
+                                            <GridViewColumn Header="{namespace:Loc TipUputa}" x:Name="uputTip" DisplayMemberBinding="{Binding}"
                                                             Width="200"/>
-                                            <GridViewColumn Header="Tip uputa" DisplayMemberBinding="{Binding TipUputa}"
-                                                            Width="400"/>
+                                            <GridViewColumn Header="{namespace:Loc OpisUputa}" DisplayMemberBinding="{Binding opisPregleda}"
+                                                            Width="300"/>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>

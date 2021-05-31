@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Dodavanje opreme" Height="227" Width="334" WindowStartupLocation="CenterScreen" Background="LightSteelBlue">
+        Title="Dodavanje opreme" Height="227" Width="334" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:SkladisteViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -18,9 +21,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Name="Naziv" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Naziv:</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" Name="Kolicina" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">Kolicina:</TextBlock>
-        <Button Grid.Row="2" Background="CadetBlue" Grid.Column="0" Name="Potvrdi" Click="Potvrdi_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="105" Height="40" Margin="50, 8, 8, 8">Potvrdi</Button>
-        <Button Grid.Row="2" Background="CadetBlue" Grid.Column="1" Name="Odustani" Click="Odustani_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="105" Height="40" Margin="8, 8, 50, 8">Odustani</Button>
-        <TextBox Name="naziv" Grid.Row="0" Grid.Column="1" Width="122" Height="27" TextChanged="naziv_TextChanged"></TextBox>
-        <TextBox Name="kolicina" Grid.Row="1" Grid.Column="1" Width="122" Height="27" TextChanged="kolicina_TextChanged"></TextBox>
+        <Button Grid.Row="2" Background="CadetBlue" Grid.Column="0" Name="Potvrdi" Command="{Binding DodavanjeOpremeKomanda}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="105" Height="40" Margin="50, 8, 8, 8">Potvrdi</Button>
+        <Button Grid.Row="2" Background="CadetBlue" Grid.Column="1" Name="Odustani" Command="{Binding ZatvoriDodavanjeOpreme}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="105" Height="40" Margin="8, 8, 50, 8">Odustani</Button>
+        <TextBox Name="naziv" Grid.Row="0" Grid.Column="1" Width="122" Height="27" Text="{Binding NazivOpreme, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Name="kolicina" Grid.Row="1" Grid.Column="1" Width="122" Height="27" Text="{Binding KolicinaOpreme, UpdateSourceTrigger=PropertyChanged}"></TextBox>
     </Grid>
 </Window>

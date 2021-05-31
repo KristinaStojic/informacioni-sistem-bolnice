@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
         mc:Ignorable="d"
-        Title="Anamneza" Height="600" Width="800" Background="{DynamicResource BackgroundColor}">
+        Title="Anamneza" Height="830" Width="800" Background="{DynamicResource BackgroundColor}">
     <Grid RenderTransformOrigin="0.512,0.511">
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="20*" />
@@ -13,12 +14,12 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
             <RowDefinition Height="13*"/>
+            <RowDefinition Height="153*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Margin="0,0,0,-150" Grid.ColumnSpan="3" Grid.RowSpan="2">
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <Grid  Margin="0,0,0,0" Height="578">
-                <StackPanel >
+                <StackPanel Margin="0,0,0,0" >
                     <StackPanel Name="zaglavlje" Background="{DynamicResource StackPanelBackgroundColor}" Height="40"  Orientation="Horizontal">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
@@ -31,82 +32,168 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
                                     <Separator/>
-                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
                                     <Separator/>
-                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                    <MenuItem Header="_sr" />
-                                    <MenuItem Header="_en"/>
+                                    <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                    <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
                                     <Separator />
-                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Tamna" Name="svetlaTema" Click="PromeniTemu" />
+                                    <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                    <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                    <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
                                     <Separator />
-                                    <MenuItem Header="_Odjavite se" Name="odjava" Click="odjava_Click"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                <Hyperlink Name="pocetna" Click="pocetna_Click">
-                    <Run Text="Početna stranica"/>
+                <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                    <Run Text="{namespace:Loc Pocetna}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="zakazi" Click="zakazi_Click">
-                    <Run Text="Zakažite termin"/>
+                    <Run Text="{namespace:Loc ZakaziTermin}"/>
                 </Hyperlink>
                 <Run Text="  "/>
                 <Hyperlink Name="uvid" Click="uvid_Click">
-                    <Run Text="Uvid u zakazane termine"/>
+                    <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
                 </Hyperlink>
                 <Run Text=" "/>
                 <Hyperlink Name="karton" Click="karton_Click">
-                    <Run Text="Zdravstveni karton"/>
+                    <Run Text="{namespace:Loc Karton}"/>
                 </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="200,0,100,100" Background="#e8f1f5">
-            <StackPanel>
-                <Label Content="Podaci o anamnezi" HorizontalAlignment="Center" FontSize="15" Margin="133,10,119.5,0" FontWeight="Bold" Width="147"/>
+        <StackPanel Margin="99.5,20,99.5,10" Background="{DynamicResource BackgroundUputi}" Grid.Column="1" Grid.Row="1">
+            <StackPanel Background="{DynamicResource StackPanelBackgroundColor}">
+                <Label Content="{namespace:Loc Anamneza}" HorizontalAlignment="Left" Width="165"  Foreground="{DynamicResource TextColor}"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="45,20,49.5,0" Height="30" Width="305">
-                <Label Margin="0, 0, 0, 0" FontSize="14" Content="Datum"/>
-                <!--TextBlock Margin="50, 0, 0, 0"
-                           x:Name="datumAnamneze"
-                           Width="200"
-                           IsEnabled="False"/-->
-                <TextBox Margin="50, 0, 0, 0"
-                            Name="datumAnamneze"
-                            Width="200"
-                            Height="30"
-                            IsEnabled="False" RenderTransformOrigin="0.722,0.333"></TextBox>
-            </StackPanel>
-            <StackPanel Margin="0,15,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Margin="0" FontSize="14">Lekar</Label>
-                <TextBox Margin="54, 0, 0, 0"
-                         Name="podaciLekar"
-                         Width="200"
-                         IsEnabled="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-25,15,0,0">
-                <Label FontSize="14">Opis bolesti</Label>
-                <TextBox x:Name="opisBolesti"
-                         Margin="45, 0, 5, 0"
-                         Width="200"
-                         Height="110"
-                         IsEnabled="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 15, 0, 0">
-                <Label Margin="0" FontSize="14">Terapija</Label>
-                <TextBox Margin="50, 0, 10, 0"
-                         Name="terpaija"
-                         Width="200"
-                         Height="110"
-                         IsEnabled="False"/>
-            </StackPanel>
+            <GroupBox Header="{namespace:Loc Pacijent}" HorizontalAlignment="Stretch" Width="350" Margin="10, 10, 10, 0" Foreground="{DynamicResource TextColor}">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0, 10, 0, 0">
+                        <Label Content="{namespace:Loc ImePacijenta}" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource TextColor}"/>
+                        <TextBox x:Name ="ime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="60,0, 0, 0"
+                                 VerticalAlignment="Top" Width="175" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 05, 0, 5">
+                        <Label Content="{namespace:Loc PrezimePacijenta}"  Foreground="{DynamicResource TextColor}"/>
+                        <TextBox x:Name ="prezime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="35, 0, 0, 0"
+                                 VerticalAlignment="Top" Width="175" IsEnabled="False" Grid.Column="1" Grid.Row="1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 10">
+                        <Label Content="{namespace:Loc JmbgPacijenta}"  Foreground="{DynamicResource TextColor}" />
+                        <TextBox x:Name="jmbg" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Width="175"
+                                 Margin="50,0, 0, 0" IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{namespace:Loc PodaciTermin}" Width="350" Margin="10,10, 10, 0"  Foreground="{DynamicResource TextColor}">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,10,10,5" Width="306" >
+                        <Label Margin="0, 0, 0, 0" Content="{namespace:Loc Datum}" Width="50"  Foreground="{DynamicResource TextColor}"/>
+                        <TextBox Margin="77,0,0,0"
+                            x:Name="datumTermina"
+                            Width="175"
+                            Height="22"
+                            IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,0,10,5" Width="306" >
+                        <Label Margin="0, 0, 0, 0" Content="{namespace:Loc Vreme}" Width="50"  Foreground="{DynamicResource TextColor}"/>
+                        <TextBox Margin="77,0,0,0"
+                            x:Name="vremeTermina"
+                            Width="175"
+                            Height="22"
+                            IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,0,10,10" Width="306" >
+                        <Label Margin="0, 0, 0, 0" Content="{namespace:Loc Sala}" Width="56"  Foreground="{DynamicResource TextColor}"/>
+                        <TextBox Margin="72,0,0,0"
+                            x:Name="sala"
+                            Width="175"
+                            Height="22"
+                            IsEnabled="False"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{namespace:Loc AnamnezaPodaci}" Width="350" Margin="10, 10, 10, 0"  Foreground="{DynamicResource TextColor}">
+                <StackPanel Orientation="Vertical">
+                    <!--StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,10,10,10" Width="306" >
+                        <Label Margin="0, 0, 0, 0" Content="Datum" Width="50"  Foreground="{DynamicResource TextColor}"/>
+                        <TextBox Margin="77,0,0,0"
+                            x:Name="datumAnamneze"
+                            Width="175"
+                            Height="22"
+                            IsEnabled="False"/>
+                    </-->
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="18,10,0,10" Width="320">
+                        <Label Margin="0, 0, 0, 0" Foreground="{DynamicResource TextColor}" Content="{namespace:Loc OpisBolesti}"></Label>
+                        <TextBox x:Name="opisBolesti"
+                             Margin="60, 0, 0, 0"
+                             Width="175"
+                             Height="80"
+                             IsEnabled="False"
+                             TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="23,0,10,10" Width="305">
+                        <Label Margin="10, 0, 0, 0"  Foreground="{DynamicResource TextColor}" Content="{namespace:Loc Terapija}"></Label>
+                        <TextBox Margin="67, 0, 10, 0"
+                                Name="terpaija"
+                                Width="175"
+                                Height="80"
+                                IsEnabled="False"
+                                TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Margin="16,0,0,10" Orientation="Horizontal" HorizontalAlignment="Center" Width="322">
+                        <Label Margin="05, 0, 0,0"  Foreground="{DynamicResource TextColor}" Content="{namespace:Loc PotpisLekara}"></Label>
+                        <TextBox Margin="53, 0, 0, 0"
+                                 Name="podaciLekar"
+                                 Width="175"
+                                 Height="22"
+                                 IsEnabled="False" FontFamily="Segoe Script"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{namespace:Loc Beleske}" Width="350" Margin="28,10,22,10"  Foreground="{DynamicResource TextColor}" Height="126">
+                <StackPanel Orientation="Vertical" Margin="0, 0, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Width="306" Margin="0, 10, 0, 10">
+                        <StackPanel Orientation="Vertical" Margin="0, 0, 0, 0">
+                            <Button x:Name="DodajBelesku" 
+                                    Margin="10, 3, 0,0"
+                                    Height="22"
+                                    Width="80"
+                                    Content="{namespace:Loc Dodaj}"
+                                    Style="{DynamicResource ButtonStyle2}" Click="DodajBelesku_Click"/>
+                            <Button x:Name="IzmeniBelesku" 
+                                    Margin="10, 5, 0,0"
+                                    Height="22"
+                                    Width="80"
+                                    Content="{namespace:Loc Izmeni}"
+                                    IsEnabled="False"
+                                    Style="{DynamicResource ButtonStyle2}" Click="IzmeniBelesku_Click"/>
+                            <Button x:Name="SacuvajBelesku"
+                                    Height="22"
+                                    Width="80"
+                                    Content="{namespace:Loc Sacuvaj}"
+                                    Style="{DynamicResource ButtonStyle2}"
+                                    Margin="10,5, 0, 3" Click="SacuvajBelesku_Click"
+                                    IsEnabled="False"/>
+                        </StackPanel>
+                        <TextBox Margin="43,0,0,0"
+                                 Name="beleska"
+                                    Width="173"
+                                    Height="80"
+                                    IsEnabled="False"
+                                    TextWrapping="Wrap"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+
         </StackPanel>
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +28,10 @@ namespace Projekat
             this.DataContext = this;
             terminZaBrisanje = zaBrisanje;
             idPacijent = zaBrisanje.Pacijent.IdPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodatkeOTerminuZaBrisanje(zaBrisanje);
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
         private void InicijalizujPodatkeOTerminuZaBrisanje(Termin zaBrisanje)
@@ -42,7 +43,7 @@ namespace Projekat
             this.sala.Text = zaBrisanje.Prostorija.Id.ToString();
         }
 
-        // BRISANJE TERMINA
+        #region Otkazivanje termina
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             OtkaziOdabraniTermin();
@@ -52,8 +53,8 @@ namespace Projekat
 
         private static void OtkaziOdabraniTermin()
         {
-            TerminMenadzer.OtkaziTermin(terminZaBrisanje);
-            MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent); // potencijalno maliciozno ponasanje
+            TerminServis.OtkaziTermin(terminZaBrisanje);
+            MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent); 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -61,67 +62,69 @@ namespace Projekat
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
         }
+        #endregion
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);
+            /*Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);*/
+            PacijentWebStranice.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(idPacijent);
-            this.NavigationService.Navigate(karton);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            Page pocetna = new PrikaziTermin(idPacijent);
-            this.NavigationService.Navigate(pocetna);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
 
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
-            {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-            }
-            else
-            {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
         }
 
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            Page podaci = new LicniPodaciPacijenta(idPacijent);
-            this.NavigationService.Navigate(podaci);
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
         }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            /* var app = (App)Application.Current;
+             // TODO: proveriti
+             string eng = "en-US";
+             string srb = "sr-LATN";
+             MenuItem mi = (MenuItem)sender;
+             if (mi.Header.Equals("en-US"))
+             {
+                 mi.Header = "sr-LATN";
+                 app.ChangeLanguage(eng);
+             }
+             else
+             {
+                 mi.Header = "en-US";
+                 app.ChangeLanguage(srb);
+             }*/
+            PacijentWebStranice.Jezik_Click(Jezik);
+
+        }
+
     }
 }

@@ -7,6 +7,7 @@
 using System;
 using System.ComponentModel;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Model
 {
@@ -24,7 +25,7 @@ namespace Model
     }
     public class Pacijent : INotifyPropertyChanged
     {
-        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, int Jmbg, pol pol, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status, String zanimanje, bracnoStanje stanje)
+        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, long Jmbg, pol pol, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status, String zanimanje, bracnoStanje stanje)
         {
             this.IdPacijenta = IdPacijenta;
             this.ImePacijenta = ImePacijenta;
@@ -39,7 +40,7 @@ namespace Model
             this.BracnoStanje = stanje;
         }
 
-        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, int Jmbg, pol pol, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status, String zanimanje, bracnoStanje stanje, bool Maloletnik, int JmbgStaratelja)
+        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, long Jmbg, pol pol, long BrojTelefona, string Email, string AdresaStanovanja, statusNaloga Status, String zanimanje, bracnoStanje stanje, bool Maloletnik, long JmbgStaratelja)
         {
             this.IdPacijenta = IdPacijenta;
             this.ImePacijenta = ImePacijenta;
@@ -54,11 +55,12 @@ namespace Model
             this.BracnoStanje = stanje;
             this.Maloletnik = Maloletnik;
             this.JmbgStaratelja = JmbgStaratelja;
+            this.Karton = new ZdravstveniKarton(IdPacijenta);
         }
 
         public Pacijent() { }
 
-        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, int Jmbg, pol pol, statusNaloga Status)
+        public Pacijent(int IdPacijenta, string ImePacijenta, string PrezimePacijenta, long Jmbg, pol pol, statusNaloga Status) // za guest nalog
         {
             this.IdPacijenta = IdPacijenta;
             this.ImePacijenta = ImePacijenta;
@@ -72,7 +74,7 @@ namespace Model
         public string ImePacijenta { get; set; }
         public string PrezimePacijenta { get; set; }
         public pol Pol { get; set; }
-        public int Jmbg { get; set; }
+        public long Jmbg { get; set; }
         public statusNaloga StatusNaloga { get; set; }
         public long BrojTelefona { get; set; }
         public string Email { get; set; }
@@ -81,9 +83,8 @@ namespace Model
         public bracnoStanje BracnoStanje { get; set; }
         public Lekar IzabraniLekar { get; set; }
         public ZdravstveniKarton Karton { get; set; }
-        // ukoliko je maloletno lice
         public bool Maloletnik { get; set; }
-        public int JmbgStaratelja { get; set; } 
+        public long JmbgStaratelja { get; set; } 
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)

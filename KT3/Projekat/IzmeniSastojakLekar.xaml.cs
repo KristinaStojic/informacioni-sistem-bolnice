@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,7 +79,7 @@ namespace Projekat
             string naziv = this.naziv.Text;
             double kolicina = double.Parse(this.kolicina.Text);
             Sastojak noviSastojak = new Sastojak(naziv, kolicina);
-            LekoviMenadzer.izmeniSastojakLekaLekar(lek, stariSastojak, noviSastojak);
+            LekoviServis.izmeniSastojakLekaLekar(lek, stariSastojak, noviSastojak);
             this.Close();
         }
 

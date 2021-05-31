@@ -3,12 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="PrikazObavjestenja" Height="260" Width="350" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
+        Title="PrikazObavjestenja" Height="260" Width="350" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:UpravnikViewModel/>
+    </Window.DataContext>
     <StackPanel>
         <Label Content="Sadrzaj obavjestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="31" Width="156"/>
-        <TextBox Margin="10" Height="120" Name="sadrzajObavjestenja"></TextBox>
-        <Button Width="90" Height="30" Background="CadetBlue" Margin="170, 0, 0 ,0" Click="Button_Click">Zatvori</Button>
+        <TextBox Margin="10" Height="120" Name="sadrzajObavjestenja" Text="{Binding Obavjestenje, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Width="90" Height="30" Background="CadetBlue" Margin="170, 0, 0 ,0" Command="{Binding ZatvoriObavjestenje}">Zatvori</Button>
     </StackPanel>
 </Window>

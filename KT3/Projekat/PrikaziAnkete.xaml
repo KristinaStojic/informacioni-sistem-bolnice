@@ -4,8 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace ="clr-namespace:Projekat.Lokalizacija"
+      xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
+      Loaded="Page_Loaded"
       mc:Ignorable="d" d:DesignWidth="800"
       Title="PrikaziAnkete" Background="{DynamicResource BackgroundColor}" Height="630">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
@@ -16,62 +20,71 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,87">
+        <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,0">
             <Grid  Margin="0,0,0,0" Height="450">
-                <StackPanel Margin="0,0,0,128" >
-                    <StackPanel  Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Orientation="Horizontal">
+                <StackPanel Margin="0,0,0,0" >
+                    <StackPanel x:Name="zaglavlje" Height="40" Background="{DynamicResource StackPanelBackgroundColor}" 
+                            Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="0">
                         <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
                             <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
-                            <TextBlock Text="ZDRAVO" Style="{DynamicResource ZdravoText}" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic" />
+                            <TextBlock Text="ZDRAVO" Name="zdravo" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic"
+                                   Style="{DynamicResource ZdravoText}"/>
                         </StackPanel>
                         <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
-                            <Menu Margin="480,7.5,8,0" BorderThickness="0.5" BorderBrush="#004a7c">
+                            <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
                                 <MenuItem Name="podaci" >
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click"/>
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Command="{Binding ProfilKomanda}"/>
                                     <Separator/>
-                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click"/>
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Command="{Binding PopuniAnketuKomanda}" />
                                     <Separator/>
-                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                    <MenuItem Header="_sr" />
-                                    <MenuItem Header="_en"/>
+                                    <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                    <MenuItem Header="_eng-US" Command="{Binding PromeniJezikKomanda}"/>
                                     <Separator />
-                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
+                                    <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                    <MenuItem Header="{namespace:Loc Tamna}" x:Name="tamnaTema"  Command="{Binding PromeniTemuKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Svetla}" x:Name="SvetlaTema" Command="{Binding PromeniTemuKomanda}"/>
                                     <Separator />
-                                    <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Command="{Binding OdjavaKomanda}"/>
                                 </MenuItem>
                             </Menu>
+                            <!--Button Content="{namespace:Loc Odjava}" Name="odjava" Height="30" Command="{Binding OdjavaKomanda}"/-->
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                            <Hyperlink Name="pocetna" Click="pocetna_Click">
-                            <Run Text="Početna stranica"/>
-                            </Hyperlink>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
-                                <Run Text="Zakažite termin"/>
-                            </Hyperlink><Run Text=" "/>
+                        <Hyperlink x:Name="pocetna" Command="{Binding PocetnaStranicaKomanda}">
+                            <Run Text="{namespace:Loc Pocetna}"/>
+                        </Hyperlink>
                             <Run Text="  "/>
+                        <Hyperlink Name="zakazi" Command="{Binding ZakaziTerminKomanada}">
+                            <Run Text="{namespace:Loc ZakaziTermin}"/>
+                        </Hyperlink>
+                        <Run Text="  "/>
+                        <Hyperlink Name="uvid" Command="{Binding UvidUZakazaneTermineKomanda}">
+                            <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
+                        </Hyperlink>
                             <Run Text=" "/>
-                            <Hyperlink x:Name="uvid" Click="uvid_Click">
-                                <Run Text="Uvid u zakazane termine"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="karton" Click="karton_Click">
-                                <Run Text="Zdravstveni karton"/>
-                            </Hyperlink>
+                        <Hyperlink Name="karton" Command="{Binding KartonKomanda}">
+                            <Run Text="{namespace:Loc Karton}"/>
+                        </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <ListView x:Name="listaAnketi" Height="300" Width="500" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                      SelectionChanged="listaAnketi_SelectionChanged"  Margin="0,40,0 ,0" FontSize="13" >
+            <!-- STAVITI U PRIKAZI TERMIN-->
+            <!--StackPanel Height="40" Width="600" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="{namespace:Loc Profil}" Height="30"  Command="{Binding ProfilKomanda}"/>
+                <Button Content="{namespace:Loc PopuniAnketu}" Height="30" x:Name="anketa" Command="{Binding PopuniAnketuKomanda}"/>
+                <Button Content="_en-US" Height="30"  Command="{Binding PromeniJezikKomanda}"/>
+                <Button Content="_sr-LATN" Height="30"  Command="{Binding PromeniJezikKomandaSR}"/>
+                <Button Content="{namespace:Loc Svetla}" Height="30" Command="{Binding PromeniTemuKomanda}"/>
+                <Button Content="{namespace:Loc Tamna}" Height="30" Command="{Binding PromeniTemuKomandaTamna}"/>
+            </-->
+            <ListView x:Name="listaAnketi" Height="300" Width="500" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="0,40,0 ,0" FontSize="13" 
+                      SelectedItem="{Binding IzabranaAnketa, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Ankete, UpdateSourceTrigger=PropertyChanged}" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="50" Header="Status">
@@ -81,27 +94,25 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Naziv ankete" Width="450" DisplayMemberBinding="{Binding NazivAnkete}"/>
+                        <GridViewColumn Header="{namespace:Loc NazivAnkete}" Width="450" DisplayMemberBinding="{Binding NazivAnkete}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <!-- StackPanel Margin="180,30,180,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="302" Width="350" Background="WhiteSmoke"-->
-            <!--DataGrid x:Name="datagridAnkete" IsReadOnly="True"   Height="350" Width="400" Margin="0, 50, 0, 0" AutoGenerateColumns="False" 
-                      ItemsSource="{Binding AnketePacijenta}" SelectionChanged="datagridAnkete_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv ankete" Width="*" Binding="{Binding nazivAnkete}" >
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment"
+            <!--StackPanel Margin="180,30,180,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="302" Width="350" Background="WhiteSmoke"-->
+                <!--DataGrid x:Name="listaAnketi" IsReadOnly="True"   Height="350" Width="400" Margin="0, 50, 0, 0" AutoGenerateColumns="False" 
+                      ItemsSource="{Binding AnketePacijenta}">
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv ankete" Width="*" Binding="{Binding NazivAnkete}" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment"
                                         Value="Center" />
-                            </Style>
-                        </DataGridTextColumn.HeaderStyle>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </-->
-            <StackPanel>
-                <Button Content="Potvrdi" Visibility="Hidden" Name="potvrdi" Height="30" Width="90" Margin="0, 20, 0, 0"/>
-            </StackPanel>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </-->
+            <Button Content="{namespace:Loc Popuni}" Command="{Binding OtvoriAnketuKomanda}"  Style="{DynamicResource ButtonStyle2}" Name="potvrdi" Height="30" Width="90" Margin="0, 20, 0, 0"/>
         </StackPanel>
 
 

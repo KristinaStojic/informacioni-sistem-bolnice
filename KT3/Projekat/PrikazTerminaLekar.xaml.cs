@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using LiveCharts;
+using LiveCharts.Wpf;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -30,10 +33,25 @@ namespace Projekat
             get;
             set;
         }
-       
-        public PrikazTerminaLekar()
+
+        
+        public ChartValues<int> ukupnoPregleda
+        {
+            get;set;
+        }
+
+        public ChartValues<int> ukupnoOperacija
+        {
+            get;set;
+        }
+
+        public Func<ChartPoint, string> LabelPoint { get; set; }
+        public PrikazTerminaLekar(int id)
         {
             InitializeComponent();
+            LabelPoint = chartPoint =>
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+            this.idLekara = id;
             this.DataContext = this;
             NadjiUlogovanogLekara();
 
@@ -59,30 +77,20 @@ namespace Projekat
             foreach (Termin t in TerminMenadzer.termini)
             {
 
-
-                if (t.Lekar.IdLekara == 1) //Petar Nebojsic
+                if (t.Lekar.IdLekara == idLekara)
                 {
                     Termini.Add(t);
+                    //int brPregleda = t.Lekar.BrojPregleda; 
+                    //int brOperacija = t.Lekar.BrojOperacija; 
+                    //int br = 10;
+                    this.ukupnoPregleda = new ChartValues<int>() { t.Lekar.BrojPregleda };
+                    this.ukupnoOperacija = new ChartValues<int>() { t.Lekar.BrojOperacija };
                 }
-                /*if (t.Lekar.IdLekara == 2) //Milos Dragojevic
-                {
-                    Termini.Add(t);
-                }*/
-                /*if (t.Lekar.IdLekara == 3) //Petar Milosevic
-                {
-                    Termini.Add(t);
-                } */
-                /*if (t.Lekar.IdLekara == 4) //Dejan Milosevic
-                {
-                    Termini.Add(t);
-                }*/
-                /*if (t.Lekar.IdLekara == 5) //Isidora Isidorovic
-                {
-                    Termini.Add(t);
-                }*/
-
-
+               
             }
+
+
+
         }
         private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
@@ -94,7 +102,8 @@ namespace Projekat
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //zakazi
-            ZakaziTerminLekar2 zt = new ZakaziTerminLekar2();
+
+            ZakaziTerminLekar2 zt = new ZakaziTerminLekar2(idLekara);
             zt.Show();
         }
 
@@ -117,26 +126,27 @@ namespace Projekat
         {
             // nazad
 
-            TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            TerminServisLekar.sacuvajIzmene();
+            PacijentiServis.SacuvajIzmenePacijenta();
             this.Close();
-            PocetnaStrana ps = new PocetnaStrana();
-            ps.Show();
+            //PocetnaStrana ps = new PocetnaStrana();
+            //ps.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             //obrisi
-            Termin zaBrisanje = (Termin)dataGridTermini.SelectedItem;
-            if (zaBrisanje != null)
+            Termin izabraniTermin = (Termin)dataGridTermini.SelectedItem;
+            if (izabraniTermin == null)
             {
-
-                TerminMenadzer.OtkaziTerminLekar(zaBrisanje);
+                MessageBox.Show("Niste selektovali termin koji zelite da obrišete!");
             }
             else
             {
-                MessageBox.Show("Niste selektovali termin koji zelite da otkazete!");
+                ObrisiTerminLekar ot = new ObrisiTerminLekar(izabraniTermin);
+                ot.Show();
             }
+               
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
@@ -165,10 +175,10 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
-            PocetnaStrana ps = new PocetnaStrana();
+            TerminServisLekar.sacuvajIzmene();
+            PacijentiServis.SacuvajIzmenePacijenta();
+            SaleServis.sacuvajIzmjene();
+            //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/
         }
 

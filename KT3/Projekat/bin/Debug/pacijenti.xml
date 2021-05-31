@@ -13,10 +13,16 @@
     <Zanimanje>student</Zanimanje>
     <BracnoStanje>Neozenjen</BracnoStanje>
     <IzabraniLekar>
-      <IdLekara>1</IdLekara>
-      <ImeLek>Petar</ImeLek>
-      <PrezimeLek>Nebojsic</PrezimeLek>
+      <IdLekara>0</IdLekara>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
     </IzabraniLekar>
     <Karton>
       <IdPacijenta>1</IdPacijenta>
@@ -49,13 +55,28 @@
           <IdAnamneze>1</IdAnamneze>
           <IdPacijenta>1</IdPacijenta>
           <IdLekara>1</IdLekara>
-          <OpisBolesti>ASDAD</OpisBolesti>
-          <Terapija>SDSDSD</Terapija>
-          <Datum>04/28/2021</Datum>
+          <OpisBolesti>Bronhitis</OpisBolesti>
+          <Terapija>Inhalacija fizioloskim rastvorom</Terapija>
+          <Datum>06/04/2021</Datum>
+          <IdTermina>2</IdTermina>
+          <Beleska>Otici na pregled za 7 dana</Beleska>
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
-      <Alergeni />
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>1</IdPacijenta>
+          <NazivSastojka>s2</NazivSastojka>
+          <SifraSastojka>4.2</SifraSastojka>
+          <NuspojavaNaNastojak>Vrtoglavica</NuspojavaNaNastojak>
+          <VremeReakcije>7 dana</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -64,14 +85,26 @@
     <IdPacijenta>2</IdPacijenta>
     <ImePacijenta>Dimitrije</ImePacijenta>
     <PrezimePacijenta>Jovanovic</PrezimePacijenta>
-    <Pol>M</Pol>
+    <Pol>Z</Pol>
     <Jmbg>123456789</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
     <BrojTelefona>45651321</BrojTelefona>
     <Email>dim@gmail.com</Email>
     <AdresaStanovanja>NS</AdresaStanovanja>
     <Zanimanje>student</Zanimanje>
-    <BracnoStanje>Ozenjen</BracnoStanje>
+    <BracnoStanje>Neodredjeno</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>0</IdLekara>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>2</IdPacijenta>
       <LekarskiRecepti>
@@ -109,33 +142,12 @@
           <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>2</IdPacijenta>
-          <IdLekara>0</IdLekara>
-          <OpisBolesti>Anamneza </OpisBolesti>
-          <Terapija>Terapija</Terapija>
-          <Datum>04/07/2021</Datum>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>2</IdAnamneze>
-          <IdPacijenta>2</IdPacijenta>
-          <IdLekara>0</IdLekara>
-          <OpisBolesti>Anamneza 2</OpisBolesti>
-          <Terapija>Terapija 2</Terapija>
-          <Datum>04/10/2021</Datum>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>3</IdAnamneze>
-          <IdPacijenta>2</IdPacijenta>
-          <IdLekara>5</IdLekara>
-          <OpisBolesti>45sdsd</OpisBolesti>
-          <Terapija>sdsds</Terapija>
-          <Datum>04/15/2021</Datum>
-        </Anamneza>
-      </Anamneze>
+      <Anamneze />
       <Alergeni />
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -152,6 +164,20 @@
     <AdresaStanovanja>NS</AdresaStanovanja>
     <Zanimanje>prof</Zanimanje>
     <BracnoStanje>Neudata</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>9</IdLekara>
+      <ImeLek>Igor</ImeLek>
+      <PrezimeLek>Ivanovic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>4</IdPacijenta>
       <LekarskiRecepti>
@@ -178,27 +204,18 @@
           <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>2</IdAnamneze>
-          <IdPacijenta>4</IdPacijenta>
-          <IdLekara>1</IdLekara>
-          <OpisBolesti>sadsd</OpisBolesti>
-          <Terapija>dsdsds</Terapija>
-          <Datum>06/02/2021</Datum>
-          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
-        </Anamneza>
-      </Anamneze>
+      <Anamneze />
       <Alergeni>
         <Alergeni>
           <IdAlergena>1</IdAlergena>
           <IdPacijenta>4</IdPacijenta>
-          <NazivLeka>Brufen</NazivLeka>
-          <SifraLeka>B1E</SifraLeka>
-          <NuspojavaNaLek>osip, crvenilo</NuspojavaNaLek>
           <VremeReakcije>24 sata</VremeReakcije>
         </Alergeni>
       </Alergeni>
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -215,6 +232,20 @@
     <AdresaStanovanja>ns</AdresaStanovanja>
     <Zanimanje>prof</Zanimanje>
     <BracnoStanje>Neudata</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Milos</ImeLek>
+      <PrezimeLek>Dragojevic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>5</IdPacijenta>
       <LekarskiRecepti>
@@ -241,36 +272,21 @@
           <UzimanjeTerapije />
         </LekarskiRecept>
       </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>3</IdAnamneze>
+      <Anamneze />
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
           <IdPacijenta>5</IdPacijenta>
-          <IdLekara>5</IdLekara>
-          <OpisBolesti>dsdsds</OpisBolesti>
-          <Terapija>sdsds</Terapija>
-          <Datum>05/01/2021</Datum>
-          <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>4</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>5</IdLekara>
-          <OpisBolesti>dffdfdsf</OpisBolesti>
-          <Terapija>dfddfdfd</Terapija>
-          <Datum>05/01/2021</Datum>
-          <ImePrezimeLekara>Isidora Isidorovic</ImePrezimeLekara>
-        </Anamneza>
-        <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>5</IdPacijenta>
-          <IdLekara>1</IdLekara>
-          <OpisBolesti>EFEFAAAA</OpisBolesti>
-          <Terapija>DFDFDFD</Terapija>
-          <Datum>08/18/2021</Datum>
-          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
-        </Anamneza>
-      </Anamneze>
-      <Alergeni />
+          <NazivSastojka>s1</NazivSastojka>
+          <SifraSastojka>1.2</SifraSastojka>
+          <NuspojavaNaNastojak>Glavobolja</NuspojavaNaNastojak>
+          <VremeReakcije>3 dana</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>true</Maloletnik>
     <JmbgStaratelja>99</JmbgStaratelja>
@@ -287,6 +303,20 @@
     <AdresaStanovanja>mmm</AdresaStanovanja>
     <Zanimanje>mmm</Zanimanje>
     <BracnoStanje>Neudata</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Milos</ImeLek>
+      <PrezimeLek>Dragojevic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
+    </IzabraniLekar>
     <Karton>
       <IdPacijenta>6</IdPacijenta>
       <LekarskiRecepti>
@@ -326,6 +356,58 @@
       </LekarskiRecepti>
       <Anamneze />
       <Alergeni />
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
+    </Karton>
+    <Maloletnik>false</Maloletnik>
+    <JmbgStaratelja>0</JmbgStaratelja>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>3</IdPacijenta>
+    <ImePacijenta>Marko</ImePacijenta>
+    <PrezimePacijenta>Markovic</PrezimePacijenta>
+    <Pol>Z</Pol>
+    <Jmbg>1254540</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>545650</BrojTelefona>
+    <Email>marko</Email>
+    <AdresaStanovanja>NS</AdresaStanovanja>
+    <Zanimanje>student</Zanimanje>
+    <BracnoStanje>Neodredjeno</BracnoStanje>
+    <IzabraniLekar>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Milos</ImeLek>
+      <PrezimeLek>Dragojevic</PrezimeLek>
+      <Jmbg>0</Jmbg>
+      <BrojTelefona>0</BrojTelefona>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>0</BrojPregleda>
+      <BrojOperacija>0</BrojOperacija>
+    </IzabraniLekar>
+    <Karton>
+      <IdPacijenta>3</IdPacijenta>
+      <LekarskiRecepti />
+      <Anamneze />
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>3</IdPacijenta>
+          <NazivSastojka>S1</NazivSastojka>
+          <SifraSastojka>100</SifraSastojka>
+          <NuspojavaNaNastojak>Povracanje</NuspojavaNaNastojak>
+          <VremeReakcije>mesec dana</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi />
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>

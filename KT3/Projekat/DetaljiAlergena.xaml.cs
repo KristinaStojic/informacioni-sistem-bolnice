@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,16 +30,19 @@ namespace Projekat
             this.stariAlergen = izabraniAlergen;
             this.termin = termin;
 
+            this.nadjiAlergen.ItemsSource = LekoviServis.NadjiSveSastojke();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(nadjiAlergen.ItemsSource);
+            view.Filter = UserFilter;
+
             PopuniPodatkeOAlergenu(izabraniAlergen);
         }
         private void PopuniPodatkeOAlergenu(Alergeni izabraniAlergen)
         {
-            foreach (Pacijent pac in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent pac in PacijentiServis.pacijenti())
             {
                 if (pac.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {
                     this.naziv.Text = izabraniAlergen.NazivSastojka;
-                    this.sifra.Text = izabraniAlergen.SifraSastojka;
                     this.nuspojava.Text = izabraniAlergen.NuspojavaNaNastojak;
                     this.vreme.Text = izabraniAlergen.VremeReakcije;
                 }
@@ -48,16 +52,15 @@ namespace Projekat
         {
             //sacuvaj
             string nazivLeka = naziv.Text;
-            string sifraLeka = sifra.Text;
             string nuspojavaNaLek = nuspojava.Text;
             string vremeReakcije = vreme.Text;
 
-            Alergeni noviAlergen = new Alergeni(stariAlergen.IdAlergena, stariAlergen.IdPacijenta, nazivLeka, sifraLeka, nuspojavaNaLek, vremeReakcije);
-            ZdravstveniKartonMenadzer.IzmeniAlergen(stariAlergen, noviAlergen);
+            Alergeni noviAlergen = new Alergeni(stariAlergen.IdAlergena, stariAlergen.IdPacijenta, nazivLeka, nuspojavaNaLek, vremeReakcije);
+            ZdravstveniKartonServis.IzmeniAlergen(stariAlergen, noviAlergen);
 
-            TerminMenadzer.sacuvajIzmene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
-            SaleMenadzer.sacuvajIzmjene();
+            TerminServisLekar.sacuvajIzmene();
+            PacijentiServis.SacuvajIzmenePacijenta();
+            SaleServis.sacuvajIzmjene();
 
 
             this.Close();
@@ -67,6 +70,28 @@ namespace Projekat
         {
             //odustani
             this.Close();
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(pretraga.Text))
+                return true;
+            else
+                return ((item as Sastojak).naziv.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        private void pretraga_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(nadjiAlergen.ItemsSource).Refresh();
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (nadjiAlergen.SelectedItems.Count > 0)
+            {
+                Sastojak item = (Sastojak)nadjiAlergen.SelectedItems[0];
+                naziv.Text = item.naziv;
+            }
         }
     }
 }

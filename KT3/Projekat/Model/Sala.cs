@@ -6,43 +6,46 @@
 
 using Projekat;
 using Projekat.Model;
+using Projekat.Servis;
+using Projekat.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Model
 {
-   
+
 
     public enum tipSale
     {
-        OperacionaSala, SalaZaPregled, SalaZaOdmor
+        OperacionaSala, SalaZaPregled, SalaZaLezanje
     }
 
-    public class Sala: INotifyPropertyChanged
+    public class Sala : INotifyPropertyChanged
     {
-        public Sala(int id, int brojSale, string namjena, tipSale tip)
-        {
-            this.Id = id;
-            this.brojSale = brojSale;
-            this.TipSale = tip;
-            this.Namjena = namjena;
-            //Sanja
-            this.zauzetiTermini = new List<ZauzeceSale>();
-
-            this.Oprema = new List<Oprema>();
-        }
-
         public Sala() { }
-        
         public tipSale TipSale { get; set; }
         public int Id { get; set; }
         public int brojSale { get; set; }
         public string Namjena { get; set; }
         public List<Oprema> Oprema { get; set; }
         public List<ZauzeceSale> zauzetiTermini { get; set; }
+
+        public List<Krevet> Kreveti { get; set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Sala(int id, int brojSale, string namjena, tipSale tip)
+        {
+            this.Id = id;
+            this.brojSale = brojSale;
+            this.TipSale = tip;
+            this.Namjena = namjena;
+            this.zauzetiTermini = new List<ZauzeceSale>();
+            this.Oprema = new List<Oprema>();
+            this.Kreveti = new List<Krevet>();
+        }
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -50,66 +53,63 @@ namespace Model
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-        
+
         public override string ToString()
         {
-            string val = brojSale + " - " + Namjena;
+            string stringSale = brojSale + " - " + Namjena;
             if (statickaAktivna())
             {
-                val = stringZaStaticku();
-            }else if (dinamickaAktivna())
-            {
-                val = stringZaDinamicku();
+                stringSale = stringZaStaticku();
             }
-            return val;
+            else if (dinamickaAktivna())
+            {
+                stringSale = stringZaDinamicku();
+            }
+            return stringSale;
         }
 
         private string stringZaStaticku()
         {
-            bool postojiPremjestajIzSale = false;
-            int kolicinaPreostaleOpreme;
-            string stringStaticka = "";
-            foreach (Oprema o in Oprema)
+            string stringStaticka = brojSale + " - " + Namjena;
+            if (SaleViewModel.izabranaStat != null)
             {
-                if (o.IdOpreme == PreraspodjelaStaticke.izabranaOprema.IdOpreme)
+                foreach (Oprema oprema in Oprema)
                 {
-                    kolicinaPreostaleOpreme = o.Kolicina;
-                    foreach (Premjestaj pm in PremjestajMenadzer.premjestaji)
+                    if (oprema.IdOpreme == SaleViewModel.izabranaStat.IdOpreme)
                     {
-                        if (pm.izSale.Id == this.Id)
-                        {
-                            kolicinaPreostaleOpreme -= pm.kolicina;
-
-                            postojiPremjestajIzSale = true;
-                        }
+                        stringStaticka = napraviStringStaticke(smanjiKolicinuPreostaleOpreme(oprema));
                     }
-
-                    stringStaticka = napraviStringStaticke(postojiPremjestajIzSale, o.Kolicina, kolicinaPreostaleOpreme);
                 }
             }
             return stringStaticka;
         }
 
-        private string napraviStringStaticke(bool postojiPremjestajIzSale, int kolicinaOpreme, int kolicinaPreostaleOpreme)
+        private int smanjiKolicinuPreostaleOpreme(Oprema oprema)
         {
-            if (!postojiPremjestajIzSale)
+            int kolicinaPreostaleOpreme = oprema.Kolicina;
+            foreach (Premjestaj premjestaj in PremjestajServis.Premjestaji())
             {
-                return brojSale + " - " + Namjena + " (" + kolicinaOpreme + ")";
+                if (premjestaj.izSale.Id == this.Id && premjestaj.oprema.IdOpreme == SaleViewModel.izabranaStat.IdOpreme)
+                {
+                    kolicinaPreostaleOpreme -= premjestaj.kolicina;
+                }
             }
-            else
-            {
-                return  brojSale + " - " + Namjena + " (" + kolicinaPreostaleOpreme + ")";
-            }
+            return kolicinaPreostaleOpreme;
+        }
+
+        private string napraviStringStaticke(int kolicinaPreostaleOpreme)
+        {
+            return brojSale + " - " + Namjena + " (" + kolicinaPreostaleOpreme + ")";    
         }
 
         private string stringZaDinamicku()
         {
-            string stringDinamicka = "";
-            foreach (Oprema o in Oprema)
+            string stringDinamicka = brojSale + " - " + Namjena;
+            foreach (Oprema oprema in Oprema)
             {
-                if (o.IdOpreme == PreraspodjelaDinamicke.izabranaOprema.IdOpreme)
+                if (oprema.IdOpreme == SaleViewModel.opremaZaDodavanje.IdOpreme)
                 {
-                    stringDinamicka = brojSale + " - " + Namjena + " (" + o.Kolicina + ")";
+                    stringDinamicka +=  " (" + oprema.Kolicina + ")";
                 }
             }
             return stringDinamicka;
@@ -117,12 +117,12 @@ namespace Model
 
         private bool statickaAktivna()
         {
-            return PreraspodjelaStaticke.aktivna && PreraspodjelaStaticke.izabranaOprema != null;
+            return SaleViewModel.aktivnaStaticka;
         }
 
         private bool dinamickaAktivna()
         {
-            return PreraspodjelaDinamicke.aktivna && PreraspodjelaDinamicke.izabranaOprema != null;
+            return SaleViewModel.aktivnaDinamicka && SaleViewModel.opremaZaDodavanje != null;
         }
     }
 }

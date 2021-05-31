@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,153 +20,187 @@ namespace Projekat
 {
     public partial class ZakazaniTerminiPacijent : Page
     {
-        private int colNum = 0;
         public static ObservableCollection<Termin> Termini { get; set; }
         public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
+        ObservableCollection<string> months;
 
         public ZakazaniTerminiPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Termini = new ObservableCollection<Termin>();
-            foreach (Termin t in TerminMenadzer.termini)
+            Termini = TerminServis.PronadjiTerminPoIdPacijenta(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            InicijalizujKalendar();
+        }
+
+        private void InicijalizujKalendar()
+        {
+            PostaviZaglavljeKalendara();
+            cboMonth.SelectionChanged += (o, e) => RefreshCalendar();
+            cboYear.SelectionChanged += (o, e) => RefreshCalendar();
+            string datum = DateTime.Now.Date.ToString("MM/dd/yyyy").Split(' ')[0];
+            int mesec = Int32.Parse(datum.Split('/')[0]);
+            cboMonth.SelectedIndex = mesec - 1;
+            DodajZakazaneTermineNaKalendar();
+        }
+
+        private void PostaviZaglavljeKalendara()
+        {
+            if (Jezik.Header.Equals("_en-US"))
             {
-                if (t.Pacijent.IdPacijenta == idPacijent)
+                Kalendar.DayNames = new ObservableCollection<string> { "Nedelja", "Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota" };
+            }
+            else
+            {
+                Kalendar.DayNames = new ObservableCollection<string> { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            }
+        }
+
+        private void DodajZakazaneTermineNaKalendar()
+        {
+            foreach (Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijent))
+            {
+                int mesec = Int32.Parse(termin.Datum.Split('/')[0].Substring(1,1));
+                if ((cboMonth.SelectedIndex + 1) == mesec)
                 {
-                    Termini.Add(t);
+                    int dan = Int32.Parse(termin.Datum.Split('/')[1]);
+                    if (mesec == 1) // jan
+                    {
+                        dan += 4;
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 2)  // feb
+                    {
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 3) // mart
+                    {
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 4) // apr
+                    {
+                        dan += 3;
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 5) // maj
+                    {
+                        dan += 5; 
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if(mesec == 6)  // jun
+                    {
+                        dan += 1;
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if(mesec == 7)
+                    {
+                        dan += 3;
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 8)
+                    {
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 9)
+                    {
+                        dan += 2;
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 10)
+                    {
+                        dan += 4;
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 11)
+                    {
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+                    if (mesec == 12)
+                    {
+                        dan += 2;
+                        Kalendar.Days[dan].Notes = termin.tipTermina.ToString() + "\nLekar: " + termin.Lekar.ToString();
+                    }
+
+
                 }
             }
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
-            view.Filter = UserFilter;
-            PrikaziTermin.AktivnaTema(this.zaglavlje , this.svetlaTema);
         }
 
-        private bool UserFilter(object item)
-        {
-            if (String.IsNullOrEmpty(txtFilter.Text))
-                return true;
-            else
-                return ((item as Termin).Datum.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-
-        private void dataGridTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            colNum++;
-            if (colNum == 8) // **
-                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
-
+        /* Pomeri termin */
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            // izmeni
-            Termin terminZaPomeranje = (Termin)dataGridTermini.SelectedItem;
-            if (terminZaPomeranje == null)
-            {
-                MessageBox.Show("Selektujte termin koji zelite da izmenite", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-            if (terminZaPomeranje.Pomeren == true)
-            {
-                MessageBox.Show("Nemoguce je pomeriti ovaj termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-            Page izmeniTermin = new IzmeniTermin(terminZaPomeranje);
+            Page izmeniTermin = new ZakazaniTerminiPacijentDatum(idPacijent);
             this.NavigationService.Navigate(izmeniTermin);
         }
-
-
-        /* Otkazi termin */ 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            Termin terminZaBrisanje = (Termin)dataGridTermini.SelectedItem;
-            if (terminZaBrisanje == null)
-            {
-                MessageBox.Show("Selektujte termin koji zelite da otkazete", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno otkazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page otkazivanjeTermina = new OtkaziTermin(terminZaBrisanje);
-            this.NavigationService.Navigate(otkazivanjeTermina);
-        }
-
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);
+            PacijentWebStranice.odjava_Click(this);
         }
-
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(idPacijent);
-            this.NavigationService.Navigate(karton);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
-
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
-
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            Page pocetna = new PrikaziTermin(idPacijent);
-            this.NavigationService.Navigate(pocetna);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
-
-        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(dataGridTermini.ItemsSource).Refresh();
-        }
-
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
-            {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-            }
-            else
-            {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
         }
-
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            Page podaci = new LicniPodaciPacijenta(idPacijent);
-            this.NavigationService.Navigate(podaci);
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
+        }
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.Jezik_Click(Jezik);
+        }
+        private void RefreshCalendar()
+        {
+            if (cboYear.SelectedItem == null) return;
+            if (cboMonth.SelectedItem == null) return;
+
+            int year = Int32.Parse(cboYear.SelectedValue.ToString().Split(' ')[1]);
+
+            int month = Int32.Parse(cboMonth.SelectedValue.ToString().Split(' ')[1]);
+
+            DateTime targetDate = new DateTime(year, month, 1);
+
+            Kalendar.BuildCalendar(targetDate);
+
+            DodajZakazaneTermineNaKalendar();
+
+        }
+        private void Kalendar_DayChanged(object sender, MyCalendar.Calendar.DayChangedEventArgs e)
+        {
+            //Console.WriteLine("Pozvana metoda daychanged");
+
+
+        }
+        private void Kalendar_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+           // MessageBox.Show(Kalendar.Days[0].ToString());
+        }
+        private void cboMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DodajZakazaneTermineNaKalendar();
         }
     }
 }

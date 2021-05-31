@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PrijavaPacijent" Background="{DynamicResource BackgroundColor}">
@@ -20,15 +21,15 @@
                 </StackPanel>
                 <StackPanel Width="415" Orientation="Horizontal" Margin="190, 0, 0, 0">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Height="46" Margin="0,-5,0,-1">
-                        <Label Content="Korisničko ime" FontSize="8" Height="20" Foreground="{DynamicResource TextColor}" />
+                        <Label Content="{namespace:Loc KorisnickoIme}" FontSize="8" Height="20" Foreground="{DynamicResource TextColor}" />
                         <TextBox x:Name="korisnickoIme" Width="150" Height="20" Margin="0,0,0,0" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,-6,0,-4">
-                        <Label Content="Lozinka" Margin="10, 0, 0, 0" FontSize="8" Foreground="{DynamicResource TextColor}"/>
+                        <Label Content="{namespace:Loc Lozinka}" Margin="10, 0, 0, 0" FontSize="8" Foreground="{DynamicResource TextColor}"/>
                         <PasswordBox x:Name="lozinka" Width="150" Height="20" Margin="10,0,0,10"/>
 
                     </StackPanel>
-                    <Button x:Name="prijava" Content="Prijavi se" Width="90" Height="22" Margin="10,13,0,5" Click="prijava_Click"
+                    <Button x:Name="prijava" Content="{namespace:Loc PrijaviSe}" Width="90" Height="22" Margin="10,13,0,5" Click="prijava_Click"
                             Style="{DynamicResource ButtonStyle2}" FontSize="10"/>
                 </StackPanel>
 
@@ -37,11 +38,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1">
             <StackPanel Margin="0, 30, 0, 0" >
-                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Width="500" Foreground="{DynamicResource TextColor}">
-                    Zdravo korporacija je privatni zdravstveni sistem koji nudi najviši kvalitet usluge, 
-                    najefikasniji oporavak zdravlja i podstiče na zdrav život svakog pacijenta.
-                    Registujte se u najbližem kliničkom centru i iskoristite mogućnosti koje Vam nudi Zdravo korporacija.
-                    
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Width="500" Foreground="{DynamicResource TextColor}" Text="{namespace:Loc Uvod}">
                 </TextBlock>
             </StackPanel>
             <StackPanel  Margin="0, 20, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center" Width="510">
@@ -70,7 +67,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox x:Name="Niš" Header="Nis" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
+                <GroupBox x:Name="Niš" Header="Niš" Margin="10" Width="150" Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 10, 0,0">
                         <TextBlock HorizontalAlignment="Center" FontSize="30">
                             🏥
@@ -122,7 +119,17 @@
                         </TextBlock>
                     </StackPanel>
                 </GroupBox>
-
+            </StackPanel>
+            <StackPanel Margin="10, 2, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Menu Width="50">
+                    <MenuItem x:Name="Jezik" Header="_en-US" Click="Jezik_Click" Height="22" Background="{DynamicResource MenuItemJezik}" Foreground="{DynamicResource MenuItemJezikText}" Width="50" />
+                </Menu>
+                <Menu>
+                    <MenuItem Name="tema" Header="{namespace:Loc Tema}" Background="{DynamicResource MenuItemJezik}" Foreground="{DynamicResource MenuItemJezikText}" Height="22">
+                        <MenuItem Name="tamnaTema" Header="Tamna" Click="PromeniTemu" Foreground="Black"/>
+                        <MenuItem Name="SvetlaTema" Header="Svetla" Click="PromeniTemu" Foreground="Black" IsEnabled="False"/>
+                    </MenuItem>
+                </Menu>
             </StackPanel>
         </StackPanel>
 

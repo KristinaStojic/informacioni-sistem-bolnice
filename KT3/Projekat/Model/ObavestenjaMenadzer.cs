@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Projekat.Model
@@ -19,6 +15,11 @@ namespace Projekat.Model
             TextWriter fileStream = new StreamWriter("obavestenja.xml");
             serializer.Serialize(fileStream, obavestenja);
             fileStream.Close();
+        }
+
+        public static List<Obavestenja> SvaObavestenja()
+        {
+            return obavestenja;
         }
 
         public static List<Obavestenja> NadjiSvaObavestenja()
@@ -45,8 +46,7 @@ namespace Projekat.Model
                 OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
             }
             OglasnaTabla.oglasnaTabla.Insert(0, novoObavestenje);  
-
-            ObavestenjaMenadzer.sacuvajIzmene();
+            sacuvajIzmene();
         }
 
         public static void IzmeniObavestenje(Obavestenja staroObavestenje, Obavestenja novoObavestenje)
@@ -77,6 +77,10 @@ namespace Projekat.Model
                 if (obavestenja[i].IdObavestenja == obavestenje.IdObavestenja)
                 {
                     obavestenja.RemoveAt(i);
+                    if (OglasnaTabla.oglasnaTabla == null)
+                    {
+                        OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
+                    }
                     OglasnaTabla.oglasnaTabla.Remove(obavestenje);
                 }
             }
@@ -130,6 +134,22 @@ namespace Projekat.Model
                     return;
                 }
             }
+        }
+
+        public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)
+        {
+            List<Obavestenja> retObavestenja = new List<Obavestenja>();
+            foreach (Obavestenja obavestenje in obavestenja)
+            {
+                foreach(int idPacijenta in obavestenje.ListaIdPacijenata)
+                {
+                    if(idPacijenta == idPacijent)
+                    {
+                        retObavestenja.Add(obavestenje);
+                    }
+                }
+            }
+            return retObavestenja;
         }
     }
 }

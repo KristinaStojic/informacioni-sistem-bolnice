@@ -6,9 +6,8 @@
 
 using Projekat;
 using Projekat.Model;
-using System;
+using Projekat.Servis;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -19,14 +18,12 @@ namespace Model
         public static void DodajSalu(Sala sala)
         {
             sale.Add(sala);
-            PrikaziSalu.Sale.Add(sala);
             sacuvajIzmjene();
         }
 
         public static void ObrisiSalu(Sala sala)
         {
             sale.Remove(sala);
-            PrikaziSalu.Sale.Remove(sala);
             obrisiTermineUSali(sala);
             sacuvajIzmjene();
         }
@@ -38,23 +35,20 @@ namespace Model
                 if (t.Prostorija.Id == sala.Id)
                 {
                     TerminMenadzer.termini.Remove(t);
-                    TerminMenadzer.sacuvajIzmene();
+                    TerminServisLekar.sacuvajIzmene();
                 }
             }
         }
 
-        public static void IzmjeniSalu(Sala izSale, Sala sala)
+        public static void IzmjeniSalu(Sala izSale, Sala uSalu)
         {
-            foreach (Sala s in sale)
+            foreach (Sala sala in sale)
             {
-                if (s.Id == izSale.Id)
+                if (sala.Id == izSale.Id)
                 {
-                    s.brojSale = sala.brojSale;
-                    s.Namjena = sala.Namjena;
-                    s.TipSale = sala.TipSale;
-                    int idx = PrikaziSalu.Sale.IndexOf(izSale);
-                    PrikaziSalu.Sale.RemoveAt(idx);
-                    PrikaziSalu.Sale.Insert(idx, s);
+                    sala.brojSale = uSalu.brojSale;
+                    sala.Namjena = uSalu.Namjena;
+                    sala.TipSale = uSalu.TipSale;
                 }
             }
             sacuvajIzmjene();
@@ -91,6 +85,18 @@ namespace Model
             }
             return null;
         }
+        
+        public static Krevet NadjiKrevetPoId(int id, Sala soba)
+        {
+            foreach (Krevet krevet in soba.Kreveti) //OpremaMenadzer.kreveti
+            {
+                if (krevet.IdKreveta == id)
+                {
+                    return krevet;
+                }
+            }
+            return null;
+        }
 
         public static void sacuvajIzmjene()
         {
@@ -123,72 +129,6 @@ namespace Model
                 }
             }
             return false;
-        }
-
-        public static ZauzeceSale NadjiZauzece(int idProstorije, int idTermin, string datum, string poc, string kraj)
-        {
-            Sala sala = NadjiSaluPoId(idProstorije);
-            foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
-            {
-                if (idTermin == zauzece.idTermina && datum.Equals(zauzece.datumPocetkaTermina) && poc.Equals(zauzece.pocetakTermina) && kraj.Equals(zauzece.krajTermina))
-                {
-                    return zauzece;
-                }
-            }
-            return null;
-        }
-
-        public static void ObrisiZauzeceSale(int IdSale, int IdTermina)
-        {
-            Sala sala = NadjiSaluPoId(IdSale);
-            foreach (ZauzeceSale zauzeceSale in sala.zauzetiTermini)
-            {
-                if (zauzeceSale.idTermina == IdTermina)
-                {
-                    sala.zauzetiTermini.Remove(zauzeceSale);
-                    Console.WriteLine("Obrisano zauzuce sale: " + sala.Id);
-                    return;
-                }
-            }
-        }
-
-        public static List<Sala> PronadjiSaleZaPregled()
-        {
-            List<Sala> slobodneSaleZaPregled = new List<Sala>();
-            foreach (Sala sala in sale)
-            {
-                if (sala.TipSale.Equals(tipSale.SalaZaPregled) && !sala.Namjena.Equals("Skladiste"))
-                {
-                    slobodneSaleZaPregled.Add(sala);
-                }
-            }
-            return slobodneSaleZaPregled;
-        }
-
-        public static List<Sala> PronadjiSaleZaOperaciju() 
-        {
-            List<Sala> slobodneSaleZaOperaciju = new List<Sala>();
-            foreach (Sala sala in sale)
-            {
-                if (sala.TipSale.Equals(tipSale.OperacionaSala) && !sala.Namjena.Equals("Skladiste"))
-                {
-                    slobodneSaleZaOperaciju.Add(sala);
-                }
-            }
-            return slobodneSaleZaOperaciju;
-        }
-
-        public static int UkupanBrojSalaZaPregled()
-        {
-            int ukupanBrojSalaZaPregled = 0;
-            foreach (Sala sala in sale)
-            {
-                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
-                {
-                    ukupanBrojSalaZaPregled++;
-                }
-            }
-            return ukupanBrojSalaZaPregled;
         }
 
         public static List<Sala> sale = new List<Sala>();

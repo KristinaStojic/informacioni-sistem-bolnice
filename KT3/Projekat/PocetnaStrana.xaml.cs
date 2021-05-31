@@ -1,4 +1,5 @@
-﻿using Projekat.Pomoc;
+﻿using Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +20,33 @@ namespace Projekat
     /// </summary>
     public partial class PocetnaStrana : Window
     {
-        public PocetnaStrana()
+        int IDLekara;
+        public PocetnaStrana(int idLekara)
         {
             InitializeComponent();
+            this.IDLekara = idLekara;
+            PopuniPodatkeLekara();
         }
 
+        private void PopuniPodatkeLekara()
+        {
+            foreach(Lekar lekar in LekariMenadzer.lekari)
+            {
+                if(lekar.IdLekara == IDLekara)
+                {
+                    this.ime.Text = lekar.ImeLek;
+                    this.prezime.Text = lekar.PrezimeLek;
+                    this.jmbg.Text = lekar.Jmbg.ToString();
+                    this.telefon.Text = lekar.BrojTelefona.ToString();
+                    this.email.Text = lekar.Email;
+                    this.adresa.Text = lekar.AdresaStanovanja;
+                    this.specijalizacija.Text = lekar.specijalizacija.ToString();
+                }
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PrikazTerminaLekar pl = new PrikazTerminaLekar();
+            PrikazTerminaLekar pl = new PrikazTerminaLekar(IDLekara);
             pl.Show();
             this.Close();
         }
@@ -47,6 +67,8 @@ namespace Projekat
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             //godisnji odmor
+            ZahteviZaGodisnjiLekar zahtev = new ZahteviZaGodisnjiLekar(IDLekara);
+            zahtev.Show();
         }
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
@@ -66,7 +88,7 @@ namespace Projekat
             } 
             else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                //Button_Click_3(sender, e);
+                Button_Click_3(sender, e);
             }
             else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
@@ -94,6 +116,18 @@ namespace Projekat
         {
             PocetnaStranaLekarPomoc pomoc = new PocetnaStranaLekarPomoc();
             pomoc.Show();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            LicniPodaciLekar podaci = new LicniPodaciLekar(IDLekara);
+            podaci.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            EvidencijaUtrosenogMaterijala em = new EvidencijaUtrosenogMaterijala();
+            em.Show();
         }
     }
 }

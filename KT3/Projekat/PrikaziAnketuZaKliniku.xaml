@@ -4,8 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
+      xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
       mc:Ignorable="d" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="PrikaziAnketuZaKliniku" Background="{DynamicResource BackgroundColor}" Height="640">
+
     <Grid Margin="0,0,0,-30">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
@@ -14,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
-            <RowDefinition Height="53*"/>
+            <RowDefinition Height="59*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="0,0,0,87">
             <Grid  Margin="0,0,0,0" Height="450">
@@ -30,41 +34,39 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="_Vaš profil" Name="Korisnik" Click="Korisnik_Click" />
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Command="{Binding ProfilKomanda}"/>
                                     <Separator/>
-                                    <MenuItem Header="_Popuni anketu" Name="anketa" Click="anketa_Click" />
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Command="{Binding PopuniAnketuKomanda}" />
                                     <Separator/>
-                                    <MenuItem Header="_Izaberite jezik" IsEnabled="False" />
-                                    <MenuItem Header="_sr" />
-                                    <MenuItem Header="_en"/>
+                                    <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                    <MenuItem Header="_eng-US" Command="{Binding PromeniJezikKomanda}"/>
+                                    <MenuItem Header="_sr-LATN" Command="{Binding PromeniJezikKomandaSR}"/>
                                     <Separator />
-                                    <MenuItem Header="_Izaberite temu" IsEnabled="False" />
-                                    <MenuItem Header="_Tamna" x:Name="svetlaTema" Click="PromeniTemu" />
+                                    <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                    <MenuItem Header="{namespace:Loc Tamna}" x:Name="tamnaTema"  Command="{Binding PromeniTemuKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Svetla}" x:Name="SvetlaTema" Command="{Binding PromeniTemuKomanda}"/>
                                     <Separator />
-                                    <MenuItem Header="_Odjavite se" x:Name="odjava" Click="odjava_Click"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Command="{Binding OdjavaKomanda}"/>
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                            <Hyperlink Name="pocetna" Click="pocetna_Click">
-                            <Run Text="Početna stranica"/>
-                            </Hyperlink>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="zakazi" Click="zakazi_Click">
-                                <Run Text="Zakažite termin"/>
-                            </Hyperlink><Run Text=" "/>
+                            <Hyperlink x:Name="pocetna" Command="{Binding PocetnaStranicaKomanda}">
+                            <Run Text="{namespace:Loc Pocetna}"/>
+                        </Hyperlink>
                             <Run Text="  "/>
+                        <Hyperlink Name="zakazi" Command="{Binding ZakaziTerminKomanada}">
+                            <Run Text="{namespace:Loc ZakaziTermin}"/>
+                        </Hyperlink>
+                        <Run Text="  "/>
+                        <Hyperlink Name="uvid" Command="{Binding UvidUZakazaneTermineKomanda}">
+                            <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
+                        </Hyperlink>
                             <Run Text=" "/>
-                            <Hyperlink x:Name="uvid" Click="uvid_Click">
-                                <Run Text="Uvid u zakazane termine"/>
-                            </Hyperlink><Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Hyperlink x:Name="karton" Click="karton_Click">
-                                <Run Text="Zdravstveni karton"/>
-                            </Hyperlink>
+                        <Hyperlink Name="karton" Command="{Binding KartonKomanda}">
+                            <Run Text="{namespace:Loc Karton}"/>
+                        </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>
@@ -86,16 +88,16 @@
                     </GridView>
                 </ListView.View>
             </-->
-            <StackPanel Margin="179,0,181,28.5" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="475" 
+            <StackPanel Margin="179,0,181,20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="475" 
                         Width="350" Background="#e8f1f5">
                 <StackPanel Margin="0,0,0,0"  HorizontalAlignment="Center" Width="350">
-                    <Label HorizontalAlignment="Center" Content="Anketa o uslugama Zdravo korporacije" FontWeight="Bold" FontSize="13" Margin="52,10,50, 0" />
-                    <Label HorizontalAlignment="Center" Content="1️⃣-veoma lose, 2️⃣-lose, 3️⃣-dobro, 4️⃣-vrlo dobro, 5️⃣-odlicno" FontSize="11"/>
+                    <Label HorizontalAlignment="Center" Content="{namespace:Loc NaslovAnketaKlinika}" FontWeight="Bold" FontSize="13" Margin="52,10,50, 0" />
+                    <Label HorizontalAlignment="Center" Content="{namespace:Loc Ocene}" FontSize="11"/>
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280">
-                            1. Kako biste ocenili kvalitet usluga koje Vam nudi Zdravo korporacija?
+                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280" Text="{namespace:Loc Jedan}">
+                           
                         </TextBlock>
                     </StackPanel>
                     <StackPanel>
@@ -110,8 +112,8 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0">
-                            2. Kako biste ocenili efikasnost online zakazivanja, pomeranja i otkazivanja termina?
+                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Dva}">
+                            
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
@@ -124,8 +126,8 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0">
-                            3. Kako biste ocenili odnos cena i usluga u Zdravo korporaciji?
+                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Tri}">
+                           
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
@@ -138,8 +140,8 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" >
-                            4. Kako biste ocenili strucnost zaposlenih u Zdravo korporaciji?
+                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Cetiri}">
+                            
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
@@ -153,8 +155,8 @@
                 </StackPanel>
                 <StackPanel Margin="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja5" Margin="30, 0, 0, 0" TextWrapping="Wrap">
-                        5. Kako biste ocenili higijenu u klinikama Zdravo korporacije?
+                        <TextBlock x:Name="pitanja5" Margin="30, 0, 0, 0" TextWrapping="Wrap" Text="{namespace:Loc Pet}">
+                       
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
@@ -167,7 +169,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel>
-                <Button Content="Potvrdi" Name="potvrdi" Height="30" Width="90" Margin="310,0,310,0" Click="Button_Click"
+                <Button Content="{namespace:Loc Potvrdi}" Name="potvrdi" Height="30" Width="90" Margin="310,0,310,0" Click="Button_Click"
                         Style="{DynamicResource ButtonStyle2}"/>
             </StackPanel>
         </StackPanel>

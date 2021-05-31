@@ -50,6 +50,7 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
+    <Kreveti />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
@@ -108,7 +109,15 @@
         <datumKrajaTermina>04/27/2021</datumKrajaTermina>
         <idTermina>1</idTermina>
       </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>10:00</pocetakTermina>
+        <krajTermina>11:00</krajTermina>
+        <datumPocetkaTermina>05/19/2021</datumPocetkaTermina>
+        <datumKrajaTermina>05/19/2021</datumKrajaTermina>
+        <idTermina>1</idTermina>
+      </ZauzeceSale>
     </zauzetiTermini>
+    <Kreveti />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
@@ -118,7 +127,7 @@
     <Oprema>
       <Oprema>
         <NazivOpreme>rukavice</NazivOpreme>
-        <Kolicina>200</Kolicina>
+        <Kolicina>195</Kolicina>
         <Staticka>false</Staticka>
         <IdOpreme>6</IdOpreme>
       </Oprema>
@@ -154,6 +163,7 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
+    <Kreveti />
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
@@ -199,7 +209,7 @@
       </Oprema>
       <Oprema>
         <NazivOpreme>rukavice</NazivOpreme>
-        <Kolicina>200</Kolicina>
+        <Kolicina>205</Kolicina>
         <Staticka>false</Staticka>
         <IdOpreme>6</IdOpreme>
       </Oprema>
@@ -223,9 +233,10 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
+    <Kreveti />
   </Sala>
   <Sala>
-    <TipSale>SalaZaOdmor</TipSale>
+    <TipSale>SalaZaLezanje</TipSale>
     <Id>5</Id>
     <brojSale>4</brojSale>
     <Namjena>cekaonica</Namjena>
@@ -238,5 +249,6 @@
       </Oprema>
     </Oprema>
     <zauzetiTermini />
+    <Kreveti />
   </Sala>
 </ArrayOfSala>

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,8 @@ namespace Projekat
     public partial class PrikazAnamnezePacijent : Page
     {
 
-        public Anamneza anamneza;
-        public static int idPacijent;
+        private Anamneza anamneza;
+        private static int idPacijent;
         public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
             InitializeComponent();
@@ -27,82 +28,123 @@ namespace Projekat
             idPacijent = izabraniPacijent.IdPacijenta;
             anamneza = izabranaAnamneza;
 
-
-            this.datumAnamneze.Text = anamneza.Datum;
+            this.datumTermina.Text = anamneza.Datum;
             this.podaciLekar.Text = anamneza.ImePrezimeLekara;
             this.opisBolesti.Text = anamneza.OpisBolesti;
             this.terpaija.Text = anamneza.Terapija;
-            Pacijent prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            this.beleska.Text = anamneza.Beleska;
+            isEnabledDugmad();
+            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            this.ime.Text = prijavljeniPacijent.ImePacijenta;
+            this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
+            this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
+            Termin termin = TerminServis.NadjiTerminPoId(anamneza.IdTermina);
+            this.sala.Text = termin.Prostorija.brojSale.ToString();
+            this.vremeTermina.Text = termin.VremePocetka + "-" + termin.VremeKraja;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void isEnabledDugmad()
         {
-            // nazad
-            //this.Close();
+            if (anamneza.Beleska.Equals(""))
+            {
+                this.DodajBelesku.IsEnabled = true;
+                this.IzmeniBelesku.IsEnabled = false;
+                return;
+            }
+            else
+            {
+                this.IzmeniBelesku.IsEnabled = true;
+                this.DodajBelesku.IsEnabled = false;
+                return;
+            }
+        }
+
+        private void SacuvajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            anamneza.Beleska = this.beleska.Text;
+            this.beleska.IsEnabled = false;
+            this.SacuvajBelesku.IsEnabled = false;
+            isEnabledDugmad();
+            PacijentiServis.SacuvajIzmenePacijenta();
+        }
+
+        private void DodajBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            this.beleska.IsEnabled = true;
+            this.SacuvajBelesku.IsEnabled = true;
+            this.DodajBelesku.IsEnabled = false;
+            this.IzmeniBelesku.IsEnabled = false;
+        }
+
+        private void IzmeniBelesku_Click(object sender, RoutedEventArgs e)
+        {
+            this.beleska.IsEnabled = true;
+            this.SacuvajBelesku.IsEnabled = true;
+            this.DodajBelesku.IsEnabled = false;
+            this.IzmeniBelesku.IsEnabled = false;
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);
+            /*Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);*/
+            PacijentWebStranice.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(idPacijent);
-            this.NavigationService.Navigate(karton);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            Page pocetna = new PrikaziTermin(idPacijent);
-            this.NavigationService.Navigate(pocetna);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
-
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
-            Page podaci = new LicniPodaciPacijenta(idPacijent);
-            this.NavigationService.Navigate(podaci);
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
         }
-
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
+        }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            /*var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
             MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
+            if (mi.Header.Equals("en-US"))
             {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
             }
             else
             {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }*/
+            PacijentWebStranice.Jezik_Click(Jezik);
+
         }
+
+       
     }
 }

@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,458 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Adresa" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="Anamneza" xml:space="preserve">
+    <value>Anamneza</value>
+  </data>
+  <data name="AnamnezaPodaci" xml:space="preserve">
+    <value>Podaci o anamnezi</value>
+  </data>
+  <data name="Anamneze" xml:space="preserve">
+    <value>Anamneze</value>
+  </data>
+  <data name="AnketaOLekaru" xml:space="preserve">
+    <value>Anketa o radu lekara</value>
+  </data>
+  <data name="Beleske" xml:space="preserve">
+    <value>Beleške</value>
+  </data>
+  <data name="Bosna" xml:space="preserve">
+    <value>Bosna i Hercegovina</value>
+  </data>
+  <data name="BracnoStanje" xml:space="preserve">
+    <value>Bračno stanje</value>
+  </data>
+  <data name="BrojDana" xml:space="preserve">
+    <value>Koliko dana uzimati leka</value>
+  </data>
+  <data name="BrojDana2" xml:space="preserve">
+    <value>Broj dana</value>
+  </data>
+  <data name="BrojKartice" xml:space="preserve">
+    <value>Broj kartice</value>
+  </data>
+  <data name="BrojTelefona" xml:space="preserve">
+    <value>Broj telefona</value>
+  </data>
+  <data name="Cetiri" xml:space="preserve">
+    <value>4. Kako biste ocenili stručnost zaposlenih u Zdravo korporaciji?</value>
+  </data>
+  <data name="Cetvrto" xml:space="preserve">
+    <value>4. Kako biste ocenili stručnost lekara u radu na racunaru?</value>
+  </data>
+  <data name="Da" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="Datum" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="DatumIzdavanjaUputa" xml:space="preserve">
+    <value>Datum izdavanja uputa</value>
+  </data>
+  <data name="DatumPropisivanja" xml:space="preserve">
+    <value>Datum propisivanja leka</value>
+  </data>
+  <data name="DatumVazenja" xml:space="preserve">
+    <value>Datum važenja</value>
+  </data>
+  <data name="DnevnoUzimanje" xml:space="preserve">
+    <value>Dnevno uzimanje leka</value>
+  </data>
+  <data name="Dodaj" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="DodajPodsetnik" xml:space="preserve">
+    <value>Dodaj podsetnik</value>
+  </data>
+  <data name="DrugiLekar" xml:space="preserve">
+    <value>Izaberite drugog lekara</value>
+  </data>
+  <data name="Drugo" xml:space="preserve">
+    <value>2. Kako biste ocenili odnos lekara prema pacijentima i drugim zaposlenima?</value>
+  </data>
+  <data name="Drzava" xml:space="preserve">
+    <value>Država</value>
+  </data>
+  <data name="Dva" xml:space="preserve">
+    <value>2. Kako biste ocenili efikasnost online zakazivanja, pomeranja i otkazivanja termina?</value>
+  </data>
+  <data name="ElektronskoPlacanje" xml:space="preserve">
+    <value>Elektronsko placanje</value>
+  </data>
+  <data name="FilterLekari" xml:space="preserve">
+    <value>Pronađite lekara po prezimenu, imenu ili specijalizaciji</value>
+  </data>
+  <data name="GboxSpecijalistickiPregled" xml:space="preserve">
+    <value>Specijalistički pregled</value>
+  </data>
+  <data name="Godina" xml:space="preserve">
+    <value>Godina</value>
+  </data>
+  <data name="Grad" xml:space="preserve">
+    <value>Grad</value>
+  </data>
+  <data name="Hrvatska" xml:space="preserve">
+    <value>Hrvatska</value>
+  </data>
+  <data name="Ime" xml:space="preserve">
+    <value>Ime</value>
+  </data>
+  <data name="ImeIPrezimeNaKartici" xml:space="preserve">
+    <value>Ime i prezime na kartici</value>
+  </data>
+  <data name="ImePacijenta" xml:space="preserve">
+    <value>Ime pacijenta</value>
+  </data>
+  <data name="IzaberiteDatum" xml:space="preserve">
+    <value>*2. Izaberite datum</value>
+  </data>
+  <data name="IzaberiteJednu" xml:space="preserve">
+    <value>Izaberite jednu od ponuđenih preferenci</value>
+  </data>
+  <data name="IzaberiteJezik" xml:space="preserve">
+    <value>Promeni jezik</value>
+  </data>
+  <data name="IzaberiteLekara" xml:space="preserve">
+    <value>*4. Izaberite lekara</value>
+  </data>
+  <data name="IzaberiteLekara2" xml:space="preserve">
+    <value>Izaberite lekara</value>
+  </data>
+  <data name="IzaberiteTipTermina" xml:space="preserve">
+    <value>*1. Izaberite tip termina</value>
+  </data>
+  <data name="IzaberiteUput" xml:space="preserve">
+    <value>*1.1. Izaberite uput</value>
+  </data>
+  <data name="IzaberiteVremePocetka" xml:space="preserve">
+    <value>*3. Izaberite vreme početka</value>
+  </data>
+  <data name="IzabraniLekar" xml:space="preserve">
+    <value>Izabrani lekar</value>
+  </data>
+  <data name="IzberiteTemu" xml:space="preserve">
+    <value>Promeni temu</value>
+  </data>
+  <data name="Izmeni" xml:space="preserve">
+    <value>Izmeni</value>
+  </data>
+  <data name="IzmenitePodatke" xml:space="preserve">
+    <value>Izmenite podatke</value>
+  </data>
+  <data name="Izvestaj" xml:space="preserve">
+    <value>Izveštaj</value>
+  </data>
+  <data name="Jedan" xml:space="preserve">
+    <value>1. Kako biste ocenili kvalitet usluga koje Vam nudi Zdravo korporacija?</value>
+  </data>
+  <data name="JmbgPacijenta" xml:space="preserve">
+    <value>JMBG pacijenta</value>
+  </data>
+  <data name="Karton" xml:space="preserve">
+    <value>Zdravstveni karton</value>
+  </data>
+  <data name="KorisnickoIme" xml:space="preserve">
+    <value>Korisničko ime</value>
+  </data>
+  <data name="lblPodnaslov" xml:space="preserve">
+    <value>Izaberite datum i odaberite jedan od preporucenih termina</value>
+  </data>
+  <data name="LblPreporuceniTermini" xml:space="preserve">
+    <value>📆 Preporučeni termini</value>
+  </data>
+  <data name="Lekar" xml:space="preserve">
+    <value>Lekar</value>
+  </data>
+  <data name="LekarKodKogSeUpucuje" xml:space="preserve">
+    <value>Lekar kod kog se upućuje</value>
+  </data>
+  <data name="LekarPodaci" xml:space="preserve">
+    <value>Lekar</value>
+  </data>
+  <data name="LekarskiRecept" xml:space="preserve">
+    <value>Lekarski recept</value>
+  </data>
+  <data name="LekarskiRecepti" xml:space="preserve">
+    <value>Lekarski recepti</value>
+  </data>
+  <data name="LekarskiUputi" xml:space="preserve">
+    <value>Lekarski uputi</value>
+  </data>
+  <data name="LekarToolTip" xml:space="preserve">
+    <value>Ime i prezime izabranog lekara</value>
+  </data>
+  <data name="Lozinka" xml:space="preserve">
+    <value>Lozinka</value>
+  </data>
+  <data name="Mesec" xml:space="preserve">
+    <value>Mesec</value>
+  </data>
+  <data name="Modifikacija" xml:space="preserve">
+    <value>Modifikuj termine</value>
+  </data>
+  <data name="Muski" xml:space="preserve">
+    <value>Muški</value>
+  </data>
+  <data name="Napomena" xml:space="preserve">
+    <value>Napomena</value>
+  </data>
+  <data name="NaslovAnketaKlinika" xml:space="preserve">
+    <value>Anketa o uslugama Zdravo korporacije</value>
+  </data>
+  <data name="NaslovUputa" xml:space="preserve">
+    <value>Lekarski uput za specijalistički pregled</value>
+  </data>
+  <data name="Nazad" xml:space="preserve">
+    <value>Nazad</value>
+  </data>
+  <data name="NazivAnkete" xml:space="preserve">
+    <value>Naziv ankete</value>
+  </data>
+  <data name="NazivLeka" xml:space="preserve">
+    <value>Naziv leka</value>
+  </data>
+  <data name="Ne" xml:space="preserve">
+    <value>Ne</value>
+  </data>
+  <data name="Neozenjen" xml:space="preserve">
+    <value>Neoženjen/Neudata</value>
+  </data>
+  <data name="NoviPodsetnik" xml:space="preserve">
+    <value>Novi podsetnik</value>
+  </data>
+  <data name="Obavestenja" xml:space="preserve">
+    <value>🔔 Obaveštenja</value>
+  </data>
+  <data name="ObrisiObavestenje" xml:space="preserve">
+    <value>Obrisi selektovano obavestenje</value>
+  </data>
+  <data name="Ocene" xml:space="preserve">
+    <value>1️⃣-veoma lose, 2️⃣-lose, 3️⃣-dobro, 4️⃣-vrlo dobro, 5️⃣-odlicno</value>
+  </data>
+  <data name="Odjava" xml:space="preserve">
+    <value>Odjavi se</value>
+  </data>
+  <data name="Odustani" xml:space="preserve">
+    <value>Odustani</value>
+  </data>
+  <data name="OpisBolesti" xml:space="preserve">
+    <value>Opis bolesti</value>
+  </data>
+  <data name="OpisUputa" xml:space="preserve">
+    <value>Opis uputa</value>
+  </data>
+  <data name="OtkaziTermin" xml:space="preserve">
+    <value>Otkaži termin</value>
+  </data>
+  <data name="Ozenjen" xml:space="preserve">
+    <value>Oženjen/Udata</value>
+  </data>
+  <data name="PacijentPodaci" xml:space="preserve">
+    <value>Pacijent</value>
+  </data>
+  <data name="Pet" xml:space="preserve">
+    <value>5. Kako biste ocenili higijenu u klinikama Zdravo korporacije?</value>
+  </data>
+  <data name="PocetakTerapije" xml:space="preserve">
+    <value>Početak terapije</value>
+  </data>
+  <data name="Pocetna" xml:space="preserve">
+    <value>Početna stranica</value>
+  </data>
+  <data name="Podsetnici" xml:space="preserve">
+    <value>⏰ Podsetnici</value>
+  </data>
+  <data name="Pol" xml:space="preserve">
+    <value>Pol</value>
+  </data>
+  <data name="Pomeri" xml:space="preserve">
+    <value>Pomeri</value>
+  </data>
+  <data name="PomeriTermin" xml:space="preserve">
+    <value>Pomeri termin</value>
+  </data>
+  <data name="Popuni" xml:space="preserve">
+    <value>Popuni</value>
+  </data>
+  <data name="PopuniAnketu" xml:space="preserve">
+    <value>Popuni anketu</value>
+  </data>
+  <data name="PostanskiBroj" xml:space="preserve">
+    <value>Poštanski broj</value>
+  </data>
+  <data name="PotpisLekara" xml:space="preserve">
+    <value>Potpis lekara</value>
+  </data>
+  <data name="Potvrdi" xml:space="preserve">
+    <value>Potvrdi</value>
+  </data>
+  <data name="Preference" xml:space="preserve">
+    <value>Preference</value>
+  </data>
+  <data name="Pregled" xml:space="preserve">
+    <value>Pregled</value>
+  </data>
+  <data name="PreporuceniTermini" xml:space="preserve">
+    <value>Preporučeni termini</value>
+  </data>
+  <data name="Prezime" xml:space="preserve">
+    <value>Prezime</value>
+  </data>
+  <data name="PrezimePacijenta" xml:space="preserve">
+    <value>Prezime pacijenta</value>
+  </data>
+  <data name="PrijaviSe" xml:space="preserve">
+    <value>Prijavi se</value>
+  </data>
+  <data name="Profil" xml:space="preserve">
+    <value>Vaš profil</value>
+  </data>
+  <data name="PronadjiteLekara" xml:space="preserve">
+    <value>Pronađite lekara</value>
+  </data>
+  <data name="Prvo" xml:space="preserve">
+    <value>1. Kako biste ocenili strucnost lekara u svom radu?</value>
+  </data>
+  <data name="Razveden" xml:space="preserve">
+    <value>Razveden/Razvedena</value>
+  </data>
+  <data name="Recept" xml:space="preserve">
+    <value>Recept</value>
+  </data>
+  <data name="Sacuvaj" xml:space="preserve">
+    <value>Sačuvaj</value>
+  </data>
+  <data name="SadrzajObavestenja" xml:space="preserve">
+    <value>Sadržaj</value>
+  </data>
+  <data name="Sala" xml:space="preserve">
+    <value>Sala</value>
+  </data>
+  <data name="Slovenija" xml:space="preserve">
+    <value>Slovenija</value>
+  </data>
+  <data name="SpecijalistickiPregled" xml:space="preserve">
+    <value>Specijalistički pregled</value>
+  </data>
+  <data name="Specijalizacija" xml:space="preserve">
+    <value>Specijalizacija</value>
+  </data>
+  <data name="Srbija" xml:space="preserve">
+    <value>Srbija</value>
+  </data>
+  <data name="Svetla" xml:space="preserve">
+    <value>Svetla</value>
+  </data>
+  <data name="Tamna" xml:space="preserve">
+    <value>Tamna</value>
+  </data>
+  <data name="TekstLabeleZaPretragu" xml:space="preserve">
+    <value>Pronađite termin po datumu (MM/dd/yyyy)</value>
+  </data>
+  <data name="Tema" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="Terapija" xml:space="preserve">
+    <value>Terapija</value>
+  </data>
+  <data name="TerminPodaci" xml:space="preserve">
+    <value>Podaci o terminu</value>
+  </data>
+  <data name="TipObavestenja" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="TipTermin" xml:space="preserve">
+    <value>Tip termina</value>
+  </data>
+  <data name="TipUputa" xml:space="preserve">
+    <value>Tip uputa</value>
+  </data>
+  <data name="ToolTipLekar" xml:space="preserve">
+    <value>Ukoliko želite da zakazete termin kod drugog lekara pritisnite na dugme Preference</value>
+  </data>
+  <data name="ToolTipModifikacija" xml:space="preserve">
+    <value>Ukoliko zelite da pomerite ili otkazete termin</value>
+  </data>
+  <data name="ToolTipPreferenca" xml:space="preserve">
+    <value>Ukoliko želite da zakazete termin kod drugog lekara ili da Vam sistem predlozi 3 slobodna termina</value>
+  </data>
+  <data name="ToolTipPretragaDatuma" xml:space="preserve">
+    <value>Pretražite listu termina po datumu</value>
+  </data>
+  <data name="ToolTipUput" xml:space="preserve">
+    <value>Ukoliko zakazujete specijalisticki pregled, izaberite uput</value>
+  </data>
+  <data name="Trece" xml:space="preserve">
+    <value>3. Kako biste ocenili higijenu radnog mesta lekara?</value>
+  </data>
+  <data name="Tri" xml:space="preserve">
+    <value>3. Kako biste ocenili odnos cena i usluga u Zdravo korporaciji?</value>
+  </data>
+  <data name="Udovac" xml:space="preserve">
+    <value>Neodređeno</value>
+  </data>
+  <data name="UpitZaBrisanje" xml:space="preserve">
+    <value>Da li ste sigurni da zelite da otkazete odabrani termin?</value>
+  </data>
+  <data name="UvidObavestenje" xml:space="preserve">
+    <value>Uvid u selektovano obaveštenje</value>
+  </data>
+  <data name="UvidUZakazaneTermine" xml:space="preserve">
+    <value>Uvid u zakazane termine</value>
+  </data>
+  <data name="Uvod" xml:space="preserve">
+    <value>Zdravo korporacija je privatni zdravstveni sistem koji nudi najviši kvalitet usluge, 
+                    najefikasniji oporavak zdravlja i podstiče na zdrav život svakog pacijenta.
+                    Registujte se u najbližem kliničkom centru i iskoristite mogućnosti koje Vam nudi Zdravo korporacija.</value>
+  </data>
+  <data name="valAdresa" xml:space="preserve">
+    <value>Popunite polje</value>
+  </data>
+  <data name="valDatum" xml:space="preserve">
+    <value>Izaberite datum</value>
+  </data>
+  <data name="valIme" xml:space="preserve">
+    <value>Unesite ime</value>
+  </data>
+  <data name="valJmbg" xml:space="preserve">
+    <value>Dozvoljene su samo cifre</value>
+  </data>
+  <data name="valJmbgDuzina" xml:space="preserve">
+    <value>Duzina mora biti od 9 do 13 cifara</value>
+  </data>
+  <data name="valPrezime" xml:space="preserve">
+    <value>Unesite prezime</value>
+  </data>
+  <data name="valSadrzaj" xml:space="preserve">
+    <value>Unesite sadržaj obaveštenja</value>
+  </data>
+  <data name="valVreme" xml:space="preserve">
+    <value>Uneti vreme u formatu HH:mm</value>
+  </data>
+  <data name="Vreme" xml:space="preserve">
+    <value>Vreme</value>
+  </data>
+  <data name="VremeKraja" xml:space="preserve">
+    <value>Vreme kraja</value>
+  </data>
+  <data name="VremePocetka" xml:space="preserve">
+    <value>Vreme početka</value>
+  </data>
+  <data name="ZakaziTermin" xml:space="preserve">
+    <value>Zakaži termin</value>
+  </data>
+  <data name="Zanimanje" xml:space="preserve">
+    <value>Zanimanje</value>
+  </data>
+  <data name="Zenski" xml:space="preserve">
+    <value>Ženski</value>
+  </data>
 </root>

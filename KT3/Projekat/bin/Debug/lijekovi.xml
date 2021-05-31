@@ -48,4 +48,11 @@
       </Sastojak>
     </sastojci>
   </Lek>
+  <Lek>
+    <idLeka>5</idLeka>
+    <nazivLeka>Brufen</nazivLeka>
+    <sifraLeka>BN</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
 </ArrayOfLek>

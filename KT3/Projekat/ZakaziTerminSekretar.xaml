@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="ZakaziTerminSekretar" Height="690" Width="580" WindowStartupLocation="CenterScreen">
+        Title="ZakaziTerminSekretar" Height="690" Width="580" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
@@ -36,7 +36,7 @@
         <Label Grid.Row="4" FontSize="17" VerticalContentAlignment="Center" Content="Pacijent:" Margin="83,0.2,88.2,0.4" Grid.ColumnSpan="2"/>
         <Label Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Lekar:" Margin="83,44.6,72.2,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
-        <TextBox x:Name="pretraga" TextChanged="pretraga_TextChanged" Margin="6.8,7.6,7.2,0" TextAlignment="Left" ToolTip="Pretrazite listu" FontSize="15" Grid.Column="1" Height="32" Grid.Row="2" VerticalAlignment="Top">
+        <TextBox x:Name="pretraga" TextChanged="Pretraga_TextChanged" Margin="6.8,7.6,7.2,0" TextAlignment="Left" ToolTip="Pretrazite listu" FontSize="15" Grid.Column="1" Height="32" Grid.Row="2" VerticalAlignment="Top">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
@@ -60,10 +60,10 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-       
+
         <Button Content="Pacijenti" HorizontalAlignment="Left" Margin="7.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Pacijenata"/>
-  
-        <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="7.2,4,8.8,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="listaPacijenata_GotKeyboardFocus">
+
+        <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="7.2,4,8.8,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="ListaPacijenata_GotKeyboardFocus">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdPacijenta}"/>
@@ -80,9 +80,15 @@
                 <Label Content="Napravite GUEST nalog" Margin="14,0,-14.2,0.2"/>
             </Grid>
         </Button>
+        <Button Grid.Column="1" Grid.Row="5" Click="Uputi_Click" Margin="7.2,6.6,12.2,6.2" Background="#FFE7F6F7" Height="32">
+            <Grid>
+                <Label Content="Zakazi pregled sa uputom" Margin="0,0,0.2,0.6"/>
+            </Grid>
+        </Button>
+
         <Button Content="Lekari" HorizontalAlignment="Left" Margin="104.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Lekara"/>
 
-        <ListView x:Name="listaLekara" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="6.8,8,8.6,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="listaLekara_GotKeyboardFocus" Visibility="Hidden">
+        <ListView x:Name="listaLekara" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="6.8,8,8.6,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="ListaLekara_GotKeyboardFocus" Visibility="Hidden">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdLekara}"/>
@@ -93,21 +99,36 @@
             </ListView.View>
         </ListView>
 
-        <TextBox Grid.Column="2" Grid.Row="4" Name="pacijenti" Margin="8.8,6.2,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap"/>
-        <TextBox Grid.Column="2" Grid.Row="6" Name="lekari" Margin="8.8,6.8,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" />
+        <TextBox Grid.Column="2" Grid.Row="4" Name="pacijenti" Margin="8.8,6.2,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" TextChanged="Pacijenti_TextChanged"/>
+        <TextBox Grid.Column="2" Grid.Row="6" Name="lekari" Margin="8.8,6.8,10.6,0" FontSize="15" Height="32" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" TextChanged="Lekari_TextChanged" />
 
-        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="7" Height="32" Margin="8.8,6,9.6,6.8" FontSize="15" IsKeyboardFocusedChanged="tip_IsKeyboardFocusedChanged" >
+        <ComboBox x:Name="tip" Grid.Column="2" Grid.Row="7" Height="32" Margin="8.8,6,9.6,6.8" FontSize="15" IsKeyboardFocusedChanged="Tip_IsKeyboardFocusedChanged" SelectionChanged="Tip_SelectionChanged">
             <ComboBoxItem Content="Pregled"/>
+            <ComboBoxItem Content="Pregled sa uputom"/>
             <ComboBoxItem Content="Operacija"/>
         </ComboBox>
 
-        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="8" Margin="8.8,6.2,0,0" SelectedIndex="0" HorizontalAlignment="Left" Width="192" Height="32" FontSize="15" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Name="datum" Grid.Column="2" Grid.Row="9" Width="192" Height="32" Margin="8.8,6.4,0,6.4" FontSize="15" SelectedDateChanged="datum_SelectedDateChanged"/>
+        <ComboBox x:Name="prostorije" Grid.Column="2" Grid.Row="8" Margin="8.8,6.2,0,0" SelectedIndex="0" HorizontalAlignment="Left" Width="192" Height="32" FontSize="15" VerticalAlignment="Top" SelectionChanged="Prostorije_SelectionChanged"/>
+        <DatePicker HorizontalAlignment="Left" Name="datum" Grid.Column="2" Grid.Row="9" Width="192" Height="32" Margin="8.8,6.4,0,6.4" FontSize="15" SelectedDateChanged="Datum_SelectedDateChanged" Text="" >
+            <DatePicker.Style>
+                <Style TargetType="DatePicker" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Datum u obliku " FontSize="14" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                </Style>
+            </DatePicker.Style>
+        </DatePicker>
 
-        <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="8.8,6.6,0,6.2" FontSize="15" LostFocus="vremePocetka_LostFocus" IsKeyboardFocusedChanged="vremePocetka_IsKeyboardFocusedChanged" SelectionChanged="vremePocetka_SelectionChanged"/>
-        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="106.8,6.6,0,6.2" FontSize="15" IsKeyboardFocusedChanged="vremeKraja_IsKeyboardFocusedChanged"/>
+        <ComboBox HorizontalAlignment="Left" Name = "vremePocetka" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="8.8,6.6,0,6.2" FontSize="15" LostFocus="VremePocetka_LostFocus" IsKeyboardFocusedChanged="VremePocetka_IsKeyboardFocusedChanged" SelectionChanged="VremePocetka_SelectionChanged"/>
+        <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="106.8,6.6,0,6.2" FontSize="15" IsKeyboardFocusedChanged="VremeKraja_IsKeyboardFocusedChanged" AllowDrop="True"/>
 
         <Button Name="potvrdi" Grid.Column="1" Grid.Row="11" Click="Button_Click" Content="Potvrdi" Margin="8.2,27.8,13.2,23" Background="#FFA3DADE" FontSize="17"/>
         <Button Grid.Column="2" Grid.Row="11" Click="Button_Click_1" Content="Odustani" Margin="9.8,27.8,9.8,23" Background="#FFA3DADE" FontSize="17"/>
+        <TextBox Name="datumPocetkaFormat" Text="Format datuma: MM/dd/yyyy" BorderBrush="Transparent" FontSize="10" Grid.Column="2" Background="Transparent" Foreground="Red" HorizontalAlignment="Left" Height="14" Margin="12.8,37.4,0,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" BorderThickness="0" IsReadOnly="True" Width="190" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>

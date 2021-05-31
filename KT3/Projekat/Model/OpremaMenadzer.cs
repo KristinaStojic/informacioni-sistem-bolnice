@@ -1,9 +1,7 @@
 ﻿using Model;
-using System;
+using Projekat.Servis;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Projekat.Model
@@ -13,38 +11,13 @@ namespace Projekat.Model
 
         public static void izmjeniOpremu(Oprema izOpreme, Oprema uOpremu)
         {
-            izmjeniPrikazOpreme(izOpreme, uOpremu);
             azurirajOpremuUSkladistu();
             sacuvajIzmjene();
         }
 
-        private static void izmjeniPrikazOpreme(Oprema izOpreme, Oprema uOpremu)
-        {
-            foreach (Oprema oprema in OpremaMenadzer.oprema)
-            {
-                if (oprema.IdOpreme == izOpreme.IdOpreme)
-                {
-                    oprema.NazivOpreme = uOpremu.NazivOpreme;
-                    oprema.Kolicina = uOpremu.Kolicina;
-                    if (uOpremu.Staticka)
-                    {
-                        int idx = Skladiste.OpremaStaticka.IndexOf(izOpreme);
-                        Skladiste.OpremaStaticka.RemoveAt(idx);
-                        Skladiste.OpremaStaticka.Insert(idx, oprema);
-                    }
-                    else
-                    {
-                        int idx = Skladiste.OpremaDinamicka.IndexOf(izOpreme);
-                        Skladiste.OpremaDinamicka.RemoveAt(idx);
-                        Skladiste.OpremaDinamicka.Insert(idx, oprema);
-                    }
-                }
-            }
-        }
-
         private static void azurirajOpremuUSkladistu()
         {
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleServis.Sale())
             {
                 if (sala.Namjena.Equals("Skladiste"))
                 {
@@ -79,53 +52,8 @@ namespace Projekat.Model
         {
             OpremaMenadzer.oprema.Add(oprema);
             azurirajOpremuUSkladistu();
-            dodajOpremuUPrikaz(oprema);
             sacuvajIzmjene();
         }
-
-        private static void dodajOpremuUPrikaz(Oprema oprema)
-        {
-            if (oprema.Staticka)
-            {
-                Skladiste.OpremaStaticka.Add(oprema);
-            }
-            else
-            {
-                Skladiste.OpremaDinamicka.Add(oprema);
-            }
-        }
-
-        public static void ObrisiOpremu(Oprema oprema)
-        {
-            ukloniOpremu(oprema);
-            azurirajOpremuUSkladistu();
-            ukloniOpremuIzPrikaza(oprema);
-            sacuvajIzmjene();
-        }
-
-        private static void ukloniOpremu(Oprema oprema)
-        {
-            for (int i = 0; i < OpremaMenadzer.oprema.Count; i++)
-            {
-                if (oprema.IdOpreme == OpremaMenadzer.oprema[i].IdOpreme)
-                {
-                    OpremaMenadzer.oprema.RemoveAt(i);
-                }
-            }
-        }
-
-        private static void ukloniOpremuIzPrikaza(Oprema oprema)
-        {
-            if (oprema.Staticka)
-            {
-                Skladiste.OpremaStaticka.Remove(oprema);
-            }
-            else
-            {
-                Skladiste.OpremaDinamicka.Remove(oprema);
-            }
-        }
-
 
         public static void sacuvajIzmjene()
         {
@@ -148,6 +76,41 @@ namespace Projekat.Model
             return id;
         }
 
+        public static int GenerisanjeIdKreveta(int idSobe)
+        {
+            bool pomocna = false;
+            int id = 1;
+            foreach (Sala sala in SaleMenadzer.sale)
+            {
+                if (sala.Id == idSobe && sala.Kreveti != null)
+                {
+                    for (id = 1; id <= sala.Kreveti.Count; id++)
+                    {
+                        foreach (Krevet k in sala.Kreveti)
+                        {
+                            if (k.IdKreveta == id)
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
+                }
+            }
+
+
+            return id;
+
+
+           
+        }
+
         private static bool postojiIdOpreme(int id)
         {
             foreach (Oprema o in oprema)
@@ -159,7 +122,12 @@ namespace Projekat.Model
             }
             return false;
         }
+        
 
         public static List<Oprema> oprema = new List<Oprema>();
+        /*Kristina*/
+        public static List<Krevet> kreveti = new List<Krevet>();
+
+      
     }
 }

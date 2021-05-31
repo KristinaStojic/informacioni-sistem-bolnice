@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -19,29 +20,25 @@ namespace Projekat
     /// </summary>
     public partial class HitanSlucajDodajGuest : Window
     {
+        public bool flag1 = false;
+        public bool flag2 = false;
+        public bool flag3 = false;
         HitanSlucaj hitanSlucaj;
         public HitanSlucajDodajGuest(HitanSlucaj hitanSlucaj)
         {
             InitializeComponent();
             this.hitanSlucaj = hitanSlucaj;
+            potvrdi.IsEnabled = false;
+            validacija.Visibility = Visibility.Hidden;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            pol pol;
-
-            if (polPacijenta.Text.Equals("M"))
-            {
-                pol = pol.M;
-            }
-            else
-            {
-                pol = pol.Z;
-            }
-
-            Pacijent guestPacijent = new Pacijent(PacijentiMenadzer.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, Convert.ToInt32(jmbg.Text), pol, statusNaloga.Guest);
-            PacijentiMenadzer.pacijenti.Add(guestPacijent);
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
+            Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, statusNaloga.Guest);
+            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            pacijenti.Add(guestPacijent);
+            PacijentiServis.SacuvajIzmenePacijenta();
 
             hitanSlucaj.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
             hitanSlucaj.AzurirajListuPacijenata();
@@ -50,17 +47,92 @@ namespace Projekat
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void jmbg_LostFocus(object sender, RoutedEventArgs e)
+        private void Jmbg_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!PacijentiMenadzer.JedinstvenJmbg(Convert.ToInt32(jmbg.Text)))
+            long result;
+            if (long.TryParse(jmbg.Text, out result))
             {
-                MessageBox.Show("JMBG vec postoji");
-                jmbg.Text = "";
+                if (!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text)))
+                {
+                    MessageBox.Show("JMBG vec postoji");
+                    jmbg.Text = "";
+                }
+            }
+        }
+
+        private void Ime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag1 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag1 = true;
+                if (flag1 == true && flag2 == true && flag3 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Prezime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag2 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                flag2 = true;
+                if (flag1 == true && flag2 == true  && flag3 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+            }
+        }
+
+        private void Jmbg_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                flag3 = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                long result;
+                if (long.TryParse(jmbg.Text, out result))
+                {
+                    if (jmbg.Text.Length >= 9 && jmbg.Text.Length <= 13)
+                    {
+                        validacija.Visibility = Visibility.Hidden;
+                        flag3 = true;
+                        if (flag1 == true && flag2 == true && flag3 == true)
+                        {
+                            potvrdi.IsEnabled = true;
+                        }
+                    }
+                    else
+                    {
+                        flag3 = false;
+                        validacija.Visibility = Visibility.Visible;
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    flag3 = false;
+                    validacija.Visibility = Visibility.Visible;
+                    potvrdi.IsEnabled = false;
+                }
             }
         }
     }

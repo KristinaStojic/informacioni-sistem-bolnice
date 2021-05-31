@@ -1,0 +1,83 @@
+﻿<Window x:Class="Projekat.OdobravanjeGodisnjegOdmora"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
+        mc:Ignorable="d"
+        Title="OdobravanjeGodisnjegOdmora" Height="520" Width="820" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+                <Grid>
+                    <Label Content="Izberite zahtev lekara kome zelite da odobrite ili odbijete godisnji odmor:" FontSize="17" HorizontalAlignment="Left" Margin="24,18,0,0" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding TabelaZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="15,64,15.6,104.4" 
+                           AutoGenerateColumns="False" FontSize="14">
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE7F6F7" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="25" Binding="{Binding idZahteva}"/>
+                            <DataGridTextColumn Header="       Ime lekara" Width="125" Binding="{Binding lekar.ImeLek}"/>
+                            <DataGridTextColumn Header="     Prezime lekara" Width="135" Binding="{Binding lekar.PrezimeLek}"/>
+                            <DataGridTextColumn Header="            JMBG" Width="130" Binding="{Binding lekar.Jmbg}"/>
+                    <DataGridTextColumn Header="   Datum početka &#x0a;  godišnjeg odmora" Width="135"  Binding="{Binding pocetakOdmora}"/>
+                    <DataGridTextColumn Header="      Datum kraja &#x0a; godišnjeg odmora" Width="135" Binding="{Binding krajOdmora}"/>
+                            <DataGridTextColumn Header="     Status &#x0a;    zahteva" Width="*" Binding="{Binding odobren}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Odobri zahtev" HorizontalAlignment="Left" Margin="204,410,0,0" VerticalAlignment="Top" Width="179" Height="51" Click="Odobri_Click" FontSize="17" Background="#FFA3DADE"/>
+                    <Button Content="Odbij zahtev" Margin="415,410,213.6,0" VerticalAlignment="Top" Height="51" Click="Odbij_Click" FontSize="17" Background="#FFA3DADE"/>
+                    <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="727,410,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Nazad_Click">
+                        <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180.232"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Button>
+                </Grid>
+        <!--    <TabItem Header="Procesirani zahtevi" IsSelected="True" Height="25" Margin="10.6,0,-10.2,-0.2" Width="150">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="87*"/>
+                        <ColumnDefinition Width="721*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="ProcesiraniZahtevi" ItemsSource="{Binding TabelaProcesiranihZahteva}" SelectionMode="Single" IsReadOnly="True" Margin="23,24,23,92" AutoGenerateColumns="False" FontSize="14" Grid.ColumnSpan="2">
+                        <DataGrid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE7F6F7" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DataGrid.Background>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="25" Binding="{Binding lekar.IdLekara}"/>
+                            <DataGridTextColumn Header="       Ime lekara" Width="125" Binding="{Binding lekar.ImeLek}"/>
+                            <DataGridTextColumn Header="     Prezime lekara" Width="135" Binding="{Binding lekar.PrezimeLek}"/>
+                            <DataGridTextColumn Header="            JMBG" Width="125" Binding="{Binding lekar.Jmbg}"/>
+                            <DataGridTextColumn Header="         Datum  &#x0a; početka odmora" Width="120" Binding="{Binding pocetakOdmora}" x:Name="sifra"/>
+                            <DataGridTextColumn Header="         Datum &#x0a;   kraja odmora" Width="120" Binding="{Binding krajOdmora}" x:Name="naziv"/>
+                            <DataGridTextColumn Header="       Status &#x0a;      zahteva" Width="*" Binding="{Binding odobren}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Background="Transparent" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="640.8,367,0,0" VerticalAlignment="Top" Width="53" Height="49" Click="Nazad_Click" Grid.Column="1">
+                        <Image Source="slike/right-arrow2.png" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180.232"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Button>
+                </Grid>
+            </TabItem> -->
+    </Grid>
+</Window>

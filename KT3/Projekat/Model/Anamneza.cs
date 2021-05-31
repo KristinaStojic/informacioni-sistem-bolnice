@@ -16,13 +16,15 @@ namespace Projekat.Model
 
         public string Terapija { get; set; }
         public string Datum { get; set; }
+        public int IdTermina { get; set; }
+        public string Beleska { get; set; }
 
 
         public string ImePrezimeLekara { get; set; }
 
         /*TO DO: DODAJ KONSTRUKTOR SA LEKAROM*/
 
-        public Anamneza(int id,int p,string dat,string bolest, string terapija, int idLek)
+        public Anamneza(int id,int p,string dat,string bolest, string terapija, int idLek, int idTermina)
         {
             this.IdAnamneze = id;
             this.IdPacijenta = p;
@@ -31,7 +33,8 @@ namespace Projekat.Model
             this.Terapija = terapija;
             this.IdLekara = idLek;
             this.ImePrezimeLekara = ImePrzLekaraPostavi(idLek);
-    
+            this.IdTermina = idTermina;
+            this.Beleska = "";
         }
 
         public Anamneza () { }
@@ -55,7 +58,7 @@ namespace Projekat.Model
         {
             String imeprz = null;
 
-            foreach(Lekar l in MainWindow.lekari)
+            foreach(Lekar l in LekariMenadzer.lekari)
             {
                 if (l.IdLekara == idLekara)
                 {

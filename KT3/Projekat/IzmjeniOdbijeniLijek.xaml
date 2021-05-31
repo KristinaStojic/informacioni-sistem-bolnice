@@ -3,9 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:ViewModel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Izmjeni odbijeni lijek" Height="350" Width="400" Background="LightSteelBlue" WindowStartupLocation="CenterScreen">
+        Title="Izmjeni odbijeni lijek" Height="350" Width="400" Background="LightSteelBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ViewModel:LijekoviViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriOdbijene}"></KeyBinding>
+    </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,10 +25,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Sifra lijeka:</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17">Naziv lijeka:</TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" TextChanged="sifra_TextChanged"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="naziv" Background="AliceBlue" TextChanged="naziv_TextChanged"></TextBox>
-        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Width="200" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10, 10, 95, 0" Click="Sastojci_Click" Name="Sastojci">Izmjeni sastojke</Button>
-        <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10" Click="Potvrdi_Click" Name="Potvrdi">Potvrdi</Button>
-        <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Click="Button_Click">Odustani</Button>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" Text="{Binding SifraOdbijenog, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="naziv" Background="AliceBlue" Text="{Binding NazivOdbijenog, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Width="200" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10, 10, 95, 0" Command="{Binding IzmjeniSastojakOdbijenog}" Name="Sastojci">Izmjeni sastojke</Button>
+        <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Right" Margin="10" Command="{Binding PotvrdiIzmjenuOdbijenog}" Name="Potvrdi">Potvrdi</Button>
+        <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" Background="CadetBlue" HorizontalAlignment="Left" Margin="10" Command="{Binding OdustaniOdIzmjeneOdbijenog}">Odustani</Button>
     </Grid>
 </Window>

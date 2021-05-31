@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+        Title="Sekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Image Source="slike/medical-symbol.png" Margin="143,131,732.6,237.4"/>
-        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="550" StrokeThickness="0" VerticalAlignment="Top" Width="535" Margin="661,69,0,0"/>
+        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="507" StrokeThickness="0" VerticalAlignment="Top" Width="477" Margin="701,81,0,0"/>
 
-        <Button Margin="15,610,1180.6,17.4" Click="Button_Click_2" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
+        <Button Margin="27,596,1164.6,25.4" Click="Nazad_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,22 +20,38 @@
                 </TransformGroup>
             </Button.RenderTransform>
             <StackPanel>
-                <Image Source="slike/right-arrow2.png" Height="40" Width="52" RenderTransformOrigin="0.415,1.073" />
+                <Image Source="slike/right-arrow2.png" Height="58" Width="72" RenderTransformOrigin="0.415,1.073" />
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
-        <Button HorizontalAlignment="Left" Margin="1138,669,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFA3DADE"/>
-        <Button HorizontalAlignment="Left" Margin="1185,669,0,4.4" Width="36" Background="#FF5DBFC5"/>
-        <Button HorizontalAlignment="Left" Margin="1094,670,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFE7F6F7"/>
-        <Button HorizontalAlignment="Left" Margin="1231,669,0,0" VerticalAlignment="Top" Width="38" Height="17" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804"/>
-        <Button Margin="10,7,1179.6,617.4" BorderThickness="0" Background="#00DDDDDD" Click="Button_Click_3">
+
+        <Button Margin="1094,588,102.6,26.4" Click="Wizard_Click" BorderThickness="0" Background="#00000000" RenderTransformOrigin="0.5,0.5" >
             <StackPanel>
-                <Image Source="slike/icons8-pull-down-50.png" Height="53" Width="82" />
+                <Image Source="slike/magic-wand.png" Height="70" Width="77" RenderTransformOrigin="0.415,1.073" />
+                <TextBlock Height="0"/>
+            </StackPanel>
+        </Button>
+
+        <Button HorizontalAlignment="Left" Margin="1138,669,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFA3DADE" Visibility="Hidden"/>
+        <Button HorizontalAlignment="Left" Margin="1185,669,0,4.4" Width="36" Background="#FF5DBFC5" Visibility="Hidden"/>
+        <Button HorizontalAlignment="Left" Margin="1094,670,0,0" VerticalAlignment="Top" Width="33" Height="17" Background="#FFE7F6F7" Visibility="Hidden"/>
+        <Button HorizontalAlignment="Left" Margin="1231,669,0,0" VerticalAlignment="Top" Width="38" Height="17" Background="#FF18A3AC" RenderTransformOrigin="-0.222,1.804" Visibility="Hidden"/>
+        <Button Margin="10,7,1160.6,607.4" BorderThickness="0" Background="#00DDDDDD" Click="Otvori_meni_Click">
+            <StackPanel>
+                <Image Source="slike/icons8-pull-down-50.png" Height="66" Width="93" />
                 <TextBlock Height="1"/>
             </StackPanel>
         </Button>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="2" Margin="-2,0,0,0" Visibility="Hidden">
-            <MenuItem Height="106" Width="206" Click="Button_Click_4" RenderTransformOrigin="0.5,0.5">
+            <MenuItem>
+                <Button Margin="10,7,1179.6,617.4" BorderThickness="0" Background="#00DDDDDD" Click="Otvori_meni_Click">
+                    <StackPanel>
+                        <Image Source="slike/icons8-pull-down-50.png" Height="53" Width="82" />
+                        <TextBlock Height="1"/>
+                    </StackPanel>
+                </Button>
+            </MenuItem>
+            <MenuItem Height="106" Width="206" Click="Zatvori_meni_Click" RenderTransformOrigin="0.5,0.5">
                 <MenuItem.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -48,20 +64,34 @@
                     <Image Source="slike/right-arrow1.png" Margin="-10,-20,-56,-22"/>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="Button_Click" FontSize="17"/>
-            <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Button_Click_1"/>
-            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Button_Click_5"/>
-            <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="Pacijenti_Click" FontSize="17"/>
+            <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Termini_Click"/>
+            <MenuItem Header="  _Lekari" Height="60" Width="209" FontSize="17" Click="Lekari_Click"/>
+            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Oglasna_tabla_Click"/>
+            <MenuItem Header="  _Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Pomoć" InputGestureText="Alt+P" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
-        <Label Content="Osnovni podaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="834,83,0,0" FontSize="30" FontWeight="SemiBold" FontStyle="Italic"/>
-        <Label Content="Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,196,0,0" FontSize="20"/>
-        <Label Content="Prezime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,251,0,0" FontSize="20"/>
-        <Label Content="JMBG:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,306,0,0" FontSize="20"/>
-        <Label Content="Broj telefona:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,361,0,0" FontSize="20"/>
-        <Label Content="E-mail:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,416,0,0" FontSize="20"/>
-        <Label Content="Adresa stanovanja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="701,471,0,0" FontSize="20"/>
+        <Label Content="Osnovni podaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="832,83,0,0" FontSize="30" FontWeight="SemiBold" FontStyle="Italic"/>
+        <Label Content="Ime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="757,196,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="Prezime:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="757,251,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="JMBG:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="757,306,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="Broj telefona:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="757,361,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="E-mail:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="759,416,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="Adresa stanovanja:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="757,471,0,0" FontSize="20" FontStyle="Italic"/>
+
+        <Label Content="Teodora" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,196,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="Maruna" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,251,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="2203999805138" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,306,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="060-752-762-0" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,361,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="tm@gmail.com" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="959,416,0,0" FontSize="20" FontStyle="Italic"/>
+        <Label Content="Balzakova 10" Foreground="#FF18A3AC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="957,471,0,0" FontSize="20" FontStyle="Italic"/>
+
         <Label Content="Klinika Zdravo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,444,0,0" FontSize="40" FontStyle="Italic" FontWeight="DemiBold" Foreground="#FF18A3AC"/>
         <Label Content="07:00-20:00" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="237,492,0,0" FontSize="40" FontStyle="Italic" Foreground="#FF18A3AC"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="1013,51,0,0" FontStyle="Italic" TextWrapping="Wrap" VerticalAlignment="Top" Height="36" Width="165" FontSize="20">
+            <Hyperlink Click="Pomoc_Click"> Pomoć? (Ctrl + P) </Hyperlink>
+        </TextBlock>
 
     </Grid>
 </Window>

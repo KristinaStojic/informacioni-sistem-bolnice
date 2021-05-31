@@ -1,0 +1,124 @@
+﻿<Page x:Class="Projekat.PodsetnikPacijent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekat"
+      xmlns:namespace ="clr-namespace:Projekat.Lokalizacija"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800" Background="{DynamicResource BackgroundColor}"
+      Title="PodsetnikPacijent">
+
+    <StackPanel Orientation="Vertical" Margin="0,0,0,0" Width="800" Height="600">
+        <Grid  Margin="0,0,0,0" Height="600">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="58*"/>
+                <ColumnDefinition Width="11*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="513*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.ColumnSpan="3" Grid.Row="0">
+                <StackPanel x:Name="zaglavlje" Height="40"
+                            Grid.ColumnSpan="3" Grid.Row="0"
+                            Background="{DynamicResource StackPanelBackgroundColor}" 
+                            Orientation="Horizontal" Margin="0,0,0,0">
+                    <StackPanel Height="40" Width="150" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Orientation="Horizontal">
+                        <Image Source="slike/medical-symbol.png" Width="35" Height="35" HorizontalAlignment="Left"/>
+                        <TextBlock Text="ZDRAVO" Name="zdravo" FontSize="25" Margin="5, 0, 0,0" FontWeight="Bold" FontStyle="Italic"
+                                   Style="{DynamicResource ZdravoText}"/>
+                    </StackPanel>
+                    <StackPanel Height="40" Width="600" HorizontalAlignment="Right">
+                        <Menu Margin="480, 7.5, 0, 0" BorderThickness="0.5" BorderBrush="#004a7c">
+                            <MenuItem Name="podaci" >
+                                <MenuItem.Icon>
+                                    <Image Source="/slike/user.png" />
+                                </MenuItem.Icon>
+                                <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"/>
+                                <Separator/>
+                                <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click" />
+                                <Separator/>
+                                <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
+                                <MenuItem Header="_en-US" x:Name="Jezik" Click="Jezik_Click"/>
+                                <Separator />
+                                <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
+                                <MenuItem Header="{namespace:Loc Tamna}" Name="tamnaTema" Click="PromeniTemu"/>
+                                <MenuItem Header="{namespace:Loc Svetla}" Name="SvetlaTema" Click="PromeniTemu"/>
+                                <Separator />
+                                <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"/>
+                            </MenuItem>
+                        </Menu>
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock Margin="20,0,0,0" FontSize="14"  Height="25">
+                 <Hyperlink x:Name="pocetna" Click="pocetna_Click">
+                    <Run Text="{namespace:Loc Pocetna}"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="zakazi" Click="zakazi_Click">
+                    <Run Text="{namespace:Loc ZakaziTermin}"/>
+                </Hyperlink>
+                <Run Text="  "/>
+                <Hyperlink Name="uvid" Click="uvid_Click">
+                    <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
+                </Hyperlink>
+                <Run Text=" "/>
+                <Hyperlink Name="karton" Click="karton_Click">
+                    <Run Text="{namespace:Loc Karton}"/>
+                </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0, 10, 0, 0">
+                <GroupBox Header="{namespace:Loc NoviPodsetnik}" Margin="120, 0, 120, 10">
+                    <StackPanel Orientation="Vertical" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
+                            <Label Content="{namespace:Loc Datum}" Foreground="{DynamicResource TextColor}"/>
+                            <DatePicker Name="Datum" Width="174" Margin="8, 0, 0, 0">
+                            </DatePicker>
+                        </StackPanel>
+                        <TextBox  x:Name="valDatum" Text="{namespace:Loc valDatum}" Background="Transparent" 
+                                  Foreground="Red" Visibility="Hidden" Height="15" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                  IsEnabled="False" BorderBrush="Transparent" FontSize="10" IsReadOnly="True" Margin="20, 0, 0, 0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
+                            <Label Content="{namespace:Loc Vreme}" Foreground="{DynamicResource TextColor}"/>
+                            <!-- Vratiti na combo - HCI 
+                        <ComboBox Name="Vreme" Width="175" Margin="10, 0, 0, 0">
+                            <ComboBoxItem Content="07:00"/>
+                            <ComboBoxItem Content="12:00"/>
+                            <ComboBoxItem Content="15:00"/>
+                            <ComboBoxItem Content="20:00"/>
+                        </ComboBox> -->
+                            <TextBox x:Name="Vreme" Width="175" Margin="10, 0, 0, 0">
+                            </TextBox>
+                        </StackPanel>
+                        <TextBox  x:Name="valVreme" Text="{namespace:Loc valVreme}" Background="Transparent" 
+                                  Foreground="Red" Visibility="Hidden" Height="15" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                  IsEnabled="False" BorderBrush="Transparent" FontSize="10" IsReadOnly="True" Margin="20, 0, 0, 0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
+                            <Label Content="{namespace:Loc SadrzajObavestenja}" Foreground="{DynamicResource TextColor}"></Label>
+                            <TextBox x:Name="SadrzajPodsetnika" Width="175"
+                                 Height="80"
+                                 TextWrapping="Wrap"
+                                 Margin="8,0, 0, 0"/>
+                        </StackPanel>
+                        <TextBox  x:Name="valSadrzaj" Text="{namespace:Loc valSadrzaj}" Background="Transparent" 
+                                  Foreground="Red" Visibility="Hidden" Height="15" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                  IsEnabled="False" BorderBrush="Transparent" FontSize="10" IsReadOnly="True" Margin="20, 0, 0, 0"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 10">
+                            <Button Content="{namespace:Loc Dodaj}"
+                                Width="90"
+                                Height="30"
+                                Name="DodajPodsetnik"
+                                HorizontalAlignment="Center"
+                                Style="{DynamicResource ButtonStyle2}" 
+                                Click="DodajPodsetnik_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Page>

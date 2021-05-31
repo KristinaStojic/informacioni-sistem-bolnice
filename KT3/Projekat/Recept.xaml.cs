@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -21,25 +22,25 @@ namespace Projekat
         public Pacijent prijavljeniPacijent;
         public LekarskiRecept lekRec;
         public static int idPacijent;
-        public Recept(LekarskiRecept lp, Pacijent izabraniPacijent)
+        public Recept(LekarskiRecept recept, Pacijent izabraniPacijent)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = izabraniPacijent.IdPacijenta;
-            InicijalizujPodatkeRecepta(lp, izabraniPacijent);
+            InicijalizujPodatkeRecepta(recept, izabraniPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PrikaziTermin.AktivnaTema(this.zaglavlje, this.svetlaTema);
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
-        private void InicijalizujPodatkeRecepta(LekarskiRecept lp, Pacijent izabraniPacijent)
+        private void InicijalizujPodatkeRecepta(LekarskiRecept recept, Pacijent izabraniPacijent)
         {
-            this.lekRec = lp;
-            this.naziv.Text = lp.NazivLeka;
-            this.datum.Text = lp.DatumPropisivanjaLeka;
-            this.dani.Text = lp.BrojDanaKoriscenja.ToString();
-            this.brojUzimanja.Text = lp.BrojDanaKoriscenja.ToString();
-            this.sati.Text = lp.PocetakKoriscenja.Substring(0, 2);
-            this.min.Text = lp.PocetakKoriscenja.Substring(3);
+            this.lekRec = recept;
+            this.naziv.Text = recept.NazivLeka;
+            this.datum.Text = recept.DatumPropisivanjaLeka;
+            this.dani.Text = recept.BrojDanaKoriscenja.ToString();
+            this.brojUzimanja.Text = recept.BrojDanaKoriscenja.ToString();
+            this.sati.Text = recept.PocetakKoriscenja.Substring(0, 2);
+            this.min.Text = recept.PocetakKoriscenja.Substring(3);
 
             this.naziv.IsEnabled = false;
             this.datum.IsEnabled = false;
@@ -51,68 +52,74 @@ namespace Projekat
             this.prijavljeniPacijent = izabraniPacijent;
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
-            id.Text = izabraniPacijent.IdPacijenta.ToString();
+            id.Text = izabraniPacijent.Jmbg.ToString();
+            // TODO: dodati u Lekarskim receptima id lekara koji je izdao recept
+            
+            Lekar lekar = LekariServis.NadjiPoId(recept.IdLekara);
+            podaciLekara.Text = lekar.ToString();
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);
+            /*Page odjava = new PrijavaPacijent();
+            this.NavigationService.Navigate(odjava);*/
+            PacijentWebStranice.odjava_Click(this);
         }
 
         public void karton_Click(object sender, RoutedEventArgs e)
         {
-            Page karton = new ZdravstveniKartonPacijent(idPacijent);
-            this.NavigationService.Navigate(karton);
+            PacijentWebStranice.karton_Click(this, idPacijent);
         }
 
         public void zakazi_Click(object sender, RoutedEventArgs e)
         {
-            if (MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijent))
-            {
-                MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
-                return;
-            }
-            Page zakaziTermin = new ZakaziTermin(idPacijent);
-            this.NavigationService.Navigate(zakaziTermin);
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
-
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
-            Page uvid = new ZakazaniTerminiPacijent(idPacijent);
-            this.NavigationService.Navigate(uvid);
+            PacijentWebStranice.uvid_Click(this, idPacijent);
         }
 
         private void pocetna_Click(object sender, RoutedEventArgs e)
         {
-            Page pocetna = new PrikaziTermin(idPacijent);
-            this.NavigationService.Navigate(pocetna);
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
 
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
+            PacijentWebStranice.anketa_Click(this, idPacijent);
         }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            var app = (App)Application.Current;
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
+        }
+
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
+
+        }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            /*var app = (App)Application.Current;
+            // TODO: proveriti
+            string eng = "en-US";
+            string srb = "sr-LATN";
             MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
+            if (mi.Header.Equals("en-US"))
             {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
+                mi.Header = "sr-LATN";
+                app.ChangeLanguage(eng);
             }
             else
             {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }
+                mi.Header = "en-US";
+                app.ChangeLanguage(srb);
+            }*/
+            PacijentWebStranice.Jezik_Click(Jezik);
         }
-        private void Korisnik_Click(object sender, RoutedEventArgs e)
-        {
-            Page podaci = new LicniPodaciPacijenta(idPacijent);
-            this.NavigationService.Navigate(podaci);
-        }
+
     }
 }

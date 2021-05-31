@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -31,7 +33,8 @@ namespace Projekat
             oglasnaTabla = new ObservableCollection<Obavestenja>();
             listView.ItemsSource = oglasnaTabla;
 
-            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja)
+            List<Obavestenja> obavestenja = ObavestenjaServis.NadjiSvaObavestenja();
+            foreach (Obavestenja obavestenje in obavestenja)
             { 
                 if (obavestenje.Notifikacija == false)
                 {
@@ -40,21 +43,28 @@ namespace Projekat
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Pacijenti_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             PrikaziPacijenta p = new PrikaziPacijenta();
             p.Show();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void Termini_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             PrikaziTerminSekretar p = new PrikaziTerminSekretar();
             p.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Lekari_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PrikaziLekare prikaz = new PrikaziLekare();
+            prikaz.Show();
+        }
+
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             Sekretar s = new Sekretar();
@@ -63,67 +73,40 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ObavestenjaMenadzer.sacuvajIzmene();
+            ObavestenjaServis.sacuvajIzmene();
         }
 
-        // X na detaljnom uvid u selektovano obavestenje
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
         {
-            canvas2.Visibility = Visibility.Hidden;
+            canvas.Visibility = Visibility.Hidden;
+            okvir.Visibility = Visibility.Hidden;
         }
 
-        private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (flag == false)
             {
-                canvas2.Visibility = Visibility.Visible;
+                canvas.Visibility = Visibility.Visible;
+                okvir.Visibility = Visibility.Visible;
             }
 
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
-
             if (selektovanoObavestenje != null)
             {
                 naslov.Text = selektovanoObavestenje.TipObavestenja;
                 datum.Text = selektovanoObavestenje.Datum;
                 sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
-
-                if (selektovanoObavestenje.Oznaka.Equals("svi"))
-                {
-                    namena.Text = "sve";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("lekari"))
-                {
-                    namena.Text = "lekare";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("upravnici"))
-                {
-                    namena.Text = "upravnike";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("pacijenti"))
-                {
-                    namena.Text = "sve pacijente";
-                }
-                else if (selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
-                {
-                    namena.Text = "";
-                    foreach (int id in selektovanoObavestenje.ListaIdPacijenata)
-                    {
-                        Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(id);
-                        namena.Text += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta + " \n";
-                    }
-                }
+                namena.Text = ObavestenjaServis.PopuniNamenuObavestenja(selektovanoObavestenje);
             }
         }
 
-        // dodaj
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Dodaj_Click(object sender, RoutedEventArgs e)
         {
             DodajObavestenje dodavanje = new DodajObavestenje();
             dodavanje.Show();
         }
 
-        // izmeni
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Izmeni_Click(object sender, RoutedEventArgs e)
         {
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
 
@@ -138,17 +121,17 @@ namespace Projekat
             }
         }
 
-        // obrisi
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Obrisi_Click(object sender, RoutedEventArgs e)
         {
             flag = true;
-            canvas2.Visibility = Visibility.Hidden;
-
+            
             Obavestenja selektovanoObavestenje = (Obavestenja)listView.SelectedItem;
-
             if (selektovanoObavestenje != null)
             {
-                ObavestenjaMenadzer.ObrisiObavestenje(selektovanoObavestenje);
+                canvas.Visibility = Visibility.Hidden;
+                okvir.Visibility = Visibility.Hidden;
+                ObrisiObavestenjeSekretar brisanje = new ObrisiObavestenjeSekretar(selektovanoObavestenje);
+                brisanje.Show();
             }
             else
             {
@@ -157,5 +140,61 @@ namespace Projekat
 
             flag = false;
         }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+            OglasnaTablaPomoc pomoc = new OglasnaTablaPomoc();
+            pomoc.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            // dodaj
+            if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Dodaj_Click(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Dodaj_Click(sender, e);
+            }
+            // izmeni
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Izmeni_Click(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Izmeni_Click(sender, e);
+            }
+            // otkazi
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Obrisi_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Obrisi_Click(sender, e);
+            }
+            // X na detaljnom prikazu termina
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Napusti_uvid_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Napusti_uvid_Click(sender, e);
+            }
+            // izadji iz ovog prozora
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+        }
+
     }
 }

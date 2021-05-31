@@ -3,27 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Projekat"
+        xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="Pocetna stranica" Height="505" Width="800" WindowStartupLocation="CenterScreen" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Pocetna stranica" Height="505" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:UpravnikViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OdjavaKomanda}"></KeyBinding>
+    </Window.InputBindings>
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Background="CadetBlue" Width="200">
-            <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10"/>
-            <Button Name="Osoblje" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Osoblje</Button>
-            <Button Name="Prostorije" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Click="Prostorije_Click">Prostorije</Button>
-            <Button Name="Zahtjevi" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Click="Zahtjevi_Click">Zahtjevi</Button>
-            <Button Name="Komunikacija" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Komunikacija</Button>
-            <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Izvjestaj</Button>
+            <Image Source="slike/menager.jpg" Width="110" Height="100" HorizontalAlignment="Center" Margin="10, 10, 10, 40"/>
+            <!--<Button Name="Osoblje" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10" Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3">Osoblje</Button>-->
+            <Button Name="Prostorije" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding ProstorijeProzor}">Prostorije</Button>
+            <Button Name="Zahtjevi" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding ZahtjeviProzor}">Zahtjevi</Button>
+            <Button Name="Komunikacija" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding KomunikacijProzor}">Komunikacija</Button>
+            <Button Name="Izvjestaj" HorizontalAlignment="Center" Height="40" Width="150" Margin="10, 10, 10, 10"  Background="LightSteelBlue" BorderBrush="Black" BorderThickness="3" Command="{Binding IzvjestajProzor}">Izvjestaj</Button>
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Background="CadetBlue" Height="70" Orientation="Horizontal">
-            <Button Width="40" Height="50" Margin="540, 0, 0, 0" Click="Odjava_Click" Background="CadetBlue" BorderBrush="CadetBlue" ToolTip="Odjava, Ctrl + O">
+            <Button Width="40" Height="50" Margin="540, 0, 0, 0" Command="{Binding OdjavaKomanda}"  Background="CadetBlue" BorderBrush="CadetBlue" ToolTip="Odjava, Ctrl + O">
                 <Image Source="slike/signout.png" Width="40" Height="50" HorizontalAlignment="Center"/>
             </Button>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Background="LightSteelBlue">
             <Label Content="🔔 Obavjestenja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,50,0,0" FontWeight="Bold" FontSize="14" FontFamily="Arial" Height="31" Width="131"/>
-            <DataGrid x:Name="obavestenjaUpravnik" ItemsSource="{Binding Obavestenja}" IsReadOnly="True" 
+            <DataGrid x:Name="obavestenjaUpravnik" ItemsSource="{Binding Obavestenja}" SelectedItem="{Binding IzabranoObavjestenje, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" 
                       SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Center" 
                       Height="225" Margin="10, 10, 10, 20" VerticalAlignment="Center" Width="531">
                 <DataGrid.Columns>
@@ -32,7 +38,7 @@
                     <DataGridTextColumn Header="Sadrzaj obavestenja" Width="550" Binding="{Binding SadrzajObavestenja}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Width="160" Height="50" Background="CadetBlue" Margin="300, 0, 0, 0" Click="Button_Click">Detaljniji prikaz obavjestenja</Button>
+            <Button Width="160" Height="50" Background="CadetBlue" Margin="300, 0, 0, 0" Command="{Binding PrikazObavjestenja}">Detaljniji prikaz obavjestenja</Button>
         </StackPanel>
     </DockPanel>
 </Window>
