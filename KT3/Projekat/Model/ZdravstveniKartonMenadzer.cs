@@ -138,8 +138,10 @@ namespace Projekat.Model
                 {                    
                     pacijent.Karton.Anamneze.Add(anamneza);
                     ZdravstveniKartonLekar.TabelaAnamneza.Add(anamneza);
+                    
                 }
             }
+            PacijentiServis.SacuvajIzmenePacijenta();
         }
 
         public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
