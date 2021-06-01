@@ -790,5 +790,10 @@ namespace Projekat
                 Guest_Pacijent(sender, e);
             }
         }
+
+        private void ZauzetiTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+        }
     }
 }
