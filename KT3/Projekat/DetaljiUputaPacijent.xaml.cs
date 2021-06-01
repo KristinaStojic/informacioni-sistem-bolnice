@@ -55,8 +55,6 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
 
@@ -95,20 +93,6 @@ namespace Projekat
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /*var app = (App)Application.Current;
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }*/
             PacijentWebStranice.Jezik_Click(Jezik);
 
         }

@@ -11,9 +11,11 @@
     <Email>kosta@gmail.com</Email>
     <AdresaStanovanja>Jardan bb</AdresaStanovanja>
     <Zanimanje>student</Zanimanje>
-    <BracnoStanje>Neozenjen</BracnoStanje>
+    <BracnoStanje>Neudata</BracnoStanje>
     <IzabraniLekar>
-      <IdLekara>0</IdLekara>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Milos</ImeLek>
+      <PrezimeLek>Dragojevic</PrezimeLek>
       <Jmbg>0</Jmbg>
       <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
@@ -30,7 +32,7 @@
         <LekarskiRecept>
           <IdRecepta>1</IdRecepta>
           <idPacijenta>1</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>1</IdLekara>
           <NazivLeka>Andol</NazivLeka>
           <DatumPropisivanjaLeka>04/16/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
@@ -41,7 +43,7 @@
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
           <idPacijenta>1</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>1</IdLekara>
           <NazivLeka>Sterpsils</NazivLeka>
           <DatumPropisivanjaLeka>04/18/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
@@ -59,7 +61,7 @@
           <Terapija>Inhalacija fizioloskim rastvorom</Terapija>
           <Datum>06/04/2021</Datum>
           <IdTermina>2</IdTermina>
-          <Beleska>Otici na pregled za 7 dana</Beleska>
+          <Beleska>Zakazati pregled</Beleska>
           <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
@@ -68,7 +70,6 @@
           <IdAlergena>1</IdAlergena>
           <IdPacijenta>1</IdPacijenta>
           <NazivSastojka>s2</NazivSastojka>
-          <SifraSastojka>4.2</SifraSastojka>
           <NuspojavaNaNastojak>Vrtoglavica</NuspojavaNaNastojak>
           <VremeReakcije>7 dana</VremeReakcije>
         </Alergeni>
@@ -94,7 +95,7 @@
     <Zanimanje>student</Zanimanje>
     <BracnoStanje>Neodredjeno</BracnoStanje>
     <IzabraniLekar>
-      <IdLekara>0</IdLekara>
+      <IdLekara>1</IdLekara>
       <Jmbg>0</Jmbg>
       <BrojTelefona>0</BrojTelefona>
       <specijalizacija>Opsta_praksa</specijalizacija>
@@ -111,7 +112,7 @@
         <LekarskiRecept>
           <IdRecepta>1</IdRecepta>
           <idPacijenta>2</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>1</IdLekara>
           <NazivLeka>Lek1</NazivLeka>
           <DatumPropisivanjaLeka>04/15/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>5</BrojDanaKoriscenja>
@@ -122,7 +123,7 @@
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
           <idPacijenta>2</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>1</IdLekara>
           <NazivLeka>Lek2</NazivLeka>
           <DatumPropisivanjaLeka>04/23/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
@@ -133,7 +134,7 @@
         <LekarskiRecept>
           <IdRecepta>3</IdRecepta>
           <idPacijenta>2</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>2</IdLekara>
           <NazivLeka>Paracetamol</NazivLeka>
           <DatumPropisivanjaLeka>04/15/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>1</BrojDanaKoriscenja>
@@ -184,7 +185,7 @@
         <LekarskiRecept>
           <IdRecepta>1</IdRecepta>
           <idPacijenta>4</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>3</IdLekara>
           <NazivLeka>Paracetamol</NazivLeka>
           <DatumPropisivanjaLeka>04/30/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
@@ -195,7 +196,7 @@
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
           <idPacijenta>4</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>3</IdLekara>
           <NazivLeka>Andol</NazivLeka>
           <DatumPropisivanjaLeka>04/30/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>4</BrojDanaKoriscenja>
@@ -252,7 +253,7 @@
         <LekarskiRecept>
           <IdRecepta>1</IdRecepta>
           <idPacijenta>5</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>1</IdLekara>
           <NazivLeka>Andol</NazivLeka>
           <DatumPropisivanjaLeka>04/24/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
@@ -263,7 +264,7 @@
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
           <idPacijenta>5</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>2</IdLekara>
           <NazivLeka>Pentraxil</NazivLeka>
           <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
@@ -278,7 +279,6 @@
           <IdAlergena>1</IdAlergena>
           <IdPacijenta>5</IdPacijenta>
           <NazivSastojka>s1</NazivSastojka>
-          <SifraSastojka>1.2</SifraSastojka>
           <NuspojavaNaNastojak>Glavobolja</NuspojavaNaNastojak>
           <VremeReakcije>3 dana</VremeReakcije>
         </Alergeni>
@@ -323,7 +323,7 @@
         <LekarskiRecept>
           <IdRecepta>1</IdRecepta>
           <idPacijenta>6</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>4</IdLekara>
           <NazivLeka>m</NazivLeka>
           <DatumPropisivanjaLeka>04/05/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>2</BrojDanaKoriscenja>
@@ -334,7 +334,7 @@
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
           <idPacijenta>6</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>2</IdLekara>
           <NazivLeka>Andol</NazivLeka>
           <DatumPropisivanjaLeka>07/22/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
@@ -345,7 +345,7 @@
         <LekarskiRecept>
           <IdRecepta>3</IdRecepta>
           <idPacijenta>6</idPacijenta>
-          <IdLekara>0</IdLekara>
+          <IdLekara>2</IdLekara>
           <NazivLeka>Paracetamol</NazivLeka>
           <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
           <BrojDanaKoriscenja>1</BrojDanaKoriscenja>
@@ -399,7 +399,6 @@
           <IdAlergena>1</IdAlergena>
           <IdPacijenta>3</IdPacijenta>
           <NazivSastojka>S1</NazivSastojka>
-          <SifraSastojka>100</SifraSastojka>
           <NuspojavaNaNastojak>Povracanje</NuspojavaNaNastojak>
           <VremeReakcije>mesec dana</VremeReakcije>
         </Alergeni>
