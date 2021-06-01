@@ -437,6 +437,15 @@
     <Compile Include="Pomoc\UputiPomoc.xaml.cs">
       <DependentUpon>UputiPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\WizardBiranjePacijenta.xaml.cs">
+      <DependentUpon>WizardBiranjePacijenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\WizardPomeranjeTermina.xaml.cs">
+      <DependentUpon>WizardPomeranjeTermina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\WizardPrikazTermina.xaml.cs">
+      <DependentUpon>WizardPrikazTermina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\ZahtjeviPomoc.xaml.cs">
       <DependentUpon>ZahtjeviPomoc.xaml</DependentUpon>
     </Compile>
@@ -1066,6 +1075,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\WizardBiranjePacijenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\WizardPomeranjeTermina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\WizardPrikazTermina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\ZahtjeviPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1486,6 +1507,10 @@
     <Resource Include="slike\medical.png" />
     <Resource Include="slike\noticeboard.png" />
     <Resource Include="slike\chat.png" />
+    <Resource Include="slike\hitanSlucaj1.png" />
+    <Resource Include="slike\strelica.png" />
+    <Resource Include="slike\hitanSlucaj2.png" />
+    <Resource Include="slike\hitanSlucaj3.png" />
     <Content Include="Video\PomocZaEvidenciju.mp4" />
     <Content Include="Video\PomocZaPlate.mp4" />
     <Content Include="Video\PomocZaZahtjeve.mp4" />

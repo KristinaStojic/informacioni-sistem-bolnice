@@ -14,38 +14,25 @@ using System.Windows.Shapes;
 namespace Projekat.Pomoc
 {
     /// <summary>
-    /// Interaction logic for HelpWizard.xaml
+    /// Interaction logic for WizardPrikazTermina.xaml
     /// </summary>
-    public partial class HelpWizard : Window
+    public partial class WizardPrikazTermina : Window
     {
-        public HelpWizard()
+        public WizardPrikazTermina()
         {
             InitializeComponent();
-        }
-
-        private void Nazad_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void Nastavi_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            WizardPrikazTermina termini = new WizardPrikazTermina();
-            termini.ShowDialog();
+            WizardBiranjePacijenta w = new WizardBiranjePacijenta();
+            w.ShowDialog();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                Nazad_Click(sender, e);
-            }
-            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                Nazad_Click(sender, e);
-            }
-            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Nastavi_Click(sender, e);
             }
