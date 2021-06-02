@@ -13,12 +13,12 @@
         </Grid.RowDefinitions>
 
         <Image Source="/slike/hitanSlucaj2.png" RenderTransformOrigin="0.415,1.073" Margin="0,0,10.2,0.4" Grid.RowSpan="2"/>
-        <Button Content="SLEDEĆE" Click="Button_Click" FontSize="18" FontWeight="Medium" Background="#FFA3DADE" HorizontalAlignment="Left" Height="49" Margin="852,197.6,0,0" VerticalAlignment="Top" Width="101" Grid.Row="1"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="37,58,0,0" TextWrapping="Wrap" Text="Na slici se nalazi primer otvorenog dijaloga za zakazivanje hitnog termina." VerticalAlignment="Top" Height="125" Width="200"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="37,183,0,0" TextWrapping="Wrap" Text="Najpre je potrebno izabrati nekog od postojećih pacijenata ili napraviti guest nalog za pacijenta." VerticalAlignment="Top" Height="125" Width="200" Grid.RowSpan="2"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="37,61.6,0,0" TextWrapping="Wrap" Text="Nakon odabira pacijenta, potrebno je izabrati specijalizaciju lekara otvaranjem combo box-a." VerticalAlignment="Top" Height="125" Width="220" Grid.Row="1"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="732,58,0,0" TextWrapping="Wrap" Text="Najzad, odabirom trajanja termina i tipa termina (pregled ili operacija), popunjena su sva polja neohodna za zakazivanje termina." VerticalAlignment="Top" Height="166" Width="200"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="732,224,0,0" TextWrapping="Wrap" Text="Potrebno je kliknuti na dugme 'Pretraži' kako bi sistem pretražio listu zakazanih termina." VerticalAlignment="Top" Height="125" Width="200" Grid.RowSpan="2"/>
+        <Button Content="SLEDEĆE" Click="Button_Click" FontSize="18" FontWeight="Medium" BorderBrush="Black" Background="#FF79C3C8" BorderThickness="1" HorizontalAlignment="Left" Height="49" Margin="25,191.6,0,0" VerticalAlignment="Top" Width="126" Grid.Row="1"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="37,62,0,0" TextWrapping="Wrap" Text="Na slici se nalazi primer otvorenog dijaloga za zakazivanje hitnog termina." VerticalAlignment="Top" Height="125" Width="200"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="37,199,0,0" TextWrapping="Wrap" Text="Najpre je potrebno izabrati nekog od postojećih pacijenata ili napraviti guest nalog za pacijenta." VerticalAlignment="Top" Height="125" Width="200" Grid.RowSpan="2"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="724,55,0,0" TextWrapping="Wrap" Text="Nakon odabira pacijenta, potrebno je izabrati specijalizaciju lekara otvaranjem combo box-a." VerticalAlignment="Top" Height="125" Width="220"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="724,185,0,0" TextWrapping="Wrap" Text="Najzad, odabirom trajanja termina i tipa termina (pregled ili operacija), popunjena su sva polja neohodna za zakazivanje termina." VerticalAlignment="Top" Height="166" Width="220" Grid.RowSpan="2"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="724,86.6,0,0" TextWrapping="Wrap" Text="Potrebno je kliknuti na dugme 'Pretraži' kako bi sistem pretražio listu zakazanih termina." VerticalAlignment="Top" Height="125" Width="200" Grid.Row="1"/>
 
     </Grid>
 </Window>

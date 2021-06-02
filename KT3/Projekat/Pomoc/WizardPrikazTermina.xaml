@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <Image Source="/slike/hitanSlucaj1.png" RenderTransformOrigin="0.415,1.073" Margin="0,0,0.2,0.4" Grid.RowSpan="2"/>
-        <Button Content="SLEDEĆE" Click="Nastavi_Click" FontSize="18" FontWeight="Medium" Background="#FFA3DADE" HorizontalAlignment="Left" Height="49" Margin="413,165.6,0,0" VerticalAlignment="Top" Width="98" Grid.Row="1"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="198,89.6,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Potrebno je najpre odabrati dugme 'Hitan slucaj' kako bi se otvorio dijalog za zakazivanje hitnog termina." VerticalAlignment="Top" Height="125" Width="200"/>
+        <Button Content="SLEDEĆE" Click="Nastavi_Click" FontSize="18" FontWeight="Medium" Background="#FF79C3C8" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="49" Margin="16,196.6,0,0" VerticalAlignment="Top" Width="126" Grid.Row="1"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="172,66.6,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Potrebno je najpre odabrati karticu Termini iz menu bar-a, a zatim dugme 'Hitan slucaj' kako bi se otvorio dijalog za zakazivanje hitnog termina." VerticalAlignment="Top" Height="179" Width="200"/>
     </Grid>
 </Window>

@@ -125,7 +125,7 @@
                 <TextBlock Height="0"/>
             </StackPanel>
         </Button>
-        <Button Content="SLEDEĆE" Click="Nastavi_Click" FontWeight="Medium" FontSize="18" Background="#FFA3DADE" HorizontalAlignment="Left" Height="45" Margin="29,39.4,0,0" VerticalAlignment="Top" Width="126" Grid.Row="2"/>
+        <Button Content="SLEDEĆE" Click="Nastavi_Click" FontWeight="Medium" FontSize="18" BorderBrush="Black" Background="#FF79C3C8" BorderThickness="1" HorizontalAlignment="Left" Height="45" Margin="29,39.4,0,0" VerticalAlignment="Top" Width="126" Grid.Row="2"/>
 
     </Grid>
 </Window>

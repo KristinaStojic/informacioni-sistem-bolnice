@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="PrikaziPacijentaPomoc" Height="500" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FFE7F6F7" KeyDown="Window_KeyDown">
+        Title="PrikaziPacijentaPomoc" Height="515" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#FFE7F6F7" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -56,12 +56,14 @@
             <Run Text="ALT + K - "/><Run Text="Komunikacija"/><LineBreak/>
             <Run Text="ALT + P - Pomoć"/><LineBreak/>
         </TextBlock>
-        <TextBlock Margin="30.6,259,33,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Height="145" VerticalAlignment="Top">
+        <TextBlock Margin="30.6,259,33,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2" Height="181" VerticalAlignment="Top">
             <Run Text="Pomoć" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
             <Run Text="Unutar ovog prozora moguć je uvid u listi svih pacijenata. Postoje opcije za"/> <Run Text="dodavanje, izmenu i brisanje" FontWeight="DemiBold"/> 
             <Run Text="izabranog pacijenta. Nakon selektovanja željenog pacijenta, u donjem desnom uglu nalazi se dugme čijim se klikom otvara"/> 
             <Run Text="zdravstveni karton" FontWeight="DemiBold"/> 
             <Run Text="tog pacijenta."/><LineBreak/>
+            <Run Text="Da biste označili pacijenta kao maloletnika prilikom njegovog dodavanja, potrebno je čekirati chech box koristeći CTRL + M."/><LineBreak/>
+
             <LineBreak/>
         </TextBlock>
     </Grid>

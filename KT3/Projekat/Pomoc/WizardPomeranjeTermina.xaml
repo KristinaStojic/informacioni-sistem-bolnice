@@ -13,10 +13,10 @@
         </Grid.RowDefinitions>
 
         <Image Source="/slike/hitanSlucaj3.png" RenderTransformOrigin="0.415,1.073" Margin="0,0,10.2,0.4" Grid.RowSpan="2"/>
-        <Button Content="KRAJ" Click="Button_Click" FontSize="18" FontWeight="Medium" Background="#FFA3DADE" HorizontalAlignment="Left" Height="44" Margin="852,205.6,0,0" VerticalAlignment="Top" Width="101" Grid.Row="1"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="37,58,0,0" TextWrapping="Wrap" Text="Ukoliko su u sve adekvatne prostorije ili svi adekvatni lekari zauzeti u vreme hitnog termina, potrebno je pomeriti neki od zakazanih termina i na njegovo mesto zakazati novi termin." VerticalAlignment="Top" Height="226" Width="200" Grid.RowSpan="2"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="37,38.6,0,0" TextWrapping="Wrap" Text="Selekcijom željenog termina iz liste i pritiskom na dugme 'Pomeri', termin je oslobođen." VerticalAlignment="Top" Height="125" Width="200" Grid.Row="1"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="729,58,0,0" TextWrapping="Wrap" Text="Najzad, nakon pomeranja, dugme Potvrdi postaje omogućeno i njegovim pritiskom se zakazuje hitan termin." VerticalAlignment="Top" Height="160" Width="200"/>
+        <Button Content="KRAJ" Click="Button_Click" FontSize="18" FontWeight="Medium" BorderBrush="Black" Background="#FF79C3C8" BorderThickness="1" HorizontalAlignment="Left" Height="49" Margin="23,190.6,0,0" VerticalAlignment="Top" Width="126" Grid.Row="1"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="35,74,0,0" TextWrapping="Wrap" Text="Ukoliko su u sve adekvatne prostorije ili svi adekvatni lekari zauzeti u vreme hitnog termina, potrebno je pomeriti neki od zakazanih termina i na njegovo mesto zakazati novi termin." VerticalAlignment="Top" Height="226" Width="200" Grid.RowSpan="2"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="729,83,0,0" TextWrapping="Wrap" Text="Selekcijom željenog termina iz liste i pritiskom na dugme 'Pomeri', termin je oslobođen." VerticalAlignment="Top" Height="125" Width="200"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="729,244,0,0" TextWrapping="Wrap" Text="Najzad, nakon pomeranja, dugme Potvrdi postaje omogućeno i njegovim pritiskom se zakazuje hitan termin." VerticalAlignment="Top" Height="160" Width="200" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>
