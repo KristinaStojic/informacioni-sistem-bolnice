@@ -22,6 +22,7 @@ namespace Projekat
     public partial class DetaljiUputa : Window
     {
         Uput uput;
+        bool popunjeno = false;
         public DetaljiUputa(Uput izabraniUput)
         {
             InitializeComponent();
@@ -125,7 +126,10 @@ namespace Projekat
 
         private void PotvrdiLecenje_Click(object sender, RoutedEventArgs e)
         {
-            uput.datumKrajaLecenja = NadjiNoviDatumKraja();
+            //uput.datumKrajaLecenja = NadjiNoviDatumKraja();
+            Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
+            ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
+            PacijentiServis.SacuvajIzmenePacijenta();
             this.Close();
         }
 
@@ -158,6 +162,28 @@ namespace Projekat
             if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Recepti
             {
                 this.Close();
+            }
+        }
+
+       
+
+        private void datumPocetka_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void datumKraja_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (datumKraja.Text.Length <= 0)
+            {
+                potvrdi.IsEnabled = false;
+                popunjeno = false;
+
+            }
+            else
+            {
+                popunjeno = true;
+                potvrdi.IsEnabled = true;
             }
         }
     }

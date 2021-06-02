@@ -22,6 +22,7 @@ namespace Projekat
     public partial class DodajZahtevZaGodisnji : Window
     {
         int idLekara;
+        public bool popunjeno = false;
         public DodajZahtevZaGodisnji(int id)
         {
             InitializeComponent();
@@ -52,24 +53,46 @@ namespace Projekat
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            int idZahteva = LekariServis.GenerisanjeIdZahtevaZaOdmor(idLekara);
-            string napomena = this.napomena.Text;
-            /*pocetak*/
-            string pocetakOdmora = NadjiDatumPocetkaOdmora();
+            try
+            {
+                DateTime kraj = (DateTime)this.kraj.SelectedDate;
+                DateTime pocetak = (DateTime)this.pocetak.SelectedDate;
+
+                if (pocetak >= kraj || pocetak < DateTime.Now.Date)
+                {
+                    MessageBox.Show("Niste uneli ispravne datume!");
+                }
+                else if (popunjeno)
+                {
+                    int idZahteva = LekariServis.GenerisanjeIdZahtevaZaOdmor(idLekara);
+                    string napomena = this.napomena.Text;
+                    /*pocetak*/
+                    string pocetakOdmora = NadjiDatumPocetkaOdmora();
+
+                    /*kraj*/
+                    string krajOdmora = NadjiDatumKrajaOdmora();
+
+
+                    /*broj dana*/
+                    int brojDanaOdmora = OdrediBrojDanaOdmora();
+
+                    /*lekar*/
+                    Lekar lekar = NadjiLekara();
+
+                    ZahtevZaGodisnji zahtev = new ZahtevZaGodisnji(idZahteva, lekar, pocetakOdmora, krajOdmora, brojDanaOdmora, napomena);
+                    LekariServis.DodajZahtev(zahtev);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Popunite sva polja!");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Popunite sva polja!");
+            }
             
-            /*kraj*/
-            string krajOdmora = NadjiDatumKrajaOdmora();
-            
-
-            /*broj dana*/
-            int brojDanaOdmora = OdrediBrojDanaOdmora();
-
-            /*lekar*/
-            Lekar lekar = NadjiLekara();
-
-            ZahtevZaGodisnji zahtev = new ZahtevZaGodisnji(idZahteva,lekar,pocetakOdmora,krajOdmora,brojDanaOdmora,napomena);
-            LekariServis.DodajZahtev(zahtev);
-            this.Close();
         }
 
         private string NadjiDatumPocetkaOdmora()
@@ -143,6 +166,47 @@ namespace Projekat
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Click_3(sender, e);
+            }
+        }
+
+        private void pocetak_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void kraj_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void napomena_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+
+        private void postaviDugme()
+        {
+            if (this.napomena.Text != null && this.kraj.Text.Length > 0  && this.pocetak.Text.Length > 0)
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.potvrdi.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.napomena.Text.Trim().Equals("") || this.kraj.Text.Trim().Equals("") || this.pocetak.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = false;
+                popunjeno = false;
+            }
+            else if (!this.napomena.Text.Trim().Equals("") && !this.kraj.Text.Trim().Equals("") && !this.pocetak.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = true;
+                popunjeno = true;
             }
         }
     }

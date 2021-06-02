@@ -90,14 +90,14 @@
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.4,19,44" Grid.Row="2" Grid.RowSpan="2" IsEnabled="False" Name="prezimePacijenta"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,8.8,19,0" Grid.Row="3" IsEnabled="False" Name="jmbgPacijenta"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="Lekar"/>
-                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,0" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Height="35" Width="192" IsEnabled="False" Name="datumPocetka"/>
-                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="True" x:Name="datumKraja"/>
+                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,0" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Height="35" Width="192" IsEnabled="False" Name="datumPocetka" SelectedDateChanged="datumPocetka_SelectedDateChanged"/>
+                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="True" x:Name="datumKraja" SelectedDateChanged="datumKraja_SelectedDateChanged"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="1" Margin="1,0,19,38" Grid.Row="10" IsEnabled="False" x:Name="napomenaPregelda" Grid.ColumnSpan="2"/>
                         <Label Content="Broj sobe" Grid.Column="1" Margin="0,10,10,44" Grid.Row="7" FontSize="16" Grid.RowSpan="2"/>
                         <Label Content="Broj kreveta" Grid.Column="1" Margin="1,10,9,44" Grid.Row="8" FontSize="16" Grid.RowSpan="2"/>
                         <Label Content="Napomena" Grid.Column="1" Margin="1,9,9,0" Grid.Row="9" FontSize="16"/>
-                        <Button Content="Sačuvaj" Grid.Column="1" Margin="89,132,50,0" Grid.Row="10" VerticalAlignment="Top" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="PotvrdiLecenje_Click" Grid.RowSpan="2"/>
-                        <Button Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,128,0,0" Grid.Row="10" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.RowSpan="2"/>
+                        <Button x:Name="potvrdi" Content="Sačuvaj" Grid.Column="1" Margin="89,132,50,0" Grid.Row="10" VerticalAlignment="Top" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="PotvrdiLecenje_Click" Grid.RowSpan="2"/>
+                        <Button x:Name="odustani" Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,128,0,0" Grid.Row="10" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.RowSpan="2"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43" Grid.Row="7" IsEnabled="False" Grid.RowSpan="2" x:Name="brojSobe"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,7,19,1" Grid.Row="8" IsEnabled="False" x:Name="brojKreveta"/>
                     </Grid>

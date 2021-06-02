@@ -32,6 +32,7 @@ namespace Projekat
             this.termin = Ntermin;
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             this.datum.SelectedDate = DateTime.Parse(termin.Datum);
+            this.potvrdi.IsEnabled = false;
         }
 
         

@@ -249,7 +249,12 @@ namespace Projekat
         {
             DateTime kraj = (DateTime)this.datumKraja.SelectedDate;
             DateTime pocetak = (DateTime)this.datumPocetka.SelectedDate;
-            if (popunjeno == true)
+
+            if (pocetak >= kraj || pocetak < DateTime.Now.Date)
+            {
+                MessageBox.Show("Niste uneli ispravne datume!");
+            }
+            else if (popunjeno == true)
             {
                 int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaPregelda.Text;
@@ -267,10 +272,10 @@ namespace Projekat
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }
-            else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
+            /*else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
             {
                 MessageBox.Show("Niste uneli ispravne datume!");
-            }
+            }*/
             else
             {
                 MessageBox.Show("Popunite sva polja!");

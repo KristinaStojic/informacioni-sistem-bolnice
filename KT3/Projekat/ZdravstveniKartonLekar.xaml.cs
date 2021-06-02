@@ -465,7 +465,7 @@ namespace Projekat
             }
             else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_5(sender, e);
+                Button_Detalji(sender, e);
             }
             else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
             {

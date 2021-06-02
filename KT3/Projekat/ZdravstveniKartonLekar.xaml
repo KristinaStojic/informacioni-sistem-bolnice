@@ -143,7 +143,7 @@
                            
                             <Wpf:PieChart 
                             HorizontalAlignment="Center" 
-                            Height="265"
+                            Height="285"
                             Width="213"
                             Margin="538,90,53,0"
                             VerticalAlignment="Top" 
@@ -158,7 +158,7 @@
 
                             </Wpf:PieChart>
                             
-                            <Label Content="Grafikon 2. Tipovi uputa" Margin="562,409,74,91" FontSize="14"/>
+                            <Label Content="Grafikon 2. Tipovi uputa" Margin="563,423,73,77" FontSize="14"/>
 
                         </Grid>
                     </TabItem>

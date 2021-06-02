@@ -25,13 +25,15 @@ namespace Projekat
 
         Pacijent pacijent;
         Termin termin;
+        bool popunjeno = false;
+
 
         public DodajAlergene(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
-
+            this.potvrdi.IsEnabled = false;
             PopuniPodatkePacijenta();
         }
 
@@ -66,7 +68,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (popunjeno == true)
             {
                 int idAlergena = ZdravstveniKartonServis.GenerisanjeIdAlergena(pacijent.IdPacijenta);
                 String nazivLeka = naziv.Text;
@@ -83,27 +85,74 @@ namespace Projekat
 
                 this.Close();
             }
-            catch (System.Exception)
+            else
             {
-                MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Popunite sva polja!");
             }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Detalji
-            {
-                Button_Click(sender, e);
-            }
-            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nova anamneza
-            {
-                this.Close();
-            }
+            
+                if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Detalji
+                {
+                    Button_Click(sender, e);
+                }
+                else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nova anamneza
+                {
+                    this.Close();
+                }
+            
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void naziv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+
+        }
+
+        private void nuspojava_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+
+        }
+
+        private void vreme_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugme();
+
+        }
+
+
+        private void postaviDugme()
+        {
+            if (this.naziv.Text != null && this.nuspojava.Text != null && this.vreme.Text != null)
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.potvrdi.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.naziv.Text.Trim().Equals("") || this.nuspojava.Text.Trim().Equals("") || this.vreme.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = false;
+                popunjeno = false;
+            }
+            else if (!this.naziv.Text.Trim().Equals("") && !this.nuspojava.Text.Trim().Equals("") && !this.vreme.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = true;
+                popunjeno = true;
+            }
         }
     }
 }
