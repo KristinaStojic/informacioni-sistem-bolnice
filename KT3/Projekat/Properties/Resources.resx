@@ -141,6 +141,9 @@
   <data name="BracnoStanje" xml:space="preserve">
     <value>Bračno stanje</value>
   </data>
+  <data name="brKreveta" xml:space="preserve">
+    <value>Broj kreveta</value>
+  </data>
   <data name="BrojDana" xml:space="preserve">
     <value>Koliko dana uzimati leka</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="BrojTelefona" xml:space="preserve">
     <value>Broj telefona</value>
+  </data>
+  <data name="brSobe" xml:space="preserve">
+    <value>Broj sobe</value>
   </data>
   <data name="Cetiri" xml:space="preserve">
     <value>4. Kako biste ocenili stručnost zaposlenih u Zdravo korporaciji?</value>
@@ -167,6 +173,12 @@
   </data>
   <data name="DatumIzdavanjaUputa" xml:space="preserve">
     <value>Datum izdavanja uputa</value>
+  </data>
+  <data name="DatumKrajaLecenja" xml:space="preserve">
+    <value>Datum kraja lečenja</value>
+  </data>
+  <data name="DatumPocetkaLecenja" xml:space="preserve">
+    <value>Datum početka lečenja</value>
   </data>
   <data name="DatumPropisivanja" xml:space="preserve">
     <value>Datum propisivanja leka</value>

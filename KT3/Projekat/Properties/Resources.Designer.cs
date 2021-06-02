@@ -133,6 +133,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broj kreveta.
+        /// </summary>
+        public static string brKreveta {
+            get {
+                return ResourceManager.GetString("brKreveta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Koliko dana uzimati leka.
         /// </summary>
         public static string BrojDana {
@@ -165,6 +174,15 @@ namespace Projekat.Properties {
         public static string BrojTelefona {
             get {
                 return ResourceManager.GetString("BrojTelefona", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broj sobe.
+        /// </summary>
+        public static string brSobe {
+            get {
+                return ResourceManager.GetString("brSobe", resourceCulture);
             }
         }
         
@@ -210,6 +228,24 @@ namespace Projekat.Properties {
         public static string DatumIzdavanjaUputa {
             get {
                 return ResourceManager.GetString("DatumIzdavanjaUputa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum kraja lečenja.
+        /// </summary>
+        public static string DatumKrajaLecenja {
+            get {
+                return ResourceManager.GetString("DatumKrajaLecenja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datum početka lečenja.
+        /// </summary>
+        public static string DatumPocetkaLecenja {
+            get {
+                return ResourceManager.GetString("DatumPocetkaLecenja", resourceCulture);
             }
         }
         

@@ -26,21 +26,17 @@ namespace Projekat
         private Termin termin;
         private static int idPacijent;
         private List<Sala> SaleZaPreglede;
-        private static ObservableCollection<string> PomocnaSviSlobodniSlotovi { get; set; }
         private Sala prvaSlobodnaSala;
         private static Pacijent prijavljeniPacijent;
-        // TODO: !! 
-        private static List<string> SviZauzetiZaSelektovaniDatum { get; set; }
-
         public IzmeniTermin(Termin izabraniTermin)
         {
             InitializeComponent();
             this.DataContext = this;
             this.termin = izabraniTermin;
-            PomocnaSviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
             idPacijent = izabraniTermin.Pacijent.IdPacijenta;
             OgraniciIzborNovogDatuma(izabraniTermin);
             InicijalizujPodatkeZaIzabraniTermin(izabraniTermin);
+
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
             view.Filter = UserFilter;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
@@ -60,7 +56,7 @@ namespace Projekat
                 {
                     this.combo.SelectedIndex = 1;
                 }
-                tp = izabraniTermin.tipTermina;
+                tp = izabraniTermin.tipTermina;  // ?
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
                 this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
@@ -114,7 +110,6 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // btn odustani
             Page uvidZakazaniTermini = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvidZakazaniTermini);
         }
@@ -126,7 +121,7 @@ namespace Projekat
 
         private void IzmeniIzabraniTermin()
         {
-           try
+            try
             {
                 string datumTermina = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
                 string vremePocetka = vpp.Text;
@@ -185,11 +180,13 @@ namespace Projekat
         #region Pomeri termin
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            sacuvaj.IsEnabled = true;
             SaleZaPreglede = TerminServis.combo_SelectionChanged(this.combo, null, null, idPacijent);
         }
 
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+            sacuvaj.IsEnabled = true;
             if (SaleZaPreglede == null)
             {
                 MessageBox.Show("Izaberite tip termina", "Upozorenje", MessageBoxButton.OK);
@@ -201,8 +198,9 @@ namespace Projekat
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            sacuvaj.IsEnabled = true;
             prvaSlobodnaSala = TerminServis.Vpp_SelectionChanged(vpp, datum);
-            if (prvaSlobodnaSala == null) // ovo se nikad nece dogoditi
+            if (prvaSlobodnaSala == null) 
             {
                 MessageBox.Show("Ne postoji slobodan termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -211,8 +209,6 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
 
@@ -253,19 +249,6 @@ namespace Projekat
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /*var app = (App)Application.Current;
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);*/
             PacijentWebStranice.Jezik_Click(Jezik);
         }
     }
