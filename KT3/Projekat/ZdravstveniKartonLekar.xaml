@@ -109,7 +109,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                             <Button Content="Novi recept" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="50,471,0,0" Height="36" Click="Button_Click_3" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
-                            <Button Content="Izvestaj" Click="Izvestaj_Recepti" VerticalAlignment="Top" Margin="337,471,336,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" />
+                            <Button Content="Izveštaj" Click="Izvestaj_Recepti" VerticalAlignment="Top" Margin="337,471,336,0" Height="36"  Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" />
                             <!--Command="{Binding GenerisiIzvestajRecepataKomanda}" -->
                             <Button Content="Nazad" VerticalAlignment="Top" Margin="623,471,50,0" Height="36" Click="Button_Click_2" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
                             <TextBlock HorizontalAlignment="Left" Margin="625,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="125" FontSize="16" RenderTransformOrigin="0.394,0.688">

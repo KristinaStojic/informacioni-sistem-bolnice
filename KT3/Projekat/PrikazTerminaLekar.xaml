@@ -53,21 +53,16 @@
 
         </DataGrid>
 
-        <Button Content="          Zakaži termin"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="68,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_1" />
-        <Button Content="           Izmeni termin"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="234,599,0,0" VerticalAlignment="Top" Width="133" Height="50" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508"/>
-        <Button Content="      Nazad"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="732,599,0,0" VerticalAlignment="Top" Width="133" Height="50" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
-        <Button Content="           Otkaži termin"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="399,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
-        <Button Content="           Karton pacijenta"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="566,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_6" RenderTransformOrigin="-1.488,3.89"/>
+        <Button Content="Zakaži termin"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="68,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_1" />
+        <Button Content="Izmeni termin"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="234,599,0,0" VerticalAlignment="Top" Width="133" Height="50" Click="Button_Click_2" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="Nazad"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="732,599,0,0" VerticalAlignment="Top" Width="133" Height="50" Click="Button_Click_4" RenderTransformOrigin="1.009,1.654"/>
+        <Button Content="Otkaži termin"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="399,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_5" RenderTransformOrigin="0.503,0.508"/>
+        <Button Content="Karton pacijenta"  BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="566,599,0,0" VerticalAlignment="Top" Width="134" Height="50" Click="Button_Click_6" RenderTransformOrigin="-1.488,3.89"/>
         <Label Content="Zakazani termini" HorizontalAlignment="Left" Margin="65,30,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
 
 
         <Border  BorderBrush="DarkRed"  BorderThickness="1" HorizontalAlignment="Left" Height="456" VerticalAlignment="Top" Width="301" Margin="925,97,0,0">
         </Border>
-        <Image Source="slike/dodaj.png" Width="44" HorizontalAlignment="Center" Margin="68,603,1167.6,49.4" RenderTransformOrigin="0.467,-0.13"/>
-        <Image Source="slike/izmeni.png" Width="38" HorizontalAlignment="Center" Margin="236,603,1005.6,49.4" RenderTransformOrigin="0.574,0.51"/>
-        <Image Source="slike/delete.png" Width="39" HorizontalAlignment="Center" Margin="403,604,837.6,49.4" RenderTransformOrigin="0.574,0.51"/>
-        <Image Source="slike/covek.png" Width="40" HorizontalAlignment="Center" Margin="566,603,673.6,49.4" RenderTransformOrigin="0.574,0.51"/>
-        <Image Source="slike/nazadd.png" Width="40" HorizontalAlignment="Center" Margin="734,603,505.6,49.4" RenderTransformOrigin="0.568,0.423"/>
         <TextBlock HorizontalAlignment="Left" Margin="1097,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="129" FontSize="16">
             <Hyperlink Click="Hyperlink_Click">
 Pomoć?(CTRL+H)
