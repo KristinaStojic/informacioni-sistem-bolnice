@@ -387,7 +387,7 @@ namespace Projekat
             }
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl)) //Izvestaj
             {
-                //Izvestaj
+                Izvestaj_Anamneze(sender, e);
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
@@ -412,7 +412,7 @@ namespace Projekat
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 this.Close();
             }
@@ -432,13 +432,13 @@ namespace Projekat
 
         private void recepti_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) 
             {
                 Button_Click_3(sender, e);
             }
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl)) 
             {
-                //Izvestaj
+                Izvestaj_Recepti(sender, e);
             }
             else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
@@ -459,13 +459,13 @@ namespace Projekat
 
         private void uputi_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) 
             {
                 Button_Click_6(sender, e);
             }
             else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Detalji(sender, e);
+                Button_Click_5(sender, e);
             }
             else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
@@ -593,6 +593,22 @@ namespace Projekat
                 doc.Close();
             }
             MessageBox.Show("PDF fajl uspesno izgenerisan!");
+        }
+
+        private void alergeni_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_4(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Alergeni_Click(sender, e);
+            }
         }
     }
 }

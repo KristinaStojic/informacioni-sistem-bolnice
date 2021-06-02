@@ -88,5 +88,22 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Detalji
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nova anamneza
+            {
+                this.Close();
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

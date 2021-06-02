@@ -30,7 +30,7 @@ namespace Projekat
             InitializeComponent();
             this.termin = Izabranitermin;
             PopuniPodatke(izabranaAnamneza);
-            this.potvrdi.IsEnabled = false;
+            
         }
 
         private void PopuniPodatke(Anamneza izabranaAnamneza)

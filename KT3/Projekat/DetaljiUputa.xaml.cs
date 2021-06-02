@@ -140,5 +140,25 @@ namespace Projekat
             }
             return formatiranDatum;
         }
+
+        private void stacinarnoTab_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Anamneza
+            {
+                PotvrdiLecenje_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Recepti
+            {
+                this.Close();
+            }
+        }
+
+        private void specijalistickiTab_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Recepti
+            {
+                this.Close();
+            }
+        }
     }
 }

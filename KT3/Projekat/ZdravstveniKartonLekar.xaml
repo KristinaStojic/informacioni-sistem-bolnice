@@ -163,7 +163,7 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Alergeni" Width="100" x:Name="alergeni">
+                    <TabItem Header="Alergeni" Width="100" x:Name="alergeni" KeyDown="alergeni_KeyDown">
 
                         <Grid>
                             <Label Content="Spisak sastojaka koje pacijent ne sme da koristi" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>

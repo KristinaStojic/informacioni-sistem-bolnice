@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DetaljiAlergena" Height="570" Width="442"  ResizeMode="NoResize">
-    <Grid Background="LightSkyBlue">
+        Title="DetaljiAlergena" Height="570" Width="442"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="LightSkyBlue" KeyDown="Grid_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>
