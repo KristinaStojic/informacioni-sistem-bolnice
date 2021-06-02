@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="ObavestenjaLekar" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="LightSkyBlue">
-    <Grid>
-        <DataGrid x:Name="ObavestenjaLekara" ItemsSource="{Binding Obavestenja}" SelectionMode="Single" IsReadOnly="True" Margin="6,77,7.6,34" AutoGenerateColumns="False" FontSize="14">
+        Title="ObavestenjaLekar" Height="600" Width="700" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="LightSkyBlue">
+    <Grid KeyDown="Grid_KeyDown">
+        <DataGrid Background="#FF6895C5" x:Name="ObavestenjaLekara" ItemsSource="{Binding Obavestenja}" SelectionMode="Single" IsReadOnly="True" Margin="38,77,46,82" AutoGenerateColumns="False" FontSize="14">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Datum" Width="80" Binding="{Binding Datum}"/>
-                <DataGridTextColumn Header="Tip" Width="60" Binding="{Binding TipObavestenja}"/>
-                <DataGridTextColumn Header="Sadrzaj obavestenja" Width="550" Binding="{Binding SadrzajObavestenja}"/>
+                <DataGridTextColumn Header="Tip" Width="90" Binding="{Binding TipObavestenja}"/>
+                <DataGridTextColumn Header="Sadrzaj obavestenja" Width="550*" Binding="{Binding SadrzajObavestenja}"/>
             </DataGrid.Columns>
         </DataGrid> 
-        <Label Content="Obavestenja" HorizontalAlignment="Left" Margin="321,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Obaveštenja" HorizontalAlignment="Left" Margin="276,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="276,508,0,0"  Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
+
     </Grid>
 </Window>

@@ -79,5 +79,17 @@ namespace Projekat
             double test;
             return double.TryParse(input, out test);
         }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Potvrdi_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+        }
     }
 }

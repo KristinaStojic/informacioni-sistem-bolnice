@@ -209,7 +209,7 @@ namespace Projekat
 
         private void Button_Obrisi(object sender, RoutedEventArgs e)
         {
-            ZahtevZaLekove zaBrisanje = (ZahtevZaLekove)dataGridZahtevi.SelectedItem;
+            /*ZahtevZaLekove zaBrisanje = (ZahtevZaLekove)dataGridZahtevi.SelectedItem;
             
             ZahtevZaLekove izabraniZahtjev = null;
             foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
@@ -222,7 +222,11 @@ namespace Projekat
 
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
             TabelaZahteva.Remove(zaBrisanje);
-            LekoviServis.sacuvajIzmeneZahteva();
+            LekoviServis.sacuvajIzmeneZahteva();*/
+            ZahtevZaLekove izabraniZahtev = (ZahtevZaLekove)dataGridZahtevi.SelectedItem;
+
+            ObrisiZahtevLekar oz = new ObrisiZahtevLekar(izabraniZahtev);
+            oz.Show();
         }
     }
 }

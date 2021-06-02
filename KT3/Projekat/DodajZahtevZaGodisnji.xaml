@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="DodajZahtevZaGodisnji" Height="541" Width="442" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" Background="LightSkyBlue" ResizeMode="NoResize">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>

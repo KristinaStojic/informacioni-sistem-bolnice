@@ -1,4 +1,4 @@
-﻿<Window x:Class="Projekat.ObrisiSastojakLekar"
+﻿<Window x:Class="Projekat.ObrisiZahtevLekar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,7 +20,7 @@
 
             <Button Grid.Column="0" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Right" Margin="0,0,25,31" Name="Potvrdi" Click="Potvrdi_Click" Grid.Row="1">Potvrdi</Button>
             <Button Grid.Column="1" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="23,0,0,31" Click="Odustani_Click" Grid.Row="1">Odustani</Button>
-            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="118,89,0,44" FontSize="21" Text="izabrani sastojak?" Grid.ColumnSpan="2" Height="47" Width="164"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="118,89,0,44" FontSize="21" Text="izabrani zahtev?" Grid.ColumnSpan="2" Height="47" Width="164"/>
         </Grid>
     </Grid>
 </Window>

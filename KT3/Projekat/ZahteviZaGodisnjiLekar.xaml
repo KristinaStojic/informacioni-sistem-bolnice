@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="ZahteviZaGodisnjiLekar" Height="600" Width="700" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
         <DataGrid ItemsSource="{Binding TabelaZahteva}" x:Name="dataGridZahtevi" IsReadOnly="True"
                                 SelectionMode="Single" AutoGenerateColumns="False"
                                  Margin="39,56,40,0" VerticalAlignment="Top" Height="417" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13" Visibility="Visible">

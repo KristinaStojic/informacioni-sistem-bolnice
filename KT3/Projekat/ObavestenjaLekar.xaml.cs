@@ -41,5 +41,18 @@ namespace Projekat
                 }
             }
         }
+
+        private void Button_Nazad(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Nazad(sender, e);
+            }
+        }
     }
 }

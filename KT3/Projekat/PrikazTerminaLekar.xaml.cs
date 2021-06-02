@@ -129,8 +129,8 @@ namespace Projekat
             TerminServisLekar.sacuvajIzmene();
             PacijentiServis.SacuvajIzmenePacijenta();
             this.Close();
-            //PocetnaStrana ps = new PocetnaStrana();
-            //ps.Show();
+            PocetnaStrana ps = new PocetnaStrana(idLekara);
+            ps.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)

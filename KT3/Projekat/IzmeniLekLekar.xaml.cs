@@ -81,6 +81,24 @@ namespace Projekat
             }
             return false;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click(sender, e);
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Potvrdi_Click(sender, e);
+            }
+        }
     }
 }
 
