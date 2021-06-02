@@ -138,6 +138,9 @@
     <Compile Include="DetaljiAnamnezeSekretar.xaml.cs">
       <DependentUpon>DetaljiAnamnezeSekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetaljiSpecijalistickogUputa.xaml.cs">
+      <DependentUpon>DetaljiSpecijalistickogUputa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetaljiUputa.xaml.cs">
       <DependentUpon>DetaljiUputa.xaml</DependentUpon>
     </Compile>
@@ -674,6 +677,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetaljiAnamnezeSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetaljiSpecijalistickogUputa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

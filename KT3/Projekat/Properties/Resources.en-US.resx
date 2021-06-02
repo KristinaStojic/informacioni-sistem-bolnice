@@ -267,6 +267,9 @@
   <data name="JmbgPacijenta" xml:space="preserve">
     <value>Patient ID</value>
   </data>
+  <data name="KakavPregledSeTrazi" xml:space="preserve">
+    <value>What kind of examination is required</value>
+  </data>
   <data name="Karton" xml:space="preserve">
     <value>Medical record</value>
   </data>
@@ -318,6 +321,9 @@
   <data name="NaslovAnketaKlinika" xml:space="preserve">
     <value>Zdravo Corporate Services Survey</value>
   </data>
+  <data name="NaslovLabrUputa" xml:space="preserve">
+    <value>Laboratory referral</value>
+  </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Medical referral for specialist examination</value>
   </data>
@@ -368,6 +374,9 @@
   </data>
   <data name="Ozenjen" xml:space="preserve">
     <value>Married</value>
+  </data>
+  <data name="Pacijent" xml:space="preserve">
+    <value>Patient</value>
   </data>
   <data name="PacijentPodaci" xml:space="preserve">
     <value>Patient</value>

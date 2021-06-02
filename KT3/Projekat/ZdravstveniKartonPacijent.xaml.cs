@@ -1,9 +1,13 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Tables;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -114,9 +118,14 @@ namespace Projekat
         private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Uput uput = (Uput)prikazUputa.SelectedItem;
-            if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+            if (uput.TipUputa.Equals(tipUputa.SpecijalistickiPregled))
             {
                 Page detaljiUputa = new DetaljiUputaPacijent(idPacijent, uput);
+                this.NavigationService.Navigate(detaljiUputa);
+            }
+            else if (uput.TipUputa.Equals(tipUputa.Laboratorija))
+            {
+                Page detaljiUputa = new DetaljiSpecijalistickogUputa(idPacijent, uput);  // page -  detalji lab uputa 
                 this.NavigationService.Navigate(detaljiUputa);
             }
         }
@@ -162,11 +171,6 @@ namespace Projekat
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.Jezik_Click(Jezik);
-        }
-
-        private void Izvestaj_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: generisanje izvestaja
         }
     }
 }

@@ -51,6 +51,27 @@
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
           <UzimanjeTerapije />
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>3</IdRecepta>
+          <idPacijenta>1</idPacijenta>
+          <IdLekara>1</IdLekara>
+          <NazivLeka>analgin</NazivLeka>
+          <DatumPropisivanjaLeka>06/04/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>4</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>10:00</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2021-06-04T10:00:00</dateTime>
+            <dateTime>2021-06-04T16:00:00</dateTime>
+            <dateTime>2021-06-04T22:00:00</dateTime>
+            <dateTime>2021-06-05T04:00:00</dateTime>
+            <dateTime>2021-06-05T10:00:00</dateTime>
+            <dateTime>2021-06-05T16:00:00</dateTime>
+            <dateTime>2021-06-05T22:00:00</dateTime>
+            <dateTime>2021-06-06T04:00:00</dateTime>
+            <dateTime>2021-06-06T10:00:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>

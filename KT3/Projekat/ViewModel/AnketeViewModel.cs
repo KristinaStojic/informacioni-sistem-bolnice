@@ -63,7 +63,6 @@ namespace Projekat.ViewModel
         private MenuItem aktivniJezik;
         public MenuItem AktivniJezik { get { return aktivniJezik; } set { aktivniJezik = value; OnPropertyChanged("AktivniJezik"); } }
 
-        // *
         private Anketa izabranaAnketa;
         public Anketa IzabranaAnketa { get { return izabranaAnketa; } set { izabranaAnketa = value; OnPropertyChanged("IzabranaAnketa"); } }
 
@@ -84,8 +83,7 @@ namespace Projekat.ViewModel
             ZakaziTerminKomanada = new MyICommand(ZakaziTerminClick);
             UvidUZakazaneTermineKomanda = new MyICommand(UvidUZakazaneTermine);
             KartonKomanda = new MyICommand(KartonClick);
-
-            
+  
             PrikaziAnketePacijenta();
             
         }
@@ -190,7 +188,7 @@ namespace Projekat.ViewModel
         private void PrikaziAnketePacijenta()
         {
             Ankete = new ObservableCollection<Anketa>();
-            foreach (Anketa anketa in AnketaServis.NadjiSveAnkete())
+            foreach (Anketa anketa in AnketaServis.Ankete())
             {
                 if (anketa.IdPacijent == idPacijent && anketa.PopunjenaAnketa == false)
                 {

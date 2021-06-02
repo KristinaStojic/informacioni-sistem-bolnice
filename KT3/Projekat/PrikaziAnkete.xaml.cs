@@ -23,7 +23,6 @@ namespace Projekat
     public partial class PrikaziAnkete : Page
     {
         private static int idPacijent;
-        public static ObservableCollection<Anketa> AnketePacijenta { get; set; }
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();

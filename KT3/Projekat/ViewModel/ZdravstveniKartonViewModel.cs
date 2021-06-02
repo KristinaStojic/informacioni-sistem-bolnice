@@ -271,7 +271,7 @@ namespace Projekat.ViewModel
                 this.UkupnoLabUputa = new ChartValues<int>() { BrojacLaboratorijskihUputa };
 
             }
-            else if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+            else if (uput.TipUputa.Equals(tipUputa.SpecijalistickiPregled))
             {
                 if (this.UkupnoSpecUputa is null)
                     BrojacSpecijastickihUputa = 1;

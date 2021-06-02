@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,8 @@ using System.Windows.Shapes;
 using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Tables;
 
 namespace Projekat
 {
@@ -53,16 +57,13 @@ namespace Projekat
             ime.Text = izabraniPacijent.ImePacijenta;
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.Jmbg.ToString();
-            // TODO: dodati u Lekarskim receptima id lekara koji je izdao recept
-            
+ 
             Lekar lekar = LekariServis.NadjiPoId(recept.IdLekara);
             podaciLekara.Text = lekar.ToString();
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
 
@@ -119,6 +120,59 @@ namespace Projekat
                 app.ChangeLanguage(srb);
             }*/
             PacijentWebStranice.Jezik_Click(Jezik);
+        }
+
+        private void Izvestaj_Click(object sender, RoutedEventArgs e)
+        {
+            using (PdfDocument doc = new PdfDocument())
+            {
+                //Add a page to the document
+                PdfPage page = doc.Pages.Add();
+
+                // Create a PdfLightTable.
+                PdfLightTable pdfLightTable = new PdfLightTable();
+
+                // Initialize DataTable to assign as DateSource to the light table.
+                DataTable table = new DataTable();
+                string naziv = " --------- Izvestaj o uzimanju terapije ---------";
+                
+                table.TableName = "Pacijent " + prijavljeniPacijent.ToString();
+                Lekar lekar = LekariServis.NadjiPoId(lekRec.IdLekara);
+                table.TableName = "Lekar " + lekar.ToString();
+
+                //Include columns to the DataTable.
+                table.Columns.Add("Naziv leka");
+                table.Columns.Add("Datum izdavanja");
+                
+                table.Rows.Add(new string[] { "  NAZIV LEKA" , "  DATUM UZIMANJA TERAPIJE(format: dd/MM/yyyy HH:mm)"});
+                //Include rows to the DataTable.
+                if (lekRec.UzimanjeTerapije != null)
+                {
+                    foreach (DateTime datumUzimanja in lekRec.UzimanjeTerapije)
+                    {
+                        table.Rows.Add(new string[] {"   " +  lekRec.NazivLeka,  "    " + datumUzimanja.ToString("dd/MM/yyyy HH:mm")});
+                    }
+                }
+
+                //Assign data source.
+                pdfLightTable.DataSource = table;
+
+                //Draw PdfLightTable.
+                pdfLightTable.Draw(page, new PointF(0, 0));
+
+                //Save the document
+                doc.Save("//mac/Home/Desktop/informacioni-sistem-bolnice/KT3/IzvestajTerapija.pdf");
+
+                doc.Close();
+            }
+            if (Jezik.Header.Equals("_en-US"))
+            {
+                MessageBox.Show("Uspešno ste preuzeli pdf izveštaj o uzimanju terapije", "Informacija");
+            }
+            else
+            {
+                MessageBox.Show("You have successfully downloaded the pdf report on taking the therapy", "Information");
+            }
         }
 
     }

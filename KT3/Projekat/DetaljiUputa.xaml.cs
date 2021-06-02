@@ -26,7 +26,7 @@ namespace Projekat
         {
             InitializeComponent();
             this.uput = izabraniUput;
-            if(izabraniUput.TipUputa == tipUputa.SpecijallistickiPregled)
+            if(izabraniUput.TipUputa == tipUputa.SpecijalistickiPregled)
             {
                 specijalistickiTab.IsSelected = true;
                 PopuniPodatkeUputa();

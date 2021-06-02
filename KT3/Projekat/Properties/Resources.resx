@@ -267,6 +267,9 @@
   <data name="JmbgPacijenta" xml:space="preserve">
     <value>JMBG pacijenta</value>
   </data>
+  <data name="KakavPregledSeTrazi" xml:space="preserve">
+    <value>Kakav pregled se traži</value>
+  </data>
   <data name="Karton" xml:space="preserve">
     <value>Zdravstveni karton</value>
   </data>
@@ -318,6 +321,9 @@
   <data name="NaslovAnketaKlinika" xml:space="preserve">
     <value>Anketa o uslugama Zdravo korporacije</value>
   </data>
+  <data name="NaslovLabrUputa" xml:space="preserve">
+    <value>Laboratorijski uput</value>
+  </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Lekarski uput za specijalistički pregled</value>
   </data>
@@ -365,6 +371,9 @@
   </data>
   <data name="Ozenjen" xml:space="preserve">
     <value>Oženjen/Udata</value>
+  </data>
+  <data name="Pacijent" xml:space="preserve">
+    <value>Pacijent</value>
   </data>
   <data name="PacijentPodaci" xml:space="preserve">
     <value>Pacijent</value>
