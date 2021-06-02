@@ -17,40 +17,28 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    public partial class DetaljiUputaPacijent : Page
+
+    public partial class DetaljiSpecijalistickogUputa : Page
     {
         private static int idPacijent;
-        public DetaljiUputaPacijent(int idPrijavljenogPacijenta, Uput izabraniUput)
+        private static Pacijent prijavljeniPacijent;
+        public DetaljiSpecijalistickogUputa(int idPrijavljenogPacijenta, Uput labratorijski)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+
+            Lekar lekarKojiIzdajeUput = LekariServis.NadjiPoId(labratorijski.IdLekaraKojiIzdajeUput);
+            this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
 
-            this.datum.Text = izabraniUput.datumIzdavanja;
-            Lekar lekarKodKogSeUpucuje =  PronadjiLekaraPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
-            this.LekarKodKogSeUpucuje.Text = lekarKodKogSeUpucuje.ToString();
-            Lekar lekarKojiIzdajeUput = PronadjiLekaraPoId(izabraniUput.IdLekaraKojiIzdajeUput);
-            this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
-            this.Napomena.Text = izabraniUput.opisPregleda;
-
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
-            PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-        }
-
-        private static Lekar PronadjiLekaraPoId(int idLekara)
-        {
-            foreach (Lekar lekar in LekariServis.NadjiSveLekare())
-            {
-                if (lekar.IdLekara == idLekara)
-                {
-                    return lekar;
-                }
-            }
-            return null;
+            this.datum.Text = labratorijski.datumIzdavanja;
+            this.Napomena.Text = labratorijski.opisPregleda;
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -81,7 +69,7 @@ namespace Projekat
         {
             PacijentWebStranice.anketa_Click(this, idPacijent);
         }
-      
+
         private void Korisnik_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.Korisnik_Click(this, idPacijent);

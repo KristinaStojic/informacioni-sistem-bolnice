@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:Projekat"
       xmlns:namespace="clr-namespace:Projekat.Lokalizacija"
         mc:Ignorable="d"
-        Title="Recept" Height="625" Width="800"  Background="{DynamicResource BackgroundColor}">
+        Title="Recept" Height="700" Width="800"  Background="{DynamicResource BackgroundColor}">
     <Grid Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="93*"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="180"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="13*"/>
-            <RowDefinition Height="112*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="113*"/>
         </Grid.RowDefinitions>
         <StackPanel Height="40" Background="{DynamicResource StackPanelBackgroundColor}" Grid.Row="0" Grid.ColumnSpan="3"
                     Name="zaglavlje" Orientation="Horizontal" VerticalAlignment="Top">
@@ -45,7 +45,7 @@
                 </Menu>
             </StackPanel>
         </StackPanel>
-        <TextBlock Margin="20,42,0,558" FontSize="14" Foreground="#004a7c" Grid.RowSpan="2" Grid.ColumnSpan="3">
+        <TextBlock Margin="20,40,0,0" FontSize="14" Foreground="#004a7c" Grid.RowSpan="1" Grid.ColumnSpan="3" Grid.Row="0">
                 <Hyperlink x:Name="pocetna" Click="pocetna_Click">
                     <Run Text="{namespace:Loc Pocetna}"/>
                 </Hyperlink>
@@ -62,54 +62,57 @@
                     <Run Text="{namespace:Loc Karton}"/>
                 </Hyperlink>
         </TextBlock>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,20,6,0">
-            <Label Content="{namespace:Loc LekarskiRecept}" Margin="0, 0, 0, 10" Background="{DynamicResource StackPanelBackgroundColor}"
-                    Foreground="{DynamicResource TextColor}"/>
-            <StackPanel Orientation="Vertical" Height="494" Margin="0, -10, 0, 0" Background="{DynamicResource BackgroundUputi}">
-                <GroupBox Header="{namespace:Loc Pacijent}" HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0" Foreground="{DynamicResource TextColor}">
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,20,0,0">
+            <Label Content="{namespace:Loc LekarskiRecept}" Margin="0,00,0,10" Background="{DynamicResource StackPanelBackgroundColor}"
+                    Foreground="{DynamicResource TextColor}" Height="25"/>
+            <StackPanel Orientation="Vertical" Height="563" Margin="0,-10,0,0" Background="{DynamicResource BackgroundUputi}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 10, 0, 0">
+                    <Image Source="slike/barkod3.png" Width="300" Height="50" />
+                </StackPanel>
+                <GroupBox Header="{namespace:Loc Pacijent}" HorizontalAlignment="Stretch" Width="380" Margin="0, 10, 0, 0" Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0, 05, 0, 0">
-                            <Label Content="{namespace:Loc ImePacijenta}" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="27,0, 0, 0"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0, 10, 0, 0">
+                            <Label Content="{namespace:Loc ImePacijenta}" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource TextColor}" Height="23" Width="140"/>
+                            <TextBox Name ="ime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="10,0, 0, 0"
                                  VerticalAlignment="Top" Width="175" IsEnabled="False"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 05, 0, 5">
-                            <Label Content="{namespace:Loc PrezimePacijenta}"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="5, 0, 0, 0"
+                            <Label Content="{namespace:Loc PrezimePacijenta}"  Foreground="{DynamicResource TextColor}" Width="140"/>
+                            <TextBox Name ="prezime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="10, 0, 0, 0"
                                  VerticalAlignment="Top" Width="175" IsEnabled="False" Grid.Column="1" Grid.Row="1"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 5">
-                            <Label Content="{namespace:Loc JmbgPacijenta}"  Foreground="{DynamicResource TextColor}" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 1">
+                            <Label Content="{namespace:Loc JmbgPacijenta}"  Foreground="{DynamicResource TextColor}" Width="140" />
                             <TextBox x:Name="id" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Width="175"
-                                 Margin="17,0, 0, 0" IsEnabled="False"/>
+                                 Margin="10,0, 0, 0" IsEnabled="False"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox x:Name="recept" Header="  Recept  " HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
+                <GroupBox x:Name="recept" Header="{namespace:Loc Recept}" HorizontalAlignment="Stretch" Width="380" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                            <Label Content="{namespace:Loc NazivLeka}"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox Name ="naziv" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="75, 0, 0, 0"
+                            <Label Content="{namespace:Loc NazivLeka}"  Foreground="{DynamicResource TextColor}" Width="140"/>
+                            <TextBox Name ="naziv" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="10, 0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                            <Label Content="{namespace:Loc DatumPropisivanja}"   Foreground="{DynamicResource TextColor}"/>
-                            <TextBox Name ="datum" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Width="175" Height="22" Grid.Column="1" Grid.Row="1"/>
+                            <Label Content="{namespace:Loc DatumPropisivanja}"   Foreground="{DynamicResource TextColor}" Width="140"/>
+                            <TextBox Name ="datum" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Width="175" Height="22" Grid.Column="1" Grid.Row="1" Margin="10, 0,0, 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                            <Label Content="{namespace:Loc BrojDana}"  Foreground="{DynamicResource TextColor}" />
-                            <TextBox Name ="dani" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="5, 0, 0, 0"
+                            <Label Content="{namespace:Loc BrojDana}"  Foreground="{DynamicResource TextColor}" Width="140" />
+                            <TextBox Name ="dani" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="10, 0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 5">
-                            <Label Content="{namespace:Loc DnevnoUzimanje}"   Foreground="{DynamicResource TextColor}"/>
+                            <Label Content="{namespace:Loc DnevnoUzimanje}"   Foreground="{DynamicResource TextColor}" Width="140"/>
                             <TextBox Name ="brojUzimanja" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="10, 0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 5">
-                            <Label Content="{namespace:Loc PocetakTerapije}"   Foreground="{DynamicResource TextColor}"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 010">
+                            <Label Content="{namespace:Loc PocetakTerapije}" Height="26"  Foreground="{DynamicResource TextColor}" Width="127"/>
                             <TextBox x:Name ="sati" HorizontalAlignment="Left" IsEnabled="False" Height="22" TextWrapping="Wrap" 
-                                     VerticalAlignment="Top" Width="55" Margin="30, 0, 0, 0"/>
+                                     VerticalAlignment="Top" Width="55" Margin="10, 0, 0, 0"/>
                             <Label Content="h" Foreground="{DynamicResource TextColor}" />
                             <TextBox x:Name ="min" HorizontalAlignment="Left" Height="22" IsEnabled="False" Margin="10, 0, 0, 0"
                                      TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Grid.Column="1" Grid.Row="1" />
@@ -117,18 +120,16 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox x:Name="lekar" Header="{namespace:Loc Lekar}" HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
+                <GroupBox x:Name="lekar" Header="{namespace:Loc Lekar}" HorizontalAlignment="Stretch" Width="380" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical" Margin="5, 10, 10, 5">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label Content="{namespace:Loc PotpisLekara}"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox IsEnabled="False" Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="55,0, 0, 0"
+                            <Label Content="{namespace:Loc PotpisLekara}"  Foreground="{DynamicResource TextColor}" Width="151"/>
+                            <TextBox IsEnabled="False" Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="10,0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" FontFamily="Segoe Script"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 10, 0, 0">
-                    <Image Source="slike/barkod3.png" Width="300" Height="50" />
-                </StackPanel>
+                <Button HorizontalAlignment="Center" Margin="0, 20, 0, 0" Height="30" Width="100" Content="{namespace:Loc Izvestaj}" Style="{DynamicResource ButtonStyle2}" Name="Izvestaj" Click="Izvestaj_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
