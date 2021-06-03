@@ -42,6 +42,7 @@ namespace Projekat
                         PocetnaStrana ps = new PocetnaStrana(idLekara);
                         ps.Show();
                         this.Close();
+                        return;
                     }
                     else if (lekar.korisnickoIme.Equals(ime.Text) && !lekar.lozinka.Equals(sifra.Text))
                     {

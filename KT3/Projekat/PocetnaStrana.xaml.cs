@@ -126,7 +126,7 @@ namespace Projekat
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            EvidencijaUtrosenogMaterijala em = new EvidencijaUtrosenogMaterijala();
+            EvidencijaUtrosenogMaterijala em = new EvidencijaUtrosenogMaterijala(IDLekara);
             em.Show();
         }
     }

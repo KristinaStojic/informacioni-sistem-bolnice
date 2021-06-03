@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model;
+using Projekat.Servis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +20,28 @@ namespace Projekat
     /// </summary>
     public partial class EvidencijaUtrosenogMaterijala : Window
     {
-        public EvidencijaUtrosenogMaterijala()
+        int idLekara;
+        public EvidencijaUtrosenogMaterijala(int id)
         {
             InitializeComponent();
+            idLekara = id;
+            this.datum.IsEnabled = false;
+            this.prostorija.SelectedIndex = 0;
+
+            this.materijali.ItemsSource = null;
+            this.kol.ItemsSource = null;
+            //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
+            
+
+            foreach (Lekar l in LekariServis.NadjiSveLekare())
+            {
+                if(l.IdLekara == idLekara)
+                {
+                    this.ime.Text = l.ImeLek;
+                    this.prezime.Text = l.PrezimeLek;
+                    this.datum.SelectedDate = DateTime.Now.Date;
+                }
+            }
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -43,6 +64,18 @@ namespace Projekat
             {
                 Button_Click_2(sender, e);
             }
+        }
+
+        private void naziv_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            string ime = this.naziv.Text;
+            this.materijali.Items.Add(ime);
+        }
+
+        private void kolicina_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            string koliko = this.kolicina.Text;
+            this.kol.Items.Add(koliko);
         }
     }
 }
