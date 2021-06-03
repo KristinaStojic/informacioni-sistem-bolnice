@@ -808,7 +808,7 @@ namespace Projekat
                             t1.Prostorija = Sala;
                         }
                     }
-
+                    LekariServis.SacuvajIzmeneLekara();
                     TerminServisLekar.sacuvajIzmene();
                     SaleServis.sacuvajIzmjene();
 

@@ -189,6 +189,7 @@ namespace Projekat
 
                 TerminiSekretarServis.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
+                LekariServis.SacuvajIzmeneLekara();
 
                 this.Close();
             }
@@ -200,6 +201,7 @@ namespace Projekat
 
                 TerminiSekretarServis.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
+                LekariServis.SacuvajIzmeneLekara();
 
                 this.Close();
             }
