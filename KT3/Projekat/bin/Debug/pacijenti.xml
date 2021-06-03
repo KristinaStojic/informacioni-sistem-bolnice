@@ -424,9 +424,21 @@
           <VremeReakcije>mesec dana</VremeReakcije>
         </Alergeni>
       </Alergeni>
-      <Uputi />
+      <Uputi>
+        <Uput>
+          <IdUputa>1</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>4</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>05/21/2021</datumIzdavanja>
+          <opisPregleda>ORL</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+      </Uputi>
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
       <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>

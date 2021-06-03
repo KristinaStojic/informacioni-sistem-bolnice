@@ -22,7 +22,7 @@ namespace Projekat
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
-        public DetaljiSpecijalistickogUputa(int idPrijavljenogPacijenta, Uput labratorijski)
+        public DetaljiSpecijalistickogUputa(int idPrijavljenogPacijenta, Uput stacionarnoLecenje)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -31,14 +31,16 @@ namespace Projekat
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
 
-            Lekar lekarKojiIzdajeUput = LekariServis.NadjiPoId(labratorijski.IdLekaraKojiIzdajeUput);
+            Lekar lekarKojiIzdajeUput = LekariServis.NadjiPoId(stacionarnoLecenje.IdLekaraKojiIzdajeUput);
             this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
 
-            this.datum.Text = labratorijski.datumIzdavanja;
-            this.Napomena.Text = labratorijski.opisPregleda;
+            this.datum.Text = stacionarnoLecenje.datumIzdavanja;
+            this.Napomena.Text = stacionarnoLecenje.opisPregleda;
+            this.soba.Text = stacionarnoLecenje.brojSobe.ToString();
+            this.krevet.Text = stacionarnoLecenje.brojKreveta.ToString();
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
