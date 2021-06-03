@@ -17,6 +17,8 @@ namespace Model
 
         public static void DodajLekara(Lekar noviLekar)
         {
+            noviLekar.lozinka = noviLekar.Jmbg.ToString();
+            noviLekar.korisnickoIme = noviLekar.PrezimeLek;
             lekari.Add(noviLekar);
             //PrikaziLekare.Lekari.Add(noviLekar);
             SacuvajIzmeneLekara();
@@ -28,6 +30,8 @@ namespace Model
             {
                 if (l.IdLekara == stariLekar.IdLekara)
                 {
+                    l.korisnickoIme = noviLekar.korisnickoIme;
+                    l.lozinka = noviLekar.lozinka;
                     l.ImeLek = noviLekar.ImeLek;
                     l.PrezimeLek = noviLekar.PrezimeLek;
                     l.Jmbg = noviLekar.Jmbg;

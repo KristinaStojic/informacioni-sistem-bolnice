@@ -34,6 +34,8 @@ namespace Projekat
             {
                 if (lekar.IdLekara == IDLekara)
                 {
+                    this.korIme.Text = lekar.korisnickoIme;
+                    this.sifra.Text = lekar.lozinka;
                     this.ime.Text = lekar.ImeLek;
                     this.prezime.Text = lekar.PrezimeLek;
                     this.jmbg.Text = lekar.Jmbg.ToString();
@@ -83,8 +85,10 @@ namespace Projekat
            
             //string specijalizacijaLekara = specijalizacija.Text;
             /**NAPRAVI IZMENU KOR.IMENA I LOZINKE I ISPRAVI SPECIJALIZACIJU - DODAJ COMBOBOX*/
-            Lekar noviLekar = new Lekar(IDLekara,imeLekara,prezimeLekara,jmbgLekara, brTelefon, emailLekara,adresaLekara, stariLekar.specijalizacija);
+            Lekar noviLekar = new Lekar(IDLekara,imeLekara,prezimeLekara,jmbgLekara, brTelefon, emailLekara,adresaLekara, stariLekar.specijalizacija, korisnickoIme, sifra);
             LekariServis.IzmeniLekara(stariLekar, noviLekar);
+
+            this.Close();
         }
     }
 }

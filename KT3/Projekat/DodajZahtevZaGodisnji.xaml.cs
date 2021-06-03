@@ -27,6 +27,7 @@ namespace Projekat
         {
             InitializeComponent();
             this.idLekara = id;
+            this.potvrdi.IsEnabled = false;
             popuniPodatke();
         }
 
