@@ -34,6 +34,8 @@ namespace Projekat
         public bool flagPoc = false;
         public bool flagKraj = false;
         public bool popunjenoBolnicko = false;
+
+        public bool popunjenoLab = false;
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -42,9 +44,20 @@ namespace Projekat
             this.potvrdiBolnicko.IsEnabled = false;
             this.potvrdiLab.IsEnabled = false;
             this.potvrdiSpec.IsEnabled = false;
+            this.potvrdiLab.IsEnabled = false;
             PopuniPodatkePacijentaZaSpecijalistickiUput();
             PopuniPodatkePacijentaZaBolnickoLecenje();
+            PopuniPodatkeLaboratorijskiUput();
 
+        }
+
+        private void PopuniPodatkeLaboratorijskiUput()
+        {
+            this.imeLab.Text = pacijent.ImePacijenta;
+            this.prezimeLab.Text = pacijent.PrezimePacijenta;
+            jmbgLab.Text = pacijent.Jmbg.ToString();
+            lekarLab.Text = termin.imePrezimeLekara;
+            datumLab.SelectedDate = DateTime.Parse(termin.Datum);
         }
         private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
@@ -319,7 +332,46 @@ namespace Projekat
 
         private void Potvrdi_Laboratorija_Click(object sender, RoutedEventArgs e)
         {
+            if (popunjenoLab)
+            {
+                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                String detaljiOPregledu = napomenaLab.Text;
+                string datum = NadjiDatum();
+                tipUputa tipUputa = NadjiTipUputa();
 
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, tipUputa);
+                noviUput.datumIzdavanja = datum;
+                ZdravstveniKartonServis.DodajUput(noviUput);
+               
+                TerminServisLekar.sacuvajIzmene();
+                PacijentiServis.SacuvajIzmenePacijenta();
+
+                this.Close();
+            }
+        }
+
+        private void postaviDugmeLab()
+        {
+            if (this.napomenaLab.Text != null)
+            {
+                izvrsiPostavljanjeLab();
+            }
+            else
+            {
+                this.potvrdiLab.IsEnabled = false;
+            }
+        }
+        private void izvrsiPostavljanjeLab()
+        {
+            if (this.napomenaLab.Text.Trim().Equals(""))
+            {
+                this.potvrdiLab.IsEnabled = false;
+            }
+            else if (!this.napomenaLab.Text.Trim().Equals(""))
+            {
+                this.potvrdiLab.IsEnabled = true;
+                popunjenoLab = true;
+            }
         }
 
         private void Tabovi_KeyDown(object sender, KeyEventArgs e)
@@ -422,6 +474,11 @@ namespace Projekat
         private void napomenaPregelda_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugmeBolnicko();
+        }
+
+        private void napomenaLab_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugmeLab();
         }
     }
 }
