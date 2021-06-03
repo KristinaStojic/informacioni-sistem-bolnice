@@ -28,16 +28,54 @@ namespace Projekat
 
         private void prijava_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: moze ovde validacija
+            int IdPacijent = -1;
+            string korisnicko = korisnickoIme.Text;
+            string lozinka = lozinkaPassword.Password;
             try
             {
-                int IdPacijent = Int32.Parse(this.korisnickoIme.Text);
+                if(korisnicko.Equals("konstantin") && lozinka.Equals("konstantin"))
+                {
+                    IdPacijent = 1;
+                }
+                if (korisnicko.Equals("marko") && lozinka.Equals("marko"))
+                {
+                    IdPacijent = 3;
+                }
+                if (korisnicko.Equals("dimitrije") && lozinka.Equals("dimitrije"))
+                {
+                    IdPacijent = 2;
+                }
+                if (korisnicko.Equals("kristina") && lozinka.Equals("kristina"))
+                {
+                    IdPacijent = 4;
+                }
+                if (korisnicko.Equals("nevena") && lozinka.Equals("nevena"))
+                {
+                    IdPacijent = 6;
+                }
+                if (korisnicko.Equals("jovana") && lozinka.Equals("jovana"))
+                {
+                    IdPacijent = 5;
+                }
+                if (IdPacijent == -1)
+                {
+                    if (Jezik.Header.Equals("_en-US"))
+                    {
+                        MessageBox.Show("Niste uneli ispravno korisnicko ime i/ili lozinku");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("You did not enter a valid username and / or password");
+                        return;
+                    }
+                }
                 Page pocetna = new PrikaziTermin(IdPacijent);
                 this.NavigationService.Navigate(pocetna);
             }
             catch
             {
-                MessageBox.Show("Niste uneli ispravne kredencijale");
+                MessageBox.Show("Niste uneli ispravno korisnicko ime i/ili lozinku");
             }
         }
 
