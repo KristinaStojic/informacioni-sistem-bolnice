@@ -28,20 +28,36 @@ namespace Projekat
 
         private void prijava_Click(object sender, RoutedEventArgs e)
         {
-            int IdPacijent = -1;
-            string korisnicko = korisnickoIme.Text;
-            string lozinka = lozinkaPassword.Password;
-            if(!ValidacijaNedostajucihPodataka(korisnicko, lozinka))
+            try
             {
-                return;
+                int IdPacijent = -1;
+                string korisnicko = korisnickoIme.Text;
+                string lozinka = lozinkaPassword.Password;
+                /*if(!ValidacijaNedostajucihPodataka(korisnicko, lozinka))
+                {
+                    return;
+                }*/
+                IdPacijent = ValidacijaUnetihPodataka(IdPacijent, korisnicko, lozinka);
+                if (IdPacijent == -1)
+                {
+                    return;
+                }
+                Page pocetna = new PrikaziTermin(IdPacijent);
+                this.NavigationService.Navigate(pocetna);
             }
-            IdPacijent = ValidacijaUnetihPodataka(IdPacijent, korisnicko, lozinka);
-            if(IdPacijent == -1)
+            catch
             {
-                return;
+                if (Jezik.Header.Equals("_en-US"))
+                {
+                    MessageBox.Show("Niste uneli ispravno korisnicko ime i/ili lozinku");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("You did not enter a valid username and / or password");
+                    return;
+                }
             }
-            Page pocetna = new PrikaziTermin(IdPacijent);
-            this.NavigationService.Navigate(pocetna);
         }
 
         private int ValidacijaUnetihPodataka(int IdPacijent, string korisnicko, string lozinka)
