@@ -29,6 +29,7 @@ namespace Projekat
         private static ObservableCollection<Uput> UputiPacijenta { get; set; }
         private static bool jeSelektovanUput;
         private static Termin termin;
+        private static List<bool> Validacija = new List<bool>() { false, false, false };
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -54,7 +55,6 @@ namespace Projekat
 
         private static void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
         {
-            // TODO: ispraviti na ZdravstveniKartonServis
             foreach (Uput uput in ZdravstveniKartonServis.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
             {
                 uputiPacijenta.Add(uput);
@@ -76,7 +76,7 @@ namespace Projekat
             {
                 if (comboUputi.Text.Equals("Specijalistički pregled") && !jeSelektovanUput)
                 {
-                    MessageBox.Show("Izaberite uput za koji želite da zakažene specijalistički pregled", "Uput", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Izaberite uput za koji želite da zakažene specijalistički pregled", "Uput", MessageBoxButton.OK);
                     return;
                 }
                 if (datum.SelectedDate == null)
@@ -149,6 +149,7 @@ namespace Projekat
             {
                 MessageBox.Show("Ne postoji slobodan termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            potvrdi.IsEnabled = true;
         }
         #endregion
 
@@ -171,7 +172,6 @@ namespace Projekat
                 Page elektronsko = new ElektronskoPlacanjePacijent(idPacijent, termin.tipTermina);
                 this.NavigationService.Navigate(elektronsko);
             }
-            // TODO: odraditi i preko validacije
             catch (System.Exception)
             {
                 MessageBox.Show("Morate popuniti sva polja kako biste zakazali termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -180,8 +180,6 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
 
