@@ -428,6 +428,36 @@ namespace Projekat
             }
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (!(bool)maloletnik.IsChecked)
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelja.IsEnabled = true;
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelja.IsEnabled = false;
+                }
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                if (!(bool)maloletnik.IsChecked)
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelja.IsEnabled = true;
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelja.IsEnabled = false;
+                }
+            }
+        }
+
     }
 }
 

@@ -73,6 +73,19 @@ namespace Projekat
             pomoc.Show();
         }
 
+        private void Wizard_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWizard help = new HelpWizard();
+            help.Show();
+        }
+
+        private void Komunikacija_Click(object sender, RoutedEventArgs e)
+        {
+            KomunikacijaSekretar komunikacija = new KomunikacijaSekretar();
+            komunikacija.Show();
+            this.Close();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
@@ -115,12 +128,15 @@ namespace Projekat
             {
                 Wizard_Click(sender, e);
             }
+            else if (e.Key == Key.K && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Wizard_Click(sender, e);
+            }
+            else if (e.Key == Key.K && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Wizard_Click(sender, e);
+            }
         }
 
-        private void Wizard_Click(object sender, RoutedEventArgs e)
-        {
-            HelpWizard help = new HelpWizard();
-            help.Show();
-        }
     }
 }

@@ -43,8 +43,8 @@
             <Run Text="CTRL + O - Obriši lekara"/><LineBreak/>
             <Run Text="CTRL + Z - Zahtevi za godišnji odmor"/><LineBreak/>
             <Run Text="CTRL + R - Radno vreme lekara"/><LineBreak/>
-            <Run Text="     - Ulaz u tabelu"/><LineBreak/>
-            <Run Text="     - Polje za pretragu lekara"/><LineBreak/>
+            <Run Text="TAB TAB - Ulaz u tabelu"/><LineBreak/>
+            <Run Text="TAB - Polje za pretragu lekara"/><LineBreak/>
             <Run Text="CTRL + X - X na detaljnom uvidu informacija o lekaru"/><LineBreak/>
         </TextBlock>
         <TextBlock  Margin="327.6,12,12,234.8" TextWrapping="Wrap" Grid.Column="1" FontSize="15">
@@ -52,6 +52,7 @@
             <Run Text="ALT + N - "/><Run Text="Nalozi pacijenata "/><LineBreak/>
             <Run Text="ALT + T - "/><Run Text="Prikaz termina"/><LineBreak/>
             <Run Text="ALT + O - "/><Run Text="Oglasna tabla"/><LineBreak/>
+            <Run Text="ALT + K - "/><Run Text="Komunikacija"/><LineBreak/>
             <Run Text="ALT + P - Pomoć"/><LineBreak/>
         </TextBlock>
 

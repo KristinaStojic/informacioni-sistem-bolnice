@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="ZakaziTerminSekretar" Height="690" Width="580" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="ZakaziTerminSekretar" Height="690" Width="580" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
@@ -61,7 +61,7 @@
             </TextBox.Style>
         </TextBox>
 
-        <Button Content="Pacijenti" HorizontalAlignment="Left" Margin="7.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Pacijenata"/>
+        <Button Content="Pacijenti" Background="#FFCAE6E8" HorizontalAlignment="Left" Margin="7.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Pacijenata"/>
 
         <ListView x:Name="listaPacijenata" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="7.2,4,8.8,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="ListaPacijenata_GotKeyboardFocus">
             <ListView.View>
@@ -74,7 +74,7 @@
             </ListView.View>
         </ListView>
 
-        <Button Grid.Column="2" Grid.Row="5" Click="Button_Click_2" Margin="8.8,6.6,9.6,6.2" Background="#FFE7F6F7" Height="32">
+        <Button Grid.Column="2" Grid.Row="5" Click="GuestNalog_Click" Margin="8.8,6.6,9.6,6.2" Background="#FFE7F6F7" Height="32">
             <Grid>
                 <Image Source="slike/add-user.png" HorizontalAlignment="Left" Margin="-12,0,0,0.2"/>
                 <Label Content="Napravite GUEST nalog" Margin="14,0,-14.2,0.2"/>
@@ -86,7 +86,7 @@
             </Grid>
         </Button>
 
-        <Button Content="Lekari" HorizontalAlignment="Left" Margin="104.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Lekara"/>
+        <Button Content="Lekari" Background="#FFCAE6E8" HorizontalAlignment="Left" Margin="104.8,7.6,0,0" Grid.Row="2" VerticalAlignment="Top" Height="32" Width="98" Grid.Column="2" Click="Pretraga_Lekara"/>
 
         <ListView x:Name="listaLekara" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" SelectionMode="Single" Margin="6.8,8,8.6,9.8" RenderTransformOrigin="0.492,0.518" GotKeyboardFocus="ListaLekara_GotKeyboardFocus" Visibility="Hidden">
             <ListView.View>
@@ -127,8 +127,8 @@
         <ComboBox HorizontalAlignment="Left" Name = "vremeKraja" Grid.Column="2" Grid.Row="10" Width="93" Height="32" Margin="106.8,6.6,0,6.2" FontSize="15" IsKeyboardFocusedChanged="VremeKraja_IsKeyboardFocusedChanged" AllowDrop="True"/>
 
         <Button Name="potvrdi" Grid.Column="1" Grid.Row="11" Click="Button_Click" Content="Potvrdi" Margin="8.2,27.8,13.2,23" Background="#FFA3DADE" FontSize="17"/>
-        <Button Grid.Column="2" Grid.Row="11" Click="Button_Click_1" Content="Odustani" Margin="9.8,27.8,9.8,23" Background="#FFA3DADE" FontSize="17"/>
-        <TextBox Name="datumPocetkaFormat" Text="Format datuma: MM/dd/yyyy" BorderBrush="Transparent" FontSize="10" Grid.Column="2" Background="Transparent" Foreground="Red" HorizontalAlignment="Left" Height="14" Margin="12.8,37.4,0,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" BorderThickness="0" IsReadOnly="True" Width="190" Grid.RowSpan="2"/>
+        <Button Grid.Column="2" Grid.Row="11" Click="Nazad_Click" Content="Odustani" Margin="9.8,27.8,9.8,23" Background="#FFA3DADE" FontSize="17"/>
+        <TextBox Name="datumPocetkaFormat" Text="Format datuma: MM/dd/yyyy" BorderBrush="Transparent" FontSize="10" Grid.Column="2" Background="Transparent" Foreground="Black" HorizontalAlignment="Left" Height="14" Margin="12.8,37.4,0,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" BorderThickness="0" IsReadOnly="True" Width="190" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

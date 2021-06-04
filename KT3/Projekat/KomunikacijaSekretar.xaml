@@ -1,25 +1,24 @@
-﻿<Window x:Class="Projekat.OglasnaTabla"
+﻿<Window x:Class="Projekat.KomunikacijaSekretar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="OglasnaTabla" Height="720" Width="1280" WindowStartupLocation="CenterScreen" Closing="Window_Closing" KeyDown="Window_KeyDown" ResizeMode="NoResize">
+        Title="KomunikacijaSekretar" Height="720" Width="1280" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
-        <ListView x:Name="listView" SelectionChanged="Obavestenja_SelectionChanged" Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,189,0,0.4" MinHeight="20" HorizontalAlignment="Left" Width="585">
+        <ListView x:Name="listView"  Background="#f9f7f7" FontFamily="Segoe UI" FontSize="15" Margin="212,189,0,0.4" MinHeight="20" HorizontalAlignment="Left" Width="585" SelectionChanged="ListView_SelectionChanged">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Height" Value="80"/>
                 </Style>
-
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="#FF18A3AC" BorderThickness="1.5" Width="552" Height="76">
                         <WrapPanel VerticalAlignment="Stretch" xml:space="preserve"  >
                             <TextBlock Text="  Naslov: "  FontWeight="Bold"/> 
-                            <TextBlock Text="{Binding TipObavestenja}" Width="400"/>
+                           <TextBlock Text="{Binding TipObavestenja}" Width="400"/>
                             <TextBlock Text="{Binding Datum}" HorizontalAlignment="Right"/>
                         </WrapPanel>
                     </Border>
@@ -27,7 +26,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Label FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,0,849.6,608.4" Content="Oglasna tabla" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold"/>
+        <Label FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="217,0,849.6,608.4" Content="Komunikacija" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold"/>
         <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="2" Margin="-2,0,0,0" >
             <MenuItem Height="106" Width="206" Click="Nazad_Click" RenderTransformOrigin="0.5,0.5">
                 <MenuItem.RenderTransform>
@@ -45,15 +44,15 @@
             <MenuItem Header="  _Nalozi pacijenata" Height="60" Width="209" Click="Pacijenti_Click" FontSize="17"/>
             <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Termini_Click"/>
             <MenuItem Header="  _Lekari" Height="60" Width="209" FontSize="17" Click="Lekari_Click"/>
-            <MenuItem Header="  Oglasna tabla" Height="60" Width="209" FontSize="17"/>
-            <MenuItem Header="  _Komunikacija" Height="60" Width="209" FontSize="17" Click="Komunikacija_Click"/>
+            <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Oglasna_tabla_Click"/>
+            <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
-        
+
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" StrokeThickness="0" VerticalAlignment="Top" Width="478" Margin="799,0,-3.4,0" />
 
         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="475" Background="#FFE7F6F7" Margin="799,0,-0.4,-0.6" Visibility="Hidden">
-            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Napusti_uvid_Click">
+            <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="13" Canvas.Top="10" Width="37" Click="Button_Click">
                 <StackPanel>
                     <Image Source="slike/cancel.png" Height="25" Width="27" RenderTransformOrigin="0.254,0.462" />
                     <TextBlock Height="1"/>
@@ -62,7 +61,6 @@
             <Label Canvas.Left="50" Canvas.Top="115" FontSize="15">NASLOV:</Label>
             <Label Canvas.Left="50" Canvas.Top="153" FontSize="15">SADRZAJ:</Label>
             <Label Canvas.Left="50" Canvas.Top="379" FontSize="15">DATUM:</Label>
-            <Label Canvas.Left="50" Canvas.Top="417" FontSize="15">NAMENJENO ZA:</Label>
             <TextBox Name="naslov" Canvas.Left="185" Canvas.Top="117" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15" ></TextBox>
             <TextBox x:Name="sadrzaj" Canvas.Left="185" Canvas.Top="158" Width="220" Height="217" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"/>
             <!-- doadto kao linije za sadrzaj -->
@@ -78,37 +76,12 @@
             <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="341" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
 
             <TextBox x:Name="datum" Canvas.Left="185" Canvas.Top="382" Width="220" Height="21" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" FontSize="15"/>
-            <TextBox x:Name="namena" Canvas.Left="187" Canvas.Top="420" Width="218" Height="193" BorderThickness="0,0,0,0" Background="Transparent" IsReadOnly="True" FontSize="15" AcceptsReturn="True" AcceptsTab="True"/>
-            <!-- dodato kao linije za listu namenjenih -->
-            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="420" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="441" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="462" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="482" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="502" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-            <TextBox Height="21" Canvas.Left="187" TextWrapping="Wrap" Canvas.Top="523" Width="218" Background="Transparent" BorderThickness="0,0,0,1" IsReadOnly="True"/>
-        </Canvas>
-        <GroupBox x:Name="okvir" Header="UVID U OBAVEŠTENJE" Canvas.Left="34" Canvas.Top="71" FontSize="20"  BorderBrush="#FF18A3AC" Margin="832,63,32.6,107.4" Visibility="Hidden"/>
+          </Canvas>
+        <GroupBox x:Name="okvir" Header="UVID U MEJL" Canvas.Left="34" Canvas.Top="71" FontSize="20"  BorderBrush="#FF18A3AC" Margin="832,63,32.6,230.4" Visibility="Hidden"/>
 
-        <Button Content="Dodaj" HorizontalAlignment="Left" Margin="449,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Dodaj_Click" FontSize="17" Background="#FFA3DADE">
-            <!-- <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Button.Resources> -->
+        <Button Content="Dodaj" Click="Dodaj_Click" HorizontalAlignment="Left" Margin="553,130,0,0" VerticalAlignment="Top" Width="100" Height="42" FontSize="17" Background="#FFA3DADE">
         </Button>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="566,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Izmeni_Click" FontSize="17" Background="#FFA3DADE">
-            <!--  <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Button.Resources> -->
-        </Button>
-        <Button Content="Obrisi" HorizontalAlignment="Left" Margin="683,130,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Obrisi_Click" FontSize="17" Background="#FFA3DADE">
-            <!--  <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Button.Resources> -->
+        <Button Content="Obrisi" Click="Obrisi_Click" HorizontalAlignment="Left" Margin="674,130,0,0" VerticalAlignment="Top" Width="100" Height="42" FontSize="17" Background="#FFA3DADE">
         </Button>
 
     </Grid>

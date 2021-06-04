@@ -35,12 +35,7 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="481,43,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Zakazi_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="596,43,0,0" VerticalAlignment="Top" Width="100" Click="Pomeri_Click" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
-        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Otkazi_Click" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
-        <Button Content="Hitan slucaj" HorizontalAlignment="Left" Margin="710,28,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Hitan_slucaj_Click" FontSize="17" Background="#FFE7F6F7"/>
-        <Label Content="Termini" HorizontalAlignment="Left" Margin="217,0,0,0" VerticalAlignment="Center" FontSize="22" FontFamily="Segoe UI Semibold" Foreground="#FF18A3AC" Width="162" HorizontalContentAlignment="Center" Height="88" VerticalContentAlignment="Center"/>
-        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" Grid.RowSpan="2" StrokeThickness="0" VerticalAlignment="Top" Width="457" Margin="820,0,-3.4,0"/>
+
         <DataGrid Grid.Column="0" x:Name="terminiSekretarTabela" ItemsSource="{Binding TerminiSekretar}" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="499" Margin="212,100,0,0" VerticalAlignment="Top" Width="608" GridLinesVisibility="All" FontSize="14" Grid.Row="1" SelectionChanged="TerminiSekretarTabela_SelectionChanged">
             <DataGrid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -58,6 +53,14 @@
                 <DataGridTextColumn Header="Sala" Width="48" Binding="{Binding Prostorija.brojSale}"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Content="Zakazi" HorizontalAlignment="Left" Margin="481,43,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Zakazi_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Izmeni" HorizontalAlignment="Left" Margin="596,43,0,0" VerticalAlignment="Top" Width="100" Click="Pomeri_Click" Height="43" FontSize="17" Background="#FFA3DADE" Grid.Row="1"/>
+        <Button Content="Otkazi" HorizontalAlignment="Left" Margin="710,43,0,0" VerticalAlignment="Top" Width="100" Click="Otkazi_Click" Height="43" FontSize="17" Background="#FFA3DADE" RenderTransformOrigin="0.353,0.284" Grid.Row="1"/>
+        <Button Content="Hitan slucaj" HorizontalAlignment="Left" Margin="710,28,0,0" VerticalAlignment="Top" Width="100" Height="43" Click="Hitan_slucaj_Click" FontSize="17" Background="#FFE7F6F7"/>
+        <Label Content="Termini" HorizontalAlignment="Left" Margin="217,0,0,0" VerticalAlignment="Center" FontSize="22" FontFamily="Segoe UI Semibold" Foreground="#FF18A3AC" Width="162" HorizontalContentAlignment="Center" Height="88" VerticalContentAlignment="Center"/>
+        <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="687" Grid.RowSpan="2" StrokeThickness="0" VerticalAlignment="Top" Width="457" Margin="820,0,-3.4,0"/>
+        
         <Canvas x:Name="canvas2" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="457" Background="#FFE7F6F7" Margin="820,0,-3.4,0" Grid.RowSpan="2" Visibility="Hidden">
             <Button BorderThickness="0" Background="#00DDDDDD" Height="40" Canvas.Left="17" Canvas.Top="10" Width="37" Click="Napusti_uvid_Click">
                 <StackPanel>
@@ -149,7 +152,7 @@
             <MenuItem Header="  Termini" Height="60" Width="209" FontSize="17"/>
             <MenuItem Header="  _Lekari" Height="60" Width="209" FontSize="17" Click="Lekari_Click"/>
             <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Oglasna_tabla_Click"/>
-            <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Komunikacija" Height="60" Width="209" FontSize="17" Click="Komunikacija_Click"/>
             <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
     </Grid>

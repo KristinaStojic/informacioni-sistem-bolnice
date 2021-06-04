@@ -269,14 +269,6 @@ namespace Projekat
             {
                 Nazad_Click(sender, e);
             }
-            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                //this.MoveFocus();
-            }
-            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                pretraga.Focusable = true;
-            }
             else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Pomoc_Click(sender, e);
@@ -288,5 +280,11 @@ namespace Projekat
 
         }
 
+        private void Komunikacija_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            KomunikacijaSekretar komunikacija = new KomunikacijaSekretar();
+            komunikacija.Show();
+        }
     }
 }
