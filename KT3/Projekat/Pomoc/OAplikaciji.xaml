@@ -5,11 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="O aplikaciji" Height="250" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="LightSteelBlue">
+        Title="O aplikaciji" Height="350" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="LightSteelBlue">
     <Window.DataContext>
         <viewmodel:OAplikacijiViewModel/>
     </Window.DataContext>
-    <Grid>
-        <TextBlock FontSize="20">O aplikaciji...</TextBlock>
-    </Grid>
+    <StackPanel>
+        <TextBlock FontSize="20">Autor:</TextBlock>
+        <TextBlock FontSize="20">Katarina Žerajić, rođena u Nevesinju 1999 godine.</TextBlock>
+        <TextBlock FontSize="20">Student 3 godine Fakulteta tehničkih nauka.</TextBlock>
+        <TextBlock FontSize="20">O aplikaciji:</TextBlock>
+        <TextBlock FontSize="20">Informacioni sistem moderne bolnice, namjenjen za rukovanje</TextBlock>
+        <TextBlock FontSize="20">od strane upravnika.</TextBlock>
+        <TextBlock FontSize="20">Upravniku je omogućeno da vodi evidenciju o zaposlenima, </TextBlock>
+        <TextBlock FontSize="20">materijalima, prostorijama i da održava komunikaciju sa</TextBlock>
+        <TextBlock FontSize="20">drugim ustanovama ZDRAVO korporacije.</TextBlock>
+    </StackPanel>
 </Window>

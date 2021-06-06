@@ -51,7 +51,7 @@ namespace Projekat.ViewModel
 
         #endregion
 
-        #region Kontruktor
+        #region Konstruktor
         public KomunikacijaViewModel()
         {
             UviduUZahtjeveKomanda = new MyICommand(UvidUZahtjeve);
