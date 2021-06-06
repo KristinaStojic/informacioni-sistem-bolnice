@@ -13,7 +13,6 @@
         <KeyBinding Key="D" Modifiers="Ctrl" Command="{Binding DodajSaluKomanda}"></KeyBinding>
         <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding IzmjeniSaluKomanda}"></KeyBinding>
         <KeyBinding Key="R" Modifiers="Ctrl" Command="{Binding RenoviranjeKomanda}"></KeyBinding>
-        <KeyBinding Key="T" Modifiers="Ctrl" Command="{Binding KrevetKomanda}"></KeyBinding>
         <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding ObrisiSaluKomanda}"></KeyBinding>
         <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding ZatvoriProzorKomanda}"></KeyBinding>
         <KeyBinding Key="E" Modifiers="Ctrl" Command="{Binding OtvoriZahtjeve}"></KeyBinding>
@@ -32,7 +31,6 @@
             <Menu DockPanel.Dock="Top" Background="CadetBlue">
                 <MenuItem Header="Fajl" FontSize="15">
                     <MenuItem Header="Dodaj" FontSize="15" Command="{Binding DodajSaluKomanda}" InputGestureText="Ctrl + D"></MenuItem>
-                    <MenuItem Header="Dodaj krevet" FontSize="15" Command="{Binding KrevetKomanda}" InputGestureText="Ctrl + T"></MenuItem>
                     <MenuItem Header="Zatvori" FontSize="15" Command="{Binding ZatvoriProzorKomanda}" InputGestureText="Ctrl + Z"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Uredi" FontSize="15">
@@ -61,15 +59,12 @@
                     <Image Source="slike/pen.png" Width="30" Height="30"></Image>
                 </Button>
                 <Button Command="{Binding RenoviranjeKomanda}" ToolTip="Renoviraj, Ctrl + R">
-                   <Image Source="slike/brush.png" Width="30" Height="30"></Image>
-                </Button>
-                <Button Command="{Binding KrevetKomanda}" ToolTip="Dodaj krevet, Ctrl + T">
-                    <Image Source="slike/bed.png" Width="30" Height="30"></Image>
+                    <Image Source="slike/brush.png" Width="30" Height="30"></Image>
                 </Button>
                 <Button Command="{Binding ObrisiSaluKomanda}" ToolTip="Obrisi, Ctrl + O">
                     <Image Source="slike/trash.png" Width="30" Height="30"></Image>
                 </Button>
-                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi" HorizontalAlignment="Right" Width="130" Height="30" Margin="375, 0, 0, 0" Text="{Binding PretragaSala, UpdateSourceTrigger=PropertyChanged}"  Name="Pretraga"></TextBox>
+                <TextBox Background="LightBlue" BorderBrush="LightBlue" ToolTip="Pretrazi" HorizontalAlignment="Right" Width="130" Height="30" Margin="405, 0, 0, 0" Text="{Binding PretragaSala, UpdateSourceTrigger=PropertyChanged}"  Name="Pretraga"></TextBox>
                 <Button ToolTip="Pretrazi, Ctrl + P" IsEnabled="False">
                     <Image Source="slike/search.png" Width="30" Height="30"></Image>
                 </Button>
