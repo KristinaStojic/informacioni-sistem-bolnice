@@ -31,7 +31,7 @@
             <Menu DockPanel.Dock="Top" Background="CadetBlue">
                 <MenuItem Header="Fajl" FontSize="15">
                     <MenuItem Header="Dodaj" FontSize="15" Command="{Binding DodajSaluKomanda}" InputGestureText="Ctrl + D"></MenuItem>
-                    <MenuItem Header="Zatvori" FontSize="15" Command="{Binding ZatvoriProzorKomanda}" InputGestureText="Ctrl + Z"></MenuItem>
+                    <MenuItem Header="Zatvori" FontSize="15" Command="{Binding ZatvoriProzorKomanda}" InputGestureText="Ctrl + N"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Uredi" FontSize="15">
                     <MenuItem Header="Izmjeni" FontSize="15" Command="{Binding IzmjeniSaluKomanda}" InputGestureText="Ctrl + I"></MenuItem>
