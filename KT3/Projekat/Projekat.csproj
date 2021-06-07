@@ -291,6 +291,7 @@
     <Compile Include="Model\LekoviMenadzer.cs" />
     <Compile Include="Model\MalicioznoPonasanje.cs" />
     <Compile Include="Model\MalicioznoPonasanjeMenadzer.cs" />
+    <Compile Include="Model\Menadzer.cs" />
     <Compile Include="Model\Obavestenja.cs" />
     <Compile Include="Model\ObavestenjaMenadzer.cs" />
     <Compile Include="Model\Oprema.cs" />
@@ -566,6 +567,7 @@
     <Compile Include="PacijentWebStranice.cs" />
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
+    <Compile Include="Servis\SkladisteServis.cs" />
     <Compile Include="Servis\TerminiSekretarServis.cs" />
     <Compile Include="Servis\TerminServis.cs" />
     <Compile Include="Servis\TerminServisLekar.cs" />

@@ -467,7 +467,7 @@ namespace Projekat
         private void SlobodanTerminLekara()
         {
            // List<Sala> sale = SaleServis.NadjiSveSale();
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleMenadzer.lista)
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -517,7 +517,7 @@ namespace Projekat
         private void SlobodanTerminPacijenta()
         {
             //List<Sala> sale = SaleServis.NadjiSveSale();
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleMenadzer.lista)
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -616,7 +616,7 @@ namespace Projekat
 
             if (tip.SelectedIndex == 0 || tip.SelectedIndex == 1) // pregled
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                foreach (Sala s in SaleMenadzer.lista)
                 {
                     if (s.TipSale.Equals(tipSale.SalaZaPregled) && !s.Namjena.Equals("Skladiste"))
                     {
@@ -629,7 +629,7 @@ namespace Projekat
             }
             else if (tip.SelectedIndex == 2) // operacija
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                foreach (Sala s in SaleMenadzer.lista)
                 {
                     if (s.TipSale.Equals(tipSale.OperacionaSala) && !s.Namjena.Equals("Skladiste"))
                     {

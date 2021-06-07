@@ -681,7 +681,7 @@ namespace Projekat.ViewModel
         
         private void spojiSale()
         {
-            OpremaServis.dodajOpremuIzSaleZaDodavanje(izabranaSala, izabranaSalaZaSpajanje);
+            SaleServis.dodajOpremuIzSaleZaDodavanje(izabranaSala, izabranaSalaZaSpajanje);
             SaleServis.ObrisiSalu(IzabranaSalaZaSpajanje);
             Sale.Remove(IzabranaSalaZaSpajanje);
             SaleServis.sacuvajIzmjene();

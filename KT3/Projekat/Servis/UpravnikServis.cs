@@ -7,18 +7,18 @@ namespace Projekat.Servis
     {
         public static List<UpravnikModel> NadjiSveUpravnike()
         {
-            return UpravnikMenadzer.NadjiSveUpravnike();
+            return UpravnikMenadzer.NadjiSve("upravnici.xml");
         }
 
         public static void SacuvajIzmjene()
         {
-            UpravnikMenadzer.SacuvajIzmjene();
+            UpravnikMenadzer.sacuvajIzmjene("upravnici.xml");
         }
 
 
         public static void DodajUpravnika(UpravnikModel upravnik)
         {
-            UpravnikMenadzer.DodajUpravnika(upravnik);
+            UpravnikMenadzer.Dodaj(upravnik, "upravnici.xml");
         }
 
 

@@ -337,7 +337,7 @@ namespace Projekat.ViewModel
             {
                 staticka = false;
             }
-            int idOpreme = OpremaServis.GenerisanjeIdOpreme();
+            int idOpreme = SkladisteServis.GenerisanjeIdOpreme();
             Oprema oprema = new Oprema(nazivOpreme, int.Parse(kolicinaOpreme), staticka);
             oprema.IdOpreme = idOpreme;
             return oprema;
@@ -424,8 +424,8 @@ namespace Projekat.ViewModel
             {
                 if (oprema.IdOpreme == izOpreme.IdOpreme)
                 {
-                    oprema.NazivOpreme = uOpremu.NazivOpreme;
-                    oprema.Kolicina = uOpremu.Kolicina;
+                    //oprema.NazivOpreme = uOpremu.NazivOpreme;
+                    //oprema.Kolicina = uOpremu.Kolicina;
                     zamjeniOpremu(izOpreme, oprema);
                 }
             }

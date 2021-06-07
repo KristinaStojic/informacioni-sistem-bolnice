@@ -123,7 +123,7 @@ namespace Model
                     int idx = PrikaziTermin.Termini.IndexOf(stariTermin);
                     PrikaziTermin.Termini.RemoveAt(idx);
                     PrikaziTermin.Termini.Insert(idx, noviTermin);
-                    foreach (Sala sala in SaleMenadzer.sale)
+                    foreach (Sala sala in SaleMenadzer.lista)
                     {
                         foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
                         {
@@ -193,7 +193,7 @@ namespace Model
                 if (stariTermin.IdTermin == termini[i].IdTermin)
                 {
                     // brisanje termina iz zauzetih termina u sali
-                    foreach (Sala s in SaleMenadzer.sale)
+                    foreach (Sala s in SaleMenadzer.lista)
                     {
                         if (s.Id == stariTermin.Prostorija.Id)
                         {
@@ -243,7 +243,7 @@ namespace Model
             {
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
-                    foreach (Sala s in SaleMenadzer.sale)
+                    foreach (Sala s in SaleMenadzer.lista)
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
@@ -267,7 +267,7 @@ namespace Model
                 if (termin.IdTermin == termini[i].IdTermin)
                 {
                     // brisanje termina iz zauzetih termina u sali
-                    foreach (Sala s in SaleMenadzer.sale)
+                    foreach (Sala s in SaleMenadzer.lista)
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {

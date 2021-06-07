@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
-    class LekoviMenadzer
+    public class LekoviMenadzer
     {
         public static void DodajLijek(Lek lijek)
         {
