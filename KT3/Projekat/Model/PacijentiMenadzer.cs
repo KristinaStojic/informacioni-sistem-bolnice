@@ -127,7 +127,7 @@ namespace Model
 
         private static void ObrisiZauzecaSala(int j)
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleMenadzer.lista)
             {
                 if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
                 {
