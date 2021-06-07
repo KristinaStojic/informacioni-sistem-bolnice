@@ -165,6 +165,18 @@ namespace Projekat
                 {
                     Button_Obrisi(sender, e);
                 }
+                else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Hyperlink_Click(sender, e);
+                }
+            }
+        }
+
+        private void otvoriTabove(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                sviLekovi.IsSelected = true;
             }
             else if (e.Key == Key.V && Keyboard.IsKeyDown(Key.LeftCtrl))
             {

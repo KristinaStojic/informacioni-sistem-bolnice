@@ -27,6 +27,9 @@ namespace Projekat
         {
             InitializeComponent();
             this.uput = izabraniUput;
+            this.potvrdi.Visibility = Visibility.Hidden;
+            this.odustani.Visibility = Visibility.Hidden;
+          
             if(izabraniUput.TipUputa == tipUputa.SpecijallistickiPregled)
             {
                 specijalistickiTab.IsSelected = true;
@@ -37,10 +40,48 @@ namespace Projekat
                 stacinarnoTab.IsSelected = true;
                 PopuniPodatkeBolnickoLecenje();
             }
+            else if (izabraniUput.TipUputa == tipUputa.Laboratorija)
+            {
+                labTab.IsSelected = true;
+                PopuniPodatkeLaboratorija();
+            }
 
-           
+            this.potvrdi.IsEnabled = false;
 
 
+
+        }
+
+        private void PopuniPodatkeLaboratorija()
+        {
+            NadjiPacijentaLaboratorija(uput.idPacijenta);
+            NadjiLekaraLaboratorija(uput);
+            this.datumLab.SelectedDate = DateTime.Parse(uput.datumIzdavanja);
+            this.napomenaLab.Text = uput.opisPregleda;
+        }
+
+        private void NadjiPacijentaLaboratorija(int idPacijenta)
+        {
+            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            {
+                if (pacijent.IdPacijenta == idPacijenta)
+                {
+                    this.imeLab.Text = pacijent.ImePacijenta;
+                    this.prezimeLab.Text = pacijent.PrezimePacijenta;
+                    this.jmbgLab.Text = pacijent.Jmbg.ToString();
+                }
+            }
+        }
+
+        private void NadjiLekaraLaboratorija(Uput izabraniUput)
+        {
+            foreach (Lekar lekar in LekariMenadzer.lekari)
+            {
+                if (lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
+                {
+                    this.lekarLab.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+                }
+            }
         }
         
         private void PopuniPodatkeBolnickoLecenje()
@@ -126,11 +167,18 @@ namespace Projekat
 
         private void PotvrdiLecenje_Click(object sender, RoutedEventArgs e)
         {
-            //uput.datumKrajaLecenja = NadjiNoviDatumKraja();
-            Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
-            ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
-            PacijentiServis.SacuvajIzmenePacijenta();
-            this.Close();
+            if (popunjeno)
+            {
+                Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
+                ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
+                PacijentiServis.SacuvajIzmenePacijenta();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Niste uneli ispravne podatke!");
+            }
+           
         }
 
         private string NadjiNoviDatumKraja()
@@ -184,6 +232,45 @@ namespace Projekat
             {
                 popunjeno = true;
                 potvrdi.IsEnabled = true;
+            }
+        }
+
+        private void labTab_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                this.Close();
+            }
+        }
+
+        private void datumKraja_LostFocus(object sender, RoutedEventArgs e)
+        {
+            postaviDugme();
+        }
+
+        private void postaviDugme()
+        {
+            if (this.datumKraja.Text != null)
+            {
+                izvrsiPostavljanje();
+            }
+            else
+            {
+                this.potvrdi.IsEnabled = false;
+                this.popunjeno = false;
+            }
+        }
+        private void izvrsiPostavljanje()
+        {
+            if (this.datumKraja.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = false;
+                popunjeno = false;
+            }
+            else if (!this.datumKraja.Text.Trim().Equals(""))
+            {
+                this.potvrdi.IsEnabled = true;
+                popunjeno = true;
             }
         }
     }

@@ -115,6 +115,7 @@ namespace Projekat
             if (this.terap.Text.Trim().Equals("") || this.bol.Text.Trim().Equals(""))
             {
                 this.potvrdi.IsEnabled = false;
+                this.popunjeno = false;
             }
             else if (!this.terap.Text.Trim().Equals("") && !this.bol.Text.Trim().Equals(""))
             {

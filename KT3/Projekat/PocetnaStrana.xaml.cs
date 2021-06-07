@@ -139,5 +139,11 @@ namespace Projekat
             EvidencijaUtrosenogMaterijala em = new EvidencijaUtrosenogMaterijala(IDLekara);
             em.Show();
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            LicniPodaciLekar podaci = new LicniPodaciLekar(IDLekara);
+            podaci.Show();
+        }
     }
 }

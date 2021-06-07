@@ -339,7 +339,7 @@ namespace Projekat
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
-                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, tipUputa);
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, tipUputa, detaljiOPregledu);
                 noviUput.datumIzdavanja = datum;
                 ZdravstveniKartonServis.DodajUput(noviUput);
                
@@ -347,6 +347,10 @@ namespace Projekat
                 PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Niste uneli sve podatke!");
             }
         }
 
@@ -359,6 +363,7 @@ namespace Projekat
             else
             {
                 this.potvrdiLab.IsEnabled = false;
+                popunjenoLab = false;
             }
         }
         private void izvrsiPostavljanjeLab()
@@ -366,6 +371,7 @@ namespace Projekat
             if (this.napomenaLab.Text.Trim().Equals(""))
             {
                 this.potvrdiLab.IsEnabled = false;
+                popunjenoLab = false;
             }
             else if (!this.napomenaLab.Text.Trim().Equals(""))
             {
@@ -429,7 +435,14 @@ namespace Projekat
 
         private void laboratorija_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                Potvrdi_Laboratorija_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                this.Close();
+            }
         }
 
         private void lekar_TextChanged(object sender, TextChangedEventArgs e)

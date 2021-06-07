@@ -17,7 +17,7 @@
             <RowDefinition Height="48"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Height="40" Background="#FF6895C5" Margin="127,9.6,126.6,18.4" Click="Odustani_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">Odustani</Button>
+        <Button Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" Margin="127,9.6,126.6,18.4" Click="Odustani_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">Odustani</Button>
         <TextBlock Margin="43.6,36,42,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="157" Grid.Column="1"><Run FontWeight="Bold" FontStyle="Italic" Text="O aplikaciji:"/><LineBreak/><Run Text=""/><LineBreak/><Run Text="Klinika Zdravo"/></TextBlock>
         <GroupBox Height="212" Margin="11,0,10,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header="&#xA;"/>
     </Grid>

@@ -11,9 +11,47 @@
 
             <TabControl x:Name="uputi" TabStripPlacement="Top"  Background="LightSkyBlue" Margin="31,20.4,29.6,85.4" Height="625">
 
-                <TabItem Header="Laboratorija" Width="100" Height="25">
+                <TabItem Header="Laboratorija" Width="100" Height="25" x:Name="labTab" KeyDown="labTab_KeyDown">
 
-                    <Grid/>
+                    <Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="145"/>
+                                <RowDefinition Height="10*"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="230"/>
+                                <ColumnDefinition Width="230"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Ime pacijenta" Grid.Column="1" Margin="0,10,20,45.2" Grid.Row="1" Grid.RowSpan="2" FontSize="16"/>
+                            <Label Content="Prezime pacijenta" Grid.Column="1" Margin="0,9.4,20,0.2" Grid.Row="2" FontSize="16"/>
+                            <Label Content="JMBG pacijenta" Grid.Column="1" Margin="0,9.8,20,43.8" Grid.Row="3" FontSize="16" Grid.RowSpan="2"/>
+                            <Label Content="Lekar koji izdaje uput" Margin="1,9,19,44.6" Grid.Row="4" FontSize="16" Grid.RowSpan="2" Grid.Column="1"/>
+                            <Label Content="Datum izdavanja uputa" Grid.Column="1" Margin="0,9.2,10,44.4" Grid.Row="5" FontSize="16" Grid.RowSpan="2"/>
+                            <TextBox BorderBrush="Black" TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,45.2" Grid.Row="1" Grid.RowSpan="2" IsEnabled="False" Name="imeLab"/>
+                            <TextBox BorderBrush="Black" TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,44" Grid.Row="2" Grid.RowSpan="2" IsEnabled="False" Name="prezimeLab"/>
+                            <TextBox BorderBrush="Black" TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,0" Grid.Row="3" IsEnabled="False" Name="jmbgLab"/>
+                            <TextBox BorderBrush="Black" TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="lekarLab"/>
+                            <DatePicker BorderBrush="Black" Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="False" Name="datumLab"/>
+                            <Label Content="Napomena za pregled" Grid.Column="1" Margin="1,10,9,44" Grid.Row="6" FontSize="16" Grid.RowSpan="2"/>
+                            <TextBox BorderBrush="Black" TextWrapping="Wrap" Grid.Column="1" Margin="0,10,19,10" Grid.Row="7" IsEnabled="False" Grid.RowSpan="3" x:Name="napomenaLab" Grid.ColumnSpan="2"/>
+                            <Button Content="Nazad" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.ColumnSpan="2" Grid.Column="1" Margin="184,25,186,16" Grid.Row="10"/>
+
+                        </Grid>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Specijalistički pregled" Width="130" x:Name="specijalistickiTab" KeyDown="specijalistickiTab_KeyDown">
                     <Grid>
@@ -49,7 +87,7 @@
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,23.8" Grid.Row="4" IsEnabled="False" x:Name="lekar"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.4,19,22.4" Grid.Row="6" IsEnabled="False" x:Name="specijalista"/>
                         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,24.6" Grid.Row="5" Width="192" IsEnabled="False" Name="datum"/>
-                        <Button Content="Nazad" Grid.Column="1" HorizontalAlignment="Left" Margin="184.4,2,0,0" Grid.Row="9" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.ColumnSpan="2"/>
+                        <Button Content="Nazad" Grid.Column="1" Margin="184,2,185,16" Grid.Row="9" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.ColumnSpan="2"/>
                         <Label Content="Napomena za pregled" Grid.Column="1" Margin="1.4,9.6,9,23.2" Grid.Row="7" FontSize="16"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10.6,19,23.2" Grid.Row="7" IsEnabled="False" x:Name="napomena"/>
                     </Grid>
@@ -91,15 +129,17 @@
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,8.8,19,0" Grid.Row="3" IsEnabled="False" Name="jmbgPacijenta"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43.6" Grid.Row="4" IsEnabled="False" Grid.RowSpan="2" x:Name="Lekar"/>
                         <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10.2,0,0" Grid.Row="5" VerticalAlignment="Top" Grid.RowSpan="2" Height="35" Width="192" IsEnabled="False" Name="datumPocetka" SelectedDateChanged="datumPocetka_SelectedDateChanged"/>
-                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="True" x:Name="datumKraja" SelectedDateChanged="datumKraja_SelectedDateChanged"/>
+                        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="19,10,0,0" Grid.Row="6" VerticalAlignment="Top" Height="35" Width="192" IsEnabled="False" x:Name="datumKraja" SelectedDateChanged="datumKraja_SelectedDateChanged" LostFocus="datumKraja_LostFocus"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="1" Margin="1,0,19,38" Grid.Row="10" IsEnabled="False" x:Name="napomenaPregelda" Grid.ColumnSpan="2"/>
                         <Label Content="Broj sobe" Grid.Column="1" Margin="0,10,10,44" Grid.Row="7" FontSize="16" Grid.RowSpan="2"/>
                         <Label Content="Broj kreveta" Grid.Column="1" Margin="1,10,9,44" Grid.Row="8" FontSize="16" Grid.RowSpan="2"/>
                         <Label Content="Napomena" Grid.Column="1" Margin="1,9,9,0" Grid.Row="9" FontSize="16"/>
                         <Button x:Name="potvrdi" Content="Sačuvaj" Grid.Column="1" Margin="89,132,50,0" Grid.Row="10" VerticalAlignment="Top" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="PotvrdiLecenje_Click" Grid.RowSpan="2"/>
-                        <Button x:Name="odustani" Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,128,0,0" Grid.Row="10" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.RowSpan="2"/>
+                        <Button x:Name="odustani" Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="50,132,0,0" Grid.Row="10" VerticalAlignment="Top"  Width="91" Height="29" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.RowSpan="2"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,10,19,43" Grid.Row="7" IsEnabled="False" Grid.RowSpan="2" x:Name="brojSobe"/>
                         <TextBox TextWrapping="Wrap" Grid.Column="2" Margin="19,7,19,1" Grid.Row="8" IsEnabled="False" x:Name="brojKreveta"/>
+                        <Button Content="Nazad" Grid.Column="1" Margin="184,131,185,16" Grid.Row="10" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White" Click="Odustani_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
                     </Grid>
                 </TabItem>
 

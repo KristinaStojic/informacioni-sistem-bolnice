@@ -23,7 +23,7 @@
                 <MenuItem Header="Zatvori" InputGestureText="Ctrl + X" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Uredi" FontSize="15" Click="MenuItem_Click">
-                <MenuItem Header="Lični podaci" InputGestureText="Ctrl + I" FontSize="15"></MenuItem>
+                <MenuItem Header="Lični podaci" InputGestureText="Ctrl + I" FontSize="15" Click="MenuItem_Click_1"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Pomoć" FontSize="15">
                 <MenuItem Header="Pomoć" InputGestureText="Ctrl + H" FontSize="15" Click="Pomoc_Click"></MenuItem>
