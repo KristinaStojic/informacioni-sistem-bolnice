@@ -628,6 +628,9 @@
     <Compile Include="ViewModel\SaleViewModel.cs" />
     <Compile Include="ViewModel\SkladisteViewModel.cs" />
     <Compile Include="ViewModel\UpravnikViewModel.cs" />
+    <Compile Include="ViewModel\ValidacijaNalogaLekara.cs" />
+    <Compile Include="ViewModel\ValidationBase.cs" />
+    <Compile Include="ViewModel\ValidationErrors.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\ZahtjeviViewModel.cs" />
     <Compile Include="ViewModel\ZdravstveniKartonViewModel.cs" />
