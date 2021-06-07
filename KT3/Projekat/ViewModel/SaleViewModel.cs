@@ -1299,7 +1299,7 @@ namespace Projekat.ViewModel
 
         private void DodavanjeDinamicke()
         {
-            PremjestajServis.prebaciOpremu(IzabranaSalaDodavanje, int.Parse(KolicinaDodavanjeDinamicke), IzabranaDinamickaDodavanje, IzabranaSala);
+            PremjestajOpremeServis.premjestajDinamickeOpreme(IzabranaSalaDodavanje, int.Parse(KolicinaDodavanjeDinamicke), IzabranaDinamickaDodavanje, IzabranaSala);
             azurirajPrikazDinamicke();
             DodavanjeDinamickeProzor.Close();
         }
@@ -1823,8 +1823,21 @@ namespace Projekat.ViewModel
         }
         private void DodavanjeStaticke()
         {
-            PremjestajServis.dodajStatickuOpremu(IzabranaSalaZaDodavanje, int.Parse(kolicinaDodavanjaStaticke), napraviTerminPremjestaja(), izabranaSala, IzabranaStatickaDodavanje);
+            PremjestajOpremeServis.premjestajStatickeOpreme(IzabranaSalaZaDodavanje, int.Parse(kolicinaDodavanjaStaticke), napraviTerminPremjestaja(), izabranaSala, IzabranaStatickaDodavanje);
             DodavanjeStatickeProzor.Close();
+            azurirajStaticku();
+        }
+
+        private static void azurirajStaticku()
+        {
+            if (SkladisteViewModel.otvoren)
+            {
+                SkladisteViewModel.azuriraj = true;
+            }
+            else
+            {
+                SaleViewModel.azuriraj = true;
+            }
         }
         private void izracunajDozvoljenuKolicinu(Sala sala, Sala izabranaSala)
         {
@@ -1942,6 +1955,12 @@ namespace Projekat.ViewModel
                     TerminiDodavanjaStaticke.Add(termin + ":00");
                 }
             }
+            TerminiDodavanjaStaticke.Add("21:20");
+            TerminiDodavanjaStaticke.Add("21:21");
+            TerminiDodavanjaStaticke.Add("21:22");
+            TerminiDodavanjaStaticke.Add("21:23");
+            TerminiDodavanjaStaticke.Add("21:24");
+            TerminiDodavanjaStaticke.Add("21:25");
         }
 
         private bool postojiTerminDodavanja(int termin)

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using System;
 using System.Collections.Generic;
 
 namespace Projekat.Servis
@@ -47,6 +48,58 @@ namespace Projekat.Servis
             Oprema oprema = new Oprema(opremaZaSlanje.NazivOpreme, kolicina, true);
             oprema.IdOpreme = opremaZaSlanje.IdOpreme;
             return oprema;
+        }
+
+        public static void premjestiStatickuOpremu(Sala uSalu, int kolicina, Sala izSale, Oprema izabranaOprema)
+        {
+            foreach (Sala sala in SaleServis.Sale())
+            {
+                if (sala.Id == izSale.Id)
+                {
+                    IzmjenaKolicineStatickeServis.SmanjiKolicinuOpreme(sala, kolicina, izabranaOprema);
+                }
+                if (sala.Id == uSalu.Id)
+                {
+                    dodajStatickuOpremuUSalu(sala, kolicina, izabranaOprema, uSalu);
+
+                }
+            }
+        }
+
+        private static void dodajStatickuOpremuUSalu(Sala sala, int kolicina, Oprema izabranaOprema, Sala salaDodavanje)
+        {
+            if (!postojiOprema(sala, izabranaOprema))
+            {
+                sala.Oprema.Add(NapraviNovuOpremu(kolicina, izabranaOprema));
+            }
+            else
+            {
+                IzmjenaKolicineStatickeServis.PovecajKolicinuOpreme(sala, kolicina, izabranaOprema);
+            }
+        }
+
+        private static bool postojiOprema(Sala sala, Oprema izabranaOprema)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static void dodajDinamickuOpremuUSalu(Sala sala, int kolicina, Oprema izabranaOprema)
+        {
+            if (!postojiOprema(sala, izabranaOprema))
+            {
+                IzmjenaKolicineStatickeServis.PovecajKolicinuOpreme(sala, kolicina, izabranaOprema);
+            }
+            else
+            {
+                sala.Oprema.Add(NapraviNovuOpremu(kolicina, izabranaOprema));
+            }
         }
 
     }
