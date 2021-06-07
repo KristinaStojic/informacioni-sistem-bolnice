@@ -504,6 +504,9 @@
   <data name="TipTermin" xml:space="preserve">
     <value>Tip termina</value>
   </data>
+  <data name="TipTermina" xml:space="preserve">
+    <value>Tip termina</value>
+  </data>
   <data name="TipUputa" xml:space="preserve">
     <value>Tip uputa</value>
   </data>
@@ -548,17 +551,41 @@
   <data name="valAdresa" xml:space="preserve">
     <value>Popunite polje</value>
   </data>
+  <data name="valBrojKartice" xml:space="preserve">
+    <value>Unesite broj kartice</value>
+  </data>
+  <data name="valCVV" xml:space="preserve">
+    <value>Unesite broj sa zadnje strane kartice</value>
+  </data>
   <data name="valDatum" xml:space="preserve">
     <value>Izaberite datum</value>
   </data>
+  <data name="valDatumVazenja" xml:space="preserve">
+    <value>Unesite datum vazenja kartice</value>
+  </data>
+  <data name="valDrzava" xml:space="preserve">
+    <value>Odaberite drzavu</value>
+  </data>
+  <data name="valGrad" xml:space="preserve">
+    <value>Izaberite grad</value>
+  </data>
   <data name="valIme" xml:space="preserve">
     <value>Unesite ime</value>
+  </data>
+  <data name="valImePrezime" xml:space="preserve">
+    <value>Unesite ime i prezime sa kartice</value>
   </data>
   <data name="valJmbg" xml:space="preserve">
     <value>Dozvoljene su samo cifre</value>
   </data>
   <data name="valJmbgDuzina" xml:space="preserve">
     <value>Duzina mora biti od 9 do 13 cifara</value>
+  </data>
+  <data name="valKartica" xml:space="preserve">
+    <value>Izaberite nacin placanja</value>
+  </data>
+  <data name="valPostanskiBroj" xml:space="preserve">
+    <value>Unesite postanski broj</value>
   </data>
   <data name="valPrezime" xml:space="preserve">
     <value>Unesite prezime</value>

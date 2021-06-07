@@ -174,7 +174,6 @@ namespace Projekat
             this.izmeniBtn.Visibility = Visibility.Hidden;
             this.sacuvajIzmene.Visibility = Visibility.Visible;
             this.odustani.Visibility = Visibility.Visible;
-
             this.Ime.IsEnabled = true;
             this.prezime.IsEnabled = true;
             this.jmbg.IsEnabled = true;
@@ -232,7 +231,7 @@ namespace Projekat
         }
         #region Validacija licnih podataka
 
-        public bool ProveraCifara(string tekst)
+        public static bool ProveraCifara(string tekst)
         {
             foreach (char karakter in tekst)
             {

@@ -105,7 +105,7 @@ namespace Projekat.Servis
                 TamnaTema.IsEnabled = false;
 
             }
-            else if (PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
+            else if (PanelZaglavlja.Background.ToString().Equals("#FFE8F1F5"))
             {
                 SvetlaTema.IsEnabled = false;
             }

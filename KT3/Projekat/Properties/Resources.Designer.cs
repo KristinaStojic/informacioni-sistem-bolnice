@@ -1222,6 +1222,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tip termina.
+        /// </summary>
+        public static string TipTermina {
+            get {
+                return ResourceManager.GetString("TipTermina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tip uputa.
         /// </summary>
         public static string TipUputa {
@@ -1350,6 +1359,24 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unesite broj kartice.
+        /// </summary>
+        public static string valBrojKartice {
+            get {
+                return ResourceManager.GetString("valBrojKartice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unesite broj sa zadnje strane kartice.
+        /// </summary>
+        public static string valCVV {
+            get {
+                return ResourceManager.GetString("valCVV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Izaberite datum.
         /// </summary>
         public static string valDatum {
@@ -1359,11 +1386,47 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unesite datum vazenja kartice.
+        /// </summary>
+        public static string valDatumVazenja {
+            get {
+                return ResourceManager.GetString("valDatumVazenja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odaberite drzavu.
+        /// </summary>
+        public static string valDrzava {
+            get {
+                return ResourceManager.GetString("valDrzava", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Izaberite grad.
+        /// </summary>
+        public static string valGrad {
+            get {
+                return ResourceManager.GetString("valGrad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unesite ime.
         /// </summary>
         public static string valIme {
             get {
                 return ResourceManager.GetString("valIme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unesite ime i prezime sa kartice.
+        /// </summary>
+        public static string valImePrezime {
+            get {
+                return ResourceManager.GetString("valImePrezime", resourceCulture);
             }
         }
         
@@ -1382,6 +1445,24 @@ namespace Projekat.Properties {
         public static string valJmbgDuzina {
             get {
                 return ResourceManager.GetString("valJmbgDuzina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Izaberite nacin placanja.
+        /// </summary>
+        public static string valKartica {
+            get {
+                return ResourceManager.GetString("valKartica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unesite postanski broj.
+        /// </summary>
+        public static string valPostanskiBroj {
+            get {
+                return ResourceManager.GetString("valPostanskiBroj", resourceCulture);
             }
         }
         

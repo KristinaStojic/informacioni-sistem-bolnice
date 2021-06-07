@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for IzmeniTermin.xaml
-    /// </summary>
     public partial class IzmeniTermin : Page
     {
         private Termin termin;
@@ -56,7 +53,7 @@ namespace Projekat
                 {
                     this.combo.SelectedIndex = 1;
                 }
-                tp = izabraniTermin.tipTermina;  // ?
+                tp = izabraniTermin.tipTermina;  
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
                 this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
@@ -121,20 +118,11 @@ namespace Projekat
 
         private void IzmeniIzabraniTermin()
         {
-            try
-            {
+            try {
                 string datumTermina = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
                 string vremePocetka = vpp.Text;
                 string vremeKraja = TerminServis.IzracunajVremeKrajaPregleda(vremePocetka);
-                TipTermina tipTermina;
-                if (combo.Text.Equals("Pregled"))
-                {
-                    tipTermina = TipTermina.Pregled;
-                }
-                else
-                {
-                    tipTermina = TipTermina.Operacija;
-                }
+                TipTermina tipTermina = OdrediTipTermina();
                 Termin noviTermin = new Termin(termin.IdTermin, datumTermina, vremePocetka, vremeKraja, tipTermina);
                 noviTermin.Pacijent = prijavljeniPacijent;
                 noviTermin.Pomeren = true;
@@ -148,10 +136,25 @@ namespace Projekat
                 Page uvidZakazaniTermini = new ZakazaniTerminiPacijent(idPacijent);
                 this.NavigationService.Navigate(uvidZakazaniTermini);
             }
-            catch (System.Exception)
+            catch(Exception)
             {
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private TipTermina OdrediTipTermina()
+        {
+            TipTermina tipTermina;
+            if (combo.Text.Equals("Pregled"))
+            {
+                tipTermina = TipTermina.Pregled;
+            }
+            else
+            {
+                tipTermina = TipTermina.Operacija;
+            }
+
+            return tipTermina;
         }
 
         private void PostaviLekaraZaNoviTermin(Termin noviTermin)
@@ -163,6 +166,7 @@ namespace Projekat
             }
         }
 
+        // tabela lekara
         private void dgSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgSearch.SelectedItems.Count > 0)
@@ -172,11 +176,6 @@ namespace Projekat
             }
         }
 
-        private void imePrz_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-
-        }
         #region Pomeri termin
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -207,6 +206,7 @@ namespace Projekat
         }
         #endregion
 
+        #region Pacijent web stanice
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.odjava_Click(this);
@@ -251,5 +251,8 @@ namespace Projekat
         {
             PacijentWebStranice.Jezik_Click(Jezik);
         }
+        #endregion
     }
+
+
 }

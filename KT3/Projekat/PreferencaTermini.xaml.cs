@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for PreferencaTermini.xaml
-    /// </summary>
     public partial class PreferencaTermini : Page
     {
         private static int idPacijent;

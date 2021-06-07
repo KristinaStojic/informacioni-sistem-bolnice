@@ -84,9 +84,8 @@
                     x:Name="odustani" 
                     Style="{DynamicResource ButtonStyle2}"/>
         </StackPanel>
-        <GroupBox Header="{ns:Loc IzaberiteTipTermina}" HorizontalAlignment="Left" Height="79" Margin="136.5,70,0,0" VerticalAlignment="Top" Width="340" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
-            <ComboBox HorizontalAlignment="Left" Name="combo" VerticalAlignment="Bottom" Width="200" Margin="65,0,0,22" Height="27" SelectionChanged="combo_SelectionChanged">
-                <!--ComboBoxItem>Operacija</-->
+        <GroupBox Header="{ns:Loc TipTermina}" HorizontalAlignment="Left" Height="79" Margin="136.5,70,0,0" VerticalAlignment="Top" Width="340" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+            <ComboBox HorizontalAlignment="Left" IsEnabled="False" Name="combo" VerticalAlignment="Bottom" Width="200" Margin="65,0,0,13" Height="27" SelectionChanged="combo_SelectionChanged">
                 <ComboBoxItem IsSelected="True" Content="{ns:Loc Pregled}"></ComboBoxItem>
             </ComboBox>
         </GroupBox>
@@ -135,13 +134,13 @@
         </GroupBox>
         <GroupBox Header="{ns:Loc IzaberiteVremePocetka}" Height="89" Margin="136.5,375,116.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.449" Grid.Column="1">
             <ComboBox HorizontalAlignment="Left" x:Name="vpp" Height="27"
-                          VerticalAlignment="Top" Width="200" Margin="65,28,0,0" 
+                          VerticalAlignment="Top" Width="200" Margin="75,23,0,0" 
                           SelectionChanged="vpp_SelectionChanged" />
         </GroupBox>
         <TextBlock x:Name="imePrz" TextAlignment="Left" Background="White" IsEnabled="False" ToolTip="{ns:Loc LekarToolTip}" Width="300"
-                   DataContextChanged="imePrz_DataContextChanged" Text ="{Binding}" HorizontalAlignment="Left" Height="27" Margin="156.5,758,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13" Grid.Column="1"/>
+                    Text ="{Binding}" HorizontalAlignment="Left" Height="27" Margin="156.5,758,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13" Grid.Column="1"/>
         <GroupBox Header="{ns:Loc IzaberiteDatum}" Height="204" Margin="136.5,160,116.5,0" VerticalAlignment="Top" RenderTransformOrigin="0.515,0.49" Grid.Column="1">
-            <Calendar HorizontalAlignment="Left" Margin="65,10,0,0" Width="210" FontSize="14" VerticalAlignment="Top" Name="datum" Height="184" SelectedDatesChanged="datum_SelectedDatesChanged" />
+            <Calendar HorizontalAlignment="Left" Margin="65,10,0,0" Width="215" FontSize="14" VerticalAlignment="Top" Name="datum" Height="184" SelectedDatesChanged="datum_SelectedDatesChanged" />
         </GroupBox>
 
     </Grid>
