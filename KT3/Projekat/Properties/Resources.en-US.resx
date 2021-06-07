@@ -288,6 +288,9 @@
   <data name="KorisnickoIme" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="LaboratorijskiUput" xml:space="preserve">
+    <value>Referral laboratory</value>
+  </data>
   <data name="LblPreporuceniTermini" xml:space="preserve">
     <value>📆 Recommended appointments</value>
   </data>

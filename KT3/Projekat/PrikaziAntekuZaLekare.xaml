@@ -66,7 +66,7 @@
                             <Run Text=" "/>
                         <Hyperlink Name="karton" Command="{Binding KartonKomanda}">
                             <Run Text="{namespace:Loc Karton}"/>
-                        </Hyperlink>    
+                        </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>
@@ -87,14 +87,14 @@
                     </GridView>
                 </ListView.View>
             </-->
-            <StackPanel Margin="179,10,171,10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="400" Width="350" Background="#e8f1f5">
+            <StackPanel Margin="170,10,165,10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="400" Width="375" Background="#e8f1f5">
                 <StackPanel Margin="0,10,0,0"  HorizontalAlignment="Center" Width="350">
                     <Label Name="lekar" Content="{namespace:Loc AnketaOLekaru}" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
                     <Label HorizontalAlignment="Center" Content="{namespace:Loc Ocene}" FontSize="11"/>
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280" Text="{namespace:Loc Prvo}"/>
+                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="50,0,35,0" HorizontalAlignment="Center" Width="290" Text="{namespace:Loc Prvo}"/>
                     </StackPanel>
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
@@ -108,7 +108,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Drugo}"/>
+                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30,0" Text="{namespace:Loc Drugo}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje2" x:Name="jedan2" Margin="30,0,30,0" Content="1" Click="jedan2_Click"/>
@@ -120,7 +120,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Trece}"/>
+                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30,0" Text="{namespace:Loc Trece}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje3" x:Name="jedan3" Margin="30,0,30,0" Content="1" Click="jedan3_Click"/>
@@ -132,7 +132,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Cetvrto}" />
+                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30,0" Text="{namespace:Loc Cetvrto}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
 

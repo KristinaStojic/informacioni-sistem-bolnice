@@ -110,9 +110,9 @@
                                      Width="175" Height="24"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 5">
                             <Label Content="{nss:Loc Napomena}"   Foreground="{DynamicResource TextColor}" Margin="4, 0, 0, 0" Width="123"/>
-                            <TextBox x:Name ="Napomena" IsEnabled="False" HorizontalAlignment="Left" Height="60" Margin="20, 0, 0, 0"
+                            <TextBox x:Name ="Napomena" IsEnabled="False" HorizontalAlignment="Left" Height="76" Margin="20, 0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
                     </StackPanel>

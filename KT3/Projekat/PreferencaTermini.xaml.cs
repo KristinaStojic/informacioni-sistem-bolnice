@@ -34,20 +34,14 @@ namespace Projekat
             
             Termini = new ObservableCollection<Termin>();
             PronadjiPreporuceneTermine(prijavljeniPacijent);
-            preferencaGrid.ItemsSource = Termini;
         }
 
         private void PronadjiPreporuceneTermine(Pacijent prijavljeniPacijent)
         {
             int brojacPreporucenihTermina = 0;
             bool jeMaksimum = false;
-            foreach (Sala sala in SaleServis.NadjiSveSale())
-            {
-                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
-                {
-                     Termini = TerminServis.PronadjiPreporuceneTermine(prijavljeniPacijent, sala, brojacPreporucenihTermina, jeMaksimum);
-                }
-            }
+            Termini = TerminServis.PronadjiPreporuceneTermine(prijavljeniPacijent, brojacPreporucenihTermina, jeMaksimum);
+            preferencaGrid.ItemsSource = Termini;
         }
 
         

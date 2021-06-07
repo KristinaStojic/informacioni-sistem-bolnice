@@ -574,6 +574,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Laboratorijski uput.
+        /// </summary>
+        public static string LaboratorijskiUput {
+            get {
+                return ResourceManager.GetString("LaboratorijskiUput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Izaberite datum i odaberite jedan od preporucenih termina.
         /// </summary>
         public static string lblPodnaslov {

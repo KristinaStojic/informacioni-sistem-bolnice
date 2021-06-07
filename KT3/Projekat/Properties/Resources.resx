@@ -288,6 +288,9 @@
   <data name="KorisnickoIme" xml:space="preserve">
     <value>Korisničko ime</value>
   </data>
+  <data name="LaboratorijskiUput" xml:space="preserve">
+    <value>Laboratorijski uput</value>
+  </data>
   <data name="lblPodnaslov" xml:space="preserve">
     <value>Izaberite datum i odaberite jedan od preporucenih termina</value>
   </data>

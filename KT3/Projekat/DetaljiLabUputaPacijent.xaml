@@ -1,4 +1,4 @@
-﻿<Page x:Class="Projekat.DetaljiUputaPacijent"
+﻿<Page x:Class="Projekat.DetaljiLabUputaPacijent"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,8 @@
       xmlns:nss="clr-namespace:Projekat.Lokalizacija"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="DetaljiUputaPacijent" Background="{DynamicResource BackgroundColor}">
+      Title="DetaljiLabUputaPacijent" Background="{DynamicResource BackgroundColor}">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="185"/>
@@ -64,7 +65,7 @@
                 </Hyperlink>
         </TextBlock>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,20,0,0">
-            <Label Content="{nss:Loc LaboratorijskiUput}" Margin="0, 0, 0, 10" Background="{DynamicResource StackPanelBackgroundColor}"
+            <Label Content="{nss:Loc NaslovUputa}" Margin="0, 0, 0, 10" Background="{DynamicResource StackPanelBackgroundColor}"
                     Foreground="{DynamicResource TextColor}" Height="25"/>
             <StackPanel Orientation="Vertical" Height="414" Margin="0, -10, 0, 0" Background="{DynamicResource BackgroundUputi}">
                 <GroupBox Header="{nss:Loc PacijentPodaci}" HorizontalAlignment="Stretch" Margin="30,10,25,0" Foreground="{DynamicResource TextColor}">
@@ -86,7 +87,7 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox x:Name="recept" Header="{nss:Loc GboxSpecijalistickiPregled}" HorizontalAlignment="Stretch" Margin="30,10,25,0"  Foreground="{DynamicResource TextColor}">
+                <GroupBox x:Name="recept" Header="{nss:Loc LaboratorijskiUput}" HorizontalAlignment="Stretch" Margin="30,10,25,0"  Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0" Height="133">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
                             <Label Content="{nss:Loc DatumIzdavanjaUputa}"   Foreground="{DynamicResource TextColor}" Width="126"/>
@@ -94,7 +95,7 @@
                                      Grid.Column="1" Grid.Row="1" Margin="20, 0, 0, 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                            <Label Content="{nss:Loc LekarKodKogSeUpucuje}"  Foreground="{DynamicResource TextColor}" Width="138" />
+                            <Label Content="{nss:Loc Lekar}"  Foreground="{DynamicResource TextColor}" Width="138" />
                             <TextBox x:Name ="LekarKodKogSeUpucuje" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="10, 0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
@@ -107,7 +108,7 @@
                     </StackPanel>
                 </GroupBox>
                 <GroupBox x:Name="lekar" Header="{nss:Loc LekarPodaci}" HorizontalAlignment="Stretch" Margin="30,10,25,0"  Foreground="{DynamicResource TextColor}">
-                    <StackPanel Orientation="Vertical" Margin="5, 10, 20, 10">
+                    <StackPanel Orientation="Vertical" Margin="5, 10, 20, 05">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Label Content="{nss:Loc PotpisLekara}"  Foreground="{DynamicResource TextColor}" Width="125"/>
                             <TextBox IsEnabled="False" x:Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="20,0, 0, 0"
