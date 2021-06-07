@@ -31,7 +31,7 @@ namespace Projekat
             this.materijali.ItemsSource = null;
             this.kol.ItemsSource = null;
             //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
-            
+            datumFormat.Visibility = Visibility.Hidden;
 
             foreach (Lekar l in LekariServis.NadjiSveLekare())
             {
@@ -74,8 +74,28 @@ namespace Projekat
 
         private void kolicina_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            string koliko = this.kolicina.Text;
-            this.kol.Items.Add(koliko);
+            long result;
+            if (long.TryParse(kolicina.Text, out result))
+            {
+                string koliko = this.kolicina.Text;
+                this.kol.Items.Add(koliko);
+
+            }
+           
+        }
+
+        private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            long result;
+            if (long.TryParse(kolicina.Text, out result))
+            {
+                datumFormat.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                datumFormat.Visibility = Visibility.Visible;
+            }
         }
     }
 }

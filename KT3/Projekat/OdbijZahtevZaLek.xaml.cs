@@ -34,27 +34,46 @@ namespace Projekat
         {
             //odustani
             this.Close();
-            ObradiZahtevZaLek oz = new ObradiZahtevZaLek(zahtev);
-            oz.Show();
+            /*ObradiZahtevZaLek oz = new ObradiZahtevZaLek(zahtev);
+            oz.Show();*/
         }
 
         private void Button_Sacuvaj(object sender, RoutedEventArgs e)
         {
             //sacuvaj
-            LekoviServis.odbijaZahtev(zahtev, this.razlogOdbijanja.Text);
-            this.Close();
+            if(popunjeno == true)
+            {
+
+                LekoviServis.odbijaZahtev(zahtev, this.razlogOdbijanja.Text);
+                this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("Niste popunili sve podatke!");
+            }
+
+
+
+
         }
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
+            
         {
-            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                Button_Odustani(sender, e);
-            }
-            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                Button_Sacuvaj(sender, e);
-            }
+           
+            
+                if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Odustani(sender, e);
+                }
+                else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Sacuvaj(sender, e);
+                }
+                
+            
+
         }
 
         private void razlogOdbijanja_TextChanged(object sender, TextChangedEventArgs e)

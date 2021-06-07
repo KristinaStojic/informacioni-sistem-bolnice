@@ -71,6 +71,13 @@ namespace Projekat
             zahtev.Show();
         }
 
+        private void Aplikacija_Click(object sender, RoutedEventArgs e)
+        {
+            OAplikacijiLekar apl = new OAplikacijiLekar();
+            apl.Show();
+           
+        }
+
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -88,7 +95,7 @@ namespace Projekat
             } 
             else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
-                Button_Click_3(sender, e);
+                Button_Click_1(sender, e);
             }
             else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
@@ -101,6 +108,9 @@ namespace Projekat
             else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Pomoc_Click(sender, e);
+            }else if (e.Key == Key.A && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Aplikacija_Click(sender, e);
             }
             
 

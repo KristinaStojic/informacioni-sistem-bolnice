@@ -1,4 +1,5 @@
 ﻿using Projekat.Model;
+using Projekat.Pomoc;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
@@ -165,6 +166,10 @@ namespace Projekat
                     Button_Obrisi(sender, e);
                 }
             }
+            else if (e.Key == Key.V && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                zahtevi.IsSelected = true;
+            }
         }
 
         private void tabLekovi(object sender, KeyEventArgs e)
@@ -187,25 +192,17 @@ namespace Projekat
                 {
                     Button_Click_1(sender, e);
                 }
-               /* else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+                else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
                 {
-                   fokus na tabelu
-                }*/
+                    Lekovi_Pomoc(sender, e);
+                }
                
             }
         }
 
-        private void otvoriTabove(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                sviLekovi.IsSelected = true;
-            }
-            else if (e.Key == Key.V && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                zahtevi.IsSelected = true;
-            }
-        }
+        
+
+       
 
         private void Button_Obrisi(object sender, RoutedEventArgs e)
         {
@@ -227,6 +224,18 @@ namespace Projekat
 
             ObrisiZahtevLekar oz = new ObrisiZahtevLekar(izabraniZahtev);
             oz.Show();
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {        
+            PomocZahteviZaLekove pomoc = new PomocZahteviZaLekove();
+            pomoc.Show();       
+        }
+
+        private void Lekovi_Pomoc(object sender, RoutedEventArgs e)
+        {
+            LekoviPomocLekar pomoc = new LekoviPomocLekar();
+            pomoc.Show();
         }
     }
 }

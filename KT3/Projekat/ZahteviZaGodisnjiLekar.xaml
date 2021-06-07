@@ -16,13 +16,14 @@
                 <DataGridTextColumn Header="Odobren" Width="130*" Binding="{Binding}" x:Name="obradjeno" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <TextBlock HorizontalAlignment="Left" Margin="529,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="125" FontSize="16" RenderTransformOrigin="0.394,0.688">
+                                <Hyperlink Click="Pomoc_Click">
+                                Pomoć?(CTRL+H)
+                            </Hyperlink>
+        </TextBlock>
         <Button Content="Novi zahtev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="39,498,0,0"  Click="Button_Zahtev" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
         <Button Content="Nazad" VerticalAlignment="Top" Height="38" Margin="534,498,39.6,0" Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
         <Label Content="Spisak zahteva" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
-        <TextBlock Margin="597,19,40,578"  Height="24" FontSize="16">
-                            <Hyperlink Click="Hyperlink_Click">
-                                Pomoć?
-                            </Hyperlink>
-        </TextBlock>
     </Grid>
 </Window>

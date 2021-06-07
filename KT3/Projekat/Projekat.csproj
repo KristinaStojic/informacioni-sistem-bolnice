@@ -308,6 +308,9 @@
     <Compile Include="NovaSala.xaml.cs">
       <DependentUpon>NovaSala.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OAplikacijiLekar.xaml.cs">
+      <DependentUpon>OAplikacijiLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ObavestenjaLekar.xaml.cs">
       <DependentUpon>ObavestenjaLekar.xaml</DependentUpon>
     </Compile>
@@ -392,6 +395,9 @@
     <Compile Include="Pomoc\KomunikacijaPomoc.xaml.cs">
       <DependentUpon>KomunikacijaPomoc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pomoc\LekoviPomocLekar.xaml.cs">
+      <DependentUpon>LekoviPomocLekar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomoc\LijekoviPomoc.xaml.cs">
       <DependentUpon>LijekoviPomoc.xaml</DependentUpon>
     </Compile>
@@ -406,6 +412,9 @@
     </Compile>
     <Compile Include="Pomoc\PocetnaStranaLekarPomoc.xaml.cs">
       <DependentUpon>PocetnaStranaLekarPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\PomocZahteviZaLekove.xaml.cs">
+      <DependentUpon>PomocZahteviZaLekove.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\PrikaziLekarePomoc.xaml.cs">
       <DependentUpon>PrikaziLekarePomoc.xaml</DependentUpon>
@@ -433,6 +442,9 @@
     </Compile>
     <Compile Include="Pomoc\UputiPomoc.xaml.cs">
       <DependentUpon>UputiPomoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pomoc\ZahteviZaGodisnjiPomoc.xaml.cs">
+      <DependentUpon>ZahteviZaGodisnjiPomoc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomoc\ZahtjeviPomoc.xaml.cs">
       <DependentUpon>ZahtjeviPomoc.xaml</DependentUpon>
@@ -891,6 +903,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OAplikacijiLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ObavestenjaLekar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1003,6 +1019,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pomoc\LekoviPomocLekar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomoc\LijekoviPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1020,6 +1040,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\PocetnaStranaLekarPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\PomocZahteviZaLekove.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1056,6 +1080,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\UputiPomoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pomoc\ZahteviZaGodisnjiPomoc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

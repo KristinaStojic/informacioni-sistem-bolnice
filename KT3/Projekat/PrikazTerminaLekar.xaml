@@ -73,7 +73,7 @@ Pomoć?(CTRL+H)
         <!-- Grafikon -->
         <Wpf:PieChart 
                     HorizontalAlignment="Center" 
-                    Height="254"
+                    Height="293"
                     Width="200"
                     Margin="981,150,99,0"
                     VerticalAlignment="Top" 
@@ -88,7 +88,7 @@ Pomoć?(CTRL+H)
             <!-- Kraj parcadi u grafikonu -->
 
         </Wpf:PieChart>
-        <Label Content="Grafikon 1. Tipovi termina" Margin="1000,430,99,231" FontSize="14"/>
+        <Label Content="Grafikon 1. Tipovi termina" Margin="1000,490,99,171" FontSize="14"/>
         <!-- Kraj grafikona.-->
 
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -55,6 +56,8 @@ namespace Projekat
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
+            ZahteviZaGodisnjiPomoc pomoc = new ZahteviZaGodisnjiPomoc();
+            pomoc.Show();
 
         }
 
@@ -79,6 +82,11 @@ namespace Projekat
             {
                 Button_Nazad(sender, e);
             }
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

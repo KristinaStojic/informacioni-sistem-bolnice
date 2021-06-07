@@ -26,7 +26,11 @@
                             <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="505,498,0,0" Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White"/>
                             <Label Content="Zahtevi" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
                             <Button Content="Obriši zahtev" VerticalAlignment="Top" Height="38" Margin="272,498,272.8,0"  Click="Button_Obrisi" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/>
-
+                            <TextBlock Margin="494,19,40,513"  Height="24" FontSize="16">
+                            <Hyperlink Click="Hyperlink_Click">
+                                Pomoć?(CTRL+H)
+                            </Hyperlink>
+                            </TextBlock>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Svi lekovi" Width="130" Height="25"  VerticalAlignment="Bottom" x:Name="sviLekovi">
@@ -40,6 +44,13 @@
                                     <DataGridTextColumn Header="Naziv lijeka" Binding="{Binding nazivLeka}" Width="300*"/>
                                 </DataGrid.Columns>
                             </DataGrid>
+                            <TextBlock Margin="494,19,40,513"  Height="24" FontSize="16">
+                            <Hyperlink Click="Lekovi_Pomoc">
+                                Pomoć?(CTRL+H)
+                            </Hyperlink>
+                            </TextBlock>
+
+
                             <Button   Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Sastojci leka" HorizontalAlignment="Left" Margin="198,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click"/>
                             <Button Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Izmeni lek" HorizontalAlignment="Left" Margin="48,492,0,0" VerticalAlignment="Top" Width="120" Height="38" Click="Button_Izmeni"/>
                             <Button  Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Zamenski lekovi" HorizontalAlignment="Left" Margin="345,492,0,0" VerticalAlignment="Top"  Width="119" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/>

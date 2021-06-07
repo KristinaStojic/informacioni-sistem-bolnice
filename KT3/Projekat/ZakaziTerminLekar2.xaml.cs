@@ -1066,7 +1066,11 @@ namespace Projekat
                     Button_Click_3(sender, e);
                 }
             }
-           
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_3(sender, e);
+            }
+
         }
 
         private void pacijent_TextChanged(object sender, TextChangedEventArgs e)

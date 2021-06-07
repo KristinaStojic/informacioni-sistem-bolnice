@@ -27,7 +27,7 @@
             </MenuItem>
             <MenuItem Header="_Pomoć" FontSize="15">
                 <MenuItem Header="Pomoć" InputGestureText="Ctrl + H" FontSize="15" Click="Pomoc_Click"></MenuItem>
-                <MenuItem Header="O aplikaciji" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
+                <MenuItem Header="O aplikaciji" InputGestureText="Ctrl + A" FontSize="15" Click="Aplikacija_Click"></MenuItem>
             </MenuItem>
 
         </Menu>
