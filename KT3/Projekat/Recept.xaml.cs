@@ -104,21 +104,6 @@ namespace Projekat
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /*var app = (App)Application.Current;
-            // TODO: proveriti
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }*/
             PacijentWebStranice.Jezik_Click(Jezik);
         }
 
@@ -161,7 +146,8 @@ namespace Projekat
                 pdfLightTable.Draw(page, new PointF(0, 0));
 
                 //Save the document
-                doc.Save("//mac/Home/Desktop/informacioni-sistem-bolnice/KT3/IzvestajTerapija.pdf");
+                string imePrezimePacijenta = prijavljeniPacijent.ImePacijenta + prijavljeniPacijent.PrezimePacijenta;
+                doc.Save("//mac/Home/Desktop/informacioni-sistem-bolnice/KT3/IzvestajTerapija-" + imePrezimePacijenta +  ".pdf");
 
                 doc.Close();
             }

@@ -727,6 +727,15 @@ namespace Projekat.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stacionarno lecenje.
+        /// </summary>
+        public static string NaslovStacionarnoLecenje {
+            get {
+                return ResourceManager.GetString("NaslovStacionarnoLecenje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lekarski uput za specijalistički pregled.
         /// </summary>
         public static string NaslovUputa {
@@ -1137,6 +1146,15 @@ namespace Projekat.Properties {
         public static string SpecijalistickiPregled {
             get {
                 return ResourceManager.GetString("SpecijalistickiPregled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specijalisticki uput.
+        /// </summary>
+        public static string SpecijalistickiUput {
+            get {
+                return ResourceManager.GetString("SpecijalistickiUput", resourceCulture);
             }
         }
         

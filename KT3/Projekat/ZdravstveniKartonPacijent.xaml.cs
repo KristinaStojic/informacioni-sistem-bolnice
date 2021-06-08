@@ -128,7 +128,11 @@ namespace Projekat
                 Page detaljiUputa = new DetaljiSpecijalistickogUputa(idPacijent, uput);  // page -  detalji stac uputa 
                 this.NavigationService.Navigate(detaljiUputa);
             }
-            // TODO: labratorijski uput
+            else if (uput.TipUputa.Equals(tipUputa.Laboratorija))
+            {
+                Page detaljiLabUputa = new DetaljiLabUputaPacijent(uput, idPacijent);
+                this.NavigationService.Navigate(detaljiLabUputa);
+            }
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)

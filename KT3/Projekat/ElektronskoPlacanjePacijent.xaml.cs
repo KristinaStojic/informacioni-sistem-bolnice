@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for ElektronskoPlacanjePacijent.xaml
-    /// </summary>
     public partial class ElektronskoPlacanjePacijent : Page
     {
         private static int idPacijent;

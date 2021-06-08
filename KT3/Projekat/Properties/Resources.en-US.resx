@@ -339,6 +339,9 @@
   <data name="NaslovLabrUputa" xml:space="preserve">
     <value>Laboratory referral</value>
   </data>
+  <data name="NaslovStacionarnoLecenje" xml:space="preserve">
+    <value>Hospital treatment</value>
+  </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Medical referral for specialist examination</value>
   </data>
@@ -479,6 +482,9 @@
   </data>
   <data name="SpecijalistickiPregled" xml:space="preserve">
     <value>Specialist examination</value>
+  </data>
+  <data name="SpecijalistickiUput" xml:space="preserve">
+    <value>Specialist referral</value>
   </data>
   <data name="Specijalizacija" xml:space="preserve">
     <value>Specialization</value>

@@ -339,6 +339,9 @@
   <data name="NaslovLabrUputa" xml:space="preserve">
     <value>Laboratorijski uput</value>
   </data>
+  <data name="NaslovStacionarnoLecenje" xml:space="preserve">
+    <value>Stacionarno lecenje</value>
+  </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Lekarski uput za specijalistički pregled</value>
   </data>
@@ -476,6 +479,9 @@
   </data>
   <data name="SpecijalistickiPregled" xml:space="preserve">
     <value>Specijalistički pregled</value>
+  </data>
+  <data name="SpecijalistickiUput" xml:space="preserve">
+    <value>Specijalisticki uput</value>
   </data>
   <data name="Specijalizacija" xml:space="preserve">
     <value>Specijalizacija</value>
