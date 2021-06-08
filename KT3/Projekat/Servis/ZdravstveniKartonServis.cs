@@ -2,6 +2,7 @@
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -119,6 +120,21 @@ namespace Projekat.Servis
         public static List<ZdravstveniKarton> kartoni()
         {
             return ZdravstveniKartonMenadzer.nadjiKartone();
+        }
+
+
+        public static ObservableCollection<Uput> DodajUputePacijenta(Pacijent prijavljeniPacijent)
+        {
+            ObservableCollection<Uput> uputiPacijenta = new ObservableCollection<Uput>();
+            if (prijavljeniPacijent.Karton.Uputi.Count != 0)
+            {
+                foreach (Uput uput in prijavljeniPacijent.Karton.Uputi)
+                {
+                    uputiPacijenta.Add(uput);
+
+                }
+            }
+            return uputiPacijenta;
         }
     }
 }

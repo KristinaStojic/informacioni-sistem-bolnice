@@ -17,6 +17,11 @@ namespace Projekat.Servis
         {
             AnketaMenadzer.sacuvajIzmene();
         }
+        public static List<Anketa> Ankete()
+        {
+            return AnketaMenadzer.ankete;
+        }
+
 
         public static List<Anketa> NadjiSveAnkete()
         {

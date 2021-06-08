@@ -68,7 +68,7 @@
             <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Termini_Click"/>
             <MenuItem Header="  _Lekari" Height="60" Width="209" FontSize="17" Click="Lekari_Click"/>
             <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Oglasna_tabla_Click"/>
-            <MenuItem Header="  _Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Komunikacija" Height="60" Width="209" FontSize="17" Click="Komunikacija_Click"/>
             <MenuItem Header="  _Pomoć" InputGestureText="Alt+P" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
         <Label Content="Osnovni podaci" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="832,83,0,0" FontSize="30" FontWeight="SemiBold" FontStyle="Italic"/>

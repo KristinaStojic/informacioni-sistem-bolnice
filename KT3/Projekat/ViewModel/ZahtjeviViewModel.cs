@@ -302,7 +302,7 @@ namespace Projekat.ViewModel
         {
             if(izabranaOprema != null)
             {
-                OpremaServis.EvidentirajUtrosenuOpremu(izabranaOprema);
+                SkladisteServis.EvidentirajUtrosenuOpremu(izabranaOprema);
                 UtrosenaOprema.Remove(IzabranaOprema);
             }
             else

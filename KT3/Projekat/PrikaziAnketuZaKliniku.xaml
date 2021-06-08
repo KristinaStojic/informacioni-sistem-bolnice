@@ -10,7 +10,7 @@
       Loaded="Page_Loaded"
       Title="PrikaziAnketuZaKliniku" Background="{DynamicResource BackgroundColor}" Height="640">
 
-    <Grid Margin="0,0,0,-30">
+    <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="142*"/>
@@ -71,7 +71,7 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,30">
             <!--ListView x:Name="listaAnketi" Height="300" Width="500" VerticalAlignment="Bottom" HorizontalAlignment="Center"
                       SelectionChanged="listaAnketi_SelectionChanged" ItemsSource="{Binding Ankete}" Margin="0,30,0 ,0" >
                 <ListView.View>
@@ -97,11 +97,11 @@
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
                         <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280" Text="{namespace:Loc Jedan}">
-                           
+
                         </TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                             <RadioButton GroupName="pitanje1" x:Name="jedan1" Margin="30,0,30,0" Content="1" Click="jedan1_Click" />
                             <RadioButton GroupName="pitanje1" x:Name="dva1" Margin="0, 0, 30, 0" Content="2" Click="jedan1_Click"/>
                             <RadioButton GroupName="pitanje1" x:Name="tri1" Margin="0, 0, 30, 0" Content="3" Click="jedan1_Click"/>
@@ -113,10 +113,10 @@
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
                         <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Dva}">
-                            
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje2" x:Name="jedan2" Margin="30,0,30,0" Content="1" Click="jedan2_Click"/>
                         <RadioButton GroupName="pitanje2" x:Name="dva2" Margin="0, 0, 30, 0" Content="2" Click="jedan2_Click"/>
                         <RadioButton GroupName="pitanje2" x:Name="tri2" Margin="0, 0, 30, 0" Content="3" Click="jedan2_Click"/>
@@ -127,10 +127,10 @@
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
                         <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Tri}">
-                           
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje3" x:Name="jedan3" Margin="30,0,30,0" Content="1" Click="jedan3_Click"/>
                         <RadioButton GroupName="pitanje3" x:Name="dva3" Margin="0, 0, 30, 0" Content="2" Click="jedan3_Click"/>
                         <RadioButton GroupName="pitanje3" x:Name="tri3" Margin="0, 0, 30, 0" Content="3" Click="jedan3_Click"/>
@@ -141,10 +141,10 @@
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
                         <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Cetiri}">
-                            
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
 
                         <RadioButton GroupName="pitanje4" x:Name="jedan4" Margin="30,0,30,0" Content="1" Click="jedan4_Click" />
                         <RadioButton GroupName="pitanje4" x:Name="dva4" Margin="0, 0, 30, 0" Content="2" Click="jedan4_Click"/>
@@ -156,10 +156,10 @@
                 <StackPanel Margin="0, 20, 0, 0">
                     <StackPanel>
                         <TextBlock x:Name="pitanja5" Margin="30, 0, 0, 0" TextWrapping="Wrap" Text="{namespace:Loc Pet}">
-                       
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje5" x:Name="jedan5" Margin="30,0,30,0" Content="1" Click="jedan5_Click"/>
                         <RadioButton GroupName="pitanje5" x:Name="dva5" Margin="0, 0, 30, 0" Content="2" Click="jedan5_Click"/>
                         <RadioButton GroupName="pitanje5" x:Name="tri5" Margin="0, 0, 30, 0" Content="3" Click="jedan5_Click"/>
@@ -168,10 +168,8 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <Button Content="{namespace:Loc Potvrdi}" Name="potvrdi" Height="30" Width="90" Margin="310,0,310,0" Click="Button_Click"
+            <Button Content="{namespace:Loc Potvrdi}" Name="potvrdi" Height="30" Width="80" HorizontalAlignment="Center" Margin="310,0,290,0" Click="Button_Click"
                         Style="{DynamicResource ButtonStyle2}"/>
-            </StackPanel>
         </StackPanel>
 
 

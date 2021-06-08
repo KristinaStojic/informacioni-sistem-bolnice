@@ -207,13 +207,13 @@ namespace Projekat
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
         // kreiranje guest naloga
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void GuestNalog_Click(object sender, RoutedEventArgs e)
         {
             DodajPacijentaGuest dodavanje = new DodajPacijentaGuest(this);  // prosledjujemo u DodajPacijentaGuest konstruktor klase ZakaziTerminSekretar
             dodavanje.Show();
@@ -478,7 +478,7 @@ namespace Projekat
         private void SlobodanTerminLekara()
         {
            // List<Sala> sale = SaleServis.NadjiSveSale();
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleMenadzer.lista)
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -528,7 +528,7 @@ namespace Projekat
         private void SlobodanTerminPacijenta()
         {
             //List<Sala> sale = SaleServis.NadjiSveSale();
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleMenadzer.lista)
             {
                 foreach (ZauzeceSale z in s.zauzetiTermini)
                 {
@@ -627,7 +627,7 @@ namespace Projekat
 
             if (tip.SelectedIndex == 0 || tip.SelectedIndex == 1) // pregled
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                foreach (Sala s in SaleMenadzer.lista)
                 {
                     if (s.TipSale.Equals(tipSale.SalaZaPregled) && !s.Namjena.Equals("Skladiste"))
                     {
@@ -640,7 +640,7 @@ namespace Projekat
             }
             else if (tip.SelectedIndex == 2) // operacija
             {
-                foreach (Sala s in SaleMenadzer.sale)
+                foreach (Sala s in SaleMenadzer.lista)
                 {
                     if (s.TipSale.Equals(tipSale.OperacionaSala) && !s.Namjena.Equals("Skladiste"))
                     {
@@ -923,6 +923,42 @@ namespace Projekat
             else
             {
                 flag4 = false;
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pretraga_Pacijenata(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pretraga_Pacijenata(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pretraga_Lekara(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pretraga_Lekara(sender, e);
+            }
+            else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Uputi_Click(sender, e);
+            }
+            else if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Uputi_Click(sender, e);
+            }
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                GuestNalog_Click(sender, e);
+            }
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                GuestNalog_Click(sender, e);
             }
         }
     }

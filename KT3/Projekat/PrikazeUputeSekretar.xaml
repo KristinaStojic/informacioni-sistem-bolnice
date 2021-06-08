@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="PrikazeUputeSekretar" Height="450" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="PrikazeUputeSekretar" Height="450" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <DataGrid x:Name="dataGridUputi" ItemsSource="{Binding TabelaUputa}" IsReadOnly="True" 
                                 SelectionMode="Single" AutoGenerateColumns="False" HorizontalAlignment="Left" 
-                                 Margin="45,63,0,0" VerticalAlignment="Top" Height="286" Width="398" GridLinesVisibility="All" Background="#FFD0E9EB" FontSize="13" Visibility="Visible">
+                                 Margin="45,66,0,0" VerticalAlignment="Top" Height="249" Width="398" GridLinesVisibility="All" Background="#FFE7F6F7" FontSize="13" Visibility="Visible">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Datum izdavanja" Width="120" Binding="{Binding datumIzdavanja}" />
                 <DataGridTextColumn Header="Tip uputa" Width="150" Binding="{Binding}"/>
                 <DataGridTextColumn Header="Napomena" Width="120" Binding="{Binding opisPregleda}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Izaberite uput koji zelite da iskoristite:" HorizontalAlignment="Left" Margin="44,32,0,0" VerticalAlignment="Top"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="338,363,0,0" VerticalAlignment="Top" Width="105" Height="29" Click="Nazad_Click"/>
-        <Button Content="Uput je odabran" HorizontalAlignment="Left" Margin="44,363,0,0" VerticalAlignment="Top" Width="105" Height="29" Click="Izaberi_uput_Click"/>
+        <Label Content="Izaberite uput koji zelite da iskoristite:" HorizontalAlignment="Left" Margin="44,32,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" FontSize="15" Margin="306,347,0,0" VerticalAlignment="Top" Width="137" Height="43" Click="Nazad_Click" Background="#FFA3DADE"/>
+        <Button Content="Uput je odabran" FontSize="15" HorizontalAlignment="Left" Margin="44,347,0,0" VerticalAlignment="Top" Width="138" Height="43" Click="Izaberi_uput_Click" Background="#FFA3DADE"/>
 
     </Grid>
 </Window>

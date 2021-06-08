@@ -35,7 +35,7 @@ namespace Projekat.Model
 
         public Oprema(string naziv, int kolicina, bool staticka)
         {
-            this.IdOpreme = OpremaServis.GenerisanjeIdOpreme();
+            this.IdOpreme = SkladisteServis.GenerisanjeIdOpreme();
             this.NazivOpreme = naziv;
             this.Kolicina = kolicina;
             this.Staticka = staticka;

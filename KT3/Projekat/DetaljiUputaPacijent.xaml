@@ -66,42 +66,42 @@
         </TextBlock>
         <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,20,0,0">
             <Label Content="{nss:Loc NaslovUputa}" Margin="0, 0, 0, 10" Background="{DynamicResource StackPanelBackgroundColor}"
-                    Foreground="{DynamicResource TextColor}"/>
+                    Foreground="{DynamicResource TextColor}" Height="20"/>
             <StackPanel Orientation="Vertical" Height="414" Margin="0, -10, 0, 0" Background="{DynamicResource BackgroundUputi}">
                 <GroupBox Header="{nss:Loc PacijentPodaci}" HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0" Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0, 05, 0, 0">
-                            <Label Content="{nss:Loc ImePacijenta}" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox x:Name ="ime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="60,0, 0, 0"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10,5,10,0" Width="320">
+                            <Label Content="{nss:Loc ImePacijenta}" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="{DynamicResource TextColor}" Height="22" Width="134"/>
+                            <TextBox x:Name ="ime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="10,0, 0, 0"
                                  VerticalAlignment="Top" Width="175" IsEnabled="False"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 05, 0, 5">
-                            <Label Content="{nss:Loc PrezimePacijenta}"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox x:Name ="prezime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="35, 0, 0, 0"
-                                 VerticalAlignment="Top" Width="175" IsEnabled="False" Grid.Column="1" Grid.Row="1"/>
+                            <Label Content="{nss:Loc PrezimePacijenta}"  Foreground="{DynamicResource TextColor}" Width="120"/>
+                            <TextBox x:Name ="prezime" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Margin="20, 0, 0, 0"
+                                 VerticalAlignment="Top" Width="175" IsEnabled="False"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 5">
-                            <Label Content="{nss:Loc JmbgPacijenta}"  Foreground="{DynamicResource TextColor}" />
+                            <Label Content="{nss:Loc JmbgPacijenta}"  Foreground="{DynamicResource TextColor}" Width="124" />
                             <TextBox x:Name="jmbg" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Width="175"
-                                 Margin="50,0, 0, 0" IsEnabled="False"/>
+                                 Margin="20,0, 0, 0" IsEnabled="False"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox x:Name="recept" Header="{nss:Loc GboxSpecijalistickiPregled}" HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0" Height="133">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                            <Label Content="{nss:Loc DatumIzdavanjaUputa}"   Foreground="{DynamicResource TextColor}"/>
+                            <Label Content="{nss:Loc DatumIzdavanjaUputa}"   Foreground="{DynamicResource TextColor}" Width="126"/>
                             <TextBox x:Name ="datum" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Width="175" Height="22"
-                                     Grid.Column="1" Grid.Row="1" Margin="12, 0, 0, 0"/>
+                                     Grid.Column="1" Grid.Row="1" Margin="20, 0, 0, 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                            <Label Content="{nss:Loc LekarKodKogSeUpucuje}"  Foreground="{DynamicResource TextColor}" />
-                            <TextBox x:Name ="LekarKodKogSeUpucuje" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="0, 0, 0, 0"
+                            <Label Content="{nss:Loc LekarKodKogSeUpucuje}"  Foreground="{DynamicResource TextColor}" Width="125" />
+                            <TextBox x:Name ="LekarKodKogSeUpucuje" IsEnabled="False" HorizontalAlignment="Left" Height="22" Margin="20, 0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 5">
-                            <Label Content="{nss:Loc Napomena}"   Foreground="{DynamicResource TextColor}" Margin="4, 0, 0, 0"/>
-                            <TextBox x:Name ="Napomena" IsEnabled="False" HorizontalAlignment="Left" Height="60" Margin="75, 0, 0, 0"
+                            <Label Content="{nss:Loc Napomena}"   Foreground="{DynamicResource TextColor}" Margin="4, 0, 0, 0" Width="123"/>
+                            <TextBox x:Name ="Napomena" IsEnabled="False" HorizontalAlignment="Left" Height="60" Margin="20, 0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 5"/>
@@ -110,8 +110,8 @@
                 <GroupBox x:Name="lekar" Header="{nss:Loc LekarPodaci}" HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0"  Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical" Margin="5, 10, 05, 5">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Label Content="{nss:Loc PotpisLekara}"  Foreground="{DynamicResource TextColor}"/>
-                            <TextBox IsEnabled="False" x:Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="55,0, 0, 0"
+                            <Label Content="{nss:Loc PotpisLekara}"  Foreground="{DynamicResource TextColor}" Width="125"/>
+                            <TextBox IsEnabled="False" x:Name ="podaciLekara" HorizontalAlignment="Left" Height="22" Margin="20,0, 0, 0"
                                  TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" FontFamily="Segoe Script"/>
                         </StackPanel>
                     </StackPanel>

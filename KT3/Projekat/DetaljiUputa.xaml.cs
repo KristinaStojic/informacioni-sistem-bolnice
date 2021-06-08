@@ -27,10 +27,13 @@ namespace Projekat
         {
             InitializeComponent();
             this.uput = izabraniUput;
+
             this.potvrdi.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
           
-            if(izabraniUput.TipUputa == tipUputa.SpecijallistickiPregled)
+           
+
+            if(izabraniUput.TipUputa == tipUputa.SpecijalistickiPregled)
             {
                 specijalistickiTab.IsSelected = true;
                 PopuniPodatkeUputa();

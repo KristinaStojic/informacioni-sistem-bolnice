@@ -30,7 +30,9 @@ namespace Projekat.Pomoc
 
         private void Nastavi_Click(object sender, RoutedEventArgs e)
         {
-            // zakazivanje hitnog termina
+            this.Close();
+            WizardPrikazTermina termini = new WizardPrikazTermina();
+            termini.ShowDialog();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

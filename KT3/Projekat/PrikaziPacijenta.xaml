@@ -47,6 +47,23 @@
             </TextBox.Style>
         </TextBox>
 
+        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,109,211.6,2" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaPacijenata_SelectionChanged" >
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE7F6F7" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding IdPacijenta}"/>
+                <DataGridTextColumn Header="Ime" Width="135" Binding="{Binding ImePacijenta}"/>
+                <DataGridTextColumn Header="Prezime" Width="140" Binding="{Binding PrezimePacijenta}"/>
+                <DataGridTextColumn Header="JMBG" Width="135" Binding="{Binding Jmbg}"/>
+                <DataGridTextColumn Header="Pol" Width="70" Binding="{Binding Pol}"/>
+                <DataGridTextColumn Header="Status" Width="100" Binding="{Binding StatusNaloga}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="691" Grid.RowSpan="5" StrokeThickness="0" VerticalAlignment="Top" Width="424" Margin="0.4,0,-0.4,0" Grid.Column="4" Grid.ColumnSpan="2"/>
         <Label Grid.Row="0" FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="4.2,0,167.6,150.8" Content="Nalozi pacijenata" Grid.ColumnSpan="2" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold" Grid.RowSpan="2" Grid.Column="1"/>
         <Button Content="Dodaj" HorizontalAlignment="Left" Margin="82.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Click="Dodaj_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
@@ -71,7 +88,7 @@
             <MenuItem Header="  _Termini" Height="60" Width="209" FontSize="17" Click="Termini_Click"/>
             <MenuItem Header="  _Lekari" Height="60" Width="209" FontSize="17" Click="Lekari_Click"/>
             <MenuItem Header="  _Oglasna tabla" Height="60" Width="209" FontSize="17" Click="Oglasna_tabla_Click"/>
-            <MenuItem Header="  Komunikacija" Height="60" Width="209" FontSize="17"/>
+            <MenuItem Header="  _Komunikacija" Height="60" Width="209" FontSize="17" Click="Komunikacija_Click"/>
             <MenuItem Header="  _Pomoć" Height="60" Width="209" FontSize="17" Click="Pomoc_Click"/>
         </Menu>
         <Canvas x:Name="informacijePacijenta" HorizontalAlignment="Left" Height="691" VerticalAlignment="Top" Width="424" Background="#FFE7F6F7" Grid.Column="4" Margin="0.4,2,-0.4,-2" Grid.RowSpan="5" Grid.ColumnSpan="2" Visibility="Hidden">
@@ -114,21 +131,5 @@
             <GroupBox Header="INFORMACIJE O PACIJENTU" Height="606" Canvas.Left="34" Canvas.Top="71" Width="362" FontSize="20"  BorderBrush="#FF18A3AC"/>
         </Canvas>
 
-        <DataGrid x:Name="TabelaPacijenata" ItemsSource="{Binding PacijentiTabela}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,109,211.6,2" AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaPacijenata_SelectionChanged" >
-            <DataGrid.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFE7F6F7" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </DataGrid.Background>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="40" Binding="{Binding IdPacijenta}"/>
-                <DataGridTextColumn Header="Ime" Width="135" Binding="{Binding ImePacijenta}"/>
-                <DataGridTextColumn Header="Prezime" Width="140" Binding="{Binding PrezimePacijenta}"/>
-                <DataGridTextColumn Header="JMBG" Width="135" Binding="{Binding Jmbg}"/>
-                <DataGridTextColumn Header="Pol" Width="70" Binding="{Binding Pol}"/>
-                <DataGridTextColumn Header="Status" Width="100" Binding="{Binding StatusNaloga}"/>
-            </DataGrid.Columns>
-        </DataGrid>
     </Grid>
 </Window>

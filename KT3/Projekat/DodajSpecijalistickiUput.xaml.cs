@@ -155,7 +155,7 @@ namespace Projekat
             string selektovaniTab = (string)(uputi.SelectedItem as TabItem).Header;
             if (selektovaniTab.Equals("Specijalistički pregled"))
             {
-                tipUputa = tipUputa.SpecijallistickiPregled;
+                tipUputa = tipUputa.SpecijalistickiPregled;
             }
             else if (selektovaniTab.Equals("Laboratorija"))
             {

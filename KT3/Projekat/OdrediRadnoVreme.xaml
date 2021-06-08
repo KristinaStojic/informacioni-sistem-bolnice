@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="OdrediRadnoVreme" Height="423" Width="630" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="OdrediRadnoVreme" Height="520" Width="630" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,2,-1,-2.2" HorizontalAlignment="Left" Width="625">
-        <Calendar x:Name="kalendar" HorizontalAlignment="Left" Margin="26,60,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="201" Height="167" IsManipulationEnabled="True" SelectionMode="MultipleRange" SelectedDatesChanged="Kalendar_SelectedDatesChanged">
+        <Calendar x:Name="kalendar" HorizontalAlignment="Left" Margin="26,50,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="201" Height="167" IsManipulationEnabled="True" 
+                  SelectionMode="MultipleRange" SelectedDatesChanged="Kalendar_SelectedDatesChanged" LostFocus="Kalendar_LostFocus">
             <Calendar.LayoutTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1.3" ScaleY="1.3"/>
@@ -26,14 +27,22 @@
             </Calendar.BorderBrush>
         </Calendar>
 
-        <Label Content="Vreme pocetka:" FontSize="17" HorizontalAlignment="Left" Margin="348,82,0,0" VerticalAlignment="Top"/>
-        <Label Content="Vreme kraja:" FontSize="17" HorizontalAlignment="Left" Margin="348,123,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="pocetak" HorizontalAlignment="Left" Margin="486,83,0,0" FontSize="17" VerticalAlignment="Top" Width="89" Height="29" SelectionChanged="Vreme_pocetka_SelectionChanged"/>
-        <ComboBox x:Name="kraj" HorizontalAlignment="Left" Margin="486,126,0,0" FontSize="17" VerticalAlignment="Top" Width="89" Height="29" SelectionChanged="Vreme_kraja_SelectionChanged" />
-        <Button x:Name="potvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="117,306,0,0" VerticalAlignment="Top" Width="183" Height="51" Click="Potvrdi_Click" FontSize="17" Background="#FFA3DADE"/>
-        <Button Content="Odustani" Margin="324,306,118,0" VerticalAlignment="Top" Height="51" Click="Odustani_Click" FontSize="17" Background="#FFA3DADE"/>
-        <GroupBox Header="Odredite radno vreme lekara" FontStyle="Italic" FontSize="17" Height="252" Margin="322,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="282"/>
-        <GroupBox Header="Odredite radne dana za ovu nedelju" FontStyle="Italic" FontSize="17" Height="252" Width="282" Margin="21,30,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Vreme pocetka:" FontSize="17" HorizontalAlignment="Left" Margin="348,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Vreme kraja:" FontSize="17" HorizontalAlignment="Left" Margin="348,113,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="pocetak" HorizontalAlignment="Left" Margin="486,73,0,0" FontSize="17" VerticalAlignment="Top" Width="89" Height="29" SelectionChanged="Vreme_pocetka_SelectionChanged" LostFocus="Pocetak_LostFocus"/>
+        <ComboBox x:Name="kraj" HorizontalAlignment="Left" Margin="486,116,0,0" FontSize="17" VerticalAlignment="Top" Width="89" Height="29" SelectionChanged="Vreme_kraja_SelectionChanged" LostFocus="Kraj_LostFocus"/>
+        <Button x:Name="potvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="120,415,0,0" VerticalAlignment="Top" Width="183" Height="51" Click="Potvrdi_Click" FontSize="17" Background="#FFA3DADE"/>
+        <Button Content="Odustani" Margin="322,415,120,0" VerticalAlignment="Top" Height="51" Click="Odustani_Click" FontSize="17" Background="#FFA3DADE"/>
+        <GroupBox Header="Odredite radno vreme lekara" FontStyle="Italic" FontSize="17" Height="252" Margin="322,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="282"/>
+        <GroupBox Header="Odredite radne dana za ovu nedelju" FontStyle="Italic" FontSize="17" Height="252" Width="282" Margin="21,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox x:Name="dodeljenPocetak" FontSize="17" HorizontalAlignment="Left" Height="34" Margin="496,311,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" IsReadOnly="True" BorderThickness="0,0,0,1"/>
+        <TextBox x:Name="dodeljenKraj" FontSize="17" HorizontalAlignment="Left" Height="34" Margin="496,346,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" IsReadOnly="True" BorderThickness="0,0,0,1"/>
+        <TextBox x:Name="datumi" FontSize="17" HorizontalAlignment="Left" Height="34" Margin="182,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" IsReadOnly="True" BorderThickness="0,0,0,1"/>
+        <GroupBox Header="Dodeljeno radno vreme" FontStyle="Italic" FontSize="17" Height="116" Width="583" Margin="21,279,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Label Content="Vreme pocetka:" FontSize="17" HorizontalAlignment="Left" Margin="348,307,0,0" VerticalAlignment="Top"/>
+        <Label Content="Vreme kraja:" FontSize="17" HorizontalAlignment="Left" Margin="348,344,0,0" VerticalAlignment="Top"/>
+        <Label Content="Prvi radni dani:" FontSize="17" HorizontalAlignment="Left" Margin="51,309,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

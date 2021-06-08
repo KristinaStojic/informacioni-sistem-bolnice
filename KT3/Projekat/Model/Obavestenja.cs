@@ -37,6 +37,14 @@ namespace Projekat.Model
             this.Oznaka = Oznaka;
         }
 
+        public Obavestenja(string TipOb, string datum, string SadrzajOb)
+        {
+            this.IdObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            this.Datum = datum;
+            this.TipObavestenja = TipOb;
+            this.SadrzajObavestenja = SadrzajOb;
+        }
+
         public int IdObavestenja { get; set; }
         public string TipObavestenja { get; set; }  // ili naslov
         public string SadrzajObavestenja { get; set; }

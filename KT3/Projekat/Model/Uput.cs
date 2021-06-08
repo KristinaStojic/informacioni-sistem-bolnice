@@ -8,7 +8,7 @@ namespace Projekat.Model
 
     public enum tipUputa
     {
-        Laboratorija, SpecijallistickiPregled, StacionarnoLecenje
+        Laboratorija, SpecijalistickiPregled, StacionarnoLecenje
 
     }
 
@@ -77,7 +77,7 @@ namespace Projekat.Model
 
         public override string ToString()
         {
-            if (TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+            if (TipUputa.Equals(tipUputa.SpecijalistickiPregled))
                  return "Specijalistički pregled";
             else if (TipUputa.Equals(tipUputa.Laboratorija))
                  return "Laboratorija";

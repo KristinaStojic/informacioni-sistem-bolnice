@@ -606,5 +606,32 @@ namespace Projekat
             listaPacijenata.Visibility = Visibility.Hidden;
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pretraga_Pacijenata(sender, e);
+            }
+            else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pretraga_Pacijenata(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Pretraga_Lekara(sender, e);
+            }
+            else if (e.Key == Key.L && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Pretraga_Lekara(sender, e);
+            }
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Guest_nalog_Click(sender, e);
+            }
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Guest_nalog_Click(sender, e);
+            }
+        }
     }
 }

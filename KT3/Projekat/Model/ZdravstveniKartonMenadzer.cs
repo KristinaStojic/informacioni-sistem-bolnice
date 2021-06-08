@@ -276,7 +276,7 @@ namespace Projekat.Model
                         pacijent.Karton.brojLaboratorijskihUputa++;   
                         
                     } 
-                    else if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+                    else if (uput.TipUputa.Equals(tipUputa.SpecijalistickiPregled))
                     {
                         pacijent.Karton.brojSpecijalistickihUputa++;
                     } 
@@ -302,7 +302,7 @@ namespace Projekat.Model
             foreach(Uput uput in pacijent.Karton.Uputi)
             {
                 // TODO: moze i za lab. upute i za stacionarno lecenje
-                if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+                if (uput.TipUputa.Equals(tipUputa.SpecijalistickiPregled))
                 {
                     specijalistickiUputiPacijenta.Add(uput);
                 }
