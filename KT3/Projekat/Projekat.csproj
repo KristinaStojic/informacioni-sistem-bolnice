@@ -282,6 +282,7 @@
     </Compile>
     <Compile Include="Model\Alergeni.cs" />
     <Compile Include="Model\Anamneza.cs" />
+    <Compile Include="Model\AnamnezaIzvestaj.cs" />
     <Compile Include="Model\Anketa.cs" />
     <Compile Include="Model\AnketaMenadzer.cs" />
     <Compile Include="Model\Krevet.cs" />
@@ -299,6 +300,7 @@
     <Compile Include="Model\Premjestaj.cs" />
     <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\RadniDan.cs" />
+    <Compile Include="Model\ReceptiIzvestaj.cs" />
     <Compile Include="Model\Sastojak.cs" />
     <Compile Include="Model\Specijalizacija.cs" />
     <Compile Include="Model\UpravnikModel.cs" />

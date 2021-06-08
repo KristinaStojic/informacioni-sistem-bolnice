@@ -146,6 +146,17 @@
           <Beleska />
           <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
         </Anamneza>
+        <Anamneza>
+          <IdAnamneze>3</IdAnamneze>
+          <IdPacijenta>2</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>Povracanje</OpisBolesti>
+          <Terapija>Caj</Terapija>
+          <Datum>11/11/2022</Datum>
+          <IdTermina>12</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+        </Anamneza>
       </Anamneze>
       <Alergeni>
         <Alergeni>
@@ -257,6 +268,40 @@
             <dateTime>2022-01-01T10:10:00</dateTime>
           </UzimanjeTerapije>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>2</IdRecepta>
+          <idPacijenta>3</idPacijenta>
+          <IdLekara>1</IdLekara>
+          <NazivLeka>leksilium</NazivLeka>
+          <DatumPropisivanjaLeka>11/11/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>15:00</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2021-11-11T15:00:00</dateTime>
+            <dateTime>2021-11-11T23:00:00</dateTime>
+            <dateTime>2021-11-12T07:00:00</dateTime>
+            <dateTime>2021-11-12T15:00:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>3</IdRecepta>
+          <idPacijenta>3</idPacijenta>
+          <IdLekara>1</IdLekara>
+          <NazivLeka>analgin</NazivLeka>
+          <DatumPropisivanjaLeka>11/11/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>5</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>15:00</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2021-11-11T15:00:00</dateTime>
+            <dateTime>2021-11-11T19:00:00</dateTime>
+            <dateTime>2021-11-11T23:00:00</dateTime>
+            <dateTime>2021-11-12T03:00:00</dateTime>
+            <dateTime>2021-11-12T07:00:00</dateTime>
+            <dateTime>2021-11-12T11:00:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -351,7 +396,30 @@
     <Karton>
       <IdPacijenta>5</IdPacijenta>
       <LekarskiRecepti />
-      <Anamneze />
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>Umor</OpisBolesti>
+          <Terapija>Spavanje</Terapija>
+          <Datum>09/02/2021</Datum>
+          <IdTermina>5</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Filip Milosevic</ImePrezimeLekara>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>5</IdPacijenta>
+          <IdLekara>5</IdLekara>
+          <OpisBolesti>Glavobolja</OpisBolesti>
+          <Terapija>Odmor</Terapija>
+          <Datum>09/02/2021</Datum>
+          <IdTermina>5</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Filip Milosevic</ImePrezimeLekara>
+        </Anamneza>
+      </Anamneze>
       <Alergeni />
       <Uputi />
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
