@@ -37,13 +37,13 @@ namespace Projekat
         public SpisakZahtevaZaLekove()
         {
             InitializeComponent();
-            this.DataContext = this;
-            dodajZahteveUTabelu();
-            dodajLekoveUTabelu();
+            //this.DataContext = this;
+            //dodajZahteveUTabelu();
+            //dodajLekoveUTabelu();
 
         }
 
-        private void dodajZahteveUTabelu()
+        /*private void dodajZahteveUTabelu()
         {
             TabelaZahteva = new ObservableCollection<ZahtevZaLekove>();
             foreach (ZahtevZaLekove zahtev in LekoviMenadzer.zahteviZaLekove)
@@ -59,7 +59,7 @@ namespace Projekat
             {
                 TabelaLekova.Add(lek);
             }
-        }
+        }*/
 
         private void Button_Obradi(object sender, RoutedEventArgs e)
         {

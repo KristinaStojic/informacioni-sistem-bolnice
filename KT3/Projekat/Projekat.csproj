@@ -455,7 +455,7 @@
     </Compile>
     <Compile Include="Pomoc\ZahteviZaGodisnjiPomoc.xaml.cs">
       <DependentUpon>ZahteviZaGodisnjiPomoc.xaml</DependentUpon>
-     </Compile>
+    </Compile>
     <Compile Include="Pomoc\WizardBiranjePacijenta.xaml.cs">
       <DependentUpon>WizardBiranjePacijenta.xaml</DependentUpon>
     </Compile>
@@ -638,6 +638,7 @@
     </Compile>
     <Compile Include="ViewModel\IzvjestajViewModel.cs" />
     <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
+    <Compile Include="ViewModel\LekarLekoviViewModel.cs" />
     <Compile Include="ViewModel\LekarViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
@@ -1050,7 +1051,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\LekoviPomocLekar.xaml">
-    <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\KomunikacijaSekretarPomoc.xaml">
