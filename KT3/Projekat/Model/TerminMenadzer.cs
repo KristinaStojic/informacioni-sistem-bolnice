@@ -71,10 +71,17 @@ namespace Model
             SaleServis.sacuvajIzmjene();
         }
 
-        public static void ZakaziTerminLekar(Termin termin)
+        public static void ZakaziTerminLekar(Termin termin, int Idlekara)
         {
             termini.Add(termin);
-            PrikazTerminaLekar.Termini.Add(termin);
+
+                if(termin.Lekar.IdLekara == Idlekara)
+                {
+                    PrikazTerminaLekar.Termini.Add(termin);
+                }
+            
+
+            //PrikazTerminaLekar.Termini.Add(termin);
             sacuvajIzmene();
 
         }

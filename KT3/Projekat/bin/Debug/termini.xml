@@ -134,6 +134,13 @@
           <datumKrajaTermina>10/20/2022</datumKrajaTermina>
           <idTermina>11</idTermina>
         </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:30</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>11/11/2022</datumPocetkaTermina>
+          <datumKrajaTermina>11/11/2022</datumKrajaTermina>
+          <idTermina>12</idTermina>
+        </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
     </Prostorija>
@@ -274,6 +281,13 @@
           <datumPocetkaTermina>10/20/2022</datumPocetkaTermina>
           <datumKrajaTermina>10/20/2022</datumKrajaTermina>
           <idTermina>11</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:30</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>11/11/2022</datumPocetkaTermina>
+          <datumKrajaTermina>11/11/2022</datumKrajaTermina>
+          <idTermina>12</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
@@ -416,20 +430,6 @@
           <idTermina>5</idTermina>
         </ZauzeceSale>
         <ZauzeceSale>
-          <pocetakTermina>14:00</pocetakTermina>
-          <krajTermina>15:00</krajTermina>
-          <datumPocetkaTermina>10/01/2021</datumPocetkaTermina>
-          <datumKrajaTermina>10/01/2021</datumKrajaTermina>
-          <idTermina>6</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
-          <pocetakTermina>11:00</pocetakTermina>
-          <krajTermina>13:00</krajTermina>
-          <datumPocetkaTermina>06/10/2021</datumPocetkaTermina>
-          <datumKrajaTermina>06/10/2021</datumKrajaTermina>
-          <idTermina>8</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
           <pocetakTermina>09:00</pocetakTermina>
           <krajTermina>11:00</krajTermina>
           <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
@@ -449,6 +449,13 @@
           <datumPocetkaTermina>06/11/2021</datumPocetkaTermina>
           <datumKrajaTermina>06/11/2021</datumKrajaTermina>
           <idTermina>1</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>10/10/2021</datumPocetkaTermina>
+          <datumKrajaTermina>10/10/2021</datumKrajaTermina>
+          <idTermina>9</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
@@ -591,20 +598,6 @@
           <idTermina>5</idTermina>
         </ZauzeceSale>
         <ZauzeceSale>
-          <pocetakTermina>14:00</pocetakTermina>
-          <krajTermina>15:00</krajTermina>
-          <datumPocetkaTermina>10/01/2021</datumPocetkaTermina>
-          <datumKrajaTermina>10/01/2021</datumKrajaTermina>
-          <idTermina>6</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
-          <pocetakTermina>11:00</pocetakTermina>
-          <krajTermina>13:00</krajTermina>
-          <datumPocetkaTermina>06/10/2021</datumPocetkaTermina>
-          <datumKrajaTermina>06/10/2021</datumKrajaTermina>
-          <idTermina>8</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
           <pocetakTermina>09:00</pocetakTermina>
           <krajTermina>11:00</krajTermina>
           <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
@@ -624,6 +617,13 @@
           <datumPocetkaTermina>06/11/2021</datumPocetkaTermina>
           <datumKrajaTermina>06/11/2021</datumKrajaTermina>
           <idTermina>1</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>10/10/2021</datumPocetkaTermina>
+          <datumKrajaTermina>10/10/2021</datumKrajaTermina>
+          <idTermina>9</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
@@ -766,20 +766,6 @@
           <idTermina>5</idTermina>
         </ZauzeceSale>
         <ZauzeceSale>
-          <pocetakTermina>14:00</pocetakTermina>
-          <krajTermina>15:00</krajTermina>
-          <datumPocetkaTermina>10/01/2021</datumPocetkaTermina>
-          <datumKrajaTermina>10/01/2021</datumKrajaTermina>
-          <idTermina>6</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
-          <pocetakTermina>11:00</pocetakTermina>
-          <krajTermina>13:00</krajTermina>
-          <datumPocetkaTermina>06/10/2021</datumPocetkaTermina>
-          <datumKrajaTermina>06/10/2021</datumKrajaTermina>
-          <idTermina>8</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
           <pocetakTermina>09:00</pocetakTermina>
           <krajTermina>11:00</krajTermina>
           <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
@@ -799,6 +785,13 @@
           <datumPocetkaTermina>06/11/2021</datumPocetkaTermina>
           <datumKrajaTermina>06/11/2021</datumKrajaTermina>
           <idTermina>1</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>10/10/2021</datumPocetkaTermina>
+          <datumKrajaTermina>10/10/2021</datumKrajaTermina>
+          <idTermina>9</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
@@ -940,6 +933,13 @@
           <datumPocetkaTermina>10/20/2022</datumPocetkaTermina>
           <datumKrajaTermina>10/20/2022</datumKrajaTermina>
           <idTermina>11</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:30</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>11/11/2022</datumPocetkaTermina>
+          <datumKrajaTermina>11/11/2022</datumKrajaTermina>
+          <idTermina>12</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
@@ -1130,20 +1130,6 @@
       </Oprema>
       <zauzetiTermini>
         <ZauzeceSale>
-          <pocetakTermina>5:00</pocetakTermina>
-          <krajTermina>10:00</krajTermina>
-          <datumPocetkaTermina>04/27/2021</datumPocetkaTermina>
-          <datumKrajaTermina>04/27/2021</datumKrajaTermina>
-          <idTermina>1</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
-          <pocetakTermina>10:00</pocetakTermina>
-          <krajTermina>11:00</krajTermina>
-          <datumPocetkaTermina>05/19/2021</datumPocetkaTermina>
-          <datumKrajaTermina>05/19/2021</datumKrajaTermina>
-          <idTermina>1</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
           <pocetakTermina>12:00</pocetakTermina>
           <krajTermina>14:00</krajTermina>
           <datumPocetkaTermina>06/09/2021</datumPocetkaTermina>
@@ -1151,18 +1137,18 @@
           <idTermina>8</idTermina>
         </ZauzeceSale>
         <ZauzeceSale>
-          <pocetakTermina>15:30</pocetakTermina>
-          <krajTermina>16:00</krajTermina>
-          <datumPocetkaTermina>06/08/2021</datumPocetkaTermina>
-          <datumKrajaTermina>06/08/2021</datumKrajaTermina>
-          <idTermina>1</idTermina>
-        </ZauzeceSale>
-        <ZauzeceSale>
           <pocetakTermina>09:00</pocetakTermina>
           <krajTermina>10:00</krajTermina>
           <datumPocetkaTermina>12/30/2021</datumPocetkaTermina>
           <datumKrajaTermina>12/30/2021</datumKrajaTermina>
           <idTermina>13</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>09:00</pocetakTermina>
+          <krajTermina>11:00</krajTermina>
+          <datumPocetkaTermina>11/30/2021</datumPocetkaTermina>
+          <datumKrajaTermina>11/30/2021</datumKrajaTermina>
+          <idTermina>12</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
@@ -1305,18 +1291,622 @@
           <idTermina>5</idTermina>
         </ZauzeceSale>
         <ZauzeceSale>
-          <pocetakTermina>14:00</pocetakTermina>
-          <krajTermina>15:00</krajTermina>
-          <datumPocetkaTermina>10/01/2021</datumPocetkaTermina>
-          <datumKrajaTermina>10/01/2021</datumKrajaTermina>
-          <idTermina>6</idTermina>
+          <pocetakTermina>09:00</pocetakTermina>
+          <krajTermina>11:00</krajTermina>
+          <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
+          <datumKrajaTermina>10/10/2022</datumKrajaTermina>
+          <idTermina>10</idTermina>
         </ZauzeceSale>
         <ZauzeceSale>
-          <pocetakTermina>11:00</pocetakTermina>
-          <krajTermina>13:00</krajTermina>
-          <datumPocetkaTermina>06/10/2021</datumPocetkaTermina>
-          <datumKrajaTermina>06/10/2021</datumKrajaTermina>
+          <pocetakTermina>08:30</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>12/12/2022</datumPocetkaTermina>
+          <datumKrajaTermina>12/12/2022</datumKrajaTermina>
+          <idTermina>12</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>09:00</krajTermina>
+          <datumPocetkaTermina>06/11/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/11/2021</datumKrajaTermina>
+          <idTermina>1</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>10/10/2021</datumPocetkaTermina>
+          <datumKrajaTermina>10/10/2021</datumKrajaTermina>
+          <idTermina>9</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+      <Kreveti />
+    </Prostorija>
+    <tipTermina>Operacija</tipTermina>
+    <Pomeren>false</Pomeren>
+    <HitnaOperacija>false</HitnaOperacija>
+  </Termin>
+  <Termin>
+    <IdTermin>6</IdTermin>
+    <VremePocetka>09:00</VremePocetka>
+    <VremeKraja>11:00</VremeKraja>
+    <Lekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Kristina</ImeLek>
+      <PrezimeLek>Stojic</PrezimeLek>
+      <Jmbg>123456789</Jmbg>
+      <BrojTelefona>351235</BrojTelefona>
+      <Email>stojic.kris@gmail.com</Email>
+      <AdresaStanovanja>Zvornik</AdresaStanovanja>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>25</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>3</BrojPregleda>
+      <BrojOperacija>2</BrojOperacija>
+      <korisnickoIme>Stojic</korisnickoIme>
+      <lozinka>123456789</lozinka>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>4</IdPacijenta>
+      <ImePacijenta>Katarina</ImePacijenta>
+      <PrezimePacijenta>Ilic</PrezimePacijenta>
+      <Pol>Z</Pol>
+      <Jmbg>3216547465</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>3575312</BrojTelefona>
+      <Email>katarina@gmail.com</Email>
+      <AdresaStanovanja>NS</AdresaStanovanja>
+      <Zanimanje>Penzioner</Zanimanje>
+      <BracnoStanje>Neudata</BracnoStanje>
+      <Karton>
+        <IdPacijenta>4</IdPacijenta>
+        <LekarskiRecepti />
+        <Anamneze />
+        <Alergeni />
+        <Uputi />
+        <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
+      </Karton>
+      <Maloletnik>false</Maloletnik>
+      <JmbgStaratelja>0</JmbgStaratelja>
+    </Pacijent>
+    <Datum>12/27/2022</Datum>
+    <Prostorija>
+      <TipSale>SalaZaPregled</TipSale>
+      <Id>7</Id>
+      <brojSale>6</brojSale>
+      <Namjena>fsfds</Namjena>
+      <Oprema />
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>09:00</pocetakTermina>
+          <krajTermina>11:00</krajTermina>
+          <datumPocetkaTermina>12/27/2022</datumPocetkaTermina>
+          <datumKrajaTermina>12/27/2022</datumKrajaTermina>
+          <idTermina>6</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+      <Kreveti />
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+    <Pomeren>false</Pomeren>
+    <HitnaOperacija>false</HitnaOperacija>
+  </Termin>
+  <Termin>
+    <IdTermin>7</IdTermin>
+    <VremePocetka>09:30</VremePocetka>
+    <VremeKraja>11:00</VremeKraja>
+    <Lekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Kristina</ImeLek>
+      <PrezimeLek>Stojic</PrezimeLek>
+      <Jmbg>123456789</Jmbg>
+      <BrojTelefona>351235</BrojTelefona>
+      <Email>stojic.kris@gmail.com</Email>
+      <AdresaStanovanja>Zvornik</AdresaStanovanja>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>25</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>3</BrojPregleda>
+      <BrojOperacija>2</BrojOperacija>
+      <korisnickoIme>Stojic</korisnickoIme>
+      <lozinka>123456789</lozinka>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>1</IdPacijenta>
+      <ImePacijenta>Dimitrije</ImePacijenta>
+      <PrezimePacijenta>Radic</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>321456879</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>3214565</BrojTelefona>
+      <Email>radic@uns.ac.rs</Email>
+      <AdresaStanovanja>NS</AdresaStanovanja>
+      <Zanimanje>Student</Zanimanje>
+      <BracnoStanje>Neozenjen</BracnoStanje>
+      <Karton>
+        <IdPacijenta>1</IdPacijenta>
+        <LekarskiRecepti />
+        <Anamneze />
+        <Alergeni />
+        <Uputi />
+        <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
+      </Karton>
+      <Maloletnik>false</Maloletnik>
+      <JmbgStaratelja>0</JmbgStaratelja>
+    </Pacijent>
+    <Datum>10/10/2022</Datum>
+    <Prostorija>
+      <TipSale>SalaZaPregled</TipSale>
+      <Id>6</Id>
+      <brojSale>5</brojSale>
+      <Namjena>adasd</Namjena>
+      <Oprema />
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>09:30</pocetakTermina>
+          <krajTermina>11:00</krajTermina>
+          <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
+          <datumKrajaTermina>10/10/2022</datumKrajaTermina>
+          <idTermina>7</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+      <Kreveti />
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+    <Pomeren>false</Pomeren>
+    <HitnaOperacija>false</HitnaOperacija>
+  </Termin>
+  <Termin>
+    <IdTermin>8</IdTermin>
+    <VremePocetka>08:00</VremePocetka>
+    <VremeKraja>09:00</VremeKraja>
+    <Lekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Kristina</ImeLek>
+      <PrezimeLek>Stojic</PrezimeLek>
+      <Jmbg>123456789</Jmbg>
+      <BrojTelefona>351235</BrojTelefona>
+      <Email>stojic.kris@gmail.com</Email>
+      <AdresaStanovanja>Zvornik</AdresaStanovanja>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>25</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>3</BrojPregleda>
+      <BrojOperacija>2</BrojOperacija>
+      <korisnickoIme>Stojic</korisnickoIme>
+      <lozinka>123456789</lozinka>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>3</IdPacijenta>
+      <ImePacijenta>Djordje</ImePacijenta>
+      <PrezimePacijenta>Petrovic</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>546546464</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>645464</BrojTelefona>
+      <Email>djole@gmail.com</Email>
+      <AdresaStanovanja>Zvornik</AdresaStanovanja>
+      <Zanimanje>Novinar</Zanimanje>
+      <BracnoStanje>Razveden</BracnoStanje>
+      <Karton>
+        <IdPacijenta>3</IdPacijenta>
+        <LekarskiRecepti>
+          <LekarskiRecept>
+            <IdRecepta>1</IdRecepta>
+            <idPacijenta>3</idPacijenta>
+            <IdLekara>2</IdLekara>
+            <NazivLeka>Brufen</NazivLeka>
+            <DatumPropisivanjaLeka>12/30/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>12</BrojDanaKoriscenja>
+            <DnevnaKolicina>2</DnevnaKolicina>
+            <PocetakKoriscenja>10:10</PocetakKoriscenja>
+            <UzimanjeTerapije>
+              <dateTime>2021-12-30T10:10:00</dateTime>
+              <dateTime>2021-12-30T12:10:00</dateTime>
+              <dateTime>2021-12-30T14:10:00</dateTime>
+              <dateTime>2021-12-30T16:10:00</dateTime>
+              <dateTime>2021-12-30T18:10:00</dateTime>
+              <dateTime>2021-12-30T20:10:00</dateTime>
+              <dateTime>2021-12-30T22:10:00</dateTime>
+              <dateTime>2021-12-31T00:10:00</dateTime>
+              <dateTime>2021-12-31T02:10:00</dateTime>
+              <dateTime>2021-12-31T04:10:00</dateTime>
+              <dateTime>2021-12-31T06:10:00</dateTime>
+              <dateTime>2021-12-31T08:10:00</dateTime>
+              <dateTime>2021-12-31T10:10:00</dateTime>
+              <dateTime>2021-12-31T12:10:00</dateTime>
+              <dateTime>2021-12-31T14:10:00</dateTime>
+              <dateTime>2021-12-31T16:10:00</dateTime>
+              <dateTime>2021-12-31T18:10:00</dateTime>
+              <dateTime>2021-12-31T20:10:00</dateTime>
+              <dateTime>2021-12-31T22:10:00</dateTime>
+              <dateTime>2022-01-01T00:10:00</dateTime>
+              <dateTime>2022-01-01T02:10:00</dateTime>
+              <dateTime>2022-01-01T04:10:00</dateTime>
+              <dateTime>2022-01-01T06:10:00</dateTime>
+              <dateTime>2022-01-01T08:10:00</dateTime>
+              <dateTime>2022-01-01T10:10:00</dateTime>
+            </UzimanjeTerapije>
+          </LekarskiRecept>
+        </LekarskiRecepti>
+        <Anamneze>
+          <Anamneza>
+            <IdAnamneze>1</IdAnamneze>
+            <IdPacijenta>3</IdPacijenta>
+            <IdLekara>2</IdLekara>
+            <OpisBolesti>asdasd</OpisBolesti>
+            <Terapija>dasda</Terapija>
+            <Datum>12/30/2021</Datum>
+            <IdTermina>13</IdTermina>
+            <Beleska />
+            <ImePrezimeLekara>Marko Filipovic</ImePrezimeLekara>
+          </Anamneza>
+        </Anamneze>
+        <Alergeni>
+          <Alergeni>
+            <IdAlergena>1</IdAlergena>
+            <IdPacijenta>3</IdPacijenta>
+            <NazivSastojka>s3</NazivSastojka>
+            <NuspojavaNaNastojak>sadad</NuspojavaNaNastojak>
+            <VremeReakcije>dasda</VremeReakcije>
+          </Alergeni>
+        </Alergeni>
+        <Uputi>
+          <Uput>
+            <IdUputa>1</IdUputa>
+            <idPacijenta>3</idPacijenta>
+            <IdLekaraKojiIzdajeUput>2</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>12/30/2021</datumIzdavanja>
+            <opisPregleda>sdasd</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>SpecijalistickiPregled</TipUputa>
+          </Uput>
+          <Uput>
+            <IdUputa>2</IdUputa>
+            <idPacijenta>3</idPacijenta>
+            <IdLekaraKojiIzdajeUput>2</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>12/30/2021</datumIzdavanja>
+            <opisPregleda>adasd</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>Laboratorija</TipUputa>
+          </Uput>
+        </Uputi>
+        <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
+      </Karton>
+      <Maloletnik>false</Maloletnik>
+      <JmbgStaratelja>0</JmbgStaratelja>
+    </Pacijent>
+    <Datum>11/11/2021</Datum>
+    <Prostorija>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>9</Id>
+      <brojSale>8</brojSale>
+      <Namjena>fdsfds</Namjena>
+      <Oprema />
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>09:00</krajTermina>
+          <datumPocetkaTermina>11/11/2021</datumPocetkaTermina>
+          <datumKrajaTermina>11/11/2021</datumKrajaTermina>
           <idTermina>8</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>11:30</pocetakTermina>
+          <krajTermina>13:00</krajTermina>
+          <datumPocetkaTermina>12/12/2022</datumPocetkaTermina>
+          <datumKrajaTermina>12/12/2022</datumKrajaTermina>
+          <idTermina>14</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+      <Kreveti />
+    </Prostorija>
+    <tipTermina>Operacija</tipTermina>
+    <Pomeren>false</Pomeren>
+    <HitnaOperacija>false</HitnaOperacija>
+  </Termin>
+  <Termin>
+    <IdTermin>9</IdTermin>
+    <VremePocetka>08:00</VremePocetka>
+    <VremeKraja>10:00</VremeKraja>
+    <Lekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Kristina</ImeLek>
+      <PrezimeLek>Stojic</PrezimeLek>
+      <Jmbg>123456789</Jmbg>
+      <BrojTelefona>351235</BrojTelefona>
+      <Email>stojic.kris@gmail.com</Email>
+      <AdresaStanovanja>Zvornik</AdresaStanovanja>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>25</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>4</BrojPregleda>
+      <BrojOperacija>3</BrojOperacija>
+      <korisnickoIme>Stojic</korisnickoIme>
+      <lozinka>123456789</lozinka>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>2</IdPacijenta>
+      <ImePacijenta>Konstantin</ImePacijenta>
+      <PrezimePacijenta>Despotovic</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>3215987545</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>3215201</BrojTelefona>
+      <Email>kosta@hotmail.coom</Email>
+      <AdresaStanovanja>NS</AdresaStanovanja>
+      <Zanimanje>Profesor</Zanimanje>
+      <BracnoStanje>Ozenjen</BracnoStanje>
+      <Karton>
+        <IdPacijenta>2</IdPacijenta>
+        <LekarskiRecepti>
+          <LekarskiRecept>
+            <IdRecepta>1</IdRecepta>
+            <idPacijenta>2</idPacijenta>
+            <IdLekara>1</IdLekara>
+            <NazivLeka>kafetin</NazivLeka>
+            <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+            <DnevnaKolicina>5</DnevnaKolicina>
+            <PocetakKoriscenja>10:00</PocetakKoriscenja>
+            <UzimanjeTerapije>
+              <dateTime>2021-06-09T10:00:00</dateTime>
+              <dateTime>2021-06-09T12:00:00</dateTime>
+              <dateTime>2021-06-09T14:00:00</dateTime>
+              <dateTime>2021-06-09T16:00:00</dateTime>
+              <dateTime>2021-06-09T18:00:00</dateTime>
+              <dateTime>2021-06-09T20:00:00</dateTime>
+              <dateTime>2021-06-09T22:00:00</dateTime>
+              <dateTime>2021-06-10T00:00:00</dateTime>
+              <dateTime>2021-06-10T02:00:00</dateTime>
+              <dateTime>2021-06-10T04:00:00</dateTime>
+              <dateTime>2021-06-10T06:00:00</dateTime>
+              <dateTime>2021-06-10T08:00:00</dateTime>
+              <dateTime>2021-06-10T10:00:00</dateTime>
+              <dateTime>2021-06-10T12:00:00</dateTime>
+              <dateTime>2021-06-10T14:00:00</dateTime>
+              <dateTime>2021-06-10T16:00:00</dateTime>
+              <dateTime>2021-06-10T18:00:00</dateTime>
+              <dateTime>2021-06-10T20:00:00</dateTime>
+              <dateTime>2021-06-10T22:00:00</dateTime>
+              <dateTime>2021-06-11T00:00:00</dateTime>
+              <dateTime>2021-06-11T02:00:00</dateTime>
+              <dateTime>2021-06-11T04:00:00</dateTime>
+              <dateTime>2021-06-11T06:00:00</dateTime>
+              <dateTime>2021-06-11T08:00:00</dateTime>
+              <dateTime>2021-06-11T10:00:00</dateTime>
+              <dateTime>2021-06-11T12:00:00</dateTime>
+              <dateTime>2021-06-11T14:00:00</dateTime>
+              <dateTime>2021-06-11T16:00:00</dateTime>
+              <dateTime>2021-06-11T18:00:00</dateTime>
+              <dateTime>2021-06-11T20:00:00</dateTime>
+              <dateTime>2021-06-11T22:00:00</dateTime>
+              <dateTime>2021-06-12T00:00:00</dateTime>
+              <dateTime>2021-06-12T02:00:00</dateTime>
+              <dateTime>2021-06-12T04:00:00</dateTime>
+              <dateTime>2021-06-12T06:00:00</dateTime>
+              <dateTime>2021-06-12T08:00:00</dateTime>
+              <dateTime>2021-06-12T10:00:00</dateTime>
+              <dateTime>2021-06-12T12:00:00</dateTime>
+              <dateTime>2021-06-12T14:00:00</dateTime>
+              <dateTime>2021-06-12T16:00:00</dateTime>
+              <dateTime>2021-06-12T18:00:00</dateTime>
+              <dateTime>2021-06-12T20:00:00</dateTime>
+              <dateTime>2021-06-12T22:00:00</dateTime>
+              <dateTime>2021-06-13T00:00:00</dateTime>
+              <dateTime>2021-06-13T02:00:00</dateTime>
+              <dateTime>2021-06-13T04:00:00</dateTime>
+              <dateTime>2021-06-13T06:00:00</dateTime>
+              <dateTime>2021-06-13T08:00:00</dateTime>
+              <dateTime>2021-06-13T10:00:00</dateTime>
+              <dateTime>2021-06-13T12:00:00</dateTime>
+              <dateTime>2021-06-13T14:00:00</dateTime>
+            </UzimanjeTerapije>
+          </LekarskiRecept>
+          <LekarskiRecept>
+            <IdRecepta>2</IdRecepta>
+            <idPacijenta>2</idPacijenta>
+            <IdLekara>1</IdLekara>
+            <NazivLeka>leksilium</NazivLeka>
+            <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
+            <DnevnaKolicina>2</DnevnaKolicina>
+            <PocetakKoriscenja>20:00</PocetakKoriscenja>
+            <UzimanjeTerapije>
+              <dateTime>2021-06-09T20:00:00</dateTime>
+              <dateTime>2021-06-10T04:00:00</dateTime>
+              <dateTime>2021-06-10T12:00:00</dateTime>
+              <dateTime>2021-06-10T20:00:00</dateTime>
+              <dateTime>2021-06-11T04:00:00</dateTime>
+              <dateTime>2021-06-11T12:00:00</dateTime>
+              <dateTime>2021-06-11T20:00:00</dateTime>
+            </UzimanjeTerapije>
+          </LekarskiRecept>
+        </LekarskiRecepti>
+        <Anamneze>
+          <Anamneza>
+            <IdAnamneze>1</IdAnamneze>
+            <IdPacijenta>2</IdPacijenta>
+            <IdLekara>1</IdLekara>
+            <OpisBolesti>Glavobolja</OpisBolesti>
+            <Terapija>Spavanje</Terapija>
+            <Datum>06/09/2021</Datum>
+            <IdTermina>9</IdTermina>
+            <Beleska />
+            <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+          </Anamneza>
+          <Anamneza>
+            <IdAnamneze>2</IdAnamneze>
+            <IdPacijenta>2</IdPacijenta>
+            <IdLekara>1</IdLekara>
+            <OpisBolesti>LKLKL</OpisBolesti>
+            <Terapija>afsdf</Terapija>
+            <Datum>06/09/2021</Datum>
+            <IdTermina>9</IdTermina>
+            <Beleska />
+            <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+          </Anamneza>
+        </Anamneze>
+        <Alergeni>
+          <Alergeni>
+            <IdAlergena>1</IdAlergena>
+            <IdPacijenta>2</IdPacijenta>
+            <NazivSastojka>s3</NazivSastojka>
+            <NuspojavaNaNastojak>sadasd</NuspojavaNaNastojak>
+            <VremeReakcije>dsadsa</VremeReakcije>
+          </Alergeni>
+          <Alergeni>
+            <IdAlergena>2</IdAlergena>
+            <IdPacijenta>2</IdPacijenta>
+            <NazivSastojka>voda</NazivSastojka>
+            <NuspojavaNaNastojak>adsd</NuspojavaNaNastojak>
+            <VremeReakcije>dfsf</VremeReakcije>
+          </Alergeni>
+        </Alergeni>
+        <Uputi>
+          <Uput>
+            <IdUputa>1</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>asdads</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>Laboratorija</TipUputa>
+          </Uput>
+          <Uput>
+            <IdUputa>2</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>sadasd</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>SpecijalistickiPregled</TipUputa>
+          </Uput>
+          <Uput>
+            <IdUputa>3</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>sadadas</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>SpecijalistickiPregled</TipUputa>
+          </Uput>
+        </Uputi>
+        <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>2</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
+      </Karton>
+      <Maloletnik>false</Maloletnik>
+      <JmbgStaratelja>0</JmbgStaratelja>
+    </Pacijent>
+    <Datum>10/10/2021</Datum>
+    <Prostorija>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>1</Id>
+      <brojSale>1</brojSale>
+      <Namjena>kardiovaskularna hirurgija</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>flaster</NazivOpreme>
+          <Kolicina>42</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>7</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>rukavice</NazivOpreme>
+          <Kolicina>100</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>6</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>operacioni sto</NazivOpreme>
+          <Kolicina>197</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>1</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>monitor vitalnih funkcija</NazivOpreme>
+          <Kolicina>90</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>3</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>respirator</NazivOpreme>
+          <Kolicina>70</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>2</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>operaciona stolica</NazivOpreme>
+          <Kolicina>25</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>lampa</NazivOpreme>
+          <Kolicina>3</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>8</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>16:00</pocetakTermina>
+          <krajTermina>17:00</krajTermina>
+          <datumPocetkaTermina>06/12/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/12/2021</datumKrajaTermina>
+          <idTermina>3</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>18:00</pocetakTermina>
+          <krajTermina>19:00</krajTermina>
+          <datumPocetkaTermina>06/09/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/09/2021</datumKrajaTermina>
+          <idTermina>5</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>10:00</pocetakTermina>
+          <krajTermina>11:30</krajTermina>
+          <datumPocetkaTermina>11/05/2021</datumPocetkaTermina>
+          <datumKrajaTermina>11/05/2021</datumKrajaTermina>
+          <idTermina>9</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>12:00</pocetakTermina>
+          <krajTermina>15:30</krajTermina>
+          <datumPocetkaTermina>06/13/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/13/2021</datumKrajaTermina>
+          <idTermina>4</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>09:00</pocetakTermina>
+          <krajTermina>12:00</krajTermina>
+          <datumPocetkaTermina>09/02/2021</datumPocetkaTermina>
+          <datumKrajaTermina>09/02/2021</datumKrajaTermina>
+          <idTermina>5</idTermina>
         </ZauzeceSale>
         <ZauzeceSale>
           <pocetakTermina>09:00</pocetakTermina>
@@ -1338,6 +1928,616 @@
           <datumPocetkaTermina>06/11/2021</datumPocetkaTermina>
           <datumKrajaTermina>06/11/2021</datumKrajaTermina>
           <idTermina>1</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>10/10/2021</datumPocetkaTermina>
+          <datumKrajaTermina>10/10/2021</datumKrajaTermina>
+          <idTermina>9</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+      <Kreveti />
+    </Prostorija>
+    <tipTermina>Operacija</tipTermina>
+    <Pomeren>false</Pomeren>
+    <HitnaOperacija>false</HitnaOperacija>
+  </Termin>
+  <Termin>
+    <IdTermin>12</IdTermin>
+    <VremePocetka>08:30</VremePocetka>
+    <VremeKraja>10:00</VremeKraja>
+    <Lekar>
+      <IdLekara>1</IdLekara>
+      <ImeLek>Kristina</ImeLek>
+      <PrezimeLek>Stojic</PrezimeLek>
+      <Jmbg>123456789</Jmbg>
+      <BrojTelefona>351235</BrojTelefona>
+      <Email>stojic.kris@gmail.com</Email>
+      <AdresaStanovanja>Zvornik</AdresaStanovanja>
+      <specijalizacija>Opsta_praksa</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>25</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>4</BrojPregleda>
+      <BrojOperacija>3</BrojOperacija>
+      <korisnickoIme>Stojic</korisnickoIme>
+      <lozinka>123456789</lozinka>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>2</IdPacijenta>
+      <ImePacijenta>Konstantin</ImePacijenta>
+      <PrezimePacijenta>Despotovic</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>3215987545</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>3215201</BrojTelefona>
+      <Email>kosta@hotmail.coom</Email>
+      <AdresaStanovanja>NS</AdresaStanovanja>
+      <Zanimanje>Profesor</Zanimanje>
+      <BracnoStanje>Ozenjen</BracnoStanje>
+      <Karton>
+        <IdPacijenta>2</IdPacijenta>
+        <LekarskiRecepti>
+          <LekarskiRecept>
+            <IdRecepta>1</IdRecepta>
+            <idPacijenta>2</idPacijenta>
+            <IdLekara>1</IdLekara>
+            <NazivLeka>kafetin</NazivLeka>
+            <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+            <DnevnaKolicina>5</DnevnaKolicina>
+            <PocetakKoriscenja>10:00</PocetakKoriscenja>
+            <UzimanjeTerapije>
+              <dateTime>2021-06-09T10:00:00</dateTime>
+              <dateTime>2021-06-09T12:00:00</dateTime>
+              <dateTime>2021-06-09T14:00:00</dateTime>
+              <dateTime>2021-06-09T16:00:00</dateTime>
+              <dateTime>2021-06-09T18:00:00</dateTime>
+              <dateTime>2021-06-09T20:00:00</dateTime>
+              <dateTime>2021-06-09T22:00:00</dateTime>
+              <dateTime>2021-06-10T00:00:00</dateTime>
+              <dateTime>2021-06-10T02:00:00</dateTime>
+              <dateTime>2021-06-10T04:00:00</dateTime>
+              <dateTime>2021-06-10T06:00:00</dateTime>
+              <dateTime>2021-06-10T08:00:00</dateTime>
+              <dateTime>2021-06-10T10:00:00</dateTime>
+              <dateTime>2021-06-10T12:00:00</dateTime>
+              <dateTime>2021-06-10T14:00:00</dateTime>
+              <dateTime>2021-06-10T16:00:00</dateTime>
+              <dateTime>2021-06-10T18:00:00</dateTime>
+              <dateTime>2021-06-10T20:00:00</dateTime>
+              <dateTime>2021-06-10T22:00:00</dateTime>
+              <dateTime>2021-06-11T00:00:00</dateTime>
+              <dateTime>2021-06-11T02:00:00</dateTime>
+              <dateTime>2021-06-11T04:00:00</dateTime>
+              <dateTime>2021-06-11T06:00:00</dateTime>
+              <dateTime>2021-06-11T08:00:00</dateTime>
+              <dateTime>2021-06-11T10:00:00</dateTime>
+              <dateTime>2021-06-11T12:00:00</dateTime>
+              <dateTime>2021-06-11T14:00:00</dateTime>
+              <dateTime>2021-06-11T16:00:00</dateTime>
+              <dateTime>2021-06-11T18:00:00</dateTime>
+              <dateTime>2021-06-11T20:00:00</dateTime>
+              <dateTime>2021-06-11T22:00:00</dateTime>
+              <dateTime>2021-06-12T00:00:00</dateTime>
+              <dateTime>2021-06-12T02:00:00</dateTime>
+              <dateTime>2021-06-12T04:00:00</dateTime>
+              <dateTime>2021-06-12T06:00:00</dateTime>
+              <dateTime>2021-06-12T08:00:00</dateTime>
+              <dateTime>2021-06-12T10:00:00</dateTime>
+              <dateTime>2021-06-12T12:00:00</dateTime>
+              <dateTime>2021-06-12T14:00:00</dateTime>
+              <dateTime>2021-06-12T16:00:00</dateTime>
+              <dateTime>2021-06-12T18:00:00</dateTime>
+              <dateTime>2021-06-12T20:00:00</dateTime>
+              <dateTime>2021-06-12T22:00:00</dateTime>
+              <dateTime>2021-06-13T00:00:00</dateTime>
+              <dateTime>2021-06-13T02:00:00</dateTime>
+              <dateTime>2021-06-13T04:00:00</dateTime>
+              <dateTime>2021-06-13T06:00:00</dateTime>
+              <dateTime>2021-06-13T08:00:00</dateTime>
+              <dateTime>2021-06-13T10:00:00</dateTime>
+              <dateTime>2021-06-13T12:00:00</dateTime>
+              <dateTime>2021-06-13T14:00:00</dateTime>
+            </UzimanjeTerapije>
+          </LekarskiRecept>
+          <LekarskiRecept>
+            <IdRecepta>2</IdRecepta>
+            <idPacijenta>2</idPacijenta>
+            <IdLekara>1</IdLekara>
+            <NazivLeka>leksilium</NazivLeka>
+            <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
+            <DnevnaKolicina>2</DnevnaKolicina>
+            <PocetakKoriscenja>20:00</PocetakKoriscenja>
+            <UzimanjeTerapije>
+              <dateTime>2021-06-09T20:00:00</dateTime>
+              <dateTime>2021-06-10T04:00:00</dateTime>
+              <dateTime>2021-06-10T12:00:00</dateTime>
+              <dateTime>2021-06-10T20:00:00</dateTime>
+              <dateTime>2021-06-11T04:00:00</dateTime>
+              <dateTime>2021-06-11T12:00:00</dateTime>
+              <dateTime>2021-06-11T20:00:00</dateTime>
+            </UzimanjeTerapije>
+          </LekarskiRecept>
+        </LekarskiRecepti>
+        <Anamneze>
+          <Anamneza>
+            <IdAnamneze>1</IdAnamneze>
+            <IdPacijenta>2</IdPacijenta>
+            <IdLekara>1</IdLekara>
+            <OpisBolesti>Glavobolja</OpisBolesti>
+            <Terapija>Spavanje</Terapija>
+            <Datum>06/09/2021</Datum>
+            <IdTermina>9</IdTermina>
+            <Beleska />
+            <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+          </Anamneza>
+          <Anamneza>
+            <IdAnamneze>2</IdAnamneze>
+            <IdPacijenta>2</IdPacijenta>
+            <IdLekara>1</IdLekara>
+            <OpisBolesti>LKLKL</OpisBolesti>
+            <Terapija>afsdf</Terapija>
+            <Datum>06/09/2021</Datum>
+            <IdTermina>9</IdTermina>
+            <Beleska />
+            <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+          </Anamneza>
+        </Anamneze>
+        <Alergeni>
+          <Alergeni>
+            <IdAlergena>1</IdAlergena>
+            <IdPacijenta>2</IdPacijenta>
+            <NazivSastojka>s3</NazivSastojka>
+            <NuspojavaNaNastojak>sadasd</NuspojavaNaNastojak>
+            <VremeReakcije>dsadsa</VremeReakcije>
+          </Alergeni>
+          <Alergeni>
+            <IdAlergena>2</IdAlergena>
+            <IdPacijenta>2</IdPacijenta>
+            <NazivSastojka>voda</NazivSastojka>
+            <NuspojavaNaNastojak>adsd</NuspojavaNaNastojak>
+            <VremeReakcije>dfsf</VremeReakcije>
+          </Alergeni>
+        </Alergeni>
+        <Uputi>
+          <Uput>
+            <IdUputa>1</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>asdads</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>Laboratorija</TipUputa>
+          </Uput>
+          <Uput>
+            <IdUputa>2</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>sadasd</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>SpecijalistickiPregled</TipUputa>
+          </Uput>
+          <Uput>
+            <IdUputa>3</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>sadadas</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>SpecijalistickiPregled</TipUputa>
+          </Uput>
+        </Uputi>
+        <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>2</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
+      </Karton>
+      <Maloletnik>false</Maloletnik>
+      <JmbgStaratelja>0</JmbgStaratelja>
+    </Pacijent>
+    <Datum>11/11/2022</Datum>
+    <Prostorija>
+      <TipSale>SalaZaPregled</TipSale>
+      <Id>3</Id>
+      <brojSale>3</brojSale>
+      <Namjena>opsta praksa</Namjena>
+      <Oprema>
+        <Oprema>
+          <NazivOpreme>rukavice</NazivOpreme>
+          <Kolicina>195</Kolicina>
+          <Staticka>false</Staticka>
+          <IdOpreme>6</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>operacioni sto</NazivOpreme>
+          <Kolicina>20</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>1</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>monitor vitalnih funkcija</NazivOpreme>
+          <Kolicina>70</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>3</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>respirator</NazivOpreme>
+          <Kolicina>10</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>2</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>operaciona stolica</NazivOpreme>
+          <Kolicina>75</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>4</IdOpreme>
+        </Oprema>
+        <Oprema>
+          <NazivOpreme>lampa</NazivOpreme>
+          <Kolicina>2</Kolicina>
+          <Staticka>true</Staticka>
+          <IdOpreme>8</IdOpreme>
+        </Oprema>
+      </Oprema>
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>16:00</pocetakTermina>
+          <krajTermina>17:00</krajTermina>
+          <datumPocetkaTermina>06/08/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/08/2021</datumKrajaTermina>
+          <idTermina>1</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>11:00</pocetakTermina>
+          <krajTermina>14:00</krajTermina>
+          <datumPocetkaTermina>06/13/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/13/2021</datumKrajaTermina>
+          <idTermina>2</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>17:00</pocetakTermina>
+          <krajTermina>18:00</krajTermina>
+          <datumPocetkaTermina>06/13/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/13/2021</datumKrajaTermina>
+          <idTermina>4</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>14:30</pocetakTermina>
+          <krajTermina>15:00</krajTermina>
+          <datumPocetkaTermina>06/08/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/08/2021</datumKrajaTermina>
+          <idTermina>2</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>09:00</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>06/12/2021</datumPocetkaTermina>
+          <datumKrajaTermina>06/12/2021</datumKrajaTermina>
+          <idTermina>3</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>10:00</pocetakTermina>
+          <krajTermina>11:30</krajTermina>
+          <datumPocetkaTermina>10/20/2022</datumPocetkaTermina>
+          <datumKrajaTermina>10/20/2022</datumKrajaTermina>
+          <idTermina>11</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>08:30</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>11/11/2022</datumPocetkaTermina>
+          <datumKrajaTermina>11/11/2022</datumKrajaTermina>
+          <idTermina>12</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+      <Kreveti />
+    </Prostorija>
+    <tipTermina>Pregled</tipTermina>
+    <Pomeren>false</Pomeren>
+    <HitnaOperacija>false</HitnaOperacija>
+  </Termin>
+  <Termin>
+    <IdTermin>14</IdTermin>
+    <VremePocetka>11:30</VremePocetka>
+    <VremeKraja>13:00</VremeKraja>
+    <Lekar>
+      <IdLekara>2</IdLekara>
+      <ImeLek>Marko</ImeLek>
+      <PrezimeLek>Filipovic</PrezimeLek>
+      <Jmbg>321654987</Jmbg>
+      <BrojTelefona>159357</BrojTelefona>
+      <Email>marko@gmail.com</Email>
+      <AdresaStanovanja>NS</AdresaStanovanja>
+      <specijalizacija>Specijalista</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>25</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>2</BrojPregleda>
+      <BrojOperacija>1</BrojOperacija>
+      <korisnickoIme>Filipovic</korisnickoIme>
+      <lozinka>321654987</lozinka>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>2</IdPacijenta>
+      <ImePacijenta>Konstantin</ImePacijenta>
+      <PrezimePacijenta>Despotovic</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>3215987545</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>3215201</BrojTelefona>
+      <Email>kosta@hotmail.coom</Email>
+      <AdresaStanovanja>NS</AdresaStanovanja>
+      <Zanimanje>Profesor</Zanimanje>
+      <BracnoStanje>Ozenjen</BracnoStanje>
+      <Karton>
+        <IdPacijenta>2</IdPacijenta>
+        <LekarskiRecepti>
+          <LekarskiRecept>
+            <IdRecepta>1</IdRecepta>
+            <idPacijenta>2</idPacijenta>
+            <IdLekara>1</IdLekara>
+            <NazivLeka>kafetin</NazivLeka>
+            <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+            <DnevnaKolicina>5</DnevnaKolicina>
+            <PocetakKoriscenja>10:00</PocetakKoriscenja>
+            <UzimanjeTerapije>
+              <dateTime>2021-06-09T10:00:00</dateTime>
+              <dateTime>2021-06-09T12:00:00</dateTime>
+              <dateTime>2021-06-09T14:00:00</dateTime>
+              <dateTime>2021-06-09T16:00:00</dateTime>
+              <dateTime>2021-06-09T18:00:00</dateTime>
+              <dateTime>2021-06-09T20:00:00</dateTime>
+              <dateTime>2021-06-09T22:00:00</dateTime>
+              <dateTime>2021-06-10T00:00:00</dateTime>
+              <dateTime>2021-06-10T02:00:00</dateTime>
+              <dateTime>2021-06-10T04:00:00</dateTime>
+              <dateTime>2021-06-10T06:00:00</dateTime>
+              <dateTime>2021-06-10T08:00:00</dateTime>
+              <dateTime>2021-06-10T10:00:00</dateTime>
+              <dateTime>2021-06-10T12:00:00</dateTime>
+              <dateTime>2021-06-10T14:00:00</dateTime>
+              <dateTime>2021-06-10T16:00:00</dateTime>
+              <dateTime>2021-06-10T18:00:00</dateTime>
+              <dateTime>2021-06-10T20:00:00</dateTime>
+              <dateTime>2021-06-10T22:00:00</dateTime>
+              <dateTime>2021-06-11T00:00:00</dateTime>
+              <dateTime>2021-06-11T02:00:00</dateTime>
+              <dateTime>2021-06-11T04:00:00</dateTime>
+              <dateTime>2021-06-11T06:00:00</dateTime>
+              <dateTime>2021-06-11T08:00:00</dateTime>
+              <dateTime>2021-06-11T10:00:00</dateTime>
+              <dateTime>2021-06-11T12:00:00</dateTime>
+              <dateTime>2021-06-11T14:00:00</dateTime>
+              <dateTime>2021-06-11T16:00:00</dateTime>
+              <dateTime>2021-06-11T18:00:00</dateTime>
+              <dateTime>2021-06-11T20:00:00</dateTime>
+              <dateTime>2021-06-11T22:00:00</dateTime>
+              <dateTime>2021-06-12T00:00:00</dateTime>
+              <dateTime>2021-06-12T02:00:00</dateTime>
+              <dateTime>2021-06-12T04:00:00</dateTime>
+              <dateTime>2021-06-12T06:00:00</dateTime>
+              <dateTime>2021-06-12T08:00:00</dateTime>
+              <dateTime>2021-06-12T10:00:00</dateTime>
+              <dateTime>2021-06-12T12:00:00</dateTime>
+              <dateTime>2021-06-12T14:00:00</dateTime>
+              <dateTime>2021-06-12T16:00:00</dateTime>
+              <dateTime>2021-06-12T18:00:00</dateTime>
+              <dateTime>2021-06-12T20:00:00</dateTime>
+              <dateTime>2021-06-12T22:00:00</dateTime>
+              <dateTime>2021-06-13T00:00:00</dateTime>
+              <dateTime>2021-06-13T02:00:00</dateTime>
+              <dateTime>2021-06-13T04:00:00</dateTime>
+              <dateTime>2021-06-13T06:00:00</dateTime>
+              <dateTime>2021-06-13T08:00:00</dateTime>
+              <dateTime>2021-06-13T10:00:00</dateTime>
+              <dateTime>2021-06-13T12:00:00</dateTime>
+              <dateTime>2021-06-13T14:00:00</dateTime>
+            </UzimanjeTerapije>
+          </LekarskiRecept>
+          <LekarskiRecept>
+            <IdRecepta>2</IdRecepta>
+            <idPacijenta>2</idPacijenta>
+            <IdLekara>1</IdLekara>
+            <NazivLeka>leksilium</NazivLeka>
+            <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+            <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
+            <DnevnaKolicina>2</DnevnaKolicina>
+            <PocetakKoriscenja>20:00</PocetakKoriscenja>
+            <UzimanjeTerapije>
+              <dateTime>2021-06-09T20:00:00</dateTime>
+              <dateTime>2021-06-10T04:00:00</dateTime>
+              <dateTime>2021-06-10T12:00:00</dateTime>
+              <dateTime>2021-06-10T20:00:00</dateTime>
+              <dateTime>2021-06-11T04:00:00</dateTime>
+              <dateTime>2021-06-11T12:00:00</dateTime>
+              <dateTime>2021-06-11T20:00:00</dateTime>
+            </UzimanjeTerapije>
+          </LekarskiRecept>
+        </LekarskiRecepti>
+        <Anamneze>
+          <Anamneza>
+            <IdAnamneze>1</IdAnamneze>
+            <IdPacijenta>2</IdPacijenta>
+            <IdLekara>1</IdLekara>
+            <OpisBolesti>Glavobolja</OpisBolesti>
+            <Terapija>Spavanje</Terapija>
+            <Datum>06/09/2021</Datum>
+            <IdTermina>9</IdTermina>
+            <Beleska />
+            <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+          </Anamneza>
+          <Anamneza>
+            <IdAnamneze>2</IdAnamneze>
+            <IdPacijenta>2</IdPacijenta>
+            <IdLekara>1</IdLekara>
+            <OpisBolesti>LKLKL</OpisBolesti>
+            <Terapija>afsdf</Terapija>
+            <Datum>06/09/2021</Datum>
+            <IdTermina>9</IdTermina>
+            <Beleska />
+            <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+          </Anamneza>
+        </Anamneze>
+        <Alergeni>
+          <Alergeni>
+            <IdAlergena>1</IdAlergena>
+            <IdPacijenta>2</IdPacijenta>
+            <NazivSastojka>s3</NazivSastojka>
+            <NuspojavaNaNastojak>sadasd</NuspojavaNaNastojak>
+            <VremeReakcije>dsadsa</VremeReakcije>
+          </Alergeni>
+          <Alergeni>
+            <IdAlergena>2</IdAlergena>
+            <IdPacijenta>2</IdPacijenta>
+            <NazivSastojka>voda</NazivSastojka>
+            <NuspojavaNaNastojak>adsd</NuspojavaNaNastojak>
+            <VremeReakcije>dfsf</VremeReakcije>
+          </Alergeni>
+        </Alergeni>
+        <Uputi>
+          <Uput>
+            <IdUputa>1</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>asdads</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>Laboratorija</TipUputa>
+          </Uput>
+          <Uput>
+            <IdUputa>2</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>sadasd</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>SpecijalistickiPregled</TipUputa>
+          </Uput>
+          <Uput>
+            <IdUputa>3</IdUputa>
+            <idPacijenta>2</idPacijenta>
+            <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+            <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+            <datumIzdavanja>06/09/2021</datumIzdavanja>
+            <opisPregleda>sadadas</opisPregleda>
+            <brojSobe>0</brojSobe>
+            <brojKreveta>0</brojKreveta>
+            <TipUputa>SpecijalistickiPregled</TipUputa>
+          </Uput>
+        </Uputi>
+        <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>2</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
+      </Karton>
+      <Maloletnik>false</Maloletnik>
+      <JmbgStaratelja>0</JmbgStaratelja>
+    </Pacijent>
+    <Datum>12/12/2022</Datum>
+    <Prostorija>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>9</Id>
+      <brojSale>8</brojSale>
+      <Namjena>fdsfds</Namjena>
+      <Oprema />
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>08:00</pocetakTermina>
+          <krajTermina>09:00</krajTermina>
+          <datumPocetkaTermina>11/11/2021</datumPocetkaTermina>
+          <datumKrajaTermina>11/11/2021</datumKrajaTermina>
+          <idTermina>8</idTermina>
+        </ZauzeceSale>
+        <ZauzeceSale>
+          <pocetakTermina>11:30</pocetakTermina>
+          <krajTermina>13:00</krajTermina>
+          <datumPocetkaTermina>12/12/2022</datumPocetkaTermina>
+          <datumKrajaTermina>12/12/2022</datumKrajaTermina>
+          <idTermina>14</idTermina>
+        </ZauzeceSale>
+      </zauzetiTermini>
+      <Kreveti />
+    </Prostorija>
+    <tipTermina>Operacija</tipTermina>
+    <Pomeren>false</Pomeren>
+    <HitnaOperacija>false</HitnaOperacija>
+  </Termin>
+  <Termin>
+    <IdTermin>15</IdTermin>
+    <VremePocetka>08:30</VremePocetka>
+    <VremeKraja>10:00</VremeKraja>
+    <Lekar>
+      <IdLekara>3</IdLekara>
+      <ImeLek>Marko</ImeLek>
+      <PrezimeLek>Markovic</PrezimeLek>
+      <Jmbg>123456987</Jmbg>
+      <BrojTelefona>258369</BrojTelefona>
+      <Email>marko@gmail.com</Email>
+      <AdresaStanovanja>Jevrejska 123</AdresaStanovanja>
+      <specijalizacija>Hirurgija</specijalizacija>
+      <SlobodniDaniGodisnjegOdmora>25</SlobodniDaniGodisnjegOdmora>
+      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
+      <ZahteviZaOdmor />
+      <RadniDani />
+      <BrojPregleda>1</BrojPregleda>
+      <BrojOperacija>1</BrojOperacija>
+      <korisnickoIme>Markovic</korisnickoIme>
+      <lozinka>123456987</lozinka>
+    </Lekar>
+    <Pacijent>
+      <IdPacijenta>1</IdPacijenta>
+      <ImePacijenta>Dimitrije</ImePacijenta>
+      <PrezimePacijenta>Radic</PrezimePacijenta>
+      <Pol>M</Pol>
+      <Jmbg>321456879</Jmbg>
+      <StatusNaloga>Stalni</StatusNaloga>
+      <BrojTelefona>3214565</BrojTelefona>
+      <Email>radic@uns.ac.rs</Email>
+      <AdresaStanovanja>NS</AdresaStanovanja>
+      <Zanimanje>Student</Zanimanje>
+      <BracnoStanje>Neozenjen</BracnoStanje>
+      <Karton>
+        <IdPacijenta>1</IdPacijenta>
+        <LekarskiRecepti />
+        <Anamneze />
+        <Alergeni />
+        <Uputi />
+        <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+        <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+        <brojBolnickihUputa>0</brojBolnickihUputa>
+      </Karton>
+      <Maloletnik>false</Maloletnik>
+      <JmbgStaratelja>0</JmbgStaratelja>
+    </Pacijent>
+    <Datum>08/08/2021</Datum>
+    <Prostorija>
+      <TipSale>OperacionaSala</TipSale>
+      <Id>8</Id>
+      <brojSale>7</brojSale>
+      <Namjena>hnghj</Namjena>
+      <Oprema />
+      <zauzetiTermini>
+        <ZauzeceSale>
+          <pocetakTermina>08:30</pocetakTermina>
+          <krajTermina>10:00</krajTermina>
+          <datumPocetkaTermina>08/08/2021</datumPocetkaTermina>
+          <datumKrajaTermina>08/08/2021</datumKrajaTermina>
+          <idTermina>15</idTermina>
         </ZauzeceSale>
       </zauzetiTermini>
       <Kreveti />
