@@ -64,19 +64,19 @@ namespace Projekat
         {
             try
             {
-                if (korisnicko.Equals("konstantin") && lozinka.Equals("konstantin"))
+                if (korisnicko.Equals("nikolina") && lozinka.Equals("nikolina"))
                 {
                     IdPacijent = 1;
                 }
-                if (korisnicko.Equals("marko") && lozinka.Equals("marko"))
-                {
-                    IdPacijent = 3;
-                }
-                if (korisnicko.Equals("dimitrije") && lozinka.Equals("dimitrije"))
+                if (korisnicko.Equals("milica") && lozinka.Equals("milica"))
                 {
                     IdPacijent = 2;
                 }
-                if (korisnicko.Equals("kristina") && lozinka.Equals("kristina"))
+                if (korisnicko.Equals("konstantin") && lozinka.Equals("konstantin"))
+                {
+                    IdPacijent = 3;
+                }
+                if (korisnicko.Equals("lazar") && lozinka.Equals("lazar"))
                 {
                     IdPacijent = 4;
                 }
@@ -87,6 +87,14 @@ namespace Projekat
                 if (korisnicko.Equals("jovana") && lozinka.Equals("jovana"))
                 {
                     IdPacijent = 5;
+                }
+                if (korisnicko.Equals("predrag") && lozinka.Equals("predrag"))
+                {
+                    IdPacijent = 7;
+                }
+                if (korisnicko.Equals("vuk") && lozinka.Equals("vuk"))
+                {
+                    IdPacijent = 8;
                 }
                 if (IdPacijent == -1)
                 {

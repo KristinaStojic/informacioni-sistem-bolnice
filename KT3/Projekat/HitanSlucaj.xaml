@@ -120,7 +120,7 @@
         <Button Name="pretraziDugme" Grid.Column="2" Grid.Row="7" Click="Pretrazi_Click" Content="Pretrazi " Margin="98.8,4.2,6.6,0" Height="37" FontSize="17" VerticalAlignment="Top" Background="#FFCAE6E8"/>
 
         <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" x:Name="zauzetiTermini" SelectionMode="Multiple" Margin="10.2,36,7.6,11.8" 
-                  RenderTransformOrigin="0.492,0.518" IsEnabled="False" Grid.RowSpan="2" SelectionChanged="ZauzetiTermini_SelectionChanged">
+                  RenderTransformOrigin="0.492,0.518" IsEnabled="False" Grid.RowSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdTermin}"/>

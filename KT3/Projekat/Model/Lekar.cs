@@ -48,6 +48,8 @@ namespace Model
             this.BrojPregleda = 0;
             this.ZahteviZaOdmor = new List<int>();
             this.RadniDani = new List<RadniDan>();
+            this.korisnickoIme = Prezime;
+            this.lozinka = Jmbg.ToString();
         }
          public Lekar(int IdLekara, string Ime, string Prezime, long Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija, String korIme, String sifra)
         {

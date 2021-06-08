@@ -209,9 +209,12 @@ namespace Projekat
 
                     foreach (Termin termin in TerminMenadzer.termini)
                     {
-                        tabelaTermina.AddCell(termin.Datum);
-                        tabelaTermina.AddCell(termin.VremePocetka);
-                        tabelaTermina.AddCell(termin.VremeKraja);
+                        if (termin.Lekar.IdLekara == selektovaniLekar.IdLekara)
+                        {
+                            tabelaTermina.AddCell(termin.Datum);
+                            tabelaTermina.AddCell(termin.VremePocetka);
+                            tabelaTermina.AddCell(termin.VremeKraja);
+                        }
                     }
 
                     pdfDoc.Add(tabelaTermina);

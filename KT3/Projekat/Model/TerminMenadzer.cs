@@ -271,8 +271,14 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleServis.sacuvajIzmjene();
+                            foreach (ZauzeceSale t in s.zauzetiTermini.ToArray())
+                            {
+                                if (t.idTermina == termin.IdTermin)
+                                {
+                                    s.zauzetiTermini.Remove(t);
+                                    SaleServis.sacuvajIzmjene();
+                                }
+                            }
                         }
                     }
                     termini.RemoveAt(i);

@@ -49,7 +49,15 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini />
+    <zauzetiTermini>
+      <ZauzeceSale>
+        <pocetakTermina>08:00</pocetakTermina>
+        <krajTermina>10:30</krajTermina>
+        <datumPocetkaTermina>06/12/2021</datumPocetkaTermina>
+        <datumKrajaTermina>06/12/2021</datumKrajaTermina>
+        <idTermina>6</idTermina>
+      </ZauzeceSale>
+    </zauzetiTermini>
     <Kreveti />
   </Sala>
   <Sala>
@@ -103,18 +111,32 @@
     </Oprema>
     <zauzetiTermini>
       <ZauzeceSale>
-        <pocetakTermina>5:00</pocetakTermina>
-        <krajTermina>10:00</krajTermina>
-        <datumPocetkaTermina>04/27/2021</datumPocetkaTermina>
-        <datumKrajaTermina>04/27/2021</datumKrajaTermina>
-        <idTermina>1</idTermina>
+        <pocetakTermina>12:30</pocetakTermina>
+        <krajTermina>13:30</krajTermina>
+        <datumPocetkaTermina>06/27/2021</datumPocetkaTermina>
+        <datumKrajaTermina>06/27/2021</datumKrajaTermina>
+        <idTermina>2</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>10:00</pocetakTermina>
-        <krajTermina>11:00</krajTermina>
-        <datumPocetkaTermina>05/19/2021</datumPocetkaTermina>
-        <datumKrajaTermina>05/19/2021</datumKrajaTermina>
-        <idTermina>1</idTermina>
+        <pocetakTermina>13:30</pocetakTermina>
+        <krajTermina>14:00</krajTermina>
+        <datumPocetkaTermina>06/26/2021</datumPocetkaTermina>
+        <datumKrajaTermina>06/26/2021</datumKrajaTermina>
+        <idTermina>3</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>16:00</pocetakTermina>
+        <krajTermina>17:00</krajTermina>
+        <datumPocetkaTermina>07/20/2021</datumPocetkaTermina>
+        <datumKrajaTermina>07/20/2021</datumKrajaTermina>
+        <idTermina>4</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>09:00</pocetakTermina>
+        <krajTermina>10:00</krajTermina>
+        <datumPocetkaTermina>07/30/2021</datumPocetkaTermina>
+        <datumKrajaTermina>07/30/2021</datumKrajaTermina>
+        <idTermina>5</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />
@@ -162,7 +184,15 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini />
+    <zauzetiTermini>
+      <ZauzeceSale>
+        <pocetakTermina>07:00</pocetakTermina>
+        <krajTermina>09:00</krajTermina>
+        <datumPocetkaTermina>06/24/2021</datumPocetkaTermina>
+        <datumKrajaTermina>06/24/2021</datumKrajaTermina>
+        <idTermina>1</idTermina>
+      </ZauzeceSale>
+    </zauzetiTermini>
     <Kreveti />
   </Sala>
   <Sala>

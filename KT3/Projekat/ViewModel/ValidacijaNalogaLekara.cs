@@ -17,7 +17,7 @@ namespace Projekat.ViewModel
         private string email;
         private string adresaStanovanja;
         private Specijalizacija specijalizacija;
-        public string stariJmbg { get; set;}
+        public string stariJmbg { get; set; } = "";
         public string ImeLek { get { return imeLek; } set { imeLek = value; OnPropertyChanged("ImeLek"); } }
         public string PrezimeLek { get { return prezimeLek; } set { prezimeLek = value; OnPropertyChanged("PrezimeLek");  } }
         public string Jmbg { get { return jmbg; } set { jmbg = value; OnPropertyChanged("Jmbg");  } }
@@ -39,8 +39,7 @@ namespace Projekat.ViewModel
             }
 
             if (string.IsNullOrWhiteSpace(this.jmbg) || !this.jmbg.All(Char.IsDigit) || this.jmbg.Length < 9 || this.jmbg.Length > 13)
-            {
-                
+            {   
                 this.ValidationErrors["Jmbg"] = "Potrebno je uneti 9-13 cifara!";
             }
 
