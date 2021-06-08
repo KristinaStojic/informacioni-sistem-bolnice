@@ -101,17 +101,17 @@
       </ZauzeceSale>
       <ZauzeceSale>
         <pocetakTermina>08:00</pocetakTermina>
-        <krajTermina>09:00</krajTermina>
-        <datumPocetkaTermina>06/11/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/11/2021</datumKrajaTermina>
-        <idTermina>1</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>08:00</pocetakTermina>
         <krajTermina>10:00</krajTermina>
         <datumPocetkaTermina>10/10/2021</datumPocetkaTermina>
         <datumKrajaTermina>10/10/2021</datumKrajaTermina>
         <idTermina>9</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>11:00</pocetakTermina>
+        <krajTermina>12:00</krajTermina>
+        <datumPocetkaTermina>10/01/2021</datumPocetkaTermina>
+        <datumKrajaTermina>10/01/2021</datumKrajaTermina>
+        <idTermina>1</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />
@@ -263,18 +263,18 @@
         <idTermina>3</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>10:00</pocetakTermina>
-        <krajTermina>11:30</krajTermina>
-        <datumPocetkaTermina>10/20/2022</datumPocetkaTermina>
-        <datumKrajaTermina>10/20/2022</datumKrajaTermina>
-        <idTermina>11</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
         <pocetakTermina>08:30</pocetakTermina>
         <krajTermina>10:00</krajTermina>
         <datumPocetkaTermina>11/11/2022</datumPocetkaTermina>
         <datumKrajaTermina>11/11/2022</datumKrajaTermina>
         <idTermina>12</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>07:30</pocetakTermina>
+        <krajTermina>08:00</krajTermina>
+        <datumPocetkaTermina>10/10/2025</datumPocetkaTermina>
+        <datumKrajaTermina>10/10/2025</datumKrajaTermina>
+        <idTermina>11</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />
@@ -423,13 +423,6 @@
     <Namjena>fdsfds</Namjena>
     <Oprema />
     <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>08:00</pocetakTermina>
-        <krajTermina>09:00</krajTermina>
-        <datumPocetkaTermina>11/11/2021</datumPocetkaTermina>
-        <datumKrajaTermina>11/11/2021</datumKrajaTermina>
-        <idTermina>8</idTermina>
-      </ZauzeceSale>
       <ZauzeceSale>
         <pocetakTermina>11:30</pocetakTermina>
         <krajTermina>13:00</krajTermina>
