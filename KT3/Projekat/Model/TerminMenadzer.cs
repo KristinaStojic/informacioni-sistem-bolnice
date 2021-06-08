@@ -120,9 +120,9 @@ namespace Model
                     termin.Prostorija = noviTermin.Prostorija;
                     termin.Pomeren = noviTermin.Pomeren;
                     termin.HitnaOperacija = noviTermin.HitnaOperacija;
-                    int idx = PrikaziTermin.Termini.IndexOf(stariTermin);
-                    PrikaziTermin.Termini.RemoveAt(idx);
-                    PrikaziTermin.Termini.Insert(idx, noviTermin);
+                    int idx = ZakazaniTerminiPacijent.Termini.IndexOf(stariTermin);
+                    ZakazaniTerminiPacijent.Termini.RemoveAt(idx);
+                    ZakazaniTerminiPacijent.Termini.Insert(idx, noviTermin);
                     foreach (Sala sala in SaleMenadzer.lista)
                     {
                         foreach (ZauzeceSale zauzece in sala.zauzetiTermini)

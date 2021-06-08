@@ -113,7 +113,7 @@
 
                 </StackPanel>
             </StackPanel>
-            <cc:Calendar x:Name="Kalendar" Margin="0,0,0, 10" Background="White" DayChanged="Kalendar_DayChanged" Height="346" MouseDoubleClick="Kalendar_MouseDoubleClick"  />
+            <cc:Calendar x:Name="Kalendar" Margin="0,0,0, 10" Background="{DynamicResource BackgroundColor}" DayChanged="Kalendar_DayChanged" Height="346" MouseDoubleClick="Kalendar_MouseDoubleClick"  />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="85">
                 <Button Height="40"
                             Width="135"
