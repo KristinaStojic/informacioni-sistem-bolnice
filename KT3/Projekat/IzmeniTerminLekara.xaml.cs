@@ -59,7 +59,7 @@ namespace Projekat
         {
             InitializeComponent();
             this.termin = izabraniTermin;
-           
+            this.DataContext = this;
 
             this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
             List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
@@ -72,6 +72,9 @@ namespace Projekat
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
+
+
+
             dodajSveSlobodneTermine();
 
             vpp.ItemsSource = sviSlobodniTermini;
@@ -81,13 +84,11 @@ namespace Projekat
             {
                 termin.IdTermin = izabraniTermin.IdTermin;
 
+                //vpp.SelectedItem = termin.VremePocetka;
+                PocetnoVreme = termin.VremePocetka;
+                vkk.SelectedItem = termin.VremeKraja;
 
-
-                // vreme
                 vpp.Text = izabraniTermin.VremePocetka;
-                //vpp.SelectedItem = izabraniTermin.VremePocetka; /*NE RADI PRIKAZ*/
-                PocetnoVreme = izabraniTermin.VremePocetka; //vpp.Text;        // ?
-                vkk.SelectedItem = izabraniTermin.VremeKraja;
 
                 // lekar
                 lekar.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
@@ -281,7 +282,7 @@ namespace Projekat
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PocetnoVreme = vpp.Text;
+            //PocetnoVreme = vpp.Text;
             //vkk.ItemsSource = sviSlobodniTerminiKraj;
 
 

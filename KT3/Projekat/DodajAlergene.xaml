@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DodajAlergene" Height="570" Width="442" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="DodajAlergene" Height="570" Width="442" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -44,11 +44,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Sacuvaj" Grid.Column="1" Margin="57.4,29,55.6,0" Grid.Row="12" VerticalAlignment="Top" Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Click="Button_Click" Grid.RowSpan="2"/>
-        <Button Content="Odustani" Grid.Column="2" Margin="55.4,29,57.6,0" Grid.Row="12" VerticalAlignment="Top" Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.RowSpan="2"/>
-        <TextBox BorderBrush="Black" Name="naziv" Grid.Column="2"  Height="30" Margin="21.4,10,20.6,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
-        <TextBox BorderBrush="Black" Name="nuspojava" Grid.Column="2" Margin="21.4,10,20.6,10" Grid.Row="2" TextWrapping="Wrap" Grid.RowSpan="3"/>
-        <TextBox BorderBrush="Black"  Name="vreme" Grid.Column="2"  Height="100" Margin="21.4,10,20.6,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="3"/>
+        <Button Name="potvrdi" Content="Sacuvaj" Grid.Column="1" Margin="57.4,29,55.6,0" Grid.Row="12" VerticalAlignment="Top" Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Click="Button_Click" Grid.RowSpan="2"/>
+        <Button Name="odustani" Content="Odustani" Grid.Column="2" Margin="55.4,29,57.6,0" Grid.Row="12" VerticalAlignment="Top" Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.RowSpan="2" Click="Button_Click_1"/>
+        <TextBox TextChanged="naziv_TextChanged" BorderBrush="Black" Name="naziv" Grid.Column="2"  Height="30" Margin="21.4,10,20.6,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False"/>
+        <TextBox TextChanged="nuspojava_TextChanged" BorderBrush="Black" Name="nuspojava" Grid.Column="2" Margin="21.4,10,20.6,10" Grid.Row="2" TextWrapping="Wrap" Grid.RowSpan="3"/>
+        <TextBox TextChanged="vreme_TextChanged" BorderBrush="Black"  Name="vreme" Grid.Column="2"  Height="100" Margin="21.4,10,20.6,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Grid.RowSpan="3"/>
         <TextBox  BorderBrush="black" Name="pretraga" Grid.Column="2"  Height="30" Margin="21.4,5,20.6,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="pretraga_TextChanged">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">

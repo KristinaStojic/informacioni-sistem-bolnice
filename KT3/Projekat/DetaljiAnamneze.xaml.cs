@@ -30,7 +30,7 @@ namespace Projekat
             InitializeComponent();
             this.termin = Izabranitermin;
             PopuniPodatke(izabranaAnamneza);
-            this.potvrdi.IsEnabled = false;
+            
         }
 
         private void PopuniPodatke(Anamneza izabranaAnamneza)
@@ -60,7 +60,7 @@ namespace Projekat
                 DateTime selectedDate = (DateTime)datum.SelectedDate;
                 datumPregleda = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-                Anamneza nova = new Anamneza(stara.IdAnamneze, stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta, stara.IdLekara, termin.IdTermin);
+                Anamneza nova = new Anamneza(stara.IdAnamneze, stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta, termin.Lekar.IdLekara, termin.IdTermin);
                 ZdravstveniKartonServis.IzmeniAnamnezu(stara, nova);
 
                 TerminServisLekar.sacuvajIzmene();
@@ -121,6 +121,7 @@ namespace Projekat
             if (this.terap.Text.Trim().Equals("") || this.bol.Text.Trim().Equals(""))
             {
                 this.potvrdi.IsEnabled = false;
+                popunjeno = false;
             }
             else if (!this.terap.Text.Trim().Equals("") && !this.bol.Text.Trim().Equals(""))
             {

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="DetaljiAlergena" Height="570" Width="442"  ResizeMode="NoResize">
-    <Grid Background="LightSkyBlue">
+        Title="DetaljiAlergena" Height="570" Width="442"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="LightSkyBlue" KeyDown="Grid_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>
@@ -68,11 +68,11 @@
 
         <TextBox Name="naziv" BorderBrush="Black" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Margin="21.4,10,22.6,0" IsEnabled="False" Grid.Column="2" Grid.Row="1"/>
         <Label Content="Naziv sastojka" FontSize="16" Margin="21.4,10,39.6,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Grid.Column="1" Height="30" Grid.Row="1"/>
-        <TextBox Name ="nuspojava" BorderBrush="Black" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="21.4,10,0,0" Grid.Column="2" Grid.Row="2" Grid.RowSpan="3"/>
+        <TextBox Name ="nuspojava" TextChanged="nuspojava_TextChanged" BorderBrush="Black" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="21.4,10,0,0" Grid.Column="2" Grid.Row="2" Grid.RowSpan="3"/>
         <Label Content="Nuspojava na sastojak" FontSize="16" HorizontalAlignment="Left" Margin="21.4,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="173" Grid.Column="1" Height="30" Grid.Row="2"/>
-        <TextBox Name ="vreme" BorderBrush="Black" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="21.4,10,0,0" Grid.Column="2" Grid.Row="5" Grid.RowSpan="3"/>
+        <TextBox Name ="vreme" TextChanged="vreme_TextChanged" BorderBrush="Black" HorizontalAlignment="Left" Height="100" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Margin="21.4,10,0,0" Grid.Column="2" Grid.Row="5" Grid.RowSpan="3"/>
         <Label Content="Vreme nakon kog se&#xD;&#xA; desila nuspojava" FontSize="16" HorizontalAlignment="Left" Margin="15.4,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.24,-0.157" Width="172" Grid.Column="1" Height="110" Grid.Row="4" Grid.RowSpan="3"/>
-        <Button Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Sacuvaj" Margin="57.4,31,55.6,0" VerticalAlignment="Top" Click="Button_Click" Grid.Column="1" Grid.Row="12" Grid.RowSpan="2"/>
+        <Button x:Name="potvrdi" Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Sacuvaj" Margin="57.4,31,55.6,0" VerticalAlignment="Top" Click="Button_Click" Grid.Column="1" Grid.Row="12" Grid.RowSpan="2"/>
         <Button Height="29" BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Odustani" Margin="55.4,31,55.6,0" VerticalAlignment="Top" Click="Button_Click_1" Grid.Column="2" Grid.Row="12" Grid.RowSpan="2"/>
     </Grid>
 </Window>

@@ -16,28 +16,37 @@ using System.Windows.Shapes;
 namespace Projekat
 {
     /// <summary>
-    /// Interaction logic for ObrisiSastojakLekar.xaml
+    /// Interaction logic for ObrisiZahtevLekar.xaml
     /// </summary>
-    public partial class ObrisiSastojakLekar : Window
+    public partial class ObrisiZahtevLekar : Window
     {
-        Sastojak sastojak;
-        Lek lek;
-        public ObrisiSastojakLekar(Sastojak izabraniSastojak, Lek izabraniLek)
+        ZahtevZaLekove Zahtev;
+        public ObrisiZahtevLekar(ZahtevZaLekove izabraniZahtev)
         {
             InitializeComponent();
-            this.sastojak = izabraniSastojak;
-            this.lek = izabraniLek;
-        }
-
-        private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            LekoviServis.obrisiSastojakLekaLekar(lek, sastojak);
-            this.Close();
-
+            this.Zahtev = izabraniZahtev;
         }
 
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void Potvrdi_Click(object sender, RoutedEventArgs e)
+        {
+            ZahtevZaLekove izabraniZahtjev = null;
+            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            {
+                if (zahtjev.lek.sifraLeka.Equals(Zahtev.sifraLeka))
+                {
+                    izabraniZahtjev = zahtjev;
+                }
+            }
+
+            LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
+            SpisakZahtevaZaLekove.TabelaZahteva.Remove(Zahtev);
+            LekoviServis.sacuvajIzmeneZahteva();
+
             this.Close();
         }
 

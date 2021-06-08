@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Model;
+using Projekat.Pomoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -55,6 +56,8 @@ namespace Projekat
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
+            ZahteviZaGodisnjiPomoc pomoc = new ZahteviZaGodisnjiPomoc();
+            pomoc.Show();
 
         }
 
@@ -67,6 +70,23 @@ namespace Projekat
         private void Button_Nazad(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Zahtev(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Nazad(sender, e);
+            }
+        }
+
+        private void Pomoc_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

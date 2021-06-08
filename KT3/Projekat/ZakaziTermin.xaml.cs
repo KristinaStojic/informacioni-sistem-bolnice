@@ -116,6 +116,14 @@ namespace Projekat
             Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;
+            if (tipTermina.Equals(TipTermina.Pregled))
+            {
+                termin.Lekar.BrojPregleda++;
+            }
+            else if (tipTermina.Equals(TipTermina.Operacija))
+            {
+                termin.Lekar.BrojOperacija++;
+            }
             SaleServis.DodajZauzeceSale(termin, prvaSlobodnaSala);
             termin.Prostorija = prvaSlobodnaSala;
             TerminServis.ZakaziTermin(termin);

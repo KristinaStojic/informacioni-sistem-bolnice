@@ -123,5 +123,17 @@ namespace Projekat
         {
             this.Close();
         }
+
+        private void StackPanel_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Potvrdi(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Odustani(sender, e);
+            }
+        }
     }
 }

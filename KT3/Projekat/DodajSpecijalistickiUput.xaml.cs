@@ -34,6 +34,8 @@ namespace Projekat
         public bool flagPoc = false;
         public bool flagKraj = false;
         public bool popunjenoBolnicko = false;
+
+        public bool popunjenoLab = false;
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -42,9 +44,20 @@ namespace Projekat
             this.potvrdiBolnicko.IsEnabled = false;
             this.potvrdiLab.IsEnabled = false;
             this.potvrdiSpec.IsEnabled = false;
+            this.potvrdiLab.IsEnabled = false;
             PopuniPodatkePacijentaZaSpecijalistickiUput();
             PopuniPodatkePacijentaZaBolnickoLecenje();
+            PopuniPodatkeLaboratorijskiUput();
 
+        }
+
+        private void PopuniPodatkeLaboratorijskiUput()
+        {
+            this.imeLab.Text = pacijent.ImePacijenta;
+            this.prezimeLab.Text = pacijent.PrezimePacijenta;
+            jmbgLab.Text = pacijent.Jmbg.ToString();
+            lekarLab.Text = termin.imePrezimeLekara;
+            datumLab.SelectedDate = DateTime.Parse(termin.Datum);
         }
         private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
@@ -249,7 +262,12 @@ namespace Projekat
         {
             DateTime kraj = (DateTime)this.datumKraja.SelectedDate;
             DateTime pocetak = (DateTime)this.datumPocetka.SelectedDate;
-            if (popunjeno == true)
+
+            if (pocetak >= kraj || pocetak < DateTime.Now.Date)
+            {
+                MessageBox.Show("Niste uneli ispravne datume!");
+            }
+            else if (popunjeno == true)
             {
                 int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaPregelda.Text;
@@ -267,10 +285,10 @@ namespace Projekat
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }
-            else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
+            /*else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
             {
                 MessageBox.Show("Niste uneli ispravne datume!");
-            }
+            }*/
             else
             {
                 MessageBox.Show("Popunite sva polja!");
@@ -314,7 +332,52 @@ namespace Projekat
 
         private void Potvrdi_Laboratorija_Click(object sender, RoutedEventArgs e)
         {
+            if (popunjenoLab)
+            {
+                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                String detaljiOPregledu = napomenaLab.Text;
+                string datum = NadjiDatum();
+                tipUputa tipUputa = NadjiTipUputa();
 
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, tipUputa, detaljiOPregledu);
+                noviUput.datumIzdavanja = datum;
+                ZdravstveniKartonServis.DodajUput(noviUput);
+               
+                TerminServisLekar.sacuvajIzmene();
+                PacijentiServis.SacuvajIzmenePacijenta();
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Niste uneli sve podatke!");
+            }
+        }
+
+        private void postaviDugmeLab()
+        {
+            if (this.napomenaLab.Text != null)
+            {
+                izvrsiPostavljanjeLab();
+            }
+            else
+            {
+                this.potvrdiLab.IsEnabled = false;
+                popunjenoLab = false;
+            }
+        }
+        private void izvrsiPostavljanjeLab()
+        {
+            if (this.napomenaLab.Text.Trim().Equals(""))
+            {
+                this.potvrdiLab.IsEnabled = false;
+                popunjenoLab = false;
+            }
+            else if (!this.napomenaLab.Text.Trim().Equals(""))
+            {
+                this.potvrdiLab.IsEnabled = true;
+                popunjenoLab = true;
+            }
         }
 
         private void Tabovi_KeyDown(object sender, KeyEventArgs e)
@@ -372,7 +435,14 @@ namespace Projekat
 
         private void laboratorija_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                Potvrdi_Laboratorija_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                this.Close();
+            }
         }
 
         private void lekar_TextChanged(object sender, TextChangedEventArgs e)
@@ -417,6 +487,11 @@ namespace Projekat
         private void napomenaPregelda_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugmeBolnicko();
+        }
+
+        private void napomenaLab_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugmeLab();
         }
     }
 }

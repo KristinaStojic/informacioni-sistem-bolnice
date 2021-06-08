@@ -41,6 +41,23 @@ namespace Projekat.Model
             this.datumIzdavanja = datum;
             this.TipUputa = tip;
         }
+        
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, tipUputa tip)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;  
+            this.TipUputa = tip;
+        }
+
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, tipUputa tip, String opis)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;  
+            this.TipUputa = tip;
+            this.opisPregleda = opis;
+        }
 
         public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, int brojSobe, int brojKreveta, string krajLecenja, string datumPocetkaLecenja,string datumIzdavanja, string napomena, tipUputa tip)
         {
@@ -65,7 +82,7 @@ namespace Projekat.Model
             else if (TipUputa.Equals(tipUputa.Laboratorija))
                  return "Laboratorija";
             else //if (TipUputa.Equals(tipUputa.StacionarnoLecenje))
-                 return "Stacionarno lečenje";
+                 return "Bolničko lečenje";
         }
 
     }

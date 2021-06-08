@@ -88,5 +88,25 @@ namespace Projekat
                 MessageBox.Show("Morate izabrati sastojak!");
             }
         }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Dodaj(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Izmeni(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_1(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Nazad(sender, e);
+            }
+        }
     }
 }

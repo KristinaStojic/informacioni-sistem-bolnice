@@ -138,8 +138,10 @@ namespace Projekat.Model
                 {                    
                     pacijent.Karton.Anamneze.Add(anamneza);
                     ZdravstveniKartonLekar.TabelaAnamneza.Add(anamneza);
+                    
                 }
             }
+            PacijentiServis.SacuvajIzmenePacijenta();
         }
 
         public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
@@ -164,6 +166,28 @@ namespace Projekat.Model
             int idx = ZdravstveniKartonLekar.TabelaAnamneza.IndexOf(stara);
             ZdravstveniKartonLekar.TabelaAnamneza.RemoveAt(idx);
             ZdravstveniKartonLekar.TabelaAnamneza.Insert(idx, nova);
+        }
+        
+        public static void IzmeniUput(Uput stara, Uput nova)
+        {
+            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            {
+                if(pacijent.IdPacijenta == stara.idPacijenta)
+                {
+                    foreach(Uput a in pacijent.Karton.Uputi)
+                    {
+                        if(a.IdUputa == stara.IdUputa)
+                        {
+                            a.datumKrajaLecenja = nova.datumKrajaLecenja;
+                        }
+                    }
+                }
+            }
+
+
+            int idx = ZdravstveniKartonLekar.TabelaUputa.IndexOf(stara);
+            ZdravstveniKartonLekar.TabelaUputa.RemoveAt(idx);
+            ZdravstveniKartonLekar.TabelaUputa.Insert(idx, nova);
         }
 
         public static void DodajAlergen(Alergeni alergen)  

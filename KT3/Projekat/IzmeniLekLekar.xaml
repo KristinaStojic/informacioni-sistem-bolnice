@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="IzmeniLekLekar"  Height="350" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -17,13 +17,13 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Sifra leka:"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17"><Run Text="Š"/><Run Text="ifra leka:"/></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Naziv leka:"/>
             <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" TextChanged="sifra_TextChanged"></TextBox>
             <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="naziv" Background="AliceBlue" TextChanged="naziv_TextChanged"></TextBox>
 
             <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Right" Margin="10" Name="Potvrdi" Click="Potvrdi_Click">Potvrdi</Button>
-            <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="10" >Odustani</Button>
+            <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="10" Click="Button_Click" >Odustani</Button>
         </Grid>
     </Grid>
 </Window>

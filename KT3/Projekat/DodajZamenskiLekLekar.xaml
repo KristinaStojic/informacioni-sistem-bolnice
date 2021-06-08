@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="DodajZamenskiLekLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" ResizeMode="NoResize">
-    <StackPanel>
+    <StackPanel KeyDown="StackPanel_KeyDown">
         <StackPanel>
             <TextBlock Name="tekst"  FontWeight="Black" FontSize="15" Margin="0, 25, 0, 0" HorizontalAlignment="Center"></TextBlock>
         </StackPanel>

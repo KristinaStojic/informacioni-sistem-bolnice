@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="PrikazZamenskihLekovaLekar" Height="450" Width="500" WindowStartupLocation="CenterScreen" Background="LightSkyBlue" ResizeMode="NoResize">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="350"/>
             <RowDefinition Height="258*"/>

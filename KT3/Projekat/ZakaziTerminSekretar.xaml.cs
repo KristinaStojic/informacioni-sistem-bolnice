@@ -157,6 +157,15 @@ namespace Projekat
 
 
             Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
+            if (tp.Equals(TipTermina.Pregled))
+            {
+                l.BrojPregleda++;
+            }
+            else if (tp.Equals(TipTermina.Operacija))
+            {
+                l.BrojOperacija++;
+            }
+
             Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             t = new Termin(TerminiSekretarServis.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
@@ -180,6 +189,7 @@ namespace Projekat
 
                 TerminiSekretarServis.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
+                LekariServis.SacuvajIzmeneLekara();
 
                 this.Close();
             }
@@ -191,6 +201,7 @@ namespace Projekat
 
                 TerminiSekretarServis.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
+                LekariServis.SacuvajIzmeneLekara();
 
                 this.Close();
             }
