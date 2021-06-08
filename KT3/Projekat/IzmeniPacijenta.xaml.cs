@@ -164,10 +164,16 @@ namespace Projekat
                 if ((bool)maloletnik.IsChecked)
                 {
                     jmbgStaratelja.IsEnabled = true;
+
+                    if (jmbgStaratelja.Text.Length > 0)
+                    {
+                        flag8 = true;
+                    }
                 }
                 else
                 {
                     jmbgStaratelja.IsEnabled = false;
+                    flag8 = true;
                 }
 
                 if (flag1 == true && flag2 == true && flag3 == true && flag4 == true 
@@ -187,13 +193,40 @@ namespace Projekat
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
-                flag8 = false;
-                potvrdi.IsEnabled = false;
+
+                if (jmbgStaratelja.Text.Length == 0)
+                {
+                    flag8 = false;
+                }
+                else
+                {
+                    flag8 = true;
+                }
+
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                    && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
             else
             {
                 jmbgStaratelja.IsEnabled = false;
                 flag8 = true;
+
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                    && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
         }
 
@@ -404,5 +437,102 @@ namespace Projekat
             }
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (!(bool)maloletnik.IsChecked) // ako nije cekiran, cekiraj check box
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelja.IsEnabled = true;
+
+                    if (jmbgStaratelja.Text.Length == 0)
+                    {
+                        flag8 = false;
+                    }
+                    else
+                    {
+                        flag8 = true;
+                    }
+
+                    if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                        && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                    {
+                        potvrdi.IsEnabled = true;
+                    }
+                    else
+                    {
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelja.IsEnabled = false;
+                    flag8 = true;
+
+                    if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                       && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                    {
+                        potvrdi.IsEnabled = true;
+                    }
+                    else
+                    {
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                if(!(bool)maloletnik.IsChecked)
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelja.IsEnabled = true;
+
+                    if (jmbgStaratelja.Text.Length == 0)
+                    {
+                        flag8 = false;
+                    }
+                    else
+                    {
+                        flag8 = true;
+                    }
+
+                    if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                        && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                    {
+                        potvrdi.IsEnabled = true;
+                    }
+                    else
+                    {
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelja.IsEnabled = false;
+                    flag8 = true;
+
+                    if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                       && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                    {
+                        potvrdi.IsEnabled = true;
+                    }
+                    else
+                    {
+                        potvrdi.IsEnabled = false;
+                    }
+                }
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+        }
     }
 }

@@ -33,10 +33,6 @@ namespace Projekat
         public bool flag7 = false;
         public bool flag8 = true;
 
-      /*  public string validacijaJmbg;
-        public string validacijaJmbgStaratelja;
-        public string validacijaBrojTelefona;  */
-
         public DodajPacijenta()
         {
             InitializeComponent();
@@ -47,69 +43,6 @@ namespace Projekat
             validacijaBrojTelefona.Visibility = Visibility.Hidden; 
             validacijaJmbgStaratelja.Visibility = Visibility.Hidden;
         }
-
-    /*    public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string name, bool flag_)
-        {
-            if (PropertyChanged != null)
-            {
-               // flag_ = true;
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-            else
-            {
-                flag_ = false;
-            }
-            Console.WriteLine(flag_);
-        }
-
-       public string ValidacijaJmbg
-        {
-            get
-            {
-                return validacijaJmbg;
-            }
-            set
-            {
-                if (value != validacijaJmbg)
-                {
-                    validacijaJmbg = value;
-                    OnPropertyChanged("ValidacijaJmbg"/*, flag6);
-                }
-            }
-        }
-
-        public string ValidacijaBrojTelefona
-        {
-            get
-            {
-                return validacijaBrojTelefona;
-            }
-            set
-            {
-                if (value != validacijaBrojTelefona)
-                {
-                    validacijaBrojTelefona = value;
-                    OnPropertyChanged("ValidacijaBrojTelefona"/*, flag7);
-                }
-            }
-        }
-
-        public string ValidacijaJmbgStaratelja
-        {
-            get
-            {
-                return validacijaJmbgStaratelja;
-            }
-            set
-            {
-                if (value != validacijaJmbgStaratelja)
-                {
-                    validacijaJmbgStaratelja = value;
-                    OnPropertyChanged("ValidacijaJmbgStaratelja"/*, flag8);
-                }
-            }
-        } */
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         { 
@@ -210,9 +143,25 @@ namespace Projekat
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
-                jmbgStaratelja.Focusable = true;
-                flag8 = false;
-                potvrdi.IsEnabled = false;
+
+                if (jmbgStaratelja.Text.Equals(""))
+                {
+                    flag8 = false;
+                }
+                else
+                {
+                    flag8 = true;
+                }
+
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                    && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
             else 
             {
@@ -455,6 +404,14 @@ namespace Projekat
                     maloletnik.IsChecked = false;
                     jmbgStaratelja.IsEnabled = false;
                 }
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
             }
         }
 
