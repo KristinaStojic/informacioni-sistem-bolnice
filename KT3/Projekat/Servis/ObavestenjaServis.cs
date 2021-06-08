@@ -261,12 +261,20 @@ namespace Projekat.Servis
             MessageBox.Show(novoObavestenje.TipObavestenja + ": " + sadrzajObavestenja, "Novo obaveštenje");
         }
 
-        public static void ObrisiSelektovanoObavestenje(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
+        public static void ObrisiSelektovanoObavestenje(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent, MenuItem jezik)
         {
-            if (obavestenje != null && obavestenje.TipObavestenja.Equals("Terapija"))
+            //if (obavestenje != null && obavestenje.TipObavestenja.Equals("Terapija"))
+            if(obavestenje != null)
             {
                 ObavestenjaServis.ObrisiObavestenjePacijent(obavestenje);
                 ObavestenjaPacijent.Remove(obavestenje);
+                if(jezik.Header.Equals("_en-US"))
+                {
+                    MessageBox.Show("Selektovano obavestenje je obrisano.", "Informacija", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                MessageBox.Show("The selected notification has been deleted.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
             }
         }
 

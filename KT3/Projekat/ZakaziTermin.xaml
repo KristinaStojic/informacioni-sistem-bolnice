@@ -151,7 +151,7 @@
         </Hyperlink>
             </TextBlock>
             <Button Content="{namespace:Loc Potvrdi}" ToolTip="Potvrdite zakazivanje termina bez elektronskog placanja" HorizontalAlignment="Center"
-                 VerticalAlignment="Top" Width="90"  Height="30" Click="Button_Click_1" Margin="0, 30, 0, 20" Name="potvrdi"
+                 VerticalAlignment="Top" Width="90"  IsEnabled="False" Height="30" Click="Button_Click_1" Margin="0, 30, 0, 20" Name="potvrdi"
                 Style="{DynamicResource ButtonStyle2}"/>
         </StackPanel>
 

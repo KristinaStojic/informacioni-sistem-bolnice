@@ -41,20 +41,44 @@ namespace Projekat
             valSadrzaj.Visibility = Visibility.Hidden;
             try
             {
-                
-                bool potvrdi = false;
-                potvrdi = ProveriIspravnostZaVreme(this.Vreme);
-                potvrdi = ProveriIspravnostZaDatum(this.Datum);
 
                 string vremePodsetnika = Vreme.Text;
                 string datumPodsetnika = Datum.SelectedDate.Value.ToString("MM/dd/yyyy") + " " + vremePodsetnika;
                 string sadrzajPodsetnika = SadrzajPodsetnika.Text;
-
+                try
+                {
+                    DateTime formatiranoVreme = DateTime.Parse(Vreme.Text); 
+                } catch
+                {
+                    if (Jezik.Header.Equals("_en-US"))
+                    {
+                        MessageBox.Show("Neispravan format vremena(format: HH:mm)");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid time format (format HH:mm)");
+                        return;
+                    }
+                    
+                }
+               
                 List<int> pacijenti = new List<int>();
                 pacijenti.Add(idPacijent);
                 if (SadrzajPodsetnika.Text == "")
                 {
                     valSadrzaj.Visibility = Visibility.Visible;
+                    return;
+                }
+                if (vremePodsetnika == "")
+                {
+                    valSadrzaj.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                if (valDatum.Visibility == Visibility.Visible || valVreme.Visibility == Visibility.Visible 
+                    || !ProveriIspravnostZaDatum(Datum) || valSadrzaj.Visibility == Visibility.Visible)
+                {
                     return;
                 }
                 Obavestenja obavestenjeZaPodsetnik = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
@@ -82,6 +106,10 @@ namespace Projekat
                 {
                     valSadrzaj.Visibility = Visibility.Visible;
                 }
+                if (Vreme.Text == "")
+                {
+                    valVreme.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -93,33 +121,12 @@ namespace Projekat
             }
             else
             {
-                return false;
-            }
-            
-        }
-
-        private bool ProveriIspravnostZaVreme(TextBox vreme)
-        {
-            try
-            {
-                TimeSpan vremee = TimeSpan.Parse(Vreme.Text);
-                // HH:mm
-                if (vreme.Text.Length == 5)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
+                return true;
+            }  
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
         public void karton_Click(object sender, RoutedEventArgs e)
@@ -151,24 +158,8 @@ namespace Projekat
             PacijentWebStranice.anketa_Click(this, idPacijent);
         }
         private void Jezik_Click(object sender, RoutedEventArgs e)
-        {
-            /* var app = (App)Application.Current;
-             // TODO: proveriti
-             string eng = "en-US";
-             string srb = "sr-LATN";
-             MenuItem mi = (MenuItem)sender;
-             if (mi.Header.Equals("en-US"))
-             {
-                 mi.Header = "sr-LATN";
-                 app.ChangeLanguage(eng);
-             }
-             else
-             {
-                 mi.Header = "en-US";
-                 app.ChangeLanguage(srb);
-             }*/
+        { 
             PacijentWebStranice.Jezik_Click(Jezik);
-
         }
 
     }

@@ -141,6 +141,9 @@
   <data name="BracnoStanje" xml:space="preserve">
     <value>Bračno stanje</value>
   </data>
+  <data name="brKreveta" xml:space="preserve">
+    <value>Broj kreveta</value>
+  </data>
   <data name="BrojDana" xml:space="preserve">
     <value>Koliko dana uzimati leka</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="BrojTelefona" xml:space="preserve">
     <value>Broj telefona</value>
+  </data>
+  <data name="brSobe" xml:space="preserve">
+    <value>Broj sobe</value>
   </data>
   <data name="Cetiri" xml:space="preserve">
     <value>4. Kako biste ocenili stručnost zaposlenih u Zdravo korporaciji?</value>
@@ -167,6 +173,12 @@
   </data>
   <data name="DatumIzdavanjaUputa" xml:space="preserve">
     <value>Datum izdavanja uputa</value>
+  </data>
+  <data name="DatumKrajaLecenja" xml:space="preserve">
+    <value>Datum kraja lečenja</value>
+  </data>
+  <data name="DatumPocetkaLecenja" xml:space="preserve">
+    <value>Datum početka lečenja</value>
   </data>
   <data name="DatumPropisivanja" xml:space="preserve">
     <value>Datum propisivanja leka</value>
@@ -276,6 +288,9 @@
   <data name="KorisnickoIme" xml:space="preserve">
     <value>Korisničko ime</value>
   </data>
+  <data name="LaboratorijskiUput" xml:space="preserve">
+    <value>Laboratorijski uput</value>
+  </data>
   <data name="lblPodnaslov" xml:space="preserve">
     <value>Izaberite datum i odaberite jedan od preporucenih termina</value>
   </data>
@@ -323,6 +338,9 @@
   </data>
   <data name="NaslovLabrUputa" xml:space="preserve">
     <value>Laboratorijski uput</value>
+  </data>
+  <data name="NaslovStacionarnoLecenje" xml:space="preserve">
+    <value>Stacionarno lecenje</value>
   </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Lekarski uput za specijalistički pregled</value>
@@ -462,6 +480,9 @@
   <data name="SpecijalistickiPregled" xml:space="preserve">
     <value>Specijalistički pregled</value>
   </data>
+  <data name="SpecijalistickiUput" xml:space="preserve">
+    <value>Specijalisticki uput</value>
+  </data>
   <data name="Specijalizacija" xml:space="preserve">
     <value>Specijalizacija</value>
   </data>
@@ -490,6 +511,9 @@
     <value>Tip</value>
   </data>
   <data name="TipTermin" xml:space="preserve">
+    <value>Tip termina</value>
+  </data>
+  <data name="TipTermina" xml:space="preserve">
     <value>Tip termina</value>
   </data>
   <data name="TipUputa" xml:space="preserve">
@@ -536,17 +560,41 @@
   <data name="valAdresa" xml:space="preserve">
     <value>Popunite polje</value>
   </data>
+  <data name="valBrojKartice" xml:space="preserve">
+    <value>Unesite broj kartice</value>
+  </data>
+  <data name="valCVV" xml:space="preserve">
+    <value>Unesite broj sa zadnje strane kartice</value>
+  </data>
   <data name="valDatum" xml:space="preserve">
     <value>Izaberite datum</value>
   </data>
+  <data name="valDatumVazenja" xml:space="preserve">
+    <value>Unesite datum vazenja kartice</value>
+  </data>
+  <data name="valDrzava" xml:space="preserve">
+    <value>Odaberite drzavu</value>
+  </data>
+  <data name="valGrad" xml:space="preserve">
+    <value>Izaberite grad</value>
+  </data>
   <data name="valIme" xml:space="preserve">
     <value>Unesite ime</value>
+  </data>
+  <data name="valImePrezime" xml:space="preserve">
+    <value>Unesite ime i prezime sa kartice</value>
   </data>
   <data name="valJmbg" xml:space="preserve">
     <value>Dozvoljene su samo cifre</value>
   </data>
   <data name="valJmbgDuzina" xml:space="preserve">
     <value>Duzina mora biti od 9 do 13 cifara</value>
+  </data>
+  <data name="valKartica" xml:space="preserve">
+    <value>Izaberite nacin placanja</value>
+  </data>
+  <data name="valPostanskiBroj" xml:space="preserve">
+    <value>Unesite postanski broj</value>
   </data>
   <data name="valPrezime" xml:space="preserve">
     <value>Unesite prezime</value>

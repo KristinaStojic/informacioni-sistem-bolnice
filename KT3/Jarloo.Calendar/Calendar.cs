@@ -85,7 +85,6 @@ namespace MyCalendar.Calendar
         public DayChangedEventArgs(Day day)
         {
             this.Day = day;
-            MessageBox.Show(day.ToString());
         }
     }
 }

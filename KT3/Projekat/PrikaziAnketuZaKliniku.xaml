@@ -88,15 +88,15 @@
                     </GridView>
                 </ListView.View>
             </-->
-            <StackPanel Margin="179,0,181,20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="475" 
-                        Width="350" Background="#e8f1f5">
+            <StackPanel Margin="150,0,160,20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="475" 
+                        Width="400" Background="#e8f1f5">
                 <StackPanel Margin="0,0,0,0"  HorizontalAlignment="Center" Width="350">
                     <Label HorizontalAlignment="Center" Content="{namespace:Loc NaslovAnketaKlinika}" FontWeight="Bold" FontSize="13" Margin="52,10,50, 0" />
                     <Label HorizontalAlignment="Center" Content="{namespace:Loc Ocene}" FontSize="11"/>
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280" Text="{namespace:Loc Jedan}">
+                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="330" Text="{namespace:Loc Jedan}">
 
                         </TextBlock>
                     </StackPanel>
@@ -112,7 +112,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Dva}">
+                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30,0,29,0" Text="{namespace:Loc Dva}">
 
                         </TextBlock>
                     </StackPanel>
@@ -126,7 +126,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Tri}">
+                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30,0,29,0" Text="{namespace:Loc Tri}">
 
                         </TextBlock>
                     </StackPanel>
@@ -140,7 +140,7 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Cetiri}">
+                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30,0,29,0" Text="{namespace:Loc Cetiri}">
 
                         </TextBlock>
                     </StackPanel>
@@ -155,7 +155,7 @@
                 </StackPanel>
                 <StackPanel Margin="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja5" Margin="30, 0, 0, 0" TextWrapping="Wrap" Text="{namespace:Loc Pet}">
+                        <TextBlock x:Name="pitanja5" Margin="30,0,29,0" TextWrapping="Wrap" Text="{namespace:Loc Pet}">
 
                         </TextBlock>
                     </StackPanel>
