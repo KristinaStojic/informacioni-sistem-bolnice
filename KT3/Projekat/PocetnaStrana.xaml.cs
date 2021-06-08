@@ -111,7 +111,11 @@ namespace Projekat
             }else if (e.Key == Key.A && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Aplikacija_Click(sender, e);
+            }else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                MenuItem_Click_1(sender, e);
             }
+
             
 
 
@@ -142,6 +146,7 @@ namespace Projekat
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
+            this.Close();
             LicniPodaciLekar podaci = new LicniPodaciLekar(IDLekara);
             podaci.Show();
         }

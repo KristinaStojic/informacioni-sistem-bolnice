@@ -44,8 +44,8 @@
         <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Name="telefon"/>
         <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Top" Name="email"/>
         <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="8" TextWrapping="Wrap" VerticalAlignment="Top" Name="adresa"/>
-        <TextBox BorderBrush="Black" Grid.Column="2" Height="30" Margin="18,13,18,0" Grid.Row="9" TextWrapping="Wrap" VerticalAlignment="Top" Name="specijalizacija"/>
         <Button Content="Sačuvaj" Grid.Column="1" Margin="51,43,58,0" Grid.Row="10" VerticalAlignment="Top" Height="32" BorderBrush="White" Foreground="White" Background="#FF6895C5" Click="Button_Click_1"/>
         <Button Content="Odustani" Grid.Column="2" Margin="58,43,50,0" Grid.Row="10" VerticalAlignment="Top" Height="32" BorderBrush="White" Foreground="White" Background="#FF6895C5" Click="Button_Click"/>
+        <ComboBox Name="specijalizacija" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" Grid.Column="2" Margin="18,13,0,0" Grid.Row="9" Height="30"/>
     </Grid>
 </Window>

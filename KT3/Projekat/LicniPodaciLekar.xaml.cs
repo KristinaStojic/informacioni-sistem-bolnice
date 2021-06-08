@@ -26,6 +26,15 @@ namespace Projekat
             InitializeComponent();
             this.IDLekara = idLekara;
             PopuniPodatkeLekara();
+
+            
+            
+             specijalizacija.Items.Add(Specijalizacija.Akuserstvo);
+             specijalizacija.Items.Add(Specijalizacija.Hirurgija);
+             specijalizacija.Items.Add(Specijalizacija.Opsta_praksa);
+             specijalizacija.Items.Add(Specijalizacija.Ortopedija);
+             specijalizacija.Items.Add(Specijalizacija.Specijalista);
+            
         }
 
         private void PopuniPodatkeLekara()
@@ -42,7 +51,7 @@ namespace Projekat
                     this.telefon.Text = lekar.BrojTelefona.ToString();
                     this.email.Text = lekar.Email;
                     this.adresa.Text = lekar.AdresaStanovanja;
-                    this.specijalizacija.Text = lekar.specijalizacija.ToString();
+                    this.specijalizacija.SelectedItem = lekar.specijalizacija;
                 }
             }
         }
@@ -62,6 +71,8 @@ namespace Projekat
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            PocetnaStrana p = new PocetnaStrana(IDLekara);
+            p.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -83,12 +94,40 @@ namespace Projekat
             string emailLekara = email.Text;
             string adresaLekara = adresa.Text;
            
-            //string specijalizacijaLekara = specijalizacija.Text;
+            string specijalizacijaLekara = specijalizacija.Text;
             /**NAPRAVI IZMENU KOR.IMENA I LOZINKE I ISPRAVI SPECIJALIZACIJU - DODAJ COMBOBOX*/
             Lekar noviLekar = new Lekar(IDLekara,imeLekara,prezimeLekara,jmbgLekara, brTelefon, emailLekara,adresaLekara, stariLekar.specijalizacija, korisnickoIme, sifra);
+
+            if (specijalizacija.Text.Equals(Specijalizacija.Opsta_praksa.ToString()))
+            {
+                noviLekar.specijalizacija = Specijalizacija.Opsta_praksa;
+            }
+            else if (specijalizacija.Text.Equals(Specijalizacija.Akuserstvo.ToString()))
+            {
+                noviLekar.specijalizacija = Specijalizacija.Akuserstvo;
+            }
+            else if(specijalizacija.Text.Equals(Specijalizacija.Hirurgija.ToString()))
+            {
+                noviLekar.specijalizacija = Specijalizacija.Hirurgija;
+            }
+            else if(specijalizacija.Text.Equals(Specijalizacija.Ortopedija.ToString()))
+            {
+                noviLekar.specijalizacija = Specijalizacija.Ortopedija;
+            }
+            else if(specijalizacija.Text.Equals(Specijalizacija.Specijalista.ToString()))
+            {
+                noviLekar.specijalizacija = Specijalizacija.Specijalista;
+            }
+
             LekariServis.IzmeniLekara(stariLekar, noviLekar);
 
+            
+
             this.Close();
+
+            PocetnaStrana p = new PocetnaStrana(IDLekara);
+            p.Show();
+            
         }
     }
 }
