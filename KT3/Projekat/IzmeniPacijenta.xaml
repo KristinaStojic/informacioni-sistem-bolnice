@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Model"
         mc:Ignorable="d"
-        Title="IzmeniPacijenta" Height="660" Width="560" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="IzmeniPacijenta" Height="660" Width="560" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>

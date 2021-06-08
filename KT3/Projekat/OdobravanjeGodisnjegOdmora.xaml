@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="OdobravanjeGodisnjegOdmora" Height="520" Width="820" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="OdobravanjeGodisnjegOdmora" Height="520" Width="820" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
                 <Grid>
                     <Label Content="Izberite zahtev lekara kome zelite da odobrite ili odbijete godisnji odmor:" FontSize="17" HorizontalAlignment="Left" Margin="24,18,0,0" VerticalAlignment="Top"/>

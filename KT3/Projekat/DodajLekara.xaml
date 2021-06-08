@@ -11,6 +11,9 @@
     <Window.DataContext>
         <viewmodel:LekarViewModel/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OdustaniOdDodavanjaLekara}"></KeyBinding>
+    </Window.InputBindings>
     <Window.Resources>
         <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">

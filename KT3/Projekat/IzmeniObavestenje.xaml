@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="IzmeniObavestenje" WindowStartupLocation="CenterScreen" Height="615" Width="510" ResizeMode="NoResize">
+        Title="IzmeniObavestenje" WindowStartupLocation="CenterScreen" Height="615" Width="510" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
