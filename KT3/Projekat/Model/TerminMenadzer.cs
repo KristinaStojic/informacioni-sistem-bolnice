@@ -303,6 +303,23 @@ namespace Model
 
         public static void OtkaziTerminLekar(Termin termin)
         {
+            
+
+            foreach(Lekar l in LekariServis.NadjiSveLekare())
+            {
+                if(l.IdLekara == termin.Lekar.IdLekara)
+                {
+                    if (termin.tipTermina.ToString().Equals("Pregled"))
+                    {
+                        l.BrojPregleda--;
+                    }
+                    else if (termin.tipTermina.ToString().Equals("Operacija"))
+                    {
+                        l.BrojOperacija--;
+                    }
+                }
+            }
+
             //termini.Remove(termin);
             for (int i = 0; i < termini.Count; i++)
             {
@@ -313,8 +330,16 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleServis.sacuvajIzmjene();
+                            foreach (ZauzeceSale t in s.zauzetiTermini.ToArray())
+                            {
+                                if (t.idTermina == termin.IdTermin)
+                                {
+                                    s.zauzetiTermini.Remove(t);
+                                    SaleServis.sacuvajIzmjene();
+                                }
+                            }
+                            //s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
+                           // SaleServis.sacuvajIzmjene();
                         }
                     }
 
@@ -322,6 +347,7 @@ namespace Model
                 }
             }
             PrikazTerminaLekar.Termini.Remove(termin);
+            LekariMenadzer.SacuvajIzmeneLekara();
             sacuvajIzmene();
         }
 

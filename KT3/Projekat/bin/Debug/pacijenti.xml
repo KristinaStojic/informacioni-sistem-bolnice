@@ -219,12 +219,93 @@
     <BracnoStanje>Razveden</BracnoStanje>
     <Karton>
       <IdPacijenta>3</IdPacijenta>
-      <LekarskiRecepti />
-      <Anamneze />
-      <Alergeni />
-      <Uputi />
-      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <LekarskiRecepti>
+        <LekarskiRecept>
+          <IdRecepta>1</IdRecepta>
+          <idPacijenta>3</idPacijenta>
+          <IdLekara>2</IdLekara>
+          <NazivLeka>Brufen</NazivLeka>
+          <DatumPropisivanjaLeka>12/30/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>12</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>10:10</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2021-12-30T10:10:00</dateTime>
+            <dateTime>2021-12-30T12:10:00</dateTime>
+            <dateTime>2021-12-30T14:10:00</dateTime>
+            <dateTime>2021-12-30T16:10:00</dateTime>
+            <dateTime>2021-12-30T18:10:00</dateTime>
+            <dateTime>2021-12-30T20:10:00</dateTime>
+            <dateTime>2021-12-30T22:10:00</dateTime>
+            <dateTime>2021-12-31T00:10:00</dateTime>
+            <dateTime>2021-12-31T02:10:00</dateTime>
+            <dateTime>2021-12-31T04:10:00</dateTime>
+            <dateTime>2021-12-31T06:10:00</dateTime>
+            <dateTime>2021-12-31T08:10:00</dateTime>
+            <dateTime>2021-12-31T10:10:00</dateTime>
+            <dateTime>2021-12-31T12:10:00</dateTime>
+            <dateTime>2021-12-31T14:10:00</dateTime>
+            <dateTime>2021-12-31T16:10:00</dateTime>
+            <dateTime>2021-12-31T18:10:00</dateTime>
+            <dateTime>2021-12-31T20:10:00</dateTime>
+            <dateTime>2021-12-31T22:10:00</dateTime>
+            <dateTime>2022-01-01T00:10:00</dateTime>
+            <dateTime>2022-01-01T02:10:00</dateTime>
+            <dateTime>2022-01-01T04:10:00</dateTime>
+            <dateTime>2022-01-01T06:10:00</dateTime>
+            <dateTime>2022-01-01T08:10:00</dateTime>
+            <dateTime>2022-01-01T10:10:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
+      </LekarskiRecepti>
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>3</IdPacijenta>
+          <IdLekara>2</IdLekara>
+          <OpisBolesti>asdasd</OpisBolesti>
+          <Terapija>dasda</Terapija>
+          <Datum>12/30/2021</Datum>
+          <IdTermina>13</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Marko Filipovic</ImePrezimeLekara>
+        </Anamneza>
+      </Anamneze>
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>3</IdPacijenta>
+          <NazivSastojka>s3</NazivSastojka>
+          <NuspojavaNaNastojak>sadad</NuspojavaNaNastojak>
+          <VremeReakcije>dasda</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi>
+        <Uput>
+          <IdUputa>1</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>2</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>12/30/2021</datumIzdavanja>
+          <opisPregleda>sdasd</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>2</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>2</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>12/30/2021</datumIzdavanja>
+          <opisPregleda>adasd</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>Laboratorija</TipUputa>
+        </Uput>
+      </Uputi>
+      <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
       <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>

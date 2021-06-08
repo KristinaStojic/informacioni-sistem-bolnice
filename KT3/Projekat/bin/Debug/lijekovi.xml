@@ -26,6 +26,10 @@
         <naziv>vcx</naziv>
         <kolicina>100</kolicina>
       </Sastojak>
+      <Sastojak>
+        <naziv>ASD</naziv>
+        <kolicina>22222</kolicina>
+      </Sastojak>
     </sastojci>
   </Lek>
   <Lek>
@@ -113,6 +117,87 @@
       <Sastojak>
         <naziv>sda</naziv>
         <kolicina>111</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>7</idLeka>
+    <nazivLeka>erewreew</nazivLeka>
+    <sifraLeka>erwr</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>werwer</naziv>
+        <kolicina>222</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>dsfs</naziv>
+        <kolicina>333</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>8</idLeka>
+    <nazivLeka>erewreew</nazivLeka>
+    <sifraLeka>erwr</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>werwer</naziv>
+        <kolicina>222</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>dsfs</naziv>
+        <kolicina>333</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>9</idLeka>
+    <nazivLeka>asdada</nazivLeka>
+    <sifraLeka>adad</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>12</idLeka>
+    <nazivLeka>sdsfdsf</nazivLeka>
+    <sifraLeka>arfrf</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>16</idLeka>
+    <nazivLeka>sfdsfdsdf</nazivLeka>
+    <sifraLeka>65312</sifraLeka>
+    <zamenskiLekovi>
+      <int>8</int>
+    </zamenskiLekovi>
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>17</idLeka>
+    <nazivLeka>dfvfdgdf</nazivLeka>
+    <sifraLeka>fsdfsf</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>sfdsdf</naziv>
+        <kolicina>2222</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>20</idLeka>
+    <nazivLeka>LEEEEEEK</nazivLeka>
+    <sifraLeka>AAAA</sifraLeka>
+    <zamenskiLekovi>
+      <int>16</int>
+    </zamenskiLekovi>
+    <sastojci>
+      <Sastojak>
+        <naziv>aaaaAAAAAAAAAAAAA</naziv>
+        <kolicina>321</kolicina>
       </Sastojak>
     </sastojci>
   </Lek>

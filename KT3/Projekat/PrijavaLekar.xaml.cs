@@ -24,6 +24,7 @@ namespace Projekat
         public PrijavaLekar()
         {
             InitializeComponent();
+            potvrdi.IsEnabled = false;
            
         }
 
