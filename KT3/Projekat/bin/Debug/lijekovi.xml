@@ -22,6 +22,10 @@
         <naziv>s3</naziv>
         <kolicina>250</kolicina>
       </Sastojak>
+      <Sastojak>
+        <naziv>vcx</naziv>
+        <kolicina>100</kolicina>
+      </Sastojak>
     </sastojci>
   </Lek>
   <Lek>
@@ -105,6 +109,10 @@
       <Sastojak>
         <naziv>prah</naziv>
         <kolicina>150</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>sda</naziv>
+        <kolicina>111</kolicina>
       </Sastojak>
     </sastojci>
   </Lek>

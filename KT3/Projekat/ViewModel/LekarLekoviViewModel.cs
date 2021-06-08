@@ -17,6 +17,9 @@ namespace Projekat.ViewModel
 
         private ObservableCollection<Lek> tabelaLekova;
         public ObservableCollection<Lek> TabelaLekova { get { return tabelaLekova; } set { tabelaLekova = value; OnPropertyChanged("TabelaLekova"); } }
+        
+        private ObservableCollection<Sastojak> tabelaSastojaka;
+        public ObservableCollection<Sastojak> TabelaSastojaka { get { return tabelaSastojaka; } set { tabelaSastojaka = value; OnPropertyChanged("TabelaSastojaka"); } }
 
 
         private ZahtevZaLekove izabraniZahtev;
@@ -24,13 +27,22 @@ namespace Projekat.ViewModel
         
         private Lek izabraniLek;
         public Lek IzabraniLek { get { return izabraniLek; } set { izabraniLek = value; OnPropertyChanged("IzabraniLek"); } }
+        
+        private Sastojak izabraniSastojak;
+        public Sastojak IzabraniSastojak { get { return izabraniSastojak; } set { izabraniSastojak = value; OnPropertyChanged("IzabraniSastojak"); } }
 
 
         public MyICommand ObradiZahtevKomanda { get; set; }
         public MyICommand ObrisiZahtevKomanda { get; set; }
         public MyICommand NazadIzZahtevaKomanda { get; set; }
+        public MyICommand IzmeniLekKomanda { get; set; }
+        public MyICommand SastojciLekaKomanda { get; set; }
+        public MyICommand ZamenskiLekoviKomanda { get; set; }
         public static Window OtvoriObraduZahteva { get; set; }
         public static Window OtvoriBrisanjeZahteva { get; set; }
+        public static Window OtvoriIzmenuLeka { get; set; }
+        public static Window OtvoriSastojkeLeka { get; set; }
+        public static Window OtvoriZamenskeLekove { get; set; }
 
         public LekarLekoviViewModel()
         {
@@ -39,6 +51,54 @@ namespace Projekat.ViewModel
             ObradiZahtevKomanda = new MyICommand(ObradiZahtev);
             ObrisiZahtevKomanda = new MyICommand(ObrisiZahtev);
             NazadIzZahtevaKomanda = new MyICommand(NazadIzZahteva);
+            IzmeniLekKomanda = new MyICommand(IzmeniLek);
+            SastojciLekaKomanda = new MyICommand(SastojciLeka);
+            ZamenskiLekoviKomanda = new MyICommand(ZamenskiLekovi);
+        }
+        private void ZamenskiLekovi()
+        {
+            if (izabraniLek != null)
+            {
+                OtvoriZamenskeLekove = new PrikazZamenskihLekovaLekar(izabraniLek);
+                OtvoriZamenskeLekove.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
+        private void SastojciLeka()
+        {
+            if (izabraniLek != null)
+            {
+                /*TabelaSastojaka = new ObservableCollection<Sastojak>();
+                foreach (Sastojak sastojak in izabraniLek.sastojci)
+                {
+                    TabelaSastojaka.Add(sastojak);
+                }*/
+                OtvoriSastojkeLeka = new PrikazSastojakaLekar(izabraniLek);
+                OtvoriSastojkeLeka.Show();
+                //OtvoriSastojkeLeka.DataContext = this;
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
+        private void IzmeniLek()
+        {
+
+            if (izabraniLek != null)
+            {
+                
+                OtvoriIzmenuLeka = new IzmeniLekLekar(izabraniLek);
+                OtvoriIzmenuLeka.Show();
+                OtvoriIzmenuLeka.DataContext = this;
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
         }
 
         private void ObradiZahtev()
