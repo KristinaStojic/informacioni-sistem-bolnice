@@ -62,87 +62,6 @@
   </Sala>
   <Sala>
     <TipSale>SalaZaPregled</TipSale>
-    <Id>2</Id>
-    <brojSale>2</brojSale>
-    <Namjena>opsta praksa</Namjena>
-    <Oprema>
-      <Oprema>
-        <NazivOpreme>rukavice</NazivOpreme>
-        <Kolicina>500</Kolicina>
-        <Staticka>false</Staticka>
-        <IdOpreme>6</IdOpreme>
-      </Oprema>
-      <Oprema>
-        <NazivOpreme>flaster</NazivOpreme>
-        <Kolicina>58</Kolicina>
-        <Staticka>false</Staticka>
-        <IdOpreme>7</IdOpreme>
-      </Oprema>
-      <Oprema>
-        <NazivOpreme>operacioni sto</NazivOpreme>
-        <Kolicina>99</Kolicina>
-        <Staticka>true</Staticka>
-        <IdOpreme>1</IdOpreme>
-      </Oprema>
-      <Oprema>
-        <NazivOpreme>operaciona stolica</NazivOpreme>
-        <Kolicina>50</Kolicina>
-        <Staticka>true</Staticka>
-        <IdOpreme>4</IdOpreme>
-      </Oprema>
-      <Oprema>
-        <NazivOpreme>respirator</NazivOpreme>
-        <Kolicina>20</Kolicina>
-        <Staticka>true</Staticka>
-        <IdOpreme>2</IdOpreme>
-      </Oprema>
-      <Oprema>
-        <NazivOpreme>monitor vitalnih funkcija</NazivOpreme>
-        <Kolicina>40</Kolicina>
-        <Staticka>true</Staticka>
-        <IdOpreme>3</IdOpreme>
-      </Oprema>
-      <Oprema>
-        <NazivOpreme>lampa</NazivOpreme>
-        <Kolicina>3</Kolicina>
-        <Staticka>true</Staticka>
-        <IdOpreme>8</IdOpreme>
-      </Oprema>
-    </Oprema>
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>12:30</pocetakTermina>
-        <krajTermina>13:30</krajTermina>
-        <datumPocetkaTermina>06/27/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/27/2021</datumKrajaTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>13:30</pocetakTermina>
-        <krajTermina>14:00</krajTermina>
-        <datumPocetkaTermina>06/26/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/26/2021</datumKrajaTermina>
-        <idTermina>3</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>16:00</pocetakTermina>
-        <krajTermina>17:00</krajTermina>
-        <datumPocetkaTermina>07/20/2021</datumPocetkaTermina>
-        <datumKrajaTermina>07/20/2021</datumKrajaTermina>
-        <idTermina>4</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>09:00</pocetakTermina>
-        <krajTermina>10:00</krajTermina>
-        <datumPocetkaTermina>07/30/2021</datumPocetkaTermina>
-        <datumKrajaTermina>07/30/2021</datumKrajaTermina>
-        <idTermina>5</idTermina>
-      </ZauzeceSale>
-    </zauzetiTermini>
-    <Kreveti />
-  </Sala>
-  <Sala>
-    <TipSale>SalaZaPregled</TipSale>
     <Id>3</Id>
     <brojSale>3</brojSale>
     <Namjena>opsta praksa</Namjena>
@@ -190,6 +109,20 @@
         <krajTermina>09:00</krajTermina>
         <datumPocetkaTermina>06/24/2021</datumPocetkaTermina>
         <datumKrajaTermina>06/24/2021</datumKrajaTermina>
+        <idTermina>1</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>10:00</pocetakTermina>
+        <krajTermina>13:00</krajTermina>
+        <datumPocetkaTermina>06/16/2021</datumPocetkaTermina>
+        <datumKrajaTermina>06/16/2021</datumKrajaTermina>
+        <idTermina>1</idTermina>
+      </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>08:00</pocetakTermina>
+        <krajTermina>09:30</krajTermina>
+        <datumPocetkaTermina>06/23/2021</datumPocetkaTermina>
+        <datumKrajaTermina>06/23/2021</datumKrajaTermina>
         <idTermina>1</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
