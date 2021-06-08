@@ -2,99 +2,21 @@
 <ArrayOfPacijent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Pacijent>
     <IdPacijenta>1</IdPacijenta>
-    <ImePacijenta>Konstantin</ImePacijenta>
-    <PrezimePacijenta>Despotovic</PrezimePacijenta>
+    <ImePacijenta>Dimitrije</ImePacijenta>
+    <PrezimePacijenta>Radic</PrezimePacijenta>
     <Pol>M</Pol>
-    <Jmbg>123456</Jmbg>
+    <Jmbg>321456879</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>6435124565</BrojTelefona>
-    <Email>kosta@gmail.com</Email>
-    <AdresaStanovanja>Jardan bb</AdresaStanovanja>
-    <Zanimanje>student</Zanimanje>
-    <BracnoStanje>Neudata</BracnoStanje>
-    <IzabraniLekar>
-      <IdLekara>2</IdLekara>
-      <ImeLek>Milos</ImeLek>
-      <PrezimeLek>Dragojevic</PrezimeLek>
-      <Jmbg>0</Jmbg>
-      <BrojTelefona>0</BrojTelefona>
-      <specijalizacija>Opsta_praksa</specijalizacija>
-      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
-      <ZahteviZaOdmor />
-      <RadniDani />
-      <BrojPregleda>0</BrojPregleda>
-      <BrojOperacija>0</BrojOperacija>
-    </IzabraniLekar>
+    <BrojTelefona>3214565</BrojTelefona>
+    <Email>radic@uns.ac.rs</Email>
+    <AdresaStanovanja>NS</AdresaStanovanja>
+    <Zanimanje>Student</Zanimanje>
+    <BracnoStanje>Neozenjen</BracnoStanje>
     <Karton>
       <IdPacijenta>1</IdPacijenta>
-      <LekarskiRecepti>
-        <LekarskiRecept>
-          <IdRecepta>1</IdRecepta>
-          <idPacijenta>1</idPacijenta>
-          <IdLekara>1</IdLekara>
-          <NazivLeka>Andol</NazivLeka>
-          <DatumPropisivanjaLeka>04/16/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
-          <DnevnaKolicina>5</DnevnaKolicina>
-          <PocetakKoriscenja>20:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-        <LekarskiRecept>
-          <IdRecepta>2</IdRecepta>
-          <idPacijenta>1</idPacijenta>
-          <IdLekara>1</IdLekara>
-          <NazivLeka>Sterpsils</NazivLeka>
-          <DatumPropisivanjaLeka>04/18/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
-          <DnevnaKolicina>3</DnevnaKolicina>
-          <PocetakKoriscenja>10:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-        <LekarskiRecept>
-          <IdRecepta>3</IdRecepta>
-          <idPacijenta>1</idPacijenta>
-          <IdLekara>1</IdLekara>
-          <NazivLeka>analgin</NazivLeka>
-          <DatumPropisivanjaLeka>06/04/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>4</BrojDanaKoriscenja>
-          <DnevnaKolicina>2</DnevnaKolicina>
-          <PocetakKoriscenja>10:00</PocetakKoriscenja>
-          <UzimanjeTerapije>
-            <dateTime>2021-06-04T10:00:00</dateTime>
-            <dateTime>2021-06-04T16:00:00</dateTime>
-            <dateTime>2021-06-04T22:00:00</dateTime>
-            <dateTime>2021-06-05T04:00:00</dateTime>
-            <dateTime>2021-06-05T10:00:00</dateTime>
-            <dateTime>2021-06-05T16:00:00</dateTime>
-            <dateTime>2021-06-05T22:00:00</dateTime>
-            <dateTime>2021-06-06T04:00:00</dateTime>
-            <dateTime>2021-06-06T10:00:00</dateTime>
-          </UzimanjeTerapije>
-        </LekarskiRecept>
-      </LekarskiRecepti>
-      <Anamneze>
-        <Anamneza>
-          <IdAnamneze>1</IdAnamneze>
-          <IdPacijenta>1</IdPacijenta>
-          <IdLekara>1</IdLekara>
-          <OpisBolesti>Bronhitis</OpisBolesti>
-          <Terapija>Inhalacija fizioloskim rastvorom</Terapija>
-          <Datum>06/04/2021</Datum>
-          <IdTermina>2</IdTermina>
-          <Beleska>Zakazati pregled</Beleska>
-          <ImePrezimeLekara>Petar Nebojsic</ImePrezimeLekara>
-        </Anamneza>
-      </Anamneze>
-      <Alergeni>
-        <Alergeni>
-          <IdAlergena>1</IdAlergena>
-          <IdPacijenta>1</IdPacijenta>
-          <NazivSastojka>s2</NazivSastojka>
-          <NuspojavaNaNastojak>Vrtoglavica</NuspojavaNaNastojak>
-          <VremeReakcije>7 dana</VremeReakcije>
-        </Alergeni>
-      </Alergeni>
+      <LekarskiRecepti />
+      <Anamneze />
+      <Alergeni />
       <Uputi />
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
       <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
@@ -105,28 +27,16 @@
   </Pacijent>
   <Pacijent>
     <IdPacijenta>2</IdPacijenta>
-    <ImePacijenta>Dimitrije</ImePacijenta>
-    <PrezimePacijenta>Jovanovic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>123456789</Jmbg>
+    <ImePacijenta>Konstantin</ImePacijenta>
+    <PrezimePacijenta>Despotovic</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>3215987545</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>45651321</BrojTelefona>
-    <Email>dim@gmail.com</Email>
+    <BrojTelefona>3215201</BrojTelefona>
+    <Email>kosta@hotmail.coom</Email>
     <AdresaStanovanja>NS</AdresaStanovanja>
-    <Zanimanje>student</Zanimanje>
-    <BracnoStanje>Neodredjeno</BracnoStanje>
-    <IzabraniLekar>
-      <IdLekara>1</IdLekara>
-      <Jmbg>0</Jmbg>
-      <BrojTelefona>0</BrojTelefona>
-      <specijalizacija>Opsta_praksa</specijalizacija>
-      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
-      <ZahteviZaOdmor />
-      <RadniDani />
-      <BrojPregleda>0</BrojPregleda>
-      <BrojOperacija>0</BrojOperacija>
-    </IzabraniLekar>
+    <Zanimanje>Profesor</Zanimanje>
+    <BracnoStanje>Ozenjen</BracnoStanje>
     <Karton>
       <IdPacijenta>2</IdPacijenta>
       <LekarskiRecepti>
@@ -134,36 +44,182 @@
           <IdRecepta>1</IdRecepta>
           <idPacijenta>2</idPacijenta>
           <IdLekara>1</IdLekara>
-          <NazivLeka>Lek1</NazivLeka>
-          <DatumPropisivanjaLeka>04/15/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>5</BrojDanaKoriscenja>
-          <DnevnaKolicina>2</DnevnaKolicina>
+          <NazivLeka>kafetin</NazivLeka>
+          <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>5</DnevnaKolicina>
           <PocetakKoriscenja>10:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
+          <UzimanjeTerapije>
+            <dateTime>2021-06-09T10:00:00</dateTime>
+            <dateTime>2021-06-09T12:00:00</dateTime>
+            <dateTime>2021-06-09T14:00:00</dateTime>
+            <dateTime>2021-06-09T16:00:00</dateTime>
+            <dateTime>2021-06-09T18:00:00</dateTime>
+            <dateTime>2021-06-09T20:00:00</dateTime>
+            <dateTime>2021-06-09T22:00:00</dateTime>
+            <dateTime>2021-06-10T00:00:00</dateTime>
+            <dateTime>2021-06-10T02:00:00</dateTime>
+            <dateTime>2021-06-10T04:00:00</dateTime>
+            <dateTime>2021-06-10T06:00:00</dateTime>
+            <dateTime>2021-06-10T08:00:00</dateTime>
+            <dateTime>2021-06-10T10:00:00</dateTime>
+            <dateTime>2021-06-10T12:00:00</dateTime>
+            <dateTime>2021-06-10T14:00:00</dateTime>
+            <dateTime>2021-06-10T16:00:00</dateTime>
+            <dateTime>2021-06-10T18:00:00</dateTime>
+            <dateTime>2021-06-10T20:00:00</dateTime>
+            <dateTime>2021-06-10T22:00:00</dateTime>
+            <dateTime>2021-06-11T00:00:00</dateTime>
+            <dateTime>2021-06-11T02:00:00</dateTime>
+            <dateTime>2021-06-11T04:00:00</dateTime>
+            <dateTime>2021-06-11T06:00:00</dateTime>
+            <dateTime>2021-06-11T08:00:00</dateTime>
+            <dateTime>2021-06-11T10:00:00</dateTime>
+            <dateTime>2021-06-11T12:00:00</dateTime>
+            <dateTime>2021-06-11T14:00:00</dateTime>
+            <dateTime>2021-06-11T16:00:00</dateTime>
+            <dateTime>2021-06-11T18:00:00</dateTime>
+            <dateTime>2021-06-11T20:00:00</dateTime>
+            <dateTime>2021-06-11T22:00:00</dateTime>
+            <dateTime>2021-06-12T00:00:00</dateTime>
+            <dateTime>2021-06-12T02:00:00</dateTime>
+            <dateTime>2021-06-12T04:00:00</dateTime>
+            <dateTime>2021-06-12T06:00:00</dateTime>
+            <dateTime>2021-06-12T08:00:00</dateTime>
+            <dateTime>2021-06-12T10:00:00</dateTime>
+            <dateTime>2021-06-12T12:00:00</dateTime>
+            <dateTime>2021-06-12T14:00:00</dateTime>
+            <dateTime>2021-06-12T16:00:00</dateTime>
+            <dateTime>2021-06-12T18:00:00</dateTime>
+            <dateTime>2021-06-12T20:00:00</dateTime>
+            <dateTime>2021-06-12T22:00:00</dateTime>
+            <dateTime>2021-06-13T00:00:00</dateTime>
+            <dateTime>2021-06-13T02:00:00</dateTime>
+            <dateTime>2021-06-13T04:00:00</dateTime>
+            <dateTime>2021-06-13T06:00:00</dateTime>
+            <dateTime>2021-06-13T08:00:00</dateTime>
+            <dateTime>2021-06-13T10:00:00</dateTime>
+            <dateTime>2021-06-13T12:00:00</dateTime>
+            <dateTime>2021-06-13T14:00:00</dateTime>
+          </UzimanjeTerapije>
         </LekarskiRecept>
         <LekarskiRecept>
           <IdRecepta>2</IdRecepta>
           <idPacijenta>2</idPacijenta>
           <IdLekara>1</IdLekara>
-          <NazivLeka>Lek2</NazivLeka>
-          <DatumPropisivanjaLeka>04/23/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
+          <NazivLeka>leksilium</NazivLeka>
+          <DatumPropisivanjaLeka>06/09/2021</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
           <DnevnaKolicina>2</DnevnaKolicina>
-          <PocetakKoriscenja>07:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-        <LekarskiRecept>
-          <IdRecepta>3</IdRecepta>
-          <idPacijenta>2</idPacijenta>
-          <IdLekara>2</IdLekara>
-          <NazivLeka>Paracetamol</NazivLeka>
-          <DatumPropisivanjaLeka>04/15/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>1</BrojDanaKoriscenja>
-          <DnevnaKolicina>1</DnevnaKolicina>
-          <PocetakKoriscenja>11:11</PocetakKoriscenja>
-          <UzimanjeTerapije />
+          <PocetakKoriscenja>20:00</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2021-06-09T20:00:00</dateTime>
+            <dateTime>2021-06-10T04:00:00</dateTime>
+            <dateTime>2021-06-10T12:00:00</dateTime>
+            <dateTime>2021-06-10T20:00:00</dateTime>
+            <dateTime>2021-06-11T04:00:00</dateTime>
+            <dateTime>2021-06-11T12:00:00</dateTime>
+            <dateTime>2021-06-11T20:00:00</dateTime>
+          </UzimanjeTerapije>
         </LekarskiRecept>
       </LekarskiRecepti>
+      <Anamneze>
+        <Anamneza>
+          <IdAnamneze>1</IdAnamneze>
+          <IdPacijenta>2</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>Glavobolja</OpisBolesti>
+          <Terapija>Spavanje</Terapija>
+          <Datum>06/09/2021</Datum>
+          <IdTermina>9</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>2</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>LKLKL</OpisBolesti>
+          <Terapija>afsdf</Terapija>
+          <Datum>06/09/2021</Datum>
+          <IdTermina>9</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+        </Anamneza>
+      </Anamneze>
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>2</IdPacijenta>
+          <NazivSastojka>s3</NazivSastojka>
+          <NuspojavaNaNastojak>sadasd</NuspojavaNaNastojak>
+          <VremeReakcije>dsadsa</VremeReakcije>
+        </Alergeni>
+        <Alergeni>
+          <IdAlergena>2</IdAlergena>
+          <IdPacijenta>2</IdPacijenta>
+          <NazivSastojka>voda</NazivSastojka>
+          <NuspojavaNaNastojak>adsd</NuspojavaNaNastojak>
+          <VremeReakcije>dfsf</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi>
+        <Uput>
+          <IdUputa>1</IdUputa>
+          <idPacijenta>2</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>06/09/2021</datumIzdavanja>
+          <opisPregleda>asdads</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>Laboratorija</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>2</IdUputa>
+          <idPacijenta>2</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>06/09/2021</datumIzdavanja>
+          <opisPregleda>sadasd</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>3</IdUputa>
+          <idPacijenta>2</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>06/09/2021</datumIzdavanja>
+          <opisPregleda>sadadas</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+      </Uputi>
+      <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>2</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>0</brojBolnickihUputa>
+    </Karton>
+    <Maloletnik>false</Maloletnik>
+    <JmbgStaratelja>0</JmbgStaratelja>
+  </Pacijent>
+  <Pacijent>
+    <IdPacijenta>3</IdPacijenta>
+    <ImePacijenta>Djordje</ImePacijenta>
+    <PrezimePacijenta>Petrovic</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>546546464</Jmbg>
+    <StatusNaloga>Stalni</StatusNaloga>
+    <BrojTelefona>645464</BrojTelefona>
+    <Email>djole@gmail.com</Email>
+    <AdresaStanovanja>Zvornik</AdresaStanovanja>
+    <Zanimanje>Novinar</Zanimanje>
+    <BracnoStanje>Razveden</BracnoStanje>
+    <Karton>
+      <IdPacijenta>3</IdPacijenta>
+      <LekarskiRecepti />
       <Anamneze />
       <Alergeni />
       <Uputi />
@@ -176,205 +232,19 @@
   </Pacijent>
   <Pacijent>
     <IdPacijenta>4</IdPacijenta>
-    <ImePacijenta>Kristina</ImePacijenta>
-    <PrezimePacijenta>Draskovic</PrezimePacijenta>
+    <ImePacijenta>Katarina</ImePacijenta>
+    <PrezimePacijenta>Ilic</PrezimePacijenta>
     <Pol>Z</Pol>
-    <Jmbg>456312</Jmbg>
+    <Jmbg>3216547465</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>312312</BrojTelefona>
-    <Email>kris@gmail.com</Email>
+    <BrojTelefona>3575312</BrojTelefona>
+    <Email>katarina@gmail.com</Email>
     <AdresaStanovanja>NS</AdresaStanovanja>
-    <Zanimanje>prof</Zanimanje>
+    <Zanimanje>Penzioner</Zanimanje>
     <BracnoStanje>Neudata</BracnoStanje>
-    <IzabraniLekar>
-      <IdLekara>9</IdLekara>
-      <ImeLek>Igor</ImeLek>
-      <PrezimeLek>Ivanovic</PrezimeLek>
-      <Jmbg>0</Jmbg>
-      <BrojTelefona>0</BrojTelefona>
-      <specijalizacija>Opsta_praksa</specijalizacija>
-      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
-      <ZahteviZaOdmor />
-      <RadniDani />
-      <BrojPregleda>0</BrojPregleda>
-      <BrojOperacija>0</BrojOperacija>
-    </IzabraniLekar>
     <Karton>
       <IdPacijenta>4</IdPacijenta>
-      <LekarskiRecepti>
-        <LekarskiRecept>
-          <IdRecepta>1</IdRecepta>
-          <idPacijenta>4</idPacijenta>
-          <IdLekara>3</IdLekara>
-          <NazivLeka>Paracetamol</NazivLeka>
-          <DatumPropisivanjaLeka>04/30/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
-          <DnevnaKolicina>1</DnevnaKolicina>
-          <PocetakKoriscenja>15:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-        <LekarskiRecept>
-          <IdRecepta>2</IdRecepta>
-          <idPacijenta>4</idPacijenta>
-          <IdLekara>3</IdLekara>
-          <NazivLeka>Andol</NazivLeka>
-          <DatumPropisivanjaLeka>04/30/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>4</BrojDanaKoriscenja>
-          <DnevnaKolicina>10</DnevnaKolicina>
-          <PocetakKoriscenja>10:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-      </LekarskiRecepti>
-      <Anamneze />
-      <Alergeni>
-        <Alergeni>
-          <IdAlergena>1</IdAlergena>
-          <IdPacijenta>4</IdPacijenta>
-          <VremeReakcije>24 sata</VremeReakcije>
-        </Alergeni>
-      </Alergeni>
-      <Uputi />
-      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>0</brojBolnickihUputa>
-    </Karton>
-    <Maloletnik>false</Maloletnik>
-    <JmbgStaratelja>0</JmbgStaratelja>
-  </Pacijent>
-  <Pacijent>
-    <IdPacijenta>5</IdPacijenta>
-    <ImePacijenta>Jovana</ImePacijenta>
-    <PrezimePacijenta>Jovanovic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>231546</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>5445641</BrojTelefona>
-    <Email>jovana@gmail.com</Email>
-    <AdresaStanovanja>ns</AdresaStanovanja>
-    <Zanimanje>prof</Zanimanje>
-    <BracnoStanje>Neudata</BracnoStanje>
-    <IzabraniLekar>
-      <IdLekara>2</IdLekara>
-      <ImeLek>Milos</ImeLek>
-      <PrezimeLek>Dragojevic</PrezimeLek>
-      <Jmbg>0</Jmbg>
-      <BrojTelefona>0</BrojTelefona>
-      <specijalizacija>Opsta_praksa</specijalizacija>
-      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
-      <ZahteviZaOdmor />
-      <RadniDani />
-      <BrojPregleda>0</BrojPregleda>
-      <BrojOperacija>0</BrojOperacija>
-    </IzabraniLekar>
-    <Karton>
-      <IdPacijenta>5</IdPacijenta>
-      <LekarskiRecepti>
-        <LekarskiRecept>
-          <IdRecepta>1</IdRecepta>
-          <idPacijenta>5</idPacijenta>
-          <IdLekara>1</IdLekara>
-          <NazivLeka>Andol</NazivLeka>
-          <DatumPropisivanjaLeka>04/24/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>7</BrojDanaKoriscenja>
-          <DnevnaKolicina>4</DnevnaKolicina>
-          <PocetakKoriscenja>15:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-        <LekarskiRecept>
-          <IdRecepta>2</IdRecepta>
-          <idPacijenta>5</idPacijenta>
-          <IdLekara>2</IdLekara>
-          <NazivLeka>Pentraxil</NazivLeka>
-          <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
-          <DnevnaKolicina>5</DnevnaKolicina>
-          <PocetakKoriscenja>10:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-      </LekarskiRecepti>
-      <Anamneze />
-      <Alergeni>
-        <Alergeni>
-          <IdAlergena>1</IdAlergena>
-          <IdPacijenta>5</IdPacijenta>
-          <NazivSastojka>s1</NazivSastojka>
-          <NuspojavaNaNastojak>Glavobolja</NuspojavaNaNastojak>
-          <VremeReakcije>3 dana</VremeReakcije>
-        </Alergeni>
-      </Alergeni>
-      <Uputi />
-      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>0</brojBolnickihUputa>
-    </Karton>
-    <Maloletnik>true</Maloletnik>
-    <JmbgStaratelja>99</JmbgStaratelja>
-  </Pacijent>
-  <Pacijent>
-    <IdPacijenta>6</IdPacijenta>
-    <ImePacijenta>Nevena</ImePacijenta>
-    <PrezimePacijenta>Nevenic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>9898</Jmbg>
-    <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>888</BrojTelefona>
-    <Email>mmm</Email>
-    <AdresaStanovanja>mmm</AdresaStanovanja>
-    <Zanimanje>mmm</Zanimanje>
-    <BracnoStanje>Neudata</BracnoStanje>
-    <IzabraniLekar>
-      <IdLekara>2</IdLekara>
-      <ImeLek>Milos</ImeLek>
-      <PrezimeLek>Dragojevic</PrezimeLek>
-      <Jmbg>0</Jmbg>
-      <BrojTelefona>0</BrojTelefona>
-      <specijalizacija>Opsta_praksa</specijalizacija>
-      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
-      <ZahteviZaOdmor />
-      <RadniDani />
-      <BrojPregleda>0</BrojPregleda>
-      <BrojOperacija>0</BrojOperacija>
-    </IzabraniLekar>
-    <Karton>
-      <IdPacijenta>6</IdPacijenta>
-      <LekarskiRecepti>
-        <LekarskiRecept>
-          <IdRecepta>1</IdRecepta>
-          <idPacijenta>6</idPacijenta>
-          <IdLekara>4</IdLekara>
-          <NazivLeka>m</NazivLeka>
-          <DatumPropisivanjaLeka>04/05/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>2</BrojDanaKoriscenja>
-          <DnevnaKolicina>2</DnevnaKolicina>
-          <PocetakKoriscenja>10:00</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-        <LekarskiRecept>
-          <IdRecepta>2</IdRecepta>
-          <idPacijenta>6</idPacijenta>
-          <IdLekara>2</IdLekara>
-          <NazivLeka>Andol</NazivLeka>
-          <DatumPropisivanjaLeka>07/22/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
-          <DnevnaKolicina>10</DnevnaKolicina>
-          <PocetakKoriscenja>10:10</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-        <LekarskiRecept>
-          <IdRecepta>3</IdRecepta>
-          <idPacijenta>6</idPacijenta>
-          <IdLekara>2</IdLekara>
-          <NazivLeka>Paracetamol</NazivLeka>
-          <DatumPropisivanjaLeka>04/22/2021</DatumPropisivanjaLeka>
-          <BrojDanaKoriscenja>1</BrojDanaKoriscenja>
-          <DnevnaKolicina>1</DnevnaKolicina>
-          <PocetakKoriscenja>1:1</PocetakKoriscenja>
-          <UzimanjeTerapije />
-        </LekarskiRecept>
-      </LekarskiRecepti>
+      <LekarskiRecepti />
       <Anamneze />
       <Alergeni />
       <Uputi />
@@ -386,44 +256,22 @@
     <JmbgStaratelja>0</JmbgStaratelja>
   </Pacijent>
   <Pacijent>
-    <IdPacijenta>3</IdPacijenta>
-    <ImePacijenta>Marko</ImePacijenta>
-    <PrezimePacijenta>Markovic</PrezimePacijenta>
-    <Pol>Z</Pol>
-    <Jmbg>1254540</Jmbg>
+    <IdPacijenta>5</IdPacijenta>
+    <ImePacijenta>Kosta</ImePacijenta>
+    <PrezimePacijenta>Petrovic</PrezimePacijenta>
+    <Pol>M</Pol>
+    <Jmbg>3546544152</Jmbg>
     <StatusNaloga>Stalni</StatusNaloga>
-    <BrojTelefona>545650</BrojTelefona>
-    <Email>marko</Email>
-    <AdresaStanovanja>NS</AdresaStanovanja>
-    <Zanimanje>student</Zanimanje>
-    <BracnoStanje>Neodredjeno</BracnoStanje>
-    <IzabraniLekar>
-      <IdLekara>2</IdLekara>
-      <ImeLek>Milos</ImeLek>
-      <PrezimeLek>Dragojevic</PrezimeLek>
-      <Jmbg>0</Jmbg>
-      <BrojTelefona>0</BrojTelefona>
-      <specijalizacija>Opsta_praksa</specijalizacija>
-      <SlobodniDaniGodisnjegOdmora>0</SlobodniDaniGodisnjegOdmora>
-      <ZahtevaniDaniGodisnjegOdmora>0</ZahtevaniDaniGodisnjegOdmora>
-      <ZahteviZaOdmor />
-      <RadniDani />
-      <BrojPregleda>0</BrojPregleda>
-      <BrojOperacija>0</BrojOperacija>
-    </IzabraniLekar>
+    <BrojTelefona>321145</BrojTelefona>
+    <Email>petrovic@hotmail.com</Email>
+    <AdresaStanovanja>Jevrejska 125</AdresaStanovanja>
+    <Zanimanje>Student</Zanimanje>
+    <BracnoStanje>Neozenjen</BracnoStanje>
     <Karton>
-      <IdPacijenta>3</IdPacijenta>
+      <IdPacijenta>5</IdPacijenta>
       <LekarskiRecepti />
       <Anamneze />
-      <Alergeni>
-        <Alergeni>
-          <IdAlergena>1</IdAlergena>
-          <IdPacijenta>3</IdPacijenta>
-          <NazivSastojka>S1</NazivSastojka>
-          <NuspojavaNaNastojak>Povracanje</NuspojavaNaNastojak>
-          <VremeReakcije>mesec dana</VremeReakcije>
-        </Alergeni>
-      </Alergeni>
+      <Alergeni />
       <Uputi />
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
       <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
