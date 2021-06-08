@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="Dodavanje sastojka" Height="350" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Dodavanje sastojka" Height="350" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,6 +21,7 @@
         <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="ime" Background="AliceBlue" TextChanged="ime_TextChanged"></TextBox>
         <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" TextChanged ="sifra_TextChanged"></TextBox>
 
-        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.Column="0" Grid.Row="2" Width="180" Height="40"  HorizontalAlignment="Right" Margin="0,36,107,31" x:Name="potvrdi" Click="Potvrdi_Click" Grid.ColumnSpan="2" Content="Potvrda"/>
+        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.Column="0" Grid.Row="2" Width="90" Height="40"  HorizontalAlignment="Right" Margin="0,36,33,31" x:Name="potvrdi" Click="Potvrdi_Click" Content="Potvrdi"/>
+        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.Column="1" Grid.Row="2" Height="40" Margin="33,36,74,31" x:Name="potvrdi_Copy" Click="Nazad_Click" Content="Odustani"/>
     </Grid>
 </Window>

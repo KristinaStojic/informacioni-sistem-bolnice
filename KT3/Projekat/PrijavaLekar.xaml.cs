@@ -46,16 +46,18 @@ namespace Projekat
                     }
                     else if (lekar.korisnickoIme.Equals(ime.Text) && !lekar.lozinka.Equals(sifra.Text))
                     {
-                        MessageBox.Show("Neispravno korisnicko ime i/ili lozinka");
+                        //MessageBox.Show("Neispravno korisnicko ime i/ili lozinka");
+                        //MessageBox.Show("Uneli ste nepostojece podatke!");
                     }
                     else if (!lekar.korisnickoIme.Equals(ime.Text) && lekar.lozinka.Equals(sifra.Text))
                     {
-                        MessageBox.Show("Neispravno korisnicko ime i/ili lozinka");
+                        //MessageBox.Show("Neispravno korisnicko ime i/ili lozinka");
+                        //MessageBox.Show("Uneli ste neispravne podatke!");
                     }
 
                 }
                 
-                MessageBox.Show("Uneli ste nepostojece podatke!");
+                MessageBox.Show("Uneli ste neispravne podatke!");
                 
             }
             
@@ -93,6 +95,22 @@ namespace Projekat
                 this.potvrdi.IsEnabled = true;
                 popunjeno = true;
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Potvrdi_Click(sender, e);
+            }else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+        }
+
+        private void Nazad_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
