@@ -379,6 +379,13 @@
         <datumKrajaTermina>10/10/2022</datumKrajaTermina>
         <idTermina>7</idTermina>
       </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>09:00</pocetakTermina>
+        <krajTermina>11:30</krajTermina>
+        <datumPocetkaTermina>10/10/2030</datumPocetkaTermina>
+        <datumKrajaTermina>10/10/2030</datumKrajaTermina>
+        <idTermina>16</idTermina>
+      </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />
   </Sala>
