@@ -29,6 +29,8 @@ namespace Projekat
         public bool flagSati = false;
         public bool flagMinuti = false;
         public bool flagLek = false;
+
+        
         public DodajRecept(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -259,7 +261,7 @@ namespace Projekat
         {
             if (string.IsNullOrEmpty(((TextBox)sender).Text))
             {
-                flagKolicina = false;
+                flagSati = false;
                 potvrdi.IsEnabled = false;
 
             }
@@ -337,6 +339,14 @@ namespace Projekat
         private void nazivSifra_TextChanged(object sender, TextChangedEventArgs e)
         {
             flagLek = true;
+            if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
+            {
+                potvrdi.IsEnabled = true;
+            }
+        }
+
+        private void Min_LostFocus(object sender, RoutedEventArgs e)
+        {
             if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
             {
                 potvrdi.IsEnabled = true;
