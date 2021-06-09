@@ -32,7 +32,6 @@ namespace Projekat
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema); 
         }
 
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = new AnketeViewModel(this.NavigationService, idPacijent);

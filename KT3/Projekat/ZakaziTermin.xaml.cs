@@ -125,6 +125,7 @@ namespace Projekat
                 termin.Lekar.BrojOperacija++;
             }
             SaleServis.DodajZauzeceSale(termin, prvaSlobodnaSala);
+            SaleServis.sacuvajIzmjene();
             termin.Prostorija = prvaSlobodnaSala;
             TerminServis.ZakaziTermin(termin);
 

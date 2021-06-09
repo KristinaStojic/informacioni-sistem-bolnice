@@ -54,7 +54,9 @@ namespace Projekat
         private static void OtkaziOdabraniTermin()
         {
             TerminServis.OtkaziTermin(terminZaBrisanje);
-            MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent); 
+            MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent);
+            SaleServis.sacuvajIzmjene();
+            TerminServis.sacuvajIzmene();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

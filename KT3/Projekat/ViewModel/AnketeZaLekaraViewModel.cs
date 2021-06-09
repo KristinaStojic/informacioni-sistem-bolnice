@@ -70,31 +70,6 @@ namespace Projekat.ViewModel
             
         }
 
-        public void PrvoPitanje(object sender, RoutedEventArgs e)
-        {
-            /* prvoPitanje = "1=";
-            if ((bool)jedan1.IsChecked)
-            {
-                prvoPitanje += "1";
-            }
-            else if ((bool)dva1.IsChecked)
-            {
-                prvoPitanje += "2";
-            }
-            else if ((bool)tri1.IsChecked)
-            {
-                prvoPitanje += "3";
-            }
-            else if ((bool)cetiri1.IsChecked)
-            {
-                prvoPitanje += "4";
-            }
-            else if ((bool)pet1.IsChecked)
-            {
-                prvoPitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();*/
-        }
         #region Akcije
         private void PotvrdiUnos()
         {
@@ -179,6 +154,32 @@ namespace Projekat.ViewModel
         {
             PrijavaPage = new PrijavaPacijent();
             this.navService.Navigate(PrijavaPage);
+        }
+
+        public void PrvoPitanje(object sender, RoutedEventArgs e)
+        {
+            /* prvoPitanje = "1=";
+            if ((bool)jedan1.IsChecked)
+            {
+                prvoPitanje += "1";
+            }
+            else if ((bool)dva1.IsChecked)
+            {
+                prvoPitanje += "2";
+            }
+            else if ((bool)tri1.IsChecked)
+            {
+                prvoPitanje += "3";
+            }
+            else if ((bool)cetiri1.IsChecked)
+            {
+                prvoPitanje += "4";
+            }
+            else if ((bool)pet1.IsChecked)
+            {
+                prvoPitanje += "5";
+            }
+            odgovorenoNaSvaPitanja();*/
         }
     }
     #endregion

@@ -108,7 +108,7 @@
             <GroupBox Header="{namespace:Loc IzaberiteUput}" Margin="0, 10, 0, 0" Height="90" ToolTip="{namespace:Loc ToolTipUput}">
                 <StackPanel Orientation="Vertical">
                     <ComboBox Name="comboUputi" Height="27" Width="200" HorizontalAlignment="Center" Margin="0, 25, 0, 2"
-                          SelectionChanged="comboUputi_SelectionChanged" ItemsSource="{Binding uputiPacijenta}" IsEnabled="False" ></ComboBox>
+                          SelectionChanged="comboUputi_SelectionChanged" ItemsSource="{Binding uputiPacijenta.opisPregleda }" IsEnabled="False" ></ComboBox>
                     <TextBox  x:Name="valUput" Text="{namespace:Loc valAdresa}" Background="Transparent" Visibility="Hidden"
                                   Foreground="Red" Height="15" TextWrapping="Wrap"  HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    BorderBrush="Transparent"  FontSize="10" IsReadOnly="True" Width="180"/>

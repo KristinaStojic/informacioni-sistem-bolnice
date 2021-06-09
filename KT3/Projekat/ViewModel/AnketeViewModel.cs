@@ -83,9 +83,7 @@ namespace Projekat.ViewModel
             ZakaziTerminKomanada = new MyICommand(ZakaziTerminClick);
             UvidUZakazaneTermineKomanda = new MyICommand(UvidUZakazaneTermine);
             KartonKomanda = new MyICommand(KartonClick);
-  
-            PrikaziAnketePacijenta();
-            
+            PrikaziAnketePacijenta();        
         }
 
         private void KartonClick()
@@ -170,7 +168,7 @@ namespace Projekat.ViewModel
             }
             if (!izabranaAnketa.PopunjenaAnketa)
             {
-                Console.WriteLine("Izabrana anketa " + izabranaAnketa.NazivAnkete);
+                //Console.WriteLine("Izabrana anketa " + izabranaAnketa.NazivAnkete);
                 if (izabranaAnketa.VrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
                 {
                     PrikaziAnketuZaKlinikuPage = new PrikaziAnketuZaKliniku(idPacijent, izabranaAnketa.IdAnkete);
@@ -183,7 +181,6 @@ namespace Projekat.ViewModel
                 }
             }
         }
-
 
         private void PrikaziAnketePacijenta()
         {
