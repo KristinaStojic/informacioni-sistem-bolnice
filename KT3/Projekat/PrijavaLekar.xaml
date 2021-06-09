@@ -19,9 +19,11 @@
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Korisnicko ime&#x9;"/>
         <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Lozinka"/>
         <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="ime" Background="AliceBlue" TextChanged="ime_TextChanged"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" TextChanged ="sifra_TextChanged"></TextBox>
-
+        <!--        <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" TextChanged ="sifra_TextChanged"></TextBox>
+        -->
+        
         <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.Column="0" Grid.Row="2" Width="90" Height="40"  HorizontalAlignment="Right" Margin="0,36,33,31" x:Name="potvrdi" Click="Potvrdi_Click" Content="Potvrdi"/>
         <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Grid.Column="1" Grid.Row="2" Height="40" Margin="33,36,74,31" x:Name="potvrdi_Copy" Click="Nazad_Click" Content="Odustani"/>
+        <PasswordBox Name="sifra" BorderBrush="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" PasswordChanged="PasswordBox_PasswordChanged" Grid.Column="1" Margin="23,39,0,0" Grid.Row="1" Height="30"/>
     </Grid>
 </Window>
