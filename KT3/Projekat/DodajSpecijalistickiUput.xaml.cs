@@ -110,8 +110,7 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            if (popunjeno) { 
                 int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
                 int idSpecijaliste = NadjiIDSpecijaliste();
@@ -126,7 +125,7 @@ namespace Projekat
 
                 this.Close();
             }
-            catch (System.Exception)
+            else
             {
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -134,8 +133,21 @@ namespace Projekat
 
         private int NadjiIDSpecijaliste()
         {
+            /*if(listaLekara.SelectedItem != null)
+            {
+                Lekar lekar = (Lekar)listaLekara.SelectedItem;
+                return lekar.IdLekara;
+            }
+            else
+            {
+                MessageBox.Show("Popunite sve podatke!");
+            }
+
+            return 1;*/
+
             Lekar lekar = (Lekar)listaLekara.SelectedItem;
             return lekar.IdLekara;
+
         }
 
         private string NadjiDatum()
@@ -471,6 +483,7 @@ namespace Projekat
             if (this.specijalista.Text.Trim().Equals("") || this.napomena.Text.Trim().Equals(""))
             {
                 this.potvrdiSpec.IsEnabled = false;
+                popunjeno = false;
             }
             else if (!this.specijalista.Text.Trim().Equals("") && !this.napomena.Text.Trim().Equals(""))
             {

@@ -499,6 +499,28 @@
             <dateTime>2022-10-12T04:02:00</dateTime>
           </UzimanjeTerapije>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>6</IdRecepta>
+          <idPacijenta>3</idPacijenta>
+          <IdLekara>1</IdLekara>
+          <NazivLeka>Andol</NazivLeka>
+          <DatumPropisivanjaLeka>10/10/2022</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>3</BrojDanaKoriscenja>
+          <DnevnaKolicina>3</DnevnaKolicina>
+          <PocetakKoriscenja>17:00</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2022-10-10T17:00:00</dateTime>
+            <dateTime>2022-10-11T01:00:00</dateTime>
+            <dateTime>2022-10-11T09:00:00</dateTime>
+            <dateTime>2022-10-11T17:00:00</dateTime>
+            <dateTime>2022-10-12T01:00:00</dateTime>
+            <dateTime>2022-10-12T09:00:00</dateTime>
+            <dateTime>2022-10-12T17:00:00</dateTime>
+            <dateTime>2022-10-13T01:00:00</dateTime>
+            <dateTime>2022-10-13T09:00:00</dateTime>
+            <dateTime>2022-10-13T17:00:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -523,6 +545,17 @@
           <Beleska />
           <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
         </Anamneza>
+        <Anamneza>
+          <IdAnamneze>3</IdAnamneze>
+          <IdPacijenta>3</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>opis</OpisBolesti>
+          <Terapija>terapija</Terapija>
+          <Datum>10/10/2022</Datum>
+          <IdTermina>16</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
+        </Anamneza>
       </Anamneze>
       <Alergeni>
         <Alergeni>
@@ -538,6 +571,13 @@
           <NazivSastojka>prah</NazivSastojka>
           <NuspojavaNaNastojak>asda</NuspojavaNaNastojak>
           <VremeReakcije>dsdfd</VremeReakcije>
+        </Alergeni>
+        <Alergeni>
+          <IdAlergena>3</IdAlergena>
+          <IdPacijenta>3</IdPacijenta>
+          <NazivSastojka>s2</NazivSastojka>
+          <NuspojavaNaNastojak>sadas</NuspojavaNaNastojak>
+          <VremeReakcije>sdada</VremeReakcije>
         </Alergeni>
       </Alergeni>
       <Uputi>
@@ -576,10 +616,56 @@
           <datumPocetkaLecenja>06/09/2021</datumPocetkaLecenja>
           <datumKrajaLecenja>06/25/2021</datumKrajaLecenja>
         </Uput>
+        <Uput>
+          <IdUputa>4</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>1</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>10/10/2022</datumIzdavanja>
+          <opisPregleda />
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>5</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>2</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>10/10/2022</datumIzdavanja>
+          <opisPregleda>asfdf</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>6</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>10/10/2022</datumIzdavanja>
+          <opisPregleda>asdd</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>Laboratorija</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>7</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>10/10/2022</datumIzdavanja>
+          <opisPregleda>sasd</opisPregleda>
+          <brojSobe>5</brojSobe>
+          <brojKreveta>1</brojKreveta>
+          <TipUputa>StacionarnoLecenje</TipUputa>
+          <datumPocetkaLecenja>08/15/2021</datumPocetkaLecenja>
+          <datumKrajaLecenja>08/17/2021</datumKrajaLecenja>
+        </Uput>
       </Uputi>
-      <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>1</brojBolnickihUputa>
+      <brojLaboratorijskihUputa>2</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>3</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>2</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -648,6 +734,25 @@
             <dateTime>2022-12-30T15:00:00</dateTime>
           </UzimanjeTerapije>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>3</IdRecepta>
+          <idPacijenta>4</idPacijenta>
+          <IdLekara>1</IdLekara>
+          <NazivLeka>Stepsils</NazivLeka>
+          <DatumPropisivanjaLeka>12/27/2022</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>6</BrojDanaKoriscenja>
+          <DnevnaKolicina>1</DnevnaKolicina>
+          <PocetakKoriscenja>18:04</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2022-12-27T18:04:00</dateTime>
+            <dateTime>2022-12-27T22:04:00</dateTime>
+            <dateTime>2022-12-28T02:04:00</dateTime>
+            <dateTime>2022-12-28T06:04:00</dateTime>
+            <dateTime>2022-12-28T10:04:00</dateTime>
+            <dateTime>2022-12-28T14:04:00</dateTime>
+            <dateTime>2022-12-28T18:04:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
@@ -673,10 +778,41 @@
           <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
-      <Alergeni />
-      <Uputi />
-      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <Alergeni>
+        <Alergeni>
+          <IdAlergena>1</IdAlergena>
+          <IdPacijenta>4</IdPacijenta>
+          <NazivSastojka>s2</NazivSastojka>
+          <NuspojavaNaNastojak>zfdfs</NuspojavaNaNastojak>
+          <VremeReakcije>fdfs</VremeReakcije>
+        </Alergeni>
+      </Alergeni>
+      <Uputi>
+        <Uput>
+          <IdUputa>1</IdUputa>
+          <idPacijenta>4</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>3</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>12/27/2022</datumIzdavanja>
+          <opisPregleda>fsdfd</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>2</IdUputa>
+          <idPacijenta>4</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>12/27/2022</datumIzdavanja>
+          <opisPregleda>adsds</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>Laboratorija</TipUputa>
+        </Uput>
+      </Uputi>
+      <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
       <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>

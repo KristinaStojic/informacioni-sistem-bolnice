@@ -189,4 +189,18 @@
     <zamenskiLekovi />
     <sastojci />
   </Lek>
+  <Lek>
+    <idLeka>10</idLeka>
+    <nazivLeka>N1</nazivLeka>
+    <sifraLeka>S2C</sifraLeka>
+    <zamenskiLekovi>
+      <int>8</int>
+    </zamenskiLekovi>
+    <sastojci>
+      <Sastojak>
+        <naziv>MNK</naziv>
+        <kolicina>123</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
 </ArrayOfLek>

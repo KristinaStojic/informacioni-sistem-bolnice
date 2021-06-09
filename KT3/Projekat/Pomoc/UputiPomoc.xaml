@@ -18,12 +18,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Button Height="40" Background="#FF6895C5"  BorderBrush="White" Foreground="White" Margin="127,9.6,126.6,18.4" Click="Odustani_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">Odustani</Button>
-        <TextBlock Margin="43.6,36,42,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="157" Grid.Column="1"><Run FontWeight="Bold" FontStyle="Italic"
-               Text="Prečice"/><Run Text=":"/><LineBreak/>
-            <Run Text="CTRL + N - "/><Run Text="Dodavanje novog uputa"/><LineBreak/>
-            <Run Text="CTRL + D - "/><Run Text="Detalji uputa"/><LineBreak/>
-            <Run Text="CTRL + X - "/><Run Text="Nazad"/>
-        </TextBlock>
-        <GroupBox Height="212" Margin="11,1,10,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header=""/>
+        <TextBlock Margin="43.6,36,42,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="157" Grid.Column="1"><Run FontWeight="Bold" FontStyle="Italic" Text="Prečice"/><Run Text=":"/><LineBreak/><Run Text="CTRL + N - "/><Run Text="Dodavanje novog uputa"/><LineBreak/><Run Text="CTRL + D - "/><Run Text="Detalji uputa"/><LineBreak/><Run Text="CTRL + X - "/><Run Text="Nazad"/><LineBreak/><Run/><LineBreak/><Run Text="Tabovi:"/><LineBreak/><Run Text="CTRL + L - laboratorija&#x9;"/><LineBreak/><Run Text="CTRL + P - specijalisti"/><Run Text="č"/><Run Text="ki pr"/><Run Text="e"/><Run Text="gled"/><LineBreak/><Run Text="CTRL + B - bolni"/><Run Text="čko lečenje"/></TextBlock>
+        <GroupBox Height="212" Margin="9.6,0,12,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Header=""/>
     </Grid>
 </Window>
