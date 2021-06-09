@@ -97,7 +97,7 @@ namespace Model
 
         public static void ObrisiObavestenjaPacijenta(Pacijent nalog)
         {
-            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja.ToList())
+            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.NadjiSve().ToList())
             {
                 if (obavestenje.ListaIdPacijenata.Contains(nalog.IdPacijenta) && obavestenje.ListaIdPacijenata.Count == 1)
                 {

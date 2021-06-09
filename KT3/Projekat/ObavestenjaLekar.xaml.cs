@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Projekat.Model;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -31,14 +32,9 @@ namespace Projekat
             InitializeComponent();
             //this.DataContext = this;
             //obavestenjaLekar = new ObservableCollection<Obavestenja>();
-            foreach (Obavestenja o in ObavestenjaMenadzer.obavestenja)
+            foreach (Obavestenja o in LekariServis.NadjiPoId(1).obavestenja)
             {
-                // rucno odradjeno
-                if (o.IdLekara == 1 || o.Oznaka.Equals("svi") || o.Oznaka.Equals("lekari"))
-                {
-                    // obavestenjaLekar.Add(o);
-                    ObavestenjaLekara.Items.Add(o);
-                }
+                ObavestenjaLekara.Items.Add(o);
             }
         }
 

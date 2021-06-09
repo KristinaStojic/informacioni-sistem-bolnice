@@ -66,9 +66,16 @@ namespace Projekat
             List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
             Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
+
             ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
-            ObavestenjaServis.sacuvajIzmene();   
-            
+            ObavestenjaServis.sacuvajIzmene();
+            //o DodajObavestenje(novoObavestenje);
+            //o.sacuvajIzmene("obavestenja.xml");
+            //ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
+            //List<Obavestenja> list = ObavestenjaServis.NadjiSvaObavestenja();
+            //list.Add(novoObavestenje);
+            // ObavestenjaServis.sacuvajIzmene();
+            //ObavestenjaMenadzer.sacuvajIzmene(list);
             this.Close();
         }
 

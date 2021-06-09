@@ -51,6 +51,5 @@ namespace Projekat.Model
         }
 
         public abstract void Izmjeni(T element, T element1);
-
     }
 }

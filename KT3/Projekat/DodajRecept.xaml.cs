@@ -154,7 +154,7 @@ namespace Projekat
                 lista.Add(pacijent.IdPacijenta);
                 int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
                 Obavestenja ob = new Obavestenja(idObavestenja, dt.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka, lista, true);  // dodat flag da je notifikacija
-                ObavestenjaMenadzer.obavestenja.Add(ob);
+                ObavestenjaMenadzer.NadjiSve().Add(ob);
             }
         }
 

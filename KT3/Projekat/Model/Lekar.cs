@@ -11,7 +11,51 @@ using System.ComponentModel;
 
 namespace Model
 {
-    public class Lekar : INotifyPropertyChanged
+    public interface ISubject
+    {
+        void Attach(IObserver observer);
+        void Notify();
+    }
+
+    public class ObjavaObavestenja : ISubject
+    {
+        private List<IObserver> observers;
+        private Obavestenja novoObavestenje;
+        public Obavestenja NovoObavestenje
+        {
+            get { return novoObavestenje; }
+            set
+            {
+                novoObavestenje = value;
+                Notify();
+            }
+        }
+
+        public ObjavaObavestenja()
+        {
+            observers = new List<IObserver>();
+        }
+
+        public void Attach(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Notify()
+        {
+            foreach (IObserver o in observers)
+            {
+                o.Update(this);
+            }
+        }
+    }
+
+    public interface IObserver
+    {
+        void Update(ISubject subject);
+    }
+
+    public class Lekar : IObserver, INotifyPropertyChanged
     {
         public const int MAX_DANA_GODISNJEG_ODMORA = 25;
         public int IdLekara { get; set; }
@@ -32,6 +76,8 @@ namespace Model
         public string korisnickoIme { get; set; }
         public string lozinka { get; set; }
 
+        public List<Obavestenja> obavestenja;
+
         public Lekar(int IdLekara, string Ime, string Prezime, long Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija)
         {
             this.IdLekara = IdLekara;
@@ -50,6 +96,7 @@ namespace Model
             this.RadniDani = new List<RadniDan>();
             this.korisnickoIme = Prezime;
             this.lozinka = Jmbg.ToString();
+            this.obavestenja = new List<Obavestenja>();
         }
          public Lekar(int IdLekara, string Ime, string Prezime, long Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija, String korIme, String sifra)
         {
@@ -69,6 +116,7 @@ namespace Model
             this.RadniDani = new List<RadniDan>();
             this.korisnickoIme = korIme;
             this.lozinka = sifra;
+            this.obavestenja = new List<Obavestenja>();
         }
 
         public Lekar(int id)
@@ -76,14 +124,6 @@ namespace Model
             this.IdLekara = id;
         }
         public Lekar() { }
-
-        // Sanja
-        public Lekar(int id, string ime, string prz, Specijalizacija specijalizacija)
-        {
-            this.ImeLek = ime;
-            this.PrezimeLek = prz;
-            this.specijalizacija = specijalizacija;
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
@@ -99,5 +139,9 @@ namespace Model
             return this.ImeLek + " " + this.PrezimeLek;
         }
 
+        public void Update(ISubject subject)
+        {
+            Console.WriteLine("dodato obavestenje");
+        }
     }
 }

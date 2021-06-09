@@ -40,7 +40,7 @@ namespace Model
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
-            ObavestenjaMenadzer.obavestenja.Add(o);
+            ObavestenjaMenadzer.NadjiSve().Add(o);
             ObavestenjaServis.sacuvajIzmene();
         }
 
@@ -233,7 +233,7 @@ namespace Model
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(stariTermin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, stariTermin.Datum, stariTermin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + stariTermin.Prostorija.brojSale + ", " + stariTermin.VremePocetka + "- " + stariTermin.VremeKraja, ListaIdPacijenata, stariTermin.Lekar.IdLekara, true, "");
-            ObavestenjaMenadzer.obavestenja.Add(o);
+            ObavestenjaMenadzer.NadjiSve().Add(o);
             ObavestenjaServis.sacuvajIzmene();
         }
 
@@ -303,7 +303,7 @@ namespace Model
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
-            ObavestenjaMenadzer.obavestenja.Add(o);
+            ObavestenjaMenadzer.NadjiSve().Add(o);
             ObavestenjaServis.sacuvajIzmene();
         }
 

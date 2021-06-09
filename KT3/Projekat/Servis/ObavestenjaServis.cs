@@ -20,17 +20,38 @@ namespace Projekat.Servis
 
         public static List<Obavestenja> NadjiSvaObavestenja()
         {
-            return ObavestenjaMenadzer.NadjiSvaObavestenja();
+            return ObavestenjaMenadzer.NadjiSve();
         }
 
         public static void ObrisiObavestenje(Obavestenja obavestenje)
         {
-            ObavestenjaMenadzer.ObrisiObavestenje(obavestenje);
+            ObavestenjaMenadzer.Obrisi(obavestenje);
         }
 
         public static int GenerisanjeIdObavestenja()
         {
-            return ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= ObavestenjaMenadzer.NadjiSve().Count; id++)
+            {
+                foreach (Obavestenja obavestenje in ObavestenjaMenadzer.NadjiSve())
+                {
+                    if (obavestenje.IdObavestenja == id)
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
         }
 
         #endregion
@@ -38,12 +59,12 @@ namespace Projekat.Servis
         #region Obavestenja Sekretar
         public static void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
         {
-            ObavestenjaMenadzer.DodajObavestenje(novoObavestenje);
+            ObavestenjaMenadzer.Dodaj(novoObavestenje);
         }
 
         public static void IzmeniObavestenjeSekretar(Obavestenja obavestenje, Obavestenja novoObavestenje)
         {
-            ObavestenjaMenadzer.IzmeniObavestenje(obavestenje, novoObavestenje);
+           // ObavestenjaMenadzer.Izmeni(obavestenje, novoObavestenje);
         }
 
         public static string OdrediOznakuObavestenja(string namena)
@@ -156,12 +177,23 @@ namespace Projekat.Servis
         #region Obavestenja Pacijent
         public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)
         {
-            return ObavestenjaMenadzer.PronadjiObavestenjaPoIdPacijenta(idPacijent);
+            List<Obavestenja> retObavestenja = new List<Obavestenja>();
+            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.NadjiSve())
+            {
+                foreach (int idPacijenta in obavestenje.ListaIdPacijenata)
+                {
+                    if (idPacijenta == idPacijent)
+                    {
+                        retObavestenja.Add(obavestenje);
+                    }
+                }
+            }
+            return retObavestenja;
         }
 
         public static List<Obavestenja> PronadjiSvaObavestenja()
         {
-            List<Obavestenja> obavestenja = ObavestenjaMenadzer.obavestenja;
+            List<Obavestenja> obavestenja = ObavestenjaMenadzer.NadjiSve();
             return obavestenja;
         }
 
@@ -178,13 +210,20 @@ namespace Projekat.Servis
 
         public static void ObrisiObavestenjePacijent(Obavestenja selektovanoObavestenje)
         {
-            ObavestenjaMenadzer.ObrisiObavestenjePacijent(selektovanoObavestenje);
+            foreach(Obavestenja o in ObavestenjaMenadzer.NadjiSve())
+            {
+                if (o.IdObavestenja == selektovanoObavestenje.IdObavestenja)
+                {
+                    ObavestenjaMenadzer.NadjiSve().Remove(o);
+                    return;
+                }
+            }
         }
 
         public static ObservableCollection<Obavestenja> DodajObavestenja(int idPacijent)
         {
             ObservableCollection<Obavestenja> ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
-            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja)
+            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.NadjiSve())
             {
                 
                 if (obavestenje.ListaIdPacijenata.Contains(idPacijent) || obavestenje.Oznaka.Equals("pacijenti") || obavestenje.Oznaka.Equals("svi"))

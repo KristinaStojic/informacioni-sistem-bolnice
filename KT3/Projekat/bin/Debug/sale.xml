@@ -103,29 +103,7 @@
         <IdOpreme>8</IdOpreme>
       </Oprema>
     </Oprema>
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>07:00</pocetakTermina>
-        <krajTermina>09:00</krajTermina>
-        <datumPocetkaTermina>06/24/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/24/2021</datumKrajaTermina>
-        <idTermina>1</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>10:00</pocetakTermina>
-        <krajTermina>13:00</krajTermina>
-        <datumPocetkaTermina>06/16/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/16/2021</datumKrajaTermina>
-        <idTermina>1</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>08:00</pocetakTermina>
-        <krajTermina>09:30</krajTermina>
-        <datumPocetkaTermina>06/23/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/23/2021</datumKrajaTermina>
-        <idTermina>1</idTermina>
-      </ZauzeceSale>
-    </zauzetiTermini>
+    <zauzetiTermini />
     <Kreveti />
   </Sala>
   <Sala>
@@ -211,6 +189,15 @@
         <IdOpreme>5</IdOpreme>
       </Oprema>
     </Oprema>
+    <zauzetiTermini />
+    <Kreveti />
+  </Sala>
+  <Sala>
+    <TipSale>SalaZaPregled</TipSale>
+    <Id>2</Id>
+    <brojSale>2</brojSale>
+    <Namjena>Pregledi</Namjena>
+    <Oprema />
     <zauzetiTermini />
     <Kreveti />
   </Sala>

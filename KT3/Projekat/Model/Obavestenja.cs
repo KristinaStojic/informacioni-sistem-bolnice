@@ -5,6 +5,7 @@ using System.Text;
 using Projekat.Model;
 using Model;
 using System.ComponentModel;
+using Projekat.Servis;
 
 namespace Projekat.Model
 {
@@ -39,7 +40,7 @@ namespace Projekat.Model
 
         public Obavestenja(string TipOb, string datum, string SadrzajOb)
         {
-            this.IdObavestenja = ObavestenjaMenadzer.GenerisanjeIdObavestenja();
+            this.IdObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
             this.Datum = datum;
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;
