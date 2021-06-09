@@ -466,18 +466,62 @@
             <dateTime>2021-11-14T10:50:00</dateTime>
           </UzimanjeTerapije>
         </LekarskiRecept>
+        <LekarskiRecept>
+          <IdRecepta>5</IdRecepta>
+          <idPacijenta>3</idPacijenta>
+          <IdLekara>1</IdLekara>
+          <NazivLeka>Sirup</NazivLeka>
+          <DatumPropisivanjaLeka>10/10/2022</DatumPropisivanjaLeka>
+          <BrojDanaKoriscenja>10</BrojDanaKoriscenja>
+          <DnevnaKolicina>2</DnevnaKolicina>
+          <PocetakKoriscenja>12:02</PocetakKoriscenja>
+          <UzimanjeTerapije>
+            <dateTime>2022-10-10T12:02:00</dateTime>
+            <dateTime>2022-10-10T14:02:00</dateTime>
+            <dateTime>2022-10-10T16:02:00</dateTime>
+            <dateTime>2022-10-10T18:02:00</dateTime>
+            <dateTime>2022-10-10T20:02:00</dateTime>
+            <dateTime>2022-10-10T22:02:00</dateTime>
+            <dateTime>2022-10-11T00:02:00</dateTime>
+            <dateTime>2022-10-11T02:02:00</dateTime>
+            <dateTime>2022-10-11T04:02:00</dateTime>
+            <dateTime>2022-10-11T06:02:00</dateTime>
+            <dateTime>2022-10-11T08:02:00</dateTime>
+            <dateTime>2022-10-11T10:02:00</dateTime>
+            <dateTime>2022-10-11T12:02:00</dateTime>
+            <dateTime>2022-10-11T14:02:00</dateTime>
+            <dateTime>2022-10-11T16:02:00</dateTime>
+            <dateTime>2022-10-11T18:02:00</dateTime>
+            <dateTime>2022-10-11T20:02:00</dateTime>
+            <dateTime>2022-10-11T22:02:00</dateTime>
+            <dateTime>2022-10-12T00:02:00</dateTime>
+            <dateTime>2022-10-12T02:02:00</dateTime>
+            <dateTime>2022-10-12T04:02:00</dateTime>
+          </UzimanjeTerapije>
+        </LekarskiRecept>
       </LekarskiRecepti>
       <Anamneze>
         <Anamneza>
           <IdAnamneze>1</IdAnamneze>
           <IdPacijenta>3</IdPacijenta>
           <IdLekara>2</IdLekara>
-          <OpisBolesti>asdasd</OpisBolesti>
-          <Terapija>dasda</Terapija>
+          <OpisBolesti>Bol u ledjima</OpisBolesti>
+          <Terapija>Vezbe za istezanje</Terapija>
           <Datum>12/30/2021</Datum>
           <IdTermina>13</IdTermina>
           <Beleska />
           <ImePrezimeLekara>Marko Filipovic</ImePrezimeLekara>
+        </Anamneza>
+        <Anamneza>
+          <IdAnamneze>2</IdAnamneze>
+          <IdPacijenta>3</IdPacijenta>
+          <IdLekara>1</IdLekara>
+          <OpisBolesti>Mucnina u stomaku</OpisBolesti>
+          <Terapija>Caj od nane</Terapija>
+          <Datum>10/10/2022</Datum>
+          <IdTermina>16</IdTermina>
+          <Beleska />
+          <ImePrezimeLekara>Kristina Stojic</ImePrezimeLekara>
         </Anamneza>
       </Anamneze>
       <Alergeni>
@@ -487,6 +531,13 @@
           <NazivSastojka>s3</NazivSastojka>
           <NuspojavaNaNastojak>sadad</NuspojavaNaNastojak>
           <VremeReakcije>dasda</VremeReakcije>
+        </Alergeni>
+        <Alergeni>
+          <IdAlergena>2</IdAlergena>
+          <IdPacijenta>3</IdPacijenta>
+          <NazivSastojka>prah</NazivSastojka>
+          <NuspojavaNaNastojak>asda</NuspojavaNaNastojak>
+          <VremeReakcije>dsdfd</VremeReakcije>
         </Alergeni>
       </Alergeni>
       <Uputi>
@@ -512,10 +563,23 @@
           <brojKreveta>0</brojKreveta>
           <TipUputa>Laboratorija</TipUputa>
         </Uput>
+        <Uput>
+          <IdUputa>3</IdUputa>
+          <idPacijenta>3</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>0</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>10/10/2022</datumIzdavanja>
+          <opisPregleda>sdasd</opisPregleda>
+          <brojSobe>10</brojSobe>
+          <brojKreveta>1</brojKreveta>
+          <TipUputa>StacionarnoLecenje</TipUputa>
+          <datumPocetkaLecenja>06/09/2021</datumPocetkaLecenja>
+          <datumKrajaLecenja>06/25/2021</datumKrajaLecenja>
+        </Uput>
       </Uputi>
       <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
       <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>0</brojBolnickihUputa>
+      <brojBolnickihUputa>1</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>

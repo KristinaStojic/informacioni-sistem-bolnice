@@ -122,83 +122,71 @@
   </Lek>
   <Lek>
     <idLeka>7</idLeka>
-    <nazivLeka>erewreew</nazivLeka>
-    <sifraLeka>erwr</sifraLeka>
+    <nazivLeka>Lek</nazivLeka>
+    <sifraLeka>LDKS</sifraLeka>
     <zamenskiLekovi />
     <sastojci>
       <Sastojak>
-        <naziv>werwer</naziv>
-        <kolicina>222</kolicina>
+        <naziv>Voda</naziv>
+        <kolicina>120</kolicina>
       </Sastojak>
       <Sastojak>
-        <naziv>dsfs</naziv>
-        <kolicina>333</kolicina>
+        <naziv>Prah</naziv>
+        <kolicina>450</kolicina>
       </Sastojak>
     </sastojci>
   </Lek>
   <Lek>
     <idLeka>8</idLeka>
-    <nazivLeka>erewreew</nazivLeka>
-    <sifraLeka>erwr</sifraLeka>
+    <nazivLeka>Stepsils</nazivLeka>
+    <sifraLeka>ps2</sifraLeka>
     <zamenskiLekovi />
     <sastojci>
       <Sastojak>
-        <naziv>werwer</naziv>
-        <kolicina>222</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>dsfs</naziv>
-        <kolicina>333</kolicina>
+        <naziv>S1</naziv>
+        <kolicina>320</kolicina>
       </Sastojak>
     </sastojci>
   </Lek>
   <Lek>
     <idLeka>9</idLeka>
-    <nazivLeka>asdada</nazivLeka>
-    <sifraLeka>adad</sifraLeka>
-    <zamenskiLekovi />
+    <nazivLeka>Andol</nazivLeka>
+    <sifraLeka>LMS</sifraLeka>
+    <zamenskiLekovi>
+      <int>8</int>
+      <int>3</int>
+    </zamenskiLekovi>
     <sastojci />
   </Lek>
   <Lek>
     <idLeka>12</idLeka>
-    <nazivLeka>sdsfdsf</nazivLeka>
+    <nazivLeka>Tylolhot</nazivLeka>
     <sifraLeka>arfrf</sifraLeka>
-    <zamenskiLekovi />
-    <sastojci />
-  </Lek>
-  <Lek>
-    <idLeka>16</idLeka>
-    <nazivLeka>sfdsfdsdf</nazivLeka>
-    <sifraLeka>65312</sifraLeka>
     <zamenskiLekovi>
+      <int>4</int>
       <int>8</int>
     </zamenskiLekovi>
     <sastojci />
   </Lek>
   <Lek>
-    <idLeka>17</idLeka>
-    <nazivLeka>dfvfdgdf</nazivLeka>
-    <sifraLeka>fsdfsf</sifraLeka>
+    <idLeka>16</idLeka>
+    <nazivLeka>Sirup</nazivLeka>
+    <sifraLeka>65A2</sifraLeka>
     <zamenskiLekovi />
-    <sastojci>
-      <Sastojak>
-        <naziv>sfdsdf</naziv>
-        <kolicina>2222</kolicina>
-      </Sastojak>
-    </sastojci>
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>17</idLeka>
+    <nazivLeka>Paracetamol</nazivLeka>
+    <sifraLeka>PM4</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>20</idLeka>
-    <nazivLeka>LEEEEEEK</nazivLeka>
-    <sifraLeka>AAAA</sifraLeka>
-    <zamenskiLekovi>
-      <int>16</int>
-    </zamenskiLekovi>
-    <sastojci>
-      <Sastojak>
-        <naziv>aaaaAAAAAAAAAAAAA</naziv>
-        <kolicina>321</kolicina>
-      </Sastojak>
-    </sastojci>
+    <nazivLeka>Bensedin</nazivLeka>
+    <sifraLeka>S5</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
 </ArrayOfLek>

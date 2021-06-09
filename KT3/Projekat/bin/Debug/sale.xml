@@ -263,13 +263,6 @@
         <idTermina>3</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>08:30</pocetakTermina>
-        <krajTermina>10:00</krajTermina>
-        <datumPocetkaTermina>11/11/2022</datumPocetkaTermina>
-        <datumKrajaTermina>11/11/2022</datumKrajaTermina>
-        <idTermina>12</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
         <pocetakTermina>07:30</pocetakTermina>
         <krajTermina>08:00</krajTermina>
         <datumPocetkaTermina>10/10/2025</datumPocetkaTermina>
@@ -380,10 +373,10 @@
         <idTermina>7</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>09:00</pocetakTermina>
-        <krajTermina>11:30</krajTermina>
-        <datumPocetkaTermina>10/10/2030</datumPocetkaTermina>
-        <datumKrajaTermina>10/10/2030</datumKrajaTermina>
+        <pocetakTermina>07:30</pocetakTermina>
+        <krajTermina>08:30</krajTermina>
+        <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
+        <datumKrajaTermina>10/10/2022</datumKrajaTermina>
         <idTermina>16</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
@@ -437,6 +430,13 @@
         <datumKrajaTermina>12/12/2022</datumKrajaTermina>
         <idTermina>14</idTermina>
       </ZauzeceSale>
+      <ZauzeceSale>
+        <pocetakTermina>08:00</pocetakTermina>
+        <krajTermina>10:00</krajTermina>
+        <datumPocetkaTermina>10/21/2021</datumPocetkaTermina>
+        <datumKrajaTermina>10/21/2021</datumKrajaTermina>
+        <idTermina>17</idTermina>
+      </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />
   </Sala>
@@ -451,9 +451,9 @@
       <Krevet>
         <IdKreveta>1</IdKreveta>
         <IdSobe>10</IdSobe>
-        <Zauzet>false</Zauzet>
-        <PocetakZauzeca>0001-01-01T00:00:00</PocetakZauzeca>
-        <KrajZauzeca>0001-01-01T00:00:00</KrajZauzeca>
+        <Zauzet>true</Zauzet>
+        <PocetakZauzeca>2021-06-09T00:00:00+02:00</PocetakZauzeca>
+        <KrajZauzeca>2021-06-25T00:00:00</KrajZauzeca>
       </Krevet>
       <Krevet>
         <IdKreveta>2</IdKreveta>

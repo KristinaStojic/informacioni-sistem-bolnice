@@ -44,7 +44,7 @@ namespace Projekat
             }
 
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
-            //SpisakZahtevaZaLekove.TabelaZahteva.Remove(Zahtev);
+            SpisakZahtevaZaLekove.TabelaZahteva.Remove(Zahtev);
             LekoviServis.sacuvajIzmeneZahteva();
 
             this.Close();
