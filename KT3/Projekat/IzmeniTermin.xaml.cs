@@ -179,7 +179,7 @@ namespace Projekat
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             sacuvaj.IsEnabled = true;
-            SaleZaPreglede = TerminServis.combo_SelectionChanged(this.combo, null, null, idPacijent);
+            SaleZaPreglede = TerminServis.FiltrirajTipTermina(this.combo, null, null, idPacijent);
         }
 
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
@@ -190,14 +190,14 @@ namespace Projekat
                 MessageBox.Show("Izaberite tip termina", "Upozorenje", MessageBoxButton.OK);
                 return;
             }
-            vpp.ItemsSource = TerminServis.datum_SelectedDatesChanged(datum);
+            vpp.ItemsSource = TerminServis.FiltrirajDatum(datum);
 
         }
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             sacuvaj.IsEnabled = true;
-            prvaSlobodnaSala = TerminServis.Vpp_SelectionChanged(vpp, datum);
+            prvaSlobodnaSala = TerminServis.FiltritajVremePocetka(vpp, datum);
             if (prvaSlobodnaSala == null) 
             {
                 MessageBox.Show("Ne postoji slobodan termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);

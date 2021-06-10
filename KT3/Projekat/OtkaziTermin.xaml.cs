@@ -54,7 +54,8 @@ namespace Projekat
         private static void OtkaziOdabraniTermin()
         {
             TerminServis.OtkaziTermin(terminZaBrisanje);
-            MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent);
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            proxy.DodajMalicioznoPonasanje(idPacijent);
             SaleServis.sacuvajIzmjene();
             TerminServis.sacuvajIzmene();
         }

@@ -24,7 +24,8 @@ namespace Projekat.Servis
 
         public static void zakazi_Click(Page nazivPagea, int idPacijent)
         {
-            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            if (proxy.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -32,6 +33,7 @@ namespace Projekat.Servis
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             nazivPagea.NavigationService.Navigate(zakaziTermin);
         }
+
         public static void uvid_Click(Page nazivPagea, int idPacijent)
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);

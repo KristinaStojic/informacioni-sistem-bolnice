@@ -96,7 +96,7 @@
                       VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.858,0.494">
                 <StackPanel Orientation="Vertical">
                     <ComboBox HorizontalAlignment="Center" x:Name="combo" VerticalAlignment="Center"
-                          Width="200" Margin="44,25,44,2" Height="27" SelectionChanged="combo_SelectionChanged">
+                          Width="200" Margin="44,25,44,2" Height="27" SelectionChanged="FiltritajTipTermina">
                         <ComboBoxItem IsSelected="True" Content="{namespace:Loc Pregled}"/>
                         <ComboBoxItem Content="{namespace:Loc SpecijalistickiPregled}" />
                     </ComboBox>
@@ -108,7 +108,7 @@
             <GroupBox Header="{namespace:Loc IzaberiteUput}" Margin="0, 10, 0, 0" Height="90" ToolTip="{namespace:Loc ToolTipUput}">
                 <StackPanel Orientation="Vertical">
                     <ComboBox Name="comboUputi" Height="27" Width="200" HorizontalAlignment="Center" Margin="0, 25, 0, 2"
-                          SelectionChanged="comboUputi_SelectionChanged" ItemsSource="{Binding uputiPacijenta.opisPregleda }" IsEnabled="False" ></ComboBox>
+                          SelectionChanged="IzborUputa" ItemsSource="{Binding uputiPacijenta.opisPregleda }" IsEnabled="False" ></ComboBox>
                     <TextBox  x:Name="valUput" Text="{namespace:Loc valAdresa}" Background="Transparent" Visibility="Hidden"
                                   Foreground="Red" Height="15" TextWrapping="Wrap"  HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    BorderBrush="Transparent"  FontSize="10" IsReadOnly="True" Width="180"/>
@@ -117,7 +117,7 @@
             <GroupBox Header="{namespace:Loc IzaberiteDatum}" HorizontalAlignment="Left" Height="220"  VerticalAlignment="Top" Width="300"
                       RenderTransformOrigin="0.517,0.878" Margin="0,10, 0,0 ">
                 <StackPanel Orientation="Vertical">
-                    <Calendar x:Name="datum" Style="{DynamicResource CalendarStyle}" SelectedDatesChanged="datum_SelectedDatesChanged"
+                    <Calendar x:Name="datum" Style="{DynamicResource CalendarStyle}" SelectedDatesChanged="FiltrirajDatum"
                       Margin="56,10,0,2" FontSize="20" FontStyle="Italic" HorizontalAlignment="Left" Width="185"/>
                     <TextBox  x:Name="valDatum" Text="{namespace:Loc valAdresa}" Background="Transparent" 
                                   Foreground="Red" Height="15" TextWrapping="Wrap"  HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"
@@ -128,7 +128,7 @@
             <GroupBox Header="{namespace:Loc IzaberiteVremePocetka}" VerticalAlignment="Top" Height="90" Margin="0, 10, 0, 0">
                 <StackPanel Orientation="Vertical">
                     <ComboBox HorizontalAlignment="Center" x:Name="vpp" Height="27" Width="200" VerticalAlignment="Center" Margin="0,25,0,2"
-                          SelectionChanged="vpp_SelectionChanged">
+                          SelectionChanged="FiltrirajVremePocetka">
                     </ComboBox>
                     <TextBox  x:Name="valVreme" Text="{namespace:Loc valAdresa}" Background="Transparent" Visibility="Hidden"
                                   Foreground="Red" Height="15" TextWrapping="Wrap"  HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -151,7 +151,7 @@
         </Hyperlink>
             </TextBlock>
             <Button Content="{namespace:Loc Potvrdi}" ToolTip="Potvrdite zakazivanje termina bez elektronskog placanja" HorizontalAlignment="Center"
-                 VerticalAlignment="Top" Width="90"  IsEnabled="False" Height="30" Click="Button_Click_1" Margin="0, 30, 0, 20" Name="potvrdi"
+                 VerticalAlignment="Top" Width="90"  IsEnabled="False" Height="30" Click="PromenaSpecijalistickogUputa" Margin="0, 30, 0, 20" Name="potvrdi"
                 Style="{DynamicResource ButtonStyle2}"/>
         </StackPanel>
 

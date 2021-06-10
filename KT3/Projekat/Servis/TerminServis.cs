@@ -68,7 +68,7 @@ namespace Projekat.Servis
         {
             return selektovaniDatum.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
         }
-        public static List<Sala> combo_SelectionChanged(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
+        public static List<Sala> FiltrirajTipTermina(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
         { 
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
@@ -94,7 +94,7 @@ namespace Projekat.Servis
             return SaleZaPreglede;
         }
 
-        public static ObservableCollection<string> datum_SelectedDatesChanged(Calendar datum)
+        public static ObservableCollection<string> FiltrirajDatum(Calendar datum)
         {
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
@@ -260,7 +260,7 @@ namespace Projekat.Servis
             }
         }
 
-        public static Sala Vpp_SelectionChanged(ComboBox vpp, Calendar datum)
+        public static Sala FiltritajVremePocetka(ComboBox vpp, Calendar datum)
         {
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             string selektovaniSlot = vpp.SelectedValue.ToString();
