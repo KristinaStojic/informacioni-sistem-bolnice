@@ -24,6 +24,7 @@ namespace Projekat
         public PrijavaLekar()
         {
             InitializeComponent();
+            potvrdi.IsEnabled = false;
            
         }
 
@@ -36,7 +37,7 @@ namespace Projekat
                 foreach (Lekar lekar in LekariServis.NadjiSveLekare())
                 {
                     
-                    if (lekar.korisnickoIme.Equals(ime.Text) && lekar.lozinka.Equals(sifra.Text))
+                    if (lekar.korisnickoIme.Equals(ime.Text) && lekar.lozinka.Equals(sifra.Password))
                     {
                         int idLekara = lekar.IdLekara;
                         PocetnaStrana ps = new PocetnaStrana(idLekara);
@@ -44,12 +45,12 @@ namespace Projekat
                         this.Close();
                         return;
                     }
-                    else if (lekar.korisnickoIme.Equals(ime.Text) && !lekar.lozinka.Equals(sifra.Text))
+                    else if (lekar.korisnickoIme.Equals(ime.Text) && !lekar.lozinka.Equals(sifra.Password))
                     {
                         //MessageBox.Show("Neispravno korisnicko ime i/ili lozinka");
                         //MessageBox.Show("Uneli ste nepostojece podatke!");
                     }
-                    else if (!lekar.korisnickoIme.Equals(ime.Text) && lekar.lozinka.Equals(sifra.Text))
+                    else if (!lekar.korisnickoIme.Equals(ime.Text) && lekar.lozinka.Equals(sifra.Password))
                     {
                         //MessageBox.Show("Neispravno korisnicko ime i/ili lozinka");
                         //MessageBox.Show("Uneli ste neispravne podatke!");
@@ -75,7 +76,7 @@ namespace Projekat
 
         private void postaviDugme()
         {
-            if (this.sifra.Text != null && this.ime.Text != null)
+            if (this.sifra.Password != null && this.ime.Text != null)
             {
                 izvrsiPostavljanje();
             }
@@ -86,11 +87,11 @@ namespace Projekat
         }
         private void izvrsiPostavljanje()
         {
-            if (this.sifra.Text.Trim().Equals("") || this.ime.Text.Trim().Equals(""))
+            if (this.sifra.Password.Trim().Equals("") || this.ime.Text.Trim().Equals(""))
             {
                 this.potvrdi.IsEnabled = false;
             }
-            else if (!this.sifra.Text.Trim().Equals("") && !this.ime.Text.Trim().Equals(""))
+            else if (!this.sifra.Password.Trim().Equals("") && !this.ime.Text.Trim().Equals(""))
             {
                 this.potvrdi.IsEnabled = true;
                 popunjeno = true;
@@ -111,6 +112,11 @@ namespace Projekat
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            postaviDugme();
         }
     }
 }

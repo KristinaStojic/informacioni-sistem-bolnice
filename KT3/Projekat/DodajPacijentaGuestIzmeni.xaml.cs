@@ -137,5 +137,17 @@ namespace Projekat
                 }
             }
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+        }
     }
 }

@@ -285,6 +285,7 @@
     </Compile>
     <Compile Include="Model\Alergeni.cs" />
     <Compile Include="Model\Anamneza.cs" />
+    <Compile Include="Model\AnamnezaIzvestaj.cs" />
     <Compile Include="Model\Anketa.cs" />
     <Compile Include="Model\AnketaMenadzer.cs" />
     <Compile Include="Model\Krevet.cs" />
@@ -302,6 +303,7 @@
     <Compile Include="Model\Premjestaj.cs" />
     <Compile Include="Model\PremjestajMenadzer.cs" />
     <Compile Include="Model\RadniDan.cs" />
+    <Compile Include="Model\ReceptiIzvestaj.cs" />
     <Compile Include="Model\Sastojak.cs" />
     <Compile Include="Model\Specijalizacija.cs" />
     <Compile Include="Model\UpravnikModel.cs" />
@@ -581,6 +583,7 @@
     <Compile Include="Servis\IAnketeServis.cs" />
     <Compile Include="Servis\IMalicioznoPonasanje.cs" />
     <Compile Include="Servis\IzmjenaKolicineStatickeServis.cs" />
+    <Compile Include="Servis\IzmjenaKolicineOpremeServis.cs" />
     <Compile Include="Servis\LekariServis.cs" />
     <Compile Include="Servis\LekoviServis.cs" />
     <Compile Include="Servis\MalicioznoPonasanjeServis.cs" />
@@ -646,15 +649,20 @@
     </Compile>
     <Compile Include="ViewModel\IzvjestajViewModel.cs" />
     <Compile Include="ViewModel\KomunikacijaViewModel.cs" />
+    <Compile Include="ViewModel\LekarLekoviViewModel.cs" />
     <Compile Include="ViewModel\LekarViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
+    <Compile Include="ViewModel\PremjestajOpremeViewModel.cs" />
     <Compile Include="ViewModel\PrikaziTerminViewModel.cs" />
     <Compile Include="ViewModel\OAplikacijiViewModel.cs" />
     <Compile Include="ViewModel\PomocViewModel.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />
     <Compile Include="ViewModel\SkladisteViewModel.cs" />
     <Compile Include="ViewModel\UpravnikViewModel.cs" />
+    <Compile Include="ViewModel\ValidacijaNalogaLekara.cs" />
+    <Compile Include="ViewModel\ValidationBase.cs" />
+    <Compile Include="ViewModel\ValidationErrors.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\ZahtjeviViewModel.cs" />
     <Compile Include="ViewModel\ZdravstveniKartonViewModel.cs" />

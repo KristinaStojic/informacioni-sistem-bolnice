@@ -33,6 +33,8 @@ namespace Projekat
         public Pacijent pacijent;
         public Termin termin;
         public event PropertyChangedEventHandler PropertyChanged;
+        ReceptiIzvestaj receptiIzvestaj = new ReceptiIzvestaj();
+        AnamnezaIzvestaj anamnezaIzvestaj = new AnamnezaIzvestaj();
 
         protected virtual void OnPropertyChanged(string name)
         {
@@ -473,7 +475,7 @@ namespace Projekat
             }
         }
 
-        private void Izvestaj_Recepti(object sender, RoutedEventArgs e)
+        /*private void Izvestaj_Recepti(object sender, RoutedEventArgs e)
         {
             using (PdfDocument doc = new PdfDocument())
             {
@@ -536,11 +538,35 @@ namespace Projekat
                 doc.Close();
             }
             MessageBox.Show("PDF fajl uspesno izgenerisan!");
+        }*/
+
+        private void Izvestaj_Recepti(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataTable dtbl = receptiIzvestaj.MakeDataTable(termin);
+                String naslov = "Izveštaj recepata@@Pacijent " + pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta;
+                naslov = naslov.Replace("@", System.Environment.NewLine);
+                String datum = DateTime.Now.ToString("_dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                String putanja = "C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajRecepata" + pacijent.ImePacijenta + pacijent.PrezimePacijenta + ".pdf";
+                receptiIzvestaj.ExportDataTableToPdf(dtbl, putanja, naslov);
+
+                if (System.Windows.MessageBox.Show("Izveštaj izgenerisan! Pogledati ga?", "Izveštaj recepata", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(putanja);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message, "Error Message");
+            }
+
         }
 
         private void Izvestaj_Anamneze(object sender, RoutedEventArgs e)
         {
-            using (PdfDocument doc = new PdfDocument())
+            /*using (PdfDocument doc = new PdfDocument())
             {
                 //Add a page to the document
                 PdfPage page = doc.Pages.Add();
@@ -592,7 +618,28 @@ namespace Projekat
 
                 doc.Close();
             }
-            MessageBox.Show("PDF fajl uspesno izgenerisan!");
+            MessageBox.Show("PDF fajl uspesno izgenerisan!");*/
+
+
+            try
+            {
+                DataTable dtbl = anamnezaIzvestaj.MakeDataTable(termin);
+                String naslov = "Izveštaj anamneza@@Pacijent " + pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta;
+                naslov = naslov.Replace("@", System.Environment.NewLine);
+                String datum = DateTime.Now.ToString("_dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                String putanja = "C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajAnamneza" + pacijent.ImePacijenta + pacijent.PrezimePacijenta + ".pdf";
+                anamnezaIzvestaj.ExportDataTableToPdf(dtbl, putanja, naslov);
+
+                if (System.Windows.MessageBox.Show("Izveštaj izgenerisan! Pogledati ga?", "Izveštaj recepata", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(putanja);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message, "Error Message");
+            }
         }
 
         private void alergeni_KeyDown(object sender, KeyEventArgs e)

@@ -83,12 +83,22 @@ namespace Projekat
                     //int brPregleda = t.Lekar.BrojPregleda; 
                     //int brOperacija = t.Lekar.BrojOperacija; 
                     //int br = 10;
-                    this.ukupnoPregleda = new ChartValues<int>() { t.Lekar.BrojPregleda };
-                    this.ukupnoOperacija = new ChartValues<int>() { t.Lekar.BrojOperacija };
+                    
+                    //this.ukupnoPregleda = new ChartValues<int>() { t.Lekar.BrojPregleda };
+                    //this.ukupnoOperacija = new ChartValues<int>() { t.Lekar.BrojOperacija };
                 }
                
             }
 
+
+            foreach(Lekar l in LekariMenadzer.lekari)
+            {
+                if(l.IdLekara == idLekara)
+                {
+                    this.ukupnoPregleda = new ChartValues<int>() { l.BrojPregleda };
+                    this.ukupnoOperacija = new ChartValues<int>() { l.BrojOperacija };
+                }
+            }
 
 
         }

@@ -3,7 +3,7 @@ using Projekat.Model;
 
 namespace Projekat.Servis
 {
-    public class IzmjenaKolicineStatickeServis
+    public class IzmjenaKolicineOpremeServis
     {
         public static void PovecajKolicinuOpreme(Sala sala, int kolicina, Oprema izabranaOprema)
         {

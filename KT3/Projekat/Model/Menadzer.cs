@@ -7,7 +7,7 @@ namespace Projekat.Model
 {
     public abstract class Menadzer<T>
     {
-        public static List<T> lista; 
+        public static List<T> lista = new List<T>(); 
 
         public static void sacuvajIzmjene(string fajl)
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat.Pomoc"
         mc:Ignorable="d"
-        Title="Pomoc" Height="520" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown" Background="#FFE7F6F7">
+        Title="Pomoc" Height="550" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown" Background="#FFE7F6F7">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -34,7 +34,7 @@
                 <TextBlock Height="0"/>
             </Grid>
         </Button>
-        <TextBlock Margin="33.6,3,26,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2" Height="445" VerticalAlignment="Top">
+        <TextBlock Margin="33.6,3,10,0" TextWrapping="Wrap" Grid.Column="1" FontSize="15" Grid.RowSpan="2" Height="492" VerticalAlignment="Top">
             <Run Text="Opšte prečice:" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
             <Run Text="CTRL + M - Otvori menu"/><LineBreak/>
             <Run Text="CTRL + N - Zatvori meni"/><LineBreak/>
@@ -52,6 +52,7 @@
             <Run Text="Za celu aplikaciju:" FontSize="18" FontStyle="Italic" FontWeight="DemiBold"/><LineBreak/><LineBreak/>
             <Run Text="CTRL + N - "/><Run Text="Zatvaranje dijaloga"/><LineBreak/>
             <Run Text="ALT + P - "/><Run Text="Otvaranje pomoći"/><LineBreak/>
+            <Run Text="CTRL + O - "/><Run Text="Odustajanje od određene"/> <LineBreak/>  <Run Text="akcije unutar dijaloga"/><LineBreak/>
         </TextBlock>
     </Grid>
 </Window>
