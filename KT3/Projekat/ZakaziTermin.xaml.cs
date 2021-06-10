@@ -45,7 +45,7 @@ namespace Projekat
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)
         {
-            datum.BlackoutDates.AddDatesInPast();
+            //datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;

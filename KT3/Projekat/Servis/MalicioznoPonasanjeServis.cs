@@ -18,11 +18,6 @@ namespace Projekat.Servis
             return MalicioznoPonasanjeMenadzer.NadjiSvaMalicioznaPonasanja();
         }
 
-       /*public bool DetektujMalicioznoPonasanje(int idPacijenta)
-        {
-            return MalicioznoPonasanjeMenadzer.DetektujMalicioznoPonasanje(idPacijenta);
-        }*/
-
         public void DodajMalicioznoPonasanje(int idPacijent)
         {
             MalicioznoPonasanjeMenadzer.DodajMalicioznoPonasanje(idPacijent);

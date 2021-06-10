@@ -31,7 +31,8 @@ namespace Projekat.Servis
 
         public void DodajMalicioznoPonasanje(int idPacijent)
         {
-            throw new NotImplementedException();
+            MalicioznoPonasanjeServis servis = new MalicioznoPonasanjeServis();
+            servis.DodajMalicioznoPonasanje(idPacijent);
         }
 
         public List<MalicioznoPonasanje> NadjiSvaMalicioznaPonasanja()
