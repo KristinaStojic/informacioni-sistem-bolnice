@@ -17,12 +17,19 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for ElektronskoPlacanjePacijent.xaml
-    /// </summary>
     public partial class ElektronskoPlacanjePacijent : Page
     {
         private static int idPacijent;
+        private static bool prvo = false;
+        private static bool drugo = false;
+        private static bool trece = false;
+        private static bool cetvrto = false;
+        private static bool peto = false;
+        private static bool sesto = false;
+        private static bool sedmo = false;
+        private static bool osmo = false;
+        private static bool deveto = false;
+        private static bool deseto = false;
         public ElektronskoPlacanjePacijent(int idPrijavaljenogPacijenta, TipTermina tip)
         {
             InitializeComponent();
@@ -32,6 +39,8 @@ namespace Projekat
             Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
+            this.potvrdi.IsEnabled = false;
+            MessageBox.Show(drzava.SelectedItem.ToString());
         }
 
         private void OdrediCenuPregleda(TipTermina tip)
@@ -116,6 +125,107 @@ namespace Projekat
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
             this.NavigationService.Navigate(uvid);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!LicniPodaciPacijenta.ProveraCifara(brojKartice.Text))
+            {
+                valBrojKartice.Visibility = Visibility.Visible;
+                return;
+            }
+            valBrojKartice.Visibility = Visibility.Hidden;
+            prvo = true;
+            ProveriSvaPolja();
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            drugo = true;
+            ProveriSvaPolja();
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+            trece = true;
+            ProveriSvaPolja();
+        }
+
+        public void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show(drzava.SelectedValue.ToString());
+            if(drzava.SelectedValue.ToString().Length == 36) // drzava ili country
+            {
+                cetvrto = false;
+                return;
+            }
+            cetvrto = true;
+            ProveriSvaPolja();
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            peto = true;
+            ProveriSvaPolja();
+        }
+
+        private void ComboBox_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+            sesto = true;
+           ProveriSvaPolja();
+        }
+
+        private void TextBox_TextChanged_3(object sender, TextChangedEventArgs e)
+        {
+            if (!LicniPodaciPacijenta.ProveraCifara(cvv.Text))
+            {
+                valCVV.Visibility = Visibility.Visible;
+                return;
+            }
+            valCVV.Visibility = Visibility.Hidden;
+            sedmo = true;
+            ProveriSvaPolja();
+        }
+
+        private void TextBox_TextChanged_4(object sender, TextChangedEventArgs e)
+        {
+            if (!LicniPodaciPacijenta.ProveraCifara(postanskiBroj.Text))
+            {
+                valPostanskiBroj.Visibility = Visibility.Visible;
+                return;
+            }
+            valPostanskiBroj.Visibility = Visibility.Hidden;
+            osmo = true;
+            ProveriSvaPolja();
+        }
+
+        private void ProveriSvaPolja()
+        {
+            if((Visa.IsChecked == false && American.IsChecked == false) || (Visa.IsChecked == true && American.IsChecked == true) )
+            {
+                return;
+            } 
+            if (prvo == true && drugo == true && trece == true && cetvrto == true && peto == true && sesto == true && sedmo == true && osmo == true && (American.IsChecked == true || Visa.IsChecked == true))
+            {
+                potvrdi.IsEnabled = true;
+            }
+            //potvrdi.IsEnabled = false;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            deveto = true;
+            ProveriSvaPolja();
+        }
+
+        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
+        {
+            deseto = true;
+            if(American.IsChecked == true || Visa.IsChecked == true)
+            {
+                MessageBox.Show("cekirano");
+            }
+            ProveriSvaPolja();
         }
     }
 }

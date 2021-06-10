@@ -960,6 +960,14 @@ namespace Projekat
             {
                 GuestNalog_Click(sender, e);
             }
+            if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
         }
     }
 }

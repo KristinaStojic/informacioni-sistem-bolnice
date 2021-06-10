@@ -17,30 +17,28 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-
-    public partial class DetaljiSpecijalistickogUputa : Page
+    /// <summary>
+    /// Interaction logic for DetaljiLabUputaPacijent.xaml
+    /// </summary>
+    public partial class DetaljiLabUputaPacijent : Page
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
-        public DetaljiSpecijalistickogUputa(int idPrijavljenogPacijenta, Uput stacionarnoLecenje)
+        public DetaljiLabUputaPacijent(Uput labUput, int idPrijvaljenogPacijenta)
         {
             InitializeComponent();
-            this.DataContext = this;
-            idPacijent = idPrijavljenogPacijenta;
+            idPacijent = idPrijvaljenogPacijenta;
+
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-
-            Lekar lekarKojiIzdajeUput = LekariServis.NadjiPoId(stacionarnoLecenje.IdLekaraKojiIzdajeUput);
-            this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
-
-            this.datum.Text = stacionarnoLecenje.datumIzdavanja;
-            this.Napomena.Text = stacionarnoLecenje.opisPregleda;
-            this.soba.Text = stacionarnoLecenje.brojSobe.ToString();
-            this.krevet.Text = stacionarnoLecenje.brojKreveta.ToString();
+            this.datum.Text = labUput.datumIzdavanja;
+            this.Napomena.Text = labUput.opisPregleda;
+            Lekar lekarKojiIzdajeUput = LekariServis.NadjiPoId(labUput.IdLekaraKojiIzdajeUput);
+            this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
@@ -86,5 +84,7 @@ namespace Projekat
             PacijentWebStranice.Jezik_Click(Jezik);
 
         }
+
+
     }
 }

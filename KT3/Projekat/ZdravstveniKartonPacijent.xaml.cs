@@ -123,10 +123,15 @@ namespace Projekat
                 Page detaljiUputa = new DetaljiUputaPacijent(idPacijent, uput);
                 this.NavigationService.Navigate(detaljiUputa);
             }
+            else if (uput.TipUputa.Equals(tipUputa.StacionarnoLecenje))
+            {
+                Page detaljiUputa = new DetaljiSpecijalistickogUputa(idPacijent, uput);  // page -  detalji stac uputa 
+                this.NavigationService.Navigate(detaljiUputa);
+            }
             else if (uput.TipUputa.Equals(tipUputa.Laboratorija))
             {
-                Page detaljiUputa = new DetaljiSpecijalistickogUputa(idPacijent, uput);  // page -  detalji lab uputa 
-                this.NavigationService.Navigate(detaljiUputa);
+                Page detaljiLabUputa = new DetaljiLabUputaPacijent(uput, idPacijent);
+                this.NavigationService.Navigate(detaljiLabUputa);
             }
         }
 

@@ -33,8 +33,7 @@ namespace Projekat.Servis
 
         public static void IzmjeniSalu(Sala izSale, Sala uSalu)
         {
-            SaleMenadzer sm = new SaleMenadzer();
-            sm.Izmjeni(izSale, uSalu);
+            SaleMenadzer.Instanca.Izmjeni(izSale, uSalu);
         }
 
         public static List<Sala> NadjiSveSale()
@@ -49,7 +48,7 @@ namespace Projekat.Servis
 
         public static Sala NadjiSaluPoId(int id)
         {
-            foreach (Sala sala in SaleMenadzer.NadjiSve("sale.xml"))
+            foreach (Sala sala in SaleMenadzer.lista)
             {
                 if (sala.Id == id)
                 {
@@ -79,7 +78,7 @@ namespace Projekat.Servis
         public static int GenerisanjeIdSale()
         {
             int id;
-            for (id = 1; id <= SaleMenadzer.NadjiSve("sale.xml").Count; id++)
+            for (id = 1; id <= SaleMenadzer.lista.Count; id++)
             {
                 if (!postojiIdSale(id))
                 {
@@ -91,7 +90,7 @@ namespace Projekat.Servis
 
         private static bool postojiIdSale(int id)
         {
-            foreach (Sala sala in SaleMenadzer.NadjiSve("sale.xml"))
+            foreach (Sala sala in SaleMenadzer.lista)
             {
                 if (sala.Id.Equals(id))
                 {

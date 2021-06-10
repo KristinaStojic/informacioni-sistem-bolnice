@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="OdrediRadnoVreme" Height="520" Width="630" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="OdrediRadnoVreme" Height="520" Width="630" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid Margin="0,2,-1,-2.2" HorizontalAlignment="Left" Width="625">
         <Calendar x:Name="kalendar" HorizontalAlignment="Left" Margin="26,50,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="201" Height="167" IsManipulationEnabled="True" 
                   SelectionMode="MultipleRange" SelectedDatesChanged="Kalendar_SelectedDatesChanged" LostFocus="Kalendar_LostFocus">

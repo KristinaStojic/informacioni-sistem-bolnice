@@ -874,11 +874,10 @@
           <Beleska />
           <ImePrezimeLekara>Filip Milosevic</ImePrezimeLekara>
         </Anamneza>
-      </Anamneze>
       <Alergeni />
       <Uputi />
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
       <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>

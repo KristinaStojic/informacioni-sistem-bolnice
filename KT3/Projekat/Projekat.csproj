@@ -138,6 +138,9 @@
     <Compile Include="DetaljiAnamnezeSekretar.xaml.cs">
       <DependentUpon>DetaljiAnamnezeSekretar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetaljiLabUputaPacijent.xaml.cs">
+      <DependentUpon>DetaljiLabUputaPacijent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DetaljiSpecijalistickogUputa.xaml.cs">
       <DependentUpon>DetaljiSpecijalistickogUputa.xaml</DependentUpon>
     </Compile>
@@ -575,7 +578,7 @@
       <DependentUpon>SekretarPrijava.xaml</DependentUpon>
     </Compile>
     <Compile Include="Servis\AnketaServis.cs" />
-    <Compile Include="Servis\IzmjenaKolicineStatickeServis.cs" />
+    <Compile Include="Servis\IzmjenaKolicineOpremeServis.cs" />
     <Compile Include="Servis\LekariServis.cs" />
     <Compile Include="Servis\LekoviServis.cs" />
     <Compile Include="Servis\MalicioznoPonasanjeServis.cs" />
@@ -644,12 +647,16 @@
     <Compile Include="ViewModel\LekarViewModel.cs" />
     <Compile Include="ViewModel\LijekoviViewModel.cs" />
     <Compile Include="ViewModel\MyICommand.cs" />
+    <Compile Include="ViewModel\PremjestajOpremeViewModel.cs" />
     <Compile Include="ViewModel\PrikaziTerminViewModel.cs" />
     <Compile Include="ViewModel\OAplikacijiViewModel.cs" />
     <Compile Include="ViewModel\PomocViewModel.cs" />
     <Compile Include="ViewModel\SaleViewModel.cs" />
     <Compile Include="ViewModel\SkladisteViewModel.cs" />
     <Compile Include="ViewModel\UpravnikViewModel.cs" />
+    <Compile Include="ViewModel\ValidacijaNalogaLekara.cs" />
+    <Compile Include="ViewModel\ValidationBase.cs" />
+    <Compile Include="ViewModel\ValidationErrors.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\ZahtjeviViewModel.cs" />
     <Compile Include="ViewModel\ZdravstveniKartonViewModel.cs" />
@@ -714,6 +721,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetaljiAnamnezeSekretar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetaljiLabUputaPacijent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

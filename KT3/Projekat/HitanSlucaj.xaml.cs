@@ -789,6 +789,14 @@ namespace Projekat
             {
                 Guest_Pacijent(sender, e);
             }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
         }
 
         private void ZauzetiTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)

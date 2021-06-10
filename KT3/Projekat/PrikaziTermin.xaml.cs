@@ -81,27 +81,41 @@ namespace Projekat
         private void UvidObavestenje_Click(object sender, RoutedEventArgs e)
         {
             Obavestenja obavestenje = (Obavestenja)obavestenja.SelectedItem;
-            if (Jezik.Header.Equals("_en-US"))
+            if (obavestenja != null)
             {
-                string informacijeObavestenjeSrp = "Sadržaj: " + obavestenje.SadrzajObavestenja + "\nDatum: " + obavestenje.Datum;
-                MessageBox.Show(informacijeObavestenjeSrp, obavestenje.TipObavestenja, MessageBoxButton.OKCancel);
+                if (Jezik.Header.Equals("_en-US"))
+                {
+                    string informacijeObavestenjeSrp = "Sadržaj: " + obavestenje.SadrzajObavestenja + "\nDatum: " + obavestenje.Datum;
+                    MessageBox.Show(informacijeObavestenjeSrp, obavestenje.TipObavestenja, MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                }
+                else
+                {
+                    string informacijeObavestnjeEng = "Content: " + obavestenje.SadrzajObavestenja + "\nDate: " + obavestenje.Datum;
+                    MessageBox.Show(informacijeObavestnjeEng, obavestenje.TipObavestenja, MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                }
             }
             else
             {
-                string informacijeObavestnjeEng = "Content: " + obavestenje.SadrzajObavestenja + "\nDate: " + obavestenje.Datum;
-                MessageBox.Show(informacijeObavestnjeEng, obavestenje.TipObavestenja, MessageBoxButton.OKCancel);
+                if (Jezik.Header.Equals("_en-US"))
+                { 
+                    MessageBox.Show("Morate selektovati jedno obavestenje.", obavestenje.TipObavestenja, MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("You must select one notification.", obavestenje.TipObavestenja, MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    return;
+                }
             }
         }
 
         private void ObrisiObavestenje_Click(object sender, RoutedEventArgs e)
         {
-            ObavestenjaServis.ObrisiSelektovanoObavestenje((Obavestenja)obavestenja.SelectedItem, ObavestenjaPacijent);
+            ObavestenjaServis.ObrisiSelektovanoObavestenje((Obavestenja)obavestenja.SelectedItem, ObavestenjaPacijent, Jezik);
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
 
@@ -137,42 +151,11 @@ namespace Projekat
 
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            /* var app = (App)Application.Current;
-             MenuItem mi = (MenuItem)sender;
-             if (mi.Header.Equals("Svetla") || mi.Header.Equals("Light"))
-             {
-                 //mi.Header = "Tamna";
-                 SvetlaTema.IsEnabled = false;
-                 tamnaTema.IsEnabled = true;
-                 app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-             }
-             else
-             {
-                 //mi.Header = "Svetla";
-                 tamnaTema.IsEnabled = false;
-                 SvetlaTema.IsEnabled = true;
-                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-             }*/
             PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
         }
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /* var app = (App)Application.Current;
-             // TODO: proveriti
-             string eng = "en-US";
-             string srb = "sr-LATN";
-             MenuItem mi = (MenuItem)sender;
-             if (mi.Header.Equals("en-US"))
-             {
-                 mi.Header = "sr-LATN";
-                 app.ChangeLanguage(eng);
-             }
-             else
-             {
-                 mi.Header = "en-US";
-                 app.ChangeLanguage(srb);
-             }*/
             PacijentWebStranice.Jezik_Click(Jezik);
             
         }

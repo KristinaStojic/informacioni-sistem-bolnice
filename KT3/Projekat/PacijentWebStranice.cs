@@ -60,14 +60,12 @@ namespace Projekat.Servis
             var app = (App)Application.Current;
             if (SvetlaTema.IsEnabled)
             {
-                //mi.Header = "Tamna";
                 SvetlaTema.IsEnabled = false;
                 tamnaTema.IsEnabled = true;
                 app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
             }
             else
             {
-                //mi.Header = "Svetla";
                 tamnaTema.IsEnabled = false;
                 SvetlaTema.IsEnabled = true;
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
@@ -77,7 +75,6 @@ namespace Projekat.Servis
         public static void Jezik_Click(MenuItem Jezik)
         {
             var app = (App)Application.Current;
-            // TODO: proveriti
             string eng = "en-US";
             string srb = "sr-LATN";
             if (Jezik.Header.Equals("_en-US"))
@@ -105,7 +102,7 @@ namespace Projekat.Servis
                 TamnaTema.IsEnabled = false;
 
             }
-            else if (PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
+            else if (PanelZaglavlja.Background.ToString().Equals("#FFE8F1F5"))
             {
                 SvetlaTema.IsEnabled = false;
             }

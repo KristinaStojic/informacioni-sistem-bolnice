@@ -60,8 +60,7 @@
                 </Hyperlink>
                         </TextBlock>
                         <TabControl x:Name="tab" HorizontalAlignment="Left"
-                    Height="445" VerticalAlignment="Top" Width="615" Margin="90,20,0,100" BorderBrush="Gainsboro" 
-                                    SelectionChanged="tab_SelectionChanged">
+                            Height="445" VerticalAlignment="Top" Width="615" Margin="90,20,0,100" BorderBrush="Gainsboro" SelectionChanged="tab_SelectionChanged">
                             <TabControl.Resources>
                                 <Style TargetType="{x:Type TabItem}">
                                     <Setter Property="Template">
