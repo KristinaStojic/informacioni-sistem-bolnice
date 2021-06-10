@@ -61,7 +61,7 @@
 
                             <Button   Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Sastojci leka" HorizontalAlignment="Left" Margin="198,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291" Command="{Binding SastojciLekaKomanda}"/> <!--Command="{Binding SastojciLekaKomanda}"-->
                             <Button Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Izmeni lek" HorizontalAlignment="Left" Margin="48,492,0,0" VerticalAlignment="Top" Width="120" Height="38" Command="{Binding IzmeniLekKomanda}"/> <!--Command="{Binding IzmeniLekKomanda}"-->
-                            <Button  Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Zamenski lekovi" HorizontalAlignment="Left" Margin="345,492,0,0" VerticalAlignment="Top"  Width="119" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_2"/> <!--Command="{Binding ZamenskiLekoviKomanda}"-->
+                            <Button  Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Zamenski lekovi" HorizontalAlignment="Left" Margin="345,492,0,0" VerticalAlignment="Top"  Width="119" Height="38" RenderTransformOrigin="0.706,4.291" Command="{Binding ZamenskiLekoviKomanda}"/> <!--Command="{Binding ZamenskiLekoviKomanda}"-->
                             <Button  Background="#FF6895C5"  BorderBrush="White" Foreground="White" Content="Nazad" HorizontalAlignment="Left" Margin="494,492,0,0" VerticalAlignment="Top"  Width="120" Height="38" RenderTransformOrigin="0.706,4.291" Click="Button_Click_1"  /> <!--Command="{Binding NazadIzZahtevaKomanda}"-->
                         </Grid>
                     </TabItem>

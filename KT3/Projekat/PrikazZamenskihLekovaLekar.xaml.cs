@@ -31,14 +31,14 @@ namespace Projekat
         public PrikazZamenskihLekovaLekar(Lek izabraniLek)
         {
             InitializeComponent();
-            this.DataContext = this;
-            this.lek = izabraniLek;
+            //this.DataContext = this;
+            //this.lek = izabraniLek;
             this.tekst.Text = "Zamenski lekovi za lek: " + izabraniLek.nazivLeka;
-            DodajZamenskeLekove(lek);
+           // DodajZamenskeLekove(lek);
 
         }
 
-        private void DodajZamenskeLekove(Lek lek)
+       /* private void DodajZamenskeLekove(Lek lek)
         {
             TabelaZamenskihLekova = new ObservableCollection<Lek>();
             foreach (Lek l in LekoviServis.Lijekovi())
@@ -60,7 +60,7 @@ namespace Projekat
                     }
                 }
             }
-        }
+        }*/
 
         private void Button_Dodaj(object sender, RoutedEventArgs e)
         {

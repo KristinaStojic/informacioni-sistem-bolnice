@@ -24,6 +24,9 @@ namespace Projekat.ViewModel
 
         private ObservableCollection<Sastojak> sastojciZahteva;
         public ObservableCollection<Sastojak> SastojciZahteva { get { return sastojciZahteva; } set { sastojciZahteva = value; OnPropertyChanged("SastojciZahteva"); } }
+        
+        private ObservableCollection<Lek> tabelaZamenskih;
+        public ObservableCollection<Lek> TabelaZamenskih { get { return tabelaZamenskih; } set { tabelaZamenskih = value; OnPropertyChanged("TabelaZamenskih"); } }
 
 
         private ZahtevZaLekove izabraniZahtev;
@@ -342,11 +345,11 @@ namespace Projekat.ViewModel
             int idx = TabelaLekova.IndexOf(izabraniLek);
             TabelaLekova.RemoveAt(idx);
             TabelaLekova.Insert(idx, noviLek);
-            /*if (ZamenskiLekovi != null)
+            /*if (TabelaZamenskih != null)
             {
-                int idx1 = PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.IndexOf(izabraniLek);
-                PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.RemoveAt(idx1);
-                PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.Insert(idx1, lek);
+                int idx1 = TabelaZamenskih.IndexOf(izabraniLek);
+                TabelaZamenskih.RemoveAt(idx1);
+                TabelaZamenskih.Insert(idx1, noviLek);
             }*/
 
 
@@ -358,6 +361,28 @@ namespace Projekat.ViewModel
             if (izabraniLek != null)
             {
                 OtvoriZamenskeLekove = new PrikazZamenskihLekovaLekar(izabraniLek);
+
+                TabelaZamenskih = new ObservableCollection<Lek>();
+                foreach (Lek l in LekoviServis.Lijekovi())
+                {
+                    if (izabraniLek.idLeka == l.idLeka)
+                    {
+                        if (l.zamenskiLekovi != null)
+                        {
+                            foreach (int zamjenskiLijek in l.zamenskiLekovi)
+                            {
+                                foreach (Lek zamjenski in LekoviServis.Lijekovi())
+                                {
+                                    if (zamjenski.idLeka == zamjenskiLijek)
+                                    {
+                                        TabelaZamenskih.Add(zamjenski);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                OtvoriZamenskeLekove.DataContext = this;
                 OtvoriZamenskeLekove.Show();
             }
             else

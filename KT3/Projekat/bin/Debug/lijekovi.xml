@@ -59,25 +59,9 @@
   <Lek>
     <idLeka>3</idLeka>
     <nazivLeka>leksilium</nazivLeka>
-    <sifraLeka>l1</sifraLeka>
-    <zamenskiLekovi>
-      <int>5</int>
-      <int>4</int>
-    </zamenskiLekovi>
-    <sastojci>
-      <Sastojak>
-        <naziv>voda</naziv>
-        <kolicina>100</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>paracetmol </naziv>
-        <kolicina>150</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>prah</naziv>
-        <kolicina>150</kolicina>
-      </Sastojak>
-    </sastojci>
+    <sifraLeka>l11</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>4</idLeka>
@@ -101,24 +85,8 @@
     <idLeka>5</idLeka>
     <nazivLeka>Brufen</nazivLeka>
     <sifraLeka>BN</sifraLeka>
-    <zamenskiLekovi>
-      <int>4</int>
-      <int>3</int>
-    </zamenskiLekovi>
-    <sastojci>
-      <Sastojak>
-        <naziv>вода</naziv>
-        <kolicina>120</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>prah</naziv>
-        <kolicina>1500</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>sda</naziv>
-        <kolicina>111</kolicina>
-      </Sastojak>
-    </sastojci>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>7</idLeka>
