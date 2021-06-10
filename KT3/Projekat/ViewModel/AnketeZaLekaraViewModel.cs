@@ -74,7 +74,8 @@ namespace Projekat.ViewModel
         private void PotvrdiUnos()
         {
             string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
-            Anketa anketa = AnketaServis.NadjiAnketuPoId(idAnkete);
+            AnketaServis anketaServis = new AnketaServis();
+            Anketa anketa = anketaServis.NadjiAnketuPoId(idAnkete);
             anketa.Odgovori = odgovoriPacijenta;
             anketa.PopunjenaAnketa = true;
 

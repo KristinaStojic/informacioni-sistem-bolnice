@@ -29,7 +29,7 @@ namespace Projekat
             terminZaBrisanje = zaBrisanje;
             idPacijent = zaBrisanje.Pacijent.IdPacijenta;
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            this.podaci.Header = PacijentWebStranice.podaciPacijenta(prijavljeniPacijent);
             InicijalizujPodatkeOTerminuZaBrisanje(zaBrisanje);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }

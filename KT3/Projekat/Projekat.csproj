@@ -458,7 +458,7 @@
     </Compile>
     <Compile Include="Pomoc\ZahteviZaGodisnjiPomoc.xaml.cs">
       <DependentUpon>ZahteviZaGodisnjiPomoc.xaml</DependentUpon>
-     </Compile>
+    </Compile>
     <Compile Include="Pomoc\WizardBiranjePacijenta.xaml.cs">
       <DependentUpon>WizardBiranjePacijenta.xaml</DependentUpon>
     </Compile>
@@ -576,6 +576,9 @@
       <DependentUpon>SekretarPrijava.xaml</DependentUpon>
     </Compile>
     <Compile Include="Servis\AnketaServis.cs" />
+    <Compile Include="Servis\AnketeZaKlinikuServis.cs" />
+    <Compile Include="Servis\AnketeZaLekaraServis.cs" />
+    <Compile Include="Servis\IAnketeServis.cs" />
     <Compile Include="Servis\IzmjenaKolicineStatickeServis.cs" />
     <Compile Include="Servis\LekariServis.cs" />
     <Compile Include="Servis\LekoviServis.cs" />
@@ -1057,7 +1060,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\LekoviPomocLekar.xaml">
-    <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pomoc\KomunikacijaSekretarPomoc.xaml">

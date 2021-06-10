@@ -34,37 +34,42 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Command="{Binding ProfilKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"></MenuItem>
+                                    <!--="{Binding ProfilKomanda}"/-->
                                     <Separator/>
-                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Command="{Binding PopuniAnketuKomanda}" />
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click"></MenuItem>
+                                    <!--Command="{Binding PopuniAnketuKomanda}" /-->
                                     <Separator/>
                                     <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
-                                    <MenuItem Header="_eng-US" Command="{Binding PromeniJezikKomanda}"/>
-                                    <MenuItem Header="_sr-LATN" Command="{Binding PromeniJezikKomandaSR}"/>
+                                    <MenuItem Header="_eng-US" x:Name="Jezik" Click="Jezik_Click"></MenuItem>
+                                    <!--Command="{Binding PromeniJezikKomanda}"/-->
                                     <Separator />
                                     <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
-                                    <MenuItem Header="{namespace:Loc Tamna}" x:Name="tamnaTema"  Command="{Binding PromeniTemuKomandaTamna}"/>
-                                    <MenuItem Header="{namespace:Loc Svetla}" x:Name="SvetlaTema" Command="{Binding PromeniTemuKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Tamna}" x:Name="tamnaTema" Click="PromeniTemu"></MenuItem>
+                                    <!--Command="{Binding PromeniTemuKomandaTamna}"/-->
+                                    <MenuItem Header="{namespace:Loc Svetla}" x:Name="SvetlaTema" Click="PromeniTemu"></MenuItem>
+                                    <!--Command="{Binding PromeniTemuKomanda}"/-->
                                     <Separator />
-                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Command="{Binding OdjavaKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"></MenuItem>
+                                    <!--Command="{Binding OdjavaKomanda}"/>-->
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                        <Hyperlink x:Name="pocetna" Command="{Binding PocetnaStranicaKomanda}">
+                         <Hyperlink x:Name="pocetna" Click="pocetna_Click"> <!--Command="{Binding PocetnaStranicaKomanda}"-->
                             <Run Text="{namespace:Loc Pocetna}"/>
                         </Hyperlink>
                             <Run Text="  "/>
-                        <Hyperlink Name="zakazi" Command="{Binding ZakaziTerminKomanada}">
+                        <Hyperlink Name="zakazi" Click="zakazi_Click"> <!--Command="{Binding ZakaziTerminKomanada}"-->
                             <Run Text="{namespace:Loc ZakaziTermin}"/>
                         </Hyperlink>
                         <Run Text="  "/>
-                        <Hyperlink Name="uvid" Command="{Binding UvidUZakazaneTermineKomanda}">
+                        <Hyperlink Name="uvid" Click="uvid_Click"> <!--Command="{Binding UvidUZakazaneTermineKomanda}"-->
                             <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
                         </Hyperlink>
                             <Run Text=" "/>
-                        <Hyperlink Name="karton" Command="{Binding KartonKomanda}">
+                        <Hyperlink Name="karton" Click="karton_Click" ><!--Command="{Binding KartonKomanda}"-->
                             <Run Text="{namespace:Loc Karton}"/>
                         </Hyperlink>
                     </TextBlock>

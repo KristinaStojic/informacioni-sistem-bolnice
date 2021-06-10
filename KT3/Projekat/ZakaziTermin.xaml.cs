@@ -29,7 +29,8 @@ namespace Projekat
         private static ObservableCollection<Uput> UputiPacijenta { get; set; }
         private static bool jeSelektovanUput;
         private static Termin termin;
-        private static List<bool> Validacija = new List<bool>() { false, false, false };
+        private AnketeZaKlinikuServis anketeZaKlinikuServis;
+        private AnketeZaLekaraServis anketeZaLekaraServis;
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -38,6 +39,8 @@ namespace Projekat
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.combo.SelectedIndex = 0;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            anketeZaKlinikuServis = new AnketeZaKlinikuServis();
+            anketeZaLekaraServis = new AnketeZaLekaraServis();
         }
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)
@@ -129,8 +132,8 @@ namespace Projekat
             termin.Prostorija = prvaSlobodnaSala;
             TerminServis.ZakaziTermin(termin);
 
-            AnketaServis.DodajAnketuZaLekara(termin, idPacijent);
-            AnketaServis.ProveriAnketuZaKliniku(idPacijent);
+            anketeZaLekaraServis.DodajAnketuZaLekara(termin, idPacijent);
+            anketeZaKlinikuServis.ProveriAnketuZaKliniku(idPacijent);
             MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent);
         }
          
@@ -241,7 +244,6 @@ namespace Projekat
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.Jezik_Click(Jezik);
-
         }
 
     }

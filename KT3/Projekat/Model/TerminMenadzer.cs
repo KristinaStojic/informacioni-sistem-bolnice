@@ -109,7 +109,8 @@ namespace Model
             {
                 if (termin.IdTermin == stariTermin.IdTermin)
                 {
-                    AnketaServis.IzmeniAnketuZaLekara(stariTermin, noviTermin);
+                    AnketeZaLekaraServis anketeZaLekaraServis = new AnketeZaLekaraServis();
+                    anketeZaLekaraServis.IzmeniAnketuZaLekara(stariTermin, noviTermin);
                     termin.IdTermin = noviTermin.IdTermin;
                     termin.VremePocetka = noviTermin.VremePocetka;
                     termin.VremeKraja = noviTermin.VremeKraja;
@@ -261,7 +262,8 @@ namespace Model
                             }
                         }
                     }
-                    AnketaServis.ObrisiAnketu(termin.IdTermin);
+                    AnketaServis anketaServis = new AnketaServis(); 
+                    anketaServis.ObrisiAnketu(termin.IdTermin);
                     termini.RemoveAt(i);
                 }
             }

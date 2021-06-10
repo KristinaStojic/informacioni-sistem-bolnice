@@ -185,7 +185,8 @@ namespace Projekat.ViewModel
         private void PrikaziAnketePacijenta()
         {
             Ankete = new ObservableCollection<Anketa>();
-            foreach (Anketa anketa in AnketaServis.Ankete())
+            AnketaServis anketaServis = new AnketaServis();
+            foreach (Anketa anketa in anketaServis.Ankete())
             {
                 if (anketa.IdPacijent == idPacijent && anketa.PopunjenaAnketa == false)
                 {

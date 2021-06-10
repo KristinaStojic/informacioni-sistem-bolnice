@@ -32,7 +32,7 @@ namespace Projekat
             InitializeComponent();
             this.potvrdi.IsEnabled = false;
             Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            this.podaci.Header = PacijentWebStranice.podaciPacijenta(prijavljeniPacijent);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             idPacijent = idPrijavljenogPacijenta;
             idAnkete = idSelektovaneAnkete;
@@ -168,17 +168,6 @@ namespace Projekat
             PoveriOdgovoreNaSvaPitanja();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
-            Anketa anketa = AnketaServis.NadjiAnketuPoId(idAnkete);
-            anketa.Odgovori = odgovoriPacijenta;
-            anketa.PopunjenaAnketa = true;
-
-            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
-            this.NavigationService.Navigate(prikaziAnkete);
-        }
-
         private void PoveriOdgovoreNaSvaPitanja()
         {
             if (prvoPitanje != null && drugoPitanje != null && trecePitanje != null && cetvrtoPitanje != null && petoPitanje != null)
@@ -187,10 +176,68 @@ namespace Projekat
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
+            AnketaServis anketaServis = new AnketaServis();
+            Anketa anketa = anketaServis.NadjiAnketuPoId(idAnkete);
+            anketa.Odgovori = odgovoriPacijenta;
+            anketa.PopunjenaAnketa = true;
+            anketaServis.sacuvajIzmene();
+
+            Page prikaziAnkete = new PrikaziAnkete(idPacijent);
+            this.NavigationService.Navigate(prikaziAnkete);
+        }
+       
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.anketa_Click(this, idPacijent);
+        }
+
+        private void odjava_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.odjava_Click(this);
+        }
+
+        public void karton_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.karton_Click(this, idPacijent);
+        }
+
+        public void zakazi_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.zakazi_Click(this, idPacijent);
+        }
+
+        public void uvid_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.uvid_Click(this, idPacijent);
+        }
+
+        private void pocetna_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.pocetna_Click(this, idPacijent);
+        }
+
+        private void Korisnik_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.Korisnik_Click(this, idPacijent);
+        }
+
+        private void PromeniTemu(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
+        }
+
+        private void Jezik_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.Jezik_Click(Jezik);
+        }
+
+        // mvvm
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = new AnketeZaKlinikuViewModel(this.NavigationService, idPacijent, idAnkete);
-
         }
     }
 }

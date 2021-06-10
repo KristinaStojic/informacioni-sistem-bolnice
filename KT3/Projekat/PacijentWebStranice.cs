@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -106,6 +107,11 @@ namespace Projekat.Servis
             {
                 SvetlaTema.IsEnabled = false;
             }
+        }
+
+        public static string podaciPacijenta(Pacijent prijavljeniPacijent)
+        {
+            return prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
     }
 }

@@ -52,10 +52,7 @@ namespace Projekat
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
-        private void anketa_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentWebStranice.anketa_Click(this, idPacijent);
-        }
+      
 
         public void izvrsiNit()
         {
@@ -64,13 +61,6 @@ namespace Projekat
                 Thread.Sleep(1000);  //30000
                 ObavestenjaServis.ProveriSvaObavestenja(idPacijent, ObavestenjaPacijent);
             }
-        }
-
-        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            colNum++;
-            if (colNum == 8) // **
-                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -114,6 +104,10 @@ namespace Projekat
             ObavestenjaServis.ObrisiSelektovanoObavestenje((Obavestenja)obavestenja.SelectedItem, ObavestenjaPacijent, Jezik);
         }
 
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.anketa_Click(this, idPacijent);
+        }
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.odjava_Click(this);

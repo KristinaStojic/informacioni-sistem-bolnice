@@ -22,7 +22,8 @@ namespace Projekat
         {
             InitializeComponent();
             PrikaziTermin.pacijentProzor = true;
-            AnketaServis.NadjiSveAnkete();
+            AnketaServis anketaServis = new AnketaServis();
+            anketaServis.NadjiSveAnkete();
             MalicioznoPonasanjeServis.NadjiSvaMalicioznaPonasanja();
             var app = (App)Application.Current;
             app.ChangeLanguage("sr-LATN");  
