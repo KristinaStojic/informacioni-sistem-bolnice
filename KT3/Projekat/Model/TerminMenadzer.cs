@@ -116,7 +116,8 @@ namespace Model
             {
                 if (termin.IdTermin == stariTermin.IdTermin)
                 {
-                    AnketaServis.IzmeniAnketuZaLekara(stariTermin, noviTermin);
+                    AnketeZaLekaraServis anketeZaLekaraServis = new AnketeZaLekaraServis();
+                    anketeZaLekaraServis.IzmeniAnketuZaLekara(stariTermin, noviTermin);
                     termin.IdTermin = noviTermin.IdTermin;
                     termin.VremePocetka = noviTermin.VremePocetka;
                     termin.VremeKraja = noviTermin.VremeKraja;
@@ -127,9 +128,9 @@ namespace Model
                     termin.Prostorija = noviTermin.Prostorija;
                     termin.Pomeren = noviTermin.Pomeren;
                     termin.HitnaOperacija = noviTermin.HitnaOperacija;
-                    int idx = PrikaziTermin.Termini.IndexOf(stariTermin);
-                    PrikaziTermin.Termini.RemoveAt(idx);
-                    PrikaziTermin.Termini.Insert(idx, noviTermin);
+                    int idx = ZakazaniTerminiPacijent.Termini.IndexOf(stariTermin);
+                    ZakazaniTerminiPacijent.Termini.RemoveAt(idx);
+                    ZakazaniTerminiPacijent.Termini.Insert(idx, noviTermin);
                     foreach (Sala sala in SaleMenadzer.lista)
                     {
                         foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
@@ -254,11 +255,22 @@ namespace Model
                     {
                         if (s.Id == termin.Prostorija.Id)
                         {
-                            s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja));
-                            SaleServis.sacuvajIzmjene();
+                            /* ZauzeceSale zs = SaleServis.NadjiZauzece(s.Id, termin.IdTermin, termin.Datum, termin.VremePocetka, termin.VremeKraja);
+                             s.zauzetiTermini.Remove(zs);
+                             SaleServis.sacuvajIzmjene();*/
+
+                            foreach (ZauzeceSale t in s.zauzetiTermini.ToArray())
+                            {
+                                if (t.idTermina == termin.IdTermin)
+                                {
+                                    s.zauzetiTermini.Remove(t);
+                                    SaleServis.sacuvajIzmjene();
+                                }
+                            }
                         }
                     }
-                    AnketaServis.ObrisiAnketu(termin.IdTermin);
+                    AnketaServis anketaServis = new AnketaServis(); 
+                    anketaServis.ObrisiAnketu(termin.IdTermin);
                     termini.RemoveAt(i);
                 }
             }

@@ -22,8 +22,10 @@ namespace Projekat
         {
             InitializeComponent();
             PrikaziTermin.pacijentProzor = true;
-            AnketaServis.NadjiSveAnkete();
-            MalicioznoPonasanjeServis.NadjiSvaMalicioznaPonasanja();
+            AnketaServis anketaServis = new AnketaServis();
+            anketaServis.NadjiSveAnkete();
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            proxy.NadjiSvaMalicioznaPonasanja();
             var app = (App)Application.Current;
             app.ChangeLanguage("sr-LATN");  
         }
@@ -32,7 +34,8 @@ namespace Projekat
         {
             TerminServis.sacuvajIzmene();
             ObavestenjaServis.sacuvajIzmene();
-            MalicioznoPonasanjeServis.sacuvajIzmene();
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            proxy.sacuvajIzmene();
             TerminServisLekar.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();

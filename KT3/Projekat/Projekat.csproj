@@ -578,6 +578,11 @@
       <DependentUpon>SekretarPrijava.xaml</DependentUpon>
     </Compile>
     <Compile Include="Servis\AnketaServis.cs" />
+    <Compile Include="Servis\AnketeZaKlinikuServis.cs" />
+    <Compile Include="Servis\AnketeZaLekaraServis.cs" />
+    <Compile Include="Servis\IAnketeServis.cs" />
+    <Compile Include="Servis\IMalicioznoPonasanje.cs" />
+    <Compile Include="Servis\IzmjenaKolicineStatickeServis.cs" />
     <Compile Include="Servis\IzmjenaKolicineOpremeServis.cs" />
     <Compile Include="Servis\LekariServis.cs" />
     <Compile Include="Servis\LekoviServis.cs" />
@@ -588,6 +593,7 @@
     <Compile Include="PacijentWebStranice.cs" />
     <Compile Include="Servis\PremjestajServis.cs" />
     <Compile Include="Servis\PremjestajOpremeServis.cs" />
+    <Compile Include="Servis\ProxyMalicioznoPonasanjeServis.cs" />
     <Compile Include="Servis\SaleServis.cs" />
     <Compile Include="Servis\SkladisteServis.cs" />
     <Compile Include="Servis\TerminiSekretarServis.cs" />

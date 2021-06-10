@@ -68,7 +68,7 @@ namespace Projekat.Servis
         {
             return selektovaniDatum.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
         }
-        public static List<Sala> combo_SelectionChanged(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
+        public static List<Sala> FiltrirajTipTermina(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
         { 
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
@@ -94,7 +94,7 @@ namespace Projekat.Servis
             return SaleZaPreglede;
         }
 
-        public static ObservableCollection<string> datum_SelectedDatesChanged(Calendar datum)
+        public static ObservableCollection<string> FiltrirajDatum(Calendar datum)
         {
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
@@ -260,7 +260,7 @@ namespace Projekat.Servis
             }
         }
 
-        public static Sala Vpp_SelectionChanged(ComboBox vpp, Calendar datum)
+        public static Sala FiltritajVremePocetka(ComboBox vpp, Calendar datum)
         {
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             string selektovaniSlot = vpp.SelectedValue.ToString();
@@ -342,7 +342,6 @@ namespace Projekat.Servis
             preporuceniTermin.VremeKraja = TerminServis.IzracunajVremeKrajaPregleda(slot);
             preporuceniTermin.Prostorija = s;
             preporuceniTermin.tipTermina = TipTermina.Pregled;
-            // TODO: ispraviti kada dobijemo raspored radnog vremena
             preporuceniTermin.Lekar = prijavljeniPacijent.IzabraniLekar;
             preporuceniTermin.Pacijent = prijavljeniPacijent;
             return preporuceniTermin;
@@ -377,6 +376,12 @@ namespace Projekat.Servis
                         if (i == 0)
                         {
                             IzbaciProsleSlotoveZaDanasnjiDan(SviSlobodniSlotoviPreferenca);
+                            if(SviSlobodniSlotoviPreferenca.Count == 0)
+                            {
+                                i += 1;
+                                noviDatum = DateTime.Now.Date.AddDays(i);
+                                SviSlobodniSlotoviPreferenca = SaleServis.InicijalizujSveSlotove();
+                            }
                         }
                         foreach (ZauzeceSale zs in sala.zauzetiTermini)
                         {
@@ -479,8 +484,6 @@ namespace Projekat.Servis
 
         public static ObservableCollection<Termin> PronadjiTerminPoIdPacijenta(int idPacijenta)
         {
-            // TODO: u observavble listu
-            //return TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijenta);
             ObservableCollection<Termin> TerminiPacijenta = new ObservableCollection<Termin>();
             foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijenta))
             {

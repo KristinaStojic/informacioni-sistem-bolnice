@@ -9,7 +9,7 @@
       d:DesignHeight="600" d:DesignWidth="800" Background="{DynamicResource BackgroundColor}"
       Title="DetaljiSpecijalistickogUputa">
 
-    <Grid>
+    <Grid RenderTransformOrigin="0.481,0.558">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
@@ -64,9 +64,9 @@
                     <Run Text="{nss:Loc Karton}"/>
                 </Hyperlink>
         </TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0, 10, 0, 0">
             <Label Content="{nss:Loc NaslovStacionarnoLecenje}" Margin="0, 0, 0, 10" Background="{DynamicResource StackPanelBackgroundColor}"
-                    Foreground="{DynamicResource TextColor}" Height="20"/>
+                    Foreground="{DynamicResource TextColor}" Height="25"/>
             <StackPanel Orientation="Vertical" Height="465" Margin="0, -10, 0, 0" Background="{DynamicResource BackgroundUputi}">
                 <GroupBox Header="{nss:Loc PacijentPodaci}" HorizontalAlignment="Stretch" Width="350" Margin="0, 10, 0, 0" Foreground="{DynamicResource TextColor}">
                     <StackPanel Orientation="Vertical">
@@ -87,33 +87,33 @@
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox x:Name="recept" Header="{nss:Loc NaslovStacionarnoLecenje}" HorizontalAlignment="Stretch" Width="350" Margin="25,10,25,0"  Foreground="{DynamicResource TextColor}" Height="230">
-                    <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0" Height="210">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
-                            <Label Content="{nss:Loc DatumPocetkaLecenja}"   Foreground="{DynamicResource TextColor}" Width="122"/>
-                            <TextBox x:Name ="datum" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Width="175" Height="22"
-                                     Grid.Column="1" Grid.Row="1" Margin="20, 0, 0, 0"/>
+                <GroupBox x:Name="recept" Header="{nss:Loc NaslovStacionarnoLecenje}" HorizontalAlignment="Stretch" Margin="25,10,25,0"  Foreground="{DynamicResource TextColor}" Height="230">
+                    <StackPanel Orientation="Vertical" Margin="0,0,0,0" Height="210">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10, 5, 0, 0">
+                            <Label Content="{nss:Loc DatumPocetkaLecenja}"   Foreground="{DynamicResource TextColor}" Width="128"/>
+                            <TextBox x:Name ="datum" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Width="167" Height="22"
+                                     Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="18,5,8,5" Width="312">
                             <Label Content="{nss:Loc DatumKrajaLecenja}" Foreground="{DynamicResource TextColor}" Width="125" />
                             <TextBox x:Name="datumKraj" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Margin="10, 0, 0, 0"
-                                     Width="175" Height="24"/>
+                                     Width="171" Height="24"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="18,0,8,5" Width="312">
                             <Label Content="{nss:Loc brSobe}" Foreground="{DynamicResource TextColor}" Width="126" />
                             <TextBox x:Name="soba" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Margin="10, 0, 0, 0"
-                                     Width="175" Height="24"/>
+                                     Width="170" Height="24"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="18,0,8,5" Width="312">
                             <Label Content="{nss:Loc brKreveta}" Foreground="{DynamicResource TextColor}" Width="126" />
                             <TextBox x:Name="krevet" HorizontalAlignment="Left" IsEnabled="False" VerticalAlignment="Top" Margin="10, 0, 0, 0"
-                                     Width="175" Height="24"/>
+                                     Width="170" Height="24"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 5">
-                            <Label Content="{nss:Loc Napomena}"   Foreground="{DynamicResource TextColor}" Margin="4, 0, 0, 0" Width="123"/>
-                            <TextBox x:Name ="Napomena" IsEnabled="False" HorizontalAlignment="Left" Height="76" Margin="20, 0, 0, 0"
-                                 TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" />
+                            <Label Content="{nss:Loc Napomena}"   Foreground="{DynamicResource TextColor}" Margin="0, 0, 0, 0" Width="123"/>
+                            <TextBox x:Name ="Napomena" IsEnabled="False" HorizontalAlignment="Left" Height="76" Margin="17, 0, 0, 0"
+                                 TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Grid.Column="1" Grid.Row="1" />
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>

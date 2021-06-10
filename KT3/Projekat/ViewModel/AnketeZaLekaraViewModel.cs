@@ -70,36 +70,12 @@ namespace Projekat.ViewModel
             
         }
 
-        public void PrvoPitanje(object sender, RoutedEventArgs e)
-        {
-            /* prvoPitanje = "1=";
-            if ((bool)jedan1.IsChecked)
-            {
-                prvoPitanje += "1";
-            }
-            else if ((bool)dva1.IsChecked)
-            {
-                prvoPitanje += "2";
-            }
-            else if ((bool)tri1.IsChecked)
-            {
-                prvoPitanje += "3";
-            }
-            else if ((bool)cetiri1.IsChecked)
-            {
-                prvoPitanje += "4";
-            }
-            else if ((bool)pet1.IsChecked)
-            {
-                prvoPitanje += "5";
-            }
-            odgovorenoNaSvaPitanja();*/
-        }
         #region Akcije
         private void PotvrdiUnos()
         {
             string odgovoriPacijenta = prvoPitanje + ";" + drugoPitanje + ";" + trecePitanje + ";" + cetvrtoPitanje + ";" + petoPitanje;
-            Anketa anketa = AnketaServis.NadjiAnketuPoId(idAnkete);
+            AnketaServis anketaServis = new AnketaServis();
+            Anketa anketa = anketaServis.NadjiAnketuPoId(idAnkete);
             anketa.Odgovori = odgovoriPacijenta;
             anketa.PopunjenaAnketa = true;
 
@@ -121,7 +97,8 @@ namespace Projekat.ViewModel
 
         private void ZakaziTerminClick()
         {
-            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            if (proxy.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -179,6 +156,32 @@ namespace Projekat.ViewModel
         {
             PrijavaPage = new PrijavaPacijent();
             this.navService.Navigate(PrijavaPage);
+        }
+
+        public void PrvoPitanje(object sender, RoutedEventArgs e)
+        {
+            /* prvoPitanje = "1=";
+            if ((bool)jedan1.IsChecked)
+            {
+                prvoPitanje += "1";
+            }
+            else if ((bool)dva1.IsChecked)
+            {
+                prvoPitanje += "2";
+            }
+            else if ((bool)tri1.IsChecked)
+            {
+                prvoPitanje += "3";
+            }
+            else if ((bool)cetiri1.IsChecked)
+            {
+                prvoPitanje += "4";
+            }
+            else if ((bool)pet1.IsChecked)
+            {
+                prvoPitanje += "5";
+            }
+            odgovorenoNaSvaPitanja();*/
         }
     }
     #endregion

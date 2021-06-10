@@ -29,7 +29,8 @@ namespace Projekat
         private static ObservableCollection<Uput> UputiPacijenta { get; set; }
         private static bool jeSelektovanUput;
         private static Termin termin;
-        private static List<bool> Validacija = new List<bool>() { false, false, false };
+        private AnketeZaKlinikuServis anketeZaKlinikuServis;
+        private AnketeZaLekaraServis anketeZaLekaraServis;
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -37,12 +38,14 @@ namespace Projekat
             InicijalizujPodatkeNaWpf(idPrijavljenogPacijenta);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.combo.SelectedIndex = 0;
-            this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
+            this.podaci.Header = PacijentWebStranice.podaciPacijenta(prijavljeniPacijent);
+            anketeZaKlinikuServis = new AnketeZaKlinikuServis();
+            anketeZaLekaraServis = new AnketeZaLekaraServis();
         }
 
         private void InicijalizujPodatkeNaWpf(int idPrijavljenogPacijenta)
         {
-            datum.BlackoutDates.AddDatesInPast();
+            //datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
             prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
@@ -70,7 +73,7 @@ namespace Projekat
             this.imePrz.Text = izabraniLekar.ToString();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void PromenaSpecijalistickogUputa(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -125,40 +128,43 @@ namespace Projekat
                 termin.Lekar.BrojOperacija++;
             }
             SaleServis.DodajZauzeceSale(termin, prvaSlobodnaSala);
+            SaleServis.sacuvajIzmjene();
             termin.Prostorija = prvaSlobodnaSala;
             TerminServis.ZakaziTermin(termin);
 
-            AnketaServis.DodajAnketuZaLekara(termin, idPacijent);
-            AnketaServis.ProveriAnketuZaKliniku(idPacijent);
-            MalicioznoPonasanjeServis.DodajMalicioznoPonasanje(idPacijent);
+            anketeZaLekaraServis.DodajAnketuZaLekara(termin, idPacijent);
+            anketeZaKlinikuServis.ProveriAnketuZaKliniku(idPacijent);
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            proxy.DodajMalicioznoPonasanje(idPacijent);
         }
          
         #region Zakazivanje termina
-        private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FiltritajTipTermina(object sender, SelectionChangedEventArgs e)
         {
-            SaleZaPreglede = TerminServis.combo_SelectionChanged(this.combo, this.comboUputi, this.preferenca, idPacijent);
+            SaleZaPreglede = TerminServis.FiltrirajTipTermina(this.combo, this.comboUputi, this.preferenca, idPacijent);
         }
 
-        private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        private void FiltrirajDatum(object sender, SelectionChangedEventArgs e)
         {
             if (SaleZaPreglede == null)
             {
                 MessageBox.Show("Izaberite tip termina", "Upozorenje", MessageBoxButton.OK);
                 return;
             }
-            vpp.ItemsSource = TerminServis.datum_SelectedDatesChanged(datum);
+            vpp.ItemsSource = TerminServis.FiltrirajDatum(datum);
 
         }
 
-        private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FiltrirajVremePocetka(object sender, SelectionChangedEventArgs e)
         {
-            prvaSlobodnaSala = TerminServis.Vpp_SelectionChanged(vpp, datum);
+            prvaSlobodnaSala = TerminServis.FiltritajVremePocetka(vpp, datum);
             if (prvaSlobodnaSala == null)
             {
                 MessageBox.Show("Ne postoji slobodan termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             potvrdi.IsEnabled = true;
         }
+
         #endregion
 
         private void preferenca_Click(object sender, RoutedEventArgs e)
@@ -200,6 +206,7 @@ namespace Projekat
         {
             PacijentWebStranice.zakazi_Click(this, idPacijent);
         }
+
         public void uvid_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.uvid_Click(this, idPacijent);
@@ -209,6 +216,7 @@ namespace Projekat
         {
             PacijentWebStranice.pocetna_Click(this, idPacijent);
         }
+
         private void anketa_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.anketa_Click(this, idPacijent);
@@ -225,7 +233,7 @@ namespace Projekat
             this.NavigationService.Navigate(podaci);
         }
 
-        private void comboUputi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void IzborUputa(object sender, SelectionChangedEventArgs e)
         {
             if (combo.Text.Equals("Pregled"))
             {
@@ -240,7 +248,6 @@ namespace Projekat
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.Jezik_Click(Jezik);
-
         }
 
     }

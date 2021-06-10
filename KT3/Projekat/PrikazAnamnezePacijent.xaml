@@ -92,7 +92,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="{namespace:Loc PodaciTermin}" Width="350" Margin="10,10, 10, 0"  Foreground="{DynamicResource TextColor}">
+            <GroupBox Header="{namespace:Loc TerminPodaci}" Width="350" Margin="10,10, 10, 0"  Foreground="{DynamicResource TextColor}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="23,10,10,5" Width="306" >
                         <Label Content="{namespace:Loc Datum}" Width="106"  Foreground="{DynamicResource TextColor}"/>
