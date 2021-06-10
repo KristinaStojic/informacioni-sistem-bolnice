@@ -25,7 +25,7 @@ namespace Projekat.ViewModel
         public Window DodavanjeDinamickeProzor { get; set; }
         public Window PrikazStatickeProzor { get; set; }
         public Window SlanjeStatickeProzor { get; set; }
-        public Window DodavanjeStatickeProzor { get; set; }
+        public static Window DodavanjeStatickeProzor { get; set; }
         public static Window SaleProzor { get; set; }
         public static Window PomocSaleProzor { get; set; }
         public MyICommand ZatvoriProzorKomanda { get; set; }
@@ -463,7 +463,7 @@ namespace Projekat.ViewModel
             return false;
         }
 
-        public bool jeBroj(string tekst)
+        public static bool jeBroj(string tekst)
         {
             int test;
             return int.TryParse(tekst, out test);
@@ -1763,7 +1763,7 @@ namespace Projekat.ViewModel
                 DatumPrebacivanja = DateTime.Now.Date;
                 dodajTermineDodavanjaStaticke();
                 dodajStaticku();
-                DodavanjeStatickeProzor.DataContext = this;
+                DodavanjeStatickeProzor.DataContext = new PremjestajOpremeViewModel(IzabranaSala);
             }
             catch (Exception ex) { Console.WriteLine(ex.Data); }
         }

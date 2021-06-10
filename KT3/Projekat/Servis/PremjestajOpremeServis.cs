@@ -27,7 +27,7 @@ namespace Projekat.Servis
             {
                 if (sala.Id == izabranaSala.Id)
                 {
-                    IzmjenaKolicineStatickeServis.SmanjiKolicinuOpreme(sala, kolicina, izabranaOprema);
+                    IzmjenaKolicineOpremeServis.SmanjiKolicinuOpreme(sala, kolicina, izabranaOprema);
                 }
                 if (sala.Id == salaDodavanje.Id)
                 {

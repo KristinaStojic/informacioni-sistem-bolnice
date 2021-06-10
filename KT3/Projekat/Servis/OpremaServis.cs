@@ -9,9 +9,8 @@ namespace Projekat.Servis
     {
 
         public static void izmjeniOpremu(Oprema izOpreme, Oprema uOpremu)
-        {
-            OpremaMenadzer om = new OpremaMenadzer();
-            om.Izmjeni(izOpreme, uOpremu); 
+        { 
+            OpremaMenadzer.Instanca.Izmjeni(izOpreme, uOpremu); 
         }
 
         public static List<Oprema> NadjiSvuOpremu()
@@ -50,13 +49,25 @@ namespace Projekat.Servis
             return oprema;
         }
 
+        private static bool postojiOprema(Sala sala, Oprema izabranaOprema)
+        {
+            foreach (Oprema oprema in sala.Oprema)
+            {
+                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static void premjestiStatickuOpremu(Sala uSalu, int kolicina, Sala izSale, Oprema izabranaOprema)
         {
             foreach (Sala sala in SaleServis.Sale())
             {
                 if (sala.Id == izSale.Id)
                 {
-                    IzmjenaKolicineStatickeServis.SmanjiKolicinuOpreme(sala, kolicina, izabranaOprema);
+                    IzmjenaKolicineOpremeServis.SmanjiKolicinuOpreme(sala, kolicina, izabranaOprema);
                 }
                 if (sala.Id == uSalu.Id)
                 {
@@ -74,27 +85,17 @@ namespace Projekat.Servis
             }
             else
             {
-                IzmjenaKolicineStatickeServis.PovecajKolicinuOpreme(sala, kolicina, izabranaOprema);
+                IzmjenaKolicineOpremeServis.PovecajKolicinuOpreme(sala, kolicina, izabranaOprema);
             }
         }
 
-        private static bool postojiOprema(Sala sala, Oprema izabranaOprema)
-        {
-            foreach (Oprema oprema in sala.Oprema)
-            {
-                if (oprema.IdOpreme == izabranaOprema.IdOpreme)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
 
         public static void dodajDinamickuOpremuUSalu(Sala sala, int kolicina, Oprema izabranaOprema)
         {
             if (!postojiOprema(sala, izabranaOprema))
             {
-                IzmjenaKolicineStatickeServis.PovecajKolicinuOpreme(sala, kolicina, izabranaOprema);
+                IzmjenaKolicineOpremeServis.PovecajKolicinuOpreme(sala, kolicina, izabranaOprema);
             }
             else
             {

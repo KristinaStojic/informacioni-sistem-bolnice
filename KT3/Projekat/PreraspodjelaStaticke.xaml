@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Zahtjev za preraspodjelu staticke opreme" Height="340" Width="380" WindowStartupLocation="CenterScreen" Background="LightSteelBlue" ResizeMode="NoResize">
     <Window.DataContext>
-        <viewmodel:SaleViewModel/>
+        <viewmodel:PremjestajOpremeViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>

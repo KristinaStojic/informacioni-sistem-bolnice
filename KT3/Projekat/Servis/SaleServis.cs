@@ -33,8 +33,7 @@ namespace Projekat.Servis
 
         public static void IzmjeniSalu(Sala izSale, Sala uSalu)
         {
-            SaleMenadzer sm = new SaleMenadzer();
-            sm.Izmjeni(izSale, uSalu);
+            SaleMenadzer.Instanca.Izmjeni(izSale, uSalu);
         }
 
         public static List<Sala> NadjiSveSale()
