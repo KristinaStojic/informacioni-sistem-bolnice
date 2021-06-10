@@ -203,4 +203,98 @@
       </Sastojak>
     </sastojci>
   </Lek>
+  <Lek>
+    <idLeka>21</idLeka>
+    <nazivLeka>L1</nazivLeka>
+    <sifraLeka>MKS</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>SS1</naziv>
+        <kolicina>300</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>MKS</naziv>
+        <kolicina>100</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>22</idLeka>
+    <nazivLeka>Lek</nazivLeka>
+    <sifraLeka>12A</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>sstjk</naziv>
+        <kolicina>350</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>23</idLeka>
+    <nazivLeka>L1</nazivLeka>
+    <sifraLeka>MKS</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>SS1</naziv>
+        <kolicina>300</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>MKS</naziv>
+        <kolicina>100</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>26</idLeka>
+    <nazivLeka>asd</nazivLeka>
+    <sifraLeka>asd</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>asda</naziv>
+        <kolicina>232</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>27</idLeka>
+    <nazivLeka>adsadd</nazivLeka>
+    <sifraLeka>dsad</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>adasd</naziv>
+        <kolicina>111</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>30</idLeka>
+    <nazivLeka>sddddddd</nazivLeka>
+    <sifraLeka>sds</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>sd</naziv>
+        <kolicina>11</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>35</idLeka>
+    <nazivLeka>yhgh</nazivLeka>
+    <sifraLeka>ghgh</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>36</idLeka>
+    <nazivLeka>fgd</nazivLeka>
+    <sifraLeka>ghhgh</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
 </ArrayOfLek>

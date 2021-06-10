@@ -13,7 +13,7 @@ namespace Projekat.Model
         public static void DodajLijek(Lek lijek)
         {
             lijekovi.Add(lijek);
-            SpisakZahtevaZaLekove.TabelaLekova.Add(lijek);
+            //SpisakZahtevaZaLekove.TabelaLekova.Add(lijek);
             sacuvajIzmjene();
         }
 
@@ -338,9 +338,9 @@ namespace Projekat.Model
                     zahtev.obradjenZahtev = true;
                     zahtev.odobrenZahtev = true;
 
-                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    /*int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
                     SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
-                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);*/
                 }
             }
 
@@ -356,9 +356,9 @@ namespace Projekat.Model
                     zahtev.odobrenZahtev = false;
                     zahtev.obrazlozenjeOdbijanja = razlogOdbijanja;
 
-                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    /*int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
                     SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
-                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);*/
                 }
             }
 

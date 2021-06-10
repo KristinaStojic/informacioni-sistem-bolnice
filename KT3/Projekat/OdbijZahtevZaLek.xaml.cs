@@ -25,9 +25,9 @@ namespace Projekat
         public OdbijZahtevZaLek(ZahtevZaLekove izabraniZahtev)
         {
             InitializeComponent();
-            this.zahtev = izabraniZahtev;
+            /*this.zahtev = izabraniZahtev;
             this.naziv.Text = izabraniZahtev.nazivLeka;
-            this.potvrdi.IsEnabled = false;
+            this.potvrdi.IsEnabled = false;*/
         }
 
         private void Button_Odustani(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace Projekat
 
         }
 
-        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        /*private void Grid_KeyDown(object sender, KeyEventArgs e)
             
         {
            
@@ -74,7 +74,7 @@ namespace Projekat
                 
             
 
-        }
+        }*/
 
         private void razlogOdbijanja_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -105,6 +105,11 @@ namespace Projekat
                 this.potvrdi.IsEnabled = true;
                 popunjeno = true;
             }
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

@@ -6,11 +6,13 @@
         xmlns:local="clr-namespace:Projekat"
         xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
-        Title="SpisakZahtevaZaLekove" Height="650" Width="700" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
-    <!-- <Window.DataContext>
+        Title="SpisakZahtevaZaLekove" Height="650" Width="700" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" >
+    <!--KeyDown="Window_KeyDown"-->
+    <Window.DataContext>
         <viewmodel:LekarLekoviViewModel/>
-        </Window.DataContext>-->
-   
+    </Window.DataContext>
+    
+
     <Grid DockPanel.Dock="Top" Margin="0,0,4,-1">
         <StackPanel>
             <Border  Background="LightSkyBlue" BorderBrush="Transparent" BorderThickness="2" HorizontalAlignment="Left" Padding="20" Margin="0,10,0,0" Width="690" Height="609">
@@ -18,7 +20,7 @@
                     <TabItem Header="Zahtevi za validaciju" Width="130" IsSelected="True" Height="25" x:Name="zahtevi">
                         <Grid>
                             <!--ItemsSource="{Binding TabelaZahteva, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding IzabraniZahtev, UpdateSourceTrigger=PropertyChanged}"-->
-                            <DataGrid ItemsSource="{Binding TabelaZahteva}" x:Name="dataGridZahtevi" IsReadOnly="True"
+                            <DataGrid ItemsSource="{Binding TabelaZahteva, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding IzabraniZahtev, UpdateSourceTrigger=PropertyChanged}" x:Name="dataGridZahtevi" IsReadOnly="True"
                                      
                                 SelectionMode="Single" AutoGenerateColumns="False"
                                  Margin="39,56,40,0" VerticalAlignment="Top" Height="417" GridLinesVisibility="All" Background="#FF6895C5" FontSize="13" Visibility="Visible">
@@ -29,10 +31,10 @@
                                     <DataGridTextColumn Header="Obrađeno" Width="130*" Binding="{Binding}" x:Name="obradjeno" />
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Button Content="Obradi zahtev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="39,498,0,0"  Click="Button_Obradi" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/> <!-- Command="{Binding ObradiZahtevKomanda}"-->
+                            <Button Content="Obradi zahtev" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="39,498,0,0"  Command="{Binding ObradiZahtevKomanda}" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/> <!-- Command="{Binding ObradiZahtevKomanda}"-->
                             <Button Content="Nazad" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="38" Margin="505,498,0,0" Click="Button_Nazad" Background="#FF6895C5" BorderBrush="#FFE6D8D8" Foreground="White" /> <!-- Command="{Binding NazadIzZahtevaKomanda}"-->
                             <Label Content="Zahtevi" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.71,0.207"/>
-                            <Button Content="Obriši zahtev" VerticalAlignment="Top" Height="38" Margin="272,498,272.8,0"  Click="Button_Obrisi" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/> <!-- Command="{Binding ObrisiZahtevKomanda}"-->
+                            <Button Content="Obriši zahtev" VerticalAlignment="Top" Height="38" Margin="272,498,272.8,0" Command="{Binding ObrisiZahtevKomanda}" Background="#FF6895C5" BorderBrush="#FFF1E7E7" Foreground="White"/> <!-- Command="{Binding ObrisiZahtevKomanda}"-->
                             <TextBlock Margin="494,19,40,513"  Height="24" FontSize="16">
                             <Hyperlink Click="Hyperlink_Click">
                                 Pomoć?(CTRL+H)

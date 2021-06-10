@@ -43,6 +43,9 @@ namespace Projekat.ViewModel
 
         private string nazivLekaZahtev;
         public string NazivLekaZahtev { get { return nazivLekaZahtev; } set { nazivLekaZahtev = value; OnPropertyChanged("NazivLekaZahtev"); } }
+        
+        private string razlogOdbijanja;
+        public string RazlogOdbijanja { get { return razlogOdbijanja; } set { razlogOdbijanja = value; OnPropertyChanged("RazlogOdbijanja"); } }
 
 
         private string datumLekaZahtev;
@@ -55,11 +58,17 @@ namespace Projekat.ViewModel
         public MyICommand SastojciLekaKomanda { get; set; }
         public MyICommand ZamenskiLekoviKomanda { get; set; }
         public MyICommand PotvrdiOdobravanjeLekaKomanda { get; set; }
+        public MyICommand OdbijLekKomanda { get; set; }
+        public MyICommand PotvrdiOdbijanjeLeka { get; set; }
+        public MyICommand OdustaniOdOdbijanjaLekaKomanda { get; set; }
+        public MyICommand PotvrdiBrisanjeZahtevaKomanda { get; set; }
+        public MyICommand OdustaniOdBrisanjaZahtevaKomanda { get; set; }
         public static Window OtvoriObraduZahteva { get; set; }
         public static Window OtvoriBrisanjeZahteva { get; set; }
         public static Window OtvoriIzmenuLeka { get; set; }
         public static Window OtvoriSastojkeLeka { get; set; }
         public static Window OtvoriZamenskeLekove { get; set; }
+        public static Window OtvoriOdbijanjeLeka { get; set; }
 
         public LekarLekoviViewModel()
         {
@@ -72,6 +81,57 @@ namespace Projekat.ViewModel
             SastojciLekaKomanda = new MyICommand(SastojciLeka);
             ZamenskiLekoviKomanda = new MyICommand(ZamenskiLekovi);
             PotvrdiOdobravanjeLekaKomanda = new MyICommand(PotvrdiOdobravanjeLeka);
+            OdbijLekKomanda = new MyICommand(OdbijLek);
+            PotvrdiOdbijanjeLeka = new MyICommand(PotvrdiOdbijanje);
+            OdustaniOdOdbijanjaLekaKomanda = new MyICommand(OdustaniOdOdbijanjaLeka);
+            PotvrdiBrisanjeZahtevaKomanda = new MyICommand(PotvrdiBrisanjeZahteva);
+            OdustaniOdBrisanjaZahtevaKomanda = new MyICommand(OdustaniOdBrisanjaZahteva);
+        }
+
+        private void OdustaniOdBrisanjaZahteva()
+        {
+            OtvoriBrisanjeZahteva.Close();
+        }
+
+        private void PotvrdiBrisanjeZahteva()
+        {
+            ZahtevZaLekove izabraniZahtjev = null;
+            foreach (ZahtevZaLekove zahtjev in LekoviMenadzer.zahteviZaLekove)
+            {
+                if (zahtjev.lek.sifraLeka.Equals(izabraniZahtev.sifraLeka))
+                {
+                    izabraniZahtjev = zahtjev;
+                }
+            }
+
+            LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
+            TabelaZahteva.Remove(izabraniZahtev);
+            LekoviServis.sacuvajIzmeneZahteva();
+
+            OtvoriBrisanjeZahteva.Close();
+        }
+
+        private void OdustaniOdOdbijanjaLeka()
+        {
+            OtvoriOdbijanjeLeka.Close();
+        }
+
+        private void PotvrdiOdbijanje()
+        {
+            LekoviServis.odbijaZahtev(izabraniZahtev, RazlogOdbijanja);
+            ZahtevZaLekove z = izabraniZahtev;
+            int idx = TabelaZahteva.IndexOf(izabraniZahtev);
+            TabelaZahteva.RemoveAt(idx);
+            TabelaZahteva.Insert(idx, z);
+            OtvoriObraduZahteva.Close();
+            OtvoriOdbijanjeLeka.Close();
+        }
+
+        private void OdbijLek()
+        {
+            OtvoriOdbijanjeLeka = new OdbijZahtevZaLek(IzabraniZahtev);
+            OtvoriOdbijanjeLeka.Show();
+            OtvoriOdbijanjeLeka.DataContext = this;
         }
 
         private void PotvrdiOdobravanjeLeka()
@@ -81,59 +141,16 @@ namespace Projekat.ViewModel
             Lek lek = new Lek(LekoviServis.GenerisanjeIdLijeka(), izabraniZahtev.nazivLeka, izabraniZahtev.sifraLeka, izabraniZahtev.lek.zamenskiLekovi, izabraniZahtev.lek.sastojci);
             LekoviServis.DodajLijek(lek);
             LekoviServis.izmeniZahtev(izabraniZahtev);
+            ZahtevZaLekove z = izabraniZahtev;
             int idx = TabelaZahteva.IndexOf(izabraniZahtev);
             TabelaZahteva.RemoveAt(idx);
-            TabelaZahteva.Insert(idx, izabraniZahtev);
+            TabelaZahteva.Insert(idx, z);
+            TabelaLekova.Add(lek);
             LekoviServis.sacuvajIzmeneZahteva();
             OtvoriObraduZahteva.Close();
         }
 
-        private void ZamenskiLekovi()
-        {
-            if (izabraniLek != null)
-            {
-                OtvoriZamenskeLekove = new PrikazZamenskihLekovaLekar(izabraniLek);
-                OtvoriZamenskeLekove.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijedan lek!");
-            }
-        }
-        private void SastojciLeka()
-        {
-            if (izabraniLek != null)
-            {
-                /*TabelaSastojaka = new ObservableCollection<Sastojak>();
-                foreach (Sastojak sastojak in izabraniLek.sastojci)
-                {
-                    TabelaSastojaka.Add(sastojak);
-                }*/
-                OtvoriSastojkeLeka = new PrikazSastojakaLekar(izabraniLek);
-                OtvoriSastojkeLeka.Show();
-                //OtvoriSastojkeLeka.DataContext = this;
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijedan lek!");
-            }
-        }
-        private void IzmeniLek()
-        {
-
-            if (izabraniLek != null)
-            {
-                
-                OtvoriIzmenuLeka = new IzmeniLekLekar(izabraniLek);
-                OtvoriIzmenuLeka.Show();
-                OtvoriIzmenuLeka.DataContext = this;
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali nijedan lek!");
-            }
-        }
-
+        
         private void ObradiZahtev()
         {
             if (izabraniZahtev == null)
@@ -147,7 +164,7 @@ namespace Projekat.ViewModel
             else if (izabraniZahtev != null && izabraniZahtev.obradjenZahtev == false)
             {
                 SastojciZahteva = new ObservableCollection<Sastojak>();
-                //SastojciZahteva.Add = LekoviServis.nadjiSastojke(izabraniZahtev)
+                //SastojciZahteva.Add = LekoviServis.nadjiSastojke(izabraniZahtev);
 
                 DatumLekaZahtev = izabraniZahtev.datumSlanjaZahteva;
                 NazivLekaZahtev = izabraniZahtev.nazivLeka;
@@ -194,6 +211,12 @@ namespace Projekat.ViewModel
             }
         }
 
+
+
+
+
+        #region
+
         private void DodajLekove()
         {
             TabelaLekova = new ObservableCollection<Lek>();
@@ -202,5 +225,55 @@ namespace Projekat.ViewModel
                 TabelaLekova.Add(lek);
             }
         }
+        private void ZamenskiLekovi()
+        {
+            if (izabraniLek != null)
+            {
+                OtvoriZamenskeLekove = new PrikazZamenskihLekovaLekar(izabraniLek);
+                OtvoriZamenskeLekove.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
+        private void SastojciLeka()
+        {
+            if (izabraniLek != null)
+            {
+                /*TabelaSastojaka = new ObservableCollection<Sastojak>();
+                foreach (Sastojak sastojak in izabraniLek.sastojci)
+                {
+                    TabelaSastojaka.Add(sastojak);
+                }*/
+                OtvoriSastojkeLeka = new PrikazSastojakaLekar(izabraniLek);
+                OtvoriSastojkeLeka.Show();
+                //OtvoriSastojkeLeka.DataContext = this;
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
+        private void IzmeniLek()
+        {
+
+            if (izabraniLek != null)
+            {
+
+                OtvoriIzmenuLeka = new IzmeniLekLekar(izabraniLek);
+                OtvoriIzmenuLeka.Show();
+                OtvoriIzmenuLeka.DataContext = this;
+            }
+            else
+            {
+                MessageBox.Show("Niste selektovali nijedan lek!");
+            }
+        }
+
+
+        #endregion
+
+
     }
 }
