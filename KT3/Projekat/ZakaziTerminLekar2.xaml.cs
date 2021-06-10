@@ -192,7 +192,7 @@ namespace Projekat
             if (listaLekara.SelectedItem != null)
             {
                 Lekar = (Lekar)listaLekara.SelectedItem;
-                lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek;
+                lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek + " " + Lekar.IdLekara;
             }
         }
 
@@ -686,7 +686,7 @@ namespace Projekat
                 {
                     if(lekar.IdLekara == idLekara)
                     {
-                        this.lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+                        this.lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek + " " + lekar.IdLekara;
                         this.listaLekara.IsEnabled = false;
                         this.Lekar = lekar;
                     }
@@ -773,7 +773,9 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Lekar l = LekariServis.NadjiPoId(idLekara);
+                string [] podaci = this.lekar.Text.Split(' ');
+                int id = Int32.Parse(podaci[2]);
+                Lekar l = LekariServis.NadjiPoId(id);
                 if (tp.Equals(TipTermina.Pregled))
                 {
                     l.BrojPregleda++;
@@ -796,7 +798,7 @@ namespace Projekat
 
                 if (Sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
                 {
-                    TerminServisLekar.ZakaziTerminLekar(t);
+                    TerminServisLekar.ZakaziTerminLekar(t, idLekara);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     Sala.zauzetiTermini.Add(z);
 
@@ -816,7 +818,7 @@ namespace Projekat
                 }
                 else    // ako ne postoje zauzeti termini
                 {
-                    TerminServisLekar.ZakaziTerminLekar(t);
+                    TerminServisLekar.ZakaziTerminLekar(t,idLekara);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     Sala.zauzetiTermini.Add(z);
 
@@ -1065,6 +1067,10 @@ namespace Projekat
                 {
                     Button_Click_3(sender, e);
                 }
+                /*else if (e.Key == Key.Enter && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    hitno.IsChecked = true;
+                }*/
             }
             if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {

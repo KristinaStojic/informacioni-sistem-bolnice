@@ -82,6 +82,10 @@ namespace Projekat
             {
                 Button_Nazad(sender, e);
             }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Hyperlink_Click(sender, e);
+            }
         }
 
         private void Pomoc_Click(object sender, RoutedEventArgs e)

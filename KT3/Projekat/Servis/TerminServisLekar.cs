@@ -8,9 +8,9 @@ namespace Projekat.Servis
 {
     public class TerminServisLekar
     {
-        public static void ZakaziTerminLekar(Termin termin)
+        public static void ZakaziTerminLekar(Termin termin, int id)
         {
-            TerminMenadzer.ZakaziTerminLekar(termin);
+            TerminMenadzer.ZakaziTerminLekar(termin, id);
         }
 
         public static void IzmeniTerminLekar(Termin termin, Termin termin1)
