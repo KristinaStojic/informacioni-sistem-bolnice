@@ -24,9 +24,9 @@ namespace Projekat
         public DodajSastojakLekar(Lek izabraniLek)
         {
             InitializeComponent();
-            this.lek = izabraniLek;
+            /*this.lek = izabraniLek;
             this.Potvrdi.IsEnabled = false;
-            this.validacija.Visibility = Visibility.Hidden;
+            this.validacija.Visibility = Visibility.Hidden;*/
 
         }
 
@@ -55,14 +55,14 @@ namespace Projekat
 
         private void naziv_TextChanged(object sender, TextChangedEventArgs e)
         {
-            postaviDugmeNaziv();
+            //postaviDugmeNaziv();
         }
 
         private void kolicina_TextChanged(object sender, TextChangedEventArgs e)
         {
-            postaviDugme();
+            //postaviDugme();
         }
-        private void postaviDugme()
+        /*private void postaviDugme()
         {
             if (IsNumeric(this.kolicina.Text))
             {
@@ -75,9 +75,9 @@ namespace Projekat
                 this.Potvrdi.IsEnabled = false;
                 popunjeno = false;
             }
-        }
+        }*/
 
-        private void postaviDugmeNaziv()
+        /*private void postaviDugmeNaziv()
         {
             if (IsNumeric(this.kolicina.Text))
             {
@@ -109,17 +109,17 @@ namespace Projekat
             double test;
             return double.TryParse(input, out test);
         }
-
+        */
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            /*if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Potvrdi_Click(sender, e);
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Odustani_Click(sender, e);
-            }
+            }*/
         }
     }
 }

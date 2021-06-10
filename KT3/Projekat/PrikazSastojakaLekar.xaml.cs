@@ -30,10 +30,10 @@ namespace Projekat
         public PrikazSastojakaLekar(Lek izabranilek)
         {
             InitializeComponent();
-            this.DataContext = this;
+           /* this.DataContext = this;
             this.lek = izabranilek;
             this.tekst.Text = "Sastojci leka: " + izabranilek.nazivLeka;
-            dodajSastojkeLeka(lek);
+            dodajSastojkeLeka(lek);*/
         }
 
         private void dodajSastojkeLeka(Lek lek)
@@ -91,7 +91,7 @@ namespace Projekat
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            /*if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Dodaj(sender, e);
             }
@@ -106,7 +106,7 @@ namespace Projekat
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Nazad(sender, e);
-            }
+            }*/
         }
     }
 }

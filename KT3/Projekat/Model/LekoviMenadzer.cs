@@ -62,7 +62,7 @@ namespace Projekat.Model
                 if (lek.idLeka == izabraniLek.idLeka)
                 {
                     lek.sastojci.Add(sastojak);
-                    PrikazSastojakaLekar.TabelaSastojaka.Add(sastojak);
+                    //PrikazSastojakaLekar.TabelaSastojaka.Add(sastojak);
                     //sastojci.Add(sastojak);
 
                 }
@@ -160,7 +160,7 @@ namespace Projekat.Model
                 if (lek.idLeka == izabraniLek.idLeka)
                 {
                     lek.sastojci.Remove(sastojak);
-                    PrikazSastojakaLekar.TabelaSastojaka.Remove(sastojak);
+                    //PrikazSastojakaLekar.TabelaSastojaka.Remove(sastojak);
                 }
             }
             sacuvajIzmjene();
@@ -223,9 +223,9 @@ namespace Projekat.Model
                         {
                             sastojak.naziv = noviSastojak.naziv;
                             sastojak.kolicina = noviSastojak.kolicina;
-                            int idx = PrikazSastojakaLekar.TabelaSastojaka.IndexOf(stariSastojak);
+                            /*int idx = PrikazSastojakaLekar.TabelaSastojaka.IndexOf(stariSastojak);
                             PrikazSastojakaLekar.TabelaSastojaka.RemoveAt(idx);
-                            PrikazSastojakaLekar.TabelaSastojaka.Insert(idx, sastojak);
+                            PrikazSastojakaLekar.TabelaSastojaka.Insert(idx, sastojak);*/
                             break;
                         }
                     }
