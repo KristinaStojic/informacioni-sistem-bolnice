@@ -50,6 +50,11 @@ namespace Projekat.ViewModel
 
         private string datumLekaZahtev;
         public string DatumLekaZahtev { get { return datumLekaZahtev; } set { datumLekaZahtev = value; OnPropertyChanged("DatumLekaZahtev"); } }
+        
+        private string nazivLeka;
+        public string NazivLeka { get { return nazivLeka; } set { nazivLeka = value; OnPropertyChanged("NazivLeka"); } } 
+        private string sifraLeka;
+        public string SifraLeka { get { return sifraLeka; } set { sifraLeka = value; OnPropertyChanged("SifraLeka"); } }
 
         public MyICommand ObradiZahtevKomanda { get; set; }
         public MyICommand ObrisiZahtevKomanda { get; set; }
@@ -63,6 +68,8 @@ namespace Projekat.ViewModel
         public MyICommand OdustaniOdOdbijanjaLekaKomanda { get; set; }
         public MyICommand PotvrdiBrisanjeZahtevaKomanda { get; set; }
         public MyICommand OdustaniOdBrisanjaZahtevaKomanda { get; set; }
+        public MyICommand PotvrdiIzmenuLekaKomanda { get; set; }
+        public MyICommand OdustaniOdIzmeneLekaKomanda { get; set; }
         public static Window OtvoriObraduZahteva { get; set; }
         public static Window OtvoriBrisanjeZahteva { get; set; }
         public static Window OtvoriIzmenuLeka { get; set; }
@@ -86,8 +93,11 @@ namespace Projekat.ViewModel
             OdustaniOdOdbijanjaLekaKomanda = new MyICommand(OdustaniOdOdbijanjaLeka);
             PotvrdiBrisanjeZahtevaKomanda = new MyICommand(PotvrdiBrisanjeZahteva);
             OdustaniOdBrisanjaZahtevaKomanda = new MyICommand(OdustaniOdBrisanjaZahteva);
+            PotvrdiIzmenuLekaKomanda = new MyICommand(PotvrdiIzmenuLeka);
+            OdustaniOdIzmeneLekaKomanda = new MyICommand(OdustaniOdIzmeneLeka);
         }
 
+        #region Zahtevi za lekove
         private void OdustaniOdBrisanjaZahteva()
         {
             OtvoriBrisanjeZahteva.Close();
@@ -212,10 +222,15 @@ namespace Projekat.ViewModel
         }
 
 
+        #endregion
 
 
+        #region Lekovi
 
-        #region
+        private void OdustaniOdIzmeneLeka()
+        {
+            OtvoriIzmenuLeka.Close();
+        }
 
         private void DodajLekove()
         {
@@ -225,6 +240,26 @@ namespace Projekat.ViewModel
                 TabelaLekova.Add(lek);
             }
         }
+
+        private void PotvrdiIzmenuLeka()
+        {
+            Lek noviLek = new Lek(izabraniLek.idLeka, NazivLeka, SifraLeka);
+            LekoviServis.IzmeniLekoveLekar(izabraniLek, noviLek);
+            Lek l = noviLek;
+            int idx = TabelaLekova.IndexOf(izabraniLek);
+            TabelaLekova.RemoveAt(idx);
+            TabelaLekova.Insert(idx, noviLek);
+            /*if (PrikazZamenskihLekovaLekar.TabelaZamenskihLekova != null)
+            {
+                int idx1 = PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.IndexOf(izabraniLek);
+                PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.RemoveAt(idx1);
+                PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.Insert(idx1, lek);
+            }*/
+
+
+            OtvoriIzmenuLeka.Close();
+        }
+
         private void ZamenskiLekovi()
         {
             if (izabraniLek != null)
@@ -262,6 +297,8 @@ namespace Projekat.ViewModel
             {
 
                 OtvoriIzmenuLeka = new IzmeniLekLekar(izabraniLek);
+                NazivLeka = izabraniLek.nazivLeka;
+                SifraLeka = izabraniLek.sifraLeka;
                 OtvoriIzmenuLeka.Show();
                 OtvoriIzmenuLeka.DataContext = this;
             }

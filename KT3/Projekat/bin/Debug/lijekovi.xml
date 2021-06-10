@@ -191,17 +191,8 @@
   </Lek>
   <Lek>
     <idLeka>10</idLeka>
-    <nazivLeka>N1</nazivLeka>
-    <sifraLeka>S2C</sifraLeka>
-    <zamenskiLekovi>
-      <int>8</int>
-    </zamenskiLekovi>
-    <sastojci>
-      <Sastojak>
-        <naziv>MNK</naziv>
-        <kolicina>123</kolicina>
-      </Sastojak>
-    </sastojci>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>21</idLeka>
@@ -221,31 +212,15 @@
   </Lek>
   <Lek>
     <idLeka>22</idLeka>
-    <nazivLeka>Lek</nazivLeka>
-    <sifraLeka>12A</sifraLeka>
     <zamenskiLekovi />
-    <sastojci>
-      <Sastojak>
-        <naziv>sstjk</naziv>
-        <kolicina>350</kolicina>
-      </Sastojak>
-    </sastojci>
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>23</idLeka>
-    <nazivLeka>L1</nazivLeka>
-    <sifraLeka>MKS</sifraLeka>
+    <nazivLeka>L1 AAAAAAAAAA</nazivLeka>
+    <sifraLeka>sssssssssssssss</sifraLeka>
     <zamenskiLekovi />
-    <sastojci>
-      <Sastojak>
-        <naziv>SS1</naziv>
-        <kolicina>300</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>MKS</naziv>
-        <kolicina>100</kolicina>
-      </Sastojak>
-    </sastojci>
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>26</idLeka>

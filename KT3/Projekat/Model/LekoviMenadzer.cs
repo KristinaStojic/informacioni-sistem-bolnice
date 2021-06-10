@@ -128,7 +128,7 @@ namespace Projekat.Model
                     lek.nazivLeka = izmenjeniLek.nazivLeka;
                     lek.zamenskiLekovi = izmenjeniLek.zamenskiLekovi;
                     lek.sastojci = izmenjeniLek.sastojci;
-                    int idx = SpisakZahtevaZaLekove.TabelaLekova.IndexOf(izabraniLek);
+                    /*int idx = SpisakZahtevaZaLekove.TabelaLekova.IndexOf(izabraniLek);
                     SpisakZahtevaZaLekove.TabelaLekova.RemoveAt(idx);
                     SpisakZahtevaZaLekove.TabelaLekova.Insert(idx, lek);
                     if (PrikazZamenskihLekovaLekar.TabelaZamenskihLekova != null)
@@ -136,7 +136,7 @@ namespace Projekat.Model
                         int idx1 = PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.IndexOf(izabraniLek);
                         PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.RemoveAt(idx1);
                         PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.Insert(idx1, lek);
-                    }
+                    }*/
                 }
             }
             sacuvajIzmjene();
