@@ -10,7 +10,20 @@ namespace Model
 {
     public class SaleMenadzer : Menadzer<Sala>
     {
+        private SaleMenadzer() { }
 
+        private static SaleMenadzer instanca = null;
+        public static SaleMenadzer Instanca
+        {
+            get
+            {
+                if (instanca == null)
+                {
+                    instanca = new SaleMenadzer();
+                }
+                return instanca;
+            }
+        }
         public override void Izmjeni(Sala izSale, Sala uSalu)
         {
             foreach (Sala sala in lista)
