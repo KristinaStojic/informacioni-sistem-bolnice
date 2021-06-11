@@ -61,12 +61,15 @@ namespace Projekat
         string noviSati;
 
         TerminiSekretarServis servis = new TerminiSekretarServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+        List<Pacijent> sviPacijenti;
         public HitanSlucaj()
         {
             InitializeComponent();
+            sviPacijenti = pacijentiServis.PronadjiSve();
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
-            listaPacijenata.ItemsSource = pacijentiLista;
+            //List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            listaPacijenata.ItemsSource = sviPacijenti;
             CollectionView prikazPacijenata = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             prikazPacijenata.Filter = PretragaPacijenta;
 
@@ -761,7 +764,7 @@ namespace Projekat
 
         public void AzurirajListuPacijenata()
         {
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             foreach (Pacijent pacijent in pacijentiLista)
             {
                 AzuriranaLista.Add(pacijent);

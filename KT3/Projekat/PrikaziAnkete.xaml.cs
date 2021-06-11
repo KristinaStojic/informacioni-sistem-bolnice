@@ -24,12 +24,14 @@ namespace Projekat
     {
         private static int idPacijent;
         private static ObservableCollection<Anketa> AnketePacijenta { get; set; }
+        PacijentiServis servis = new PacijentiServis();
+
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.potvrdi.IsEnabled = false;

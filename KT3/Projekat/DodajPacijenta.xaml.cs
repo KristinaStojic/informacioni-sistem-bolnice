@@ -32,7 +32,7 @@ namespace Projekat
         public bool flag6 = false;
         public bool flag7 = false;
         public bool flag8 = true;
-
+        PacijentiServis servis = new PacijentiServis();
         public DodajPacijenta()
         {
             InitializeComponent();
@@ -54,13 +54,13 @@ namespace Projekat
 
             if (status.Equals(statusNaloga.Guest))
             {
-                Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
-                PacijentiServis.DodajNalog(guestPacijent);
+                Pacijent guestPacijent = new Pacijent(servis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
+                servis.DodajNalog(guestPacijent);
             }
             else
             {
-                Pacijent pacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                PacijentiServis.DodajNalog(pacijent);
+                Pacijent pacijent = new Pacijent(servis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                servis.DodajNalog(pacijent);
             }    
 
             this.Close();
@@ -129,7 +129,7 @@ namespace Projekat
                 long result;
                 if (long.TryParse(jmbg.Text, out result))
                 {
-                    if ((!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text))))
+                    if ((!servis.JedinstvenJmbg(long.Parse(jmbg.Text))))
                     {
                         MessageBox.Show("Uneseni JMBG vec postoji!");
                         jmbg.Text = "";

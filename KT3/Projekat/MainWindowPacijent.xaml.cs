@@ -38,7 +38,7 @@ namespace Projekat
             proxy.sacuvajIzmene();
             TerminServisLekar.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            //PacijentiMenadzer.SacuvajIzmene();
             AnketaMenadzer.sacuvajIzmene();
             
             PrikaziTermin.pacijentProzor = false;  // nit

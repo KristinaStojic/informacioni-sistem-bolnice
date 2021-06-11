@@ -47,12 +47,14 @@ namespace Projekat
             get;
             set;
         }
-
+        PacijentiServis servis = new PacijentiServis();
+        List<Pacijent> sviPacijenti;
         public UvidZdravstveniKarton(Pacijent izabraniNalog)
         {
             InitializeComponent();
             this.pacijent = izabraniNalog;
             this.DataContext = this;
+            sviPacijenti = servis.pacijenti();
 
             if (izabraniNalog != null)
             {
@@ -88,8 +90,8 @@ namespace Projekat
         private void PopuniTabeluRecepata() 
         {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
-            foreach (Pacijent p in pacijenti)
+           // List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -104,8 +106,8 @@ namespace Projekat
         private void PopuniTabeluAnamneza()
         {
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
-            foreach (Pacijent p in pacijenti)
+            //List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -120,8 +122,8 @@ namespace Projekat
         private void PopuniTabeluAlergena()
         {
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
-            foreach (Pacijent p in pacijenti)
+            //List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -136,8 +138,8 @@ namespace Projekat
         private void PopuniTabeluUputa() 
         {
             TabelaUputa = new ObservableCollection<Uput>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
-            foreach (Pacijent p in pacijenti)
+           // List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {

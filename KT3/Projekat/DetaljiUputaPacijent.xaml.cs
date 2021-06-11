@@ -20,12 +20,13 @@ namespace Projekat
     public partial class DetaljiUputaPacijent : Page
     {
         private static int idPacijent;
+        PacijentiServis servis = new PacijentiServis();
         public DetaljiUputaPacijent(int idPrijavljenogPacijenta, Uput izabraniUput)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();

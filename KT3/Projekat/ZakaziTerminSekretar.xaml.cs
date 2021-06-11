@@ -45,13 +45,13 @@ namespace Projekat
         public static ObservableCollection<string> pomocna { get; set; }
 
         TerminiSekretarServis servis = new TerminiSekretarServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
         public ZakaziTerminSekretar()
         {
             InitializeComponent();
             datum.BlackoutDates.AddDatesInPast();
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
-            this.listaPacijenata.ItemsSource = pacijentiLista;
+            this.listaPacijenata.ItemsSource = pacijentiServis.PronadjiSve();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
@@ -167,7 +167,7 @@ namespace Projekat
                 l.BrojOperacija++;
             }
 
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+            Pacijent pacijent = pacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             t = new Termin(TerminiSekretarServis.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
 
@@ -223,7 +223,7 @@ namespace Projekat
         // azuriranje liste pacijenata prilikom dodavanja guest pacijenta
         public void AzurirajListuPacijenata()
         {
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = pacijentiServis.PronadjiSve();
             foreach (Pacijent pacijent in pacijenti)
             {
                 AzuriranaLista.Add(pacijent);

@@ -26,10 +26,12 @@ namespace Projekat
         private static string cetvrtoPitanje = null;
         private static int idPacijent;
         private static int idAnkete;
+        PacijentiServis servis = new PacijentiServis();
+
         public PrikaziAntekuZaLekare(int idPrijavljenogPacijenta, int idSelektovaneAnkete)
         {
             InitializeComponent();
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPrijavljenogPacijenta);
             this.podaci.Header = PacijentWebStranice.podaciPacijenta(prijavljeniPacijent);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.potvrdi.IsEnabled = false;

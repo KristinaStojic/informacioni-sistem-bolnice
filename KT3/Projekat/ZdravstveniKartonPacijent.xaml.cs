@@ -27,12 +27,14 @@ namespace Projekat
         public List<Anamneza> tempAnamneze;
         public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+
         public ZdravstveniKartonPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = servis.PronadjiPoId(idPrijavljenogPacijenta);
             this.tabelaRecepata.ItemsSource = DodajLekarskeReceptePacijenta();
             this.prikazAnamnezi.ItemsSource = DodajAnamnezePacijenta();
             this.prikazUputa.ItemsSource = ZdravstveniKartonServis.DodajUputePacijenta(prijavljeniPacijent);

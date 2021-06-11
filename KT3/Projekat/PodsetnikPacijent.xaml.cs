@@ -25,13 +25,14 @@ namespace Projekat
         private static Pacijent prijavljeniPacijent;
         ObavestenjaServis servis = new ObavestenjaServis();
         ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
+        PacijentiServis pacijentiServis = new PacijentiServis();
         public PodsetnikPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = pacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Datum.BlackoutDates.AddDatesInPast();
         }

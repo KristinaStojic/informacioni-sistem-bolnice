@@ -13,7 +13,6 @@ namespace Projekat.Servis
     public class ObavestenjaServis
     {
         #region Obavestenja Menadzer
-        ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
         public void sacuvajIzmene()
         {
             //menadzer.SacuvajIzmene();
@@ -21,11 +20,13 @@ namespace Projekat.Servis
 
         public List<Obavestenja> NadjiSvaObavestenja()
         {
+            ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
             return menadzer.NadjiSve("../Projekat.Model.Obavestenja.json");
         }
 
         public void ObrisiObavestenje(Obavestenja obavestenje)
         {
+            ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
             menadzer.Obrisi(obavestenje, "../Projekat.Model.Obavestenja.json");
         }
 
@@ -60,15 +61,17 @@ namespace Projekat.Servis
         #region Obavestenja Sekretar
         public void DodajObavestenjeSekretar(Obavestenja novoObavestenje)
         {
+            ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
             menadzer.Dodaj(novoObavestenje, "../Projekat.Model.Obavestenja.json");
         }
 
         public void IzmeniObavestenjeSekretar(Obavestenja obavestenje, Obavestenja novoObavestenje)
         {
+            ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
             menadzer.Izmeni(obavestenje, novoObavestenje, "../Projekat.Model.Obavestenja.json");
         }
 
-        public string OdrediOznakuObavestenja(string namena)
+        public static string OdrediOznakuObavestenja(string namena)
         {
             string oznaka = "";
             if (namena.Equals("sve"))
@@ -95,7 +98,7 @@ namespace Projekat.Servis
             return oznaka;
         }
 
-        public List<int> DodajSelektovanePacijente(string oznaka, ListView listaPacijenata)
+        public static List<int> DodajSelektovanePacijente(string oznaka, ListView listaPacijenata)
         {
             List<int> selektovaniPacijentiId = new List<int>();
             if (oznaka.Equals("specificni pacijenti"))
@@ -109,8 +112,9 @@ namespace Projekat.Servis
             return selektovaniPacijentiId;
         }
 
-        public string PopuniNamenuObavestenja(Obavestenja selektovanoObavestenje) 
+        public string PopuniNamenuObavestenja(Obavestenja selektovanoObavestenje)
         {
+            PacijentiServis servis = new PacijentiServis();
             string namena = "";
             if (selektovanoObavestenje.Oznaka.Equals("svi"))
             {
@@ -133,7 +137,7 @@ namespace Projekat.Servis
                 namena = "";
                 foreach (int id in selektovanoObavestenje.ListaIdPacijenata)
                 {
-                    Pacijent pacijent = PacijentiServis.PronadjiPoId(id);
+                    Pacijent pacijent = servis.PronadjiPoId(id);
                     namena += pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta + " \n";
                 }
             }
@@ -141,7 +145,7 @@ namespace Projekat.Servis
             return namena;
         }
 
-        public int OdrediIndeksIzabranogObavestenja(Obavestenja selektovanoObavestenje)
+        public static int OdrediIndeksIzabranogObavestenja(Obavestenja selektovanoObavestenje)
         {
             int namena = 0;
             if (selektovanoObavestenje.Oznaka.Equals("svi"))
@@ -189,6 +193,7 @@ namespace Projekat.Servis
 
         public List<Obavestenja> PronadjiSvaObavestenja()
         {
+            ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
             List<Obavestenja> obavestenja = menadzer.NadjiSve("../Projekat.Model.Obavestenja.json");
             return obavestenja;
         }
@@ -206,11 +211,14 @@ namespace Projekat.Servis
 
         public void ObrisiObavestenjePacijent(Obavestenja selektovanoObavestenje)
         {
-            foreach (Obavestenja o in NadjiSvaObavestenja())
+            ObavestenjaMenadzer obavestenjaMenadzer = new ObavestenjaMenadzer();
+            List<Obavestenja> lista = NadjiSvaObavestenja();
+            foreach (Obavestenja o in lista)
             {
                 if (o.IdObavestenja == selektovanoObavestenje.IdObavestenja)
                 {
-                    NadjiSvaObavestenja().Remove(o);
+                    lista.Remove(o);
+                    obavestenjaMenadzer.SacuvajIzmene("../Projekat.Model.Obavestenja.json", lista);
                     return;
                 }
             }
@@ -240,7 +248,7 @@ namespace Projekat.Servis
             return ObavestenjaPacijent;
         }
 
-        private void DodajStaraObavestenjaZaTerapijePodsetnike(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
+        private static void DodajStaraObavestenjaZaTerapijePodsetnike(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
             DateTime datumObavestenja = DateTime.Parse(obavestenje.Datum);
             if (datumObavestenja.Date > DateTime.Now.Date) return;
@@ -263,25 +271,28 @@ namespace Projekat.Servis
         #region Obavestenja nit
         public void ProveriSvaObavestenja(int idPacijent, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
-            App.Current.Dispatcher.Invoke((Action)delegate
+            if(App.Current != null)
             {
-                foreach (Obavestenja obavestenje in this.PronadjiObavestenjaPoIdPacijenta(idPacijent))
+                App.Current.Dispatcher.Invoke((Action)delegate
                 {
-                    DateTime datumObavestenja = DateTime.Parse(obavestenje.Datum);
-                    string trenutnoVreme = FormatirajDatum(DateTime.Now); 
-                    string vremeZaTerapiju = FormatirajDatum(datumObavestenja);
-                    if (vremeZaTerapiju.Equals(trenutnoVreme))
+                    foreach (Obavestenja obavestenje in PronadjiObavestenjaPoIdPacijenta(idPacijent))
                     {
-                        if (!ProveriObjavljenaObavestenja(obavestenje, ObavestenjaPacijent))
+                        DateTime datumObavestenja = DateTime.Parse(obavestenje.Datum);
+                        string trenutnoVreme = FormatirajDatum(DateTime.Now);
+                        string vremeZaTerapiju = FormatirajDatum(datumObavestenja);
+                        if (vremeZaTerapiju.Equals(trenutnoVreme))
                         {
-                            DodajNovoObavestenje(idPacijent, ObavestenjaPacijent, datumObavestenja);
+                            if (!ProveriObjavljenaObavestenja(obavestenje, ObavestenjaPacijent))
+                            {
+                                DodajNovoObavestenje(idPacijent, ObavestenjaPacijent, datumObavestenja);
+                            }
                         }
                     }
-                }
-            });
+                });
+            }   
         }
 
-        private string FormatirajDatum(DateTime datum)
+        private static string FormatirajDatum(DateTime datum)
         {
             return datum.ToString("MM/dd/yyyy HH:mm");
         }
@@ -303,7 +314,7 @@ namespace Projekat.Servis
             //if (obavestenje != null && obavestenje.TipObavestenja.Equals("Terapija"))
             if(obavestenje != null)
             {
-                this.ObrisiObavestenjePacijent(obavestenje);
+                ObrisiObavestenjePacijent(obavestenje);
                 ObavestenjaPacijent.Remove(obavestenje);
                 if(jezik.Header.Equals("_en-US"))
                 {
@@ -317,7 +328,7 @@ namespace Projekat.Servis
 
         private Obavestenja PronadjiSledeceObavestenje(string datum, int idPacijent, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
-            foreach (Obavestenja o in this.NadjiSvaObavestenja())
+            foreach (Obavestenja o in NadjiSvaObavestenja())
             {
                 if (o.ListaIdPacijenata.Contains(idPacijent))
                 {
@@ -329,7 +340,7 @@ namespace Projekat.Servis
             }
             return null;
         }
-        private bool ProveriObjavljenaObavestenja(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
+        private static bool ProveriObjavljenaObavestenja(Obavestenja obavestenje, ObservableCollection<Obavestenja> ObavestenjaPacijent)
         {
             foreach (Obavestenja o in ObavestenjaPacijent)
             {

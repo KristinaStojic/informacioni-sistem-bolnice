@@ -31,6 +31,10 @@ namespace Projekat
         private static Termin termin;
         private AnketeZaKlinikuServis anketeZaKlinikuServis;
         private AnketeZaLekaraServis anketeZaLekaraServis;
+        PacijentiServis servis = new PacijentiServis();
+        ZdravstveniKartonServis kartonServis = new ZdravstveniKartonServis();
+        TerminServis terminServis = new TerminServis();
+
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -47,7 +51,7 @@ namespace Projekat
         {
             //datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodatkeOLekaru(prijavljeniPacijent);
             UputiPacijenta = new ObservableCollection<Uput>();
@@ -56,9 +60,9 @@ namespace Projekat
             jeSelektovanUput = false;
         }
 
-        private static void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
+        private void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
         {
-            foreach (Uput uput in ZdravstveniKartonServis.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
+            foreach (Uput uput in kartonServis.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
             {
                 uputiPacijenta.Add(uput);
             }
@@ -116,7 +120,7 @@ namespace Projekat
             TipTermina tipTermina = TipTermina.Pregled;
             
             termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent pacijent = servis.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;
             if (tipTermina.Equals(TipTermina.Pregled))
@@ -141,7 +145,7 @@ namespace Projekat
         #region Zakazivanje termina
         private void FiltritajTipTermina(object sender, SelectionChangedEventArgs e)
         {
-            SaleZaPreglede = TerminServis.FiltrirajTipTermina(this.combo, this.comboUputi, this.preferenca, idPacijent);
+            SaleZaPreglede = terminServis.FiltrirajTipTermina(this.combo, this.comboUputi, this.preferenca, idPacijent);
         }
 
         private void FiltrirajDatum(object sender, SelectionChangedEventArgs e)

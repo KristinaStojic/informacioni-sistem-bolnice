@@ -32,6 +32,7 @@ namespace Projekat
         public static ObservableCollection<Krevet> kreveti;
 
         ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
         public MainWindow()
         {
             InitializeComponent();
@@ -40,13 +41,15 @@ namespace Projekat
             OpremaServis.NadjiSvuOpremu();
             LekoviServis.NadjiSveLijekove();
             PremjestajServis.NadjiSvePremjestaje();
-            PacijentiServis.PronadjiSve();
+            //PacijentiServis.PronadjiSve();
             //ObavestenjaServis.NadjiSvaObavestenja();
             LekariServis.NadjiSveZahteve();
             LekariServis.NadjiSveLekare();
             LekoviServis.NadjiSveZahteve();
-            servis.NadjiSvaObavestenja();
 
+            servis.NadjiSvaObavestenja();
+            pacijentiServis.pacijenti();
+            
             /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
             lekari.Add(new Lekar() {IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa });
@@ -100,9 +103,6 @@ namespace Projekat
                     }
                 }
             }*/
-
-            
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

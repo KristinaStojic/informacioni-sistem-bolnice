@@ -25,17 +25,17 @@ namespace Projekat
         bool flag1 = false;
         bool flag2 = false;
         ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
         public DodajObavestenje()
         {
             InitializeComponent();
-
             potvrdi.IsEnabled = false;
             pretraga.IsEnabled = false;
             listaPacijenata.IsEnabled = false;
             pacijenti.IsEnabled = false;
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
-            this.listaPacijenata.ItemsSource = pacijentiLista;
+            //List<Pacijent> pacijentiLista = p.PronadjiSve();
+            this.listaPacijenata.ItemsSource = pacijentiServis.PronadjiSve();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = PretragaPacijenata;
         }
@@ -63,8 +63,8 @@ namespace Projekat
         {
             int idLekara = 0;
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string oznaka = servis.OdrediOznakuObavestenja(namena.Text);
-            List<int> selektovaniPacijentiId = servis.DodajSelektovanePacijente(oznaka, listaPacijenata);
+            string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
+            List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
             Obavestenja novoObavestenje = new Obavestenja(servis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
             servis.DodajObavestenjeSekretar(novoObavestenje);

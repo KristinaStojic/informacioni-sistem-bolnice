@@ -12,6 +12,11 @@ namespace Projekat.Model
         {
             List<Obavestenja> lista = NadjiSve(lokacijaFajla);
             lista.Add(element);
+            if (OglasnaTabla.oglasnaTabla == null)
+            {
+                OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
+            }
+
             OglasnaTabla.oglasnaTabla.Add(element);
             SacuvajIzmene(lokacijaFajla, lista);
         }

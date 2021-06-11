@@ -25,13 +25,14 @@ namespace Projekat
         bool flag2 = false;
         public Obavestenja obavestenje;
         ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
 
         public IzmeniObavestenje(Obavestenja selektovanoObavestenje)
         {
             InitializeComponent();
             obavestenje = selektovanoObavestenje;
 
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = pacijentiServis.PronadjiSve();
             this.listaPacijenata.ItemsSource = pacijenti;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilter;
@@ -46,7 +47,7 @@ namespace Projekat
         {
             naslov.Text = selektovanoObavestenje.TipObavestenja;
             sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
-            namena.SelectedIndex = servis.OdrediIndeksIzabranogObavestenja(selektovanoObavestenje);
+            namena.SelectedIndex = ObavestenjaServis.OdrediIndeksIzabranogObavestenja(selektovanoObavestenje);
 
             if (!selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
             {
@@ -62,7 +63,7 @@ namespace Projekat
 
                 foreach (int id in obavestenje.ListaIdPacijenata)
                 {
-                    listaPacijenata.SelectedItem = PacijentiServis.PronadjiPoId(id);
+                    listaPacijenata.SelectedItem = pacijentiServis.PronadjiPoId(id);
                 }
             }
         }
@@ -71,8 +72,8 @@ namespace Projekat
         {
             int idLekara = 0;
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string oznaka = servis.OdrediOznakuObavestenja(namena.Text);
-            List<int> selektovaniPacijentiId = servis.DodajSelektovanePacijente(oznaka, listaPacijenata);
+            string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
+            List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
             Obavestenja novoObavestenje = new Obavestenja(obavestenje.IdObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
             servis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);

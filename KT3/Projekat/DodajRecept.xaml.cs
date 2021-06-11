@@ -30,7 +30,7 @@ namespace Projekat
         public bool flagMinuti = false;
         public bool flagLek = false;
         ObavestenjaServis servis = new ObavestenjaServis();
-        
+        ZdravstveniKartonServis kartonServis = new ZdravstveniKartonServis();
         public DodajRecept(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace Projekat
         private void PopuniPodatkePacijenta(Pacijent izabraniPacijent)
         {
             
-            this.nadjiLek.ItemsSource = ZdravstveniKartonServis.NadjiPacijentuDozvoljeneLekove(pacijent.IdPacijenta);
+            this.nadjiLek.ItemsSource = kartonServis.NadjiPacijentuDozvoljeneLekove(pacijent.IdPacijenta);
             this.pacijentIme.Text = izabraniPacijent.ImePacijenta + " " + izabraniPacijent.PrezimePacijenta;
             this.jmbg.Text = izabraniPacijent.Jmbg.ToString();
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
@@ -84,7 +84,7 @@ namespace Projekat
         {
             try
             {
-                int brojRecepta = ZdravstveniKartonServis.GenerisanjeIdRecepta(pacijent.IdPacijenta);
+                int brojRecepta = kartonServis.GenerisanjeIdRecepta(pacijent.IdPacijenta);
                 String nazivLeka = nazivSifra.Text;
                 
                 int kolicinaNaDan = int.Parse(kolicina.Text);
@@ -105,7 +105,7 @@ namespace Projekat
 
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, datumPregleda, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
                 recept.IdLekara = termin.Lekar.IdLekara;
-                ZdravstveniKartonServis.DodajRecept(recept);
+                kartonServis.DodajRecept(recept);
 
                 PosaljiObavestenjeOTerapiji(recept);
                 SacuvajIzmene();
@@ -121,7 +121,7 @@ namespace Projekat
         private void SacuvajIzmene()
         {
             TerminServis.sacuvajIzmene();
-            PacijentiServis.SacuvajIzmenePacijenta();
+            //PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
             //ObavestenjaServis.sacuvajIzmene();
         }
