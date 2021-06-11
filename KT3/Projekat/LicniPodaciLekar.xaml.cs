@@ -22,6 +22,7 @@ namespace Projekat
     {
         int IDLekara;
         public bool popunjeno = false;
+        LekariServis lekariServis = new LekariServis();
         public LicniPodaciLekar(int idLekara)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace Projekat
 
         private void PopuniPodatkeLekara()
         {
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            foreach (Lekar lekar in lekariServis.NadjiSveLekare())
             {
                 if (lekar.IdLekara == IDLekara)
                 {
@@ -82,7 +83,7 @@ namespace Projekat
             if (popunjeno)
             {
                 Lekar stariLekar = null;
-                foreach (Lekar lekar in LekariMenadzer.lekari)
+                foreach (Lekar lekar in lekariServis.NadjiSveLekare())
                 {
                     if (IDLekara == lekar.IdLekara)
                     {
@@ -123,7 +124,7 @@ namespace Projekat
                     noviLekar.specijalizacija = Specijalizacija.Specijalista;
                 }
 
-                LekariServis.IzmeniLekara(stariLekar, noviLekar);
+                lekariServis.IzmeniLekara(stariLekar, noviLekar);
 
 
 

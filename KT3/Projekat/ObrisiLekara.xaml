@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         Title="ObrisiLekara" Height="200" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Window.DataContext>
-        <viewmodel:LekarViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="23*"/>
@@ -17,8 +14,8 @@
         <TextBlock FontSize="17" Margin="55,24,0,15.8" HorizontalAlignment="Left" Width="283">Da li ste sigurni da zelite da obrisete</TextBlock>
         <TextBlock FontSize="17" Margin="111,56,0,81.4" HorizontalAlignment="Left" Width="162" Grid.RowSpan="2"> selektovanog lekara?</TextBlock>
         <Grid Margin="0,0,-0.4,0.4" Grid.RowSpan="2">
-            <Button Margin="0,108,225.6,0" Background="#FFA3DADE" Command="{Binding PotvrdiBrisanjeLekara}" Content="Potvrdi" FontSize="15" Height="41" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108"/>
-            <Button Margin="225,108,0,0" Background="#FFA3DADE" Command="{Binding OdustaniOdBrisanjaLekara}" Content="Odustani" FontSize="15" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108"/>
+            <Button Margin="0,108,225.6,0" Background="#FFA3DADE" Click="Potvrdi_Click" Content="Potvrdi" FontSize="15" Height="41" VerticalAlignment="Top" HorizontalAlignment="Right" Width="108"/>
+            <Button Margin="225,108,0,0" Background="#FFA3DADE" Click="Odustani_Click" Content="Odustani" FontSize="15" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108"/>
         </Grid>
     </Grid>
 </Window>

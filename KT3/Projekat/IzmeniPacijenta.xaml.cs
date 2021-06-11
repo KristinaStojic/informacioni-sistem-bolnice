@@ -31,6 +31,7 @@ namespace Projekat
         public bool flag7 = false;
         public bool flag8 = true;
         public Pacijent pacijent;
+        PacijentiServis servis = new PacijentiServis();
 
         public IzmeniPacijenta(Pacijent izabraniNalog)
         {
@@ -53,8 +54,8 @@ namespace Projekat
             email.Text = izabraniNalog.Email;
             adresa.Text = izabraniNalog.AdresaStanovanja;
             zanimanje.Text = izabraniNalog.Zanimanje;
-            polPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksPola(izabraniNalog);
-            bracnoStanjePacijenta.SelectedIndex = PacijentiServis.UcitajIndeksBracnogStanja(izabraniNalog);
+            polPacijenta.SelectedIndex = servis.UcitajIndeksPola(izabraniNalog);
+            bracnoStanjePacijenta.SelectedIndex = servis.UcitajIndeksBracnogStanja(izabraniNalog);
 
             OnemoguciPoljaZaGuestNalog(izabraniNalog);
             OmoguciPoljaZaMaloletnika(izabraniNalog);
@@ -106,21 +107,21 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            statusNaloga status = PacijentiServis.OdrediStatusNaloga(statusPacijenta.Text);
-            pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
-            bracnoStanje brStanje = PacijentiServis.OdreditiBracnoStanje(bracnoStanjePacijenta.SelectedIndex, polPacijenta.Text);
-            bool maloletnoLice = PacijentiServis.MaloletnoLice((bool)maloletnik.IsChecked);
-            long staratelj = PacijentiServis.OdrediJmbgStaratelja(jmbgStaratelja.Text);
+            statusNaloga status = servis.OdrediStatusNaloga(statusPacijenta.Text);
+            pol pol = servis.OdreditiPolPacijenta(polPacijenta.Text);
+            bracnoStanje brStanje = servis.OdreditiBracnoStanje(bracnoStanjePacijenta.SelectedIndex, polPacijenta.Text);
+            bool maloletnoLice = servis.MaloletnoLice((bool)maloletnik.IsChecked);
+            long staratelj = servis.OdrediJmbgStaratelja(jmbgStaratelja.Text);
 
             if (statusPacijenta.SelectedIndex == 0) // stalan nalog
             {
                 Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
+                servis.IzmeniNalog(pacijent, noviPacijent);
             }
             else
             {
                 Pacijent guestPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
-                PacijentiServis.IzmeniNalog(pacijent, guestPacijent);    
+                servis.IzmeniNalog(pacijent, guestPacijent);    
             }
 
             this.Close();

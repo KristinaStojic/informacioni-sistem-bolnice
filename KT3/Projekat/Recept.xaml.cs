@@ -26,6 +26,7 @@ namespace Projekat
         public Pacijent prijavljeniPacijent;
         public LekarskiRecept lekRec;
         public static int idPacijent;
+        LekariServis lekariServis = new LekariServis();
         public Recept(LekarskiRecept recept, Pacijent izabraniPacijent)
         {
             InitializeComponent();
@@ -58,7 +59,7 @@ namespace Projekat
             prezime.Text = izabraniPacijent.PrezimePacijenta;
             id.Text = izabraniPacijent.Jmbg.ToString();
  
-            Lekar lekar = LekariServis.NadjiPoId(recept.IdLekara);
+            Lekar lekar = lekariServis.NadjiPoId(recept.IdLekara);
             podaciLekara.Text = lekar.ToString();
         }
 
@@ -122,7 +123,7 @@ namespace Projekat
                 string naziv = " --------- Izvestaj o uzimanju terapije ---------";
                 
                 table.TableName = "Pacijent " + prijavljeniPacijent.ToString();
-                Lekar lekar = LekariServis.NadjiPoId(lekRec.IdLekara);
+                Lekar lekar = lekariServis.NadjiPoId(lekRec.IdLekara);
                 table.TableName = "Lekar " + lekar.ToString();
 
                 //Include columns to the DataTable.

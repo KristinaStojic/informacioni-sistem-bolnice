@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Controls;
 
 namespace Model
-{
+{/*
     public class ValidacijaSekretar : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
@@ -72,7 +72,7 @@ namespace Model
 
             }
         }
-    }
+    }*/
 
 }
 

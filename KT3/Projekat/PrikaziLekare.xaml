@@ -6,19 +6,6 @@
         xmlns:local="clr-namespace:Projekat" xmlns:viewmodel="clr-namespace:Projekat.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:command="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Title="PrikaziLekare" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
-    <Window.DataContext>
-        <viewmodel:LekarViewModel/>
-    </Window.DataContext>
-    <Window.InputBindings>
-        <KeyBinding Key="D" Modifiers="Ctrl" Command="{Binding DodajLekaraKomanda}"></KeyBinding>
-        <KeyBinding Key="I" Modifiers="Ctrl" Command="{Binding IzmeniLekaraKomanda}"></KeyBinding>
-        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding ObrisiLekaraKomanda}"></KeyBinding>
-    </Window.InputBindings>
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closing">
-            <command:EventToCommand Command="{Binding ZatvoriLekara}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
     <Grid Margin="-1,0,0.6,0.4">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -58,12 +45,10 @@
                     </Style.Triggers>
                 </Style>
             </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="PretragaTextBox" UpdateSourceTrigger="PropertyChanged"></Binding>
-            </TextBox.Text>
         </TextBox>
 
-        <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding Lekari, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding IzabraniLekar, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,109,211.6,2" AutoGenerateColumns="False" FontSize="14">
+        <DataGrid x:Name="TabelaLekara" ItemsSource="{Binding Lekari}" SelectionMode="Single" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="4" Margin="212,109,211.6,2" 
+                  AutoGenerateColumns="False" FontSize="14" SelectionChanged="TabelaLekara_SelectionChanged">
             <DataGrid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFE7F6F7" Offset="0"/>
@@ -81,9 +66,9 @@
 
         <Rectangle Fill="#FFE7F6F7" HorizontalAlignment="Left" Height="691" Grid.RowSpan="5" StrokeThickness="0" VerticalAlignment="Top" Width="424" Margin="0.4,0,-0.4,0" Grid.Column="4" Grid.ColumnSpan="2"/>
         <Label Grid.Row="0" FontSize="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="4.2,0,55.6,150.8" Content="Lekari" Foreground="#FF18A3AC" FontFamily="Segoe UI Semibold" Grid.RowSpan="2" Grid.Column="1"/>
-        <Button Content="Dodaj" Command="{Binding DodajLekaraKomanda}" HorizontalAlignment="Left" Margin="82.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42"  Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
-        <Button Content="Izmeni" Command="{Binding IzmeniLekaraKomanda}" HorizontalAlignment="Left" Margin="197.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <Button Content="Obrisi" Command="{Binding ObrisiLekaraKomanda}" HorizontalAlignment="Left" Margin="99.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="3"/>
+        <Button Content="Dodaj" Click="Dodaj_Click" HorizontalAlignment="Left" Margin="82.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42"  Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2"/>
+        <Button Content="Izmeni" Click="Izmeni_Click" HorizontalAlignment="Left" Margin="197.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button Content="Obrisi" Click="Obrisi_Click" HorizontalAlignment="Left" Margin="99.4,53,0,0" VerticalAlignment="Top" Width="100" Height="42" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="3"/>
         <Button Content="Zahtevi za godisnji odmor" Click="Godisnji_odmor_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="216" Height="42" FontSize="17" Background="#FFE7F6F7" Grid.Column="2" Canvas.Left="228" Canvas.Top="607" Margin="197.4,21,0,0" Grid.ColumnSpan="2"/>
 
         <Menu Name="menu" HorizontalAlignment="Left" Height="690" VerticalAlignment="Top" Width="214" Background="#FFE7F6F7" Grid.RowSpan="5" Margin="-2,0,0,0" >
@@ -122,13 +107,13 @@
             <Label Canvas.Left="58" Canvas.Top="343" Height="35" FontSize="15">ADRESA:</Label>
             <Label Canvas.Left="58" Canvas.Top="381" Height="35" FontSize="15">SPECIJALIZACIJA:</Label>
 
-            <TextBox Name="ime" Canvas.Left="193" Canvas.Top="153" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" Text ="{Binding IzabraniLekar.ImeLek, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox x:Name="prezime" Canvas.Left="193" Canvas.Top="191" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" Text ="{Binding IzabraniLekar.PrezimeLek, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="jmbg" Canvas.Left="193" Canvas.Top="229" Width="165"  Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" Text ="{Binding IzabraniLekar.Jmbg, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="telefon" Canvas.Left="193" Canvas.Top="267" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" Text ="{Binding IzabraniLekar.BrojTelefona, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="email" Canvas.Left="193" Canvas.Top="305" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" Text ="{Binding IzabraniLekar.Email, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="adresa" Canvas.Left="193" Canvas.Top="343" Width="165" Height="34" FontSize="15"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" Text ="{Binding IzabraniLekar.AdresaStanovanja, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="specijalizacija" Canvas.Left="193" Canvas.Top="381" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" Text ="{Binding IzabraniLekar.specijalizacija, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Name="ime" Canvas.Left="193" Canvas.Top="153" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" />
+            <TextBox x:Name="prezime" Canvas.Left="193" Canvas.Top="191" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" />
+            <TextBox x:Name="jmbg" Canvas.Left="193" Canvas.Top="229" Width="165"  Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" />
+            <TextBox x:Name="telefon" Canvas.Left="193" Canvas.Top="267" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" />
+            <TextBox x:Name="email" Canvas.Left="193" Canvas.Top="305" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" />
+            <TextBox x:Name="adresa" Canvas.Left="193" Canvas.Top="343" Width="165" Height="34" FontSize="15"  BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" />
+            <TextBox x:Name="specijalizacija" Canvas.Left="193" Canvas.Top="381" Width="165" Height="35" FontSize="15" BorderThickness="0,0,0,1" Background="Transparent" IsReadOnly="True" />
 
             <Button Content="Radno vreme" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Height="42" Click="Radno_vreme_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Canvas.Left="220" Canvas.Top="444"/>
             <Button Content="Generiši izveštaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="138" Height="42" Click="Izvestaj_Click" Grid.Row="1" FontSize="17" Background="#FFA3DADE" Grid.Column="2" Canvas.Left="58" Canvas.Top="444"/>

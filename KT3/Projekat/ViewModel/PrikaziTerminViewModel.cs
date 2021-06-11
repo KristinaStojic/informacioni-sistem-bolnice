@@ -24,8 +24,9 @@ namespace Projekat.ViewModel
 
         private void DodajObavestenja()
         {
+            ObavestenjaServis servis = new ObavestenjaServis();
             Obavestenja = new ObservableCollection<Obavestenja>();
-            Obavestenja = ObavestenjaServis.DodajObavestenja(idPacijent);
+            Obavestenja = servis.DodajObavestenja(idPacijent);
         }
         private void ZatvoriAplikaciju()
         {

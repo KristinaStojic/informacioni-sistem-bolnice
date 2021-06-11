@@ -32,7 +32,7 @@ namespace Projekat
         public bool flag6 = false;
         public bool flag7 = false;
         public bool flag8 = true;
-
+        PacijentiServis servis = new PacijentiServis();
         public DodajPacijenta()
         {
             InitializeComponent();
@@ -46,21 +46,21 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         { 
-            statusNaloga status = PacijentiServis.OdrediStatusNaloga(combo.Text);
-            pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
-            bracnoStanje brStanje = PacijentiServis.OdreditiBracnoStanje(bracnoStanjePacijenta.SelectedIndex, polPacijenta.Text);
-            bool maloletnoLice = PacijentiServis.MaloletnoLice((bool)maloletnik.IsChecked);
-            long staratelj = PacijentiServis.OdrediJmbgStaratelja(jmbgStaratelja.Text);
+            statusNaloga status = servis.OdrediStatusNaloga(combo.Text);
+            pol pol = servis.OdreditiPolPacijenta(polPacijenta.Text);
+            bracnoStanje brStanje = servis.OdreditiBracnoStanje(bracnoStanjePacijenta.SelectedIndex, polPacijenta.Text);
+            bool maloletnoLice = servis.MaloletnoLice((bool)maloletnik.IsChecked);
+            long staratelj = servis.OdrediJmbgStaratelja(jmbgStaratelja.Text);
 
             if (status.Equals(statusNaloga.Guest))
             {
-                Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
-                PacijentiServis.DodajNalog(guestPacijent);
+                Pacijent guestPacijent = new Pacijent(servis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
+                servis.DodajNalog(guestPacijent);
             }
             else
             {
-                Pacijent pacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                PacijentiServis.DodajNalog(pacijent);
+                Pacijent pacijent = new Pacijent(servis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                servis.DodajNalog(pacijent);
             }    
 
             this.Close();
@@ -129,7 +129,7 @@ namespace Projekat
                 long result;
                 if (long.TryParse(jmbg.Text, out result))
                 {
-                    if ((!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text))))
+                    if ((!servis.JedinstvenJmbg(long.Parse(jmbg.Text))))
                     {
                         MessageBox.Show("Uneseni JMBG vec postoji!");
                         jmbg.Text = "";

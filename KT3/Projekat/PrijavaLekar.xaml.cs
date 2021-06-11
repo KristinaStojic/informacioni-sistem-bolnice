@@ -21,19 +21,19 @@ namespace Projekat
     public partial class PrijavaLekar : Window
     {
         public bool popunjeno = false;
+        LekariServis servis = new LekariServis();
+
         public PrijavaLekar()
         {
             InitializeComponent();
            
         }
 
-        
-
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             if (popunjeno)
             {
-                foreach (Lekar lekar in LekariServis.NadjiSveLekare())
+                foreach (Lekar lekar in servis.NadjiSveLekare())
                 {
                     
                     if (lekar.korisnickoIme.Equals(ime.Text) && lekar.lozinka.Equals(sifra.Text))

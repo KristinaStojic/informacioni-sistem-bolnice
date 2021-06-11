@@ -23,11 +23,12 @@ namespace Projekat
     public partial class PrikaziAnkete : Page
     {
         private static int idPacijent;
+        PacijentiServis servis = new PacijentiServis();
         public PrikaziAnkete(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             idPacijent = idPrijavljenogPacijenta;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema); 
         }

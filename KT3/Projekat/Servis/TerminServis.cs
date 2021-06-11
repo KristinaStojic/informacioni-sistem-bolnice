@@ -27,7 +27,7 @@ namespace Projekat.Servis
         private static int ukupanBrojSalaZaPregled;
         private static Sala prvaSlobodnaSala;
         private static int maxBrojPreporucenihTermina = 3;
-
+        PacijentiServis servis = new PacijentiServis();
 
         public static string IzracunajVremeKrajaPregleda(string vp)
         {
@@ -68,10 +68,10 @@ namespace Projekat.Servis
         {
             return selektovaniDatum.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
         }
-        public static List<Sala> combo_SelectionChanged(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
+        public List<Sala> combo_SelectionChanged(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
         { 
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
 
             SaleZaPreglede = SaleServis.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPreglede.Count();

@@ -84,8 +84,9 @@ namespace Projekat.ViewModel
 
         private void dodajObavjestenja()
         {
+            ObavestenjaServis servis = new ObavestenjaServis(); 
             Obavestenja = new ObservableCollection<Obavestenja>();
-            foreach (Obavestenja obavjestenja in ObavestenjaServis.NadjiSvaObavestenja())
+            foreach (Obavestenja obavjestenja in servis.NadjiSvaObavestenja())
             {
                 if (obavjestenja.Oznaka.Equals("svi") || obavjestenja.Oznaka.Equals("upravnici"))
                 {

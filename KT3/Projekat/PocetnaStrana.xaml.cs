@@ -1,5 +1,6 @@
 ﻿using Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Projekat
     public partial class PocetnaStrana : Window
     {
         int IDLekara;
+        LekariServis servis = new LekariServis();
         public PocetnaStrana(int idLekara)
         {
             InitializeComponent();
@@ -30,7 +32,7 @@ namespace Projekat
 
         private void PopuniPodatkeLekara()
         {
-            foreach(Lekar lekar in LekariMenadzer.lekari)
+            foreach(Lekar lekar in servis.NadjiSveLekare())
             {
                 if(lekar.IdLekara == IDLekara)
                 {

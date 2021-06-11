@@ -43,18 +43,21 @@ namespace Projekat
         public static ObservableCollection<string> pomocnaSviSlobodniTermini { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTerminiKraj { get; set; }
         public static ObservableCollection<string> pomocna { get; set; }
-
+        TerminiSekretarServis servis = new TerminiSekretarServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
+        List<Lekar> lekariLista;
         public ZakaziTerminSekretar()
         {
             InitializeComponent();
             datum.BlackoutDates.AddDatesInPast();
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             this.listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
+            lekariLista = lekariServis.NadjiSveLekare();
             this.listaLekara.ItemsSource = lekariLista;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
@@ -90,7 +93,6 @@ namespace Projekat
                                                                "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
                                                                "15:00", "15:30", "16:00", "16:30","17:00", "17:30", "18:00", "18:30",
                                                                "19:00", "19:30", "20:00", "20:30"};
-            
         }
 
         private bool UserFilterPacijenti(object item)
@@ -156,7 +158,7 @@ namespace Projekat
             }
 
 
-            Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
+            Lekar l = lekariServis.NadjiPoId(Lekar.IdLekara);
             if (tp.Equals(TipTermina.Pregled))
             {
                 l.BrojPregleda++;
@@ -166,14 +168,14 @@ namespace Projekat
                 l.BrojOperacija++;
             }
 
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+            Pacijent pacijent = pacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
             t = new Termin(TerminiSekretarServis.GenerisanjeIdTermina(), dat, vp, vk, tp, l, Sala, pacijent);
 
             // TODO: premesti u TerminMenadzer
             if (Sala.zauzetiTermini.Count != 0)  // ako postoje zauzeti termini
             {
-                TerminiSekretarServis.ZakaziTerminSekretar(t);
+                servis.ZakaziTerminSekretar(t);
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 
@@ -189,19 +191,19 @@ namespace Projekat
 
                 TerminiSekretarServis.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
-                LekariServis.SacuvajIzmeneLekara();
+                //LekariServis.SacuvajIzmeneLekara();
 
                 this.Close();
             }
             else  // ako ne postoje zauzeti termini
             {
-                TerminiSekretarServis.ZakaziTerminSekretar(t);
+                servis.ZakaziTerminSekretar(t);
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 
                 TerminiSekretarServis.sacuvajIzmene();
                 SaleServis.sacuvajIzmjene();
-                LekariServis.SacuvajIzmeneLekara();
+               // LekariServis.SacuvajIzmeneLekara();
 
                 this.Close();
             }
@@ -222,7 +224,7 @@ namespace Projekat
         // azuriranje liste pacijenata prilikom dodavanja guest pacijenta
         public void AzurirajListuPacijenata()
         {
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = pacijentiServis.PronadjiSve();
             foreach (Pacijent pacijent in pacijenti)
             {
                 AzuriranaLista.Add(pacijent);
@@ -452,7 +454,7 @@ namespace Projekat
         // TODO: iskoristi, nije iskoristena metoda
         private bool LekarNijeNaGodisnjemOdmoru(int idLekara)
         {
-            List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
+           // List<Lekar> lekariLista = lekariServis.NadjiSveLekare();
             foreach (Lekar lekar in lekariLista)
             {
                 if (lekar.IdLekara == idLekara)

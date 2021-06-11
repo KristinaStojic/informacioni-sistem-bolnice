@@ -31,15 +31,14 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminServis.sacuvajIzmene();
-            ObavestenjaServis.sacuvajIzmene();
+            //ObavestenjaServis.sacuvajIzmene();
             MalicioznoPonasanjeServis.sacuvajIzmene();
             TerminServisLekar.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
             
             PrikaziTermin.pacijentProzor = false;  // nit
-            LekariMenadzer.SacuvajIzmeneLekara();
+            //LekariMenadzer.SacuvajIzmeneLekara();
         }
     }
 }

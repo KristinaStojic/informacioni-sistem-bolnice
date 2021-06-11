@@ -60,11 +60,14 @@ namespace Projekat
         string noviMinuti;
         string noviSati;
 
+        TerminiSekretarServis servis = new TerminiSekretarServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
         public HitanSlucaj()
         {
             InitializeComponent();
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView prikazPacijenata = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             prikazPacijenata.Filter = PretragaPacijenta;
@@ -75,7 +78,7 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             DodeliLekaraZaHitanTermin();
-            TerminiSekretarServis.ZakaziHitanTermin(hitanTermin, datum);
+            servis.ZakaziHitanTermin(hitanTermin, datum);
             this.Close();
         }
 
@@ -154,8 +157,8 @@ namespace Projekat
                 noviLekar = stariTermin.Lekar;
 
                 Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);
-                TerminiSekretarServis.OtkaziTerminSekretar(stariTermin);
-                TerminiSekretarServis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
+                servis.OtkaziTerminSekretar(stariTermin);
+                servis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
                 potvrdiDugme.IsEnabled = true;               
             }
         }
@@ -404,7 +407,7 @@ namespace Projekat
         private void OdrediOblastLekara()
         {
             Specijalizacija oblastSpecijalizacije = (Specijalizacija)oblastLekara.SelectedItem;
-            slobodniLekari = LekariServis.PronadjiLekarePoSpecijalizaciji(oblastSpecijalizacije);
+            slobodniLekari = lekariServis.PronadjiLekarePoSpecijalizaciji(oblastSpecijalizacije);
         }
 
         private int OdrediBrojSlotovaZaIzbacivanje(string pocetakTermina, string krajTermina)
@@ -476,7 +479,7 @@ namespace Projekat
                 {
                     if (idLekara != 0)
                     {
-                        return LekariServis.NadjiPoId(idLekara);
+                        return lekariServis.NadjiPoId(idLekara);
                     }
                     else if (idSale != 0)
                     {
@@ -490,7 +493,7 @@ namespace Projekat
 
         private bool LekarNijeNaGodisnjemOdmoru(int idLekara)
         {
-            List<Lekar> lekari = LekariServis.NadjiSveLekare();
+            List<Lekar> lekari = lekariServis.NadjiSveLekare();
             foreach (Lekar lekar in lekari)
             { 
                 if (lekar.IdLekara == idLekara)
@@ -759,7 +762,7 @@ namespace Projekat
 
         public void AzurirajListuPacijenata()
         {
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             foreach (Pacijent pacijent in pacijentiLista)
             {
                 AzuriranaLista.Add(pacijent);

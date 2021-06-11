@@ -30,13 +30,14 @@ namespace Projekat
         private static bool osmo = false;
         private static bool deveto = false;
         private static bool deseto = false;
+        PacijentiServis servis = new PacijentiServis();
         public ElektronskoPlacanjePacijent(int idPrijavaljenogPacijenta, TipTermina tip)
         {
             InitializeComponent();
             idPacijent = idPrijavaljenogPacijenta;
             OdrediCenuPregleda(tip);
 
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.potvrdi.IsEnabled = false;

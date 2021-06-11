@@ -25,6 +25,8 @@ namespace Projekat
         Alergeni stariAlergen;
         Termin termin;
         bool popunjeno = false;
+        PacijentiServis servis = new PacijentiServis();
+        ZdravstveniKartonServis zdrServis = new ZdravstveniKartonServis();
         public DetaljiAlergena(Alergeni izabraniAlergen, Termin termin)
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace Projekat
         }
         private void PopuniPodatkeOAlergenu(Alergeni izabraniAlergen)
         {
-            foreach (Pacijent pac in PacijentiServis.pacijenti())
+            foreach (Pacijent pac in servis.pacijenti())
             {
                 if (pac.IdPacijenta == izabraniAlergen.IdPacijenta)
                 {
@@ -59,10 +61,10 @@ namespace Projekat
                 string vremeReakcije = vreme.Text;
 
                 Alergeni noviAlergen = new Alergeni(stariAlergen.IdAlergena, stariAlergen.IdPacijenta, nazivLeka, nuspojavaNaLek, vremeReakcije);
-                ZdravstveniKartonServis.IzmeniAlergen(stariAlergen, noviAlergen);
+                zdrServis.IzmeniAlergen(stariAlergen, noviAlergen);
 
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+//                PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
 
 

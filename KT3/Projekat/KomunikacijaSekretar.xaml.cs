@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 
 namespace Projekat
 {
@@ -20,15 +21,16 @@ namespace Projekat
     /// </summary>
     public partial class KomunikacijaSekretar : Window
     {
+        ObavestenjaServis servis = new ObavestenjaServis();
         public KomunikacijaSekretar()
         {
             InitializeComponent();
 
             List<Obavestenja> komunikacija = new List<Obavestenja>();
             string datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            Obavestenja mejl1 = new Obavestenja("Mejl za Kliniku u Beogradu", datum, "Da li postoje slobodni lezaji za transfer pacijenata?");
-            Obavestenja mejl2 = new Obavestenja("Za Kliniku u Sarajevu", datum, "Odobren je transfer pacijenata u nasu kliniku u Novom Sadu.");
-            Obavestenja mejl3 = new Obavestenja("Za Kliniku u Beogradu", datum, "Transfer pacijenata u nasu kliniku u Novom Sadu je odbijen, jer je kapacitet popunjen.");
+            Obavestenja mejl1 = new Obavestenja(servis.GenerisanjeIdObavestenja(), "Mejl za Kliniku u Beogradu", datum, "Da li postoje slobodni lezaji za transfer pacijenata?");
+            Obavestenja mejl2 = new Obavestenja(servis.GenerisanjeIdObavestenja(), "Za Kliniku u Sarajevu", datum, "Odobren je transfer pacijenata u nasu kliniku u Novom Sadu.");
+            Obavestenja mejl3 = new Obavestenja(servis.GenerisanjeIdObavestenja(), "Za Kliniku u Beogradu", datum, "Transfer pacijenata u nasu kliniku u Novom Sadu je odbijen, jer je kapacitet popunjen.");
 
             komunikacija.Add(mejl1);
             komunikacija.Add(mejl2);

@@ -22,13 +22,14 @@ namespace Projekat
         public static Pacijent prijavljeniPacijent;
         public static int idPacijent;
         public static Termin terminZaBrisanje;
+        PacijentiServis servis = new PacijentiServis();
         public OtkaziTermin(Termin zaBrisanje)
         {
             InitializeComponent();
             this.DataContext = this;
             terminZaBrisanje = zaBrisanje;
             idPacijent = zaBrisanje.Pacijent.IdPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodatkeOTerminuZaBrisanje(zaBrisanje);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);

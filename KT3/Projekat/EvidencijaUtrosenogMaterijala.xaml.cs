@@ -21,6 +21,8 @@ namespace Projekat
     public partial class EvidencijaUtrosenogMaterijala : Window
     {
         int idLekara;
+        LekariServis lekariServis = new LekariServis();
+
         public EvidencijaUtrosenogMaterijala(int id)
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace Projekat
             //CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             datumFormat.Visibility = Visibility.Hidden;
 
-            foreach (Lekar l in LekariServis.NadjiSveLekare())
+            foreach (Lekar l in lekariServis.NadjiSveLekare())
             {
                 if(l.IdLekara == idLekara)
                 {

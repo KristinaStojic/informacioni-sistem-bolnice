@@ -127,7 +127,7 @@ namespace Projekat
             // nazad
 
             TerminServisLekar.sacuvajIzmene();
-            PacijentiServis.SacuvajIzmenePacijenta();
+            //PacijentiServis.SacuvajIzmenePacijenta();
             this.Close();
             PocetnaStrana ps = new PocetnaStrana(idLekara);
             ps.Show();
@@ -176,7 +176,7 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminServisLekar.sacuvajIzmene();
-            PacijentiServis.SacuvajIzmenePacijenta();
+           // PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
             //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/

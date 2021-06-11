@@ -25,6 +25,8 @@ namespace Projekat
         Anamneza stara;
         Termin termin;
         bool popunjeno = false;
+        PacijentiServis servis = new PacijentiServis();
+        ZdravstveniKartonServis zdrServis = new ZdravstveniKartonServis();
         public DetaljiAnamneze(Anamneza izabranaAnamneza, Termin Izabranitermin)
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace Projekat
         {
             this.stara = izabranaAnamneza;
         
-            foreach (Pacijent pac in PacijentiServis.pacijenti())
+            foreach (Pacijent pac in servis.pacijenti())
             {
                 if (pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
                 {
@@ -61,10 +63,10 @@ namespace Projekat
                 datumPregleda = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
                 Anamneza nova = new Anamneza(stara.IdAnamneze, stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta, termin.Lekar.IdLekara, termin.IdTermin);
-                ZdravstveniKartonServis.IzmeniAnamnezu(stara, nova);
+                zdrServis.IzmeniAnamnezu(stara, nova);
 
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+                //PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }

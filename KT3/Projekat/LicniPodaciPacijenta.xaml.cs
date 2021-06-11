@@ -24,6 +24,9 @@ namespace Projekat
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
+
         public LicniPodaciPacijenta(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -31,8 +34,8 @@ namespace Projekat
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
-            this.lekar.ItemsSource = LekariServis.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
+            prijavljeniPacijent = servis.PronadjiPoId(idPrijavljenogPacijenta);
+            this.lekar.ItemsSource = lekariServis.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
             InicijalizujLicnePodatke(prijavljeniPacijent);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
 
@@ -93,7 +96,7 @@ namespace Projekat
 
         private void InicijalizujPolPacijenta(Pacijent prijavljeniPacijent)
         {
-            string polPacijent = PacijentiServis.OdrediPolPacijenta(prijavljeniPacijent);
+            string polPacijent = servis.OdrediPolPacijenta(prijavljeniPacijent);
             if (polPacijent.Equals("M"))
             {
                 this.poltxt.SelectedIndex = 0;
@@ -137,7 +140,7 @@ namespace Projekat
             long brTel = long.Parse(this.brojTel.Text);
             string eMail = this.email.Text;
             string adresa = this.adresa.Text;
-            bracnoStanje brStanje = PacijentiServis.OdrediBracnoStanjePacijenta(polPacijenta, this.bracStanje.Text);
+            bracnoStanje brStanje = servis.OdrediBracnoStanjePacijenta(polPacijenta, this.bracStanje.Text);
             string zanimanje = this.zanimanje.Text;
             Lekar l = null;
             if (this.lekar != null)
@@ -147,7 +150,7 @@ namespace Projekat
             Pacijent izmenjenPacijent = new Pacijent(prijavljeniPacijent.IdPacijenta, ime, prezime, jmbg, polPacijenta, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
             izmenjenPacijent.IzabraniLekar = l;
             PacijentiServis.IzmeniNalogPacijent(prijavljeniPacijent, izmenjenPacijent);
-            PacijentiServis.SacuvajIzmenePacijenta(); 
+            //PacijentiServis.SacuvajIzmenePacijenta(); 
             PromeniVidljivostKomponentiPosleIzmene();
         }
 

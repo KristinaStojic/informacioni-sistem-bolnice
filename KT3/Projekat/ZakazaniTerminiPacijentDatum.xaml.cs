@@ -24,14 +24,14 @@ namespace Projekat
         public static ObservableCollection<Termin> Termini { get; set; }
         public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
-
+        PacijentiServis servis = new PacijentiServis();
         public ZakazaniTerminiPacijentDatum(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             Termini = TerminServis.PronadjiTerminPoIdPacijenta(idPacijent);
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
             view.Filter = UserFilter;

@@ -25,6 +25,7 @@ namespace Projekat
     public partial class UvidZdravstveniKarton : Window
     {
         public Pacijent pacijent;
+        PacijentiServis servis = new PacijentiServis();
         public static ObservableCollection<LekarskiRecept> PrikazRecepata
         {
             get;
@@ -75,9 +76,9 @@ namespace Projekat
             email.Text = izabraniNalog.Email;
             adresa.Text = izabraniNalog.AdresaStanovanja;
             zanimanje.Text = izabraniNalog.Zanimanje;
-            polPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksPola(izabraniNalog);
-            bracnoStanjePacijenta.SelectedIndex = PacijentiServis.UcitajIndeksBracnogStanja(izabraniNalog);
-            statusPacijenta.SelectedIndex = PacijentiServis.UcitajIndeksStatusaNaloga(izabraniNalog);
+            polPacijenta.SelectedIndex = servis.UcitajIndeksPola(izabraniNalog);
+            bracnoStanjePacijenta.SelectedIndex = servis.UcitajIndeksBracnogStanja(izabraniNalog);
+            statusPacijenta.SelectedIndex = servis.UcitajIndeksStatusaNaloga(izabraniNalog);
 
             if (izabraniNalog.IzabraniLekar != null)
             {
@@ -88,7 +89,7 @@ namespace Projekat
         private void PopuniTabeluRecepata() 
         {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
@@ -104,7 +105,7 @@ namespace Projekat
         private void PopuniTabeluAnamneza()
         {
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
@@ -120,7 +121,7 @@ namespace Projekat
         private void PopuniTabeluAlergena()
         {
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
@@ -136,7 +137,7 @@ namespace Projekat
         private void PopuniTabeluUputa() 
         {
             TabelaUputa = new ObservableCollection<Uput>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)

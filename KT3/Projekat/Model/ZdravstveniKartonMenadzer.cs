@@ -14,17 +14,18 @@ namespace Projekat.Model
     {
         public static List<ZdravstveniKarton> kartoni = new List<ZdravstveniKarton>();
         public static List<LekarskiRecept> recepti = new List<LekarskiRecept>();
-
+        PacijentiMenadzer menadzer = new PacijentiMenadzer();
+        PacijentiServis servis = new PacijentiServis(); 
         public static List<ZdravstveniKarton> nadjiKartone()
         {
             return kartoni;
         }
 
-        public static int GenerisanjeIdRecepta(int idPac)
+        public int GenerisanjeIdRecepta(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiServis.pacijenti())
+            foreach(Pacijent pac in servis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -53,11 +54,11 @@ namespace Projekat.Model
         
         }
         
-        public static int GenerisanjeIdAnamneze(int idPac)
+        public int GenerisanjeIdAnamneze(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiServis.pacijenti())
+            foreach(Pacijent pac in servis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -85,11 +86,11 @@ namespace Projekat.Model
             return id;
         }
         
-        public static int GenerisanjeIdAlergena(int idPac)
+        public int GenerisanjeIdAlergena(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiServis.pacijenti())
+            foreach(Pacijent pac in servis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -117,9 +118,9 @@ namespace Projekat.Model
             return id;
         }
 
-        public static void DodajRecept(LekarskiRecept recept)
+        public void DodajRecept(LekarskiRecept recept)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if(pacijent.IdPacijenta == recept.idPacijenta)
                 {                    
@@ -130,23 +131,21 @@ namespace Projekat.Model
             }
         }
         
-        public static void DodajAnamnezu(Anamneza anamneza)  
+        public void DodajAnamnezu(Anamneza anamneza)  
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if(pacijent.IdPacijenta == anamneza.IdPacijenta)
                 {                    
                     pacijent.Karton.Anamneze.Add(anamneza);
                     ZdravstveniKartonLekar.TabelaAnamneza.Add(anamneza);
-                    
                 }
             }
-            PacijentiServis.SacuvajIzmenePacijenta();
         }
 
-        public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
+        public void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach(Pacijent pacijent in servis.pacijenti())
             {
                 if(pacijent.IdPacijenta == stara.IdPacijenta)
                 {
@@ -168,9 +167,9 @@ namespace Projekat.Model
             ZdravstveniKartonLekar.TabelaAnamneza.Insert(idx, nova);
         }
         
-        public static void IzmeniUput(Uput stara, Uput nova)
+        public void IzmeniUput(Uput stara, Uput nova)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach(Pacijent pacijent in servis.pacijenti())
             {
                 if(pacijent.IdPacijenta == stara.idPacijenta)
                 {
@@ -190,9 +189,9 @@ namespace Projekat.Model
             ZdravstveniKartonLekar.TabelaUputa.Insert(idx, nova);
         }
 
-        public static void DodajAlergen(Alergeni alergen)  
+        public void DodajAlergen(Alergeni alergen)  
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if (pacijent.IdPacijenta == alergen.IdPacijenta)
                 {
@@ -202,9 +201,9 @@ namespace Projekat.Model
             }
         }
 
-        public static void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
+        public void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if (pacijent.IdPacijenta == stariAlergen.IdPacijenta)
                 {
@@ -225,14 +224,11 @@ namespace Projekat.Model
             ZdravstveniKartonLekar.TabelaAlergena.Insert(idx, noviAlergen);
         }
 
-        
-
-
-        public static int GenerisanjeIdUputa(int idPacijenta)
+        public int GenerisanjeIdUputa(int idPacijenta)
         {
             int idUputa = 1;
 
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if (pacijent.IdPacijenta == idPacijenta)
                 {
@@ -264,9 +260,9 @@ namespace Projekat.Model
             return postojiUput;
         }
 
-        public static void DodajUput(Uput uput)
+        public void DodajUput(Uput uput)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if (pacijent.IdPacijenta == uput.idPacijenta)
                 {
@@ -285,20 +281,14 @@ namespace Projekat.Model
                         pacijent.Karton.brojBolnickihUputa++;
                     }
                     ZdravstveniKartonLekar.TabelaUputa.Add(uput);
-                    //ZdravstveniKartonLekar.PostaviDeloveGrafika(pacijent);
-                    /*ZdravstveniKartonLekar.UkupnoLaboratorija = new ChartValues<int>() { pacijent.Karton.brojLaboratorijskihUputa };
-                    ZdravstveniKartonLekar.UkupnoSpecijalisticki = new ChartValues<int>() { pacijent.Karton.brojSpecijalistickihUputa };
-                    ZdravstveniKartonLekar.UkupnoStacionarno = new ChartValues<int>() { pacijent.Karton.brojBolnickihUputa };*/
-                    
-
                 }
             }
         }
 
-        public static List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
+        public List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
         {
             List<Uput> specijalistickiUputiPacijenta = new List<Uput>();
-            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijenta);
+            Pacijent pacijent = servis.PronadjiPoId(idPacijenta);
             foreach(Uput uput in pacijent.Karton.Uputi)
             {
                 // TODO: moze i za lab. upute i za stacionarno lecenje
@@ -309,9 +299,5 @@ namespace Projekat.Model
             }
             return specijalistickiUputiPacijenta;
         }
-
-
-
-
     }
 }

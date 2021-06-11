@@ -23,6 +23,7 @@ namespace Projekat
     {
         int idLekara;
         public bool popunjeno = false;
+        LekariServis lekariServis = new LekariServis();
         public DodajZahtevZaGodisnji(int id)
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Projekat
 
         private void popuniPodatke()
         {
-            foreach(Lekar lekar in LekariMenadzer.lekari)
+            foreach(Lekar lekar in lekariServis.NadjiSveLekare())
             {
                 if(lekar.IdLekara == idLekara)
                 {
@@ -65,7 +66,7 @@ namespace Projekat
                 }
                 else if (popunjeno)
                 {
-                    int idZahteva = LekariServis.GenerisanjeIdZahtevaZaOdmor(idLekara);
+                    int idZahteva = lekariServis.GenerisanjeIdZahtevaZaOdmor(idLekara);
                     string napomena = this.napomena.Text;
                     /*pocetak*/
                     string pocetakOdmora = NadjiDatumPocetkaOdmora();
@@ -81,7 +82,7 @@ namespace Projekat
                     Lekar lekar = NadjiLekara();
 
                     ZahtevZaGodisnji zahtev = new ZahtevZaGodisnji(idZahteva, lekar, pocetakOdmora, krajOdmora, brojDanaOdmora, napomena);
-                    LekariServis.DodajZahtev(zahtev);
+                    lekariServis.DodajZahtev(zahtev);
                     this.Close();
                 }
                 else
@@ -127,7 +128,7 @@ namespace Projekat
             DateTime pocetak = (DateTime)this.pocetak.SelectedDate;
             int brojDanaOdmora = 0;
 
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            foreach (Lekar lekar in lekariServis.NadjiSveLekare())
             {
                 if (lekar.IdLekara == idLekara)
                 {
@@ -148,7 +149,7 @@ namespace Projekat
         private Lekar NadjiLekara()
         {
             Lekar lekar = null;
-            foreach (Lekar l in LekariMenadzer.lekari)
+            foreach (Lekar l in lekariServis.NadjiSveLekare())
             {
                 if (l.IdLekara == idLekara)
                 {

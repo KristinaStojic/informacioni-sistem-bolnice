@@ -26,6 +26,7 @@ namespace Projekat.ViewModel
         public string AdresaStanovanja { get { return adresaStanovanja; } set { adresaStanovanja = value; OnPropertyChanged("AdresaStanovanja");  } }
         public Specijalizacija Specijalizacija { get { return specijalizacija; } set { specijalizacija = value; OnPropertyChanged("Specijalizacija"); } }
 
+        LekariServis lekariServis = new LekariServis();
         protected override void ValidateSelf()
         {
             if (string.IsNullOrWhiteSpace(this.imeLek))
@@ -63,7 +64,7 @@ namespace Projekat.ViewModel
             {
                 if (!stariJmbg.Equals(this.jmbg))
                 {
-                    if ((!LekariServis.JedinstvenJmbg(long.Parse(jmbg))))
+                    if ((!lekariServis.JedinstvenJmbg(long.Parse(jmbg))))
                     {
                         this.ValidationErrors["Jmbg"] = "Jmbg vec postoji!";
                     }

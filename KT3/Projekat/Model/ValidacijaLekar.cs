@@ -7,11 +7,11 @@ using System.Windows.Controls;
 
 namespace Projekat.Model
 {
-    class ValidacijaLekar : ValidationRule
+  /*  class ValidacijaLekar : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             throw new NotImplementedException();
         }
-    }
+    }*/
 }

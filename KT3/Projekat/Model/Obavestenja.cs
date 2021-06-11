@@ -13,7 +13,6 @@ namespace Projekat.Model
     {
         public Obavestenja() { }
 
-        // TODO:  izbrisati ovaj konsturktor, prosiriti u kodu sa odg konstruktorom 
         public Obavestenja(int id, String datum, string TipOb, string SadrzajOb, List<int> ListaIdPacijenta, bool Notifikacija)
         {
             this.IdObavestenja = id;
@@ -38,9 +37,9 @@ namespace Projekat.Model
             this.Oznaka = Oznaka;
         }
 
-        public Obavestenja(string TipOb, string datum, string SadrzajOb)
+        public Obavestenja(int id, string TipOb, string datum, string SadrzajOb)
         {
-            this.IdObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
+            this.IdObavestenja = id;
             this.Datum = datum;
             this.TipObavestenja = TipOb;
             this.SadrzajObavestenja = SadrzajOb;

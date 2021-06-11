@@ -22,6 +22,7 @@ namespace Projekat
     /// </summary>
     public partial class OdobravanjeGodisnjegOdmora : Window
     {
+        LekariServis lekariServis = new LekariServis();
         public static ObservableCollection<ZahtevZaGodisnji> TabelaZahteva
         {
             get;
@@ -32,7 +33,7 @@ namespace Projekat
         {
             InitializeComponent();
             this.DataContext = this;
-            LekariServis.DodajZahteveUTabelu();
+            lekariServis.DodajZahteveUTabelu();
         }
 
         private void Odobri_Click(object sender, RoutedEventArgs e)
@@ -46,7 +47,7 @@ namespace Projekat
             }
             else
             {
-                LekariServis.OdobriZahtevZaGodisnji(izabraniZahtev, indeks);
+                lekariServis.OdobriZahtevZaGodisnji(izabraniZahtev, indeks);
             }
         }
        
@@ -61,7 +62,7 @@ namespace Projekat
             }
             else
             {
-                LekariServis.OdbijZahtevZaGodisnji(izabraniZahtev, indeks);
+                lekariServis.OdbijZahtevZaGodisnji(izabraniZahtev, indeks);
             }
         }
 

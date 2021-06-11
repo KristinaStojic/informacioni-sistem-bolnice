@@ -11,20 +11,21 @@ namespace Projekat.Servis
     public class TerminiSekretarServis
     {
         #region Termini Sekretar Menadzer
+        TerminMenadzer m = new TerminMenadzer();
        
-        public static void ZakaziTerminSekretar(Termin termin)
+        public  void ZakaziTerminSekretar(Termin termin)
         {
-            TerminMenadzer.ZakaziTerminSekretar(termin);
+            m.ZakaziTerminSekretar(termin);
         }
 
-        public static void IzmeniTerminSekretar(Termin stariTermin, Termin noviTermin)
+        public  void IzmeniTerminSekretar(Termin stariTermin, Termin noviTermin)
         {
-            TerminMenadzer.IzmeniTerminSekretar(stariTermin, noviTermin);
+            m.IzmeniTerminSekretar(stariTermin, noviTermin);
         }
 
-        public static void OtkaziTerminSekretar(Termin termin)
+        public  void OtkaziTerminSekretar(Termin termin)
         {
-            TerminMenadzer.OtkaziTerminSekretar(termin);
+            m.OtkaziTerminSekretar(termin);
         }
 
         public static int GenerisanjeIdTermina()
@@ -52,9 +53,9 @@ namespace Projekat.Servis
 
         #region Zakazi Hitan Termin
 
-        public static void ZakaziHitanTermin(Termin hitanTermin, string datum)
+        public void ZakaziHitanTermin(Termin hitanTermin, string datum)
         {
-            TerminMenadzer.ZakaziHitanTermin(hitanTermin, datum);
+            m.ZakaziHitanTermin(hitanTermin, datum);
         }
 
         #endregion

@@ -20,12 +20,16 @@ namespace Projekat
     public partial class DetaljiUputaPacijent : Page
     {
         private static int idPacijent;
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
+        List<Lekar> lekari;
         public DetaljiUputaPacijent(int idPrijavljenogPacijenta, Uput izabraniUput)
         {
             InitializeComponent();
+            lekari = lekariServis.NadjiSveLekare();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -41,9 +45,9 @@ namespace Projekat
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
-        private static Lekar PronadjiLekaraPoId(int idLekara)
+        private Lekar PronadjiLekaraPoId(int idLekara)
         {
-            foreach (Lekar lekar in LekariServis.NadjiSveLekare())
+            foreach (Lekar lekar in lekari)
             {
                 if (lekar.IdLekara == idLekara)
                 {

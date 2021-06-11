@@ -21,6 +21,7 @@ namespace Projekat
 
         private Anamneza anamneza;
         private static int idPacijent;
+        PacijentiServis servis = new PacijentiServis();
         public PrikazAnamnezePacijent(Pacijent izabraniPacijent, Anamneza izabranaAnamneza)
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace Projekat
             this.terpaija.Text = anamneza.Terapija;
             this.beleska.Text = anamneza.Beleska;
             isEnabledDugmad();
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -67,7 +68,7 @@ namespace Projekat
             this.beleska.IsEnabled = false;
             this.SacuvajBelesku.IsEnabled = false;
             isEnabledDugmad();
-            PacijentiServis.SacuvajIzmenePacijenta();
+            //PacijentiServis.SacuvajIzmenePacijenta();
         }
 
         private void DodajBelesku_Click(object sender, RoutedEventArgs e)

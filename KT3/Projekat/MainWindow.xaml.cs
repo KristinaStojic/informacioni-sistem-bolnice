@@ -30,6 +30,12 @@ namespace Projekat
         public static ObservableCollection<Alergeni> alergeni;
         public static ObservableCollection<ZahtevZaLekove> zahtevi;
         public static ObservableCollection<Krevet> kreveti;
+       // LekariServis lekariServis = new LekariServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+       // ZahteviZaGodisnjiMenadzer menadzer = new ZahteviZaGodisnjiMenadzer();
+        ObavestenjaServis servis = new ObavestenjaServis();
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -38,23 +44,12 @@ namespace Projekat
             OpremaServis.NadjiSvuOpremu();
             LekoviServis.NadjiSveLijekove();
             PremjestajServis.NadjiSvePremjestaje();
-            PacijentiServis.PronadjiSve();
-            ObavestenjaServis.NadjiSvaObavestenja();
-            LekariServis.NadjiSveZahteve();
-            LekariServis.NadjiSveLekare();
             LekoviServis.NadjiSveZahteve();
-
-            /*lekari = new ObservableCollection<Lekar>();
-            lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;
-            lekari.Add(new Lekar() {IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa });
-            lekari.Add(new Lekar() {IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
-            lekari.Add(new Lekar() {IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista });
-            lekari.Add(new Lekar() {IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista });
-            lekari.Add(new Lekar() {IdLekara = 6, ImeLek = "Jagoda", PrezimeLek = "Jagodic", specijalizacija = Specijalizacija.Ortopedija });
-            lekari.Add(new Lekar() {IdLekara = 7, ImeLek = "Jovana", PrezimeLek = "Jovanovic", specijalizacija = Specijalizacija.Akuserstvo });
-            lekari.Add(new Lekar() { IdLekara = 8, ImeLek = "Ivan", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Hirurgija });
-            lekari.Add(new Lekar() { IdLekara = 9, ImeLek = "Igor", PrezimeLek = "Ivanovic", specijalizacija = Specijalizacija.Opsta_praksa });*/
-
+           
+            //lekariServis.NadjiSveLekare();
+            pacijentiServis.pacijenti();
+            //menadzer.NadjiSveZahteve();
+            servis.NadjiSvaObavestenja();
 
             lekovi = new ObservableCollection<Lek>();
             lekovi.Add(new Lek(1, "Paracetamol", "P2L"));
@@ -63,43 +58,12 @@ namespace Projekat
             lekovi.Add(new Lek(4, "Andol", "M4M"));
             lekovi.Add(new Lek(5, "Sterpsils", "K5S"));
 
-            /*
-            alergeni = new ObservableCollection<Alergeni>();
-            alergeni.Add(new Alergeni(1, "Paracetamol", "P2L"));
-            alergeni.Add(new Alergeni(2, "Brufen", "B1E"));
-            alergeni.Add(new Alergeni(3, "Pentraxil", "R24"));
-            alergeni.Add(new Alergeni(4, "Andol", "M4M"));
-            alergeni.Add(new Alergeni(5, "Sterpsils", "K5S"));
-            */
             zahtevi = new ObservableCollection<ZahtevZaLekove>();
             zahtevi.Add(new ZahtevZaLekove(1, "Tylolhot", "T32", "11/04/2021", false));
             zahtevi.Add(new ZahtevZaLekove(2, "Vitamic C", "VC4", "10/04/2021", false));
             zahtevi.Add(new ZahtevZaLekove(3, "Panklav", "PKL", "12/04/2021", false));
 
             kreveti = new ObservableCollection<Krevet>();
-            /*kreveti.Add(new Krevet(1., 6, false));
-            kreveti.Add(new Krevet(2, 6, true));
-            kreveti.Add(new Krevet(3, 6, false));
-            kreveti.Add(new Krevet(4, 6, false));
-            kreveti.Add(new Krevet(5, 5, true));
-            kreveti.Add(new Krevet(6, 5, true));
-            kreveti.Add(new Krevet(7, 5, false));
-            kreveti.Add(new Krevet(8, 5, false));
-
-            foreach(Krevet k in kreveti)
-            {
-                Console.WriteLine(k.IdKreveta + " " + k.IdSobe + " " + k.Zauzet);
-                foreach(Sala s in SaleMenadzer.sale)
-                {
-                    if(k.IdSobe == s.Id)
-                    {
-                        s.Kreveti.Add(k);
-                    }
-                }
-            }*/
-
-            
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

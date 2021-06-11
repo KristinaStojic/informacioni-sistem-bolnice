@@ -24,15 +24,17 @@ namespace Projekat
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
         public PreferencaLekari(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
-            this.datagridLekari.ItemsSource = LekariMenadzer.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
+            this.datagridLekari.ItemsSource = lekariServis.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(datagridLekari.ItemsSource);
             view.Filter = UserFilter;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }

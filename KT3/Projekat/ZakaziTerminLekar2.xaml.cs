@@ -62,6 +62,9 @@ namespace Projekat
         public static ObservableCollection<string> sviSlobodniTerminiKraj { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTermini { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTerminiKraj { get; set; }
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
+        List<Lekar> lekariLista;
         public ZakaziTerminLekar2(int id)
         {
             InitializeComponent();
@@ -73,6 +76,8 @@ namespace Projekat
             popuniSale();
             listaPacijenata.Visibility = Visibility.Visible;
             listaLekara.Visibility = Visibility.Hidden;
+
+            lekariLista = lekariServis.NadjiSveLekare();
 
             if (tipPregleda.SelectedIndex != 0 && tipPregleda.SelectedIndex != 1)
             {
@@ -125,11 +130,11 @@ namespace Projekat
 
         private void popuniTabelePodacima()
         {
-            this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
+            this.listaPacijenata.ItemsSource = servis.pacijenti();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
+            this.listaLekara.ItemsSource = lekariServis.NadjiSveLekare();
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
         }
@@ -571,9 +576,7 @@ namespace Projekat
                         }
                     }
                 }
-            }
-            
-            
+            }    
         }
 
         private void IzbaciZauzeteTermineLekara()
@@ -682,7 +685,7 @@ namespace Projekat
                 //Lekar = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
                 this.datum.IsEnabled = false;
 
-                foreach (Lekar lekar in LekariMenadzer.lekari)
+                foreach (Lekar lekar in lekariServis.NadjiSveLekare())
                 {
                     if(lekar.IdLekara == idLekara)
                     {
@@ -773,7 +776,7 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Lekar l = LekariServis.NadjiPoId(idLekara);
+                Lekar l = lekariServis.NadjiPoId(idLekara);
                 if (tp.Equals(TipTermina.Pregled))
                 {
                     l.BrojPregleda++;
@@ -783,7 +786,7 @@ namespace Projekat
                     l.BrojOperacija++;
                 }
 
-                Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+                Pacijent pacijent = servis.PronadjiPoId(Pacijent.IdPacijenta);
                 Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;
                 if (this.hitno.IsChecked == true)
@@ -808,7 +811,7 @@ namespace Projekat
                             t1.Prostorija = Sala;
                         }
                     }
-                    LekariServis.SacuvajIzmeneLekara();
+                    //LekariServis.SacuvajIzmeneLekara();
                     TerminServisLekar.sacuvajIzmene();
                     SaleServis.sacuvajIzmjene();
 

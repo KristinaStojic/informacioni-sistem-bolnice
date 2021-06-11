@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Projekat.Model
         public int IdTermina { get; set; }
         public string Beleska { get; set; }
 
-
+        LekariServis servis = new LekariServis();
         public string ImePrezimeLekara { get; set; }
 
         /*TO DO: DODAJ KONSTRUKTOR SA LEKAROM*/
@@ -58,7 +59,7 @@ namespace Projekat.Model
         {
             String imeprz = null;
 
-            foreach(Lekar l in LekariMenadzer.lekari)
+            foreach(Lekar l in servis.NadjiSveLekare())
             {
                 if (l.IdLekara == idLekara)
                 {

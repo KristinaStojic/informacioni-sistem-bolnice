@@ -23,15 +23,20 @@ namespace Projekat
     {
         Uput uput;
         bool popunjeno = false;
+        ZdravstveniKartonMenadzer menadzer = new ZdravstveniKartonMenadzer();
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
+        List<Lekar> lekari;
+        
         public DetaljiUputa(Uput izabraniUput)
         {
             InitializeComponent();
+            lekari = lekariServis.NadjiSveLekare();
             this.uput = izabraniUput;
 
             this.potvrdi.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
-          
-           
+ 
 
             if(izabraniUput.TipUputa == tipUputa.SpecijalistickiPregled)
             {
@@ -65,7 +70,7 @@ namespace Projekat
 
         private void NadjiPacijentaLaboratorija(int idPacijenta)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if (pacijent.IdPacijenta == idPacijenta)
                 {
@@ -78,7 +83,7 @@ namespace Projekat
 
         private void NadjiLekaraLaboratorija(Uput izabraniUput)
         {
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            foreach (Lekar lekar in lekari)
             {
                 if (lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -110,7 +115,7 @@ namespace Projekat
         }
         private void NadjiPacijenta(int idPacijenta)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach(Pacijent pacijent in servis.pacijenti())
             {
                 if(pacijent.IdPacijenta == idPacijenta)
                 {
@@ -119,9 +124,11 @@ namespace Projekat
                     this.jmbg.Text = pacijent.Jmbg.ToString();
                 }
             }
-        }private void NadjiPacijentaBolnickoLecenje(int idPacijenta)
+        }
+        
+        private void NadjiPacijentaBolnickoLecenje(int idPacijenta)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach(Pacijent pacijent in servis.pacijenti())
             {
                 if(pacijent.IdPacijenta == idPacijenta)
                 {
@@ -134,7 +141,7 @@ namespace Projekat
 
         private void NadjiLekaraKojiIzdajeUput(Uput izabraniUput)
         {
-            foreach(Lekar lekar in LekariMenadzer.lekari)
+            foreach(Lekar lekar in lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -144,7 +151,7 @@ namespace Projekat
         }
         private void NadjiLekaraKojiIzdajeBolnickoLecenje(Uput izabraniUput)
         {
-            foreach(Lekar lekar in LekariMenadzer.lekari)
+            foreach(Lekar lekar in lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKojiIzdajeUput)
                 {
@@ -154,7 +161,7 @@ namespace Projekat
         }
         private void NadjiLekaraSpecijalistu(Uput izabraniUput)
         {
-            foreach(Lekar lekar in LekariMenadzer.lekari)
+            foreach(Lekar lekar in lekari)
             {
                 if(lekar.IdLekara == izabraniUput.IdLekaraKodKogSeUpucuje)
                 {
@@ -173,8 +180,8 @@ namespace Projekat
             if (popunjeno)
             {
                 Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
-                ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
-                PacijentiServis.SacuvajIzmenePacijenta();
+                menadzer.IzmeniUput(uput, noviUput);
+                //PacijentiServis.SacuvajIzmenePacijenta();
                 this.Close();
             }
             else

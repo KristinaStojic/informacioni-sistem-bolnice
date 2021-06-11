@@ -33,18 +33,20 @@ namespace Projekat
         int izbaceniSlotoviMinuti;
         public static ObservableCollection<string> SlobodnoVremePocetka { get; set; }
         public static ObservableCollection<string> SlobodnoVremeKraja { get; set; }
-
+        TerminiSekretarServis servis = new TerminiSekretarServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
         public IzmeniTerminSekretar(Termin izabraniTermin)
         {
             InitializeComponent();
             this.termin = izabraniTermin;
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             this.listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
+            List<Lekar> lekariLista = lekariServis.NadjiSveLekare();
             this.listaLekara.ItemsSource = lekariLista;
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
@@ -74,7 +76,7 @@ namespace Projekat
                 lekari.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 Lekar = izabraniTermin.Lekar;
 
-                List<Lekar> lekariListaIzServisa = LekariServis.NadjiSveLekare();
+                List<Lekar> lekariListaIzServisa = lekariServis.NadjiSveLekare();
                 for (int i = 0; i < lekariListaIzServisa.Count; i++)
                 {
                     if (lekariListaIzServisa[i].IdLekara == izabraniTermin.Lekar.IdLekara)
@@ -86,7 +88,7 @@ namespace Projekat
                 // pacijent
                 pacijenti.Text = izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta;
                 Pacijent = izabraniTermin.Pacijent;
-                List<Pacijent> pacijentiListaIzServisa = PacijentiServis.PronadjiSve();
+                List<Pacijent> pacijentiListaIzServisa = pacijentiServis.PronadjiSve();
                 for (int j = 0; j < pacijentiListaIzServisa.Count; j++)
                 {
                     if (pacijentiListaIzServisa[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
@@ -178,7 +180,7 @@ namespace Projekat
         // azuriranje liste pacijenata prilikom dodavanja guest pacijenta
         public void AzurirajListuPacijenata()
         {
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             foreach (Pacijent pacijent in pacijentiLista)
             {
                 AzuriranaLista.Add(pacijent);
@@ -535,8 +537,8 @@ namespace Projekat
             Pacijent = (Pacijent)listaPacijenata.SelectedItem;
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
 
-            Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+            Lekar l = lekariServis.NadjiPoId(Lekar.IdLekara);
+            Pacijent pacijent = pacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
             Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 
             //
@@ -584,7 +586,7 @@ namespace Projekat
                 }
             }
 
-            TerminiSekretarServis.IzmeniTerminSekretar(termin, izmenjeniTermin);
+            servis.IzmeniTerminSekretar(termin, izmenjeniTermin);
             ZauzeceSale z = new ZauzeceSale(vp, vk, dat, termin.IdTermin);
             Sala.zauzetiTermini.Add(z);
 

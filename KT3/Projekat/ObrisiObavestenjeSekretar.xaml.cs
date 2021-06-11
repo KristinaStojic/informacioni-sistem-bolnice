@@ -21,6 +21,7 @@ namespace Projekat
     public partial class ObrisiObavestenjeSekretar : Window
     {
         Obavestenja obavestenje;
+        ObavestenjaServis servis= new ObavestenjaServis();
         public ObrisiObavestenjeSekretar(Obavestenja selektovanoObavestenje)
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ObavestenjaServis.ObrisiObavestenje(obavestenje);
+            servis.ObrisiObavestenje(obavestenje);
             this.Close();
         }
 

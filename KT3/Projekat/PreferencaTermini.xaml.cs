@@ -23,11 +23,12 @@ namespace Projekat
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
         private ObservableCollection<Termin> Termini { get; set; }
+        PacijentiServis servis = new PacijentiServis();
         public PreferencaTermini(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = servis.PronadjiPoId(idPrijavljenogPacijenta);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             idPacijent = idPrijavljenogPacijenta;

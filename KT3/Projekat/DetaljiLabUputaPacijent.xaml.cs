@@ -24,12 +24,14 @@ namespace Projekat
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
         public DetaljiLabUputaPacijent(Uput labUput, int idPrijvaljenogPacijenta)
         {
             InitializeComponent();
             idPacijent = idPrijvaljenogPacijenta;
 
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
@@ -37,7 +39,7 @@ namespace Projekat
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
             this.datum.Text = labUput.datumIzdavanja;
             this.Napomena.Text = labUput.opisPregleda;
-            Lekar lekarKojiIzdajeUput = LekariServis.NadjiPoId(labUput.IdLekaraKojiIzdajeUput);
+            Lekar lekarKojiIzdajeUput = lekariServis.NadjiPoId(labUput.IdLekaraKojiIzdajeUput);
             this.podaciLekara.Text = lekarKojiIzdajeUput.ToString();
         }
 

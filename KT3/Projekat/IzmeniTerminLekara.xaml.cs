@@ -51,6 +51,9 @@ namespace Projekat
         DateTime datumKrajaRenoviranja;
         DateTime datumZakazivanjaTermina;
 
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
+
         public IzmeniTerminLekara()
         {
             InitializeComponent();
@@ -61,14 +64,14 @@ namespace Projekat
             this.termin = izabraniTermin;
             this.DataContext = this;
 
-            this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            this.listaPacijenata.ItemsSource = servis.pacijenti();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
           
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
-            this.listaLekara.ItemsSource = LekariMenadzer.lekari;
+            this.listaLekara.ItemsSource = lekariServis.NadjiSveLekare();
             CollectionView viewLekari = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             viewLekari.Filter = UserFilterLekari;
 
@@ -93,9 +96,9 @@ namespace Projekat
                 // lekar
                 lekar.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
                 Lekar = izabraniTermin.Lekar;
-                for (int i = 0; i < LekariMenadzer.lekari.Count; i++)
+                for (int i = 0; i < lekariServis.NadjiSveLekare().Count; i++)
                 {
-                    if (LekariMenadzer.lekari[i].IdLekara == izabraniTermin.Lekar.IdLekara)
+                    if (lekariServis.NadjiSveLekare()[i].IdLekara == izabraniTermin.Lekar.IdLekara)
                     {
                         listaLekara.SelectedIndex = i;
                     }
@@ -105,9 +108,9 @@ namespace Projekat
                 pacijent.Text = izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta;
                 Pacijent = izabraniTermin.Pacijent;
 
-                for (int j = 0; j < PacijentiServis.pacijenti().Count; j++)
+                for (int j = 0; j < servis.pacijenti().Count; j++)
                 {
-                    if (PacijentiServis.pacijenti()[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
+                    if (servis.pacijenti()[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
                     {
                         listaPacijenata.SelectedIndex = j;
                     }
@@ -678,7 +681,7 @@ namespace Projekat
                 //Lekar = new Lekar() { IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
                 //Lekar = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
                 //this.lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek;
-                foreach (Lekar lekar in LekariMenadzer.lekari)
+                foreach (Lekar lekar in lekariServis.NadjiSveLekare())
                 {
                     if (lekar.IdLekara == termin.Lekar.IdLekara)
                     {
@@ -937,8 +940,8 @@ namespace Projekat
             Pacijent = (Pacijent)listaPacijenata.SelectedItem;
             Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
 
-            Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+            Lekar l = lekariServis.NadjiPoId(Lekar.IdLekara);
+            Pacijent pacijent = servis.PronadjiPoId(Pacijent.IdPacijenta);
             Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 
             //

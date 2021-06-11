@@ -30,6 +30,11 @@ namespace Projekat
         private static bool jeSelektovanUput;
         private static Termin termin;
         private static List<bool> Validacija = new List<bool>() { false, false, false };
+        PacijentiServis servis = new PacijentiServis();
+        ZdravstveniKartonServis zdrServis = new ZdravstveniKartonServis();
+        TerminServis terminServis = new TerminServis();
+        LekariServis lekariServis = new LekariServis();
+
         public ZakaziTermin(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -44,7 +49,7 @@ namespace Projekat
         {
             datum.BlackoutDates.AddDatesInPast();
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             InicijalizujPodatkeOLekaru(prijavljeniPacijent);
             UputiPacijenta = new ObservableCollection<Uput>();
@@ -53,9 +58,9 @@ namespace Projekat
             jeSelektovanUput = false;
         }
 
-        private static void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
+        private void DodajUputePacijenta(ObservableCollection<Uput> uputiPacijenta, int idPacijent)
         {
-            foreach (Uput uput in ZdravstveniKartonServis.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
+            foreach (Uput uput in zdrServis.PronadjiSveSpecijalistickeUputePacijenta(idPacijent))
             {
                 uputiPacijenta.Add(uput);
             }
@@ -113,7 +118,7 @@ namespace Projekat
             TipTermina tipTermina = TipTermina.Pregled;
             
             termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
-            Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent pacijent = servis.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;
             if (tipTermina.Equals(TipTermina.Pregled))
@@ -136,7 +141,7 @@ namespace Projekat
         #region Zakazivanje termina
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SaleZaPreglede = TerminServis.combo_SelectionChanged(this.combo, this.comboUputi, this.preferenca, idPacijent);
+            SaleZaPreglede = terminServis.combo_SelectionChanged(this.combo, this.comboUputi, this.preferenca, idPacijent);
         }
 
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
@@ -233,7 +238,7 @@ namespace Projekat
                 return;
             }
             Uput izabraniUput = (Uput)comboUputi.SelectedItem;
-            izabraniLekar = LekariServis.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
+            izabraniLekar = lekariServis.NadjiPoId(izabraniUput.IdLekaraKodKogSeUpucuje);
             this.imePrz.Text = izabraniLekar.ToString();
         }
 

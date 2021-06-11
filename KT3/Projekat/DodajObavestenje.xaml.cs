@@ -24,6 +24,9 @@ namespace Projekat
     {
         bool flag1 = false;
         bool flag2 = false;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+
         public DodajObavestenje()
         {
             InitializeComponent();
@@ -33,7 +36,7 @@ namespace Projekat
             listaPacijenata.IsEnabled = false;
             pacijenti.IsEnabled = false;
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             this.listaPacijenata.ItemsSource = pacijentiLista;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = PretragaPacijenata;
@@ -62,13 +65,12 @@ namespace Projekat
         {
             int idLekara = 0;
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
-            List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
+            string oznaka = servis.OdrediOznakuObavestenja(namena.Text);
+            List<int> selektovaniPacijentiId = servis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
-            Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-
-            ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
-            ObavestenjaServis.sacuvajIzmene();
+            Obavestenja novoObavestenje = new Obavestenja(servis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
+            servis.DodajObavestenjeSekretar(novoObavestenje);
+            //ObavestenjaServis.sacuvajIzmene();
             //o DodajObavestenje(novoObavestenje);
             //o.sacuvajIzmene("obavestenja.xml");
             //ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);

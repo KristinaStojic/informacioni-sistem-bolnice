@@ -22,14 +22,16 @@ namespace Projekat
     public partial class PodsetnikPacijent : Page
     {
         private static int idPacijent;
-        private static Pacijent prijavljeniPacijent; 
+        private static Pacijent prijavljeniPacijent;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
         public PodsetnikPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = pacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Datum.BlackoutDates.AddDatesInPast();
         }
@@ -81,9 +83,9 @@ namespace Projekat
                 {
                     return;
                 }
-                Obavestenja obavestenjeZaPodsetnik = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
-                ObavestenjaServis.PronadjiSvaObavestenja().Add(obavestenjeZaPodsetnik);
-                ObavestenjaServis.sacuvajIzmene();
+                Obavestenja obavestenjeZaPodsetnik = new Obavestenja(servis.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
+                servis.PronadjiSvaObavestenja().Add(obavestenjeZaPodsetnik);
+                //ObavestenjaServis.sacuvajIzmene();
 
                 Vreme.Text = null;
                 Datum.Text = null;

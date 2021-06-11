@@ -24,6 +24,7 @@ namespace Projekat
         public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
         ObservableCollection<string> months;
+        PacijentiServis servis = new PacijentiServis();
 
         public ZakazaniTerminiPacijent(int idPrijavljenogPacijenta)
         {
@@ -31,7 +32,7 @@ namespace Projekat
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             Termini = TerminServis.PronadjiTerminPoIdPacijenta(idPacijent);
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             InicijalizujKalendar();

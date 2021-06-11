@@ -25,6 +25,10 @@ namespace Projekat
         private List<Sala> SaleZaPreglede;
         private Sala prvaSlobodnaSala;
         private static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+        TerminServis terminServis = new TerminServis();
+        LekariServis lekariServis = new LekariServis();
+
         public IzmeniTermin(Termin izabraniTermin)
         {
             InitializeComponent();
@@ -55,7 +59,7 @@ namespace Projekat
                 }
                 tp = izabraniTermin.tipTermina;  
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
-                prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+                prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
                 this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
                 InicijalizujSelektovanogLekara(izabraniTermin);
             }
@@ -64,8 +68,8 @@ namespace Projekat
         private void InicijalizujSelektovanogLekara(Termin izabraniTermin)
         {
             int brojac = 0;
-            this.dgSearch.ItemsSource = LekariServis.NadjiSveLekare();
-            foreach (Lekar lekar in LekariServis.NadjiSveLekare())
+            this.dgSearch.ItemsSource = lekariServis.NadjiSveLekare();
+            foreach (Lekar lekar in lekariServis.NadjiSveLekare())
             {
                 brojac++;
                 if (lekar.IdLekara.Equals(izabraniTermin.Lekar.IdLekara))
@@ -180,7 +184,7 @@ namespace Projekat
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             sacuvaj.IsEnabled = true;
-            SaleZaPreglede = TerminServis.combo_SelectionChanged(this.combo, null, null, idPacijent);
+            SaleZaPreglede = terminServis.combo_SelectionChanged(this.combo, null, null, idPacijent);
         }
 
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

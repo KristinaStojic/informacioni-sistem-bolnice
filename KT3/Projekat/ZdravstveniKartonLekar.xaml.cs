@@ -33,7 +33,7 @@ namespace Projekat
         public Pacijent pacijent;
         public Termin termin;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        PacijentiServis servis = new PacijentiServis();
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -114,7 +114,7 @@ namespace Projekat
         }
         public void PostaviDeloveGrafika(Pacijent izabraniNalog)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if (pacijent.IdPacijenta == izabraniNalog.IdPacijenta)
                 {
@@ -203,7 +203,7 @@ namespace Projekat
         private void PopuniTabelePodacima()
         {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -216,7 +216,7 @@ namespace Projekat
 
 
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -228,7 +228,7 @@ namespace Projekat
             }
 
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -240,7 +240,7 @@ namespace Projekat
             }
 
             TabelaUputa = new ObservableCollection<Uput>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -506,7 +506,7 @@ namespace Projekat
                 table.Columns.Add("Dnevna kolicina");
                 table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja recepta", "Naziv leka", "Broj dana koriscenja", "Dnevna kolicina" });
                 //Include rows to the DataTable.
-                foreach (Pacijent p in PacijentiServis.pacijenti())
+                foreach (Pacijent p in servis.pacijenti())
                 {
                     if(p.IdPacijenta == pacijent.IdPacijenta)
                     {
@@ -563,7 +563,7 @@ namespace Projekat
                 table.Columns.Add("Lekar koji je izdao anamnezu");
                 table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja anamneze", "Opis bolesti", "Terapija",  "Lekar koji je izdao anamnezu" });
                 //Include rows to the DataTable.
-                foreach (Pacijent p in PacijentiServis.pacijenti())
+                foreach (Pacijent p in servis.pacijenti())
                 {
                     if(p.IdPacijenta == pacijent.IdPacijenta)
                     {
@@ -575,9 +575,6 @@ namespace Projekat
                             }
                         }
                     }
-                   
-
-
                 }
 
 

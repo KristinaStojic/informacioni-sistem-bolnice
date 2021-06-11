@@ -25,6 +25,8 @@ namespace Projekat
         public Uput uput;
         public Pacijent pacijent;
         public ZakaziTerminSekretar zakazivanje;
+        PacijentiServis servis = new PacijentiServis();
+        LekariServis lekariServis = new LekariServis();
         public static ObservableCollection<Uput> TabelaUputa
         {
             get;
@@ -39,7 +41,7 @@ namespace Projekat
             this.DataContext = this;
 
             TabelaUputa = new ObservableCollection<Uput>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
@@ -72,7 +74,7 @@ namespace Projekat
                 return;
             }
             
-            Lekar lekar = LekariServis.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
+            Lekar lekar = lekariServis.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
             zakazivanje.Lekar = lekar;
             if (zakazivanje.Lekar != null)
             {

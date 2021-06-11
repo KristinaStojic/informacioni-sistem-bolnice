@@ -24,6 +24,8 @@ namespace Projekat
     public partial class OglasnaTabla : Window
     {
         private bool flag = false;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        ZdravstveniKartonServis zdrServis = new ZdravstveniKartonServis();
 
         public static ObservableCollection<Obavestenja> oglasnaTabla { get; set; }
 
@@ -33,7 +35,7 @@ namespace Projekat
             oglasnaTabla = new ObservableCollection<Obavestenja>();
             listView.ItemsSource = oglasnaTabla;
 
-            List<Obavestenja> obavestenja = ObavestenjaServis.NadjiSvaObavestenja();
+            List<Obavestenja> obavestenja = servis.NadjiSvaObavestenja();
             foreach (Obavestenja obavestenje in obavestenja)
             { 
                 if (obavestenje.Notifikacija == false)
@@ -73,7 +75,7 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ObavestenjaServis.sacuvajIzmene();
+            //ObavestenjaServis.sacuvajIzmene();
         }
 
         private void Napusti_uvid_Click(object sender, RoutedEventArgs e)
@@ -96,7 +98,7 @@ namespace Projekat
                 naslov.Text = selektovanoObavestenje.TipObavestenja;
                 datum.Text = selektovanoObavestenje.Datum;
                 sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
-                namena.Text = ObavestenjaServis.PopuniNamenuObavestenja(selektovanoObavestenje);
+                namena.Text = servis.PopuniNamenuObavestenja(selektovanoObavestenje);
             }
         }
 

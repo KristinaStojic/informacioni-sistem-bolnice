@@ -1,6 +1,7 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Pomoc;
+using Projekat.Servis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +24,8 @@ namespace Projekat
     public partial class ZahteviZaGodisnjiLekar : Window
     {
         int IdLekara;
+        LekariServis servis = new LekariServis();
+        ZahteviZaGodisnjiMenadzer menadzer = new ZahteviZaGodisnjiMenadzer();
         public static ObservableCollection<ZahtevZaGodisnji> TabelaZahteva
         {
             get;
@@ -39,11 +42,11 @@ namespace Projekat
         private void dodajZahteveUTabelu()
         {
             TabelaZahteva = new ObservableCollection<ZahtevZaGodisnji>();
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            foreach (Lekar lekar in servis.NadjiSveLekare())
             {
                 if(lekar.IdLekara == IdLekara)
                 {
-                    foreach(ZahtevZaGodisnji zahtev in LekariMenadzer.zahtevi)
+                    foreach(ZahtevZaGodisnji zahtev in menadzer.zahtevi)
                     {
                         if(zahtev.lekar.IdLekara == IdLekara)
                         {

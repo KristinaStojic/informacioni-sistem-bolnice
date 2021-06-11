@@ -26,13 +26,13 @@ namespace Projekat
             get;
             set;
         }  */
-
+        LekariServis lekariServis = new LekariServis();
         public ObavestenjaLekar()
         {
             InitializeComponent();
             //this.DataContext = this;
             //obavestenjaLekar = new ObservableCollection<Obavestenja>();
-            foreach (Obavestenja o in LekariServis.NadjiPoId(1).obavestenja)
+            foreach (Obavestenja o in lekariServis.NadjiPoId(1).obavestenja)
             {
                 ObavestenjaLekara.Items.Add(o);
             }

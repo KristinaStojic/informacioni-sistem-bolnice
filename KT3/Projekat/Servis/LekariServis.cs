@@ -13,51 +13,97 @@ namespace Projekat.Servis
     public class LekariServis
     {
         public const int BROJ_NEDELJA_ZA_TRI_MESECA = 12;
+        LekariMenadzer menadzer = new LekariMenadzer();
+        ZahteviZaGodisnjiMenadzer zahteviZaGodisnjiMenadzer = new ZahteviZaGodisnjiMenadzer();
 
         #region Lekari
-        public static void DodajLekara(Lekar noviLekar)
+        public void DodajLekara(Lekar noviLekar)
         {
-            LekariMenadzer.DodajLekara(noviLekar);
+            menadzer.Dodaj(noviLekar, "lekari.xml");
         }
 
-        public static void IzmeniLekara(Lekar stariLekar, Lekar noviLekar)
+        public void IzmeniLekara(Lekar stariLekar, Lekar noviLekar)
         {
-            LekariMenadzer.IzmeniLekara(stariLekar, noviLekar);
+            menadzer.Izmeni(stariLekar, noviLekar, "lekari.xml");
         }
 
-        public static void ObrisiLekara(Lekar lekar)
+        public void ObrisiLekara(Lekar lekar)
         {
-            LekariMenadzer.ObrisiLekara(lekar);
+            menadzer.Obrisi(lekar, "lekari.xml");
         }
 
-        public static List<Lekar> NadjiSveLekare()
+        public List<Lekar> NadjiSveLekare()
         {
-            return LekariMenadzer.NadjiSveLekare();
+            return menadzer.NadjiSve("lekari.xml");
         }
 
-        public static Lekar NadjiPoId(int id)
+        public Lekar NadjiPoId(int id)
         {
-            return LekariMenadzer.NadjiPoId(id);
+            foreach (Lekar lekar in NadjiSveLekare())
+            {
+                if (lekar.IdLekara == id)
+                {
+                    return lekar;
+                }
+            }
+            return null;
         }
 
-        public static int GenerisanjeIdLekara()
+        public int GenerisanjeIdLekara()
         {
-            return LekariMenadzer.GenerisanjeIdLekara();
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= NadjiSveLekare().Count; id++)
+            {
+                foreach (Lekar lekar in NadjiSveLekare())
+                {
+                    if (lekar.IdLekara.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
         }
 
-        public static int GenerisanjeIdZahtevaZaOdmor(int idLekara)
+        public int GenerisanjeIdZahtevaZaOdmor(int idLekara)
         {
-            return LekariMenadzer.GenerisanjeIdZahtevaZaOdmor(idLekara);
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= NadjiSveZahteve().Count; id++)
+            {
+                foreach (ZahtevZaGodisnji zahtev in NadjiSveZahteve())
+                {
+                    if (zahtev.idZahteva.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
         }
 
-        public static void SacuvajIzmeneLekara()
+        public bool JedinstvenJmbg(long jmbg)
         {
-            LekariMenadzer.SacuvajIzmeneLekara();
-        }
-
-        public static bool JedinstvenJmbg(long jmbg)
-        {
-            foreach (Lekar lekar in LekariMenadzer.lekari)
+            foreach (Lekar lekar in NadjiSveLekare())
             {
                 if (lekar.Jmbg == jmbg)
                 {
@@ -67,39 +113,54 @@ namespace Projekat.Servis
             return true;
         }
 
-        public static List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
+        public List<Lekar> PronadjiLekarePoSpecijalizaciji(Specijalizacija tipSpecijalizacije)
         {
-            return LekariMenadzer.PronadjiLekarePoSpecijalizaciji(tipSpecijalizacije);
+            List<Lekar> specijalizovaniLekari = new List<Lekar>();
+            foreach (Lekar lekar in NadjiSveLekare())
+            {
+                if (lekar.specijalizacija.Equals(tipSpecijalizacije))
+                {
+                    specijalizovaniLekari.Add(lekar);
+                }
+            }
+            return specijalizovaniLekari;
         }
 
-        public static void DodajZahtev(ZahtevZaGodisnji zahtev)
+        public void DodajZahtev(ZahtevZaGodisnji zahtev)
         {
-            LekariMenadzer.DodajZahtev(zahtev);
+            zahteviZaGodisnjiMenadzer.DodajZahtev(zahtev);
         }
 
-        public static List<ZahtevZaGodisnji> NadjiSveZahteve()
+        public List<ZahtevZaGodisnji> NadjiSveZahteve()
         {
-            return LekariMenadzer.NadjiSveZahteve();
+            return zahteviZaGodisnjiMenadzer.NadjiSveZahteve();
         }
 
-        public static ZahtevZaGodisnji NadjiZahtevPoId(int id)
+        public ZahtevZaGodisnji NadjiZahtevPoId(int id)
         {
-            return LekariMenadzer.NadjiZahtevPoId(id);
+            foreach (ZahtevZaGodisnji zahtev in NadjiSveZahteve())
+            {
+                if (zahtev.idZahteva == id)
+                {
+                    return zahtev;
+                }
+            }
+            return null;
         }
 
-        public static void sacuvajIzmjeneZahteva()
+        public void sacuvajIzmjeneZahteva()
         {
-            LekariMenadzer.sacuvajIzmjeneZahteva();
+            zahteviZaGodisnjiMenadzer.sacuvajIzmjeneZahteva();
         }
         #endregion
 
         #region Radno vreme
-        public static string KonvertujDatum(DateTime datum)
+        public string KonvertujDatum(DateTime datum)
         {
             return datum.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
         }
 
-        public static List<RadniDan> NapraviListuRadnogVremena(string pocetak, string kraj, Calendar kalendar, Lekar lekar)
+        public List<RadniDan> NapraviListuRadnogVremena(string pocetak, string kraj, Calendar kalendar, Lekar lekar)
         {
             List<RadniDan> radniDani = new List<RadniDan>();
             string vremePocetka = pocetak;
@@ -110,7 +171,7 @@ namespace Projekat.Servis
                 foreach (DateTime datum in kalendar.SelectedDates)
                 {
                     DateTime noviDatum = datum.AddDays(7 * i);
-                    RadniDan noviDan = new RadniDan(lekar.IdLekara, LekariServis.KonvertujDatum(noviDatum), vremePocetka, vremeKraja);
+                    RadniDan noviDan = new RadniDan(lekar.IdLekara, this.KonvertujDatum(noviDatum), vremePocetka, vremeKraja);
                     radniDani.Add(noviDan);
                 }
             }
@@ -121,8 +182,7 @@ namespace Projekat.Servis
         #endregion
 
         #region Godisnji odmor
-
-        public static void OdobriZahtevZaGodisnji(ZahtevZaGodisnji izabraniZahtev, int indeks)
+        public void OdobriZahtevZaGodisnji(ZahtevZaGodisnji izabraniZahtev, int indeks)
         {
             List<ZahtevZaGodisnji> zahtevi = NadjiSveZahteve();
             for (int i = 0; i < zahtevi.Count; i++)
@@ -151,7 +211,7 @@ namespace Projekat.Servis
             }
         }
 
-        private static void OdobravanjeZahteva(ZahtevZaGodisnji izabraniZahtev, ZahtevZaGodisnji zahtevIzListe, int indeks)
+        private void OdobravanjeZahteva(ZahtevZaGodisnji izabraniZahtev, ZahtevZaGodisnji zahtevIzListe, int indeks)
         {
             izabraniZahtev.odobren = StatusZahteva.ODOBREN;
             zahtevIzListe.odobren = StatusZahteva.ODOBREN;
@@ -159,7 +219,7 @@ namespace Projekat.Servis
             OdobravanjeGodisnjegOdmora.TabelaZahteva.Insert(indeks, izabraniZahtev);
         }
 
-        public static void OduzmiSlobodneDaneLekaru(ZahtevZaGodisnji zahtev)
+        public void OduzmiSlobodneDaneLekaru(ZahtevZaGodisnji zahtev)
         {
             List<Lekar> lekari = NadjiSveLekare();
             foreach (Lekar lekar in lekari)
@@ -168,12 +228,12 @@ namespace Projekat.Servis
                 {
                     OznaciLekarimaGodisnjiOdmor(lekar, zahtev);
                     lekar.SlobodniDaniGodisnjegOdmora -= zahtev.brojDanaOdmora;
-                    SacuvajIzmeneLekara();
+                    //SacuvajIzmeneLekara();
                 }
             }
         }
 
-        public static void OznaciLekarimaGodisnjiOdmor(Lekar lekar, ZahtevZaGodisnji zahtev)
+        public void OznaciLekarimaGodisnjiOdmor(Lekar lekar, ZahtevZaGodisnji zahtev)
         {
             foreach (RadniDan dan in lekar.RadniDani)
             {
@@ -181,12 +241,12 @@ namespace Projekat.Servis
                      (DateTime.Parse(zahtev.krajOdmora) >= DateTime.Parse(dan.Datum)))
                 {
                     dan.NaGodisnjemOdmoru = true;
-                    SacuvajIzmeneLekara();
+                    //SacuvajIzmeneLekara();
                 }
             }
         }
 
-        public static void OdbijZahtevZaGodisnji(ZahtevZaGodisnji izabraniZahtev, int indeks)
+        public void OdbijZahtevZaGodisnji(ZahtevZaGodisnji izabraniZahtev, int indeks)
         {
             List<ZahtevZaGodisnji> zahtevi = NadjiSveZahteve();
             for (int i = 0; i < zahtevi.Count; i++)
@@ -209,7 +269,7 @@ namespace Projekat.Servis
             }
         }
 
-        public static void DodajZahteveUTabelu()
+        public void DodajZahteveUTabelu()
         {
             OdobravanjeGodisnjegOdmora.TabelaZahteva = new ObservableCollection<ZahtevZaGodisnji>();
 

@@ -8,12 +8,6 @@
         xmlns:local="clr-namespace:Model" xmlns:viewmodel="clr-namespace:Projekat.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="DodajLekara" Height="470" Width="510" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Window.DataContext>
-        <viewmodel:LekarViewModel/>
-    </Window.DataContext>
-    <Window.InputBindings>
-        <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding OdustaniOdDodavanjaLekara}"></KeyBinding>
-    </Window.InputBindings>
     <Window.Resources>
         <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">
@@ -47,23 +41,17 @@
         <Label Grid.Column="1" Grid.Row="5" FontSize="17" VerticalContentAlignment="Center" Content="Email:"/>
         <Label Grid.Column="1" Grid.Row="6" FontSize="17" VerticalContentAlignment="Center" Content="Adresa stanovanja:"/>
         <Label Grid.Column="1" Grid.Row="7" FontSize="17" VerticalContentAlignment="Center" Content="Specijalizacija:"/>
-        <TextBlock Text="{Binding Validacija.ValidationErrors[ImeLek]}" Foreground="Red" Grid.Column="2" Grid.Row="1" Margin="10,38,46,0"  Height="19" VerticalAlignment="Top" FontSize="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <TextBlock Text="{Binding Validacija.ValidationErrors[PrezimeLek]}" Foreground="Red" Grid.Column="2" Grid.Row="2" Margin="10,36.4,46,0"  Height="19" VerticalAlignment="Top" FontSize="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <TextBlock Text="{Binding Validacija.ValidationErrors[Jmbg]}" Foreground="Red" Grid.Column="2" Grid.Row="3" Margin="10,36.6,46,0"  Height="19" VerticalAlignment="Top" FontSize="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <TextBlock Text="{Binding Validacija.ValidationErrors[BrojTelefona]}" Foreground="Red" Grid.Column="2" Grid.Row="4" Margin="10,36.8,46,0"  Height="19" VerticalAlignment="Top" FontSize="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <TextBlock Text="{Binding Validacija.ValidationErrors[Email]}" Foreground="Red" Grid.Column="2" Grid.Row="5" Margin="10,37,46,0"  Height="19" VerticalAlignment="Top" FontSize="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <TextBlock Text="{Binding Validacija.ValidationErrors[AdresaStanovanja]}" Foreground="Red" Grid.Column="2" Grid.Row="6" Margin="10,37.2,46,0"  Height="19" VerticalAlignment="Top" FontSize="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-
-        <TextBox x:Name="ime" Grid.Column="2" Grid.Row="1" Margin="7" FontSize="15" Text="{Binding Validacija.ImeLek, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="2" Margin="7" FontSize="15" Text="{Binding Validacija.PrezimeLek, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="3" Margin="7" FontSize="15" Text="{Binding Validacija.Jmbg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="4" Margin="7" FontSize="15" Text="{Binding Validacija.BrojTelefona, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="email" Grid.Column="2" Grid.Row="5" Margin="7" FontSize="15" Text="{Binding Validacija.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="6" Margin="7" FontSize="15" Text="{Binding Validacija.AdresaStanovanja, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <ComboBox x:Name="oblastLekara" Grid.Column="2" Grid.Row="7" Margin="7.2,5.8,7.2,7" SelectedItem="{Binding Validacija.Specijalizacija, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+      
+        <TextBox x:Name="ime" Grid.Column="2" Grid.Row="1" Margin="7" FontSize="15" />
+        <TextBox x:Name="prezime" Grid.Column="2" Grid.Row="2" Margin="7" FontSize="15"/>
+        <TextBox  x:Name="jmbg" Grid.Column="2" Grid.Row="3" Margin="7" FontSize="15" />
+        <TextBox x:Name="brojTelefona" Grid.Column="2" Grid.Row="4" Margin="7" FontSize="15" />
+        <TextBox x:Name="email" Grid.Column="2" Grid.Row="5" Margin="7" FontSize="15"/>
+        <TextBox x:Name="adresa" Grid.Column="2" Grid.Row="6" Margin="7" FontSize="15"/>
+        <ComboBox x:Name="oblastLekara" Grid.Column="2" Grid.Row="7" Margin="7.2,5.8,7.2,7"
                   ItemsSource="{Binding Source={StaticResource dataFromEnum}}" FontSize="17" />
 
-        <Button Grid.Column="1" Grid.Row="8" Margin="5,28.6,10,22.8" Command="{Binding PotvrdiDodavanjeLekara}" Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
-        <Button Grid.Column="2" Grid.Row="8" Margin="8,28.6,6,22.8" Command="{Binding OdustaniOdDodavanjaLekara}" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="1" Grid.Row="8" Margin="5,28.6,10,22.8" Click="Potvrdi_Click"  Content="Potvrdi" Background="#FFA3DADE" FontSize="17"/>
+        <Button Grid.Column="2" Grid.Row="8" Margin="8,28.6,6,22.8" Click="Odustani_Click" Content="Odustani" Background="#FFA3DADE" FontSize="17"/>
     </Grid>
 </Window>

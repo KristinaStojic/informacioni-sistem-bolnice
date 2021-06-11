@@ -20,6 +20,7 @@ namespace Projekat.ViewModel
 {
     class ZdravstveniKartonViewModel : BindableBase
     {
+        PacijentiServis servis = new PacijentiServis();
         private ObservableCollection<LekarskiRecept> recepti;
         public ObservableCollection<LekarskiRecept> PrikazRecepata { get { return recepti; } set { recepti = value; OnPropertyChanged("PrikazRecepata"); } }
         private ObservableCollection<Anamneza> anamneze;
@@ -52,7 +53,7 @@ namespace Projekat.ViewModel
         }
         private void inicijalizujTabele()
         {
-            foreach(Pacijent p in PacijentiServis.pacijenti())
+            foreach(Pacijent p in servis.pacijenti())
             {
                 if (p.ImePacijenta.Equals("Kristina") && p.PrezimePacijenta.Equals("Draskovic")){
                     izabraniPacijent = p;
@@ -60,7 +61,7 @@ namespace Projekat.ViewModel
             }
 
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == izabraniPacijent.IdPacijenta)
                 {
@@ -73,7 +74,7 @@ namespace Projekat.ViewModel
 
 
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == izabraniPacijent.IdPacijenta)
                 {
@@ -85,7 +86,7 @@ namespace Projekat.ViewModel
             }
 
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == izabraniPacijent.IdPacijenta)
                 {
@@ -97,7 +98,7 @@ namespace Projekat.ViewModel
             }
 
             TabelaUputa = new ObservableCollection<Uput>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (p.IdPacijenta == izabraniPacijent.IdPacijenta)
                 {
@@ -159,7 +160,7 @@ namespace Projekat.ViewModel
                 table.Columns.Add("Naziv leka");
                 table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja recepta", "Naziv leka" });
                 //Include rows to the DataTable.
-                foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+                foreach (Pacijent pacijent in servis.pacijenti())
                 {
                     if (pacijent.Karton.LekarskiRecepti != null)
                     {
@@ -208,7 +209,7 @@ namespace Projekat.ViewModel
                 table.Columns.Add("Naziv leka");
                 table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja anamneze", "Lekar koji je izdao anamnezu" });
                 //Include rows to the DataTable.
-                foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+                foreach (Pacijent pacijent in servis.pacijenti())
                 {
                     if (pacijent.Karton.Anamneze != null)
                     {

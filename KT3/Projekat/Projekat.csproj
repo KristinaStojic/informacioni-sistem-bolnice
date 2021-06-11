@@ -132,14 +132,8 @@
     <Compile Include="DetaljiAlergena.xaml.cs">
       <DependentUpon>DetaljiAlergena.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DetaljiAlergenaSekretar.xaml.cs">
-      <DependentUpon>DetaljiAlergenaSekretar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DetaljiAnamneze.xaml.cs">
       <DependentUpon>DetaljiAnamneze.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DetaljiAnamnezeSekretar.xaml.cs">
-      <DependentUpon>DetaljiAnamnezeSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetaljiLabUputaPacijent.xaml.cs">
       <DependentUpon>DetaljiLabUputaPacijent.xaml</DependentUpon>
@@ -152,9 +146,6 @@
     </Compile>
     <Compile Include="DetaljiUputaPacijent.xaml.cs">
       <DependentUpon>DetaljiUputaPacijent.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DetaljiUputaSekretar.xaml.cs">
-      <DependentUpon>DetaljiUputaSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajAlergene.xaml.cs">
       <DependentUpon>DodajAlergene.xaml</DependentUpon>
@@ -290,7 +281,7 @@
     <Compile Include="Model\Anamneza.cs" />
     <Compile Include="Model\Anketa.cs" />
     <Compile Include="Model\AnketaMenadzer.cs" />
-    <Compile Include="Model\IMenadzer.cs" />
+    <Compile Include="Model\ISerialization.cs" />
     <Compile Include="Model\JSONSerialization.cs" />
     <Compile Include="Model\Krevet.cs" />
     <Compile Include="Model\Lek.cs" />
@@ -316,6 +307,7 @@
     <Compile Include="Model\ValidacijaLekar.cs" />
     <Compile Include="Model\ValidacijaSekretar.cs" />
     <Compile Include="Model\XMLSerialization.cs" />
+    <Compile Include="Model\ZahteviZaGodisnjiMenadzer.cs" />
     <Compile Include="Model\ZahtevZaGodisnji.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
@@ -714,15 +706,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DetaljiAlergenaSekretar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DetaljiAnamneze.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DetaljiAnamnezeSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -739,10 +723,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetaljiUputaPacijent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DetaljiUputaSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
