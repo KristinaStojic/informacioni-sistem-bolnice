@@ -56,6 +56,10 @@ namespace Projekat.Model
                     i--;
                 }
             }
+            if (OglasnaTabla.oglasnaTabla == null)
+            {
+                OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
+            }
 
             OglasnaTabla.oglasnaTabla.Remove(element);
             SacuvajIzmene(lokacijaFajla, lista);
