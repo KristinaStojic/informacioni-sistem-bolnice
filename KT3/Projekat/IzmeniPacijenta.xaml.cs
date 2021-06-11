@@ -31,7 +31,7 @@ namespace Projekat
         public bool flag7 = false;
         public bool flag8 = true;
         public Pacijent pacijent;
-
+        PacijentiServis servis = new PacijentiServis();
         public IzmeniPacijenta(Pacijent izabraniNalog)
         {
             InitializeComponent();
@@ -115,12 +115,12 @@ namespace Projekat
             if (statusPacijenta.SelectedIndex == 0) // stalan nalog
             {
                 Pacijent noviPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                PacijentiServis.IzmeniNalog(pacijent, noviPacijent);
+                servis.IzmeniNalog(pacijent, noviPacijent);
             }
             else
             {
                 Pacijent guestPacijent = new Pacijent(pacijent.IdPacijenta, ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
-                PacijentiServis.IzmeniNalog(pacijent, guestPacijent);    
+                servis.IzmeniNalog(pacijent, guestPacijent);    
             }
 
             this.Close();

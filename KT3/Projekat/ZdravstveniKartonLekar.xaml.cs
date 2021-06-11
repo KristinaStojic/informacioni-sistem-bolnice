@@ -35,7 +35,8 @@ namespace Projekat
         public event PropertyChangedEventHandler PropertyChanged;
         ReceptiIzvestaj receptiIzvestaj = new ReceptiIzvestaj();
         AnamnezaIzvestaj anamnezaIzvestaj = new AnamnezaIzvestaj();
-
+        PacijentiServis servis = new PacijentiServis();
+        List<Pacijent> sviPacijenti;
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -106,6 +107,7 @@ namespace Projekat
             this.termin = termin;
             this.DataContext = this;
 
+            sviPacijenti = servis.PronadjiSve();
             
             if (izabraniNalog != null)
             {
@@ -116,7 +118,7 @@ namespace Projekat
         }
         public void PostaviDeloveGrafika(Pacijent izabraniNalog)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in sviPacijenti)
             {
                 if (pacijent.IdPacijenta == izabraniNalog.IdPacijenta)
                 {
@@ -205,7 +207,7 @@ namespace Projekat
         private void PopuniTabelePodacima()
         {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -218,7 +220,7 @@ namespace Projekat
 
 
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -230,7 +232,7 @@ namespace Projekat
             }
 
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -242,7 +244,7 @@ namespace Projekat
             }
 
             TabelaUputa = new ObservableCollection<Uput>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {

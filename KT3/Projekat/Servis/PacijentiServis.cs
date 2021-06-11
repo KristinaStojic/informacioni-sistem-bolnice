@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using Model;
 using Projekat.Model;
 
@@ -7,50 +8,111 @@ namespace Projekat.Servis
     public class PacijentiServis
     {
         #region Pacijent Menadzer
-        public static void DodajNalog(Pacijent noviNalog)
+        PacijentiMenadzer menadzer = new PacijentiMenadzer();
+        public void DodajNalog(Pacijent noviNalog)
         {
-            PacijentiMenadzer.DodajNalog(noviNalog);
+            menadzer.Dodaj(noviNalog, "pacijenti.xml");
         }
 
-        public static void IzmeniNalog(Pacijent stariNalog, Pacijent noviNalog)
+        public void IzmeniNalog(Pacijent stariNalog, Pacijent noviNalog)
         {
-            PacijentiMenadzer.IzmeniNalog(stariNalog, noviNalog);
+            menadzer.Izmeni(stariNalog, noviNalog, "pacijenti.xml");
         }
 
         // Sanja
-        public static void IzmeniNalogPacijent(Pacijent stari, Pacijent nalog)
+        public void IzmeniNalogPacijent(Pacijent stari, Pacijent nalog)
         {
-            PacijentiMenadzer.IzmeniNalogPacijent(stari, nalog);
+            List<Pacijent> pacijenti = PronadjiSve();
+            foreach (Pacijent p in pacijenti)
+            {
+                if (p.IdPacijenta == stari.IdPacijenta)
+                {
+                    p.ImePacijenta = nalog.ImePacijenta;
+                    p.PrezimePacijenta = nalog.PrezimePacijenta;
+                    p.Jmbg = nalog.Jmbg;
+                    p.Pol = nalog.Pol;
+                    p.StatusNaloga = nalog.StatusNaloga;
+                    p.BrojTelefona = nalog.BrojTelefona;
+                    p.Email = nalog.Email;
+                    p.AdresaStanovanja = nalog.AdresaStanovanja;
+                    p.BracnoStanje = nalog.BracnoStanje;
+                    p.Zanimanje = nalog.Zanimanje;
+                    p.IzabraniLekar = nalog.IzabraniLekar;
+                    //p.Maloletnik = nalog.Maloletnik;
+                    //p.JmbgStaratelja = nalog.JmbgStaratelja;
+
+                    for (int i = 0; i < PrikaziTermin.Termini.Count; i++)
+                    {
+                        if (PrikaziTermin.Termini[i].Pacijent.IdPacijenta.Equals(stari.IdPacijenta))
+                        {
+                            MessageBox.Show(i.ToString());
+                            //int i = PrikaziTermin.Termini.IndexOf(stari)
+                            // PrikaziTermin.Termini.RemoveAt(i);
+                            PrikaziTermin.Termini[i].Pacijent = p;   //*
+                                                                     // PrikaziTermin.Termini.Insert(i, PrikaziTermin.Termini[i]);
+                        }
+                    }
+                }
+            }
+            menadzer.SacuvajIzmene("pacijenti.xml", pacijenti);
         }
 
-        public static void ObrisiNalog(Pacijent nalog)
+        public void ObrisiNalog(Pacijent nalog)
         {
-            PacijentiMenadzer.ObrisiNalog(nalog);
+            menadzer.Obrisi(nalog, "pacijenti.xml");
         }
 
-        public static List<Pacijent> PronadjiSve()
+        public List<Pacijent> PronadjiSve()
         {
-            return PacijentiMenadzer.PronadjiSve();
+            return menadzer.NadjiSve("pacijenti.xml");
         }
         
-        public static Pacijent PronadjiPoId(int id)
+        public Pacijent PronadjiPoId(int id)
         {
-            return PacijentiMenadzer.PronadjiPoId(id);
+            foreach (Pacijent p in PronadjiSve())
+            {
+                if (p.IdPacijenta == id)
+                {
+                    return p;
+                }
+            }
+            return null;
         }
 
-        public static int GenerisanjeIdPacijenta()
+        public int GenerisanjeIdPacijenta()
         {
-            return PacijentiMenadzer.GenerisanjeIdPacijenta();
+            bool pomocna = false;
+            int id = 1;
+
+            for (id = 1; id <= PronadjiSve().Count; id++)
+            {
+                foreach (Pacijent p in PronadjiSve())
+                {
+                    if (p.IdPacijenta.Equals(id))
+                    {
+                        pomocna = true;
+                        break;
+                    }
+                }
+
+                if (!pomocna)
+                {
+                    return id;
+                }
+                pomocna = false;
+            }
+
+            return id;
         }
 
-        public static void SacuvajIzmenePacijenta()
+        public void SacuvajIzmenePacijenta()
         {
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+           // menadzer.SacuvajIzmene();
         }
 
-        public static bool JedinstvenJmbg(long jmbg)
+        public bool JedinstvenJmbg(long jmbg)
         {
-            foreach (Pacijent p in PacijentiMenadzer.pacijenti)
+            foreach (Pacijent p in PronadjiSve())
             {
                 if (p.Jmbg == jmbg)
                 {
@@ -302,9 +364,10 @@ namespace Projekat.Servis
 
         #endregion
 
-        public static List<Pacijent> pacijenti()
+        public List<Pacijent> pacijenti()
         {
-            return PacijentiMenadzer.pacijenti;
+            return PronadjiSve();
         }
+
     }
 }

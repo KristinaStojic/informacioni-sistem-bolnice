@@ -13,6 +13,7 @@ namespace Projekat.ViewModel
 {
     public class LekarViewModel: BindableBase
     {
+        LekariServis servis = new LekariServis();
         #region Lekari
         public static Window LekariProzor { get; set; }
         public Window DodajLekaraProzor { get; set; }
@@ -210,7 +211,7 @@ namespace Projekat.ViewModel
 
         private void ObrisiIzabranogLekara()
         {
-            LekariServis.ObrisiLekara(izabraniLekar);
+            servis.ObrisiLekara(izabraniLekar);
             Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
             BrisanjeLekaraProzor.Close();
         }

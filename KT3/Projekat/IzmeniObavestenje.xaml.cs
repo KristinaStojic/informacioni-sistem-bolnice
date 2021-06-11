@@ -24,13 +24,15 @@ namespace Projekat
         bool flag1 = false;
         bool flag2 = false;
         public Obavestenja obavestenje;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
 
         public IzmeniObavestenje(Obavestenja selektovanoObavestenje)
         {
             InitializeComponent();
             obavestenje = selektovanoObavestenje;
 
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = pacijentiServis.PronadjiSve();
             this.listaPacijenata.ItemsSource = pacijenti;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilter;
@@ -61,7 +63,7 @@ namespace Projekat
 
                 foreach (int id in obavestenje.ListaIdPacijenata)
                 {
-                    listaPacijenata.SelectedItem = PacijentiServis.PronadjiPoId(id);
+                    listaPacijenata.SelectedItem = pacijentiServis.PronadjiPoId(id);
                 }
             }
         }
@@ -74,8 +76,8 @@ namespace Projekat
             List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
             Obavestenja novoObavestenje = new Obavestenja(obavestenje.IdObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-            ObavestenjaServis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
-            ObavestenjaServis.sacuvajIzmene();
+            servis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
+            //ObavestenjaServis.sacuvajIzmene();
 
             this.Close();
         }

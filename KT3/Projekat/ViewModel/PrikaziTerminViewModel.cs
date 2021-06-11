@@ -13,7 +13,7 @@ namespace Projekat.ViewModel
         private static int idPacijent = 1;
         private ObservableCollection<Obavestenja> obavestenja;
         public ObservableCollection<Obavestenja> Obavestenja { get { return obavestenja; } set { obavestenja = value; OnPropertyChanged("Obavestenja"); } }
-
+        ObavestenjaServis servis = new ObavestenjaServis();
         public MyICommand OdjavaKomanda { get; set; }
 
         public PrikaziTerminViewModel()
@@ -25,7 +25,7 @@ namespace Projekat.ViewModel
         private void DodajObavestenja()
         {
             Obavestenja = new ObservableCollection<Obavestenja>();
-            Obavestenja = ObavestenjaServis.DodajObavestenja(idPacijent);
+            Obavestenja = servis.DodajObavestenja(idPacijent);
         }
         private void ZatvoriAplikaciju()
         {

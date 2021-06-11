@@ -27,7 +27,7 @@ namespace Projekat
         Termin termin;
         bool popunjeno = false;
 
-
+        ZdravstveniKartonServis servis = new ZdravstveniKartonServis();
         public DodajAlergene(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -70,17 +70,17 @@ namespace Projekat
         {
             if (popunjeno == true)
             {
-                int idAlergena = ZdravstveniKartonServis.GenerisanjeIdAlergena(pacijent.IdPacijenta);
+                int idAlergena = servis.GenerisanjeIdAlergena(pacijent.IdPacijenta);
                 String nazivLeka = naziv.Text;
                 String Nuspojava = nuspojava.Text;
                 String vremeNuspojave = vreme.Text;
 
 
                 Alergeni alergen = new Alergeni(idAlergena, pacijent.IdPacijenta, nazivLeka,Nuspojava, vremeNuspojave);
-                ZdravstveniKartonServis.DodajAlergen(alergen);
+                servis.DodajAlergen(alergen);
 
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+               // PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
 
                 this.Close();

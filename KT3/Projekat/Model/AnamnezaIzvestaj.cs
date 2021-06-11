@@ -7,12 +7,14 @@ using iTextSharp.text;
 using System.Text;
 using System.Linq;
 using Model;
+using Projekat.Servis;
 
 namespace Projekat.Model
 {
     public class AnamnezaIzvestaj
     {
         Lekar izabranLekar = null;
+        PacijentiServis servis = new PacijentiServis();
 
         public void ExportDataTableToPdf(DataTable dtblTable, String strPdfPath, string strHeader)
         {
@@ -94,7 +96,7 @@ namespace Projekat.Model
             jacina = Encoding.UTF8.GetString(bytes2);
             tabela.Columns.Add(jacina);*/
 
-            Pacijent p = PacijentiMenadzer.PronadjiPoId(izabranTermin.Pacijent.IdPacijenta);
+            Pacijent p = servis.PronadjiPoId(izabranTermin.Pacijent.IdPacijenta);
 
 
 

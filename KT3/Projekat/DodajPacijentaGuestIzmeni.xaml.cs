@@ -25,6 +25,8 @@ namespace Projekat
         public bool flag2 = false;
         public bool flag3 = false;
         public IzmeniTerminSekretar izmenaTermina;
+        PacijentiMenadzer menadzer = new PacijentiMenadzer();
+        PacijentiServis servis = new PacijentiServis();
 
         public DodajPacijentaGuestIzmeni(IzmeniTerminSekretar terminSekretar)
         {
@@ -37,10 +39,10 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             pol pol = PacijentiServis.OdreditiPolPacijenta(polPacijenta.Text);
-            Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, statusNaloga.Guest);
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            Pacijent guestPacijent = new Pacijent(servis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, statusNaloga.Guest);
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             pacijenti.Add(guestPacijent);
-            PacijentiServis.SacuvajIzmenePacijenta();
+            menadzer.SacuvajIzmene("pacijenti.xml", pacijenti);
 
             izmenaTermina.pacijenti.Text = guestPacijent.ImePacijenta + " " + guestPacijent.PrezimePacijenta;
             izmenaTermina.AzurirajListuPacijenata();
@@ -59,7 +61,7 @@ namespace Projekat
             long result;
             if (long.TryParse(jmbg.Text, out result))
             {
-                if (!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text)))
+                if (!servis.JedinstvenJmbg(long.Parse(jmbg.Text)))
                 {
                     MessageBox.Show("JMBG vec postoji");
                     jmbg.Text = "";

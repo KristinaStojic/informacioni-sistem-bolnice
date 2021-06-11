@@ -20,6 +20,7 @@ namespace Model
     public class TerminMenadzer
     {
         public static int index;
+        ObavestenjaServis servis = new ObavestenjaServis();
         public static void ZakaziTermin(Termin termin)
         {
             termini.Add(termin);
@@ -30,22 +31,22 @@ namespace Model
             //PrikaziTerminSekretar.TerminiSekretar.Add(termin);
         }
 
-        public static void ZakaziTerminSekretar(Termin termin)
+        public void ZakaziTerminSekretar(Termin termin)
         {
             termini.Add(termin);
             PrikaziTerminSekretar.TerminiSekretar.Add(termin);
 
             // notifikacije 
-            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
+            int idObavestenja = servis.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Zakazan termin u prostoriji" + " " + termin.Prostorija.brojSale + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
-            ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaServis.sacuvajIzmene();
+            servis.DodajObavestenjeSekretar(o);
+            //ObavestenjaServis.sacuvajIzmene();
         }
 
         // hitan slucaj
-        public static void ZakaziHitanTermin(Termin hitanTermin, string datum)
+        public void ZakaziHitanTermin(Termin hitanTermin, string datum)
         {
             ZakaziTerminSekretar(hitanTermin);
 
@@ -175,7 +176,7 @@ namespace Model
 
         }
 
-        public static void IzmeniTerminSekretar(Termin stariTermin, Termin noviTermin)
+        public void IzmeniTerminSekretar(Termin stariTermin, Termin noviTermin)
         {
             foreach (Termin t in termini)
             {
@@ -237,12 +238,12 @@ namespace Model
             }
 
             // notifikacija 
-            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
+            int idObavestenja = servis.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(stariTermin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, stariTermin.Datum, stariTermin.tipTermina.ToString(), "Izmenjen termin u prostoriji" + " " + stariTermin.Prostorija.brojSale + ", " + stariTermin.VremePocetka + "- " + stariTermin.VremeKraja, ListaIdPacijenata, stariTermin.Lekar.IdLekara, true, "");
-            ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaServis.sacuvajIzmene();
+            servis.DodajObavestenjeSekretar(o);
+            //ObavestenjaServis.sacuvajIzmene();
         }
 
         public static void OtkaziTermin(Termin termin)
@@ -277,8 +278,7 @@ namespace Model
             PrikaziTermin.Termini.Remove(termin);
         }
 
-
-        public static void OtkaziTerminSekretar(Termin termin)
+        public void OtkaziTerminSekretar(Termin termin)
         {
             int id = termin.Prostorija.Id;
             for (int i = 0; i < termini.Count; i++)
@@ -312,12 +312,12 @@ namespace Model
             TerminMenadzer.sacuvajIzmene();
 
             // notifikacija
-            int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
+            int idObavestenja = servis.GenerisanjeIdObavestenja();
             List<int> ListaIdPacijenata = new List<int>();
             ListaIdPacijenata.Add(termin.Pacijent.IdPacijenta);
             Obavestenja o = new Obavestenja(idObavestenja, termin.Datum, termin.tipTermina.ToString(), "Otkazan termin" + ", " + termin.VremePocetka + "- " + termin.VremeKraja, ListaIdPacijenata, termin.Lekar.IdLekara, true, "");
-            ObavestenjaMenadzer.obavestenja.Add(o);
-            ObavestenjaServis.sacuvajIzmene();
+            servis.DodajObavestenjeSekretar(o);
+            //ObavestenjaServis.sacuvajIzmene();
         }
 
         public static void OtkaziTerminLekar(Termin termin)

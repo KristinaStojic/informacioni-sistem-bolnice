@@ -81,6 +81,9 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net40\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Compression.Base, Version=19.1400.0.65, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Compression.Base.19.1.0.65\lib\net40\Syncfusion.Compression.Base.dll</HintPath>
       <Private>True</Private>
@@ -129,14 +132,8 @@
     <Compile Include="DetaljiAlergena.xaml.cs">
       <DependentUpon>DetaljiAlergena.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DetaljiAlergenaSekretar.xaml.cs">
-      <DependentUpon>DetaljiAlergenaSekretar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DetaljiAnamneze.xaml.cs">
       <DependentUpon>DetaljiAnamneze.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DetaljiAnamnezeSekretar.xaml.cs">
-      <DependentUpon>DetaljiAnamnezeSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="DetaljiLabUputaPacijent.xaml.cs">
       <DependentUpon>DetaljiLabUputaPacijent.xaml</DependentUpon>
@@ -149,9 +146,6 @@
     </Compile>
     <Compile Include="DetaljiUputaPacijent.xaml.cs">
       <DependentUpon>DetaljiUputaPacijent.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DetaljiUputaSekretar.xaml.cs">
-      <DependentUpon>DetaljiUputaSekretar.xaml</DependentUpon>
     </Compile>
     <Compile Include="DodajAlergene.xaml.cs">
       <DependentUpon>DodajAlergene.xaml</DependentUpon>
@@ -288,6 +282,8 @@
     <Compile Include="Model\AnamnezaIzvestaj.cs" />
     <Compile Include="Model\Anketa.cs" />
     <Compile Include="Model\AnketaMenadzer.cs" />
+    <Compile Include="Model\ISerialization.cs" />
+    <Compile Include="Model\JSONSerialization.cs" />
     <Compile Include="Model\Krevet.cs" />
     <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekariMenadzer.cs" />
@@ -312,6 +308,7 @@
     <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ValidacijaLekar.cs" />
     <Compile Include="Model\ValidacijaSekretar.cs" />
+    <Compile Include="Model\XMLSerialization.cs" />
     <Compile Include="Model\ZahtevZaGodisnji.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />
@@ -582,7 +579,6 @@
     <Compile Include="Servis\AnketeZaLekaraServis.cs" />
     <Compile Include="Servis\IAnketeServis.cs" />
     <Compile Include="Servis\IMalicioznoPonasanje.cs" />
-    <Compile Include="Servis\IzmjenaKolicineStatickeServis.cs" />
     <Compile Include="Servis\IzmjenaKolicineOpremeServis.cs" />
     <Compile Include="Servis\LekariServis.cs" />
     <Compile Include="Servis\LekoviServis.cs" />
@@ -718,15 +714,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DetaljiAlergenaSekretar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DetaljiAnamneze.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DetaljiAnamnezeSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -743,10 +731,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DetaljiUputaPacijent.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DetaljiUputaSekretar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

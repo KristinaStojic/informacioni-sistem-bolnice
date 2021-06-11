@@ -36,6 +36,7 @@ namespace Projekat
         public bool popunjenoBolnicko = false;
 
         public bool popunjenoLab = false;
+        ZdravstveniKartonServis servis = new ZdravstveniKartonServis();
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -111,17 +112,17 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             if (popunjeno) { 
-                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                int idUputa = servis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
                 int idSpecijaliste = NadjiIDSpecijaliste();
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
-                ZdravstveniKartonServis.DodajUput(noviUput);
+                servis.DodajUput(noviUput);
 
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+               // PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
             }
@@ -281,7 +282,7 @@ namespace Projekat
             }
             else if (popunjeno == true)
             {
-                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                int idUputa = servis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaPregelda.Text;
                 string datumPocetka = NadjiDatumPocetkaLecenja();
                 string datumKraja = NadjiDatumKrajaLecenja();
@@ -290,10 +291,10 @@ namespace Projekat
                 Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
                 zauzmiKrevet(Soba, Krevet);
-                ZdravstveniKartonServis.DodajUput(noviUput);
+                servis.DodajUput(noviUput);
                 
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+                //PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }
@@ -346,17 +347,17 @@ namespace Projekat
         {
             if (popunjenoLab)
             {
-                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                int idUputa = servis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaLab.Text;
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, tipUputa, detaljiOPregledu);
                 noviUput.datumIzdavanja = datum;
-                ZdravstveniKartonServis.DodajUput(noviUput);
+                servis.DodajUput(noviUput);
                
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+                //PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
             }

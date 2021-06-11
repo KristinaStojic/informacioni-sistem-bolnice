@@ -13,6 +13,7 @@ namespace Projekat.Servis
     public class LekariServis
     {
         public const int BROJ_NEDELJA_ZA_TRI_MESECA = 12;
+        LekariMenadzer menadzer = new LekariMenadzer();
 
         #region Lekari
         public static void DodajLekara(Lekar noviLekar)
@@ -25,9 +26,9 @@ namespace Projekat.Servis
             LekariMenadzer.IzmeniLekara(stariLekar, noviLekar);
         }
 
-        public static void ObrisiLekara(Lekar lekar)
+        public void ObrisiLekara(Lekar lekar)
         {
-            LekariMenadzer.ObrisiLekara(lekar);
+            menadzer.ObrisiLekara(lekar);
         }
 
         public static List<Lekar> NadjiSveLekare()

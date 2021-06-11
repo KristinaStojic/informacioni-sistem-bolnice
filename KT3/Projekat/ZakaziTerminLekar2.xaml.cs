@@ -62,6 +62,8 @@ namespace Projekat
         public static ObservableCollection<string> sviSlobodniTerminiKraj { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTermini { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTerminiKraj { get; set; }
+        PacijentiServis servis = new PacijentiServis();
+
         public ZakaziTerminLekar2(int id)
         {
             InitializeComponent();
@@ -125,7 +127,7 @@ namespace Projekat
 
         private void popuniTabelePodacima()
         {
-            this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
+            this.listaPacijenata.ItemsSource = servis.pacijenti();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
@@ -785,7 +787,7 @@ namespace Projekat
                     l.BrojOperacija++;
                 }
 
-                Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+                Pacijent pacijent = servis.PronadjiPoId(Pacijent.IdPacijenta);
                 Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;
                 if (this.hitno.IsChecked == true)
