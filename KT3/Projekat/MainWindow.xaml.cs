@@ -30,6 +30,8 @@ namespace Projekat
         public static ObservableCollection<Alergeni> alergeni;
         public static ObservableCollection<ZahtevZaLekove> zahtevi;
         public static ObservableCollection<Krevet> kreveti;
+
+        ObavestenjaServis servis = new ObavestenjaServis();
         public MainWindow()
         {
             InitializeComponent();
@@ -39,10 +41,11 @@ namespace Projekat
             LekoviServis.NadjiSveLijekove();
             PremjestajServis.NadjiSvePremjestaje();
             PacijentiServis.PronadjiSve();
-            ObavestenjaServis.NadjiSvaObavestenja();
+            //ObavestenjaServis.NadjiSvaObavestenja();
             LekariServis.NadjiSveZahteve();
             LekariServis.NadjiSveLekare();
             LekoviServis.NadjiSveZahteve();
+            servis.NadjiSvaObavestenja();
 
             /*lekari = new ObservableCollection<Lekar>();
             lekari.Add(new Lekar() {IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa }) ;

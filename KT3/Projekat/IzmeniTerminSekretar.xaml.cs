@@ -34,6 +34,7 @@ namespace Projekat
         public static ObservableCollection<string> SlobodnoVremePocetka { get; set; }
         public static ObservableCollection<string> SlobodnoVremeKraja { get; set; }
 
+        TerminiSekretarServis servis = new TerminiSekretarServis();
         public IzmeniTerminSekretar(Termin izabraniTermin)
         {
             InitializeComponent();
@@ -584,7 +585,7 @@ namespace Projekat
                 }
             }
 
-            TerminiSekretarServis.IzmeniTerminSekretar(termin, izmenjeniTermin);
+            servis.IzmeniTerminSekretar(termin, izmenjeniTermin);
             ZauzeceSale z = new ZauzeceSale(vp, vk, dat, termin.IdTermin);
             Sala.zauzetiTermini.Add(z);
 

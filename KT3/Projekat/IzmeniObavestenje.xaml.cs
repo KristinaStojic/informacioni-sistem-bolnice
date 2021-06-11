@@ -24,6 +24,7 @@ namespace Projekat
         bool flag1 = false;
         bool flag2 = false;
         public Obavestenja obavestenje;
+        ObavestenjaServis servis = new ObavestenjaServis();
 
         public IzmeniObavestenje(Obavestenja selektovanoObavestenje)
         {
@@ -45,7 +46,7 @@ namespace Projekat
         {
             naslov.Text = selektovanoObavestenje.TipObavestenja;
             sadrzaj.Text = selektovanoObavestenje.SadrzajObavestenja;
-            namena.SelectedIndex = ObavestenjaServis.OdrediIndeksIzabranogObavestenja(selektovanoObavestenje);
+            namena.SelectedIndex = servis.OdrediIndeksIzabranogObavestenja(selektovanoObavestenje);
 
             if (!selektovanoObavestenje.Oznaka.Equals("specificni pacijenti"))
             {
@@ -70,12 +71,12 @@ namespace Projekat
         {
             int idLekara = 0;
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
-            List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
+            string oznaka = servis.OdrediOznakuObavestenja(namena.Text);
+            List<int> selektovaniPacijentiId = servis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
             Obavestenja novoObavestenje = new Obavestenja(obavestenje.IdObavestenja, datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-            ObavestenjaServis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
-            ObavestenjaServis.sacuvajIzmene();
+            servis.IzmeniObavestenjeSekretar(obavestenje, novoObavestenje);
+            //ObavestenjaServis.sacuvajIzmene();
 
             this.Close();
         }

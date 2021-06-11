@@ -24,6 +24,7 @@ namespace Projekat
     {
         bool flag1 = false;
         bool flag2 = false;
+        ObavestenjaServis servis = new ObavestenjaServis();
         public DodajObavestenje()
         {
             InitializeComponent();
@@ -62,12 +63,12 @@ namespace Projekat
         {
             int idLekara = 0;
             String datum = DateTime.Now.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
-            List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
+            string oznaka = servis.OdrediOznakuObavestenja(namena.Text);
+            List<int> selektovaniPacijentiId = servis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
-            Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-            ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
-            ObavestenjaServis.sacuvajIzmene();   
+            Obavestenja novoObavestenje = new Obavestenja(servis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
+            servis.DodajObavestenjeSekretar(novoObavestenje);
+            //ObavestenjaServis.sacuvajIzmene();   
             
             this.Close();
         }

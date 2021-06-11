@@ -7,6 +7,7 @@ namespace Projekat.Servis
     public class PacijentiServis
     {
         #region Pacijent Menadzer
+        PacijentiMenadzer menadzer = new PacijentiMenadzer();
         public static void DodajNalog(Pacijent noviNalog)
         {
             PacijentiMenadzer.DodajNalog(noviNalog);
@@ -23,9 +24,9 @@ namespace Projekat.Servis
             PacijentiMenadzer.IzmeniNalogPacijent(stari, nalog);
         }
 
-        public static void ObrisiNalog(Pacijent nalog)
+        public void ObrisiNalog(Pacijent nalog)
         {
-            PacijentiMenadzer.ObrisiNalog(nalog);
+            menadzer.ObrisiNalog(nalog);
         }
 
         public static List<Pacijent> PronadjiSve()

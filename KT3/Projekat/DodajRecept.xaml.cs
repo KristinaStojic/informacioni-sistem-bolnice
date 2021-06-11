@@ -29,7 +29,7 @@ namespace Projekat
         public bool flagSati = false;
         public bool flagMinuti = false;
         public bool flagLek = false;
-
+        ObavestenjaServis servis = new ObavestenjaServis();
         
         public DodajRecept(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
@@ -123,7 +123,7 @@ namespace Projekat
             TerminServis.sacuvajIzmene();
             PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
-            ObavestenjaServis.sacuvajIzmene();
+            //ObavestenjaServis.sacuvajIzmene();
         }
 
         private List<DateTime> GenerisiUzimanjeTerapije(string datumPregleda,int kolicinaNaDan, int kolikoDana)
@@ -154,9 +154,9 @@ namespace Projekat
             {
                 List<int> lista = new List<int>();
                 lista.Add(pacijent.IdPacijenta);
-                int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
+                int idObavestenja = servis.GenerisanjeIdObavestenja();
                 Obavestenja ob = new Obavestenja(idObavestenja, dt.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka, lista, true);  // dodat flag da je notifikacija
-                ObavestenjaMenadzer.obavestenja.Add(ob);
+                servis.DodajObavestenjeSekretar(ob);
             }
         }
 

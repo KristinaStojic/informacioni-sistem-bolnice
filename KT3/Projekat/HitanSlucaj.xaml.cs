@@ -60,6 +60,7 @@ namespace Projekat
         string noviMinuti;
         string noviSati;
 
+        TerminiSekretarServis servis = new TerminiSekretarServis();
         public HitanSlucaj()
         {
             InitializeComponent();
@@ -75,7 +76,7 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             DodeliLekaraZaHitanTermin();
-            TerminiSekretarServis.ZakaziHitanTermin(hitanTermin, datum);
+            servis.ZakaziHitanTermin(hitanTermin, datum);
             this.Close();
         }
 
@@ -154,8 +155,8 @@ namespace Projekat
                 noviLekar = stariTermin.Lekar;
 
                 Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);
-                TerminiSekretarServis.OtkaziTerminSekretar(stariTermin);
-                TerminiSekretarServis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
+                servis.OtkaziTerminSekretar(stariTermin);
+                servis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
                 potvrdiDugme.IsEnabled = true;               
             }
         }

@@ -33,7 +33,7 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminServis.sacuvajIzmene();
-            ObavestenjaServis.sacuvajIzmene();
+            //ObavestenjaServis.sacuvajIzmene();
             ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
             proxy.sacuvajIzmene();
             TerminServisLekar.sacuvajIzmene();

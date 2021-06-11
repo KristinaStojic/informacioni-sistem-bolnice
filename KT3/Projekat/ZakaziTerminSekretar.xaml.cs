@@ -44,6 +44,7 @@ namespace Projekat
         public static ObservableCollection<string> pomocnaSviSlobodniTerminiKraj { get; set; }
         public static ObservableCollection<string> pomocna { get; set; }
 
+        TerminiSekretarServis servis = new TerminiSekretarServis();
         public ZakaziTerminSekretar()
         {
             InitializeComponent();
@@ -173,7 +174,7 @@ namespace Projekat
             // TODO: premesti u TerminMenadzer
             if (Sala.zauzetiTermini.Count != 0)  // ako postoje zauzeti termini
             {
-                TerminiSekretarServis.ZakaziTerminSekretar(t);
+                servis.ZakaziTerminSekretar(t);
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 
@@ -195,7 +196,7 @@ namespace Projekat
             }
             else  // ako ne postoje zauzeti termini
             {
-                TerminiSekretarServis.ZakaziTerminSekretar(t);
+                servis.ZakaziTerminSekretar(t);
                 ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                 Sala.zauzetiTermini.Add(z);
 

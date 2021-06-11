@@ -16,9 +16,10 @@ using Projekat.Servis;
 
 namespace Model
 {
-    public static class PacijentiMenadzer
+    public class PacijentiMenadzer
     {
         public static List<Pacijent> pacijenti = new List<Pacijent>();
+        ObavestenjaServis servis = new ObavestenjaServis();
 
         public static void DodajNalog(Pacijent noviNalog)
         {
@@ -95,19 +96,19 @@ namespace Model
             }
         }
 
-        public static void ObrisiObavestenjaPacijenta(Pacijent nalog)
+        public void ObrisiObavestenjaPacijenta(Pacijent nalog)
         {
-            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja.ToList())
+            foreach (Obavestenja obavestenje in servis.NadjiSvaObavestenja())
             {
                 if (obavestenje.ListaIdPacijenata.Contains(nalog.IdPacijenta) && obavestenje.ListaIdPacijenata.Count == 1)
                 {
-                    ObavestenjaServis.ObrisiObavestenje(obavestenje);
-                    ObavestenjaServis.sacuvajIzmene();
+                    servis.ObrisiObavestenje(obavestenje);
+                    //ObavestenjaServis.sacuvajIzmene();
                 }
                 else if (obavestenje.ListaIdPacijenata.Contains(nalog.IdPacijenta) && obavestenje.ListaIdPacijenata.Count > 1)
                 {
                     obavestenje.ListaIdPacijenata.Remove(nalog.IdPacijenta);
-                    ObavestenjaServis.sacuvajIzmene();
+                   // ObavestenjaServis.sacuvajIzmene();
                 }
             }
         }
@@ -136,7 +137,7 @@ namespace Model
             }
         }
 
-        public static void ObrisiNalog(Pacijent nalog)
+        public void ObrisiNalog(Pacijent nalog)
         {
             ObrisiObavestenjaPacijenta(nalog);            
 

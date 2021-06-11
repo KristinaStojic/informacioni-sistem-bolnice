@@ -59,7 +59,7 @@ namespace Projekat.ViewModel
         private ObservableCollection<Obavestenja> obavestenja;
         public ObservableCollection<Obavestenja> Obavestenja { get { return obavestenja; } set { obavestenja = value; OnPropertyChanged("Obavestenja"); } }
         #endregion
-
+        ObavestenjaServis servis = new ObavestenjaServis();
         #region Konstruktor
         public UpravnikViewModel()
         {
@@ -85,7 +85,7 @@ namespace Projekat.ViewModel
         private void dodajObavjestenja()
         {
             Obavestenja = new ObservableCollection<Obavestenja>();
-            foreach (Obavestenja obavjestenja in ObavestenjaServis.NadjiSvaObavestenja())
+            foreach (Obavestenja obavjestenja in servis.NadjiSvaObavestenja())
             {
                 if (obavjestenja.Oznaka.Equals("svi") || obavjestenja.Oznaka.Equals("upravnici"))
                 {
