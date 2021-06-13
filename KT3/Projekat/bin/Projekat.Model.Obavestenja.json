@@ -1,0 +1,891 @@
+[
+  {
+    "$id": "1",
+    "IdObavestenja": 2,
+    "TipObavestenja": "Pregled",
+    "SadrzajObavestenja": "Zakazan termin u prostoriji 3, 08:00- 10:30",
+    "Datum": "06/23/2021",
+    "ListaIdPacijenata": [
+      6
+    ],
+    "IdLekara": 3,
+    "Oznaka": "",
+    "Notifikacija": true
+  },
+  {
+    "$id": "2",
+    "IdObavestenja": 5,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/09/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "3",
+    "IdObavestenja": 6,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/09/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "4",
+    "IdObavestenja": 7,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/09/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "5",
+    "IdObavestenja": 8,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/09/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "6",
+    "IdObavestenja": 9,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/10/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "7",
+    "IdObavestenja": 10,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/10/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "8",
+    "IdObavestenja": 11,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/10/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "9",
+    "IdObavestenja": 12,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/10/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "10",
+    "IdObavestenja": 13,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/10/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "11",
+    "IdObavestenja": 14,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/10/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "12",
+    "IdObavestenja": 15,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/11/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "13",
+    "IdObavestenja": 16,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/11/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "14",
+    "IdObavestenja": 17,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/11/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "15",
+    "IdObavestenja": 18,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/11/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "16",
+    "IdObavestenja": 19,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/11/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "17",
+    "IdObavestenja": 20,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/11/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "18",
+    "IdObavestenja": 21,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/12/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "19",
+    "IdObavestenja": 22,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/12/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "20",
+    "IdObavestenja": 23,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/12/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "21",
+    "IdObavestenja": 24,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/12/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "22",
+    "IdObavestenja": 25,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/12/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "23",
+    "IdObavestenja": 26,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/12/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "24",
+    "IdObavestenja": 27,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/13/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "25",
+    "IdObavestenja": 28,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/13/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "26",
+    "IdObavestenja": 29,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/13/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "27",
+    "IdObavestenja": 30,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/13/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "28",
+    "IdObavestenja": 31,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/13/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "29",
+    "IdObavestenja": 32,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/13/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "30",
+    "IdObavestenja": 33,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/14/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "31",
+    "IdObavestenja": 34,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/14/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "32",
+    "IdObavestenja": 35,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/14/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "33",
+    "IdObavestenja": 36,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/14/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "34",
+    "IdObavestenja": 37,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/14/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "35",
+    "IdObavestenja": 38,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/14/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "36",
+    "IdObavestenja": 39,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/15/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "37",
+    "IdObavestenja": 40,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/15/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "38",
+    "IdObavestenja": 41,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: analgin",
+    "Datum": "09/15/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "39",
+    "IdObavestenja": 42,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/09/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "40",
+    "IdObavestenja": 43,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/09/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "41",
+    "IdObavestenja": 44,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/09/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "42",
+    "IdObavestenja": 45,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/09/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "43",
+    "IdObavestenja": 46,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/10/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "44",
+    "IdObavestenja": 47,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/10/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "45",
+    "IdObavestenja": 48,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/10/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "46",
+    "IdObavestenja": 49,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/10/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "47",
+    "IdObavestenja": 50,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/10/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "48",
+    "IdObavestenja": 51,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/10/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "49",
+    "IdObavestenja": 52,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/11/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "50",
+    "IdObavestenja": 53,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/11/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "51",
+    "IdObavestenja": 54,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/11/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "52",
+    "IdObavestenja": 55,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/11/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "53",
+    "IdObavestenja": 56,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/11/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "54",
+    "IdObavestenja": 57,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/11/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "55",
+    "IdObavestenja": 58,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/12/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "56",
+    "IdObavestenja": 59,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/12/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "57",
+    "IdObavestenja": 60,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/12/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "58",
+    "IdObavestenja": 61,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/12/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "59",
+    "IdObavestenja": 62,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/12/2021 18:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "60",
+    "IdObavestenja": 63,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/12/2021 22:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "61",
+    "IdObavestenja": 64,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/13/2021 02:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "62",
+    "IdObavestenja": 65,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/13/2021 06:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "63",
+    "IdObavestenja": 66,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/13/2021 10:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "64",
+    "IdObavestenja": 67,
+    "TipObavestenja": "Terapija",
+    "SadrzajObavestenja": "Uzmite terapiju: brufen",
+    "Datum": "09/13/2021 14:00",
+    "ListaIdPacijenata": [
+      5
+    ],
+    "IdLekara": 0,
+    "Oznaka": " ",
+    "Notifikacija": true
+  },
+  {
+    "$id": "65",
+    "IdObavestenja": 69,
+    "TipObavestenja": "Pregled",
+    "SadrzajObavestenja": "Otkazan termin, 09:30- 11:00",
+    "Datum": "10/10/2022",
+    "ListaIdPacijenata": [
+      1
+    ],
+    "IdLekara": 1,
+    "Oznaka": "",
+    "Notifikacija": true
+  },
+  {
+    "$id": "66",
+    "IdObavestenja": 70,
+    "TipObavestenja": "GGGGG",
+    "SadrzajObavestenja": "LLLLL",
+    "Datum": "06/11/2021",
+    "ListaIdPacijenata": [],
+    "IdLekara": 0,
+    "Oznaka": "svi",
+    "Notifikacija": false
+  },
+  {
+    "$id": "67",
+    "IdObavestenja": 1,
+    "TipObavestenja": "JJJJJ",
+    "SadrzajObavestenja": "hhh",
+    "Datum": "06/11/2021",
+    "ListaIdPacijenata": [],
+    "IdLekara": 0,
+    "Oznaka": "svi",
+    "Notifikacija": false
+  },
+  {
+    "$id": "68",
+    "IdObavestenja": 3,
+    "TipObavestenja": "NOVO",
+    "SadrzajObavestenja": "NOVO",
+    "Datum": "06/11/2021",
+    "ListaIdPacijenata": [],
+    "IdLekara": 0,
+    "Oznaka": "svi",
+    "Notifikacija": false
+  },
+  {
+    "$id": "69",
+    "IdObavestenja": 4,
+    "TipObavestenja": "MMM",
+    "SadrzajObavestenja": "MM",
+    "Datum": "06/11/2021",
+    "ListaIdPacijenata": [],
+    "IdLekara": 0,
+    "Oznaka": "svi",
+    "Notifikacija": false
+  }
+]
