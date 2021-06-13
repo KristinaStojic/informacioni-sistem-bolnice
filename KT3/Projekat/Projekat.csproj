@@ -216,6 +216,10 @@
     <Compile Include="HitanSlucajDodajGuest.xaml.cs">
       <DependentUpon>HitanSlucajDodajGuest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfejsi\BolnickoLecenje.cs" />
+    <Compile Include="Interfejsi\ITipUputa.cs" />
+    <Compile Include="Interfejsi\Laboratorija.cs" />
+    <Compile Include="Interfejsi\SpecijalistickiPregled.cs" />
     <Compile Include="IzmeniLekara.xaml.cs">
       <DependentUpon>IzmeniLekara.xaml</DependentUpon>
     </Compile>

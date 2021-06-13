@@ -180,13 +180,6 @@
         <datumKrajaTermina>12/30/2021</datumKrajaTermina>
         <idTermina>13</idTermina>
       </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>08:30</pocetakTermina>
-        <krajTermina>09:30</krajTermina>
-        <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
-        <datumKrajaTermina>10/10/2022</datumKrajaTermina>
-        <idTermina>16</idTermina>
-      </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />
   </Sala>
@@ -493,13 +486,6 @@
         <datumPocetkaTermina>10/21/2021</datumPocetkaTermina>
         <datumKrajaTermina>10/21/2021</datumKrajaTermina>
         <idTermina>17</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
-        <pocetakTermina>07:30</pocetakTermina>
-        <krajTermina>08:00</krajTermina>
-        <datumPocetkaTermina>12/15/2021</datumPocetkaTermina>
-        <datumKrajaTermina>12/15/2021</datumKrajaTermina>
-        <idTermina>12</idTermina>
       </ZauzeceSale>
     </zauzetiTermini>
     <Kreveti />

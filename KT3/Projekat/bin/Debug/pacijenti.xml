@@ -329,9 +329,31 @@
           <brojKreveta>0</brojKreveta>
           <TipUputa>SpecijalistickiPregled</TipUputa>
         </Uput>
+        <Uput>
+          <IdUputa>4</IdUputa>
+          <idPacijenta>2</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>1</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>10/10/2021</datumIzdavanja>
+          <opisPregleda>ddd</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
+        <Uput>
+          <IdUputa>5</IdUputa>
+          <idPacijenta>2</idPacijenta>
+          <IdLekaraKojiIzdajeUput>1</IdLekaraKojiIzdajeUput>
+          <IdLekaraKodKogSeUpucuje>1</IdLekaraKodKogSeUpucuje>
+          <datumIzdavanja>10/10/2021</datumIzdavanja>
+          <opisPregleda>sasa</opisPregleda>
+          <brojSobe>0</brojSobe>
+          <brojKreveta>0</brojKreveta>
+          <TipUputa>SpecijalistickiPregled</TipUputa>
+        </Uput>
       </Uputi>
       <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>2</brojSpecijalistickihUputa>
+      <brojSpecijalistickihUputa>4</brojSpecijalistickihUputa>
       <brojBolnickihUputa>0</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>

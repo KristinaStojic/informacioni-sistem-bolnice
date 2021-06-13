@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Interfejsi;
 using Projekat.Model;
 using Projekat.Servis;
 using System;
@@ -118,6 +119,12 @@ namespace Projekat
                 tipUputa tipUputa = NadjiTipUputa();
 
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
+                
+                /*INTERFEJS
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum);
+                postaviTipUputa(noviUput);
+                */
+
                 ZdravstveniKartonServis.DodajUput(noviUput);
 
                 TerminServisLekar.sacuvajIzmene();
@@ -130,6 +137,23 @@ namespace Projekat
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        /*private void postaviTipUputa(Uput uput)
+        {
+            string selektovaniTab = (string)(uputi.SelectedItem as TabItem).Header;
+            if (selektovaniTab.Equals("Specijalistički pregled"))
+            {
+                uput.TipUputa = new SpecijalistickiPregled();
+            }
+            else if (selektovaniTab.Equals("Laboratorija"))
+            {
+                uput.TipUputa = new Laboratorija();
+            }
+            else if (selektovaniTab.Equals("Bolničko lečenje"))
+            {
+                uput.TipUputa = new BolnickoLecenje();
+            }
+        }*/
 
         private int NadjiIDSpecijaliste()
         {
