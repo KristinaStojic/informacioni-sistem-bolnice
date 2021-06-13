@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using Projekat.Interfejsi;
 using Projekat.Model;
 using Projekat.Servis;
 using static Model.Termin;
@@ -111,21 +112,41 @@ namespace Projekat
             String vremePocetka = vpp.Text;
             String vremeKraja = TerminServis.IzracunajVremeKrajaPregleda(vremePocetka);
             TipTermina tipTermina = TipTermina.Pregled;
-            
+
             termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja, tipTermina);
+           
+            //termin = new Termin(brojTermina, datumTermina, vremePocetka, vremeKraja);
+            //termin.tipTermina = TipTermina.Pregled;
+            if (combo.SelectedIndex == 0 || combo.SelectedIndex == 1)
+            {
+                termin.tiptermina = new Pregled();
+            }
+            /*Samo ovo je potrebno izmjeniti kad se dodaje novi tip*/
+
+
             Pacijent pacijent = PacijentiServis.PronadjiPoId(idPacijent);
             termin.Pacijent = pacijent;
             termin.Lekar = izabraniLekar;
-            if (tipTermina.Equals(TipTermina.Pregled))
+            /*if (tipTermina.Equals(TipTermina.Pregled))
             {
                 termin.Lekar.BrojPregleda++;
             }
             else if (tipTermina.Equals(TipTermina.Operacija))
             {
                 termin.Lekar.BrojOperacija++;
-            }
-            SaleServis.DodajZauzeceSale(termin, prvaSlobodnaSala);
-            termin.Prostorija = prvaSlobodnaSala;
+            }*/
+            //SaleServis.DodajZauzeceSale(termin, prvaSlobodnaSala);
+            //termin.Prostorija = prvaSlobodnaSala;
+
+
+            string selektovaniDatum = TerminServis.FormatirajSelektovaniDatum(datum.SelectedDate.Value);
+            string selektovaniSlot = vpp.SelectedValue.ToString();
+            /*SOLID*/
+            Sala sala =((ITipTermina)termin.tiptermina).pronadjiPrvuSlobodnuProstoriju(selektovaniDatum, selektovaniSlot);
+            SaleServis.DodajZauzeceSale(termin, sala);
+            termin.Prostorija = sala;
+
+           
             TerminServis.ZakaziTermin(termin);
 
             AnketaServis.DodajAnketuZaLekara(termin, idPacijent);

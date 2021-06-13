@@ -16,6 +16,7 @@ namespace Model
 
     public class Termin: INotifyPropertyChanged
     {
+        public object tiptermina { get; set; }
 
         public int IdTermin { get; set; }
         public String VremePocetka { get; set; }
@@ -114,6 +115,18 @@ namespace Model
             this.VremePocetka = vp;
             this.VremeKraja = vk;
             this.tipTermina = tp;
+            //this.Lekar = l;
+            //this.Prostorija = s;
+            //this.Pacijent = p;
+            //this.Pomeren = false;
+        }
+        
+        public Termin(int broj, String dt, String vp, String vk)
+        {
+            this.IdTermin = broj;
+            this.Datum = dt;
+            this.VremePocetka = vp;
+            this.VremeKraja = vk;
             //this.Lekar = l;
             //this.Prostorija = s;
             //this.Pacijent = p;

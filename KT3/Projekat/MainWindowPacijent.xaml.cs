@@ -30,10 +30,10 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            TerminServis.sacuvajIzmene();
+            //TerminServis.sacuvajIzmene();
             ObavestenjaServis.sacuvajIzmene();
             MalicioznoPonasanjeServis.sacuvajIzmene();
-            TerminServisLekar.sacuvajIzmene();
+            //TerminServisLekar.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
             PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();

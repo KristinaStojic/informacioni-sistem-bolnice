@@ -225,7 +225,7 @@ namespace Projekat.Servis
             }
         }
 
-        private static void DodajZauzecaSaleZaVremeRenoviranja(List<string> SviZauzetiZaSelektovaniDatum)
+        public static void DodajZauzecaSaleZaVremeRenoviranja(List<string> SviZauzetiZaSelektovaniDatum)
         {
             /* ukoliko je selektovani datum u periodu renoviranja sale - ceo dan sala je zauzeta */
             foreach (string slot in PomocnaSviSlobodniSlotovi)
@@ -234,7 +234,7 @@ namespace Projekat.Servis
             }
         }
 
-        private static void DodajZauzecaSaleZaTermine(List<string> SviZauzetiZaSelektovaniDatum, ZauzeceSale zauzeceSale)
+        public static void DodajZauzecaSaleZaTermine(List<string> SviZauzetiZaSelektovaniDatum, ZauzeceSale zauzeceSale)
         {
             /* provera za termine i renoviranje(u periodu jednog dana - nekoliko sati) */
             foreach (string slot in PomocnaSviSlobodniSlotovi)
@@ -278,7 +278,7 @@ namespace Projekat.Servis
             }
             return null;
         }
-        private static bool ProveriVremeZauzecaZaTermine(string selektovaniDatum, string selektovaniSlot, Sala sala)
+        public static bool ProveriVremeZauzecaZaTermine(string selektovaniDatum, string selektovaniSlot, Sala sala)
         {
             foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
@@ -294,7 +294,7 @@ namespace Projekat.Servis
             return false;
         }
 
-        private static bool ProveriVremeSvihZauzecaZaRenoviranje(string selektovaniDatum, int satiVreme, Sala sala)
+        public static bool ProveriVremeSvihZauzecaZaRenoviranje(string selektovaniDatum, int satiVreme, Sala sala)
         {
             foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
@@ -500,5 +500,10 @@ namespace Projekat.Servis
         }
 
         #endregion
+
+
+
+
+
     }
 }
