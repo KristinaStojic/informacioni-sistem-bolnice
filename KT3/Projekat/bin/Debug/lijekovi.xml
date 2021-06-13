@@ -59,25 +59,9 @@
   <Lek>
     <idLeka>3</idLeka>
     <nazivLeka>leksilium</nazivLeka>
-    <sifraLeka>l1</sifraLeka>
-    <zamenskiLekovi>
-      <int>5</int>
-      <int>4</int>
-    </zamenskiLekovi>
-    <sastojci>
-      <Sastojak>
-        <naziv>voda</naziv>
-        <kolicina>100</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>paracetmol </naziv>
-        <kolicina>150</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>prah</naziv>
-        <kolicina>150</kolicina>
-      </Sastojak>
-    </sastojci>
+    <sifraLeka>l11</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>4</idLeka>
@@ -101,24 +85,8 @@
     <idLeka>5</idLeka>
     <nazivLeka>Brufen</nazivLeka>
     <sifraLeka>BN</sifraLeka>
-    <zamenskiLekovi>
-      <int>4</int>
-      <int>3</int>
-    </zamenskiLekovi>
-    <sastojci>
-      <Sastojak>
-        <naziv>вода</naziv>
-        <kolicina>120</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>prah</naziv>
-        <kolicina>150</kolicina>
-      </Sastojak>
-      <Sastojak>
-        <naziv>sda</naziv>
-        <kolicina>111</kolicina>
-      </Sastojak>
-    </sastojci>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
   <Lek>
     <idLeka>7</idLeka>
@@ -191,16 +159,85 @@
   </Lek>
   <Lek>
     <idLeka>10</idLeka>
-    <nazivLeka>N1</nazivLeka>
-    <sifraLeka>S2C</sifraLeka>
-    <zamenskiLekovi>
-      <int>8</int>
-    </zamenskiLekovi>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>21</idLeka>
+    <nazivLeka>L1</nazivLeka>
+    <sifraLeka>MKS</sifraLeka>
+    <zamenskiLekovi />
     <sastojci>
       <Sastojak>
-        <naziv>MNK</naziv>
-        <kolicina>123</kolicina>
+        <naziv>SS1</naziv>
+        <kolicina>300</kolicina>
+      </Sastojak>
+      <Sastojak>
+        <naziv>MKS</naziv>
+        <kolicina>100</kolicina>
       </Sastojak>
     </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>22</idLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>23</idLeka>
+    <nazivLeka>L1 AAAAAAAAAA</nazivLeka>
+    <sifraLeka>sssssssssssssss</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>26</idLeka>
+    <nazivLeka>asd</nazivLeka>
+    <sifraLeka>asd</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>asda</naziv>
+        <kolicina>232</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>27</idLeka>
+    <nazivLeka>adsadd</nazivLeka>
+    <sifraLeka>dsad</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>adasd</naziv>
+        <kolicina>111</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>30</idLeka>
+    <nazivLeka>sddddddd</nazivLeka>
+    <sifraLeka>sds</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci>
+      <Sastojak>
+        <naziv>sd</naziv>
+        <kolicina>11</kolicina>
+      </Sastojak>
+    </sastojci>
+  </Lek>
+  <Lek>
+    <idLeka>35</idLeka>
+    <nazivLeka>yhgh</nazivLeka>
+    <sifraLeka>ghgh</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
+  </Lek>
+  <Lek>
+    <idLeka>36</idLeka>
+    <nazivLeka>fgd</nazivLeka>
+    <sifraLeka>ghhgh</sifraLeka>
+    <zamenskiLekovi />
+    <sastojci />
   </Lek>
 </ArrayOfLek>

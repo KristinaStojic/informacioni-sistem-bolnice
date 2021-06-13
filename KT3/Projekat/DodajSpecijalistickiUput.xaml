@@ -135,7 +135,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem  Header="Bolničko lečenje" Width="130" Margin="0,0,0,-2" x:Name="bolnickoLecenjeTab" KeyDown="Bolnicko_KeyDown">
+                <TabItem  Header="Bolničko lečenje" Width="130" Margin="0,0,0,-2" x:Name="bolnickoLecenjeTab" KeyDown="Bolnicko_KeyDown" IsSelected="True">
 
                     <Grid>
                         <Grid.RowDefinitions>

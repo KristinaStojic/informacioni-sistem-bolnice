@@ -37,9 +37,9 @@ namespace Projekat
         public SpisakZahtevaZaLekove()
         {
             InitializeComponent();
-            this.DataContext = this;
-            dodajZahteveUTabelu();
-            dodajLekoveUTabelu();
+            //this.DataContext = this;
+            //dodajZahteveUTabelu();
+            //dodajLekoveUTabelu();
 
         }
 
@@ -140,7 +140,8 @@ namespace Projekat
 
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        #region Precice
+        /*private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             tabZahtevi(sender,e);
             tabLekovi(sender, e);
@@ -210,11 +211,11 @@ namespace Projekat
                 }
                
             }
-        }
+        }*/
 
-        
+        #endregion
 
-       
+
 
         private void Button_Obrisi(object sender, RoutedEventArgs e)
         {

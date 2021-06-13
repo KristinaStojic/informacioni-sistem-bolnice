@@ -24,12 +24,12 @@ namespace Projekat
         public ObradiZahtevZaLek(ZahtevZaLekove izabraniZahtev)
         {
             InitializeComponent();
-            this.DataContext = this;
+            /*this.DataContext = this;
             this.zahtev = izabraniZahtev;
             this.spisakSastojaka.ItemsSource = LekoviServis.nadjiSastojke(izabraniZahtev);
             this.datum.SelectedDate = DateTime.Parse(izabraniZahtev.datumSlanjaZahteva);
             this.naziv.Text = izabraniZahtev.nazivLeka;
-            this.sifra.Text = izabraniZahtev.sifraLeka;
+            this.sifra.Text = izabraniZahtev.sifraLeka;*/
 
         }
 

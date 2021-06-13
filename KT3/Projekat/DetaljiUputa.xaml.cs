@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Interfejsi;
 using Projekat.Model;
 using Projekat.Servis;
 using System;
@@ -37,7 +38,7 @@ namespace Projekat
 
             pacijenti = servis.PronadjiSve(); 
 
-            if(izabraniUput.TipUputa == tipUputa.SpecijalistickiPregled)
+            /*if(izabraniUput.TipUputa == tipUputa.SpecijalistickiPregled)
             {
                 specijalistickiTab.IsSelected = true;
                 PopuniPodatkeUputa();
@@ -51,7 +52,7 @@ namespace Projekat
             {
                 labTab.IsSelected = true;
                 PopuniPodatkeLaboratorija();
-            }
+            }*/
 
             this.potvrdi.IsEnabled = false;
 
@@ -176,9 +177,17 @@ namespace Projekat
         {
             if (popunjeno)
             {
-                Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
+
+                //Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
+                Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda);
+                noviUput.TipUputa = new BolnickoLecenje();
+                //ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
+                PacijentiServis.SacuvajIzmenePacijenta();
+
+                //Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
                 menadzer.IzmeniUput(uput, noviUput);
                 //pacijentiMenadzer.SacuvajIzmene();
+
                 this.Close();
             }
             else

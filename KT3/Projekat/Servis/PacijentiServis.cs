@@ -107,7 +107,11 @@ namespace Projekat.Servis
 
         public void SacuvajIzmenePacijenta()
         {
+
+            //PacijentiMenadzer.SacuvajIzmenePacijenta();
+
            // menadzer.SacuvajIzmene();
+
         }
 
         public bool JedinstvenJmbg(long jmbg)

@@ -25,8 +25,8 @@ namespace Projekat
         public ObrisiSastojakLekar(Sastojak izabraniSastojak, Lek izabraniLek)
         {
             InitializeComponent();
-            this.sastojak = izabraniSastojak;
-            this.lek = izabraniLek;
+           /* this.sastojak = izabraniSastojak;
+            this.lek = izabraniLek;*/
         }
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
@@ -43,14 +43,14 @@ namespace Projekat
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Sacuvaj
+            /*if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) //Sacuvaj
             {
                 Potvrdi_Click(sender, e);
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
                 this.Close();
-            }
+            }*/
         }
     }
 }

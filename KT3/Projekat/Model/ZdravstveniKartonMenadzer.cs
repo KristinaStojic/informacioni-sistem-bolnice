@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using Model;
+using Projekat.Interfejsi;
 using Projekat.Servis;
 using System;
 using System.Collections.Generic;
@@ -301,7 +302,7 @@ namespace Projekat.Model
                 if (pacijent.IdPacijenta == uput.idPacijenta)
                 {
                     pacijent.Karton.Uputi.Add(uput);
-                    if (uput.TipUputa.Equals(tipUputa.Laboratorija))
+                    /*if (uput.TipUputa.Equals(tipUputa.Laboratorija))
                     {
                         pacijent.Karton.brojLaboratorijskihUputa++;   
                         
@@ -313,17 +314,22 @@ namespace Projekat.Model
                     else if (uput.TipUputa.Equals(tipUputa.StacionarnoLecenje))
                     {
                         pacijent.Karton.brojBolnickihUputa++;
-                    }
-                    ZdravstveniKartonLekar.TabelaUputa.Add(uput);
-                    //ZdravstveniKartonLekar.PostaviDeloveGrafika(pacijent);
-                    /*ZdravstveniKartonLekar.UkupnoLaboratorija = new ChartValues<int>() { pacijent.Karton.brojLaboratorijskihUputa };
-                    ZdravstveniKartonLekar.UkupnoSpecijalisticki = new ChartValues<int>() { pacijent.Karton.brojSpecijalistickihUputa };
-                    ZdravstveniKartonLekar.UkupnoStacionarno = new ChartValues<int>() { pacijent.Karton.brojBolnickihUputa };*/
-                    
+                    }*/
 
+                    //((ITipUputa)uput.NadjiVrstuUputaInterfejs()).povecajBrojUputa(pacijent);
+
+
+
+                    ((ITipUputa)uput.TipUputa).povecajBrojUputa(pacijent);
+                    ZdravstveniKartonLekar.TabelaUputa.Add(uput);
                 }
             }
-            menadzer.SacuvajIzmene("pacijenti.xml", lista);
+
+
+           // PacijentiServis.SacuvajIzmenePacijenta();
+
+           // menadzer.SacuvajIzmene("pacijenti.xml", lista);
+
         }
 
         public List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)

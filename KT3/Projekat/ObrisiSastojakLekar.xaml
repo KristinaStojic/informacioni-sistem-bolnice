@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
+        xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         Title="ObrisiSastojakLekar" Height="280" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewmodel:LekarLekoviViewModel/>
+    </Window.DataContext>
     <Grid KeyDown="Grid_KeyDown">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -18,8 +22,8 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="31,45,0,96" FontSize="21" Text="Da li ste sigurni da želite da obrišete " Grid.ColumnSpan="2" Height="39" Width="339"/>
 
-            <Button Grid.Column="0" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Right" Margin="0,0,25,31" Name="Potvrdi" Click="Potvrdi_Click" Grid.Row="1">Potvrdi</Button>
-            <Button Grid.Column="1" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="23,0,0,31" Click="Odustani_Click" Grid.Row="1">Odustani</Button>
+            <Button Grid.Column="0" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Right" Margin="0,0,25,31" Name="Potvrdi" Command="{Binding PotvrdiBrisanjeSastojkaKomanda}" Grid.Row="1">Potvrdi</Button>
+            <Button Grid.Column="1" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="23,0,0,31" Command="{Binding OdustaniOdBrisanjaSastojkaKomanda}" Grid.Row="1">Odustani</Button>
             <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="118,89,0,44" FontSize="21" Text="izabrani sastojak?" Grid.ColumnSpan="2" Height="47" Width="164"/>
         </Grid>
     </Grid>
