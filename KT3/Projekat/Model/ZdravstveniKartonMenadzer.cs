@@ -318,8 +318,6 @@ namespace Projekat.Model
 
                     //((ITipUputa)uput.NadjiVrstuUputaInterfejs()).povecajBrojUputa(pacijent);
 
-
-
                     ((ITipUputa)uput.TipUputa).povecajBrojUputa(pacijent);
                     ZdravstveniKartonLekar.TabelaUputa.Add(uput);
                 }

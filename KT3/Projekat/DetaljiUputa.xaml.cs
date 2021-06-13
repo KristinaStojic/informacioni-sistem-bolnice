@@ -182,7 +182,7 @@ namespace Projekat
                 Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda);
                 noviUput.TipUputa = new BolnickoLecenje();
                 //ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
-                PacijentiServis.SacuvajIzmenePacijenta();
+                //PacijentiServis.SacuvajIzmenePacijenta();
 
                 //Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
                 menadzer.IzmeniUput(uput, noviUput);

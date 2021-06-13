@@ -12,8 +12,8 @@ namespace Projekat.Interfejsi
 
         public void povecajBrojUputa(Pacijent pacijent)
         {
-
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            PacijentiServis servis = new PacijentiServis();
+            foreach (Pacijent p in servis.pacijenti())
             {
                 if (pacijent.IdPacijenta == p.IdPacijenta)
                 {

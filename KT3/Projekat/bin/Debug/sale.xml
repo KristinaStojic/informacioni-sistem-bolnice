@@ -416,16 +416,16 @@
       <Krevet>
         <IdKreveta>3</IdKreveta>
         <IdSobe>5</IdSobe>
-        <Zauzet>false</Zauzet>
-        <PocetakZauzeca>0001-01-01T00:00:00</PocetakZauzeca>
-        <KrajZauzeca>0001-01-01T00:00:00</KrajZauzeca>
+        <Zauzet>true</Zauzet>
+        <PocetakZauzeca>2021-06-14T00:00:00+02:00</PocetakZauzeca>
+        <KrajZauzeca>2021-06-17T00:00:00</KrajZauzeca>
       </Krevet>
       <Krevet>
         <IdKreveta>4</IdKreveta>
         <IdSobe>5</IdSobe>
-        <Zauzet>false</Zauzet>
-        <PocetakZauzeca>0001-01-01T00:00:00</PocetakZauzeca>
-        <KrajZauzeca>0001-01-01T00:00:00</KrajZauzeca>
+        <Zauzet>true</Zauzet>
+        <PocetakZauzeca>2021-06-14T00:00:00+02:00</PocetakZauzeca>
+        <KrajZauzeca>2021-06-24T00:00:00</KrajZauzeca>
       </Krevet>
       <Krevet>
         <IdKreveta>5</IdKreveta>
