@@ -45,7 +45,7 @@ namespace Projekat.Servis
 
         public static void SacuvajIzmenePacijenta()
         {
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            //PacijentiMenadzer.SacuvajIzmenePacijenta();
         }
 
         public static bool JedinstvenJmbg(long jmbg)

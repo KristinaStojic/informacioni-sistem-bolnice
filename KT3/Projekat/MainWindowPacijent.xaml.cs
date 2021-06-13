@@ -35,7 +35,7 @@ namespace Projekat
             MalicioznoPonasanjeServis.sacuvajIzmene();
             //TerminServisLekar.sacuvajIzmene();
             SaleServis.sacuvajIzmjene();
-            PacijentiMenadzer.SacuvajIzmenePacijenta();
+            //PacijentiMenadzer.SacuvajIzmenePacijenta();
             AnketaMenadzer.sacuvajIzmene();
             
             PrikaziTermin.pacijentProzor = false;  // nit

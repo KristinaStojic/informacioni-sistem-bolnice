@@ -40,14 +40,15 @@ namespace Projekat
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
+            this.bolnickoLecenjeTab.IsSelected = true;
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
             this.potvrdiBolnicko.IsEnabled = false;
             this.potvrdiLab.IsEnabled = false;
             this.potvrdiSpec.IsEnabled = false;
             this.potvrdiLab.IsEnabled = false;
-            PopuniPodatkePacijentaZaSpecijalistickiUput();
             PopuniPodatkePacijentaZaBolnickoLecenje();
+            PopuniPodatkePacijentaZaSpecijalistickiUput();
             PopuniPodatkeLaboratorijskiUput();
 
         }
@@ -68,7 +69,7 @@ namespace Projekat
             this.jmbg.Text = pacijent.Jmbg.ToString();
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             datum.SelectedDate = DateTime.Parse(termin.Datum);
-            specijalistickiTab.IsSelected = true;
+            //specijalistickiTab.IsSelected = true;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             view.Filter = UserFilter;
         }
@@ -118,12 +119,12 @@ namespace Projekat
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
-                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
+                //Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
                 
-                /*INTERFEJS
+                //INTERFEJS
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum);
                 postaviTipUputa(noviUput);
-                */
+                
 
                 ZdravstveniKartonServis.DodajUput(noviUput);
 
@@ -138,7 +139,8 @@ namespace Projekat
             }
         }
 
-        /*private void postaviTipUputa(Uput uput)
+        /*samo ovo treba mijenjati ako se doda novi tip uputa*/
+        private void postaviTipUputa(Uput uput)
         {
             string selektovaniTab = (string)(uputi.SelectedItem as TabItem).Header;
             if (selektovaniTab.Equals("Specijalistički pregled"))
@@ -153,7 +155,7 @@ namespace Projekat
             {
                 uput.TipUputa = new BolnickoLecenje();
             }
-        }*/
+        }
 
         private int NadjiIDSpecijaliste()
         {
@@ -312,8 +314,13 @@ namespace Projekat
                 tipUputa tipUputa = NadjiTipUputa();
                 Soba = SaleServis.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
                 Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
+                //Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
+
+                /*INTERFEJS*/
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
-                zauzmiKrevet(Soba, Krevet);
+                zauzmiKrevet(Soba, Krevet);       
+                postaviTipUputa(noviUput);
+
                 ZdravstveniKartonServis.DodajUput(noviUput);
                 
                 TerminServisLekar.sacuvajIzmene();
@@ -375,8 +382,11 @@ namespace Projekat
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
+                //INTERFEJS
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, tipUputa, detaljiOPregledu);
                 noviUput.datumIzdavanja = datum;
+                postaviTipUputa(noviUput);
+
                 ZdravstveniKartonServis.DodajUput(noviUput);
                
                 TerminServisLekar.sacuvajIzmene();

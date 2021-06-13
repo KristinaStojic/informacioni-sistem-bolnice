@@ -20,7 +20,7 @@ namespace Projekat.Interfejsi
                 }
             }
 
-            PacijentiServis.SacuvajIzmenePacijenta();
+           // PacijentiServis.SacuvajIzmenePacijenta();
 
            
         }

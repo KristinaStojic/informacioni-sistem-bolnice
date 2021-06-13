@@ -286,13 +286,16 @@ namespace Projekat.Model
                         pacijent.Karton.brojBolnickihUputa++;
                     }*/
 
-                    ((ITipUputa)uput.NadjiVrstuUputaInterfejs()).povecajBrojUputa(pacijent);
+                    //((ITipUputa)uput.NadjiVrstuUputaInterfejs()).povecajBrojUputa(pacijent);
 
+
+
+                    ((ITipUputa)uput.TipUputa).povecajBrojUputa(pacijent);
                     ZdravstveniKartonLekar.TabelaUputa.Add(uput);
                 }
             }
 
-            PacijentiServis.SacuvajIzmenePacijenta();
+           // PacijentiServis.SacuvajIzmenePacijenta();
         }
 
         public static List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
