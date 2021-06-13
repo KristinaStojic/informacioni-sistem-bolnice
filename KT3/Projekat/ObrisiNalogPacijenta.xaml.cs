@@ -22,6 +22,7 @@ namespace Projekat
     {
         Pacijent pacijent;
         PrikaziPacijenta prikaz;
+        PacijentiServis servis = new PacijentiServis();
         public ObrisiNalogPacijenta(Pacijent zaBrisanje, PrikaziPacijenta p)
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PacijentiServis.ObrisiNalog(pacijent);
+            servis.ObrisiNalog(pacijent);
             this.Close();
             prikaz.zatvoreno = true;
         }

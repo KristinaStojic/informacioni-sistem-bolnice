@@ -31,12 +31,15 @@ namespace Projekat
         public static ObservableCollection<Termin> Termini { get; set; }
         public static ObservableCollection<Obavestenja> ObavestenjaPacijent { get; set; }
         public Thread thread;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+
         public PrikaziTermin(int idPrijavljeniPacijent)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljeniPacijent;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = pacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Termini = new ObservableCollection<Termin>();
             ObavestenjaPacijent = new ObservableCollection<Obavestenja>();
@@ -46,31 +49,21 @@ namespace Projekat
             thread.Start();
 
             //Termini = TerminServis.DodajTerminePacijenta(idPacijent);
-            ObavestenjaPacijent = ObavestenjaServis.DodajObavestenja(idPacijent);
+            ObavestenjaPacijent = servis.DodajObavestenja(idPacijent);
 
             this.SvetlaTema.IsEnabled = false;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
         }
 
-        private void anketa_Click(object sender, RoutedEventArgs e)
-        {
-            PacijentWebStranice.anketa_Click(this, idPacijent);
-        }
+      
 
         public void izvrsiNit()
         {
             while (pacijentProzor == true)
             {
                 Thread.Sleep(1000);  //30000
-                ObavestenjaServis.ProveriSvaObavestenja(idPacijent, ObavestenjaPacijent);
+                servis.ProveriSvaObavestenja(idPacijent, ObavestenjaPacijent);
             }
-        }
-
-        private void generateColumns(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            colNum++;
-            if (colNum == 8) // **
-                e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void obavestenja_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -111,9 +104,13 @@ namespace Projekat
 
         private void ObrisiObavestenje_Click(object sender, RoutedEventArgs e)
         {
-            ObavestenjaServis.ObrisiSelektovanoObavestenje((Obavestenja)obavestenja.SelectedItem, ObavestenjaPacijent, Jezik);
+            servis.ObrisiSelektovanoObavestenje((Obavestenja)obavestenja.SelectedItem, ObavestenjaPacijent, Jezik);
         }
 
+        private void anketa_Click(object sender, RoutedEventArgs e)
+        {
+            PacijentWebStranice.anketa_Click(this, idPacijent);
+        }
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.odjava_Click(this);

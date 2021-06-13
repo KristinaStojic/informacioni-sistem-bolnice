@@ -17,6 +17,7 @@ using Model;
 using Projekat.Model;
 using Projekat.Servis;
 using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Tables;
 
 namespace Projekat
@@ -42,7 +43,7 @@ namespace Projekat
             this.naziv.Text = recept.NazivLeka;
             this.datum.Text = recept.DatumPropisivanjaLeka;
             this.dani.Text = recept.BrojDanaKoriscenja.ToString();
-            this.brojUzimanja.Text = recept.BrojDanaKoriscenja.ToString();
+            this.brojUzimanja.Text = recept.DnevnaKolicina.ToString();
             this.sati.Text = recept.PocetakKoriscenja.Substring(0, 2);
             this.min.Text = recept.PocetakKoriscenja.Substring(3);
 
@@ -111,26 +112,26 @@ namespace Projekat
         {
             using (PdfDocument doc = new PdfDocument())
             {
-                //Add a page to the document
+              
                 PdfPage page = doc.Pages.Add();
-
-                // Create a PdfLightTable.
                 PdfLightTable pdfLightTable = new PdfLightTable();
-
-                // Initialize DataTable to assign as DateSource to the light table.
                 DataTable table = new DataTable();
-                string naziv = " --------- Izvestaj o uzimanju terapije ---------";
-                
-                table.TableName = "Pacijent " + prijavljeniPacijent.ToString();
                 Lekar lekar = LekariServis.NadjiPoId(lekRec.IdLekara);
-                table.TableName = "Lekar " + lekar.ToString();
 
-                //Include columns to the DataTable.
-                table.Columns.Add("Naziv leka");
-                table.Columns.Add("Datum izdavanja");
-                
-                table.Rows.Add(new string[] { "  NAZIV LEKA" , "  DATUM UZIMANJA TERAPIJE(format: dd/MM/yyyy HH:mm)"});
-                //Include rows to the DataTable.
+                RectangleF boundsHeader = new RectangleF(0, 0, doc.Pages[0].GetClientSize().Width, 150);
+                PdfPageTemplateElement header = new PdfPageTemplateElement(boundsHeader);
+                doc.Template.Top = header;
+
+                PdfBrush brush = new PdfSolidBrush(System.Drawing.Color.FromArgb(255, 0, 0, 0));
+                PdfPen pen = new PdfPen(brush, 2F);
+                PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 10, PdfFontStyle.Regular);
+
+                String naslov = " IZVESTAJ ZA LEKARSKI RECEPT: " + lekRec.NazivLeka +  " - PACIJENT: " + prijavljeniPacijent.ImePacijenta + " " + prijavljeniPacijent.PrezimePacijenta  + " - LEKAR:" + lekar.ToString();
+                header.Graphics.DrawString(naslov, font, brush, 0, 125);
+                header.Graphics.DrawLine(pen, 0, 140, doc.Pages[0].GetClientSize().Width, 140);
+
+                table.Columns.Add("  Naziv leka");
+                table.Columns.Add("  Datum izdavanja");
                 if (lekRec.UzimanjeTerapije != null)
                 {
                     foreach (DateTime datumUzimanja in lekRec.UzimanjeTerapije)
@@ -139,13 +140,13 @@ namespace Projekat
                     }
                 }
 
-                //Assign data source.
                 pdfLightTable.DataSource = table;
+                pdfLightTable.Style.ShowHeader = true;
+                PdfCellStyle headerStyle = new PdfCellStyle(new PdfStandardFont(PdfFontFamily.Helvetica, 10), PdfBrushes.OrangeRed, PdfPens.Black);
+                pdfLightTable.Style.HeaderStyle = headerStyle;
 
-                //Draw PdfLightTable.
                 pdfLightTable.Draw(page, new PointF(0, 0));
 
-                //Save the document
                 string imePrezimePacijenta = prijavljeniPacijent.ImePacijenta + prijavljeniPacijent.PrezimePacijenta;
                 doc.Save("//mac/Home/Desktop/informacioni-sistem-bolnice/KT3/IzvestajTerapija-" + imePrezimePacijenta +  ".pdf");
 

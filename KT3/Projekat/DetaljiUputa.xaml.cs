@@ -24,6 +24,10 @@ namespace Projekat
     {
         Uput uput;
         bool popunjeno = false;
+        PacijentiServis servis = new PacijentiServis();
+        List<Pacijent> pacijenti;
+        ZdravstveniKartonMenadzer menadzer = new ZdravstveniKartonMenadzer();
+
         public DetaljiUputa(Uput izabraniUput)
         {
             InitializeComponent();
@@ -31,8 +35,8 @@ namespace Projekat
 
             this.potvrdi.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
-          
-           
+
+            pacijenti = servis.PronadjiSve(); 
 
             /*if(izabraniUput.TipUputa == tipUputa.SpecijalistickiPregled)
             {
@@ -66,7 +70,7 @@ namespace Projekat
 
         private void NadjiPacijentaLaboratorija(int idPacijenta)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in pacijenti)
             {
                 if (pacijent.IdPacijenta == idPacijenta)
                 {
@@ -111,7 +115,7 @@ namespace Projekat
         }
         private void NadjiPacijenta(int idPacijenta)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach(Pacijent pacijent in pacijenti)
             {
                 if(pacijent.IdPacijenta == idPacijenta)
                 {
@@ -122,7 +126,7 @@ namespace Projekat
             }
         }private void NadjiPacijentaBolnickoLecenje(int idPacijenta)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach(Pacijent pacijent in pacijenti)
             {
                 if(pacijent.IdPacijenta == idPacijenta)
                 {
@@ -173,11 +177,17 @@ namespace Projekat
         {
             if (popunjeno)
             {
+
                 //Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
                 Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda);
                 noviUput.TipUputa = new BolnickoLecenje();
-                ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
+                //ZdravstveniKartonMenadzer.IzmeniUput(uput, noviUput);
                 PacijentiServis.SacuvajIzmenePacijenta();
+
+                //Uput noviUput = new Uput(uput.IdUputa, uput.idPacijenta, uput.IdLekaraKojiIzdajeUput, uput.brojSobe, uput.brojKreveta, NadjiNoviDatumKraja(), uput.datumPocetkaLecenja, uput.datumIzdavanja, uput.opisPregleda, uput.TipUputa);
+                menadzer.IzmeniUput(uput, noviUput);
+                //pacijentiMenadzer.SacuvajIzmene();
+
                 this.Close();
             }
             else

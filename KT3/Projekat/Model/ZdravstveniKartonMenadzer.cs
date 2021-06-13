@@ -15,17 +15,19 @@ namespace Projekat.Model
     {
         public static List<ZdravstveniKarton> kartoni = new List<ZdravstveniKarton>();
         public static List<LekarskiRecept> recepti = new List<LekarskiRecept>();
+        PacijentiServis servis = new PacijentiServis();
+        PacijentiMenadzer menadzer = new PacijentiMenadzer();
 
         public static List<ZdravstveniKarton> nadjiKartone()
         {
             return kartoni;
         }
 
-        public static int GenerisanjeIdRecepta(int idPac)
+        public int GenerisanjeIdRecepta(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiServis.pacijenti())
+            foreach(Pacijent pac in servis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -48,17 +50,16 @@ namespace Projekat.Model
                     }
                 }
             }
-            
-
+           
             return id;
         
         }
         
-        public static int GenerisanjeIdAnamneze(int idPac)
+        public int GenerisanjeIdAnamneze(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiServis.pacijenti())
+            foreach(Pacijent pac in servis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -86,11 +87,11 @@ namespace Projekat.Model
             return id;
         }
         
-        public static int GenerisanjeIdAlergena(int idPac)
+        public int GenerisanjeIdAlergena(int idPac)
         {
             bool pomocna = false;
             int id = 1;
-            foreach(Pacijent pac in PacijentiServis.pacijenti())
+            foreach(Pacijent pac in servis.pacijenti())
             {
                 if(pac.IdPacijenta == idPac)
                 {
@@ -118,22 +119,24 @@ namespace Projekat.Model
             return id;
         }
 
-        public static void DodajRecept(LekarskiRecept recept)
+        public void DodajRecept(LekarskiRecept recept)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if(pacijent.IdPacijenta == recept.idPacijenta)
                 {                    
                     pacijent.Karton.LekarskiRecepti.Add(recept);
                     ZdravstveniKartonLekar.PrikazRecepata.Add(recept);
-
                 }
             }
+            menadzer.SacuvajIzmene("pacijenti.xml", lista);
         }
-        
-        public static void DodajAnamnezu(Anamneza anamneza)  
+
+        public void DodajAnamnezu(Anamneza anamneza)  
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if(pacijent.IdPacijenta == anamneza.IdPacijenta)
                 {                    
@@ -142,12 +145,13 @@ namespace Projekat.Model
                     
                 }
             }
-            PacijentiServis.SacuvajIzmenePacijenta();
+            menadzer.SacuvajIzmene("pacijenti.xml", lista);
         }
 
-        public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
+        public void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if(pacijent.IdPacijenta == stara.IdPacijenta)
                 {
@@ -163,15 +167,39 @@ namespace Projekat.Model
                 }
             }
 
-
             int idx = ZdravstveniKartonLekar.TabelaAnamneza.IndexOf(stara);
             ZdravstveniKartonLekar.TabelaAnamneza.RemoveAt(idx);
             ZdravstveniKartonLekar.TabelaAnamneza.Insert(idx, nova);
+            menadzer.SacuvajIzmene("pacijenti.xml", lista);
         }
-        
-        public static void IzmeniUput(Uput stara, Uput nova)
+
+        public void IzmeniAnamnezuPacijent(Anamneza stara, Anamneza nova)
         {
-            foreach(Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
+            {
+                if (pacijent.IdPacijenta == stara.IdPacijenta)
+                {
+                    foreach (Anamneza a in pacijent.Karton.Anamneze)
+                    {
+                        if (a.IdAnamneze == stara.IdAnamneze)
+                        {
+                            a.OpisBolesti = nova.OpisBolesti;
+                            a.Terapija = nova.Terapija;
+                            a.Datum = nova.Datum;
+                            a.Beleska = nova.Beleska;
+                        }
+                    }
+                }
+            }
+            menadzer.SacuvajIzmene("pacijenti.xml", lista);
+        }
+
+
+        public void IzmeniUput(Uput stara, Uput nova)
+        {
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if(pacijent.IdPacijenta == stara.idPacijenta)
                 {
@@ -185,15 +213,16 @@ namespace Projekat.Model
                 }
             }
 
-
             int idx = ZdravstveniKartonLekar.TabelaUputa.IndexOf(stara);
             ZdravstveniKartonLekar.TabelaUputa.RemoveAt(idx);
             ZdravstveniKartonLekar.TabelaUputa.Insert(idx, nova);
+            menadzer.SacuvajIzmene("pacijenti.xml", lista);
         }
 
-        public static void DodajAlergen(Alergeni alergen)  
+        public void DodajAlergen(Alergeni alergen)  
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if (pacijent.IdPacijenta == alergen.IdPacijenta)
                 {
@@ -201,11 +230,13 @@ namespace Projekat.Model
                     ZdravstveniKartonLekar.TabelaAlergena.Add(alergen);
                 }
             }
+            menadzer.SacuvajIzmene("pacijenti.xml", lista);
         }
 
-        public static void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
+        public void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if (pacijent.IdPacijenta == stariAlergen.IdPacijenta)
                 {
@@ -220,20 +251,18 @@ namespace Projekat.Model
                 }
             }
 
-
             int idx = ZdravstveniKartonLekar.TabelaAlergena.IndexOf(stariAlergen);
             ZdravstveniKartonLekar.TabelaAlergena.RemoveAt(idx);
             ZdravstveniKartonLekar.TabelaAlergena.Insert(idx, noviAlergen);
+            menadzer.SacuvajIzmene("pacijenti.xml", lista);
         }
 
-        
-
-
-        public static int GenerisanjeIdUputa(int idPacijenta)
+        public int GenerisanjeIdUputa(int idPacijenta)
         {
             int idUputa = 1;
 
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if (pacijent.IdPacijenta == idPacijenta)
                 {
@@ -265,9 +294,10 @@ namespace Projekat.Model
             return postojiUput;
         }
 
-        public static void DodajUput(Uput uput)
+        public void DodajUput(Uput uput)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            List<Pacijent> lista = servis.pacijenti();
+            foreach (Pacijent pacijent in lista)
             {
                 if (pacijent.IdPacijenta == uput.idPacijenta)
                 {
@@ -295,13 +325,17 @@ namespace Projekat.Model
                 }
             }
 
+
            // PacijentiServis.SacuvajIzmenePacijenta();
+
+           // menadzer.SacuvajIzmene("pacijenti.xml", lista);
+
         }
 
-        public static List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
+        public List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
         {
             List<Uput> specijalistickiUputiPacijenta = new List<Uput>();
-            Pacijent pacijent = PacijentiMenadzer.PronadjiPoId(idPacijenta);
+            Pacijent pacijent = servis.PronadjiPoId(idPacijenta);
             foreach(Uput uput in pacijent.Karton.Uputi)
             {
                 // TODO: moze i za lab. upute i za stacionarno lecenje

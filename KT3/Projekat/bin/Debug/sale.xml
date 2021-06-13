@@ -100,13 +100,6 @@
         <idTermina>12</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>08:00</pocetakTermina>
-        <krajTermina>10:00</krajTermina>
-        <datumPocetkaTermina>10/10/2021</datumPocetkaTermina>
-        <datumKrajaTermina>10/10/2021</datumKrajaTermina>
-        <idTermina>9</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
         <pocetakTermina>11:00</pocetakTermina>
         <krajTermina>12:00</krajTermina>
         <datumPocetkaTermina>10/01/2021</datumPocetkaTermina>
@@ -305,13 +298,6 @@
         <idTermina>4</idTermina>
       </ZauzeceSale>
       <ZauzeceSale>
-        <pocetakTermina>14:30</pocetakTermina>
-        <krajTermina>15:00</krajTermina>
-        <datumPocetkaTermina>06/08/2021</datumPocetkaTermina>
-        <datumKrajaTermina>06/08/2021</datumKrajaTermina>
-        <idTermina>2</idTermina>
-      </ZauzeceSale>
-      <ZauzeceSale>
         <pocetakTermina>09:00</pocetakTermina>
         <krajTermina>10:00</krajTermina>
         <datumPocetkaTermina>06/12/2021</datumPocetkaTermina>
@@ -477,15 +463,7 @@
     <brojSale>5</brojSale>
     <Namjena>adasd</Namjena>
     <Oprema />
-    <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>09:30</pocetakTermina>
-        <krajTermina>11:00</krajTermina>
-        <datumPocetkaTermina>10/10/2022</datumPocetkaTermina>
-        <datumKrajaTermina>10/10/2022</datumKrajaTermina>
-        <idTermina>7</idTermina>
-      </ZauzeceSale>
-    </zauzetiTermini>
+    <zauzetiTermini />
     <Kreveti />
   </Sala>
   <Sala>
@@ -529,13 +507,6 @@
     <Namjena>fdsfds</Namjena>
     <Oprema />
     <zauzetiTermini>
-      <ZauzeceSale>
-        <pocetakTermina>11:30</pocetakTermina>
-        <krajTermina>13:00</krajTermina>
-        <datumPocetkaTermina>12/12/2022</datumPocetkaTermina>
-        <datumKrajaTermina>12/12/2022</datumKrajaTermina>
-        <idTermina>14</idTermina>
-      </ZauzeceSale>
       <ZauzeceSale>
         <pocetakTermina>08:00</pocetakTermina>
         <krajTermina>10:00</krajTermina>

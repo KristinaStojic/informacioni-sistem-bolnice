@@ -56,6 +56,8 @@ namespace Projekat
         DateTime datumPocetkaRenoviranja;
         DateTime datumKrajaRenoviranja;
         DateTime datumZakazivanjaTermina;
+        PacijentiServis servis = new PacijentiServis();
+        List<Pacijent> sviPacijenti;
 
         public IzmeniTerminLekara()
         {
@@ -67,8 +69,9 @@ namespace Projekat
             this.termin = izabraniTermin;
             this.DataContext = this;
 
-            this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            sviPacijenti = servis.pacijenti();
+            this.listaPacijenata.ItemsSource = sviPacijenti;
+            //List<Pacijent> pacijenti = sviPacijenti;
             this.vpp.SelectedItem = izabraniTermin.VremePocetka;
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
@@ -136,9 +139,9 @@ namespace Projekat
                 pacijent.Text = izabraniTermin.Pacijent.ImePacijenta + " " + izabraniTermin.Pacijent.PrezimePacijenta;
                 Pacijent = izabraniTermin.Pacijent;
 
-                for (int j = 0; j < PacijentiServis.pacijenti().Count; j++)
+                for (int j = 0; j < sviPacijenti.Count; j++)
                 {
-                    if (PacijentiServis.pacijenti()[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
+                    if (sviPacijenti[j].IdPacijenta == izabraniTermin.Pacijent.IdPacijenta)
                     {
                         listaPacijenata.SelectedIndex = j;
                     }
@@ -981,7 +984,7 @@ namespace Projekat
                 Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
 
                 Lekar l = LekariServis.NadjiPoId(Lekar.IdLekara);
-                Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+                Pacijent pacijent = servis.PronadjiPoId(Pacijent.IdPacijenta);
                 Termin izmenjeniTermin = new Termin(termin.IdTermin, dat, vp, vk, tp, l, Sala, pacijent);
 
                 //

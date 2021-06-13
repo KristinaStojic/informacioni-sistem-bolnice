@@ -30,17 +30,18 @@ namespace Projekat
         private static bool osmo = false;
         private static bool deveto = false;
         private static bool deseto = false;
+        PacijentiServis servis = new PacijentiServis();
         public ElektronskoPlacanjePacijent(int idPrijavaljenogPacijenta, TipTermina tip)
         {
             InitializeComponent();
             idPacijent = idPrijavaljenogPacijenta;
             OdrediCenuPregleda(tip);
 
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             this.potvrdi.IsEnabled = false;
-            MessageBox.Show(drzava.SelectedItem.ToString());
+            //MessageBox.Show(drzava.SelectedItem.ToString());
         }
 
         private void OdrediCenuPregleda(TipTermina tip)
@@ -153,7 +154,7 @@ namespace Projekat
 
         public void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(drzava.SelectedValue.ToString());
+            //MessageBox.Show(drzava.SelectedValue.ToString());
             if(drzava.SelectedValue.ToString().Length == 36) // drzava ili country
             {
                 cetvrto = false;
@@ -221,10 +222,6 @@ namespace Projekat
         private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
             deseto = true;
-            if(American.IsChecked == true || Visa.IsChecked == true)
-            {
-                MessageBox.Show("cekirano");
-            }
             ProveriSvaPolja();
         }
     }

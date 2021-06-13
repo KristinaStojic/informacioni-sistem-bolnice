@@ -21,6 +21,7 @@ namespace Projekat
     public partial class OtkaziTerminSekretar : Window
     {
         Termin terminZaOtkazivanje;
+        TerminiSekretarServis servis = new TerminiSekretarServis();
         public OtkaziTerminSekretar(Termin zaBrisanje)
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace Projekat
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TerminiSekretarServis.OtkaziTerminSekretar(terminZaOtkazivanje);
+            servis.OtkaziTerminSekretar(terminZaOtkazivanje);
             TerminiSekretarServis.sacuvajIzmene();
             this.Close();
         }

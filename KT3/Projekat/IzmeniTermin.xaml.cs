@@ -25,6 +25,8 @@ namespace Projekat
         private List<Sala> SaleZaPreglede;
         private Sala prvaSlobodnaSala;
         private static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+        TerminServis terminServis = new TerminServis();
         public IzmeniTermin(Termin izabraniTermin)
         {
             InitializeComponent();
@@ -33,7 +35,6 @@ namespace Projekat
             idPacijent = izabraniTermin.Pacijent.IdPacijenta;
             OgraniciIzborNovogDatuma(izabraniTermin);
             InicijalizujPodatkeZaIzabraniTermin(izabraniTermin);
-
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(dgSearch.ItemsSource);
             view.Filter = UserFilter;
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
@@ -55,7 +56,7 @@ namespace Projekat
                 }
                 tp = izabraniTermin.tipTermina;  
                 this.imePrz.Text = izabraniTermin.Lekar.ImeLek + " " + izabraniTermin.Lekar.PrezimeLek;
-                prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+                prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
                 this.datum.DisplayDate = DateTime.Parse(izabraniTermin.Datum);
                 InicijalizujSelektovanogLekara(izabraniTermin);
             }
@@ -180,7 +181,7 @@ namespace Projekat
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             sacuvaj.IsEnabled = true;
-            SaleZaPreglede = TerminServis.combo_SelectionChanged(this.combo, null, null, idPacijent);
+            SaleZaPreglede = terminServis.FiltrirajTipTermina(this.combo, null, null, idPacijent);
         }
 
         private void datum_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
@@ -191,14 +192,14 @@ namespace Projekat
                 MessageBox.Show("Izaberite tip termina", "Upozorenje", MessageBoxButton.OK);
                 return;
             }
-            vpp.ItemsSource = TerminServis.datum_SelectedDatesChanged(datum);
+            vpp.ItemsSource = TerminServis.FiltrirajDatum(datum);
 
         }
 
         private void vpp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             sacuvaj.IsEnabled = true;
-            prvaSlobodnaSala = TerminServis.Vpp_SelectionChanged(vpp, datum);
+            prvaSlobodnaSala = TerminServis.FiltritajVremePocetka(vpp, datum);
             if (prvaSlobodnaSala == null) 
             {
                 MessageBox.Show("Ne postoji slobodan termin", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);

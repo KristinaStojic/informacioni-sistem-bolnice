@@ -83,9 +83,7 @@ namespace Projekat.ViewModel
             ZakaziTerminKomanada = new MyICommand(ZakaziTerminClick);
             UvidUZakazaneTermineKomanda = new MyICommand(UvidUZakazaneTermine);
             KartonKomanda = new MyICommand(KartonClick);
-  
-            PrikaziAnketePacijenta();
-            
+            PrikaziAnketePacijenta();        
         }
 
         private void KartonClick()
@@ -102,7 +100,8 @@ namespace Projekat.ViewModel
 
         private void ZakaziTerminClick()
         {
-            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            if (proxy.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -170,7 +169,7 @@ namespace Projekat.ViewModel
             }
             if (!izabranaAnketa.PopunjenaAnketa)
             {
-                Console.WriteLine("Izabrana anketa " + izabranaAnketa.NazivAnkete);
+                //Console.WriteLine("Izabrana anketa " + izabranaAnketa.NazivAnkete);
                 if (izabranaAnketa.VrstaAnkete.Equals(VrstaAnkete.ZaKliniku))
                 {
                     PrikaziAnketuZaKlinikuPage = new PrikaziAnketuZaKliniku(idPacijent, izabranaAnketa.IdAnkete);
@@ -184,11 +183,11 @@ namespace Projekat.ViewModel
             }
         }
 
-
         private void PrikaziAnketePacijenta()
         {
             Ankete = new ObservableCollection<Anketa>();
-            foreach (Anketa anketa in AnketaServis.Ankete())
+            AnketaServis anketaServis = new AnketaServis();
+            foreach (Anketa anketa in anketaServis.Ankete())
             {
                 if (anketa.IdPacijent == idPacijent && anketa.PopunjenaAnketa == false)
                 {

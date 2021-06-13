@@ -17,7 +17,7 @@ namespace Projekat.ViewModel
         private string email;
         private string adresaStanovanja;
         private Specijalizacija specijalizacija;
-        public string stariJmbg { get; set;}
+        public string stariJmbg { get; set; } = "";
         public string ImeLek { get { return imeLek; } set { imeLek = value; OnPropertyChanged("ImeLek"); } }
         public string PrezimeLek { get { return prezimeLek; } set { prezimeLek = value; OnPropertyChanged("PrezimeLek");  } }
         public string Jmbg { get { return jmbg; } set { jmbg = value; OnPropertyChanged("Jmbg");  } }
