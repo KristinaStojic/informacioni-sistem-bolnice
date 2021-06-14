@@ -16,7 +16,9 @@ namespace Projekat.Interfejsi
             {
                 if(pacijent.IdPacijenta == p.IdPacijenta)
                 {
+                    Console.WriteLine("Bilo je: " + pacijent.Karton.brojBolnickihUputa + " bolnickih uputa");
                     pacijent.Karton.brojBolnickihUputa++;
+                    Console.WriteLine("Sada je: " + pacijent.Karton.brojBolnickihUputa + " bolnickih uputa");
                 }
             }
 

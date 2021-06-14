@@ -74,7 +74,7 @@
       <Uputi />
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
       <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>0</brojBolnickihUputa>
+      <brojBolnickihUputa>1</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -115,7 +115,7 @@
       <Uputi />
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
       <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>0</brojBolnickihUputa>
+      <brojBolnickihUputa>1</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -205,8 +205,8 @@
         </Uput>
       </Uputi>
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>0</brojBolnickihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>1</brojBolnickihUputa>
     </Karton>
     <Maloletnik>true</Maloletnik>
     <JmbgStaratelja>99</JmbgStaratelja>
@@ -247,7 +247,7 @@
       <Uputi />
       <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
       <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>0</brojBolnickihUputa>
+      <brojBolnickihUputa>1</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
@@ -357,9 +357,9 @@
           <datumKrajaLecenja>07/07/2021</datumKrajaLecenja>
         </Uput>
       </Uputi>
-      <brojLaboratorijskihUputa>1</brojLaboratorijskihUputa>
-      <brojSpecijalistickihUputa>1</brojSpecijalistickihUputa>
-      <brojBolnickihUputa>1</brojBolnickihUputa>
+      <brojLaboratorijskihUputa>0</brojLaboratorijskihUputa>
+      <brojSpecijalistickihUputa>0</brojSpecijalistickihUputa>
+      <brojBolnickihUputa>3</brojBolnickihUputa>
     </Karton>
     <Maloletnik>false</Maloletnik>
     <JmbgStaratelja>0</JmbgStaratelja>
