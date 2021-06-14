@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Projekat.Model
 {
-    public abstract class JSONSerialization<T> : ISerialization<T>
+    public abstract class JSONSerijalizacija<T> : ISerijalizacija<T>
     {
         public void SacuvajIzmene(string lokacijaFajla, List<T> lista)
         {

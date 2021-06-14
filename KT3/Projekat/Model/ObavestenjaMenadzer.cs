@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
-    public class ObavestenjaMenadzer : JSONSerialization<Obavestenja>
+    public class ObavestenjaMenadzer : JSONSerijalizacija<Obavestenja>
     {
         public override void Dodaj(Obavestenja element, string lokacijaFajla)
         {

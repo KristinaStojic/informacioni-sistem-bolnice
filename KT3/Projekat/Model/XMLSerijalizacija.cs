@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
-    public abstract class XMLSerialization<T> : ISerialization<T>
+    public abstract class XMLSerijalizacija<T> : ISerijalizacija<T>
     {
         public void SacuvajIzmene(string fajl, List<T> lista)
         {

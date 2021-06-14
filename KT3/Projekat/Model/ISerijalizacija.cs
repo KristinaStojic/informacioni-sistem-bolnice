@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Projekat.Model
 {
-    interface ISerialization<T>
+    interface ISerijalizacija<T>
     {
         void SacuvajIzmene(string fajl, List<T> lista);
         List<T> NadjiSve(string fajl);

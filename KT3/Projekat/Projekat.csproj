@@ -289,8 +289,8 @@
     <Compile Include="Model\AnamnezaIzvestaj.cs" />
     <Compile Include="Model\Anketa.cs" />
     <Compile Include="Model\AnketaMenadzer.cs" />
-    <Compile Include="Model\ISerialization.cs" />
-    <Compile Include="Model\JSONSerialization.cs" />
+    <Compile Include="Model\ISerijalizacija.cs" />
+    <Compile Include="Model\JSONSerijalizacija.cs" />
     <Compile Include="Model\Krevet.cs" />
     <Compile Include="Model\Lek.cs" />
     <Compile Include="Model\LekariMenadzer.cs" />
@@ -316,7 +316,7 @@
     <Compile Include="Model\Validacija.cs" />
     <Compile Include="Model\ValidacijaLekar.cs" />
     <Compile Include="Model\ValidacijaSekretar.cs" />
-    <Compile Include="Model\XMLSerialization.cs" />
+    <Compile Include="Model\XMLSerijalizacija.cs" />
     <Compile Include="Model\ZahtevZaGodisnji.cs" />
     <Compile Include="Model\ZahtevZaLekove.cs" />
     <Compile Include="Model\ZauzeceSale.cs" />

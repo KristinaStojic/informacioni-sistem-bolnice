@@ -15,7 +15,7 @@ using Projekat.Servis;
 
 namespace Model
 {
-    public class PacijentiMenadzer : XMLSerialization<Pacijent>
+    public class PacijentiMenadzer : XMLSerijalizacija<Pacijent>
     {
         public override void Dodaj(Pacijent element, string fajl)
         {
