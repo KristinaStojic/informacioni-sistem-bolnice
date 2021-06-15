@@ -68,10 +68,11 @@
         <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0, 80, 0, 0">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Margin="0,10,0,0" Width="106">
-                    <CheckBox Margin="5">
+                    <CheckBox Margin="5" Checked="CheckBox_Checked" Name="American">
                         <TextBlock Text="💳 American express" TextWrapping="Wrap"/>
                     </CheckBox>
-                    <CheckBox Content="💳 Visa" Margin="5,20, 5, 0" />
+                    <CheckBox Content="💳 Visa" Margin="5,20, 5, 0" Checked="CheckBox_Checked_1" Name="Visa" />
+                    <TextBlock x:Name="valKartica" Text="{ns:Loc valKartica}" Visibility="Hidden" Foreground="Red" TextWrapping="Wrap" FontSize="7" Margin="10,10,10,10" Background="Transparent" Grid.Row="0"  Grid.Column="1" Height="34"/>
                 </StackPanel>
                 <GroupBox Header=" Podaci o kartici" Height="265" Margin="0,0,0,0" Width="480">
                     <Grid Margin="20" >
@@ -85,8 +86,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-
-                        <TextBox Margin="10" Grid.Row="0" Grid.Column="0">
+                        <TextBox Margin="10,10,10,0" Grid.Row="0" Grid.Column="0" Height="30" Name="brojKartice" VerticalAlignment="Top" TextChanged="TextBox_TextChanged">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                                     <Style.Resources>
@@ -110,7 +110,8 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <TextBox Margin="10" Grid.Row="1" Grid.Column="0">
+                        <TextBlock x:Name="valBrojKartice" Visibility="Hidden" Text="{ns:Loc valBrojKartice}" IsEnabled="False" Margin="10,40,0,0" Background="Transparent" FontSize="7" Foreground="Red"/>
+                        <TextBox Margin="10" Grid.Row="1" Grid.Column="0" TextChanged="TextBox_TextChanged_1">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                                     <Style.Resources>
@@ -134,7 +135,8 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <TextBox Margin="10" Grid.Row="2" Grid.Column="0">
+                        <TextBlock x:Name="valImePrezimeNaKartici" Visibility="Hidden"  Text="{ns:Loc valImePrezime}" Grid.Row="1" Margin="10,40,0,0" FontSize="7" Foreground="Red"/>
+                        <TextBox Margin="10" Grid.Row="2" Grid.Column="0" TextChanged="TextBox_TextChanged_2">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                                     <Style.Resources>
@@ -158,15 +160,17 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <ComboBox Margin="10" Grid.Row="3" Grid.Column="0">
-                            <ComboBoxItem Content="{ns:Loc Drzava}" IsEnabled="False" IsSelected="True"/>
+                        <TextBlock x:Name="valGrad" Visibility="Hidden"  Text="{ns:Loc valGrad}" Margin="10,40,0,0" Background="Transparent" Grid.Row="2" FontSize="7" Foreground="Red"/>
+                        <ComboBox Margin="10" Grid.Row="3" Grid.Column="0" SelectionChanged="ComboBox_SelectionChanged" Name="drzava">
+                            <ComboBoxItem Content="{ns:Loc valDrzava}" IsEnabled="False" IsSelected="True"/>
                             <ComboBoxItem Content="{ns:Loc Srbija}"/>
                             <ComboBoxItem Content="{ns:Loc Hrvatska}"/>
                             <ComboBoxItem Content="{ns:Loc Bosna}"/>
                             <ComboBoxItem Content="{ns:Loc Slovenija}"/>
                         </ComboBox>
+                        <TextBlock Name="valDrzava" Visibility="Hidden"  Text="{ns:Loc valDrzava}" Margin="12,40,0,0" Background="Transparent" Grid.Row="3"  FontSize="7" Foreground="Red"/>
                         <TextBlock Text="{ns:Loc DatumVazenja}" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="10,18,0,17" Height="16"/>
-                        <ComboBox HorizontalAlignment="Right" Margin="0,10,90,11" Grid.Row="0" Grid.Column="1" Width="50">
+                        <ComboBox HorizontalAlignment="Right" Margin="0,10,90,11" Grid.Row="0" Grid.Column="1" Width="50" SelectionChanged="ComboBox_SelectionChanged_1">
                             <ComboBoxItem Content="1"/>
                             <ComboBoxItem Content="2"/>
                             <ComboBoxItem Content="3"/>
@@ -180,14 +184,15 @@
                             <ComboBoxItem Content="11"/>
                             <ComboBoxItem Content="12"/>
                         </ComboBox>
-                        <ComboBox HorizontalAlignment="Right" Margin="0,10,5,11" Grid.Row="0" Grid.Column="1" Width="80">
+                        <ComboBox HorizontalAlignment="Right" Margin="0,10,5,11" Grid.Row="0" Grid.Column="1" Width="80" SelectionChanged="ComboBox_SelectionChanged_2">
                             <ComboBoxItem Content="2021"/>
                             <ComboBoxItem Content="2022"/>
                             <ComboBoxItem Content="2023"/>
                             <ComboBoxItem Content="2024"/>
                             <ComboBoxItem Content="2025"/>
                         </ComboBox>
-                        <TextBox Grid.Row="2" Grid.Column="1" Margin="10">
+                        <TextBlock x:Name="valDatumVazenja" Visibility="Hidden"  Text="{ns:Loc valDatumVazenja}" Foreground="Red" FontSize="7" Margin="10,40,0,0" Background="Transparent" Grid.Row="0"  Grid.Column="1"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Margin="10" TextChanged="TextBox_TextChanged_4" Name="postanskiBroj">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                                     <Style.Resources>
@@ -211,7 +216,7 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
-                        <TextBox Grid.Row="1" Grid.Column="1" Margin="10">
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="10" TextChanged="TextBox_TextChanged_3" Name="cvv">
                             <TextBox.Style>
                                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                                     <Style.Resources>
@@ -235,6 +240,8 @@
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
+                        <TextBlock x:Name="valCVV" Visibility="Hidden" Text="{ns:Loc valCVV}" Margin="10,40,0,0" Background="Transparent" Grid.Row="1"  Grid.Column="1" FontSize="7" Foreground="Red"/>
+                        <TextBlock x:Name="valPostanskiBroj" Visibility="Hidden"  Text="{ns:Loc valPostanskiBroj}" Margin="10,40,0,0" Background="Transparent" Grid.Row="2"  Grid.Column="1" FontSize="7" Foreground="Red"/>
                     </Grid>
                 </GroupBox>
             </StackPanel>
@@ -243,10 +250,8 @@
                 <TextBox Height="30" Width="100" Margin="10" IsEnabled="False" Name="cena"></TextBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center">
-                <Button Height="30" Width="100" Margin="20" Style="{DynamicResource ButtonStyle2}" Content="{ns:Loc Potvrdi}" Name="ElektronskoPotvrdi" Click="ElektronskoPotvrdi_Click"/>
+                <Button x:Name="potvrdi" Height="30" Width="100" Margin="20" Style="{DynamicResource ButtonStyle2}" Content="{ns:Loc Potvrdi}" Click="ElektronskoPotvrdi_Click"/>
             </StackPanel>
         </StackPanel>
-
-
     </Grid>
 </Page>

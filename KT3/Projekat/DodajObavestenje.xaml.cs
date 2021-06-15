@@ -24,17 +24,18 @@ namespace Projekat
     {
         bool flag1 = false;
         bool flag2 = false;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
         public DodajObavestenje()
         {
             InitializeComponent();
-
             potvrdi.IsEnabled = false;
             pretraga.IsEnabled = false;
             listaPacijenata.IsEnabled = false;
             pacijenti.IsEnabled = false;
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
-            this.listaPacijenata.ItemsSource = pacijentiLista;
+            //List<Pacijent> pacijentiLista = p.PronadjiSve();
+            this.listaPacijenata.ItemsSource = pacijentiServis.PronadjiSve();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = PretragaPacijenata;
         }
@@ -65,9 +66,9 @@ namespace Projekat
             string oznaka = ObavestenjaServis.OdrediOznakuObavestenja(namena.Text);
             List<int> selektovaniPacijentiId = ObavestenjaServis.DodajSelektovanePacijente(oznaka, listaPacijenata);
 
-            Obavestenja novoObavestenje = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
-            ObavestenjaServis.DodajObavestenjeSekretar(novoObavestenje);
-            ObavestenjaServis.sacuvajIzmene();   
+            Obavestenja novoObavestenje = new Obavestenja(servis.GenerisanjeIdObavestenja(), datum, naslov.Text, sadrzaj.Text, selektovaniPacijentiId, idLekara, false, oznaka);
+            servis.DodajObavestenjeSekretar(novoObavestenje);
+            //ObavestenjaServis.sacuvajIzmene();   
             
             this.Close();
         }
@@ -124,6 +125,18 @@ namespace Projekat
                 {
                     potvrdi.IsEnabled = true;
                 }
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
             }
         }
 

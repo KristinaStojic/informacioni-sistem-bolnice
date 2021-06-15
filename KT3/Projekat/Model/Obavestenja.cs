@@ -5,11 +5,13 @@ using System.Text;
 using Projekat.Model;
 using Model;
 using System.ComponentModel;
+using Projekat.Servis;
 
 namespace Projekat.Model
 {
     public class Obavestenja : INotifyPropertyChanged
     {
+        ObavestenjaServis servis = new ObavestenjaServis();
         public Obavestenja() { }
 
         // TODO:  izbrisati ovaj konsturktor, prosiriti u kodu sa odg konstruktorom 
@@ -35,6 +37,14 @@ namespace Projekat.Model
             this.IdLekara = IdLekara;
             this.Notifikacija = Notifikacija;
             this.Oznaka = Oznaka;
+        }
+
+        public Obavestenja(string TipOb, string datum, string SadrzajOb)
+        {
+            this.IdObavestenja = servis.GenerisanjeIdObavestenja();
+            this.Datum = datum;
+            this.TipObavestenja = TipOb;
+            this.SadrzajObavestenja = SadrzajOb;
         }
 
         public int IdObavestenja { get; set; }

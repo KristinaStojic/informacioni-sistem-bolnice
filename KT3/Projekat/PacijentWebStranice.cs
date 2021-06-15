@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,8 @@ namespace Projekat.Servis
 
         public static void zakazi_Click(Page nazivPagea, int idPacijent)
         {
-            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            if (proxy.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno zakazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;
@@ -31,6 +33,7 @@ namespace Projekat.Servis
             Page zakaziTermin = new ZakaziTermin(idPacijent);
             nazivPagea.NavigationService.Navigate(zakaziTermin);
         }
+
         public static void uvid_Click(Page nazivPagea, int idPacijent)
         {
             Page uvid = new ZakazaniTerminiPacijent(idPacijent);
@@ -60,14 +63,12 @@ namespace Projekat.Servis
             var app = (App)Application.Current;
             if (SvetlaTema.IsEnabled)
             {
-                //mi.Header = "Tamna";
                 SvetlaTema.IsEnabled = false;
                 tamnaTema.IsEnabled = true;
                 app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
             }
             else
             {
-                //mi.Header = "Svetla";
                 tamnaTema.IsEnabled = false;
                 SvetlaTema.IsEnabled = true;
                 app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
@@ -77,7 +78,6 @@ namespace Projekat.Servis
         public static void Jezik_Click(MenuItem Jezik)
         {
             var app = (App)Application.Current;
-            // TODO: proveriti
             string eng = "en-US";
             string srb = "sr-LATN";
             if (Jezik.Header.Equals("_en-US"))
@@ -105,10 +105,15 @@ namespace Projekat.Servis
                 TamnaTema.IsEnabled = false;
 
             }
-            else if (PanelZaglavlja.Background.ToString().Equals("#e8f1f5"))
+            else if (PanelZaglavlja.Background.ToString().Equals("#FFE8F1F5"))
             {
                 SvetlaTema.IsEnabled = false;
             }
+        }
+
+        public static string podaciPacijenta(Pacijent prijavljeniPacijent)
+        {
+            return prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
         }
     }
 }

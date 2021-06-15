@@ -27,6 +27,7 @@ namespace Projekat.Servis
         private static int ukupanBrojSalaZaPregled;
         private static Sala prvaSlobodnaSala;
         private static int maxBrojPreporucenihTermina = 3;
+        PacijentiServis servis = new PacijentiServis();
 
 
         public static string IzracunajVremeKrajaPregleda(string vp)
@@ -68,10 +69,10 @@ namespace Projekat.Servis
         {
             return selektovaniDatum.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
         }
-        public static List<Sala> combo_SelectionChanged(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
+        public List<Sala> FiltrirajTipTermina(ComboBox combo, ComboBox comboUputi, Hyperlink preferenca, int idPrijavljenogPacijenta)
         { 
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
 
             SaleZaPreglede = SaleServis.PronadjiSaleZaPregled();
             ukupanBrojSalaZaPregled = SaleZaPreglede.Count();
@@ -94,7 +95,7 @@ namespace Projekat.Servis
             return SaleZaPreglede;
         }
 
-        public static ObservableCollection<string> datum_SelectedDatesChanged(Calendar datum)
+        public static ObservableCollection<string> FiltrirajDatum(Calendar datum)
         {
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             SviSlobodniSlotovi = SaleServis.InicijalizujSveSlotove();
@@ -225,7 +226,7 @@ namespace Projekat.Servis
             }
         }
 
-        private static void DodajZauzecaSaleZaVremeRenoviranja(List<string> SviZauzetiZaSelektovaniDatum)
+        public static void DodajZauzecaSaleZaVremeRenoviranja(List<string> SviZauzetiZaSelektovaniDatum)
         {
             /* ukoliko je selektovani datum u periodu renoviranja sale - ceo dan sala je zauzeta */
             foreach (string slot in PomocnaSviSlobodniSlotovi)
@@ -234,7 +235,7 @@ namespace Projekat.Servis
             }
         }
 
-        private static void DodajZauzecaSaleZaTermine(List<string> SviZauzetiZaSelektovaniDatum, ZauzeceSale zauzeceSale)
+        public static void DodajZauzecaSaleZaTermine(List<string> SviZauzetiZaSelektovaniDatum, ZauzeceSale zauzeceSale)
         {
             /* provera za termine i renoviranje(u periodu jednog dana - nekoliko sati) */
             foreach (string slot in PomocnaSviSlobodniSlotovi)
@@ -260,7 +261,7 @@ namespace Projekat.Servis
             }
         }
 
-        public static Sala Vpp_SelectionChanged(ComboBox vpp, Calendar datum)
+        public static Sala FiltritajVremePocetka(ComboBox vpp, Calendar datum)
         {
             string selektovaniDatum = FormatirajSelektovaniDatum(datum.SelectedDate.Value);
             string selektovaniSlot = vpp.SelectedValue.ToString();
@@ -278,7 +279,7 @@ namespace Projekat.Servis
             }
             return null;
         }
-        private static bool ProveriVremeZauzecaZaTermine(string selektovaniDatum, string selektovaniSlot, Sala sala)
+        public static bool ProveriVremeZauzecaZaTermine(string selektovaniDatum, string selektovaniSlot, Sala sala)
         {
             foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
@@ -294,7 +295,7 @@ namespace Projekat.Servis
             return false;
         }
 
-        private static bool ProveriVremeSvihZauzecaZaRenoviranje(string selektovaniDatum, int satiVreme, Sala sala)
+        public static bool ProveriVremeSvihZauzecaZaRenoviranje(string selektovaniDatum, int satiVreme, Sala sala)
         {
             foreach (ZauzeceSale zauzece in sala.zauzetiTermini)
             {
@@ -342,7 +343,6 @@ namespace Projekat.Servis
             preporuceniTermin.VremeKraja = TerminServis.IzracunajVremeKrajaPregleda(slot);
             preporuceniTermin.Prostorija = s;
             preporuceniTermin.tipTermina = TipTermina.Pregled;
-            // TODO: ispraviti kada dobijemo raspored radnog vremena
             preporuceniTermin.Lekar = prijavljeniPacijent.IzabraniLekar;
             preporuceniTermin.Pacijent = prijavljeniPacijent;
             return preporuceniTermin;
@@ -362,35 +362,56 @@ namespace Projekat.Servis
             return preporuceniTermin;
         }
 
-        public static ObservableCollection<Termin> PronadjiPreporuceneTermine(Pacijent prijavljeniPacijent, Sala sala, int brojacPreporucenihTermina, bool jeTri)
+        public static ObservableCollection<Termin> PronadjiPreporuceneTermine(Pacijent prijavljeniPacijent, int brojacPreporucenihTermina, bool jeTri)
         {
             ObservableCollection<Termin> TerminiPreferenca = new ObservableCollection<Termin>();
             ObservableCollection<string> SviSlobodniSlotoviPreferenca = SaleServis.InicijalizujSveSlotove();
-            for (int i = 0; i < maxBrojPreporucenihTermina; i++)
+            
+            foreach (Sala sala in SaleServis.NadjiSveSale())
             {
-                DateTime noviDatum = DateTime.Now.Date.AddDays(i); // tri dana unapred
-                if (i == 0)
+                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
                 {
-                    IzbaciProsleSlotoveZaDanasnjiDan(SviSlobodniSlotoviPreferenca);
-                }
-                foreach (ZauzeceSale zs in sala.zauzetiTermini)
-                {
-                    DateTime zsDatum = DateTime.Parse(zs.datumPocetkaTermina);
-                    foreach (string slot in SviSlobodniSlotoviPreferenca)
+                    for (int i = 0; i < maxBrojPreporucenihTermina; i++)
                     {
-                        if (!sala.zauzetiTermini.Exists(x => x.datumPocetkaTermina.Equals(noviDatum)) && zs.idTermina != 0)
+                        DateTime noviDatum = DateTime.Now.Date.AddDays(i); // tri dana unapred
+                        if (i == 0)
                         {
-                            Termin preporuceniTermin = TerminServis.InicijalizujPreporuceniTermin(prijavljeniPacijent, sala, noviDatum, slot);
-                            TerminiPreferenca.Add(preporuceniTermin);
-                            PovecajBrojacPreporucenihTermina(brojacPreporucenihTermina, jeTri);
-                        }
-                        else
-                        {
-                            if (!sala.zauzetiTermini.Exists(x => x.pocetakTermina.Equals(slot)) && zs.idTermina != 0)
+                            IzbaciProsleSlotoveZaDanasnjiDan(SviSlobodniSlotoviPreferenca);
+                            if(SviSlobodniSlotoviPreferenca.Count == 0)
                             {
-                                Termin preporuceniTermin = TerminServis.InicijalizujTermin(prijavljeniPacijent, sala, zs, slot);
-                                TerminiPreferenca.Add(preporuceniTermin);
-                                PovecajBrojacPreporucenihTermina(brojacPreporucenihTermina, jeTri);
+                                i += 1;
+                                noviDatum = DateTime.Now.Date.AddDays(i);
+                                SviSlobodniSlotoviPreferenca = SaleServis.InicijalizujSveSlotove();
+                            }
+                        }
+                        foreach (ZauzeceSale zs in sala.zauzetiTermini)
+                        {
+                            DateTime zsDatum = DateTime.Parse(zs.datumPocetkaTermina);
+                            foreach (string slot in SviSlobodniSlotoviPreferenca)
+                            {
+                                if (!sala.zauzetiTermini.Exists(x => x.datumPocetkaTermina.Equals(noviDatum)) && zs.idTermina != 0)
+                                {
+                                    Termin preporuceniTermin = TerminServis.InicijalizujPreporuceniTermin(prijavljeniPacijent, sala, noviDatum, slot);
+                                    TerminiPreferenca.Add(preporuceniTermin);
+                                    brojacPreporucenihTermina++;
+                                    if (PovecajBrojacPreporucenihTermina(brojacPreporucenihTermina, jeTri))
+                                    {
+                                        return TerminiPreferenca;
+                                    }
+                                }
+                                else
+                                {
+                                    if (!sala.zauzetiTermini.Exists(x => x.pocetakTermina.Equals(slot)) && zs.idTermina != 0)
+                                    {
+                                        Termin preporuceniTermin = TerminServis.InicijalizujTermin(prijavljeniPacijent, sala, zs, slot);
+                                        TerminiPreferenca.Add(preporuceniTermin);
+                                        brojacPreporucenihTermina++;
+                                        if (PovecajBrojacPreporucenihTermina(brojacPreporucenihTermina, jeTri))
+                                        {
+                                            return TerminiPreferenca;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -413,14 +434,14 @@ namespace Projekat.Servis
             }
         }
 
-        private static void PovecajBrojacPreporucenihTermina(int brojacPreporucenihTermina, bool jeMaksimum)
+        private static bool PovecajBrojacPreporucenihTermina(int brojacPreporucenihTermina, bool jeMaksimum)
         {
-            brojacPreporucenihTermina++;
-            if (brojacPreporucenihTermina == maxBrojPreporucenihTermina)
+            if (brojacPreporucenihTermina >= maxBrojPreporucenihTermina)
             {
                 jeMaksimum = true;
-                return;
+                return true;
             }
+            return false;
         }
 
         #endregion
@@ -464,8 +485,6 @@ namespace Projekat.Servis
 
         public static ObservableCollection<Termin> PronadjiTerminPoIdPacijenta(int idPacijenta)
         {
-            // TODO: u observavble listu
-            //return TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijenta);
             ObservableCollection<Termin> TerminiPacijenta = new ObservableCollection<Termin>();
             foreach(Termin termin in TerminMenadzer.PronadjiTerminPoIdPacijenta(idPacijenta))
             {
@@ -485,5 +504,10 @@ namespace Projekat.Servis
         }
 
         #endregion
+
+
+
+
+
     }
 }

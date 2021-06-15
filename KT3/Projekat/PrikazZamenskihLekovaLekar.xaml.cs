@@ -31,14 +31,14 @@ namespace Projekat
         public PrikazZamenskihLekovaLekar(Lek izabraniLek)
         {
             InitializeComponent();
-            this.DataContext = this;
-            this.lek = izabraniLek;
+            //this.DataContext = this;
+            //this.lek = izabraniLek;
             this.tekst.Text = "Zamenski lekovi za lek: " + izabraniLek.nazivLeka;
-            DodajZamenskeLekove(lek);
+           // DodajZamenskeLekove(lek);
 
         }
 
-        private void DodajZamenskeLekove(Lek lek)
+       /* private void DodajZamenskeLekove(Lek lek)
         {
             TabelaZamenskihLekova = new ObservableCollection<Lek>();
             foreach (Lek l in LekoviServis.Lijekovi())
@@ -60,7 +60,7 @@ namespace Projekat
                     }
                 }
             }
-        }
+        }*/
 
         private void Button_Dodaj(object sender, RoutedEventArgs e)
         {
@@ -101,6 +101,26 @@ namespace Projekat
         private void Button_Nazad(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Dodaj(sender, e);
+            }
+            else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Izmeni(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Obrisi(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Nazad(sender, e);
+            }
         }
     }
 }

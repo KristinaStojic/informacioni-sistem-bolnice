@@ -7,7 +7,7 @@
         xmlns:StyleAlias="clr-namespace:Model"
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
-        Title="HitanSlucaj" Height="720" Width="565" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="HitanSlucaj" Height="720" Width="565" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Window.Resources>
         <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">
@@ -117,9 +117,10 @@
             <ComboBoxItem Content="Operacija"/>
         </ComboBox>
 
-        <Button Name="pretraziDugme" Grid.Column="2" Grid.Row="7" Click="Pretrazi_Click" Content="Pretrazi " Margin="98.8,4.2,6.6,0" Height="37" FontSize="17" VerticalAlignment="Top" Background="#FFE7F6F7"/>
+        <Button Name="pretraziDugme" Grid.Column="2" Grid.Row="7" Click="Pretrazi_Click" Content="Pretrazi " Margin="98.8,4.2,6.6,0" Height="37" FontSize="17" VerticalAlignment="Top" Background="#FFCAE6E8"/>
 
-        <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" x:Name="zauzetiTermini" SelectionMode="Multiple" Margin="10.2,36,7.6,11.8" RenderTransformOrigin="0.492,0.518" IsEnabled="False" Grid.RowSpan="2">
+        <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" x:Name="zauzetiTermini" SelectionMode="Multiple" Margin="10.2,36,7.6,11.8" 
+                  RenderTransformOrigin="0.492,0.518" IsEnabled="False" Grid.RowSpan="2" SelectionChanged="ZauzetiTermini_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="25" DisplayMemberBinding="{Binding IdTermin}"/>
@@ -131,7 +132,7 @@
             </ListView.View>
         </ListView>
 
-        <Button Name="pomeriDugme" Grid.Column="1" Grid.Row="7" Click="Pomeri_Click" Content="Pomeri " Margin="9.2,4.2,96.2,0" Height="37" FontSize="15" VerticalAlignment="Top" IsEnabled="False"/>
+        <Button Background="#FFCAE6E8" Name="pomeriDugme" Grid.Column="1" Grid.Row="7" Click="Pomeri_Click" Content="Pomeri " Margin="9.2,4.2,96.2,0" Height="37" FontSize="15" VerticalAlignment="Top" IsEnabled="False"/>
         <Button Name="potvrdiDugme" Grid.Column="1" Grid.Row="10" Click="Potvrdi_Click" Content="Potvrdi" Margin="10.2,6.2,10.2,27.4" Background="#FFA3DADE" FontSize="15" IsEnabled="False"/>
         <Button Name="odustaniDugme" Grid.Column="2" Grid.Row="10"  Click="Odustani_Click" Content="Odustani" Margin="9.8,6.2,7.6,27.4" Background="#FFA3DADE" FontSize="17"/>
     </Grid>

@@ -29,6 +29,8 @@ namespace Model
         public int BrojPregleda { get; set; }
         public int BrojOperacija { get; set; }
         
+        public string korisnickoIme { get; set; }
+        public string lozinka { get; set; }
 
         public Lekar(int IdLekara, string Ime, string Prezime, long Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija)
         {
@@ -46,6 +48,27 @@ namespace Model
             this.BrojPregleda = 0;
             this.ZahteviZaOdmor = new List<int>();
             this.RadniDani = new List<RadniDan>();
+            this.korisnickoIme = Prezime;
+            this.lozinka = Jmbg.ToString();
+        }
+         public Lekar(int IdLekara, string Ime, string Prezime, long Jmbg, long BrojTelefona, string Email, string AdresaStanovanja, Specijalizacija Specijalizacija, String korIme, String sifra)
+        {
+            this.IdLekara = IdLekara;
+            this.ImeLek = Ime;
+            this.PrezimeLek = Prezime;
+            this.Jmbg = Jmbg;
+            this.BrojTelefona = BrojTelefona;
+            this.Email = Email;
+            this.AdresaStanovanja = AdresaStanovanja;
+            this.specijalizacija = Specijalizacija;
+            this.SlobodniDaniGodisnjegOdmora = MAX_DANA_GODISNJEG_ODMORA;
+            this.ZahtevaniDaniGodisnjegOdmora = 0;
+            this.BrojOperacija = 0;
+            this.BrojPregleda = 0;
+            this.ZahteviZaOdmor = new List<int>();
+            this.RadniDani = new List<RadniDan>();
+            this.korisnickoIme = korIme;
+            this.lozinka = sifra;
         }
 
         public Lekar(int id)

@@ -10,47 +10,94 @@ namespace Projekat.Servis
     {
         public static void DodajSalu(Sala sala)
         {
-            SaleMenadzer.DodajSalu(sala);
+            SaleMenadzer.Dodaj(sala, "sale.xml");
         }
 
         public static void ObrisiSalu(Sala sala)
         {
-            SaleMenadzer.ObrisiSalu(sala);
+            SaleMenadzer.Obrisi(sala, "sale.xml");
+            obrisiTermineUSali(sala);
+        }
+
+        private static void obrisiTermineUSali(Sala sala)
+        {
+            foreach (Termin t in TerminMenadzer.termini.ToArray())
+            {
+                if (t.Prostorija.Id == sala.Id)
+                {
+                    TerminMenadzer.termini.Remove(t);
+                    TerminServisLekar.sacuvajIzmene();
+                }
+            }
         }
 
         public static void IzmjeniSalu(Sala izSale, Sala uSalu)
         {
-            SaleMenadzer.IzmjeniSalu(izSale, uSalu);
+            SaleMenadzer.Instanca.Izmjeni(izSale, uSalu);
         }
 
         public static List<Sala> NadjiSveSale()
         {
-            return SaleMenadzer.NadjiSveSale();
+            return SaleMenadzer.NadjiSve("sale.xml");
         }
 
         public static List<Sala> Sale()
         {
-            return SaleMenadzer.sale;
+            return SaleMenadzer.lista;
         }
 
         public static Sala NadjiSaluPoId(int id)
         {
-            return SaleMenadzer.NadjiSaluPoId(id);
+            foreach (Sala sala in SaleMenadzer.lista)
+            {
+                if (sala.Id == id)
+                {
+                    return sala;
+                }
+            }
+            return null;
         }
 
         public static Krevet NadjiKrevetPoId(int id, Sala soba)
         {
-            return SaleMenadzer.NadjiKrevetPoId(id, soba);
+            foreach (Krevet krevet in soba.Kreveti) //OpremaMenadzer.kreveti
+            {
+                if (krevet.IdKreveta == id)
+                {
+                    return krevet;
+                }
+            }
+            return null;
         }
 
         public static void sacuvajIzmjene()
         {
-            SaleMenadzer.sacuvajIzmjene();
+            SaleMenadzer.sacuvajIzmjene("sale.xml");
         }
 
         public static int GenerisanjeIdSale()
         {
-            return SaleMenadzer.GenerisanjeIdSale();
+            int id;
+            for (id = 1; id <= SaleMenadzer.lista.Count; id++)
+            {
+                if (!postojiIdSale(id))
+                {
+                    return id;
+                }
+            }
+            return id;
+        }
+
+        private static bool postojiIdSale(int id)
+        {
+            foreach (Sala sala in SaleMenadzer.lista)
+            {
+                if (sala.Id.Equals(id))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static ZauzeceSale NadjiZauzece(int idProstorije, int idTermin, string datum, string pocetak, string kraj)
@@ -82,7 +129,7 @@ namespace Projekat.Servis
         public static List<Sala> PronadjiSaleZaPregled()
         {
             List<Sala> slobodneSaleZaPregled = new List<Sala>();
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleMenadzer.lista)
             {
                 if (sala.TipSale.Equals(tipSale.SalaZaPregled) && !sala.Namjena.Equals("Skladiste"))
                 {
@@ -95,7 +142,7 @@ namespace Projekat.Servis
         public static List<Sala> PronadjiSaleZaOperaciju()
         {
             List<Sala> slobodneSaleZaOperaciju = new List<Sala>();
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleMenadzer.lista)
             {
                 if (sala.TipSale.Equals(tipSale.OperacionaSala) && !sala.Namjena.Equals("Skladiste"))
                 {
@@ -197,7 +244,7 @@ namespace Projekat.Servis
 
         public static void zauzmiSalu(ZauzeceSale zauzeceSale, Sala izabranaSala)
         {
-            foreach (Sala sala in SaleMenadzer.sale)
+            foreach (Sala sala in SaleMenadzer.lista)
             {
                 if (sala.Id == izabranaSala.Id)
                 {
@@ -205,6 +252,53 @@ namespace Projekat.Servis
                 }
             }
         }
+        public static void dodajOpremuIzSaleZaDodavanje(Sala izabranaSala, Sala salaZaSpajanje)
+        {
+            foreach (Sala sala in SaleServis.Sale())
+            {
+                if (sala.Id == izabranaSala.Id)
+                {
+                    dodajOpremu(sala, salaZaSpajanje);
+                }
+            }
+        }
+        private static void dodajOpremu(Sala sala, Sala salaZaSpajanje)
+        {
+            foreach (Oprema oprema in salaZaSpajanje.Oprema)
+            {
+                if (!postojiOpremaUSali(sala, oprema))
+                {
+                    sala.Oprema.Add(oprema);
+                }
+            }
+        }
+
+        private static bool postojiOpremaUSali(Sala sala, Oprema oprema)
+        {
+            foreach (Oprema opremaSale in sala.Oprema)
+            {
+                if (opremaSale.IdOpreme == oprema.IdOpreme)
+                {
+                    opremaSale.Kolicina += oprema.Kolicina;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

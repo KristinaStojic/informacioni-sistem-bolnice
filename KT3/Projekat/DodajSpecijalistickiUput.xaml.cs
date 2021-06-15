@@ -1,4 +1,5 @@
 ﻿using Model;
+using Projekat.Interfejsi;
 using Projekat.Model;
 using Projekat.Servis;
 using System;
@@ -34,17 +35,32 @@ namespace Projekat
         public bool flagPoc = false;
         public bool flagKraj = false;
         public bool popunjenoBolnicko = false;
+
+        public bool popunjenoLab = false;
+        ZdravstveniKartonServis servis = new ZdravstveniKartonServis();
         public DodajSpecijalistickiUput(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
+            this.bolnickoLecenjeTab.IsSelected = true;
             this.pacijent = izabraniPacijent;
             this.termin = izabraniTermin;
             this.potvrdiBolnicko.IsEnabled = false;
             this.potvrdiLab.IsEnabled = false;
             this.potvrdiSpec.IsEnabled = false;
-            PopuniPodatkePacijentaZaSpecijalistickiUput();
+            this.potvrdiLab.IsEnabled = false;
             PopuniPodatkePacijentaZaBolnickoLecenje();
+            PopuniPodatkePacijentaZaSpecijalistickiUput();
+            PopuniPodatkeLaboratorijskiUput();
 
+        }
+
+        private void PopuniPodatkeLaboratorijskiUput()
+        {
+            this.imeLab.Text = pacijent.ImePacijenta;
+            this.prezimeLab.Text = pacijent.PrezimePacijenta;
+            jmbgLab.Text = pacijent.Jmbg.ToString();
+            lekarLab.Text = termin.imePrezimeLekara;
+            datumLab.SelectedDate = DateTime.Parse(termin.Datum);
         }
         private void PopuniPodatkePacijentaZaSpecijalistickiUput()
         {
@@ -54,7 +70,7 @@ namespace Projekat
             this.jmbg.Text = pacijent.Jmbg.ToString();
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             datum.SelectedDate = DateTime.Parse(termin.Datum);
-            specijalistickiTab.IsSelected = true;
+            //specijalistickiTab.IsSelected = true;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaLekara.ItemsSource);
             view.Filter = UserFilter;
         }
@@ -97,32 +113,73 @@ namespace Projekat
 
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+            if (popunjeno) { 
+                int idUputa = servis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomena.Text;
                 int idSpecijaliste = NadjiIDSpecijaliste();
                 string datum = NadjiDatum();
                 tipUputa tipUputa = NadjiTipUputa();
 
-                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
-                ZdravstveniKartonServis.DodajUput(noviUput);
+
+                //Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
+                
+                //INTERFEJS
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum);
+                postaviTipUputa(noviUput);
+                
+
+                //ZdravstveniKartonServis.DodajUput(noviUput);
+
+                //Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, idSpecijaliste, detaljiOPregledu, datum, tipUputa);
+                servis.DodajUput(noviUput);
+
 
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+               // PacijentiServis.SacuvajIzmenePacijenta();
 
                 this.Close();
             }
-            catch (System.Exception)
+            else
             {
                 MessageBox.Show("Niste uneli ispravne podatke", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        /*samo ovo treba mijenjati ako se doda novi tip uputa*/
+        private void postaviTipUputa(Uput uput)
+        {
+            string selektovaniTab = (string)(uputi.SelectedItem as TabItem).Header;
+            if (selektovaniTab.Equals("Specijalistički pregled"))
+            {
+                uput.TipUputa = new SpecijalistickiPregled();
+            }
+            else if (selektovaniTab.Equals("Laboratorija"))
+            {
+                uput.TipUputa = new Laboratorija();
+            }
+            else if (selektovaniTab.Equals("Bolničko lečenje"))
+            {
+                uput.TipUputa = new BolnickoLecenje();
+            }
+        }
+
         private int NadjiIDSpecijaliste()
         {
+            /*if(listaLekara.SelectedItem != null)
+            {
+                Lekar lekar = (Lekar)listaLekara.SelectedItem;
+                return lekar.IdLekara;
+            }
+            else
+            {
+                MessageBox.Show("Popunite sve podatke!");
+            }
+
+            return 1;*/
+
             Lekar lekar = (Lekar)listaLekara.SelectedItem;
             return lekar.IdLekara;
+
         }
 
         private string NadjiDatum()
@@ -142,7 +199,7 @@ namespace Projekat
             string selektovaniTab = (string)(uputi.SelectedItem as TabItem).Header;
             if (selektovaniTab.Equals("Specijalistički pregled"))
             {
-                tipUputa = tipUputa.SpecijallistickiPregled;
+                tipUputa = tipUputa.SpecijalistickiPregled;
             }
             else if (selektovaniTab.Equals("Laboratorija"))
             {
@@ -249,28 +306,43 @@ namespace Projekat
         {
             DateTime kraj = (DateTime)this.datumKraja.SelectedDate;
             DateTime pocetak = (DateTime)this.datumPocetka.SelectedDate;
-            if (popunjeno == true)
+
+            if (pocetak >= kraj || pocetak < DateTime.Now.Date)
             {
-                int idUputa = ZdravstveniKartonServis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                MessageBox.Show("Niste uneli ispravne datume!");
+            }
+            else if (popunjeno == true)
+            {
+                int idUputa = servis.GenerisanjeIdUputa(pacijent.IdPacijenta);
                 String detaljiOPregledu = napomenaPregelda.Text;
                 string datumPocetka = NadjiDatumPocetkaLecenja();
                 string datumKraja = NadjiDatumKrajaLecenja();
                 tipUputa tipUputa = NadjiTipUputa();
                 Soba = SaleServis.NadjiSaluPoId((int)slobodneSobe.SelectedItem);
                 Krevet = SaleServis.NadjiKrevetPoId((int)slobodniKreveti.SelectedItem, Soba);
+                //Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
+
+                /*INTERFEJS*/
                 Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara,Soba.Id, Krevet.IdKreveta, datumKraja, datumPocetka, termin.Datum, detaljiOPregledu, tipUputa);
-                zauzmiKrevet(Soba, Krevet);
-                ZdravstveniKartonServis.DodajUput(noviUput);
+
+                zauzmiKrevet(Soba, Krevet);       
+                postaviTipUputa(noviUput);
+
+                //ZdravstveniKartonServis.DodajUput(noviUput);
+
+               
+                servis.DodajUput(noviUput);
+
                 
-                TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+                //TerminServisLekar.sacuvajIzmene();
+                //PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }
-            else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
+            /*else if (pocetak >= kraj || pocetak < DateTime.Now.Date)
             {
                 MessageBox.Show("Niste uneli ispravne datume!");
-            }
+            }*/
             else
             {
                 MessageBox.Show("Popunite sva polja!");
@@ -314,7 +386,59 @@ namespace Projekat
 
         private void Potvrdi_Laboratorija_Click(object sender, RoutedEventArgs e)
         {
+            if (popunjenoLab)
+            {
+                int idUputa = servis.GenerisanjeIdUputa(pacijent.IdPacijenta);
+                String detaljiOPregledu = napomenaLab.Text;
+                string datum = NadjiDatum();
+                tipUputa tipUputa = NadjiTipUputa();
 
+                //INTERFEJS
+                Uput noviUput = new Uput(idUputa, pacijent.IdPacijenta, termin.Lekar.IdLekara, tipUputa, detaljiOPregledu);
+                noviUput.datumIzdavanja = datum;
+
+                postaviTipUputa(noviUput);
+
+                //ZdravstveniKartonServis.DodajUput(noviUput);
+
+                servis.DodajUput(noviUput);
+
+               
+                TerminServisLekar.sacuvajIzmene();
+                //PacijentiServis.SacuvajIzmenePacijenta();
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Niste uneli sve podatke!");
+            }
+        }
+
+        private void postaviDugmeLab()
+        {
+            if (this.napomenaLab.Text != null)
+            {
+                izvrsiPostavljanjeLab();
+            }
+            else
+            {
+                this.potvrdiLab.IsEnabled = false;
+                popunjenoLab = false;
+            }
+        }
+        private void izvrsiPostavljanjeLab()
+        {
+            if (this.napomenaLab.Text.Trim().Equals(""))
+            {
+                this.potvrdiLab.IsEnabled = false;
+                popunjenoLab = false;
+            }
+            else if (!this.napomenaLab.Text.Trim().Equals(""))
+            {
+                this.potvrdiLab.IsEnabled = true;
+                popunjenoLab = true;
+            }
         }
 
         private void Tabovi_KeyDown(object sender, KeyEventArgs e)
@@ -372,7 +496,14 @@ namespace Projekat
 
         private void laboratorija_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                Potvrdi_Laboratorija_Click(sender, e);
+            }
+            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) 
+            {
+                this.Close();
+            }
         }
 
         private void lekar_TextChanged(object sender, TextChangedEventArgs e)
@@ -401,6 +532,7 @@ namespace Projekat
             if (this.specijalista.Text.Trim().Equals("") || this.napomena.Text.Trim().Equals(""))
             {
                 this.potvrdiSpec.IsEnabled = false;
+                popunjeno = false;
             }
             else if (!this.specijalista.Text.Trim().Equals("") && !this.napomena.Text.Trim().Equals(""))
             {
@@ -417,6 +549,11 @@ namespace Projekat
         private void napomenaPregelda_TextChanged(object sender, TextChangedEventArgs e)
         {
             postaviDugmeBolnicko();
+        }
+
+        private void napomenaLab_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            postaviDugmeLab();
         }
     }
 }

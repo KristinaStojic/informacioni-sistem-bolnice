@@ -22,12 +22,12 @@
                 <MenuItem Header="Evidencija utrošenog materijala" InputGestureText="Ctrl + M" FontSize="15" Background="White"></MenuItem>
                 <MenuItem Header="Zatvori" InputGestureText="Ctrl + X" FontSize="15" Click="Button_Click_3" Background="White"></MenuItem>
             </MenuItem>
-            <MenuItem Header="_Uredi" FontSize="15" Click="MenuItem_Click">
+            <MenuItem Header="_Uredi" FontSize="15" Click="MenuItem_Click_1">
                 <MenuItem Header="Lični podaci" InputGestureText="Ctrl + I" FontSize="15"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Pomoć" FontSize="15">
                 <MenuItem Header="Pomoć" InputGestureText="Ctrl + H" FontSize="15" Click="Pomoc_Click"></MenuItem>
-                <MenuItem Header="O aplikaciji" InputGestureText="Ctrl + A" FontSize="15"></MenuItem>
+                <MenuItem Header="O aplikaciji" InputGestureText="Ctrl + A" FontSize="15" Click="Aplikacija_Click"></MenuItem>
             </MenuItem>
 
         </Menu>
@@ -48,11 +48,6 @@
         <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,435,0,0" FontSize="18" Height="36" Width="63"/>
         <Label Content="Adresa stanovanja" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,516,0,0" FontSize="18" Height="35" Width="162"/>
         <Label Content="Specijalizacija" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,599,0,0" FontSize="18" Height="35" Width="123"/>
-        <Image Source="slike/stethoscope.png" Margin="118,121,455.6,506.4" Grid.Column="1"></Image>
-        <Image Source="slike/lek.png" Margin="118,232,455.6,395.4" Grid.Column="1"></Image>
-        <Image Source="slike/odmor.png" Margin="118,345,455.6,282.4" Grid.Column="1"></Image>
-        <Image Source="slike/izmeni.png" Margin="118,453,455.6,174.4" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
-        <Image Source="slike/obavestenja.png" Margin="118,566,455.6,61.4" Grid.Column="1" RenderTransformOrigin="0.471,2.109"></Image>
         <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,121,68,535" IsEnabled="False" Name="ime" FontSize="18" BorderBrush="Black"/>
         <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,198,68,458" IsEnabled="False" Name="prezime" FontSize="18" BorderBrush="Black"/>
         <TextBox TextWrapping="Wrap" RenderTransformOrigin="0.508,0.478" Margin="380,278,68,378" IsEnabled="False" Name="jmbg" FontSize="18" BorderBrush="Black"/>

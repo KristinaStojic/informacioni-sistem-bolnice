@@ -10,7 +10,6 @@ namespace Projekat.Model
     class MalicioznoPonasanjeMenadzer
     {
         public static List<MalicioznoPonasanje> malicioznaPonasanja = new List<MalicioznoPonasanje>();
-        private static int maksBrojMalicioznogPonasanjaPoDanu = 3;
 
         public static void sacuvajIzmene()
         {
@@ -57,23 +56,6 @@ namespace Projekat.Model
                 pomocna = false;
             }
             return idMalicioznog;
-        }
-
-        public static bool DetektujMalicioznoPonasanje(int idPacijenta)
-        {
-            int brojacMalicioznogPonasanja = 0;
-            foreach(MalicioznoPonasanje ponasanje in malicioznaPonasanja)
-            {
-                if(ponasanje.IdPacijenta == idPacijenta && ponasanje.DatumModifikacije == DateTime.Now.Date)
-                {
-                    brojacMalicioznogPonasanja++;
-                    if (brojacMalicioznogPonasanja == maksBrojMalicioznogPonasanjaPoDanu)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
 
         public static void DodajMalicioznoPonasanje(int idPacijent)

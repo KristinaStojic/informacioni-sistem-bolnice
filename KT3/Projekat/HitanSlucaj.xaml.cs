@@ -60,12 +60,16 @@ namespace Projekat
         string noviMinuti;
         string noviSati;
 
+        TerminiSekretarServis servis = new TerminiSekretarServis();
+        PacijentiServis pacijentiServis = new PacijentiServis();
+        List<Pacijent> sviPacijenti;
         public HitanSlucaj()
         {
             InitializeComponent();
+            sviPacijenti = pacijentiServis.PronadjiSve();
 
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
-            listaPacijenata.ItemsSource = pacijentiLista;
+            //List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            listaPacijenata.ItemsSource = sviPacijenti;
             CollectionView prikazPacijenata = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             prikazPacijenata.Filter = PretragaPacijenta;
 
@@ -75,7 +79,7 @@ namespace Projekat
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
             DodeliLekaraZaHitanTermin();
-            TerminiSekretarServis.ZakaziHitanTermin(hitanTermin, datum);
+            servis.ZakaziHitanTermin(hitanTermin, datum);
             this.Close();
         }
 
@@ -154,8 +158,8 @@ namespace Projekat
                 noviLekar = stariTermin.Lekar;
 
                 Termin pomereniTermin = PronadjiSledeceSlobodnoZauzece(stariTermin);
-                TerminiSekretarServis.OtkaziTerminSekretar(stariTermin);
-                TerminiSekretarServis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
+                servis.OtkaziTerminSekretar(stariTermin);
+                servis.ZakaziHitanTermin(pomereniTermin, pomereniTermin.Datum);
                 potvrdiDugme.IsEnabled = true;               
             }
         }
@@ -760,7 +764,7 @@ namespace Projekat
 
         public void AzurirajListuPacijenata()
         {
-            List<Pacijent> pacijentiLista = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijentiLista = pacijentiServis.PronadjiSve();
             foreach (Pacijent pacijent in pacijentiLista)
             {
                 AzuriranaLista.Add(pacijent);
@@ -779,5 +783,29 @@ namespace Projekat
             }
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.G && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Guest_Pacijent(sender, e);
+            }
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Guest_Pacijent(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+        }
+
+        private void ZauzetiTermini_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+        }
     }
 }

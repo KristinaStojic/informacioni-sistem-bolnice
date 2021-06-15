@@ -83,12 +83,22 @@ namespace Projekat
                     //int brPregleda = t.Lekar.BrojPregleda; 
                     //int brOperacija = t.Lekar.BrojOperacija; 
                     //int br = 10;
-                    this.ukupnoPregleda = new ChartValues<int>() { t.Lekar.BrojPregleda };
-                    this.ukupnoOperacija = new ChartValues<int>() { t.Lekar.BrojOperacija };
+                    
+                    //this.ukupnoPregleda = new ChartValues<int>() { t.Lekar.BrojPregleda };
+                    //this.ukupnoOperacija = new ChartValues<int>() { t.Lekar.BrojOperacija };
                 }
                
             }
 
+
+            foreach(Lekar l in LekariMenadzer.lekari)
+            {
+                if(l.IdLekara == idLekara)
+                {
+                    this.ukupnoPregleda = new ChartValues<int>() { l.BrojPregleda };
+                    this.ukupnoOperacija = new ChartValues<int>() { l.BrojOperacija };
+                }
+            }
 
 
         }
@@ -127,10 +137,10 @@ namespace Projekat
             // nazad
 
             TerminServisLekar.sacuvajIzmene();
-            PacijentiServis.SacuvajIzmenePacijenta();
+            //PacijentiServis.SacuvajIzmenePacijenta();
             this.Close();
-            //PocetnaStrana ps = new PocetnaStrana();
-            //ps.Show();
+            PocetnaStrana ps = new PocetnaStrana(idLekara);
+            ps.Show();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -176,7 +186,7 @@ namespace Projekat
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TerminServisLekar.sacuvajIzmene();
-            PacijentiServis.SacuvajIzmenePacijenta();
+           // PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
             //PocetnaStrana ps = new PocetnaStrana();
             //ps.Show();   /*ISPRAVITI*/

@@ -10,7 +10,7 @@
       Loaded="Page_Loaded"
       Title="PrikaziAnketuZaKliniku" Background="{DynamicResource BackgroundColor}" Height="640">
 
-    <Grid Margin="0,0,0,-30">
+    <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="142*"/>
@@ -34,44 +34,49 @@
                                     <MenuItem.Icon>
                                         <Image Source="/slike/user.png" />
                                     </MenuItem.Icon>
-                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Command="{Binding ProfilKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Profil}" Name="Korisnik" Click="Korisnik_Click"></MenuItem>
+                                    <!--="{Binding ProfilKomanda}"/-->
                                     <Separator/>
-                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Command="{Binding PopuniAnketuKomanda}" />
+                                    <MenuItem Header="{namespace:Loc PopuniAnketu}" Name="anketa" Click="anketa_Click"></MenuItem>
+                                    <!--Command="{Binding PopuniAnketuKomanda}" /-->
                                     <Separator/>
                                     <MenuItem Header="{namespace:Loc IzaberiteJezik}" IsEnabled="False" />
-                                    <MenuItem Header="_eng-US" Command="{Binding PromeniJezikKomanda}"/>
-                                    <MenuItem Header="_sr-LATN" Command="{Binding PromeniJezikKomandaSR}"/>
+                                    <MenuItem Header="_eng-US" x:Name="Jezik" Click="Jezik_Click"></MenuItem>
+                                    <!--Command="{Binding PromeniJezikKomanda}"/-->
                                     <Separator />
                                     <MenuItem Header="{namespace:Loc IzberiteTemu}" IsEnabled="False" />
-                                    <MenuItem Header="{namespace:Loc Tamna}" x:Name="tamnaTema"  Command="{Binding PromeniTemuKomanda}"/>
-                                    <MenuItem Header="{namespace:Loc Svetla}" x:Name="SvetlaTema" Command="{Binding PromeniTemuKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Tamna}" x:Name="tamnaTema" Click="PromeniTemu"></MenuItem>
+                                    <!--Command="{Binding PromeniTemuKomandaTamna}"/-->
+                                    <MenuItem Header="{namespace:Loc Svetla}" x:Name="SvetlaTema" Click="PromeniTemu"></MenuItem>
+                                    <!--Command="{Binding PromeniTemuKomanda}"/-->
                                     <Separator />
-                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Command="{Binding OdjavaKomanda}"/>
+                                    <MenuItem Header="{namespace:Loc Odjava}" Name="odjava" Click="odjava_Click"></MenuItem>
+                                    <!--Command="{Binding OdjavaKomanda}"/>-->
                                 </MenuItem>
                             </Menu>
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Margin="20, 0, 0, 0" FontSize="14" Foreground="#004a7c" Height="25">
-                            <Hyperlink x:Name="pocetna" Command="{Binding PocetnaStranicaKomanda}">
+                           <Hyperlink x:Name="pocetna" Click="pocetna_Click"> <!--Command="{Binding PocetnaStranicaKomanda}"-->
                             <Run Text="{namespace:Loc Pocetna}"/>
                         </Hyperlink>
                             <Run Text="  "/>
-                        <Hyperlink Name="zakazi" Command="{Binding ZakaziTerminKomanada}">
+                        <Hyperlink Name="zakazi" Click="zakazi_Click"> <!--Command="{Binding ZakaziTerminKomanada}"-->
                             <Run Text="{namespace:Loc ZakaziTermin}"/>
                         </Hyperlink>
                         <Run Text="  "/>
-                        <Hyperlink Name="uvid" Command="{Binding UvidUZakazaneTermineKomanda}">
+                        <Hyperlink Name="uvid" Click="uvid_Click"> <!--Command="{Binding UvidUZakazaneTermineKomanda}"-->
                             <Run Text="{namespace:Loc UvidUZakazaneTermine}"/>
                         </Hyperlink>
                             <Run Text=" "/>
-                        <Hyperlink Name="karton" Command="{Binding KartonKomanda}">
+                        <Hyperlink Name="karton" Click="karton_Click" ><!--Command="{Binding KartonKomanda}"-->
                             <Run Text="{namespace:Loc Karton}"/>
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,30">
             <!--ListView x:Name="listaAnketi" Height="300" Width="500" VerticalAlignment="Bottom" HorizontalAlignment="Center"
                       SelectionChanged="listaAnketi_SelectionChanged" ItemsSource="{Binding Ankete}" Margin="0,30,0 ,0" >
                 <ListView.View>
@@ -88,20 +93,20 @@
                     </GridView>
                 </ListView.View>
             </-->
-            <StackPanel Margin="179,0,181,20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="475" 
-                        Width="350" Background="#e8f1f5">
+            <StackPanel Margin="150,0,160,20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Height="475" 
+                        Width="400" Background="#e8f1f5">
                 <StackPanel Margin="0,0,0,0"  HorizontalAlignment="Center" Width="350">
                     <Label HorizontalAlignment="Center" Content="{namespace:Loc NaslovAnketaKlinika}" FontWeight="Bold" FontSize="13" Margin="52,10,50, 0" />
                     <Label HorizontalAlignment="Center" Content="{namespace:Loc Ocene}" FontSize="11"/>
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="280" Text="{namespace:Loc Jedan}">
-                           
+                        <TextBlock x:Name="pitanja1" TextWrapping="Wrap" Margin="30, 0, 0, 0" HorizontalAlignment="Left" Width="330" Text="{namespace:Loc Jedan}">
+
                         </TextBlock>
                     </StackPanel>
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                             <RadioButton GroupName="pitanje1" x:Name="jedan1" Margin="30,0,30,0" Content="1" Click="jedan1_Click" />
                             <RadioButton GroupName="pitanje1" x:Name="dva1" Margin="0, 0, 30, 0" Content="2" Click="jedan1_Click"/>
                             <RadioButton GroupName="pitanje1" x:Name="tri1" Margin="0, 0, 30, 0" Content="3" Click="jedan1_Click"/>
@@ -112,11 +117,11 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Dva}">
-                            
+                        <TextBlock x:Name="pitanja2" TextWrapping="Wrap" Margin="30,0,29,0" Text="{namespace:Loc Dva}">
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje2" x:Name="jedan2" Margin="30,0,30,0" Content="1" Click="jedan2_Click"/>
                         <RadioButton GroupName="pitanje2" x:Name="dva2" Margin="0, 0, 30, 0" Content="2" Click="jedan2_Click"/>
                         <RadioButton GroupName="pitanje2" x:Name="tri2" Margin="0, 0, 30, 0" Content="3" Click="jedan2_Click"/>
@@ -126,11 +131,11 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Tri}">
-                           
+                        <TextBlock x:Name="pitanja3" TextWrapping="Wrap" Margin="30,0,29,0" Text="{namespace:Loc Tri}">
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje3" x:Name="jedan3" Margin="30,0,30,0" Content="1" Click="jedan3_Click"/>
                         <RadioButton GroupName="pitanje3" x:Name="dva3" Margin="0, 0, 30, 0" Content="2" Click="jedan3_Click"/>
                         <RadioButton GroupName="pitanje3" x:Name="tri3" Margin="0, 0, 30, 0" Content="3" Click="jedan3_Click"/>
@@ -140,11 +145,11 @@
                 </StackPanel>
                 <StackPanel Margin ="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30, 0, 0, 0" Text="{namespace:Loc Cetiri}">
-                            
+                        <TextBlock x:Name="pitanja4" TextWrapping="Wrap" Margin="30,0,29,0" Text="{namespace:Loc Cetiri}">
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
 
                         <RadioButton GroupName="pitanje4" x:Name="jedan4" Margin="30,0,30,0" Content="1" Click="jedan4_Click" />
                         <RadioButton GroupName="pitanje4" x:Name="dva4" Margin="0, 0, 30, 0" Content="2" Click="jedan4_Click"/>
@@ -155,11 +160,11 @@
                 </StackPanel>
                 <StackPanel Margin="0, 20, 0, 0">
                     <StackPanel>
-                        <TextBlock x:Name="pitanja5" Margin="30, 0, 0, 0" TextWrapping="Wrap" Text="{namespace:Loc Pet}">
-                       
+                        <TextBlock x:Name="pitanja5" Margin="30,0,29,0" TextWrapping="Wrap" Text="{namespace:Loc Pet}">
+
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                         <RadioButton GroupName="pitanje5" x:Name="jedan5" Margin="30,0,30,0" Content="1" Click="jedan5_Click"/>
                         <RadioButton GroupName="pitanje5" x:Name="dva5" Margin="0, 0, 30, 0" Content="2" Click="jedan5_Click"/>
                         <RadioButton GroupName="pitanje5" x:Name="tri5" Margin="0, 0, 30, 0" Content="3" Click="jedan5_Click"/>
@@ -168,10 +173,8 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <StackPanel>
-                <Button Content="{namespace:Loc Potvrdi}" Name="potvrdi" Height="30" Width="90" Margin="310,0,310,0" Click="Button_Click"
+            <Button Content="{namespace:Loc Potvrdi}" Name="potvrdi" Height="30" Width="80" HorizontalAlignment="Center" Margin="310,0,290,0" Click="Button_Click"
                         Style="{DynamicResource ButtonStyle2}"/>
-            </StackPanel>
         </StackPanel>
 
 

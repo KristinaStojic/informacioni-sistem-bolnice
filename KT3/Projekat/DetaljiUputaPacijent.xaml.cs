@@ -20,12 +20,13 @@ namespace Projekat
     public partial class DetaljiUputaPacijent : Page
     {
         private static int idPacijent;
+        PacijentiServis servis = new PacijentiServis();
         public DetaljiUputaPacijent(int idPrijavljenogPacijenta, Uput izabraniUput)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            Pacijent prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            Pacijent prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.ime.Text = prijavljeniPacijent.ImePacijenta;
             this.prezime.Text = prijavljeniPacijent.PrezimePacijenta;
             this.jmbg.Text = prijavljeniPacijent.Jmbg.ToString();
@@ -55,8 +56,6 @@ namespace Projekat
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
 
@@ -95,20 +94,6 @@ namespace Projekat
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /*var app = (App)Application.Current;
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }*/
             PacijentWebStranice.Jezik_Click(Jezik);
 
         }

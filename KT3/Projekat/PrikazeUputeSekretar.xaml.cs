@@ -25,6 +25,7 @@ namespace Projekat
         public Uput uput;
         public Pacijent pacijent;
         public ZakaziTerminSekretar zakazivanje;
+        PacijentiServis servis = new PacijentiServis();
         public static ObservableCollection<Uput> TabelaUputa
         {
             get;
@@ -39,7 +40,7 @@ namespace Projekat
             this.DataContext = this;
 
             TabelaUputa = new ObservableCollection<Uput>();
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
@@ -67,6 +68,11 @@ namespace Projekat
         private void PopunjavanjeFormeZaZakazivanje()
         {
             zakazivanje.uputZaPregled = uput;
+            if (uput == null)
+            {
+                return;
+            }
+            
             Lekar lekar = LekariServis.NadjiPoId(uput.IdLekaraKodKogSeUpucuje);
             zakazivanje.Lekar = lekar;
             if (zakazivanje.Lekar != null)
@@ -88,5 +94,24 @@ namespace Projekat
             }
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.U && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Izaberi_uput_Click(sender, e);
+            }
+            else if (e.Key == Key.U && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Izaberi_uput_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+            else if (e.Key == Key.N && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Nazad_Click(sender, e);
+            }
+        }
     }
 }

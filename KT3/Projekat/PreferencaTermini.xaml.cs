@@ -18,39 +18,32 @@ using System.Windows.Shapes;
 
 namespace Projekat
 {
-    /// <summary>
-    /// Interaction logic for PreferencaTermini.xaml
-    /// </summary>
     public partial class PreferencaTermini : Page
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
         private ObservableCollection<Termin> Termini { get; set; }
+
+        PacijentiServis servis = new PacijentiServis();
         public PreferencaTermini(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = servis.PronadjiPoId(idPrijavljenogPacijenta);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
             idPacijent = idPrijavljenogPacijenta;
             
             Termini = new ObservableCollection<Termin>();
             PronadjiPreporuceneTermine(prijavljeniPacijent);
-            preferencaGrid.ItemsSource = Termini;
         }
 
         private void PronadjiPreporuceneTermine(Pacijent prijavljeniPacijent)
         {
             int brojacPreporucenihTermina = 0;
             bool jeMaksimum = false;
-            foreach (Sala sala in SaleServis.NadjiSveSale())
-            {
-                if (sala.TipSale.Equals(tipSale.SalaZaPregled))
-                {
-                     Termini = TerminServis.PronadjiPreporuceneTermine(prijavljeniPacijent, sala, brojacPreporucenihTermina, jeMaksimum);
-                }
-            }
+            Termini = TerminServis.PronadjiPreporuceneTermine(prijavljeniPacijent, brojacPreporucenihTermina, jeMaksimum);
+            preferencaGrid.ItemsSource = Termini;
         }
 
         

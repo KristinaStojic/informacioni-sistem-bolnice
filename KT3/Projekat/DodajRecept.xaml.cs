@@ -29,6 +29,8 @@ namespace Projekat
         public bool flagSati = false;
         public bool flagMinuti = false;
         public bool flagLek = false;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        ZdravstveniKartonServis kartonServis = new ZdravstveniKartonServis();
         public DodajRecept(Pacijent izabraniPacijent, Termin izabraniTermin)
         {
             InitializeComponent();
@@ -46,7 +48,7 @@ namespace Projekat
         private void PopuniPodatkePacijenta(Pacijent izabraniPacijent)
         {
             
-            this.nadjiLek.ItemsSource = ZdravstveniKartonServis.NadjiPacijentuDozvoljeneLekove(pacijent.IdPacijenta);
+            this.nadjiLek.ItemsSource = kartonServis.NadjiPacijentuDozvoljeneLekove(pacijent.IdPacijenta);
             this.pacijentIme.Text = izabraniPacijent.ImePacijenta + " " + izabraniPacijent.PrezimePacijenta;
             this.jmbg.Text = izabraniPacijent.Jmbg.ToString();
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
@@ -82,7 +84,7 @@ namespace Projekat
         {
             try
             {
-                int brojRecepta = ZdravstveniKartonServis.GenerisanjeIdRecepta(pacijent.IdPacijenta);
+                int brojRecepta = kartonServis.GenerisanjeIdRecepta(pacijent.IdPacijenta);
                 String nazivLeka = nazivSifra.Text;
                 
                 int kolicinaNaDan = int.Parse(kolicina.Text);
@@ -103,7 +105,7 @@ namespace Projekat
 
                 LekarskiRecept recept = new LekarskiRecept(pacijent, brojRecepta, nazivLeka, datumPregleda, kolikoDana, kolicinaNaDan, pocetakKoriscenja, uzimanjeTerapije);
                 recept.IdLekara = termin.Lekar.IdLekara;
-                ZdravstveniKartonServis.DodajRecept(recept);
+                kartonServis.DodajRecept(recept);
 
                 PosaljiObavestenjeOTerapiji(recept);
                 SacuvajIzmene();
@@ -119,9 +121,9 @@ namespace Projekat
         private void SacuvajIzmene()
         {
             TerminServis.sacuvajIzmene();
-            PacijentiServis.SacuvajIzmenePacijenta();
+            //PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
-            ObavestenjaServis.sacuvajIzmene();
+            //ObavestenjaServis.sacuvajIzmene();
         }
 
         private List<DateTime> GenerisiUzimanjeTerapije(string datumPregleda,int kolicinaNaDan, int kolikoDana)
@@ -152,9 +154,9 @@ namespace Projekat
             {
                 List<int> lista = new List<int>();
                 lista.Add(pacijent.IdPacijenta);
-                int idObavestenja = ObavestenjaServis.GenerisanjeIdObavestenja();
+                int idObavestenja = servis.GenerisanjeIdObavestenja();
                 Obavestenja ob = new Obavestenja(idObavestenja, dt.ToString("MM/dd/yyyy HH:mm"), "Terapija", "Uzmite terapiju: " + recept.NazivLeka, lista, true);  // dodat flag da je notifikacija
-                ObavestenjaMenadzer.obavestenja.Add(ob);
+                servis.DodajObavestenjeSekretar(ob);
             }
         }
 
@@ -259,7 +261,7 @@ namespace Projekat
         {
             if (string.IsNullOrEmpty(((TextBox)sender).Text))
             {
-                flagKolicina = false;
+                flagSati = false;
                 potvrdi.IsEnabled = false;
 
             }
@@ -337,6 +339,14 @@ namespace Projekat
         private void nazivSifra_TextChanged(object sender, TextChangedEventArgs e)
         {
             flagLek = true;
+            if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
+            {
+                potvrdi.IsEnabled = true;
+            }
+        }
+
+        private void Min_LostFocus(object sender, RoutedEventArgs e)
+        {
             if (flagDani == true && flagKolicina == true && flagMinuti == true && flagSati == true && flagLek == true)
             {
                 potvrdi.IsEnabled = true;

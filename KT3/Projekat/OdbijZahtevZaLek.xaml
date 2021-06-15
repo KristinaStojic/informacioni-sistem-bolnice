@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="OdbijZahtevZaLek" Height="400" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>
@@ -24,9 +24,9 @@
         <Label Content="Naziv leka" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="157" Height="28"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="-185,34,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Razlog odbijanja zahteva:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="157" Height="28"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" IsEnabled="False" Name="naziv"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="212" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" IsEnabled="True" Name="razlogOdbijanja"/>
-        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Sacuvaj" Grid.Column="1" HorizontalAlignment="Left" Margin="92,27,0,0" Grid.Row="3" VerticalAlignment="Top" Height="29" Width="73" Click="Button_Sacuvaj"/>
-        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="10,27,0,0" Grid.Row="3" VerticalAlignment="Top" Height="29" Width="73" Click="Button_Odustani"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" IsEnabled="False" Name="naziv" Text="{Binding NazivLekaZahtev, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox TextChanged="razlogOdbijanja_TextChanged" Grid.Column="2" HorizontalAlignment="Left" Height="212" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" IsEnabled="True" Name="razlogOdbijanja" Text="{Binding RazlogOdbijanja, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="potvrdi" BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Sacuvaj" Grid.Column="1" HorizontalAlignment="Left" Margin="92,27,0,0" Grid.Row="3" VerticalAlignment="Top" Height="29" Width="73" Command="{Binding PotvrdiOdbijanjeLeka}"/>
+        <Button BorderBrush="White" Foreground="White" Background="#FF6895C5" Content="Odustani" Grid.Column="2" HorizontalAlignment="Left" Margin="10,27,0,0" Grid.Row="3" VerticalAlignment="Top" Height="29" Width="73"  Command="{Binding OdustaniOdOdbijanjaLekaKomanda}"/>
     </Grid>
 </Window>

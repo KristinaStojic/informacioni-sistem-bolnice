@@ -1,9 +1,13 @@
 ﻿using Model;
 using Projekat.Model;
 using Projekat.Servis;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Tables;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -23,32 +27,19 @@ namespace Projekat
         public List<Anamneza> tempAnamneze;
         public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+
         public ZdravstveniKartonPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = servis.PronadjiPoId(idPrijavljenogPacijenta);
             this.tabelaRecepata.ItemsSource = DodajLekarskeReceptePacijenta();
             this.prikazAnamnezi.ItemsSource = DodajAnamnezePacijenta();
-            this.prikazUputa.ItemsSource = DodajUputePacijenta();
+            this.prikazUputa.ItemsSource = ZdravstveniKartonServis.DodajUputePacijenta(prijavljeniPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-        }
-
-        // TODO: dodati ove metode u Zdravstveni karton Servis
-        private static ObservableCollection<Uput> DodajUputePacijenta()
-        {
-            ObservableCollection<Uput> uputiPacijenta = new ObservableCollection<Uput>();
-            if (prijavljeniPacijent.Karton.Uputi.Count != 0)
-            {
-                foreach (Uput uput in prijavljeniPacijent.Karton.Uputi)
-                {
-                    uputiPacijenta.Add(uput);
-                    
-                }
-            }
-            return uputiPacijenta;
         }
 
         private List<LekarskiRecept> DodajLekarskeReceptePacijenta()
@@ -85,7 +76,6 @@ namespace Projekat
         /* LEKARSKI RECEPTI */
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            // lekarski recepti - prikazi informacije
             if (tabelaRecepata.SelectedItems.Count > 0)
             {
                 LekarskiRecept lp = (LekarskiRecept)tabelaRecepata.SelectedItem;
@@ -105,8 +95,6 @@ namespace Projekat
             this.NavigationService.Navigate(recept);
         }
 
-
-        /* ANAMNEZE */
         private void infoAnamneza_Click(object sender, RoutedEventArgs e)
         {
             if (prikazAnamnezi.SelectedItems.Count > 0)
@@ -131,20 +119,26 @@ namespace Projekat
 
         private void prikazUputa_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: uput za stacionarno lecenje i uput za labratoriju
             Uput uput = (Uput)prikazUputa.SelectedItem;
-            if (uput.TipUputa.Equals(tipUputa.SpecijallistickiPregled))
+            if (uput.TipUputa.Equals(tipUputa.SpecijalistickiPregled))
             {
                 Page detaljiUputa = new DetaljiUputaPacijent(idPacijent, uput);
                 this.NavigationService.Navigate(detaljiUputa);
             }
-            
+            else if (uput.TipUputa.Equals(tipUputa.StacionarnoLecenje))
+            {
+                Page detaljiUputa = new DetaljiSpecijalistickogUputa(idPacijent, uput);  // page -  detalji stac uputa 
+                this.NavigationService.Navigate(detaljiUputa);
+            }
+            else if (uput.TipUputa.Equals(tipUputa.Laboratorija))
+            {
+                Page detaljiLabUputa = new DetaljiLabUputaPacijent(uput, idPacijent);
+                this.NavigationService.Navigate(detaljiLabUputa);
+            }
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
 
@@ -184,11 +178,6 @@ namespace Projekat
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
             PacijentWebStranice.Jezik_Click(Jezik);
-        }
-
-        private void Izvestaj_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

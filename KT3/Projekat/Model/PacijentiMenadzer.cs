@@ -4,7 +4,6 @@
  * Purpose: Definition of the Class NaloziFileManager
  ***********************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,20 +15,19 @@ using Projekat.Servis;
 
 namespace Model
 {
-    public static class PacijentiMenadzer
+    public class PacijentiMenadzer : XMLSerijalizacija<Pacijent>
     {
-        public static List<Pacijent> pacijenti = new List<Pacijent>();
-
-        public static void DodajNalog(Pacijent noviNalog)
+        public override void Dodaj(Pacijent element, string fajl)
         {
-            pacijenti.Add(noviNalog);
-            PrikaziPacijenta.PacijentiTabela.Add(noviNalog);
-            SacuvajIzmenePacijenta();
+            List<Pacijent> lista = NadjiSve(fajl);
+            lista.Add(element);
+            PrikaziPacijenta.PacijentiTabela.Add(element);
+            SacuvajIzmene(fajl, lista);
         }
 
-        public static void IzmeniNalog(Pacijent stariNalog, Pacijent noviNalog)
+        public override void Izmeni(Pacijent stariNalog, Pacijent noviNalog, string fajl)
         {
-            foreach (Pacijent p in pacijenti)
+            foreach (Pacijent p in NadjiSve(fajl))
             {
                 if (p.IdPacijenta == stariNalog.IdPacijenta)
                 {
@@ -56,58 +54,40 @@ namespace Model
                     PrikaziPacijenta.PacijentiTabela.Insert(idx, p);
                 }
             }
-            SacuvajIzmenePacijenta();
+            SacuvajIzmene(fajl, PrikaziPacijenta.PacijentiTabela.ToList());
         }
 
-        // Sanja 
-        public static void IzmeniNalogPacijent(Pacijent stari, Pacijent nalog)
+        public override void Obrisi(Pacijent element, string fajl)
         {
-            foreach (Pacijent p in pacijenti)
-            {
-                if (p.IdPacijenta == stari.IdPacijenta)
-                {
-                    p.ImePacijenta = nalog.ImePacijenta;
-                    p.PrezimePacijenta = nalog.PrezimePacijenta;
-                    p.Jmbg = nalog.Jmbg;
-                    p.Pol = nalog.Pol;
-                    p.StatusNaloga = nalog.StatusNaloga;
-                    p.BrojTelefona = nalog.BrojTelefona;
-                    p.Email = nalog.Email;
-                    p.AdresaStanovanja = nalog.AdresaStanovanja;
-                    p.BracnoStanje = nalog.BracnoStanje;
-                    p.Zanimanje = nalog.Zanimanje;
-                    p.IzabraniLekar = nalog.IzabraniLekar;
-                    //p.Maloletnik = nalog.Maloletnik;
-                    //p.JmbgStaratelja = nalog.JmbgStaratelja;
+            ObrisiObavestenjaPacijenta(element);
+            List<Pacijent> lista = NadjiSve(fajl);
 
-                    for (int i = 0; i < PrikaziTermin.Termini.Count; i++)
-                    {
-                        if (PrikaziTermin.Termini[i].Pacijent.IdPacijenta.Equals(stari.IdPacijenta))
-                        {
-                            MessageBox.Show(i.ToString());
-                            //int i = PrikaziTermin.Termini.IndexOf(stari)
-                            // PrikaziTermin.Termini.RemoveAt(i);
-                            PrikaziTermin.Termini[i].Pacijent = p;   //*
-                           // PrikaziTermin.Termini.Insert(i, PrikaziTermin.Termini[i]);
-                        }
-                    }
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].IdPacijenta == element.IdPacijenta)
+                {
+                    lista.RemoveAt(i);
+                    PrikaziPacijenta.PacijentiTabela.Remove(element);
+                    ObrisiTerminePacijenta(element);
                 }
             }
+            SacuvajIzmene(fajl, lista);
         }
 
-        public static void ObrisiObavestenjaPacijenta(Pacijent nalog)
+        public void ObrisiObavestenjaPacijenta(Pacijent nalog)
         {
-            foreach (Obavestenja obavestenje in ObavestenjaMenadzer.obavestenja.ToList())
+            ObavestenjaServis servis = new ObavestenjaServis();
+            foreach (Obavestenja obavestenje in servis.NadjiSvaObavestenja())
             {
                 if (obavestenje.ListaIdPacijenata.Contains(nalog.IdPacijenta) && obavestenje.ListaIdPacijenata.Count == 1)
                 {
-                    ObavestenjaServis.ObrisiObavestenje(obavestenje);
-                    ObavestenjaServis.sacuvajIzmene();
+                    servis.ObrisiObavestenje(obavestenje);
+                    //ObavestenjaServis.sacuvajIzmene();
                 }
                 else if (obavestenje.ListaIdPacijenata.Contains(nalog.IdPacijenta) && obavestenje.ListaIdPacijenata.Count > 1)
                 {
                     obavestenje.ListaIdPacijenata.Remove(nalog.IdPacijenta);
-                    ObavestenjaServis.sacuvajIzmene();
+                   // ObavestenjaServis.sacuvajIzmene();
                 }
             }
         }
@@ -127,92 +107,13 @@ namespace Model
 
         private static void ObrisiZauzecaSala(int j)
         {
-            foreach (Sala s in SaleMenadzer.sale)
+            foreach (Sala s in SaleMenadzer.lista)
             {
                 if (s.Id == TerminMenadzer.termini[j].Prostorija.Id)
                 {
                     s.zauzetiTermini.Remove(SaleServis.NadjiZauzece(s.Id, TerminMenadzer.termini[j].IdTermin, TerminMenadzer.termini[j].Datum, TerminMenadzer.termini[j].VremePocetka, TerminMenadzer.termini[j].VremeKraja));
                 }
             }
-        }
-
-        public static void ObrisiNalog(Pacijent nalog)
-        {
-            ObrisiObavestenjaPacijenta(nalog);            
-
-            for (int i = 0; i < pacijenti.Count; i++)
-            {
-                if (pacijenti[i].IdPacijenta == nalog.IdPacijenta)
-                {
-                    pacijenti.RemoveAt(i);
-                    PrikaziPacijenta.PacijentiTabela.Remove(nalog);
-
-                    ObrisiTerminePacijenta(nalog);
-                }
-            }
-            SacuvajIzmenePacijenta();
-        }
-
-        public static List<Pacijent> PronadjiSve()
-        {
-            if (File.ReadAllText("pacijenti.xml").Trim().Equals(""))
-            {
-                return pacijenti;
-            }
-            else
-            {
-                FileStream filestream = File.OpenRead("pacijenti.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Pacijent>));
-                pacijenti = (List<Pacijent>)serializer.Deserialize(filestream);
-                filestream.Close();
-                return pacijenti;
-            }
-        }
-
-        public static Pacijent PronadjiPoId(int id)
-        {
-            foreach (Pacijent p in pacijenti)
-            {
-                if (p.IdPacijenta == id)
-                {
-                    return p;
-                }
-            }
-            return null;
-        }
-
-        public static int GenerisanjeIdPacijenta()
-        {
-            bool pomocna = false;
-            int id = 1;
-
-            for (id = 1; id <= pacijenti.Count; id++)
-            {
-                foreach (Pacijent p in pacijenti)
-                {
-                    if (p.IdPacijenta.Equals(id))
-                    {
-                        pomocna = true;
-                        break;
-                    }
-                }
-
-                if (!pomocna)
-                {
-                    return id;
-                }
-                pomocna = false;
-            }
-
-            return id;
-        }
-
-        public static void SacuvajIzmenePacijenta()
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Pacijent>));
-            TextWriter filestream = new StreamWriter("pacijenti.xml");
-            serializer.Serialize(filestream, pacijenti);
-            filestream.Close();
         }
 
     }

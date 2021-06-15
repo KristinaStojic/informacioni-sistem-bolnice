@@ -28,58 +28,113 @@ namespace Projekat
 
         private void prijava_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: moze ovde validacija
             try
             {
-                int IdPacijent = Int32.Parse(this.korisnickoIme.Text);
+                int IdPacijent = -1;
+                string korisnicko = korisnickoIme.Text;
+                string lozinka = lozinkaPassword.Password;
+                /*if(!ValidacijaNedostajucihPodataka(korisnicko, lozinka))
+                {
+                    return;
+                }*/
+                IdPacijent = ValidacijaUnetihPodataka(IdPacijent, korisnicko, lozinka);
+                if (IdPacijent == -1)
+                {
+                    return;
+                }
                 Page pocetna = new PrikaziTermin(IdPacijent);
                 this.NavigationService.Navigate(pocetna);
             }
             catch
             {
-                MessageBox.Show("Niste uneli ispravne kredencijale");
+                if (Jezik.Header.Equals("_en-US"))
+                {
+                    MessageBox.Show("Niste uneli ispravno korisnicko ime i/ili lozinku");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("You did not enter a valid username and / or password");
+                    return;
+                }
             }
         }
 
-        // TODO: izmeniti
+        private int ValidacijaUnetihPodataka(int IdPacijent, string korisnicko, string lozinka)
+        {
+            try
+            {
+                if (korisnicko.Equals("konstantin") && lozinka.Equals("konstantin"))
+                {
+                    IdPacijent = 1;
+                }
+                if (korisnicko.Equals("marko") && lozinka.Equals("marko"))
+                {
+                    IdPacijent = 3;
+                }
+                if (korisnicko.Equals("dimitrije") && lozinka.Equals("dimitrije"))
+                {
+                    IdPacijent = 2;
+                }
+                if (korisnicko.Equals("kristina") && lozinka.Equals("kristina"))
+                {
+                    IdPacijent = 4;
+                }
+                if (korisnicko.Equals("nevena") && lozinka.Equals("nevena"))
+                {
+                    IdPacijent = 6;
+                }
+                if (korisnicko.Equals("jovana") && lozinka.Equals("jovana"))
+                {
+                    IdPacijent = 5;
+                }
+                if (IdPacijent == -1)
+                {
+                    if (Jezik.Header.Equals("_en-US"))
+                    {
+                        MessageBox.Show("Niste uneli ispravno korisnicko ime i/ili lozinku");
+                        return -1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("You did not enter a valid username and / or password");
+                        return -1;
+                    }
+                }
+                return IdPacijent;
+            }
+            catch
+            {
+                MessageBox.Show("Niste uneli ispravno korisnicko ime i/ili lozinku");
+                return -1;
+            }
+        }
+
+        private bool ValidacijaNedostajucihPodataka(string korisnicko, string lozinka)
+        {
+            if (korisnicko == "" || lozinka == "")
+            {
+                if (Jezik.Header.Equals("_en-US"))
+                {
+                    MessageBox.Show("Niste uneli korisnicko ime i/ili lozinku");
+                }
+                else
+                {
+                    MessageBox.Show("You did not enter a username and / or password");
+                }
+                return false;
+            }
+            return true;
+        }
+
         private void PromeniTemu(object sender, RoutedEventArgs e)
         {
-            /*var app = (App)Application.Current;
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("Svetla"))
-            {
-                mi.Header = "Tamna";
-                app.ChangeTheme(new Uri("Teme/Svetla.xaml", UriKind.Relative));
-            }
-            else
-            {
-                mi.Header = "Svetla";
-                app.ChangeTheme(new Uri("Teme/Tamna.xaml", UriKind.Relative));
-            }*/
             PacijentWebStranice.PromeniTemu(SvetlaTema, tamnaTema);
-
-
         }
 
         private void Jezik_Click(object sender, RoutedEventArgs e)
         {
-            /*var app = (App)Application.Current;
-            // TODO: proveriti
-            string eng = "en-US";
-            string srb = "sr-LATN";
-            MenuItem mi = (MenuItem)sender;
-            if (mi.Header.Equals("en-US"))
-            {
-                mi.Header = "sr-LATN";
-                app.ChangeLanguage(eng);
-            }
-            else
-            {
-                mi.Header = "en-US";
-                app.ChangeLanguage(srb);
-            }*/
             PacijentWebStranice.Jezik_Click(Jezik);
-
         }
 
 

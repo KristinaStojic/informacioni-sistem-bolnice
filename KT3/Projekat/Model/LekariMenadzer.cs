@@ -14,9 +14,13 @@ namespace Model
     {
         public static List<Lekar> lekari = new List<Lekar>();
         public static List<ZahtevZaGodisnji> zahtevi = new List<ZahtevZaGodisnji>();
+        PacijentiServis servis = new PacijentiServis();
+        PacijentiMenadzer menadzer = new PacijentiMenadzer();
 
         public static void DodajLekara(Lekar noviLekar)
         {
+            noviLekar.lozinka = noviLekar.Jmbg.ToString();
+            noviLekar.korisnickoIme = noviLekar.PrezimeLek;
             lekari.Add(noviLekar);
             //PrikaziLekare.Lekari.Add(noviLekar);
             SacuvajIzmeneLekara();
@@ -28,6 +32,8 @@ namespace Model
             {
                 if (l.IdLekara == stariLekar.IdLekara)
                 {
+                    l.korisnickoIme = noviLekar.korisnickoIme;
+                    l.lozinka = noviLekar.lozinka;
                     l.ImeLek = noviLekar.ImeLek;
                     l.PrezimeLek = noviLekar.PrezimeLek;
                     l.Jmbg = noviLekar.Jmbg;
@@ -70,69 +76,72 @@ namespace Model
             }
         }
 
-        public static void ObrisiRecepte(Lekar lekar)
+        public void ObrisiRecepte(Lekar lekar)
         {
-            for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
+            List<Pacijent> sviPacijenti = servis.pacijenti();
+            for (int i = 0; i < sviPacijenti.Count; i++)
             {
-                if (PacijentiMenadzer.pacijenti[i].Karton == null)
+                if (sviPacijenti[i].Karton == null)
                 {
                     return;
                 }
                 else 
                 { 
-                    for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.Count; j++)
+                    for (int j = 0; j < sviPacijenti[i].Karton.LekarskiRecepti.Count; j++)
                     {
-                        if (PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti[j].IdLekara == lekar.IdLekara)
+                        if (sviPacijenti[i].Karton.LekarskiRecepti[j].IdLekara == lekar.IdLekara)
                         {
-                            PacijentiMenadzer.pacijenti[i].Karton.LekarskiRecepti.RemoveAt(j);
+                            sviPacijenti[i].Karton.LekarskiRecepti.RemoveAt(j);
                             j--;
-                            PacijentiServis.SacuvajIzmenePacijenta();
+                            menadzer.SacuvajIzmene("pacijenti.xml", sviPacijenti);
                         }
                     }
                 }
             }
         }
 
-        public static void ObrisiUpute(Lekar lekar)
+        public void ObrisiUpute(Lekar lekar)
         {
-            for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
+            List<Pacijent> sviPacijenti = servis.pacijenti();
+            for (int i = 0; i < sviPacijenti.Count; i++)
             {
-                if (PacijentiMenadzer.pacijenti[i].Karton == null)
+                if (sviPacijenti[i].Karton == null)
                 {
                     return;
                 }
                 else
                 { 
-                    for (int j = 0; j < PacijentiMenadzer.pacijenti[i].Karton.Uputi.Count; j++)
+                    for (int j = 0; j < sviPacijenti[i].Karton.Uputi.Count; j++)
                     {
-                        if (PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKodKogSeUpucuje == lekar.IdLekara
-                            || PacijentiMenadzer.pacijenti[i].Karton.Uputi[j].IdLekaraKojiIzdajeUput == lekar.IdLekara)
+                        if (sviPacijenti[i].Karton.Uputi[j].IdLekaraKodKogSeUpucuje == lekar.IdLekara
+                            || sviPacijenti[i].Karton.Uputi[j].IdLekaraKojiIzdajeUput == lekar.IdLekara)
                         {
-                            PacijentiMenadzer.pacijenti[i].Karton.Uputi.RemoveAt(j);
+                            sviPacijenti[i].Karton.Uputi.RemoveAt(j);
                             j--;
-                            PacijentiServis.SacuvajIzmenePacijenta();
+                            menadzer.SacuvajIzmene("pacijenti.xml", sviPacijenti);
                         }
                     }
                 }
             }
         }
 
-        public static void ObrisiIzabranogLekara(Lekar lekar)
+        public  void ObrisiIzabranogLekara(Lekar lekar)
         {
-            for (int i = 0; i < PacijentiMenadzer.pacijenti.Count; i++)
+            List<Pacijent> sviPacijenti = servis.pacijenti();
+            for (int i = 0; i < sviPacijenti.Count; i++)
             {
-                if (PacijentiMenadzer.pacijenti[i].IzabraniLekar != null)
+                if (sviPacijenti[i].IzabraniLekar != null)
                 {
-                    if (PacijentiMenadzer.pacijenti[i].IzabraniLekar.IdLekara == lekar.IdLekara)
+                    if (sviPacijenti[i].IzabraniLekar.IdLekara == lekar.IdLekara)
                     {
-                        PacijentiMenadzer.pacijenti[i].IzabraniLekar = new Lekar();
-                        PacijentiServis.SacuvajIzmenePacijenta();
+                        sviPacijenti[i].IzabraniLekar = new Lekar();
+                        menadzer.SacuvajIzmene("pacijenti.xml", sviPacijenti);
                     }
                 }
             }
         }
 
-        public static void ObrisiLekara(Lekar lekar)
+        public void ObrisiLekara(Lekar lekar)
         {
             ObrisiUpute(lekar);
             ObrisiRecepte(lekar);

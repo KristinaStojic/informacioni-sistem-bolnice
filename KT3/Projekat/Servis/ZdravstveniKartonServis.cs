@@ -2,6 +2,7 @@
 using Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -9,64 +10,66 @@ namespace Projekat.Servis
 {
     public class ZdravstveniKartonServis
     {
-        public static int GenerisanjeIdRecepta(int IdPacijenta)
+        ZdravstveniKartonMenadzer menadzer = new ZdravstveniKartonMenadzer();
+        PacijentiServis servis = new PacijentiServis();
+        public int GenerisanjeIdRecepta(int IdPacijenta)
         {
-            return ZdravstveniKartonMenadzer.GenerisanjeIdRecepta(IdPacijenta);
+            return menadzer.GenerisanjeIdRecepta(IdPacijenta);
         }
         
-        public static int GenerisanjeIdAnamneze(int IdPacijenta)
+        public int GenerisanjeIdAnamneze(int IdPacijenta)
         {
-            return ZdravstveniKartonMenadzer.GenerisanjeIdAnamneze(IdPacijenta);
+            return menadzer.GenerisanjeIdAnamneze(IdPacijenta);
         }
         
-        public static int GenerisanjeIdAlergena(int IdPacijenta)
+        public int GenerisanjeIdAlergena(int IdPacijenta)
         {
-            return ZdravstveniKartonMenadzer.GenerisanjeIdAlergena(IdPacijenta);
+            return menadzer.GenerisanjeIdAlergena(IdPacijenta);
         }
 
-        public static int GenerisanjeIdUputa(int idPacijenta)
+        public int GenerisanjeIdUputa(int idPacijenta)
         {
-            return ZdravstveniKartonMenadzer.GenerisanjeIdUputa(idPacijenta);
+            return menadzer.GenerisanjeIdUputa(idPacijenta);
         }
 
-        public static void DodajRecept(LekarskiRecept recept)
+        public void DodajRecept(LekarskiRecept recept)
         {
-            ZdravstveniKartonMenadzer.DodajRecept(recept);
+            menadzer.DodajRecept(recept);
         }
 
-        public static void DodajAnamnezu(Anamneza anamneza)
+        public void DodajAnamnezu(Anamneza anamneza)
         {
-            ZdravstveniKartonMenadzer.DodajAnamnezu(anamneza);
+            menadzer.DodajAnamnezu(anamneza);
         }
 
-        public static void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
+        public void IzmeniAnamnezu(Anamneza stara, Anamneza nova)
         {
-            ZdravstveniKartonMenadzer.IzmeniAnamnezu(stara, nova);
+            menadzer.IzmeniAnamnezu(stara, nova);
         }
 
-        public static void DodajAlergen(Alergeni alergen)
+        public void DodajAlergen(Alergeni alergen)
         {
-            ZdravstveniKartonMenadzer.DodajAlergen(alergen);
+            menadzer.DodajAlergen(alergen);
         }
 
-        public static void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
+        public void IzmeniAlergen(Alergeni stariAlergen, Alergeni noviAlergen)
         {
-            ZdravstveniKartonMenadzer.IzmeniAlergen(stariAlergen, noviAlergen);
+            menadzer.IzmeniAlergen(stariAlergen, noviAlergen);
         }
 
-        public static void DodajUput(Uput uput)
+        public void DodajUput(Uput uput)
         {
-            ZdravstveniKartonMenadzer.DodajUput(uput);
+            menadzer.DodajUput(uput);
         }
 
-        public static List<Lek> NadjiPacijentuDozvoljeneLekove(int idSelektovanogPacijenta)
+        public List<Lek> NadjiPacijentuDozvoljeneLekove(int idSelektovanogPacijenta)
         {
             List<Lek> dozvoljeniLekovi = new List<Lek>();
 
 
             dozvoljeniLekovi = nadjiDozvoljeneLekove();
 
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in servis.pacijenti())
             {
                 if (idSelektovanogPacijenta == pacijent.IdPacijenta)
                 {                 
@@ -111,14 +114,29 @@ namespace Projekat.Servis
             }
         }
 
-        public static List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
+        public List<Uput> PronadjiSveSpecijalistickeUputePacijenta(int idPacijenta)
         {
-            return ZdravstveniKartonMenadzer.PronadjiSveSpecijalistickeUputePacijenta(idPacijenta);
+            return menadzer.PronadjiSveSpecijalistickeUputePacijenta(idPacijenta);
         }
 
         public static List<ZdravstveniKarton> kartoni()
         {
             return ZdravstveniKartonMenadzer.nadjiKartone();
+        }
+
+
+        public static ObservableCollection<Uput> DodajUputePacijenta(Pacijent prijavljeniPacijent)
+        {
+            ObservableCollection<Uput> uputiPacijenta = new ObservableCollection<Uput>();
+            if (prijavljeniPacijent.Karton.Uputi.Count != 0)
+            {
+                foreach (Uput uput in prijavljeniPacijent.Karton.Uputi)
+                {
+                    uputiPacijenta.Add(uput);
+
+                }
+            }
+            return uputiPacijenta;
         }
     }
 }

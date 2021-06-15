@@ -24,6 +24,7 @@ namespace Projekat
         public static ObservableCollection<Termin> Termini { get; set; }
         public static int idPacijent;
         public static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
 
         public ZakazaniTerminiPacijentDatum(int idPrijavljenogPacijenta)
         {
@@ -31,7 +32,7 @@ namespace Projekat
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             Termini = TerminServis.PronadjiTerminPoIdPacijenta(idPacijent);
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = servis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(Termini);
             view.Filter = UserFilter;
@@ -87,7 +88,8 @@ namespace Projekat
                 MessageBox.Show("Selektujte termin koji zelite da otkazete", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            if (MalicioznoPonasanjeServis.DetektujMalicioznoPonasanje(idPacijent))
+            ProxyMalicioznoPonasanjeServis proxy = new ProxyMalicioznoPonasanjeServis();
+            if (proxy.DetektujMalicioznoPonasanje(idPacijent))
             {
                 MessageBox.Show("Nije Vam omoguceno otkazivanje termina jer ste prekoracili dnevni limit modifikacije termina.", "Upozorenje", MessageBoxButton.OK);
                 return;

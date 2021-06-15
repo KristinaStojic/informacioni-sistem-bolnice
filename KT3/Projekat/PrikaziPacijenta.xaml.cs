@@ -33,13 +33,14 @@ namespace Projekat
             set;
         }
 
+        PacijentiServis servis = new PacijentiServis();
         public PrikaziPacijenta()
         {
             InitializeComponent();
             this.DataContext = this;
             PacijentiTabela = new ObservableCollection<Pacijent>();
 
-            List<Pacijent> pacijenti = PacijentiServis.PronadjiSve();
+            List<Pacijent> pacijenti = servis.PronadjiSve();
             foreach (Pacijent p in pacijenti)
             {
                 PacijentiTabela.Add(p);
@@ -65,7 +66,7 @@ namespace Projekat
 
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
-            PacijentiServis.SacuvajIzmenePacijenta();
+           // PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
             this.Close();
             Sekretar s = new Sekretar();
@@ -117,7 +118,7 @@ namespace Projekat
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            PacijentiServis.SacuvajIzmenePacijenta();
+           // PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
         }
 
@@ -186,7 +187,7 @@ namespace Projekat
 
         private void Termini_Click(object sender, RoutedEventArgs e)
         {
-            PacijentiServis.SacuvajIzmenePacijenta();
+           // PacijentiServis.SacuvajIzmenePacijenta();
             SaleServis.sacuvajIzmjene();
 
             this.Close();
@@ -269,14 +270,6 @@ namespace Projekat
             {
                 Nazad_Click(sender, e);
             }
-            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
-            {
-                //this.MoveFocus();
-            }
-            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.RightCtrl))
-            {
-                pretraga.Focusable = true;
-            }
             else if (e.Key == Key.P && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Pomoc_Click(sender, e);
@@ -288,5 +281,11 @@ namespace Projekat
 
         }
 
+        private void Komunikacija_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            KomunikacijaSekretar komunikacija = new KomunikacijaSekretar();
+            komunikacija.Show();
+        }
     }
 }

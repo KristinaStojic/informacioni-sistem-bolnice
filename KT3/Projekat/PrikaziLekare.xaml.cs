@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Model;
 using Projekat.Pomoc;
 using Projekat.Servis;
-using Projekat.ViewModel;
+using System.IO;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Tables;
+//using System.Windows.Documents;
 
 namespace Projekat
 {
@@ -23,84 +26,11 @@ namespace Projekat
     /// </summary>
     public partial class PrikaziLekare : Window
     {
-/*        private bool flag = false;
-
-        public static ObservableCollection<Lekar> Lekari
-        {
-            get;
-            set;
-        }*/
-
         public PrikaziLekare()
         {
             InitializeComponent();
-         /*   this.DataContext = this;
-            Lekari = new ObservableCollection<Lekar>();
-
-            foreach (Lekar l in LekariMenadzer.lekari)
-            {
-                Lekari.Add(l);
-           }
-
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(LekarViewModel.lekari);
-            view.Filter = UserFilterLekari;  */
         }
 
-      /*  
-        private bool UserFilterLekari(object item)
-        {
-            if (String.IsNullOrEmpty(pretraga.Text))
-            {
-                return true;
-            }
-            else
-            {
-                return ((item as Lekar).ImeLek.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                    || ((item as Lekar).PrezimeLek.IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                       || ((item as Lekar).Jmbg.ToString().IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                          || ((item as Lekar).specijalizacija.ToString().IndexOf(pretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-            }
-        }
-        
-        private void Dodaj_Click(object sender, RoutedEventArgs e)
-        {
-            DodajLekara lekar = new DodajLekara();
-            lekar.Show();
-        }
-
-        private void Izmeni_Click(object sender, RoutedEventArgs e)
-        {
-            Lekar zaIzmenu = (Lekar)TabelaLekara.SelectedItem;
-
-            if (zaIzmenu != null)
-            {
-                IzmeniLekara izmena = new IzmeniLekara(zaIzmenu);
-                izmena.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali lekara kojeg zelite da izmenite!");
-            }
-        }
-
-        private void Obrisi_Click(object sender, RoutedEventArgs e)
-        {
-            flag = true;
-            Lekar zaBrisanje = (Lekar)TabelaLekara.SelectedItem;
-            canvas2.Visibility = Visibility.Hidden;
-
-            if (zaBrisanje != null)
-            {
-                ObrisiLekara brisanje = new ObrisiLekara(zaBrisanje);
-                brisanje.Show();
-            }
-            else
-            {
-                MessageBox.Show("Niste selektovali lekara kojeg zelite da obrisete!");
-            }
-            flag = false;
-        }
-        */
         private void Pacijenti_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -140,30 +70,13 @@ namespace Projekat
             Sekretar pocetnaStrana = new Sekretar();
             pocetnaStrana.Show();
         }
-        /*
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            // TODO: sacuvati sve ?
-            LekariServis.SacuvajIzmeneLekara();
-        }
-        */
+     
         private void TabelaLekara_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (flag == false)
-            //{
-                canvas2.Visibility = Visibility.Visible;
-            //}
-
+            canvas2.Visibility = Visibility.Visible;
             Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;
-
-            
         }
        
-     /*   private void Pretraga_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(LekarViewModel.lekari).Refresh();
-        } */
-        
         private void Radno_vreme_Click(object sender, RoutedEventArgs e)
         {
             Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;
@@ -184,7 +97,14 @@ namespace Projekat
             OdobravanjeGodisnjegOdmora odobravanje = new OdobravanjeGodisnjegOdmora();
             odobravanje.Show();
         }
-       
+
+        private void Komunikacija_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            KomunikacijaSekretar komunikacija = new KomunikacijaSekretar();
+            komunikacija.Show();
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl))
@@ -219,14 +139,104 @@ namespace Projekat
             {
                 Nazad_Click(sender, e);
             }
-            // TODO: tabela termina 
-            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.LeftCtrl))
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
+                Izvestaj_Click(sender, e);
             }
-            else if (e.Key == Key.T && Keyboard.IsKeyDown(Key.RightCtrl))
+            else if (e.Key == Key.G && Keyboard.IsKeyDown(Key.RightCtrl))
             {
+                Izvestaj_Click(sender, e);
             }
-            // TODO: polje za pretragu
-        }
+        }     
+       
+        private void Izvestaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (TabelaLekara.SelectedItem != null)
+            {
+                Lekar selektovaniLekar = (Lekar)TabelaLekara.SelectedItem;
+
+                var pdfDoc = new Document(PageSize.LETTER, 40f, 40f, 60f, 60f);
+                string path = $"d:\\Documents\\Teodora\\FAKS\\6. semestar\\SIMS\\Projekat\\informacioni-sistem-bolnice\\KT3\\IzvestajLekara.pdf";
+                PdfWriter.GetInstance(pdfDoc, new FileStream(path, FileMode.OpenOrCreate));
+                pdfDoc.Open();
+
+                var spacer = new Paragraph("")
+                {
+                    SpacingBefore = 10f,
+                    SpacingAfter = 10f,
+                };
+
+                pdfDoc.Add(spacer);
+
+                var tabelaOpisaDokumenta = new PdfPTable(new[] { .75f, 1f }) { };
+                tabelaOpisaDokumenta.AddCell("Datum: ");
+                tabelaOpisaDokumenta.AddCell(DateTime.Now.Date.ToString().Split(' ')[0]);
+                tabelaOpisaDokumenta.AddCell("Vreme: ");
+                tabelaOpisaDokumenta.AddCell(DateTime.Now.Hour + ":" + DateTime.Now.Minute);
+                tabelaOpisaDokumenta.AddCell("Opis dokumenta: ");
+                tabelaOpisaDokumenta.AddCell("Izveštaj o zauzetosti lekara");
+
+                pdfDoc.Add(tabelaOpisaDokumenta);
+                pdfDoc.Add(spacer);
+                pdfDoc.Add(spacer);
+
+                var sirinaKolona = new[] { 0.75f, 1.5f, 1.5f };
+
+                int brojTermina = 0;
+                foreach (Termin termin in TerminMenadzer.termini)
+                {
+                    if (termin.Lekar.IdLekara == selektovaniLekar.IdLekara)
+                    {
+                        brojTermina++;
+                    }
+                }
+
+                if (brojTermina != 0)
+                {
+                    var tabelaTermina = new PdfPTable(sirinaKolona) { };
+                    var zaglavlje = new PdfPCell(new Phrase("Zauzetost lekara" + " " + selektovaniLekar.ImeLek + " " + selektovaniLekar.PrezimeLek))
+                    {
+                        Colspan = 3,
+                        HorizontalAlignment = 1,
+                        MinimumHeight = 3
+                    };
+
+                    tabelaTermina.AddCell(zaglavlje);
+
+                    tabelaTermina.AddCell("Datum termina");
+                    tabelaTermina.AddCell("Vreme pocetka");
+                    tabelaTermina.AddCell("Vreme kraja");
+
+                    foreach (Termin termin in TerminMenadzer.termini)
+                    {
+                        tabelaTermina.AddCell(termin.Datum);
+                        tabelaTermina.AddCell(termin.VremePocetka);
+                        tabelaTermina.AddCell(termin.VremeKraja);
+                    }
+
+                    pdfDoc.Add(tabelaTermina);
+                }
+                else
+                {
+                    var nemaTermina = new Paragraph("                Nema zauzetih termina za lekara" + " " +selektovaniLekar.ImeLek + " " + selektovaniLekar.PrezimeLek)
+                    {
+                        SpacingBefore = 10f,
+                        SpacingAfter = 10f,
+                    };
+
+                    pdfDoc.Add(nemaTermina);
+                }
+
+                pdfDoc.Add(spacer);
+                pdfDoc.Add(spacer);
+                pdfDoc.Close();
+
+                MessageBox.Show("PDF fajl je uspešno izgenerisan!");
+            }
+            else
+            {
+                MessageBox.Show("Izaberite lekara za koga želite da izgenerišete izveštaj.");
+            }
+        }   
     }
 }

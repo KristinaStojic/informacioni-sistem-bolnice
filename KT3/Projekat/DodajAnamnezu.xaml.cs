@@ -24,6 +24,7 @@ namespace Projekat
         public Pacijent pacijent;
         public Termin termin;
         public bool popunjeno = false;
+        ZdravstveniKartonServis servis = new ZdravstveniKartonServis();
         public DodajAnamnezu(Pacijent izabraniPacijent, Termin Ntermin)
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace Projekat
             this.termin = Ntermin;
             this.lekar.Text = termin.Lekar.ImeLek + " " + termin.Lekar.PrezimeLek;
             this.datum.SelectedDate = DateTime.Parse(termin.Datum);
+            this.potvrdi.IsEnabled = false;
         }
 
         
@@ -39,13 +41,13 @@ namespace Projekat
         {
             if(popunjeno == true)
             {
-                int brojAnamneze = ZdravstveniKartonServis.GenerisanjeIdAnamneze(pacijent.IdPacijenta);
+                int brojAnamneze = servis.GenerisanjeIdAnamneze(pacijent.IdPacijenta);
                 String datum = NadjiDatumPregleda();
                 string bolest = bol.Text;
                 string terapija = terap.Text;
 
                 Anamneza anamneza = new Anamneza(brojAnamneze, pacijent.IdPacijenta, datum, bolest, terapija, termin.Lekar.IdLekara, termin.IdTermin);
-                ZdravstveniKartonServis.DodajAnamnezu(anamneza);
+                servis.DodajAnamnezu(anamneza);
 
 
                 this.Close();
@@ -114,6 +116,7 @@ namespace Projekat
             if (this.terap.Text.Trim().Equals("") || this.bol.Text.Trim().Equals(""))
             {
                 this.potvrdi.IsEnabled = false;
+                this.popunjeno = false;
             }
             else if (!this.terap.Text.Trim().Equals("") && !this.bol.Text.Trim().Equals(""))
             {

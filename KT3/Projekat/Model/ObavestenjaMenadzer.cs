@@ -1,57 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
-    public static class ObavestenjaMenadzer
+    public class ObavestenjaMenadzer : JSONSerijalizacija<Obavestenja>
     {
-        public static List<Obavestenja> obavestenja = new List<Obavestenja>();
-
-        public static void sacuvajIzmene()
+        public override void Dodaj(Obavestenja element, string lokacijaFajla)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Obavestenja>));
-            TextWriter fileStream = new StreamWriter("obavestenja.xml");
-            serializer.Serialize(fileStream, obavestenja);
-            fileStream.Close();
-        }
-
-        public static List<Obavestenja> SvaObavestenja()
-        {
-            return obavestenja;
-        }
-
-        public static List<Obavestenja> NadjiSvaObavestenja()
-        {
-            if (File.ReadAllText("obavestenja.xml").Trim().Equals(""))
-            {
-                return obavestenja;
-            }
-            else
-            {
-                FileStream fileStream = File.OpenRead("obavestenja.xml");
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Obavestenja>));
-                obavestenja = (List<Obavestenja>)serializer.Deserialize(fileStream);
-                fileStream.Close();
-                return obavestenja;
-            }
-        }
-
-        public static void DodajObavestenje(Obavestenja novoObavestenje)
-        {
-            obavestenja.Insert(0, novoObavestenje);
+            List<Obavestenja> lista = NadjiSve(lokacijaFajla);
+            lista.Add(element);
             if (OglasnaTabla.oglasnaTabla == null)
             {
                 OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
             }
-            OglasnaTabla.oglasnaTabla.Insert(0, novoObavestenje);  
-            sacuvajIzmene();
+
+            OglasnaTabla.oglasnaTabla.Add(element);
+            SacuvajIzmene(lokacijaFajla, lista);
         }
 
-        public static void IzmeniObavestenje(Obavestenja staroObavestenje, Obavestenja novoObavestenje)
+        public override void Izmeni(Obavestenja staroObavestenje, Obavestenja novoObavestenje, string lokacijaFajla)
         {
-            foreach (Obavestenja obavestenje in obavestenja)
+            foreach (Obavestenja obavestenje in NadjiSve(lokacijaFajla))
             {
                 if (obavestenje.IdObavestenja == staroObavestenje.IdObavestenja)
                 {
@@ -65,91 +37,32 @@ namespace Projekat.Model
 
                     int idx = OglasnaTabla.oglasnaTabla.IndexOf(staroObavestenje);
                     OglasnaTabla.oglasnaTabla.RemoveAt(idx);
-                    OglasnaTabla.oglasnaTabla.Insert(0, obavestenje);
-                }
-            }   
-        }
-
-        public static void ObrisiObavestenje(Obavestenja obavestenje)
-        {
-            for (int i = 0; i < obavestenja.Count; i++)
-            {
-                if (obavestenja[i].IdObavestenja == obavestenje.IdObavestenja)
-                {
-                    obavestenja.RemoveAt(i);
-                    if (OglasnaTabla.oglasnaTabla == null)
-                    {
-                        OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
-                    }
-                    OglasnaTabla.oglasnaTabla.Remove(obavestenje);
+                    OglasnaTabla.oglasnaTabla.Insert(idx, obavestenje);
                 }
             }
+
+            SacuvajIzmene(lokacijaFajla, OglasnaTabla.oglasnaTabla.ToList());
         }
 
-        public static Obavestenja PronadjiPoId(int id)
+        public override void Obrisi(Obavestenja element, string lokacijaFajla)
         {
-            foreach (Obavestenja obavestenje in obavestenja)
+            List<Obavestenja> lista = NadjiSve(lokacijaFajla);
+
+            for (int i = 0; i < lista.Count; i++)
             {
-                if (obavestenje.IdObavestenja == id)
+                if (element.IdObavestenja == lista[i].IdObavestenja)
                 {
-                    return obavestenje;
+                    lista.RemoveAt(i);
+                    i--;
                 }
             }
-            return null;
-        }
-
-        public static int GenerisanjeIdObavestenja()
-        {
-            bool pomocna = false;
-            int id = 1;
-
-            for (id = 1; id <= obavestenja.Count; id++)
+            if (OglasnaTabla.oglasnaTabla == null)
             {
-                foreach (Obavestenja obavestenje in obavestenja)
-                {
-                    if (obavestenje.IdObavestenja == id)
-                    {
-                        pomocna = true;
-                        break;
-                    }
-                }
-
-                if (!pomocna)
-                {
-                    return id;
-                }
-                pomocna = false;
+                OglasnaTabla.oglasnaTabla = new ObservableCollection<Obavestenja>();
             }
 
-            return id;
-        }
-
-        public static void ObrisiObavestenjePacijent(Obavestenja selektovanoObavestenje)
-        {
-            foreach(Obavestenja o in obavestenja)
-            {
-                if(o.IdObavestenja == selektovanoObavestenje.IdObavestenja)
-                {
-                    obavestenja.Remove(o);
-                    return;
-                }
-            }
-        }
-
-        public static List<Obavestenja> PronadjiObavestenjaPoIdPacijenta(int idPacijent)
-        {
-            List<Obavestenja> retObavestenja = new List<Obavestenja>();
-            foreach (Obavestenja obavestenje in obavestenja)
-            {
-                foreach(int idPacijenta in obavestenje.ListaIdPacijenata)
-                {
-                    if(idPacijenta == idPacijent)
-                    {
-                        retObavestenja.Add(obavestenje);
-                    }
-                }
-            }
-            return retObavestenja;
+            OglasnaTabla.oglasnaTabla.Remove(element);
+            SacuvajIzmene(lokacijaFajla, lista);
         }
     }
 }

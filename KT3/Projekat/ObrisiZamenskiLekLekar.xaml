@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekat"
         mc:Ignorable="d"
         Title="ObrisiZamenskiLekLekar" Height="280" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

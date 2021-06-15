@@ -24,12 +24,12 @@ namespace Projekat
         public ObradiZahtevZaLek(ZahtevZaLekove izabraniZahtev)
         {
             InitializeComponent();
-            this.DataContext = this;
+            /*this.DataContext = this;
             this.zahtev = izabraniZahtev;
             this.spisakSastojaka.ItemsSource = LekoviServis.nadjiSastojke(izabraniZahtev);
             this.datum.SelectedDate = DateTime.Parse(izabraniZahtev.datumSlanjaZahteva);
             this.naziv.Text = izabraniZahtev.nazivLeka;
-            this.sifra.Text = izabraniZahtev.sifraLeka;
+            this.sifra.Text = izabraniZahtev.sifraLeka;*/
 
         }
 
@@ -48,6 +48,23 @@ namespace Projekat
             LekoviServis.DodajLijek(lek);
             LekoviServis.izmeniZahtev(zahtev);
             LekoviServis.sacuvajIzmeneZahteva();
+            this.Close();
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Odbij(sender, e);
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Odobri(sender, e);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

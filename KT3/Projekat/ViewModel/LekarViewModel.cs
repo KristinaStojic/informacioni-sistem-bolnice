@@ -13,6 +13,7 @@ namespace Projekat.ViewModel
 {
     public class LekarViewModel: BindableBase
     {
+        LekariServis servis = new LekariServis();
         #region Lekari
         public static Window LekariProzor { get; set; }
         public Window DodajLekaraProzor { get; set; }
@@ -28,7 +29,6 @@ namespace Projekat.ViewModel
 
         public MyICommand ZatvoriLekara { get; set; }
         public MyICommand JmbgLostFocus { get; set; }
-        public MyICommand OtvoriPrikazSaStrane { get; set; }
         
         private string pretragaTextBox;
         public string PretragaTextBox
@@ -60,18 +60,16 @@ namespace Projekat.ViewModel
             }
         }
 
-
         public LekarViewModel()
         {
             DodajLekaraKomanda = new MyICommand(OtvoriDodavanjeLekara);
             OdustaniOdDodavanjaLekara = new MyICommand(ZatvoriDodavanjeLekara);
-            PotvrdiDodavanjeLekara = new MyICommand(DodajNovogLekara, ValidnaPoljaZaDodavanjeLekara);
+            PotvrdiDodavanjeLekara = new MyICommand(DodajNovogLekara);
             ZatvoriLekara = new MyICommand(Zatvori);
-            JmbgLostFocus = new MyICommand(JedinstvenJmbg);
             
             IzmeniLekaraKomanda = new MyICommand(OtvoriIzmenuLekara);
             OdustaniOdIzmeneLekara = new MyICommand(ZatvoriIzmenuLekara);
-            PotvrdiIzmenuLekara = new MyICommand(IzmeniIzabranogLekara, ValidnaPoljaZaIzmenuLekara);
+            PotvrdiIzmenuLekara = new MyICommand(IzmeniIzabranogLekara);
 
             ObrisiLekaraKomanda = new MyICommand(ObrisiLekara);
             PotvrdiBrisanjeLekara = new MyICommand(ObrisiIzabranogLekara);
@@ -83,11 +81,6 @@ namespace Projekat.ViewModel
         private void DodajLekare()
         {
             Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
-           /* List<Lekar> lekariLista = LekariServis.NadjiSveLekare();
-            foreach (Lekar lekar in lekariLista)
-            {
-                Lekari.Add(lekar);
-            }*/
         }
 
         private void Zatvori()
@@ -102,91 +95,34 @@ namespace Projekat.ViewModel
         public MyICommand OdustaniOdDodavanjaLekara { get; set; }
         public MyICommand PotvrdiDodavanjeLekara { get; set; }
 
-        private string imeLekaraDodavanje;
-        private string prezimeLekaraDodavanje;
-        private string jmbgLekaraDodavanje;
-        private string brojTelefonaDodavanje;
-        private string emailDodavanje;
-        private string adresaDodavanje;
-        private Specijalizacija specijalizacijaDodavanje;
-
-        public string ImeLekaraDodavanje { get { return imeLekaraDodavanje; } set { imeLekaraDodavanje = value; OnPropertyChanged("ImeLekaraDodavanje"); PotvrdiDodavanjeLekara.RaiseCanExecuteChanged(); } }
-        public string PrezimeLekaraDodavanje { get { return prezimeLekaraDodavanje; } set { prezimeLekaraDodavanje = value; OnPropertyChanged("PrezimeLekaraDodavanje"); PotvrdiDodavanjeLekara.RaiseCanExecuteChanged(); } }
-        public string JmbgLekaraDodavanje { get { return jmbgLekaraDodavanje; } set { jmbgLekaraDodavanje = value; OnPropertyChanged("JmbgLekaraDodavanje"); PotvrdiDodavanjeLekara.RaiseCanExecuteChanged(); } }
-        public string BrojTelefonaDodavanje { get { return brojTelefonaDodavanje; } set { brojTelefonaDodavanje = value; OnPropertyChanged("BrojTelefonaDodavanje"); PotvrdiDodavanjeLekara.RaiseCanExecuteChanged(); } }
-        public string EmailDodavanje { get { return emailDodavanje; } set { emailDodavanje = value; OnPropertyChanged("EmailDodavanje"); PotvrdiDodavanjeLekara.RaiseCanExecuteChanged(); } }
-        public string AdresaDodavanje { get { return adresaDodavanje; } set { adresaDodavanje = value; OnPropertyChanged("AdresaDodavanje"); PotvrdiDodavanjeLekara.RaiseCanExecuteChanged(); } }
-        public Specijalizacija SpecijalizacijaDodavanje { get { return specijalizacijaDodavanje; } set { specijalizacijaDodavanje = value; OnPropertyChanged("SpecijalizacijaDodavanje"); PotvrdiDodavanjeLekara.RaiseCanExecuteChanged(); } }
+        private ValidacijaNalogaLekara validacija = new ValidacijaNalogaLekara();
+        public ValidacijaNalogaLekara Validacija { get { return validacija; } set { validacija = value; OnPropertyChanged("Validacija"); } }
 
         private void OtvoriDodavanjeLekara()
         {
+            Validacija = new ValidacijaNalogaLekara();
             DodajLekaraProzor = new DodajLekara();
             DodajLekaraProzor.Show();
-            imeLekaraDodavanje = "";
-            prezimeLekaraDodavanje = "";
-            jmbgLekaraDodavanje = "";
-            brojTelefonaDodavanje = "";
-            emailDodavanje = "";
-            adresaDodavanje = "";
             DodajLekaraProzor.DataContext = this;
         }
 
         private void DodajNovogLekara()
         {
-            Lekar lekar = new Lekar(LekariServis.GenerisanjeIdLekara(), imeLekaraDodavanje, prezimeLekaraDodavanje, long.Parse(jmbgLekaraDodavanje), long.Parse(brojTelefonaDodavanje), emailDodavanje, adresaDodavanje, specijalizacijaDodavanje);
-            LekariServis.DodajLekara(lekar);
-            Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
-            //Lekari.Add(lekar);
-            DodajLekaraProzor.Close();
-        }
-
-        private void JedinstvenJmbg()
-        {
-            if (!(jmbgLekaraDodavanje.Equals("")))
+            Validacija.Validate(); 
+            if (Validacija.IsValid)
             {
-                if ((!LekariServis.JedinstvenJmbg(long.Parse(jmbgLekaraDodavanje))))
-                {
-                    MessageBox.Show("JMBG vec postoji");
-                    JmbgLekaraDodavanje = "";
-                }
-            }
-        }
-
-        private bool ValidnaPoljaZaDodavanjeLekara()
-        {
-            if (imeLekaraDodavanje != null && prezimeLekaraDodavanje != null && jmbgLekaraDodavanje != null && emailDodavanje != null && brojTelefonaDodavanje != null && adresaDodavanje != null && specijalizacijaDodavanje != null)
-            {
-                //Console.WriteLine(jmbgLekaraDodavanje.Length);
-                if (imeLekaraDodavanje.Trim().Equals("") || prezimeLekaraDodavanje.Trim().Equals("") || !ManjiOd6(jmbgLekaraDodavanje) || !jeBroj(jmbgLekaraDodavanje) || !jeBroj(brojTelefonaDodavanje) || emailDodavanje.Trim().Equals("") || adresaDodavanje.Trim().Equals("") )
-                {
-                    return false;
-                }
-                else if (!imeLekaraDodavanje.Trim().Equals("") && !prezimeLekaraDodavanje.Trim().Equals("") && ManjiOd6(jmbgLekaraDodavanje) && jeBroj(jmbgLekaraDodavanje) && jeBroj(brojTelefonaDodavanje) && !emailDodavanje.Trim().Equals("") && !adresaDodavanje.Trim().Equals(""))
-                {
-                    return true;
-                }
+                Lekar lekar = new Lekar(LekariServis.GenerisanjeIdLekara(), Validacija.ImeLek, Validacija.PrezimeLek, long.Parse(Validacija.Jmbg), long.Parse(Validacija.BrojTelefona), Validacija.Email, Validacija.AdresaStanovanja, Validacija.Specijalizacija);
+                LekariServis.DodajLekara(lekar);
+                Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
+                DodajLekaraProzor.Close();
+                Validacija = new ValidacijaNalogaLekara();
             }
 
-            return false;
-        }
-
-        public bool jeBroj(string tekst)
-        {
-            long test;
-            return long.TryParse(tekst, out test);
-        }
-
-        public bool ManjiOd6(string tekst)
-        {
-            if (tekst.Length < 6)
-            {
-                return false;
-            }
-            return true;
         }
 
         private void ZatvoriDodavanjeLekara()
         {
+            Validacija = new ValidacijaNalogaLekara();
             DodajLekaraProzor.Close();
         }
 
@@ -205,21 +141,8 @@ namespace Projekat.ViewModel
             set { izabraniLekar = value; OnPropertyChanged("IzabraniLekar"); }
         }
 
-        private string imeLekaraIzmena;
-        private string prezimeLekaraIzmena;
-        private string jmbgLekaraIzmena;
-        private string brojTelefonaIzmena;
-        private string emailIzmena;
-        private string adresaIzmena;
-        private Specijalizacija specijalizacijaIzmena;
-
-        public string ImeLekaraIzmena { get { return imeLekaraIzmena; } set { imeLekaraIzmena = value; OnPropertyChanged("ImeLekaraIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
-        public string PrezimeLekaraIzmena { get { return prezimeLekaraIzmena; } set { prezimeLekaraIzmena = value; OnPropertyChanged("PrezimeLekaraIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
-        public string JmbgLekaraIzmena { get { return jmbgLekaraIzmena; } set { jmbgLekaraIzmena = value; OnPropertyChanged("JmbgLekaraIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
-        public string BrojTelefonaIzmena { get { return brojTelefonaIzmena; } set { brojTelefonaIzmena = value; OnPropertyChanged("BrojTelefonaIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
-        public string EmailIzmena { get { return emailIzmena; } set { emailIzmena = value; OnPropertyChanged("EmailIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
-        public string AdresaIzmena { get { return adresaIzmena; } set { adresaIzmena = value; OnPropertyChanged("AdresaIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
-        public Specijalizacija SpecijalizacijaIzmena { get { return specijalizacijaIzmena; } set { specijalizacijaIzmena = value; OnPropertyChanged("SpecijalizacijaIzmena"); PotvrdiIzmenuLekara.RaiseCanExecuteChanged(); } }
+        private ValidacijaNalogaLekara validacijaIzmena = new ValidacijaNalogaLekara();
+        public ValidacijaNalogaLekara ValidacijaIzmena { get { return validacijaIzmena; } set { validacijaIzmena = value; OnPropertyChanged("ValidacijaIzmena"); } }
 
         private void OtvoriIzmenuLekara()
         {
@@ -228,13 +151,14 @@ namespace Projekat.ViewModel
                 IzmeniLekaraProzor = new IzmeniLekara();
                 IzmeniLekaraProzor.Show();
 
-                imeLekaraIzmena = izabraniLekar.ImeLek;
-                prezimeLekaraIzmena = izabraniLekar.PrezimeLek;
-                jmbgLekaraIzmena = izabraniLekar.Jmbg.ToString();
-                brojTelefonaIzmena = izabraniLekar.BrojTelefona.ToString();
-                emailIzmena = izabraniLekar.AdresaStanovanja;
-                adresaIzmena = izabraniLekar.AdresaStanovanja;
-                specijalizacijaIzmena = izabraniLekar.specijalizacija;
+                validacijaIzmena.ImeLek = izabraniLekar.ImeLek;
+                validacijaIzmena.PrezimeLek = izabraniLekar.PrezimeLek;
+                validacijaIzmena.Jmbg = izabraniLekar.Jmbg.ToString();
+                validacijaIzmena.stariJmbg = izabraniLekar.Jmbg.ToString();
+                validacijaIzmena.BrojTelefona = izabraniLekar.BrojTelefona.ToString();
+                validacijaIzmena.Email = izabraniLekar.Email;
+                validacijaIzmena.AdresaStanovanja = izabraniLekar.AdresaStanovanja;
+                validacijaIzmena.Specijalizacija = izabraniLekar.specijalizacija;
 
                 IzmeniLekaraProzor.DataContext = this;
             }
@@ -246,33 +170,16 @@ namespace Projekat.ViewModel
 
         private void IzmeniIzabranogLekara()
         {
-            Lekar noviLekar = new Lekar(izabraniLekar.IdLekara, imeLekaraIzmena, prezimeLekaraIzmena, long.Parse(jmbgLekaraIzmena), long.Parse(brojTelefonaIzmena), emailIzmena, adresaIzmena, specijalizacijaIzmena);
-            LekariServis.IzmeniLekara(izabraniLekar, noviLekar);
-
-            Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare()}.View;
-            //int idx = Lekari.IndexOf(izabraniLekar);
-            //Lekari.RemoveAt(idx);
-            //Lekari.Insert(idx, noviLekar);
-
-            IzmeniLekaraProzor.Close();
-        }
-
-        private bool ValidnaPoljaZaIzmenuLekara()
-        {
-            if (imeLekaraIzmena != null && prezimeLekaraIzmena != null && jmbgLekaraIzmena != null && emailIzmena != null && brojTelefonaIzmena != null && adresaIzmena != null && specijalizacijaIzmena != null)
+            ValidacijaIzmena.Validate();
+            if (ValidacijaIzmena.IsValid)
             {
-                //Console.WriteLine(jmbgLekaraIzmena.Length);
-                if (imeLekaraIzmena.Trim().Equals("") || prezimeLekaraIzmena.Trim().Equals("") || !ManjiOd6(jmbgLekaraIzmena) || !jeBroj(jmbgLekaraIzmena) || !jeBroj(brojTelefonaIzmena) ||  emailIzmena.Trim().Equals("") || adresaIzmena.Trim().Equals(""))
-                {
-                    return false;
-                }
-                else if (!imeLekaraIzmena.Trim().Equals("") && !prezimeLekaraIzmena.Trim().Equals("") && ManjiOd6(jmbgLekaraIzmena) && jeBroj(jmbgLekaraIzmena) && jeBroj(brojTelefonaIzmena) && !emailIzmena.Trim().Equals("") && !adresaIzmena.Trim().Equals(""))
-                {
-                    return true;
-                }
-            }
+                Lekar noviLekar = new Lekar(izabraniLekar.IdLekara, validacijaIzmena.ImeLek, validacijaIzmena.PrezimeLek, long.Parse(validacijaIzmena.Jmbg), long.Parse(validacijaIzmena.BrojTelefona), validacijaIzmena.Email, validacijaIzmena.AdresaStanovanja, validacijaIzmena.Specijalizacija);
+                LekariServis.IzmeniLekara(izabraniLekar, noviLekar);
 
-            return false;
+                Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
+                IzmeniLekaraProzor.Close();
+                ValidacijaIzmena = new ValidacijaNalogaLekara();
+            }
         }
 
         private void ZatvoriIzmenuLekara()
@@ -304,9 +211,8 @@ namespace Projekat.ViewModel
 
         private void ObrisiIzabranogLekara()
         {
-            LekariServis.ObrisiLekara(izabraniLekar);
+            servis.ObrisiLekara(izabraniLekar);
             Lekari = new CollectionViewSource { Source = LekariServis.NadjiSveLekare() }.View;
-            //Lekari.Remove(izabraniLekar);
             BrisanjeLekaraProzor.Close();
         }
 
@@ -316,6 +222,5 @@ namespace Projekat.ViewModel
         }
 
         #endregion
-
     }
 }

@@ -1,19 +1,42 @@
-﻿using System;
+﻿using Projekat.Interfejsi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
 
     public enum tipUputa
     {
-        Laboratorija, SpecijallistickiPregled, StacionarnoLecenje
+        Laboratorija, SpecijalistickiPregled, StacionarnoLecenje
 
     }
 
     public class Uput
     {
+        //[XmlIgnoreAttribute]
+        public object TipUputa { get; set; }
+        /*public object NadjiVrstuUputaInterfejs()
+        {
+            if(this.TipUputa == tipUputa.Laboratorija)
+            {
+                return new Laboratorija();
+            }
+            else if(this.TipUputa == tipUputa.SpecijalistickiPregled)
+            {
+                return new SpecijalistickiPregled();
+            }
+            else
+            {
+                return new BolnickoLecenje();
+            }
+
+           
+        }*/
+
+
         public int IdUputa { get; set; }
         public int idPacijenta { get; set; }
         public int IdLekaraKojiIzdajeUput { get; set; }
@@ -23,13 +46,16 @@ namespace Projekat.Model
         public int brojSobe { get; set; }
         public int brojKreveta { get; set; }
 
-        public tipUputa TipUputa { get; set; }
+        //public tipUputa TipUputa { get; set; }
 
         public string datumPocetkaLecenja { get; set; }
         public string datumKrajaLecenja { get; set; }
 
 
         public Uput() { }
+
+        
+
 
         public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, int IdLekaraKodKogSeUpucuje, string opis, string datum, tipUputa tip)
         {
@@ -40,6 +66,41 @@ namespace Projekat.Model
             this.opisPregleda = opis;
             this.datumIzdavanja = datum;
             this.TipUputa = tip;
+        }
+        
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, int IdLekaraKodKogSeUpucuje, string opis, string datum)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;
+            this.IdLekaraKodKogSeUpucuje = IdLekaraKodKogSeUpucuje;
+            this.opisPregleda = opis;
+            this.datumIzdavanja = datum;
+           
+        }
+        
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, tipUputa tip)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;  
+            this.TipUputa = tip;
+        }
+
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, tipUputa tip, String opis)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;  
+            this.TipUputa = tip;
+            this.opisPregleda = opis;
+        }
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje,String opis)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;  
+            this.opisPregleda = opis;
         }
 
         public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, int brojSobe, int brojKreveta, string krajLecenja, string datumPocetkaLecenja,string datumIzdavanja, string napomena, tipUputa tip)
@@ -57,15 +118,29 @@ namespace Projekat.Model
 
 
         }
+        
+        public Uput(int idUputa, int idPacijenta, int idLekaraKojiUpucuje, int brojSobe, int brojKreveta, string krajLecenja, string datumPocetkaLecenja,string datumIzdavanja, string napomena)
+        {
+            this.IdUputa = idUputa;
+            this.IdLekaraKojiIzdajeUput = idLekaraKojiUpucuje;
+            this.idPacijenta = idPacijenta;
+            this.opisPregleda = napomena;
+            this.datumKrajaLecenja = krajLecenja;
+            this.brojSobe = brojSobe;
+            this.brojKreveta = brojKreveta;
+            this.datumPocetkaLecenja = datumPocetkaLecenja;
+            this.datumIzdavanja = datumIzdavanja;
+          
+        }
 
         public override string ToString()
         {
-            if (TipUputa.Equals(tipUputa.SpecijallistickiPregled))
-                 return "Specijalistički pregled";
-            else if (TipUputa.Equals(tipUputa.Laboratorija))
-                 return "Laboratorija";
-            else //if (TipUputa.Equals(tipUputa.StacionarnoLecenje))
-                 return "Stacionarno lečenje";
+            /*if (TipUputa.Equals(tipUputa.SpecijalistickiPregled))
+                return "Specijalistički pregled";
+            else if (TipUputa.Equals("Laboratorija"))
+                return "Laboratorija";*/
+            //else //if (TipUputa.Equals(tipUputa.StacionarnoLecenje))
+                 return "Bolničko lečenje";
         }
 
     }

@@ -39,6 +39,22 @@ namespace Projekat
         int izbaceniSlotovi;
         int idLekara;
 
+        public bool flag1 = false;
+        public bool flag2 = false;
+        public bool flag3 = false;
+        public bool flag4 = false;
+        public bool flag5 = false;
+
+        public bool TipUslugeFlag = false;
+        public bool LekarFlag = false;
+        public bool PacijentFlag = false;
+        public bool ProstorijaFlag = false;
+        public bool DatumFlag = false;
+        public bool VremePocFlag = false;
+        public bool VremeKrajaFlag = false;
+        public bool popunjeno = false;
+
+
         DateTime datumPocetkaRenoviranja;
         DateTime datumKrajaRenoviranja;
         DateTime datumZakazivanjaTermina;
@@ -46,6 +62,8 @@ namespace Projekat
         public static ObservableCollection<string> sviSlobodniTerminiKraj { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTermini { get; set; }
         public static ObservableCollection<string> pomocnaSviSlobodniTerminiKraj { get; set; }
+        PacijentiServis servis = new PacijentiServis();
+
         public ZakaziTerminLekar2(int id)
         {
             InitializeComponent();
@@ -58,11 +76,25 @@ namespace Projekat
             listaPacijenata.Visibility = Visibility.Visible;
             listaLekara.Visibility = Visibility.Hidden;
 
+            if (tipPregleda.SelectedIndex != 0 && tipPregleda.SelectedIndex != 1)
+            {
+                this.dugmeLekari.IsEnabled = false;
+                this.dugmePacijenti.IsEnabled = false;
+                this.prostorije.IsEnabled = false;
+                this.datum.IsEnabled = false;
+                this.vpp.IsEnabled = false;
+                this.vkk.IsEnabled = false;
+                potvrdi.IsEnabled = false;
+                otkazi.IsEnabled = true;
+            }
+            
+
         }
         private void dodajSveSlobodneTermine()
         {
             popuniListeZaPocetakiKraj();
             popuniPomocneListeZaPocetakiKraj();
+
             
         }
 
@@ -95,7 +127,7 @@ namespace Projekat
 
         private void popuniTabelePodacima()
         {
-            this.listaPacijenata.ItemsSource = PacijentiServis.pacijenti();
+            this.listaPacijenata.ItemsSource = servis.pacijenti();
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listaPacijenata.ItemsSource);
             view.Filter = UserFilterPacijenti;
 
@@ -162,7 +194,7 @@ namespace Projekat
             if (listaLekara.SelectedItem != null)
             {
                 Lekar = (Lekar)listaLekara.SelectedItem;
-                lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek;
+                lekar.Text = Lekar.ImeLek + " " + Lekar.PrezimeLek + " " + Lekar.IdLekara;
             }
         }
 
@@ -197,20 +229,57 @@ namespace Projekat
         {
             PocetnoVreme = vpp.Text;
             //vkk.ItemsSource = sviSlobodniTerminiKraj;
+            if (prostorije.SelectedIndex != -1)
+            {
+                vkk.IsEnabled = true;
+            }
+            else
+            {
+                vkk.IsEnabled = false;
+                potvrdi.IsEnabled = false;
+            }
 
-
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
         }
 
         private void vkk_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+            if (tipPregleda.SelectedIndex != -1 && prostorije.SelectedIndex != -1 && vpp.SelectedIndex != -1 && vkk.SelectedIndex != -1 && datum.Text.Length > 0)
+            {
+                popunjeno = true;
+            }
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
         }
 
         private void prostorije_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
               IzbaciZauzeteTermineSale();
-            
+
+            if (prostorije.SelectedIndex != -1)
+            {
+                datum.IsEnabled = true;
+            }
+            else
+            {
+                datum.IsEnabled = false;
+                vpp.IsEnabled = false;
+                vkk.IsEnabled = false;
+                potvrdi.IsEnabled = false;
+            }
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
+
         }
         private void dat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -222,10 +291,32 @@ namespace Projekat
             }
 
             vpp.ItemsSource = sviSlobodniTermini;
-            vkk.ItemsSource = sviSlobodniTerminiKraj;
+            //vkk.ItemsSource = sviSlobodniTerminiKraj;
 
             IzbaciZauzeteTermine();
 
+            if (datum.Text.Length > 0)
+            {
+                vpp.IsEnabled = true;
+                vkk.IsEnabled = false;
+            }
+            else
+            {
+                vpp.IsEnabled = false;
+                vkk.IsEnabled = false;
+                potvrdi.IsEnabled = false;
+                popunjeno = false;
+            }
+            
+            if(tipPregleda.SelectedIndex != -1 && prostorije.SelectedIndex != -1 && vpp.SelectedIndex != -1 && vkk.SelectedIndex != -1 && datum.Text.Length > 0)
+            {
+                popunjeno = true;
+            }
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
 
         }
 
@@ -582,26 +673,27 @@ namespace Projekat
         {          
             prostorije.Items.Clear();
 
-            if (tipPregleda.SelectedIndex == 0) // pregled
+             if (tipPregleda.SelectedIndex == 0) // pregled
             {
                 this.dugmeLekari.IsEnabled = false;
-                 //Lekar = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
+                this.dugmePacijenti.IsEnabled = true;
+                //Lekar = new Lekar() { IdLekara = 1, ImeLek = "Petar", PrezimeLek = "Nebojsic", specijalizacija = Specijalizacija.Opsta_praksa };
                 //Lekar = new Lekar() { IdLekara = 2, ImeLek = "Milos", PrezimeLek = "Dragojevic", specijalizacija = Specijalizacija.Opsta_praksa };
                 //Lekar = new Lekar() { IdLekara = 3, ImeLek = "Petar", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
                 //Lekar = new Lekar() { IdLekara = 4, ImeLek = "Dejan", PrezimeLek = "Milosevic", specijalizacija = Specijalizacija.Specijalista };
                 //Lekar = new Lekar() { IdLekara = 5, ImeLek = "Isidora", PrezimeLek = "Isidorovic", specijalizacija = Specijalizacija.Specijalista };
-                
+                this.datum.IsEnabled = false;
 
-                foreach(Lekar lekar in LekariMenadzer.lekari)
+                foreach (Lekar lekar in LekariMenadzer.lekari)
                 {
                     if(lekar.IdLekara == idLekara)
                     {
-                        this.lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek;
+                        this.lekar.Text = lekar.ImeLek + " " + lekar.PrezimeLek + " " + lekar.IdLekara;
                         this.listaLekara.IsEnabled = false;
                         this.Lekar = lekar;
                     }
                 }
-
+                this.dugmePacijenti.IsEnabled = true;
                 this.hitno.IsEnabled = false;
                 dodajSaleZaPregled();
             }
@@ -611,10 +703,16 @@ namespace Projekat
                 this.lekar.Text = "";
                 this.listaLekara.IsEnabled = true;
                 this.hitno.IsEnabled = true;
+                this.datum.IsEnabled = false;
                 dodajSaleZaOperacije();
             }
 
             prostorije.SelectedIndex = 0;
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
         }
 
         private void dodajSaleZaPregled()
@@ -677,7 +775,9 @@ namespace Projekat
                     tp = TipTermina.Operacija;
                 }
 
-                Lekar l = LekariServis.NadjiPoId(idLekara);
+                string [] podaci = this.lekar.Text.Split(' ');
+                int id = Int32.Parse(podaci[2]);
+                Lekar l = LekariServis.NadjiPoId(id);
                 if (tp.Equals(TipTermina.Pregled))
                 {
                     l.BrojPregleda++;
@@ -687,7 +787,7 @@ namespace Projekat
                     l.BrojOperacija++;
                 }
 
-                Pacijent pacijent = PacijentiServis.PronadjiPoId(Pacijent.IdPacijenta);
+                Pacijent pacijent = servis.PronadjiPoId(Pacijent.IdPacijenta);
                 Sala = SaleServis.NadjiSaluPoId((int)prostorije.SelectedItem);
                 bool hitnaOperacija = false;
                 if (this.hitno.IsChecked == true)
@@ -700,7 +800,7 @@ namespace Projekat
 
                 if (Sala.zauzetiTermini.Count != 0)        // ako postoje zauzeti termini
                 {
-                    TerminServisLekar.ZakaziTerminLekar(t);
+                    TerminServisLekar.ZakaziTerminLekar(t, idLekara);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     Sala.zauzetiTermini.Add(z);
 
@@ -712,7 +812,7 @@ namespace Projekat
                             t1.Prostorija = Sala;
                         }
                     }
-
+                    LekariServis.SacuvajIzmeneLekara();
                     TerminServisLekar.sacuvajIzmene();
                     SaleServis.sacuvajIzmjene();
 
@@ -720,7 +820,7 @@ namespace Projekat
                 }
                 else    // ako ne postoje zauzeti termini
                 {
-                    TerminServisLekar.ZakaziTerminLekar(t);
+                    TerminServisLekar.ZakaziTerminLekar(t,idLekara);
                     ZauzeceSale z = new ZauzeceSale(vp, vk, dat, t.IdTermin);
                     Sala.zauzetiTermini.Add(z);
 
@@ -748,14 +848,43 @@ namespace Projekat
         private void vkk_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             
-                nadjiDozvoljeneTermineKraja();
-            
+            nadjiDozvoljeneTermineKraja();
+
+            /*if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && vpp.SelectedIndex != -1 && vkk.SelectedIndex != -1)
+            {
+                potvrdi.IsEnabled = true;
+                //potvrdi.MoveFocus(potvrdi);
+            }
+            else
+            {
+                potvrdi.IsEnabled = false;
+            }*/
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
+
         }
 
         private void vpp_IsKeyboardFocusedChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             PocetnoVreme = vpp.Text;
             //nadjiDozvoljeneTermineKraja();
+            /*if (flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true && vpp.SelectedIndex != -1)
+            {
+                vkk.IsEnabled = true;
+                vkk.Focusable = true;
+            }
+            else
+            {
+                vkk.IsEnabled = false;
+            }*/
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
         }
 
         private void nadjiDozvoljeneTermineKraja()
@@ -921,18 +1050,91 @@ namespace Projekat
         {
             //nadjiDozvoljeneTermineKraja();
 
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            if (popunjeno)
             {
-                Button_Click_2(sender, e);
+                if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Click_2(sender, e);
+                }
+                else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Button_Click_3(sender, e);
+                }
+                /*else if (e.Key == Key.Enter && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    hitno.IsChecked = true;
+                }*/
             }
-            else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 Button_Click_3(sender, e);
             }
+
+        }
+
+        private void pacijent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                prostorije.IsEnabled = false;
+                datum.IsEnabled = false;
+                vpp.IsEnabled = false;
+                vkk.IsEnabled = false;
+                potvrdi.IsEnabled = false;
+            }
+            else
+            {
+                prostorije.IsEnabled = true;
+            }
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
+        }
+
+        private void lekar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(((TextBox)sender).Text))
+            {
+                prostorije.IsEnabled = false;
+                datum.IsEnabled = false;
+                vpp.IsEnabled = false;
+                vkk.IsEnabled = false;
+                potvrdi.IsEnabled = false;
+            }
+            /*else
+            {
+                flag2 = true;
+                if (flag1 == true && flag2 == true && flag3 == true)
+                {
+                    pacijent.IsEnabled = true; //prostorije
+                }
+            }*/
+
+            if (popunjeno)
+            {
+                potvrdi.IsEnabled = true;
+            }
+        }
+
+        private void datum_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        private void datum_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

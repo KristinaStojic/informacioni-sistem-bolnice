@@ -20,23 +20,9 @@ namespace Projekat
     /// </summary>
     public partial class ObrisiLekara : Window
     {
-        //Lekar lekar;
-
-        public ObrisiLekara(/*Lekar lekarZaBrisanje*/)
+        public ObrisiLekara()
         {
             InitializeComponent();
-          //  lekar = lekarZaBrisanje;
         }
-
-    /*    private void Potvrdi_Click(object sender, RoutedEventArgs e)
-        {
-            LekariServis.ObrisiLekara(lekar);
-            this.Close();
-        }
-
-        private void Odustani_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }*/
     }
 }

@@ -25,7 +25,7 @@ namespace Projekat.ViewModel
         public Window DodavanjeDinamickeProzor { get; set; }
         public Window PrikazStatickeProzor { get; set; }
         public Window SlanjeStatickeProzor { get; set; }
-        public Window DodavanjeStatickeProzor { get; set; }
+        public static Window DodavanjeStatickeProzor { get; set; }
         public static Window SaleProzor { get; set; }
         public static Window PomocSaleProzor { get; set; }
         public MyICommand ZatvoriProzorKomanda { get; set; }
@@ -463,7 +463,7 @@ namespace Projekat.ViewModel
             return false;
         }
 
-        public bool jeBroj(string tekst)
+        public static bool jeBroj(string tekst)
         {
             int test;
             return int.TryParse(tekst, out test);
@@ -678,48 +678,34 @@ namespace Projekat.ViewModel
                 }
             }
         }
-        
-        private void spojiSale()
-        {
-            OpremaServis.dodajOpremuIzSaleZaDodavanje(izabranaSala, izabranaSalaZaSpajanje);
-            SaleServis.ObrisiSalu(IzabranaSalaZaSpajanje);
-            Sale.Remove(IzabranaSalaZaSpajanje);
-            SaleServis.sacuvajIzmjene();
-        }
 
+        // strategy primenjen
         private void IzvrsiRenoviranje()
         {
+            IRenovacijaServis renovacijaServis;
+            ZauzeceSale zauzeceSale = napraviZauzece();
             if (salaZaSpajanje != null)
             {
-                spojiSale();
-                ZauzeceSale zauzeceSale = napraviZauzece();
-                SaleServis.zauzmiSalu(zauzeceSale, izabranaSala);
-                SaleServis.zauzmiSalu(zauzeceSale, salaZaSpajanje);
-                SaleServis.sacuvajIzmjene();
+                Sale.Remove(IzabranaSalaZaSpajanje);
+                renovacijaServis = new RenovacijaSpajanjeSaleServis();                
+                Renovacija renovacija = new Renovacija(izabranaSala, salaZaSpajanje, zauzeceSale);
+                renovacijaServis.Renoviraj(renovacija);  
             }
             else if (opremaZaPrebacivanje != null)
-            {
-                ZauzeceSale zauzeceSale = napraviZauzece();
-                napraviNovuSalu();
-                SaleServis.prebaciOpremuIzStareSale(izabranaSala, opremaZaPrebacivanje);
-                SaleServis.zauzmiSalu(zauzeceSale, izabranaSala);
-                SaleServis.zauzmiSalu(zauzeceSale, novaSala);
-                SaleServis.sacuvajIzmjene();
+            {    
+                Sale.Add(novaSala);
+                renovacijaServis = new RenovacijaPodelaSaleServis();
+                novaSala.Oprema = opremaZaPrebacivanje;
+                Renovacija renovacija = new Renovacija(izabranaSala, novaSala, zauzeceSale);
+                renovacijaServis.Renoviraj(renovacija);
             }
             else
             {
-                ZauzeceSale zauzeceSale = napraviZauzece();
-                SaleServis.zauzmiSalu(zauzeceSale, izabranaSala);
-                SaleServis.sacuvajIzmjene();
+                renovacijaServis = new ObicnaRenovacijaServis();
+                Renovacija renovacija = new Renovacija(izabranaSala, zauzeceSale);
+                renovacijaServis.Renoviraj(renovacija);
             }
             RenoviranjeProzor.Close();
-        }
-
-        private void napraviNovuSalu()
-        {
-            novaSala.Oprema = opremaZaPrebacivanje;
-            SaleServis.DodajSalu(novaSala);
-            Sale.Add(novaSala);
         }
 
         private void postaviTermineKraja()
@@ -1299,7 +1285,7 @@ namespace Projekat.ViewModel
 
         private void DodavanjeDinamicke()
         {
-            PremjestajServis.prebaciOpremu(IzabranaSalaDodavanje, int.Parse(KolicinaDodavanjeDinamicke), IzabranaDinamickaDodavanje, IzabranaSala);
+            PremjestajOpremeServis.premjestajDinamickeOpreme(IzabranaSalaDodavanje, int.Parse(KolicinaDodavanjeDinamicke), IzabranaDinamickaDodavanje, IzabranaSala);
             azurirajPrikazDinamicke();
             DodavanjeDinamickeProzor.Close();
         }
@@ -1763,7 +1749,7 @@ namespace Projekat.ViewModel
                 DatumPrebacivanja = DateTime.Now.Date;
                 dodajTermineDodavanjaStaticke();
                 dodajStaticku();
-                DodavanjeStatickeProzor.DataContext = this;
+                DodavanjeStatickeProzor.DataContext = new PremjestajOpremeViewModel(IzabranaSala);
             }
             catch (Exception ex) { Console.WriteLine(ex.Data); }
         }
@@ -1823,8 +1809,21 @@ namespace Projekat.ViewModel
         }
         private void DodavanjeStaticke()
         {
-            PremjestajServis.dodajStatickuOpremu(IzabranaSalaZaDodavanje, int.Parse(kolicinaDodavanjaStaticke), napraviTerminPremjestaja(), izabranaSala, IzabranaStatickaDodavanje);
+            PremjestajOpremeServis.premjestajStatickeOpreme(IzabranaSalaZaDodavanje, int.Parse(kolicinaDodavanjaStaticke), napraviTerminPremjestaja(), izabranaSala, IzabranaStatickaDodavanje);
             DodavanjeStatickeProzor.Close();
+            azurirajStaticku();
+        }
+
+        private static void azurirajStaticku()
+        {
+            if (SkladisteViewModel.otvoren)
+            {
+                SkladisteViewModel.azuriraj = true;
+            }
+            else
+            {
+                SaleViewModel.azuriraj = true;
+            }
         }
         private void izracunajDozvoljenuKolicinu(Sala sala, Sala izabranaSala)
         {
@@ -1942,6 +1941,12 @@ namespace Projekat.ViewModel
                     TerminiDodavanjaStaticke.Add(termin + ":00");
                 }
             }
+            TerminiDodavanjaStaticke.Add("21:20");
+            TerminiDodavanjaStaticke.Add("21:21");
+            TerminiDodavanjaStaticke.Add("21:22");
+            TerminiDodavanjaStaticke.Add("21:23");
+            TerminiDodavanjaStaticke.Add("21:24");
+            TerminiDodavanjaStaticke.Add("21:25");
         }
 
         private bool postojiTerminDodavanja(int termin)

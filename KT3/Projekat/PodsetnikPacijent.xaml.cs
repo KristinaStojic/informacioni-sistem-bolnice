@@ -22,14 +22,17 @@ namespace Projekat
     public partial class PodsetnikPacijent : Page
     {
         private static int idPacijent;
-        private static Pacijent prijavljeniPacijent; 
+        private static Pacijent prijavljeniPacijent;
+        ObavestenjaServis servis = new ObavestenjaServis();
+        ObavestenjaMenadzer menadzer = new ObavestenjaMenadzer();
+        PacijentiServis pacijentiServis = new PacijentiServis();
         public PodsetnikPacijent(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
             this.DataContext = this;
             idPacijent = idPrijavljenogPacijenta;
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
-            prijavljeniPacijent = PacijentiMenadzer.PronadjiPoId(idPacijent);
+            prijavljeniPacijent = pacijentiServis.PronadjiPoId(idPacijent);
             this.podaci.Header = prijavljeniPacijent.ImePacijenta.Substring(0, 1) + ". " + prijavljeniPacijent.PrezimePacijenta;
             Datum.BlackoutDates.AddDatesInPast();
         }
@@ -41,15 +44,28 @@ namespace Projekat
             valSadrzaj.Visibility = Visibility.Hidden;
             try
             {
-                
-                bool potvrdi = false;
-                potvrdi = ProveriIspravnostZaVreme(this.Vreme);
-                potvrdi = ProveriIspravnostZaDatum(this.Datum);
 
                 string vremePodsetnika = Vreme.Text;
                 string datumPodsetnika = Datum.SelectedDate.Value.ToString("MM/dd/yyyy") + " " + vremePodsetnika;
                 string sadrzajPodsetnika = SadrzajPodsetnika.Text;
-
+                try
+                {
+                    DateTime formatiranoVreme = DateTime.Parse(Vreme.Text); 
+                } catch
+                {
+                    if (Jezik.Header.Equals("_en-US"))
+                    {
+                        MessageBox.Show("Neispravan format vremena(format: HH:mm)");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid time format (format HH:mm)");
+                        return;
+                    }
+                    
+                }
+               
                 List<int> pacijenti = new List<int>();
                 pacijenti.Add(idPacijent);
                 if (SadrzajPodsetnika.Text == "")
@@ -57,9 +73,21 @@ namespace Projekat
                     valSadrzaj.Visibility = Visibility.Visible;
                     return;
                 }
-                Obavestenja obavestenjeZaPodsetnik = new Obavestenja(ObavestenjaServis.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
-                ObavestenjaServis.PronadjiSvaObavestenja().Add(obavestenjeZaPodsetnik);
-                ObavestenjaServis.sacuvajIzmene();
+                if (vremePodsetnika == "")
+                {
+                    valSadrzaj.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                if (valDatum.Visibility == Visibility.Visible || valVreme.Visibility == Visibility.Visible 
+                    || !ProveriIspravnostZaDatum(Datum) || valSadrzaj.Visibility == Visibility.Visible)
+                {
+                    return;
+                }
+                Obavestenja obavestenjeZaPodsetnik = new Obavestenja(servis.GenerisanjeIdObavestenja(), datumPodsetnika, "Podsetnik", sadrzajPodsetnika, pacijenti, true);
+                List<Obavestenja> lista = servis.PronadjiSvaObavestenja();
+                lista.Add(obavestenjeZaPodsetnik);
+                menadzer.SacuvajIzmene("../Projekat.Model.Obavestenja.json", lista);  // ??????????????
 
                 Vreme.Text = null;
                 Datum.Text = null;
@@ -82,6 +110,10 @@ namespace Projekat
                 {
                     valSadrzaj.Visibility = Visibility.Visible;
                 }
+                if (Vreme.Text == "")
+                {
+                    valVreme.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -93,33 +125,12 @@ namespace Projekat
             }
             else
             {
-                return false;
-            }
-            
-        }
-
-        private bool ProveriIspravnostZaVreme(TextBox vreme)
-        {
-            try
-            {
-                TimeSpan vremee = TimeSpan.Parse(Vreme.Text);
-                // HH:mm
-                if (vreme.Text.Length == 5)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
+                return true;
+            }  
         }
 
         private void odjava_Click(object sender, RoutedEventArgs e)
         {
-            /*Page odjava = new PrijavaPacijent();
-            this.NavigationService.Navigate(odjava);*/
             PacijentWebStranice.odjava_Click(this);
         }
         public void karton_Click(object sender, RoutedEventArgs e)
@@ -151,24 +162,8 @@ namespace Projekat
             PacijentWebStranice.anketa_Click(this, idPacijent);
         }
         private void Jezik_Click(object sender, RoutedEventArgs e)
-        {
-            /* var app = (App)Application.Current;
-             // TODO: proveriti
-             string eng = "en-US";
-             string srb = "sr-LATN";
-             MenuItem mi = (MenuItem)sender;
-             if (mi.Header.Equals("en-US"))
-             {
-                 mi.Header = "sr-LATN";
-                 app.ChangeLanguage(eng);
-             }
-             else
-             {
-                 mi.Header = "en-US";
-                 app.ChangeLanguage(srb);
-             }*/
+        { 
             PacijentWebStranice.Jezik_Click(Jezik);
-
         }
 
     }

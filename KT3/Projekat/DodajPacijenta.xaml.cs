@@ -32,11 +32,7 @@ namespace Projekat
         public bool flag6 = false;
         public bool flag7 = false;
         public bool flag8 = true;
-
-      /*  public string validacijaJmbg;
-        public string validacijaJmbgStaratelja;
-        public string validacijaBrojTelefona;  */
-
+        PacijentiServis servis = new PacijentiServis();
         public DodajPacijenta()
         {
             InitializeComponent();
@@ -48,69 +44,6 @@ namespace Projekat
             validacijaJmbgStaratelja.Visibility = Visibility.Hidden;
         }
 
-    /*    public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string name, bool flag_)
-        {
-            if (PropertyChanged != null)
-            {
-               // flag_ = true;
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-            else
-            {
-                flag_ = false;
-            }
-            Console.WriteLine(flag_);
-        }
-
-       public string ValidacijaJmbg
-        {
-            get
-            {
-                return validacijaJmbg;
-            }
-            set
-            {
-                if (value != validacijaJmbg)
-                {
-                    validacijaJmbg = value;
-                    OnPropertyChanged("ValidacijaJmbg"/*, flag6);
-                }
-            }
-        }
-
-        public string ValidacijaBrojTelefona
-        {
-            get
-            {
-                return validacijaBrojTelefona;
-            }
-            set
-            {
-                if (value != validacijaBrojTelefona)
-                {
-                    validacijaBrojTelefona = value;
-                    OnPropertyChanged("ValidacijaBrojTelefona"/*, flag7);
-                }
-            }
-        }
-
-        public string ValidacijaJmbgStaratelja
-        {
-            get
-            {
-                return validacijaJmbgStaratelja;
-            }
-            set
-            {
-                if (value != validacijaJmbgStaratelja)
-                {
-                    validacijaJmbgStaratelja = value;
-                    OnPropertyChanged("ValidacijaJmbgStaratelja"/*, flag8);
-                }
-            }
-        } */
-
         private void Potvrdi_Click(object sender, RoutedEventArgs e)
         { 
             statusNaloga status = PacijentiServis.OdrediStatusNaloga(combo.Text);
@@ -121,13 +54,13 @@ namespace Projekat
 
             if (status.Equals(statusNaloga.Guest))
             {
-                Pacijent guestPacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
-                PacijentiServis.DodajNalog(guestPacijent);
+                Pacijent guestPacijent = new Pacijent(servis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, status);
+                servis.DodajNalog(guestPacijent);
             }
             else
             {
-                Pacijent pacijent = new Pacijent(PacijentiServis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
-                PacijentiServis.DodajNalog(pacijent);
+                Pacijent pacijent = new Pacijent(servis.GenerisanjeIdPacijenta(), ime.Text, prezime.Text, long.Parse(jmbg.Text), pol, long.Parse(brojTelefona.Text), email.Text, adresa.Text, status, zanimanje.Text, brStanje, maloletnoLice, staratelj);
+                servis.DodajNalog(pacijent);
             }    
 
             this.Close();
@@ -196,7 +129,7 @@ namespace Projekat
                 long result;
                 if (long.TryParse(jmbg.Text, out result))
                 {
-                    if ((!PacijentiServis.JedinstvenJmbg(long.Parse(jmbg.Text))))
+                    if ((!servis.JedinstvenJmbg(long.Parse(jmbg.Text))))
                     {
                         MessageBox.Show("Uneseni JMBG vec postoji!");
                         jmbg.Text = "";
@@ -210,9 +143,25 @@ namespace Projekat
             if ((bool)maloletnik.IsChecked)
             {
                 jmbgStaratelja.IsEnabled = true;
-                jmbgStaratelja.Focusable = true;
-                flag8 = false;
-                potvrdi.IsEnabled = false;
+
+                if (jmbgStaratelja.Text.Equals(""))
+                {
+                    flag8 = false;
+                }
+                else
+                {
+                    flag8 = true;
+                }
+
+                if (flag1 == true && flag2 == true && flag3 == true && flag4 == true
+                    && flag5 == true && flag6 == true && flag7 == true && flag8 == true)
+                {
+                    potvrdi.IsEnabled = true;
+                }
+                else
+                {
+                    potvrdi.IsEnabled = false;
+                }
             }
             else 
             {
@@ -425,6 +374,44 @@ namespace Projekat
                     validacijaJmbgStaratelja.Visibility = Visibility.Visible;
                     potvrdi.IsEnabled = false;
                 }
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.M && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                if (!(bool)maloletnik.IsChecked)
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelja.IsEnabled = true;
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelja.IsEnabled = false;
+                }
+            }
+            else if (e.Key == Key.M && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                if (!(bool)maloletnik.IsChecked)
+                {
+                    maloletnik.IsChecked = true;
+                    jmbgStaratelja.IsEnabled = true;
+                }
+                else
+                {
+                    maloletnik.IsChecked = false;
+                    jmbgStaratelja.IsEnabled = false;
+                }
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                Odustani_Click(sender, e);
+            }
+            else if (e.Key == Key.O && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Odustani_Click(sender, e);
             }
         }
 

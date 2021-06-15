@@ -1,4 +1,5 @@
-﻿using Projekat.Model;
+﻿using Model;
+using Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -140,6 +141,36 @@ namespace Projekat.Servis
         public static void ukloniZahtjev(ZahtevZaLekove izabraniZahtjev)
         {
             LekoviMenadzer.zahteviZaLekove.Remove(izabraniZahtjev);
+        }
+
+        public static int GenerisanjeIdKreveta(int idSobe)
+        {
+            bool pomocna = false;
+            int id = 1;
+            foreach (Sala sala in SaleMenadzer.lista)
+            {
+                if (sala.Id == idSobe && sala.Kreveti != null)
+                {
+                    for (id = 1; id <= sala.Kreveti.Count; id++)
+                    {
+                        foreach (Krevet k in sala.Kreveti)
+                        {
+                            if (k.IdKreveta == id)
+                            {
+                                pomocna = true;
+                                break;
+                            }
+                        }
+
+                        if (!pomocna)
+                        {
+                            return id;
+                        }
+                        pomocna = false;
+                    }
+                }
+            }
+            return id;
         }
 
     }

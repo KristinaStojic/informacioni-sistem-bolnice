@@ -25,19 +25,22 @@ namespace Projekat
         Anamneza stara;
         Termin termin;
         bool popunjeno = false;
+        PacijentiServis servis = new PacijentiServis();
+        ZdravstveniKartonServis kartonServis = new ZdravstveniKartonServis();
+
         public DetaljiAnamneze(Anamneza izabranaAnamneza, Termin Izabranitermin)
         {
             InitializeComponent();
             this.termin = Izabranitermin;
             PopuniPodatke(izabranaAnamneza);
-            this.potvrdi.IsEnabled = false;
+            
         }
 
         private void PopuniPodatke(Anamneza izabranaAnamneza)
         {
             this.stara = izabranaAnamneza;
         
-            foreach (Pacijent pac in PacijentiServis.pacijenti())
+            foreach (Pacijent pac in servis.pacijenti())
             {
                 if (pac.IdPacijenta == izabranaAnamneza.IdPacijenta)
                 {
@@ -60,11 +63,11 @@ namespace Projekat
                 DateTime selectedDate = (DateTime)datum.SelectedDate;
                 datumPregleda = selectedDate.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-                Anamneza nova = new Anamneza(stara.IdAnamneze, stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta, stara.IdLekara, termin.IdTermin);
-                ZdravstveniKartonServis.IzmeniAnamnezu(stara, nova);
+                Anamneza nova = new Anamneza(stara.IdAnamneze, stara.IdPacijenta, datumPregleda, bolestPacijenta, terapijaPacijenta, termin.Lekar.IdLekara, termin.IdTermin);
+                kartonServis.IzmeniAnamnezu(stara, nova);
 
                 TerminServisLekar.sacuvajIzmene();
-                PacijentiServis.SacuvajIzmenePacijenta();
+                //PacijentiServis.SacuvajIzmenePacijenta();
                 SaleServis.sacuvajIzmjene();
                 this.Close();
             }
@@ -121,6 +124,7 @@ namespace Projekat
             if (this.terap.Text.Trim().Equals("") || this.bol.Text.Trim().Equals(""))
             {
                 this.potvrdi.IsEnabled = false;
+                popunjeno = false;
             }
             else if (!this.terap.Text.Trim().Equals("") && !this.bol.Text.Trim().Equals(""))
             {

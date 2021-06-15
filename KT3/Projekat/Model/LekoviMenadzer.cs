@@ -8,12 +8,12 @@ using System.Xml.Serialization;
 
 namespace Projekat.Model
 {
-    class LekoviMenadzer
+    public class LekoviMenadzer
     {
         public static void DodajLijek(Lek lijek)
         {
             lijekovi.Add(lijek);
-            SpisakZahtevaZaLekove.TabelaLekova.Add(lijek);
+            //SpisakZahtevaZaLekove.TabelaLekova.Add(lijek);
             sacuvajIzmjene();
         }
 
@@ -62,7 +62,7 @@ namespace Projekat.Model
                 if (lek.idLeka == izabraniLek.idLeka)
                 {
                     lek.sastojci.Add(sastojak);
-                    PrikazSastojakaLekar.TabelaSastojaka.Add(sastojak);
+                    //PrikazSastojakaLekar.TabelaSastojaka.Add(sastojak);
                     //sastojci.Add(sastojak);
 
                 }
@@ -128,7 +128,7 @@ namespace Projekat.Model
                     lek.nazivLeka = izmenjeniLek.nazivLeka;
                     lek.zamenskiLekovi = izmenjeniLek.zamenskiLekovi;
                     lek.sastojci = izmenjeniLek.sastojci;
-                    int idx = SpisakZahtevaZaLekove.TabelaLekova.IndexOf(izabraniLek);
+                    /*int idx = SpisakZahtevaZaLekove.TabelaLekova.IndexOf(izabraniLek);
                     SpisakZahtevaZaLekove.TabelaLekova.RemoveAt(idx);
                     SpisakZahtevaZaLekove.TabelaLekova.Insert(idx, lek);
                     if (PrikazZamenskihLekovaLekar.TabelaZamenskihLekova != null)
@@ -136,7 +136,7 @@ namespace Projekat.Model
                         int idx1 = PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.IndexOf(izabraniLek);
                         PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.RemoveAt(idx1);
                         PrikazZamenskihLekovaLekar.TabelaZamenskihLekova.Insert(idx1, lek);
-                    }
+                    }*/
                 }
             }
             sacuvajIzmjene();
@@ -160,7 +160,7 @@ namespace Projekat.Model
                 if (lek.idLeka == izabraniLek.idLeka)
                 {
                     lek.sastojci.Remove(sastojak);
-                    PrikazSastojakaLekar.TabelaSastojaka.Remove(sastojak);
+                    //PrikazSastojakaLekar.TabelaSastojaka.Remove(sastojak);
                 }
             }
             sacuvajIzmjene();
@@ -223,9 +223,9 @@ namespace Projekat.Model
                         {
                             sastojak.naziv = noviSastojak.naziv;
                             sastojak.kolicina = noviSastojak.kolicina;
-                            int idx = PrikazSastojakaLekar.TabelaSastojaka.IndexOf(stariSastojak);
+                            /*int idx = PrikazSastojakaLekar.TabelaSastojaka.IndexOf(stariSastojak);
                             PrikazSastojakaLekar.TabelaSastojaka.RemoveAt(idx);
-                            PrikazSastojakaLekar.TabelaSastojaka.Insert(idx, sastojak);
+                            PrikazSastojakaLekar.TabelaSastojaka.Insert(idx, sastojak);*/
                             break;
                         }
                     }
@@ -338,9 +338,9 @@ namespace Projekat.Model
                     zahtev.obradjenZahtev = true;
                     zahtev.odobrenZahtev = true;
 
-                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    /*int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
                     SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
-                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);*/
                 }
             }
 
@@ -356,9 +356,9 @@ namespace Projekat.Model
                     zahtev.odobrenZahtev = false;
                     zahtev.obrazlozenjeOdbijanja = razlogOdbijanja;
 
-                    int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
+                    /*int id = SpisakZahtevaZaLekove.TabelaZahteva.IndexOf(izabraniZahtev);
                     SpisakZahtevaZaLekove.TabelaZahteva.RemoveAt(id);
-                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);
+                    SpisakZahtevaZaLekove.TabelaZahteva.Insert(id, zahtev);*/
                 }
             }
 

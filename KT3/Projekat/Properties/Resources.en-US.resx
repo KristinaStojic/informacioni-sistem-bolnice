@@ -130,7 +130,7 @@
     <value>Anamnesis</value>
   </data>
   <data name="AnketaOLekaru" xml:space="preserve">
-    <value>p</value>
+    <value>Survey for doctors</value>
   </data>
   <data name="Beleske" xml:space="preserve">
     <value>Notes</value>
@@ -140,6 +140,9 @@
   </data>
   <data name="BracnoStanje" xml:space="preserve">
     <value>Marital status</value>
+  </data>
+  <data name="brKreveta" xml:space="preserve">
+    <value>Bed number</value>
   </data>
   <data name="BrojDana" xml:space="preserve">
     <value>How many days to take the medicine</value>
@@ -152,6 +155,9 @@
   </data>
   <data name="BrojTelefona" xml:space="preserve">
     <value>Phone number</value>
+  </data>
+  <data name="brSobe" xml:space="preserve">
+    <value>Room number</value>
   </data>
   <data name="Cetiri" xml:space="preserve">
     <value>4. How would you rate the expertise of Zdravo Corporation employees?</value>
@@ -167,6 +173,12 @@
   </data>
   <data name="DatumIzdavanjaUputa" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="DatumKrajaLecenja" xml:space="preserve">
+    <value>Treatment end date</value>
+  </data>
+  <data name="DatumPocetkaLecenja" xml:space="preserve">
+    <value>Treatment start date</value>
   </data>
   <data name="DatumPropisivanja" xml:space="preserve">
     <value>Date of prescription</value>
@@ -267,11 +279,17 @@
   <data name="JmbgPacijenta" xml:space="preserve">
     <value>Patient ID</value>
   </data>
+  <data name="KakavPregledSeTrazi" xml:space="preserve">
+    <value>What kind of examination is required</value>
+  </data>
   <data name="Karton" xml:space="preserve">
     <value>Medical record</value>
   </data>
   <data name="KorisnickoIme" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="LaboratorijskiUput" xml:space="preserve">
+    <value>Referral laboratory</value>
   </data>
   <data name="LblPreporuceniTermini" xml:space="preserve">
     <value>📆 Recommended appointments</value>
@@ -317,6 +335,12 @@
   </data>
   <data name="NaslovAnketaKlinika" xml:space="preserve">
     <value>Zdravo Corporate Services Survey</value>
+  </data>
+  <data name="NaslovLabrUputa" xml:space="preserve">
+    <value>Laboratory referral</value>
+  </data>
+  <data name="NaslovStacionarnoLecenje" xml:space="preserve">
+    <value>Hospital treatment</value>
   </data>
   <data name="NaslovUputa" xml:space="preserve">
     <value>Medical referral for specialist examination</value>
@@ -368,6 +392,9 @@
   </data>
   <data name="Ozenjen" xml:space="preserve">
     <value>Married</value>
+  </data>
+  <data name="Pacijent" xml:space="preserve">
+    <value>Patient</value>
   </data>
   <data name="PacijentPodaci" xml:space="preserve">
     <value>Patient</value>
@@ -456,6 +483,9 @@
   <data name="SpecijalistickiPregled" xml:space="preserve">
     <value>Specialist examination</value>
   </data>
+  <data name="SpecijalistickiUput" xml:space="preserve">
+    <value>Specialist referral</value>
+  </data>
   <data name="Specijalizacija" xml:space="preserve">
     <value>Specialization</value>
   </data>
@@ -485,6 +515,9 @@
   </data>
   <data name="TipTermin" xml:space="preserve">
     <value>Type</value>
+  </data>
+  <data name="TipTermina" xml:space="preserve">
+    <value>Appointment type</value>
   </data>
   <data name="TipUputa" xml:space="preserve">
     <value>Referral type</value>
@@ -530,8 +563,14 @@
   <data name="valAdresa" xml:space="preserve">
     <value>Fill in the field</value>
   </data>
+  <data name="valBrojKartice" xml:space="preserve">
+    <value>Enter the card number</value>
+  </data>
   <data name="valDatum" xml:space="preserve">
     <value>Selecet a date</value>
+  </data>
+  <data name="valDrzava" xml:space="preserve">
+    <value>Select a country</value>
   </data>
   <data name="valIme" xml:space="preserve">
     <value>Enter a name</value>
@@ -541,6 +580,9 @@
   </data>
   <data name="valJmbgDuzina" xml:space="preserve">
     <value>Length must be between 9 and 13 digits</value>
+  </data>
+  <data name="valKartica" xml:space="preserve">
+    <value>Choose a payment method</value>
   </data>
   <data name="valPrezime" xml:space="preserve">
     <value>Enter a lastname</value>

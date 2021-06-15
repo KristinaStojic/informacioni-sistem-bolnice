@@ -24,6 +24,8 @@ namespace Projekat
     {
         private static int idPacijent;
         private static Pacijent prijavljeniPacijent;
+        PacijentiServis servis = new PacijentiServis();
+        PacijentiMenadzer menadzer = new PacijentiMenadzer();
         public LicniPodaciPacijenta(int idPrijavljenogPacijenta)
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace Projekat
             this.sacuvajIzmene.Visibility = Visibility.Hidden;
             this.odustani.Visibility = Visibility.Hidden;
             idPacijent = idPrijavljenogPacijenta;
-            prijavljeniPacijent = PacijentiServis.PronadjiPoId(idPrijavljenogPacijenta);
+            prijavljeniPacijent = servis.PronadjiPoId(idPrijavljenogPacijenta);
             this.lekar.ItemsSource = LekariServis.PronadjiLekarePoSpecijalizaciji(Specijalizacija.Opsta_praksa);
             InicijalizujLicnePodatke(prijavljeniPacijent);
             PacijentWebStranice.AktivnaTema(this.zaglavlje, this.SvetlaTema, this.tamnaTema);
@@ -117,7 +119,6 @@ namespace Projekat
 
         private void sacuvajIzmene_Click(object sender, RoutedEventArgs e)
         {
-
             string ime = this.Ime.Text;
             string prezime = this.prezime.Text;
             long jmbg = long.Parse(this.jmbg.Text);
@@ -146,8 +147,8 @@ namespace Projekat
             }
             Pacijent izmenjenPacijent = new Pacijent(prijavljeniPacijent.IdPacijenta, ime, prezime, jmbg, polPacijenta, brTel, eMail, adresa, statusNaloga.Stalni, zanimanje, brStanje);
             izmenjenPacijent.IzabraniLekar = l;
-            PacijentiServis.IzmeniNalogPacijent(prijavljeniPacijent, izmenjenPacijent);
-            PacijentiServis.SacuvajIzmenePacijenta(); 
+            servis.IzmeniNalogPacijent(prijavljeniPacijent, izmenjenPacijent);
+           // menadzer .SacuvajIzmenePacijenta(); 
             PromeniVidljivostKomponentiPosleIzmene();
         }
 
@@ -174,7 +175,6 @@ namespace Projekat
             this.izmeniBtn.Visibility = Visibility.Hidden;
             this.sacuvajIzmene.Visibility = Visibility.Visible;
             this.odustani.Visibility = Visibility.Visible;
-
             this.Ime.IsEnabled = true;
             this.prezime.IsEnabled = true;
             this.jmbg.IsEnabled = true;
@@ -232,7 +232,7 @@ namespace Projekat
         }
         #region Validacija licnih podataka
 
-        public bool ProveraCifara(string tekst)
+        public static bool ProveraCifara(string tekst)
         {
             foreach (char karakter in tekst)
             {

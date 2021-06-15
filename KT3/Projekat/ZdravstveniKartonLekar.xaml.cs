@@ -33,7 +33,10 @@ namespace Projekat
         public Pacijent pacijent;
         public Termin termin;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        ReceptiIzvestaj receptiIzvestaj = new ReceptiIzvestaj();
+        AnamnezaIzvestaj anamnezaIzvestaj = new AnamnezaIzvestaj();
+        PacijentiServis servis = new PacijentiServis();
+        List<Pacijent> sviPacijenti;
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -104,7 +107,8 @@ namespace Projekat
             this.termin = termin;
             this.DataContext = this;
 
-
+            sviPacijenti = servis.PronadjiSve();
+            
             if (izabraniNalog != null)
             {
                 PopuniLicnePodatkePacijenta(izabraniNalog);
@@ -114,7 +118,7 @@ namespace Projekat
         }
         public void PostaviDeloveGrafika(Pacijent izabraniNalog)
         {
-            foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+            foreach (Pacijent pacijent in sviPacijenti)
             {
                 if (pacijent.IdPacijenta == izabraniNalog.IdPacijenta)
                 {
@@ -203,7 +207,7 @@ namespace Projekat
         private void PopuniTabelePodacima()
         {
             PrikazRecepata = new ObservableCollection<LekarskiRecept>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -216,7 +220,7 @@ namespace Projekat
 
 
             TabelaAnamneza = new ObservableCollection<Anamneza>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -228,7 +232,7 @@ namespace Projekat
             }
 
             TabelaAlergena = new ObservableCollection<Alergeni>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -240,7 +244,7 @@ namespace Projekat
             }
 
             TabelaUputa = new ObservableCollection<Uput>();
-            foreach (Pacijent p in PacijentiServis.pacijenti())
+            foreach (Pacijent p in sviPacijenti)
             {
                 if (p.IdPacijenta == pacijent.IdPacijenta)
                 {
@@ -387,7 +391,7 @@ namespace Projekat
             }
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl)) //Izvestaj
             {
-                //Izvestaj
+                Izvestaj_Anamneze(sender, e);
             }
             else if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) //Nazad
             {
@@ -412,7 +416,7 @@ namespace Projekat
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl)) // Alergeni
+            if (e.Key == Key.X && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
                 this.Close();
             }
@@ -432,13 +436,13 @@ namespace Projekat
 
         private void recepti_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) 
             {
                 Button_Click_3(sender, e);
             }
             else if (e.Key == Key.I && Keyboard.IsKeyDown(Key.LeftCtrl)) 
             {
-                //Izvestaj
+                Izvestaj_Recepti(sender, e);
             }
             else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
             {
@@ -459,7 +463,7 @@ namespace Projekat
 
         private void uputi_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) //Novi recept
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl)) 
             {
                 Button_Click_6(sender, e);
             }
@@ -473,7 +477,7 @@ namespace Projekat
             }
         }
 
-        private void Izvestaj_Recepti(object sender, RoutedEventArgs e)
+        /*private void Izvestaj_Recepti(object sender, RoutedEventArgs e)
         {
             using (PdfDocument doc = new PdfDocument())
             {
@@ -483,6 +487,14 @@ namespace Projekat
                 // Create a PdfLightTable.
                 PdfLightTable pdfLightTable = new PdfLightTable();
 
+                DataTable tabelaNaslov = new DataTable();
+
+               
+                tabelaNaslov.Columns.Add("Datum");
+                tabelaNaslov.Columns.Add("Vreme");
+                tabelaNaslov.Columns.Add("Vrsta");
+                tabelaNaslov.Rows.Add(new string[] { "Datum izdavanja izvestaja", "Vreme izdavanja izvestaja", "Vrsta izvestaja"});
+                tabelaNaslov.Rows.Add(new string[] { DateTime.Now.Date.ToString().Split(' ')[0], DateTime.Now.Hour + ":" + DateTime.Now.Minute, "Izvestaj recepata pacijenta"});
                 // Initialize DataTable to assign as DateSource to the light table.
                 DataTable table = new DataTable();
 
@@ -492,39 +504,71 @@ namespace Projekat
                 table.Columns.Add("Datum izdavanja");
 
                 table.Columns.Add("Naziv leka");
-                table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja recepta", "Naziv leka" });
+
+                table.Columns.Add("Broj dana koriscenja");
+
+                table.Columns.Add("Dnevna kolicina");
+                table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja recepta", "Naziv leka", "Broj dana koriscenja", "Dnevna kolicina" });
                 //Include rows to the DataTable.
-                foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+                foreach (Pacijent p in PacijentiServis.pacijenti())
                 {
-                    if (pacijent.Karton.LekarskiRecepti != null)
+                    if(p.IdPacijenta == pacijent.IdPacijenta)
                     {
-                        foreach (LekarskiRecept recept in pacijent.Karton.LekarskiRecepti)
+                        if (pacijent.Karton.LekarskiRecepti != null)
                         {
-                            table.Rows.Add(new string[] { pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta, recept.DatumPropisivanjaLeka, recept.NazivLeka });
+                            foreach (LekarskiRecept recept in p.Karton.LekarskiRecepti)
+                            {
+                                table.Rows.Add(new string[] { pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta, recept.DatumPropisivanjaLeka, recept.NazivLeka, recept.BrojDanaKoriscenja.ToString(), recept.DnevnaKolicina.ToString()});
+                            }
                         }
                     }
-
+                    
 
                 }
 
-
+                pdfLightTable.DataSource = tabelaNaslov;
                 //Assign data source.
                 pdfLightTable.DataSource = table;
+                
 
                 //Draw PdfLightTable.
                 pdfLightTable.Draw(page, new PointF(0, 0));
 
                 //Save the document
-                doc.Save("C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajRecepata.pdf");
+                doc.Save("C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajRecepata" + pacijent.ImePacijenta + pacijent.PrezimePacijenta + ".pdf");
 
                 doc.Close();
             }
             MessageBox.Show("PDF fajl uspesno izgenerisan!");
+        }*/
+
+        private void Izvestaj_Recepti(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataTable dtbl = receptiIzvestaj.MakeDataTable(termin);
+                String naslov = "Izveštaj recepata@@Pacijent " + pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta;
+                naslov = naslov.Replace("@", System.Environment.NewLine);
+                String datum = DateTime.Now.ToString("_dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                String putanja = "C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajRecepata" + pacijent.ImePacijenta + pacijent.PrezimePacijenta + ".pdf";
+                receptiIzvestaj.ExportDataTableToPdf(dtbl, putanja, naslov);
+
+                if (System.Windows.MessageBox.Show("Izveštaj izgenerisan! Pogledati ga?", "Izveštaj recepata", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(putanja);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message, "Error Message");
+            }
+
         }
 
         private void Izvestaj_Anamneze(object sender, RoutedEventArgs e)
         {
-            using (PdfDocument doc = new PdfDocument())
+            /*using (PdfDocument doc = new PdfDocument())
             {
                 //Add a page to the document
                 PdfPage page = doc.Pages.Add();
@@ -538,20 +582,28 @@ namespace Projekat
                 //Include columns to the DataTable.
                 table.Columns.Add("Pacijent");
 
-                table.Columns.Add("Datum izdavanja");
+                table.Columns.Add("Datum izdavanja anamneze");
 
-                table.Columns.Add("Naziv leka");
-                table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja anamneze", "Lekar koji je izdao anamnezu" });
+                table.Columns.Add("Opis bolesti");
+
+                table.Columns.Add("Terapija");
+
+                table.Columns.Add("Lekar koji je izdao anamnezu");
+                table.Rows.Add(new string[] { "Pacijent", "Datum izdavanja anamneze", "Opis bolesti", "Terapija",  "Lekar koji je izdao anamnezu" });
                 //Include rows to the DataTable.
-                foreach (Pacijent pacijent in PacijentiServis.pacijenti())
+                foreach (Pacijent p in PacijentiServis.pacijenti())
                 {
-                    if (pacijent.Karton.Anamneze != null)
+                    if(p.IdPacijenta == pacijent.IdPacijenta)
                     {
-                        foreach (Anamneza anamneza in pacijent.Karton.Anamneze)
+                        if (pacijent.Karton.Anamneze != null)
                         {
-                            table.Rows.Add(new string[] { pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta, anamneza.Datum, anamneza.ImePrezimeLekara });
+                            foreach (Anamneza anamneza in p.Karton.Anamneze)
+                            {
+                                table.Rows.Add(new string[] { pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta, anamneza.Datum, anamneza.OpisBolesti, anamneza.Terapija, anamneza.ImePrezimeLekara });
+                            }
                         }
                     }
+                   
 
 
                 }
@@ -564,11 +616,48 @@ namespace Projekat
                 pdfLightTable.Draw(page, new PointF(0, 0));
 
                 //Save the document
-                doc.Save("C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajAnamneza.pdf");
+                doc.Save("C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajAnamneza" + pacijent.ImePacijenta + pacijent.PrezimePacijenta + ".pdf");
 
                 doc.Close();
             }
-            MessageBox.Show("PDF fajl uspesno izgenerisan!");
+            MessageBox.Show("PDF fajl uspesno izgenerisan!");*/
+
+
+            try
+            {
+                DataTable dtbl = anamnezaIzvestaj.MakeDataTable(termin);
+                String naslov = "Izveštaj anamneza@@Pacijent " + pacijent.ImePacijenta + " " + pacijent.PrezimePacijenta;
+                naslov = naslov.Replace("@", System.Environment.NewLine);
+                String datum = DateTime.Now.ToString("_dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                String putanja = "C:\\SIMS projekat bolnica\\informacioni-sistem-bolnice\\KT3\\IzvestajAnamneza" + pacijent.ImePacijenta + pacijent.PrezimePacijenta + ".pdf";
+                anamnezaIzvestaj.ExportDataTableToPdf(dtbl, putanja, naslov);
+
+                if (System.Windows.MessageBox.Show("Izveštaj izgenerisan! Pogledati ga?", "Izveštaj recepata", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(putanja);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message, "Error Message");
+            }
+        }
+
+        private void alergeni_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.N && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_4(sender, e);
+            }
+            else if (e.Key == Key.D && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Button_Click_5(sender, e);
+            }
+            else if (e.Key == Key.H && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                Alergeni_Click(sender, e);
+            }
         }
     }
 }

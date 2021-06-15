@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekat"
+        xmlns:viewmodel="clr-namespace:Projekat.ViewModel"
         mc:Ignorable="d"
         Title="IzmeniLekLekar"  Height="350" Width="400" Background="LightSkyBlue" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid>
+    <Window.DataContext>
+        <viewmodel:LekarLekoviViewModel/>
+    </Window.DataContext>
+    <Grid KeyDown="Grid_KeyDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -17,13 +21,13 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Sifra leka:"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17"><Run Text="Š"/><Run Text="ifra leka:"/></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20" FontSize="17" Text="Naziv leka:"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" TextChanged="sifra_TextChanged"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="naziv" Background="AliceBlue" TextChanged="naziv_TextChanged"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="sifra" Background="AliceBlue" TextChanged="sifra_TextChanged" Text="{Binding NazivLeka, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Width="150" Height="30" BorderBrush="Black" Name="naziv" Background="AliceBlue" TextChanged="naziv_TextChanged" Text="{Binding SifraLeka, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
-            <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Right" Margin="10" Name="Potvrdi" Click="Potvrdi_Click">Potvrdi</Button>
-            <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="10" >Odustani</Button>
+            <Button Grid.Column="0" Grid.Row="3" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Right" Margin="10" Name="Potvrdi" Command="{Binding PotvrdiIzmenuLekaKomanda}" >Potvrdi</Button>
+            <Button Grid.Column="1" Grid.Row="3" Width="100" Height="40" BorderBrush="White" Foreground="White" Background="#FF6895C5" HorizontalAlignment="Left" Margin="10" Command="{Binding OdustaniOdIzmeneLekaKomanda}"  >Odustani</Button>
         </Grid>
     </Grid>
 </Window>
